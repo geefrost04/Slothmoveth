@@ -108,28 +108,30 @@ export function Articles() {
                       ใช้ดูภาพรวมตำแหน่งที่เปิดรับควบคู่กับการเลือกคอร์สที่เหมาะกับเป้าหมายของคุณ
                       เห็นทั้งจำนวนอัตรา แนวโน้มการสมัคร และตำแหน่งที่คนสนใจมากที่สุดในช่วงนี้
                     </p>
-                    <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-slate-400 dark:text-slate-500">ค้นหาด่วน:</span>
-                      {[
-                        { label: 'ไม่ต้องมีภาค ก.', query: 'ไม่ต้องมีภาค ก.' },
-                        { label: 'งานธุรการ', query: 'ธุรการ' },
-                        { label: 'งานไอที / คอมฯ', query: 'คอมพิวเตอร์' },
-                        { label: 'สาธารณสุข', query: 'สาธารณสุข' },
-                        { label: 'นายสิบ / ตำรวจ', query: 'ตำรวจ' },
-                      ].map((tag) => (
-                        <Link
-                          key={tag.label}
-                          href={`/rat-ngan?q=${encodeURIComponent(tag.query)}`}
-                          className="rounded-full bg-[#f4ece1] px-2.5 py-1 text-[11px] font-bold text-[#c97d3a] hover:bg-[#c97d3a] hover:text-white transition duration-150 dark:bg-[#2b2b40] dark:text-[#e0a870] dark:hover:bg-[#e0a870] dark:hover:text-slate-900"
-                        >
-                          #{tag.label}
-                        </Link>
-                      ))}
+                    <div className="mt-3.5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
+                      <span className="shrink-0 text-[10px] font-bold uppercase tracking-[0.08em] text-slate-400 dark:text-slate-500">ค้นหาด่วน:</span>
+                      <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
+                        {[
+                          { label: 'ไม่ต้องมีภาค ก.', query: 'ไม่ต้องมีภาค ก.' },
+                          { label: 'งานธุรการ', query: 'ธุรการ' },
+                          { label: 'งานไอที / คอมฯ', query: 'คอมพิวเตอร์' },
+                          { label: 'สาธารณสุข', query: 'สาธารณสุข' },
+                          { label: 'นายสิบ / ตำรวจ', query: 'ตำรวจ' },
+                        ].map((tag) => (
+                          <Link
+                            key={tag.label}
+                            href={`/rat-ngan?q=${encodeURIComponent(tag.query)}`}
+                            className="shrink-0 whitespace-nowrap rounded-full bg-[#f4ece1] px-2.5 py-1.5 text-[11px] font-bold text-[#c97d3a] hover:bg-[#c97d3a] hover:text-white transition duration-150 dark:bg-[#2b2b40] dark:text-[#e0a870] dark:hover:bg-[#e0a870] dark:hover:text-slate-900"
+                          >
+                            #{tag.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
                   {[
                     { label: 'อัตราที่เปิดรับ', value: totalPositions.toLocaleString(), accent: '#2f7a63' },
                     { label: 'ประกาศที่เปิดรับ', value: activeJobs.length.toLocaleString(), accent: '#18231d' },
@@ -269,18 +271,18 @@ export function Articles() {
                             </span>
                           </div>
 
-                          <h4 className="font-display text-base font-bold leading-6 text-slate-900 transition group-hover:text-[#2f7a63] dark:text-white">
+                          <h4 className="line-clamp-2 break-words font-display text-base font-bold leading-6 text-slate-900 transition group-hover:text-[#2f7a63] dark:text-white">
                             {cleanTitle}
                           </h4>
 
                           <div className="mt-2 flex flex-wrap gap-2 text-[11px] font-semibold text-[#6a756e]">
                             <span
-                              className="rounded-full px-2.5 py-1"
+                              className="max-w-full truncate rounded-full px-2.5 py-1"
                               style={{ color: ministryColor.color, backgroundColor: ministryColor.bg }}
                             >
                               {job['กระทรวง'] ? job['กระทรวง'].replace('กระทรวง', '').trim() : 'หน่วยงานอิสระ'}
                             </span>
-                            <span className="rounded-full bg-[#f3efe7] px-2.5 py-1">{job['หน่วยงาน']}</span>
+                            <span className="max-w-full truncate rounded-full bg-[#f3efe7] px-2.5 py-1">{job['หน่วยงาน']}</span>
                           </div>
 
                           <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500 dark:text-slate-400">

@@ -24,7 +24,6 @@ export function Hero() {
             </div>
           </div>
           <div className="home-hero-mascot">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/pic/slothmove_hero_study.png"
               alt="สลอธนักเรียนสอบราชการ SlothMove — เรียนฟรี เตรียมสอบราชการแบบเข้าใจง่าย"

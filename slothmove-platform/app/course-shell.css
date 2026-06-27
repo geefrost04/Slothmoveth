@@ -1850,3 +1850,303 @@
   color: var(--color-primary-light, #e05e71) !important;
   text-shadow: 2px 2px 0 rgba(180, 138, 62, 0.2) !important;
 }
+
+/* ============================================================ */
+/* RAILWAY — wine red + brass gold (SRT identity)               */
+/* ============================================================ */
+.course-layout[data-course='railway'] {
+  --color-bg: #fbf3ec;
+  --color-surface: #fffdf8;
+  --color-border: #e8d5b8;
+  --color-text-muted: #7a4a3a;
+  --color-primary: #6b1a1a;
+  --color-primary-dark: #4a1010;
+  --color-accent: #b48a3e;
+  --color-accent-soft: #fdf6e3;
+}
+.course-layout[data-course='railway'] .pab-hero {
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-bg) 92%, transparent) 0%, color-mix(in srgb, var(--color-bg) 70%, transparent) 38%, color-mix(in srgb, var(--color-bg) 0%, transparent) 62%),
+    var(--hero-image-url, none);
+  background-color: var(--color-surface);
+  background-repeat: no-repeat;
+  background-size: cover, contain;
+  background-position: left center, right center;
+}
+.course-layout[data-course='railway'] .pab-hero-inner {
+  min-height: 70vh;
+  gap: clamp(36px, 6vw, 84px);
+  padding: clamp(70px, 8vw, 108px) 0;
+}
+.course-layout[data-course='railway'] .pab-hero-badge {
+  padding: 7px 16px;
+  margin-bottom: 22px;
+  border: 0;
+  background: var(--color-primary);
+  color: #fdf6e3;
+  box-shadow: 0 4px 0 var(--color-primary-dark), var(--shadow-sm);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.course-layout[data-course='railway'] .pab-hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.course-layout[data-course='railway'] .pab-hero-kicker {
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+}
+.course-layout[data-course='railway'] .pab-hero-title {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--color-text);
+  font-size: clamp(42px, 6vw, 74px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.03;
+}
+.course-layout[data-course='railway'] .pab-hero-title > span { display: block; }
+.course-layout[data-course='railway'] .pab-hero-title-accent {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-accent);
+  font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.course-layout[data-course='railway'] .pab-hero-desc {
+  max-width: 600px;
+  padding-left: 18px;
+  border-left: 3px solid var(--color-border);
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.72;
+}
+.course-layout[data-course='railway'] .pab-hero-actions { margin-bottom: 0; }
+.course-layout[data-course='railway'] .pab-btn { min-height: 50px; padding: 13px 24px; }
+.course-layout[data-course='railway'] .pab-btn-primary {
+  background: var(--color-primary);
+  color: #fdf6e3;
+  box-shadow: 0 4px 0 var(--color-primary-dark), var(--shadow-sm);
+}
+.course-layout[data-course='railway'] .pab-btn-primary:hover {
+  background: var(--color-primary-dark);
+  box-shadow: 0 6px 0 var(--color-primary-dark), var(--shadow-md);
+}
+.course-layout[data-course='railway'] .pab-btn-secondary {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+.course-layout[data-course='railway'] .pab-hero-mascot {
+  width: clamp(240px, 27vw, 340px);
+  justify-self: end;
+  animation: pabMascotFloat 5s ease-in-out infinite;
+}
+.course-layout[data-course='railway'] .pab-hero-mascot img {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 18px 24px rgba(107, 26, 26, 0.18));
+}
+.course-layout[data-course='railway'] .pab-hero-mascot-label {
+  margin-top: 13px;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+/* Railway brand logo: official SRT emblem — drop the generic 32px frame. */
+.course-layout[data-course='railway'] .course-nav-brand-logo {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  object-fit: contain;
+}
+.course-layout[data-course='railway'] .pab-course-content {
+  background: var(--color-bg);
+}
+.course-layout[data-course='railway'] .course-exam-section {
+  background:
+    linear-gradient(115deg, var(--color-accent-soft), var(--color-surface) 58%),
+    var(--color-surface);
+}
+.course-layout[data-course='railway'] .course-exam-icon {
+  border-color: var(--color-primary);
+  background: var(--color-accent);
+  box-shadow: 5px 5px 0 var(--color-primary-dark);
+}
+.course-layout[data-course='railway'] .course-exam-chip {
+  color: var(--color-primary);
+}
+.course-layout[data-course='railway'] .course-exam-primary {
+  background: var(--color-primary);
+  color: #fdf6e3;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-primary) 72%, #000);
+}
+.course-layout[data-course='railway'] .course-exam-secondary {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+.course-layout[data-course='railway'] .pab-mock-section {
+  padding: 36px 0 18px;
+  background: #fbf3ec;
+}
+.course-layout[data-course='railway'] .pab-mock-card {
+  background: linear-gradient(135deg, #fffefb 0%, #fdf3e0 100%);
+  border-color: rgba(107, 26, 26, 0.08);
+}
+.course-layout[data-course='railway'] .pab-mock-card-top {
+  background: linear-gradient(90deg, #b48a3e 0%, #6b1a1a 100%);
+}
+.course-layout[data-course='railway'] .pab-mock-badge {
+  background: #fdf6e3;
+  color: #6b1a1a;
+}
+.course-layout[data-course='railway'] .pab-mock-title {
+  color: var(--color-primary);
+}
+.course-layout[data-course='railway'] .pab-mock-desc {
+  color: var(--color-text-muted);
+}
+.course-layout[data-course='railway'] .pab-mock-meta span {
+  background: #fff;
+  border-color: rgba(107, 26, 26, 0.08);
+  color: var(--color-text-muted);
+}
+.course-layout[data-course='railway'] .pab-mock-actions .pab-btn-primary {
+  background: var(--color-primary);
+  color: #fdf6e3;
+}
+.course-layout[data-course='railway'] .pab-section {
+  padding: 18px 0 28px;
+  background: var(--color-bg);
+}
+.course-layout[data-course='railway'] .pab-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.course-layout[data-course='railway'] .pab-section-header-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.course-layout[data-course='railway'] .pab-section-part {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border: 2px solid var(--color-primary-dark);
+  border-radius: 0;
+  background: var(--color-primary);
+  color: #fdf6e3;
+  box-shadow: 4px 4px 0 var(--color-accent);
+  font-size: 24px;
+}
+.course-layout[data-course='railway'] .pab-part1 {
+  background: var(--color-primary);
+  color: #fdf6e3;
+}
+.course-layout[data-course='railway'] .pab-part2 {
+  background: var(--color-text);
+  color: var(--color-accent);
+}
+.course-layout[data-course='railway'] .pab-section-chip {
+  display: inline-block;
+  margin-bottom: 7px;
+  padding: 3px 9px;
+  background: var(--color-primary);
+  color: #fdf6e3;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.course-layout[data-course='railway'] .pab-section-title {
+  margin-bottom: 3px;
+  color: var(--color-text);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+}
+.course-layout[data-course='railway'] .pab-section-subtitle {
+  font-size: 13px;
+  line-height: 1.55;
+}
+.course-layout[data-course='railway'] .pab-section-count {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(107, 26, 26, 0.08);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.course-layout[data-course='railway'] .pab-subject-card {
+  background: var(--color-surface);
+  border-color: rgba(107, 26, 26, 0.08);
+  color: var(--color-text);
+}
+.course-layout[data-course='railway'] .pab-subject-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 20px rgba(107, 26, 26, 0.14);
+  transform: translateY(-2px);
+}
+.course-layout[data-course='railway'] .pab-subject-card.is-empty {
+  opacity: 0.78;
+}
+.course-layout[data-course='railway'] .pab-subject-card-num {
+  color: var(--color-primary);
+}
+.course-layout[data-course='railway'] .pab-subject-card-cat {
+  background: var(--color-accent-soft);
+  color: var(--color-primary-dark);
+}
+.course-layout[data-course='railway'] .pab-subject-card-title {
+  color: var(--color-text);
+}
+.course-layout[data-course='railway'] .pab-subject-card-desc {
+  color: var(--color-text-muted);
+}
+.course-layout[data-course='railway'] .pab-subject-card-count {
+  color: var(--color-primary);
+}
+.course-layout[data-course='railway'] .pab-subject-card-count.is-empty {
+  color: var(--color-accent);
+}
+.course-layout[data-course='railway'] .pab-subject-card-cta {
+  color: var(--color-primary);
+}
+[data-theme='dark'] .course-layout[data-course='railway'] {
+  --color-bg: #2a1414;
+  --color-surface: #3a1c1c;
+  --color-border: #5a3030;
+  --color-text: #faf0e0;
+  --color-text-muted: #d4a87a;
+}
+[data-theme='dark'] .course-layout[data-course='railway'] .pab-hero {
+  background-color: var(--color-surface);
+}
+[data-theme='dark'] .course-layout[data-course='railway'] .pab-section {
+  background: var(--color-bg);
+}
+[data-theme='dark'] .course-layout[data-course='railway'] .pab-subject-card {
+  background: var(--color-surface);
+  border-color: rgba(212, 168, 122, 0.18);
+}

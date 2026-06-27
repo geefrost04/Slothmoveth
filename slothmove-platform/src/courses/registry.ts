@@ -17,13 +17,15 @@ import { opsdConfig } from './opsd/config';
 import { industryConfig } from './industry/config';
 import { policeAdminConfig } from './police_admin/config';
 import { ocscConfig } from './ocsc/config';
+import { railwayConfig } from './railway/config';
 
 export const COURSES: CourseConfig[] = [
   pabConfig,
   opsdConfig,
   industryConfig,
   policeAdminConfig,
-  ocscConfig
+  ocscConfig,
+  railwayConfig
 ];
 
 /** Only show courses that aren't hidden from the platform index */

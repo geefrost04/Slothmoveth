@@ -29,7 +29,7 @@ function CourseCard({ course }: { course: Course }) {
       </div>
       <div className="home-course-card-footer">
         <span>{course.type}</span>
-        <strong>{isComingSoon ? 'เร็วๆ นี้' : 'เข้าคอร์ส →'}</strong>
+        <strong className="home-course-card-cta">{isComingSoon ? 'เร็วๆ นี้' : 'เข้าคอร์ส →'}</strong>
       </div>
     </div>
   );
