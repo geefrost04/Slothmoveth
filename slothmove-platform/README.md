@@ -127,6 +127,18 @@ npm run dev      # http://localhost:3040
 npm run build    # production build
 ```
 
+## Deploy
+
+ตั้ง `NEXT_PUBLIC_SITE_URL` ให้ตรงกับโดเมนของแพลตฟอร์ม เพื่อให้ canonical URL, sitemap, robots, และ Open Graph ใช้ host ที่ถูกต้อง
+
+```bash
+# local
+NEXT_PUBLIC_SITE_URL=http://localhost:3040
+
+# production
+NEXT_PUBLIC_SITE_URL=https://learn.slothmoveth.com
+```
+
 ทดสอบ UX:
 
 ```bash

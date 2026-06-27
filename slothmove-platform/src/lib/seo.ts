@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 
+const DEFAULT_SITE_URL =
+  process.env.NODE_ENV === 'production' ? 'https://learn.slothmoveth.com' : 'http://localhost:3040';
+
+const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || DEFAULT_SITE_URL).replace(/\/+$/, '');
+
 export const siteConfig = {
   name: 'SlothMove',
   siteName: 'SlothMove',
-  baseUrl: 'https://slothmoveth.com',
+  baseUrl,
   defaultTitle: 'SlothMove เตรียมสอบราชการออนไลน์ฟรี',
   titleTemplate: '%s | SlothMove',
   description:
