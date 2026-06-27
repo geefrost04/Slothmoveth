@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e2a1a"/>
+      <stop offset="100%" style="stop-color:#2d3f28"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7a9470"/>
+      <stop offset="100%" style="stop-color:#5a6e50"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="400" cy="400" r="400" fill="url(#bgGrad)"/>
+
+  <!-- Subtle inner ring -->
+  <circle cx="400" cy="400" r="340" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+  <!-- Sloth body (simple geometric) -->
+  <!-- Body oval -->
+  <ellipse cx="400" cy="420" rx="110" ry="130" fill="#4a5c42" opacity="0.9"/>
+
+  <!-- Head -->
+  <circle cx="400" cy="270" r="80" fill="#5a6e50"/>
+
+  <!-- Face mask (lighter patch) -->
+  <ellipse cx="400" cy="285" rx="52" ry="44" fill="#7a9470" opacity="0.6"/>
+
+  <!-- Eyes -->
+  <circle cx="376" cy="268" r="12" fill="#1e2a1a"/>
+  <circle cx="424" cy="268" r="12" fill="#1e2a1a"/>
+  <!-- Eye shine -->
+  <circle cx="380" cy="264" r="4" fill="white" opacity="0.8"/>
+  <circle cx="428" cy="264" r="4" fill="white" opacity="0.8"/>
+
+  <!-- Nose -->
+  <ellipse cx="400" cy="290" rx="10" ry="7" fill="#3a4a34"/>
+
+  <!-- Sleepy expression — half-closed eyes overlay -->
+  <rect x="364" y="256" width="24" height="10" rx="5" fill="#1e2a1a" opacity="0.5"/>
+  <rect x="412" y="256" width="24" height="10" rx="5" fill="#1e2a1a" opacity="0.5"/>
+
+  <!-- Ears -->
+  <circle cx="328" cy="250" r="28" fill="#4a5c42"/>
+  <circle cx="472" cy="250" r="28" fill="#4a5c42"/>
+  <circle cx="328" cy="250" r="16" fill="#5a6e50" opacity="0.5"/>
+  <circle cx="472" cy="250" r="16" fill="#5a6e50" opacity="0.5"/>
+
+  <!-- Long arms hanging down -->
+  <!-- Left arm -->
+  <path d="M310 370 Q260 430 240 530 Q235 560 255 570" 
+        stroke="#4a5c42" stroke-width="28" stroke-linecap="round" fill="none"/>
+  <!-- Right arm -->
+  <path d="M490 370 Q540 430 560 530 Q565 560 545 570" 
+        stroke="#4a5c42" stroke-width="28" stroke-linecap="round" fill="none"/>
+
+  <!-- Claws left -->
+  <path d="M248 568 Q238 590 225 582" stroke="#7a9470" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M252 572 Q246 596 232 592" stroke="#7a9470" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M258 574 Q255 600 242 598" stroke="#7a9470" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- Claws right -->
+  <path d="M552 568 Q562 590 575 582" stroke="#7a9470" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M548 572 Q554 596 568 592" stroke="#7a9470" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M542 574 Q545 600 558 598" stroke="#7a9470" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- Leaf / branch element (minimal) -->
+  <path d="M300 200 Q340 150 400 165 Q460 150 500 200" 
+        stroke="#7a9470" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- Small leaves -->
+  <ellipse cx="310" cy="192" rx="18" ry="10" fill="#7a9470" opacity="0.6" transform="rotate(-30 310 192)"/>
+  <ellipse cx="490" cy="192" rx="18" ry="10" fill="#7a9470" opacity="0.6" transform="rotate(30 490 192)"/>
+  <ellipse cx="400" cy="158" rx="20" ry="11" fill="#5a6e50" opacity="0.7"/>
+
+  <!-- Text: SlothMove -->
+  <text x="400" y="640" 
+        font-family="'Arial Black', 'Helvetica Neue', sans-serif"
+        font-weight="900"
+        font-size="72"
+        fill="#f4f1eb"
+        text-anchor="middle"
+        letter-spacing="2">Sloth<tspan fill="#7a9470">Move</tspan></text>
+
+  <!-- Tagline -->
+  <text x="400" y="690"
+        font-family="'Arial', sans-serif"
+        font-weight="400"
+        font-size="26"
+        fill="rgba(255,255,255,0.35)"
+        text-anchor="middle"
+        letter-spacing="5">E · L E A R N I N G</text>
+
+  <!-- Thin accent line under tagline -->
+  <line x1="330" y1="708" x2="470" y2="708" stroke="#5a6e50" stroke-width="1.5" opacity="0.6"/>
+</svg>

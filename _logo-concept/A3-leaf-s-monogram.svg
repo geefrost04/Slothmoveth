@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SlothMove Logo Concept A3: "Leaf-S Monogram"
+  Concept: ตัว S ทำจากใบไม้ 2 ใบ (บน-ล่าง) เชื่อมกลาง
+  สี: Amber gradient + Navy
+-->
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leafTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8a87c"/>
+      <stop offset="100%" stop-color="#c97d3a"/>
+    </linearGradient>
+    <linearGradient id="leafBot" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5e3c"/>
+      <stop offset="100%" stop-color="#c97d3a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="#faf8f4"/>
+
+  <!-- MARK -->
+  <g transform="translate(400 290)">
+
+    <!-- Top leaf (curves like top half of S, opens down-left) -->
+    <path d="M -90 -100
+             Q -90 -130 -40 -130
+             Q 50 -130 90 -80
+             Q 90 -50 60 -40
+             Q 30 -30 -10 -50
+             Q -50 -70 -70 -50
+             Q -80 -30 -50 -20
+             Q 0 -5 50 10"
+          fill="url(#leafTop)"
+          stroke="#1a1a2e"
+          stroke-width="3"/>
+
+    <!-- Bottom leaf (curves like bottom half of S, opens up-right) -->
+    <path d="M 50 10
+             Q 90 25 90 70
+             Q 90 130 0 130
+             Q -90 130 -90 80
+             Q -90 50 -60 40
+             Q -30 30 10 50
+             Q 50 70 70 50
+             Q 80 30 50 20"
+          fill="url(#leafBot)"
+          stroke="#1a1a2e"
+          stroke-width="3"/>
+
+    <!-- Tiny stem -->
+    <line x1="-90" y1="-130" x2="-110" y2="-150"
+          stroke="#1a1a2e"
+          stroke-width="4"
+          stroke-linecap="round"/>
+  </g>
+
+  <!-- WORDMARK -->
+  <g transform="translate(400 600)">
+    <text x="0" y="0"
+          font-family="'Kanit', 'Arial Black', sans-serif"
+          font-weight="900"
+          font-size="88"
+          fill="#1a1a2e"
+          text-anchor="middle"
+          letter-spacing="-1">Sloth<tspan fill="#c97d3a">Move</tspan></text>
+
+    <text x="0" y="48"
+          font-family="'Sarabun', 'Arial', sans-serif"
+          font-weight="500"
+          font-size="18"
+          fill="#7a756d"
+          text-anchor="middle"
+          letter-spacing="8">E · L E A R N I N G</text>
+  </g>
+</svg>

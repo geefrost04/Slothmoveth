@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SlothMove Logo Concept A2: "Sloth Head Minimal"
+  Concept: หัวสลอธ geometric เรียบ ไม่ cartoon ใช้ negative space เป็นใบไม้
+  สี: Navy #1a1a2e + Amber #c97d3a
+-->
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#faf8f4"/>
+
+  <!-- MARK GROUP -->
+  <g transform="translate(400 280)">
+
+    <!-- Sloth head (rounded square base) -->
+    <rect x="-130" y="-110" width="260" height="240" rx="80" fill="#1a1a2e"/>
+
+    <!-- Face mask (cream patch, the "smile area") -->
+    <ellipse cx="0" cy="40" rx="95" ry="70" fill="#faf8f4"/>
+
+    <!-- Eyes - closed/sleepy (curves) -->
+    <path d="M -55 -10 Q -40 5 -25 -10"
+          stroke="#1a1a2e"
+          stroke-width="8"
+          stroke-linecap="round"
+          fill="none"/>
+    <path d="M 25 -10 Q 40 5 55 -10"
+          stroke="#1a1a2e"
+          stroke-width="8"
+          stroke-linecap="round"
+          fill="none"/>
+
+    <!-- Nose (amber dot - brand color accent) -->
+    <ellipse cx="0" cy="40" rx="10" ry="7" fill="#c97d3a"/>
+
+    <!-- Subtle smile (small curve under nose) -->
+    <path d="M -20 70 Q 0 82 20 70"
+          stroke="#1a1a2e"
+          stroke-width="5"
+          stroke-linecap="round"
+          fill="none"/>
+
+    <!-- Leaf above head (the "thinking/learning" accent) -->
+    <ellipse cx="-30" cy="-140" rx="35" ry="18"
+             fill="#c97d3a"
+             transform="rotate(-25 -30 -140)"/>
+    <path d="M -55 -130 L -10 -150"
+          stroke="#c97d3a"
+          stroke-width="3"
+          stroke-linecap="round"/>
+  </g>
+
+  <!-- WORDMARK -->
+  <g transform="translate(400 600)">
+    <text x="0" y="0"
+          font-family="'Kanit', 'Arial Black', sans-serif"
+          font-weight="900"
+          font-size="88"
+          fill="#1a1a2e"
+          text-anchor="middle"
+          letter-spacing="-1">Sloth<tspan fill="#c97d3a">Move</tspan></text>
+
+    <text x="0" y="48"
+          font-family="'Sarabun', 'Arial', sans-serif"
+          font-weight="500"
+          font-size="18"
+          fill="#7a756d"
+          text-anchor="middle"
+          letter-spacing="8">E · L E A R N I N G</text>
+  </g>
+</svg>

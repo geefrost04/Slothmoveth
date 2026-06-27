@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SlothMove Logo Concept C: "Multi-Mascot Brand Ecosystem"
+  Concept: Master mascot (สลอธ) เป็นแม่ + 4 sub-mascots (ตาม brand ย่อย)
+  แสดงให้เห็นว่า logo system ทำงานยังไงในระบบใหญ่
+
+  Sub-brand mapping:
+  - ปภ. (Disaster Prevention) - amber/navy
+  - ตำรวจ (Police) - police red
+  - OPSD (Public Service) - navy
+  - KPI (Industry) - brown
+-->
+<svg width="1000" height="1200" viewBox="0 0 1000 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgMaster" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d2d44"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="1200" fill="#faf8f4"/>
+
+  <!-- ===== TOP: Master SlothMove (แม่) ===== -->
+  <g transform="translate(500 250)">
+
+    <!-- Large badge -->
+    <circle cx="0" cy="0" r="200" fill="url(#bgMaster)"/>
+    <circle cx="0" cy="0" r="185" fill="none" stroke="#c97d3a" stroke-width="3" opacity="0.5"/>
+
+    <!-- Sloth head -->
+    <ellipse cx="0" cy="-15" rx="100" ry="90" fill="#e8a87c"/>
+
+    <!-- Face mask -->
+    <ellipse cx="0" cy="5" rx="70" ry="55" fill="#faf8f4" opacity="0.9"/>
+
+    <!-- Eyes (closed - calm) -->
+    <path d="M -40 -15 Q -28 -5 -16 -15"
+          stroke="#1a1a2e" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M 16 -15 Q 28 -5 40 -15"
+          stroke="#1a1a2e" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+    <!-- Nose -->
+    <ellipse cx="0" cy="15" rx="9" ry="6" fill="#1a1a2e"/>
+
+    <!-- Smile -->
+    <path d="M -16 40 Q 0 50 16 40"
+          stroke="#1a1a2e" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+    <!-- Ears -->
+    <circle cx="-75" cy="-65" r="22" fill="#8b5e3c"/>
+    <circle cx="75" cy="-65" r="22" fill="#8b5e3c"/>
+
+    <!-- Crown leaf (master accent) -->
+    <ellipse cx="-25" cy="-110" rx="22" ry="11"
+             fill="#c97d3a"
+             transform="rotate(-25 -25 -110)"/>
+    <ellipse cx="25" cy="-115" rx="22" ry="11"
+             fill="#c97d3a"
+             transform="rotate(25 25 -115)"/>
+    <ellipse cx="0" cy="-125" rx="24" ry="12" fill="#c97d3a"/>
+  </g>
+
+  <!-- Master text -->
+  <text x="500" y="510"
+        font-family="'Kanit', sans-serif"
+        font-weight="900"
+        font-size="56"
+        fill="#1a1a2e"
+        text-anchor="middle"
+        letter-spacing="-1">Sloth<tspan fill="#c97d3a">Move</tspan></text>
+  <text x="500" y="540"
+        font-family="'Sarabun', sans-serif"
+        font-size="14"
+        fill="#7a756d"
+        text-anchor="middle"
+        letter-spacing="6">MASTER BRAND</text>
+
+  <!-- Connection lines (master → subs) -->
+  <g stroke="#c97d3a" stroke-width="2" stroke-dasharray="4 4" opacity="0.4" fill="none">
+    <line x1="500" y1="570" x2="170" y2="740"/>
+    <line x1="500" y1="570" x2="500" y2="720"/>
+    <line x1="500" y1="570" x2="830" y2="740"/>
+    <line x1="500" y1="570" x2="500" y2="940"/>
+  </g>
+
+  <!-- ===== SUB-MASCOTS ROW 1 ===== -->
+
+  <!-- Sub 1: ปภ. (amber accent) -->
+  <g transform="translate(170 800)">
+    <circle cx="0" cy="0" r="80" fill="#faf8f4" stroke="#c97d3a" stroke-width="4"/>
+    <!-- mini sloth with helmet -->
+    <ellipse cx="0" cy="0" rx="38" ry="34" fill="#e8a87c"/>
+    <!-- helmet -->
+    <path d="M -38 -10 Q -38 -45 0 -45 Q 38 -45 38 -10 L 38 -5 L -38 -5 Z"
+          fill="#c97d3a"/>
+    <rect x="-40" y="-5" width="80" height="8" fill="#8b5e3c"/>
+    <!-- face -->
+    <ellipse cx="0" cy="10" rx="22" ry="18" fill="#faf8f4"/>
+    <path d="M -14 5 Q -8 11 -2 5" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M 2 5 Q 8 11 14 5" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <ellipse cx="0" cy="18" rx="3" ry="2" fill="#1a1a2e"/>
+  </g>
+  <text x="170" y="910" font-family="'Kanit', sans-serif" font-weight="700" font-size="20"
+        fill="#1a1a2e" text-anchor="middle">ปภ.</text>
+  <text x="170" y="930" font-family="'Sarabun', sans-serif" font-size="12"
+        fill="#7a756d" text-anchor="middle">Disaster Prevention</text>
+
+  <!-- Sub 2: ตำรวจ (police red) -->
+  <g transform="translate(500 780)">
+    <circle cx="0" cy="0" r="80" fill="#faf8f4" stroke="#7a1822" stroke-width="4"/>
+    <ellipse cx="0" cy="0" rx="38" ry="34" fill="#e8a87c"/>
+    <!-- police cap -->
+    <path d="M -38 -10 Q -38 -45 0 -45 Q 38 -45 38 -10 L 38 -5 L -38 -5 Z"
+          fill="#1e3a5f"/>
+    <rect x="-40" y="-5" width="80" height="10" fill="#7a1822"/>
+    <ellipse cx="0" cy="-22" rx="14" ry="6" fill="#b48a3e"/>
+    <!-- face -->
+    <ellipse cx="0" cy="10" rx="22" ry="18" fill="#faf8f4"/>
+    <path d="M -14 5 Q -8 11 -2 5" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M 2 5 Q 8 11 14 5" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <ellipse cx="0" cy="18" rx="3" ry="2" fill="#1a1a2e"/>
+  </g>
+  <text x="500" y="890" font-family="'Kanit', sans-serif" font-weight="700" font-size="20"
+        fill="#1a1a2e" text-anchor="middle">ตำรวจ</text>
+  <text x="500" y="910" font-family="'Sarabun', sans-serif" font-size="12"
+        fill="#7a756d" text-anchor="middle">Police Admin</text>
+
+  <!-- Sub 3: OCSC (navy) -->
+  <g transform="translate(830 800)">
+    <circle cx="0" cy="0" r="80" fill="#faf8f4" stroke="#1a1a2e" stroke-width="4"/>
+    <ellipse cx="0" cy="0" rx="38" ry="34" fill="#e8a87c"/>
+    <!-- tie/civil servant -->
+    <rect x="-4" y="-10" width="8" height="35" fill="#1a1a2e"/>
+    <path d="M -10 -10 L 10 -10 L 6 0 L 0 -8 L -6 0 Z" fill="#1a1a2e"/>
+    <!-- face -->
+    <ellipse cx="0" cy="10" rx="22" ry="18" fill="#faf8f4"/>
+    <path d="M -14 5 Q -8 11 -2 5" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <path d="M 2 5 Q 8 11 14 5" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <ellipse cx="0" cy="18" rx="3" ry="2" fill="#1a1a2e"/>
+  </g>
+  <text x="830" y="910" font-family="'Kanit', sans-serif" font-weight="700" font-size="20"
+        fill="#1a1a2e" text-anchor="middle">OPSD</text>
+  <text x="830" y="930" font-family="'Sarabun', sans-serif" font-size="12"
+        fill="#7a756d" text-anchor="middle">Public Service</text>
+
+  <!-- Sub 4: KPI Industry (brown) -->
+  <g transform="translate(330 1000)">
+    <circle cx="0" cy="0" r="70" fill="#faf8f4" stroke="#5c3d1e" stroke-width="4"/>
+    <ellipse cx="0" cy="0" rx="33" ry="30" fill="#e8a87c"/>
+    <!-- hard hat -->
+    <path d="M -33 -8 Q -33 -38 0 -38 Q 33 -38 33 -8 L 33 -3 L -33 -3 Z"
+          fill="#5c3d1e"/>
+    <rect x="-35" y="-3" width="70" height="6" fill="#3d2814"/>
+    <!-- face -->
+    <ellipse cx="0" cy="10" rx="20" ry="16" fill="#faf8f4"/>
+    <path d="M -12 5 Q -7 10 -2 5" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M 2 5 Q 7 10 12 5" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <ellipse cx="0" cy="16" rx="3" ry="2" fill="#1a1a2e"/>
+  </g>
+  <text x="330" y="1100" font-family="'Kanit', sans-serif" font-weight="700" font-size="20"
+        fill="#1a1a2e" text-anchor="middle">KPI</text>
+  <text x="330" y="1118" font-family="'Sarabun', sans-serif" font-size="12"
+        fill="#7a756d" text-anchor="middle">Industry</text>
+
+  <!-- Sub 5: สลอธเดิม (master) echo -->
+  <g transform="translate(670 1000)">
+    <circle cx="0" cy="0" r="70" fill="#faf8f4" stroke="#7a9470" stroke-width="4"/>
+    <ellipse cx="0" cy="0" rx="33" ry="30" fill="#7a9470"/>
+    <ellipse cx="0" cy="8" rx="20" ry="16" fill="#5a6e50" opacity="0.7"/>
+    <path d="M -12 5 Q -7 10 -2 5" stroke="#1e2a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M 2 5 Q 7 10 12 5" stroke="#1e2a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <ellipse cx="0" cy="16" rx="3" ry="2" fill="#1e2a1a"/>
+  </g>
+  <text x="670" y="1100" font-family="'Kanit', sans-serif" font-weight="700" font-size="20"
+        fill="#1a1a2e" text-anchor="middle">Original</text>
+  <text x="670" y="1118" font-family="'Sarabun', sans-serif" font-size="12"
+        fill="#7a756d" text-anchor="middle">Mascot Legacy</text>
+
+  <!-- Footer -->
+  <text x="500" y="1170" font-family="'Sarabun', sans-serif" font-size="13"
+        fill="#7a756d" text-anchor="middle" font-style="italic">
+    1 master brand + 4 sub-brands ใช้ character เดียวกัน (สลอธ) ต่างกันที่ uniform/เครื่องแบบ
+  </text>
+</svg>

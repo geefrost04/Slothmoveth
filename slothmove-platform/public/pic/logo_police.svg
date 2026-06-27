@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0d1f33"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4d97a"/>
+      <stop offset="100%" stop-color="#c9a73a"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="url(#bg)"/>
+  <!-- Shield -->
+  <path d="M100 28 L155 50 L155 110 Q155 150 100 175 Q45 150 45 110 L45 50 Z" fill="url(#gold)" stroke="#1e3a5f" stroke-width="2"/>
+  <!-- Inner shield -->
+  <path d="M100 42 L142 60 L142 110 Q142 142 100 162 Q58 142 58 110 L58 60 Z" fill="#1e3a5f" stroke="url(#gold)" stroke-width="1.5"/>
+  <!-- Star -->
+  <polygon points="100,70 107,92 130,92 111,106 118,128 100,114 82,128 89,106 70,92 93,92" fill="url(#gold)"/>
+  <!-- Banner ribbon -->
+  <rect x="62" y="135" width="76" height="16" rx="2" fill="url(#gold)"/>
+  <text x="100" y="147" text-anchor="middle" font-family="Kanit, sans-serif" font-size="11" font-weight="700" fill="#1e3a5f">ตำรวจ</text>
+</svg>

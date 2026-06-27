@@ -1,0 +1,479 @@
+/* Shared long-form lesson layout. Content is sourced from course data. */
+.course-subject-page { padding: 0 0 72px; background: var(--color-bg); }
+.course-subject-breadcrumb-wrap { border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
+.course-subject-page .course-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.course-subject-page .course-breadcrumb a { flex: 0 0 auto; color: var(--color-text); font-weight: 700; }
+.course-subject-page .course-breadcrumb > span:last-child { overflow: hidden; text-overflow: ellipsis; }
+.course-subject-header {
+  position: relative;
+  margin: 0;
+  padding: clamp(48px, 7vw, 88px) 0;
+  border-bottom: 1px solid var(--color-border);
+  background:
+    radial-gradient(circle at 88% 18%, color-mix(in srgb, var(--color-accent) 17%, transparent), transparent 27%),
+    linear-gradient(180deg, var(--color-primary-bg, var(--color-accent-soft)) 0%, var(--color-surface) 100%);
+  overflow: hidden;
+}
+.course-subject-header-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.course-subject-deco-symbol {
+  position: absolute;
+  font-family: var(--font-display, 'Kanit', system-ui, sans-serif);
+  font-weight: 800;
+  color: var(--color-accent);
+  opacity: 0.12;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1;
+  user-select: none;
+}
+.course-subject-deco-symbol:nth-child(1) { top: 18%; right: 42%; transform: rotate(-12deg); }
+.course-subject-deco-symbol:nth-child(2) { top: 68%; right: 12%; transform: rotate(8deg); font-size: clamp(28px, 4vw, 44px); }
+.course-subject-deco-symbol:nth-child(3) { top: 30%; right: 8%; transform: rotate(-6deg); }
+.course-subject-deco-symbol:nth-child(4) { top: 78%; right: 38%; transform: rotate(14deg); font-size: clamp(24px, 3.5vw, 38px); }
+.course-subject-header-inner {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  position: relative;
+  z-index: 1;
+}
+.course-subject-page .course-subject-icon {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  margin: 2px 0 0;
+  border: 2px solid var(--color-text);
+  background: var(--color-accent);
+  box-shadow: 5px 5px 0 var(--color-text);
+  font-size: 30px;
+}
+.course-subject-heading { max-width: 720px; }
+.course-subject-page .course-subject-chip {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 5px 11px;
+  border-radius: 0;
+  background: var(--color-accent);
+  color: #1a1a2e;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.course-subject-page .course-subject-header h1 {
+  margin-bottom: 12px;
+  color: var(--color-text);
+  font-size: clamp(30px, 4.5vw, 52px);
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+.course-subject-page .course-subject-header p { max-width: 720px; color: var(--color-text-muted); font-size: 16px; line-height: 1.75; }
+.course-subject-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.course-subject-meta span { padding: 5px 10px; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-muted); font-size: 11px; font-weight: 700; }
+.course-subject-body { padding-top: 32px; }
+
+/* Mascot — premium hero illustration */
+.course-subject-mascot {
+  position: relative;
+  width: clamp(160px, 22vw, 260px);
+  height: clamp(160px, 22vw, 260px);
+  flex-shrink: 0;
+  animation: course-subject-float 6s ease-in-out infinite;
+}
+.course-subject-mascot img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 36px color-mix(in srgb, var(--color-text) 18%, transparent));
+}
+.course-subject-mascot-glow {
+  position: absolute;
+  inset: 8% 8% 8% 8%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 35%, transparent) 0%, transparent 70%);
+  filter: blur(18px);
+  z-index: 1;
+  animation: course-subject-pulse 4s ease-in-out infinite;
+}
+@keyframes course-subject-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes course-subject-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.course-subject-page .pab-knowledge { margin-bottom: 44px; }
+.course-subject-page .pab-knowledge-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding: 22px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: none;
+}
+.course-subject-page .pab-knowledge-chip { margin-bottom: 6px; color: var(--color-accent); }
+.course-subject-page .pab-knowledge-title { margin-bottom: 5px; color: var(--color-text); font-size: clamp(24px, 3vw, 32px); }
+.course-subject-page .pab-knowledge-subtitle { max-width: 680px; font-size: 14px; line-height: 1.65; }
+.course-subject-page .pab-knowledge-stats { display: flex; gap: 8px; }
+.course-subject-page .pab-knowledge-stats div { min-width: 76px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 0; background: var(--color-accent-soft); text-align: center; }
+.course-subject-page .pab-knowledge-stats strong { color: var(--color-text); font-size: 20px; }
+.course-subject-page .pab-knowledge-stats span { color: var(--color-text-muted); font-size: 9px; }
+.pab-knowledge-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); align-items: start; gap: 24px; }
+.pab-knowledge-nav {
+  position: sticky;
+  top: 82px;
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+.pab-knowledge-nav-label { margin-bottom: 11px; color: var(--color-text); font-family: var(--font-display); font-size: 13px; font-weight: 800; }
+.pab-knowledge-nav nav { display: grid; gap: 3px; }
+.pab-knowledge-nav a { display: grid; grid-template-columns: 26px minmax(0, 1fr); align-items: start; gap: 8px; padding: 8px; border-radius: 6px; color: var(--color-text-muted); }
+.pab-knowledge-nav a:hover { background: var(--color-accent-soft); color: var(--color-text); }
+.pab-knowledge-nav a > span { color: var(--color-accent); font-family: var(--font-display); font-size: 10px; font-weight: 800; }
+.pab-knowledge-nav a strong { font-size: 11px; font-weight: 600; line-height: 1.4; }
+.pab-knowledge-nav .pab-knowledge-quiz-link {
+  display: grid;
+  position: relative;
+  grid-template-columns: 38px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 14px 14px 14px 12px;
+  border: 2px solid var(--color-text);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff4a8 0%, var(--color-accent) 100%);
+  box-shadow: 4px 4px 0 var(--color-text);
+  color: #1a1a2e;
+  isolation: isolate;
+  overflow: hidden;
+}
+.pab-knowledge-nav .pab-knowledge-quiz-link:hover {
+  background: linear-gradient(135deg, #fff8c9 0%, var(--color-accent) 100%);
+  color: #1a1a2e;
+  transform: translate(-1px, -2px);
+  box-shadow: 5px 6px 0 var(--color-text);
+}
+.pab-knowledge-quiz-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.38);
+  font-size: 16px;
+  font-weight: 900;
+}
+.pab-knowledge-quiz-link small {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+  text-transform: uppercase;
+  color: #5e4d00 !important;
+  position: relative;
+  z-index: 1;
+}
+.pab-knowledge-nav .pab-knowledge-quiz-link strong {
+  display: block;
+  color: #1a1a2e !important;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+.pab-knowledge-quiz-arrow {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: right;
+  color: #1a1a2e !important;
+  position: relative;
+  z-index: 1;
+}
+.pab-knowledge-nav .pab-knowledge-quiz-link::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 11px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 56%);
+  pointer-events: none;
+  z-index: -1;
+}
+.pab-knowledge-main { min-width: 0; }
+.course-subject-page .pab-knowledge-sections { display: grid; gap: 20px; }
+.course-subject-page .pab-knowledge-section {
+  scroll-margin-top: 82px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: none;
+}
+.course-subject-page .pab-knowledge-section-header { display: grid; grid-template-columns: 54px minmax(0, 1fr); align-items: start; gap: 16px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--color-border); }
+.course-subject-page .pab-knowledge-section-icon { display: grid; width: 52px; height: 52px; place-items: center; border: 2px solid var(--color-text); border-radius: 0; background: var(--color-accent); box-shadow: 4px 4px 0 var(--color-text); font-size: 22px; }
+.course-subject-page .pab-knowledge-section-chip { margin-bottom: 5px; color: var(--color-accent); }
+.course-subject-page .pab-knowledge-section-title { color: var(--color-text); font-size: clamp(20px, 2.4vw, 27px); line-height: 1.3; }
+.course-subject-page .pab-knowledge-section-desc { margin-top: 5px; font-size: 13px; line-height: 1.65; }
+.course-subject-page .pab-knowledge-blocks { display: grid; gap: 16px; }
+.course-subject-page .pab-knowledge-rich { color: var(--color-text-muted); font-size: 15px; line-height: 1.85; }
+.course-subject-page .pab-knowledge-rich strong { color: var(--color-text); }
+.course-subject-page .pab-knowledge-rich mark { padding: 1px 4px; background: var(--color-accent-soft); color: var(--color-text); }
+.course-subject-page .pab-knowledge-callout,
+.course-subject-page .pab-knowledge-list-block { padding: 18px 20px; border: 0; border-left: 4px solid var(--color-accent); border-radius: 0; background: var(--color-accent-soft); }
+.course-subject-page .pab-knowledge-callout-title,
+.course-subject-page .pab-knowledge-block-title { margin-bottom: 8px; color: var(--color-text); font-size: 16px; line-height: 1.45; }
+.course-subject-page .pab-knowledge-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.course-subject-page .pab-knowledge-card { padding: 18px; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg); box-shadow: none; }
+.course-subject-page .pab-knowledge-card-title { color: var(--color-text); }
+.course-subject-page .pab-knowledge-card.color-navy,
+.course-subject-page .pab-knowledge-card.color-amber,
+.course-subject-page .pab-knowledge-card.color-blue,
+.course-subject-page .pab-knowledge-card.color-teal,
+.course-subject-page .pab-knowledge-card.color-rose,
+.course-subject-page .pab-knowledge-card.color-purple,
+.course-subject-page .pab-knowledge-card.color-slate,
+.course-subject-page .pab-knowledge-card.color-stone,
+.course-subject-page .pab-knowledge-card.color-gold,
+.course-subject-page .pab-knowledge-card.color-charcoal { background: var(--color-bg); }
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-card-title,
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich,
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich strong,
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich mark {
+  color: var(--color-text) !important;
+}
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-card-icon,
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich *,
+.course-subject-page .pab-knowledge-card[class*='color-'] p,
+.course-subject-page .pab-knowledge-card[class*='color-'] div,
+.course-subject-page .pab-knowledge-card[class*='color-'] span,
+.course-subject-page .pab-knowledge-card[class*='color-'] strong {
+  color: var(--color-text) !important;
+}
+.course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-card-title { color: var(--color-text) !important; }
+.course-subject-page .pab-knowledge-card.color-blue { background: #eef5fb !important; }
+.course-subject-page .pab-knowledge-card.color-teal { background: #edf8f6 !important; }
+.course-subject-page .pab-knowledge-card.color-rose { background: #fcf1f2 !important; }
+.course-subject-page .pab-knowledge-card.color-purple { background: #f3effd !important; }
+.course-subject-page .pab-knowledge-card.color-navy { background: #f2f4f8 !important; }
+.course-subject-page .pab-knowledge-card.color-amber,
+.course-subject-page .pab-knowledge-card.color-gold { background: #fff6df !important; }
+.course-subject-page .pab-knowledge-table-wrap { padding: 0; border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; background: var(--color-surface); }
+.course-subject-page .pab-knowledge-table-wrap > .pab-knowledge-block-title { padding: 16px 18px 6px; }
+.course-subject-page .pab-knowledge-table th { background: var(--color-accent-soft); color: var(--color-text); }
+.course-subject-page .pab-knowledge-table th,
+.course-subject-page .pab-knowledge-table td { padding: 13px 14px; border-color: var(--color-border); vertical-align: top; }
+.course-subject-page .pab-knowledge-timeline-item { border-radius: 6px; background: var(--color-bg); }
+.course-subject-page .pab-knowledge-timeline-step { background: var(--color-accent); color: #1a1a2e; }
+.course-subject-page .pab-knowledge-extras { scroll-margin-top: 82px; }
+.course-subject-page .pab-knowledge-vocab,
+.course-subject-page .pab-knowledge-tips { scroll-margin-top: 82px; padding: 24px; border-radius: 8px; box-shadow: none; }
+.course-subject-page .pab-knowledge-vocab-group { border-radius: 6px; background: var(--color-bg); }
+.course-subject-page .pab-knowledge-vocab-group-title,
+.course-subject-page .pab-knowledge-vocab-group-title span,
+.course-subject-page .pab-knowledge-vocab-item strong {
+  color: var(--color-text);
+}
+.course-subject-page .pab-knowledge-vocab-eng {
+  color: var(--color-accent);
+}
+.course-subject-page .pab-knowledge-vocab-item p {
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 900px) {
+  .pab-knowledge-layout { grid-template-columns: 1fr; }
+  .pab-knowledge-nav { position: static; overflow-x: auto; padding: 12px; }
+  .pab-knowledge-nav-label { display: none; }
+  .pab-knowledge-nav nav { display: flex; width: max-content; }
+  .pab-knowledge-nav a { min-width: 150px; grid-template-columns: 22px minmax(0, 1fr); border: 1px solid var(--color-border); }
+  .pab-knowledge-nav .pab-knowledge-quiz-link { min-width: 196px; margin: 0 3px 0 8px; grid-template-columns: 34px minmax(0, 1fr) 16px; }
+  .course-subject-page .pab-knowledge-hero { grid-template-columns: 1fr; }
+  .course-subject-page .pab-knowledge-stats { flex-wrap: wrap; }
+  .course-subject-mascot { display: none; }
+  .course-subject-header-deco { opacity: 0.5; }
+}
+@media (max-width: 680px) {
+  .course-subject-header-inner { grid-template-columns: 68px minmax(0, 1fr); }
+  .course-subject-page .course-subject-icon { width: 58px; height: 58px; font-size: 26px; }
+  .course-subject-page .pab-knowledge-cards { grid-template-columns: 1fr; }
+  .course-subject-page .pab-knowledge-section { padding: 20px 16px; }
+  .course-subject-page .pab-knowledge-section-header { grid-template-columns: 46px minmax(0, 1fr); gap: 13px; }
+  .course-subject-page .pab-knowledge-section-icon { width: 44px; height: 44px; font-size: 19px; }
+  .course-subject-page .pab-knowledge-table-scroll { margin: 0; }
+}
+
+[data-theme='dark'] .course-subject-page {
+  background: #12131b;
+  color: #f5f1e8;
+}
+[data-theme='dark'] .course-subject-breadcrumb-wrap,
+[data-theme='dark'] .course-subject-header,
+[data-theme='dark'] .course-subject-page .pab-knowledge-hero,
+[data-theme='dark'] .pab-knowledge-nav,
+[data-theme='dark'] .course-subject-page .pab-knowledge-section,
+[data-theme='dark'] .course-layout .pab-knowledge-section,
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab,
+[data-theme='dark'] .course-subject-page .pab-knowledge-tips {
+  border-color: #323648;
+  background: #1a1d28;
+}
+[data-theme='dark'] .course-subject-header {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(212, 200, 0, 0.16), transparent 27%),
+    linear-gradient(180deg, #171922 0%, #1a1d28 100%);
+}
+[data-theme='dark'] .course-subject-page .course-breadcrumb,
+[data-theme='dark'] .course-subject-page .course-subject-header p,
+[data-theme='dark'] .course-subject-page .pab-knowledge-subtitle,
+[data-theme='dark'] .course-subject-page .pab-knowledge-section-desc,
+[data-theme='dark'] .course-subject-page .pab-knowledge-rich,
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-item p,
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-eng,
+[data-theme='dark'] .course-subject-page .course-message-card p {
+  color: #b8b4c5;
+}
+[data-theme='dark'] .course-subject-page .course-breadcrumb a,
+[data-theme='dark'] .course-subject-page .course-subject-header h1,
+[data-theme='dark'] .course-subject-page .pab-knowledge-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-section-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-callout-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-block-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-rich strong,
+[data-theme='dark'] .course-subject-page .course-message-card h2 {
+  color: #f5f1e8;
+}
+[data-theme='dark'] .course-subject-page .course-subject-chip,
+[data-theme='dark'] .course-subject-page .pab-knowledge-chip,
+[data-theme='dark'] .course-subject-page .pab-knowledge-section-chip,
+[data-theme='dark'] .pab-knowledge-nav a > span {
+  color: #efe15d;
+}
+[data-theme='dark'] .course-subject-page .course-subject-icon,
+[data-theme='dark'] .course-subject-page .pab-knowledge-section-icon {
+  border-color: #f2ecd8;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.34);
+}
+[data-theme='dark'] .course-subject-page .course-subject-meta span,
+[data-theme='dark'] .course-subject-page .pab-knowledge-stats div {
+  border-color: #3a3e52;
+  background: #232735;
+  color: #d8d4df;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-stats strong { color: #f5f1e8; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-stats span { color: #9f9aae; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-card,
+[data-theme='dark'] .course-subject-page .pab-knowledge-timeline-item,
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-group,
+[data-theme='dark'] .course-subject-page .course-message-card {
+  border-color: #3a3e52;
+  background: #232735;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-group-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-group-title span,
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-item strong {
+  color: #f5f1e8 !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-eng {
+  color: #efe15d !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-vocab-item p {
+  color: #d3cfdb !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-callout,
+[data-theme='dark'] .course-subject-page .pab-knowledge-list-block {
+  border-left-color: #efe15d;
+  background: #262914;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-rich mark {
+  background: #4a430f;
+  color: #fff7c5;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-table-wrap,
+[data-theme='dark'] .course-subject-page .pab-knowledge-table td {
+  border-color: #3a3e52;
+  background: #232735;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-table th {
+  background: #2d3117;
+  color: #f5f1e8;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav a {
+  color: #b8b4c5;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav a:hover {
+  background: #25293a;
+  color: #f5f1e8;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link {
+  border-color: #f2ecd8;
+  background: linear-gradient(135deg, #f2e76b 0%, #d4c800 100%);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.38);
+  color: #1a1a2e;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link:hover {
+  background: linear-gradient(135deg, #fff2a4 0%, #d4c800 100%);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.42);
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-card-title,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich strong {
+  color: #f5f1e8 !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link small {
+  color: rgba(26, 26, 46, 0.72) !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link strong,
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link .pab-knowledge-quiz-arrow,
+[data-theme='dark'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link .pab-knowledge-quiz-icon {
+  color: #1a1a2e !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-card-icon,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich *,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] p,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] div,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] span,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] strong {
+  color: #f5f1e8 !important;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-card[class*='color-'] .pab-knowledge-rich mark {
+  background: #4a430f;
+  color: #fff7c5;
+}
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-blue { background: #1f2a38 !important; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-teal { background: #1c2e2d !important; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-rose { background: #312228 !important; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-purple { background: #28233a !important; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-navy { background: #232735 !important; }
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-amber,
+[data-theme='dark'] .course-subject-page .pab-knowledge-card.color-gold { background: #383112 !important; }

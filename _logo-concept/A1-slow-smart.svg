@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SlothMove Logo Concept A1: "Slow-Smart Mark"
+  Concept: ตัว "S" ซ่อนรูปใบไม้ + เส้น motion บางๆ ด้านล่าง
+  สื่อ: สลอธ (เรียบ/นิ่ง) + ใบไม้ (การเรียนรู้) + การเคลื่อน (Move)
+  สี: Amber #c97d3a + Navy #1a1a2e (brand หลัก)
+-->
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8a87c"/>
+      <stop offset="100%" stop-color="#c97d3a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background (optional, for preview) -->
+  <rect width="800" height="800" fill="#faf8f4"/>
+
+  <!-- MARK GROUP (centered, ~400x400 in the upper area) -->
+  <g transform="translate(400 280)">
+
+    <!-- Outer circle (badge ring) -->
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#1a1a2e" stroke-width="6"/>
+
+    <!-- Inner amber circle -->
+    <circle cx="0" cy="0" r="148" fill="url(#amberGrad)"/>
+
+    <!-- The "S" formed by two leaves curving into each other -->
+    <!-- Upper leaf (curves down-right like top of S) -->
+    <path d="M -70 -50
+             Q -70 -90 -20 -90
+             Q 30 -90 50 -50
+             Q 50 -30 30 -30
+             Q 10 -30 -10 -50
+             Q -20 -60 -30 -50
+             Q -40 -40 -30 -30
+             Q -10 -10 20 10
+             Q 50 30 50 60
+             Q 50 100 0 100
+             Q -50 100 -70 60"
+          fill="none"
+          stroke="#1a1a2e"
+          stroke-width="22"
+          stroke-linecap="round"/>
+
+    <!-- Motion line under (subtle, suggests "Move") -->
+    <line x1="-80" y1="200" x2="80" y2="200"
+          stroke="#1a1a2e"
+          stroke-width="4"
+          stroke-linecap="round"
+          opacity="0.6"/>
+    <circle cx="-90" cy="200" r="6" fill="#1a1a2e" opacity="0.6"/>
+    <circle cx="90" cy="200" r="6" fill="#1a1a2e" opacity="0.6"/>
+
+    <!-- Tiny dot accent (sloth's nose hint) -->
+    <circle cx="0" cy="155" r="4" fill="#1a1a2e"/>
+  </g>
+
+  <!-- WORDMARK -->
+  <g transform="translate(400 600)">
+    <text x="0" y="0"
+          font-family="'Kanit', 'Arial Black', sans-serif"
+          font-weight="900"
+          font-size="88"
+          fill="#1a1a2e"
+          text-anchor="middle"
+          letter-spacing="-1">Sloth<tspan fill="#c97d3a">Move</tspan></text>
+
+    <!-- Tagline -->
+    <text x="0" y="48"
+          font-family="'Sarabun', 'Arial', sans-serif"
+          font-weight="500"
+          font-size="18"
+          fill="#7a756d"
+          text-anchor="middle"
+          letter-spacing="8">E · L E A R N I N G</text>
+  </g>
+</svg>

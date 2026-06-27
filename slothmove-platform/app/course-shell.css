@@ -1,0 +1,1852 @@
+/* Shared course shell: navigation, exam CTA and footer. */
+.course-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+}
+.course-nav-mobile-controls,
+.course-mobile-menu { display: none; }
+
+/* OCSC landing: police_admin layout language, yellow-gold identity. */
+.course-layout[data-course='ocsc'] {
+  --color-bg: #fbf4dc;
+  --color-surface: #fffdf4;
+  --color-border: #e0ca85;
+  --color-text-muted: #6d634f;
+  --color-primary: #7d5c00;
+  --color-primary-dark: #563f00;
+  --color-accent: #d7aa2d;
+  --color-accent-soft: #fff1be;
+}
+.course-layout[data-course='ocsc'] .pab-hero {
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-bg) 92%, transparent) 0%, color-mix(in srgb, var(--color-bg) 70%, transparent) 38%, color-mix(in srgb, var(--color-bg) 0%, transparent) 62%),
+    var(--hero-image-url, none);
+  background-color: var(--color-surface);
+  background-repeat: no-repeat;
+  background-size: cover, contain;
+  background-position: left center, right center;
+}
+.course-layout[data-course='ocsc'] .pab-hero-inner {
+  min-height: 70vh;
+  gap: clamp(36px, 6vw, 84px);
+  padding: clamp(70px, 8vw, 108px) 0;
+}
+.course-layout[data-course='ocsc'] .pab-hero-badge {
+  padding: 7px 16px;
+  margin-bottom: 22px;
+  border: 0;
+  background: var(--color-primary);
+  color: #fff3cd;
+  box-shadow: 0 4px 0 var(--color-primary-dark), var(--shadow-sm);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.course-layout[data-course='ocsc'] .pab-hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.course-layout[data-course='ocsc'] .pab-hero-kicker {
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+}
+.course-layout[data-course='ocsc'] .pab-hero-title {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--color-text);
+  font-size: clamp(42px, 6vw, 74px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.03;
+}
+.course-layout[data-course='ocsc'] .pab-hero-title > span { display: block; }
+.course-layout[data-course='ocsc'] .pab-hero-title-accent {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-accent);
+  font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.course-layout[data-course='ocsc'] .pab-hero-desc {
+  max-width: 600px;
+  padding-left: 18px;
+  border-left: 3px solid var(--color-border);
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.72;
+}
+.course-layout[data-course='ocsc'] .pab-hero-actions { margin-bottom: 0; }
+.course-layout[data-course='ocsc'] .pab-btn { min-height: 50px; padding: 13px 24px; }
+.course-layout[data-course='ocsc'] .pab-btn-primary {
+  background: var(--color-primary);
+  color: #fff3cd;
+  box-shadow: 0 4px 0 var(--color-primary-dark), var(--shadow-sm);
+}
+.course-layout[data-course='ocsc'] .pab-btn-primary:hover {
+  background: var(--color-primary-dark);
+  box-shadow: 0 6px 0 var(--color-primary-dark), var(--shadow-md);
+}
+.course-layout[data-course='ocsc'] .pab-btn-secondary {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+.course-layout[data-course='ocsc'] .pab-hero-mascot {
+  width: clamp(240px, 27vw, 340px);
+  justify-self: end;
+  animation: pabMascotFloat 5s ease-in-out infinite;
+}
+.course-layout[data-course='ocsc'] .pab-hero-mascot img {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 18px 24px rgba(26, 26, 46, 0.13));
+}
+.course-layout[data-course='ocsc'] .pab-hero-mascot-label {
+  margin-top: 13px;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.course-layout[data-course='ocsc'] .pab-course-content {
+  background: var(--color-bg);
+}
+.course-layout[data-course='ocsc'] .course-exam-section {
+  background:
+    linear-gradient(115deg, var(--color-accent-soft), var(--color-surface) 58%),
+    var(--color-surface);
+}
+.course-layout[data-course='ocsc'] .course-exam-icon {
+  border-color: var(--color-primary);
+  background: var(--color-accent);
+  box-shadow: 5px 5px 0 var(--color-primary-dark);
+}
+.course-layout[data-course='ocsc'] .course-exam-chip {
+  color: var(--color-primary);
+}
+.course-layout[data-course='ocsc'] .course-exam-primary {
+  background: var(--color-primary);
+  color: #fff3cd;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-primary) 72%, #000);
+}
+.course-layout[data-course='ocsc'] .course-exam-secondary {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+.course-layout[data-course='ocsc'] .pab-mock-section {
+  padding: 36px 0 18px;
+  background: #fbf4dc;
+}
+.course-layout[data-course='ocsc'] .pab-mock-card {
+  background: linear-gradient(135deg, #fffef7 0%, #fff6da 100%);
+  border-color: rgba(26, 26, 46, 0.08);
+}
+.course-layout[data-course='ocsc'] .pab-mock-card-top {
+  background: linear-gradient(90deg, #d7aa2d 0%, #a97c16 100%);
+}
+.course-layout[data-course='ocsc'] .pab-mock-badge {
+  background: #fff0bf;
+  color: #7d5c00;
+}
+.course-layout[data-course='ocsc'] .pab-mock-title {
+  color: var(--color-primary);
+}
+.course-layout[data-course='ocsc'] .pab-mock-desc {
+  color: var(--color-text-muted);
+}
+.course-layout[data-course='ocsc'] .pab-mock-meta span {
+  background: #fff;
+  border-color: rgba(26, 26, 46, 0.08);
+  color: var(--color-text-muted);
+}
+.course-layout[data-course='ocsc'] .pab-mock-actions .pab-btn-primary {
+  background: var(--color-primary);
+  color: #fff3cd;
+}
+.course-layout[data-course='ocsc'] .pab-section {
+  padding: 18px 0 28px;
+  background: var(--color-bg);
+}
+.course-layout[data-course='ocsc'] .pab-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.course-layout[data-course='ocsc'] .pab-section-header-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.course-layout[data-course='ocsc'] .pab-section-part {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border: 2px solid var(--color-primary-dark);
+  border-radius: 0;
+  background: var(--color-primary);
+  color: #fff3cd;
+  box-shadow: 4px 4px 0 var(--color-accent);
+  font-size: 24px;
+}
+.course-layout[data-course='ocsc'] .pab-part1 {
+  background: var(--color-primary);
+  color: #fff3cd;
+}
+.course-layout[data-course='ocsc'] .pab-part2 {
+  background: var(--color-text);
+  color: var(--color-accent);
+}
+.course-layout[data-course='ocsc'] .pab-section-chip {
+  display: inline-block;
+  margin-bottom: 7px;
+  padding: 3px 9px;
+  background: var(--color-primary);
+  color: #fff3cd;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.course-layout[data-course='ocsc'] .pab-section-title {
+  margin-bottom: 3px;
+  color: var(--color-text);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+}
+.course-layout[data-course='ocsc'] .pab-section-subtitle {
+  font-size: 13px;
+  line-height: 1.55;
+}
+.course-layout[data-course='ocsc'] .pab-section-count {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(26, 26, 46, 0.08);
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+}
+.course-layout[data-course='ocsc'] .pab-subject-grid-wrap {
+  max-width: 1264px;
+  margin: 0 auto;
+  padding: 24px 32px 0;
+}
+.course-layout[data-course='ocsc'] .pab-subject-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card {
+  display: block;
+  border: 1px solid rgba(26, 26, 46, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fffef8 0%, #fff6dc 100%);
+  box-shadow: var(--shadow-sm);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 240ms ease;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card::after {
+  content: '';
+  position: absolute;
+  top: -26px;
+  right: -26px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(215, 170, 45, 0.18) 0%, rgba(215, 170, 45, 0.05) 58%, transparent 72%);
+  pointer-events: none;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 170, 45, 0.34);
+  background: color-mix(in srgb, var(--color-accent-soft) 56%, var(--color-surface));
+  box-shadow: var(--shadow-md);
+}
+.course-layout[data-course='ocsc'] .pab-subject-card:hover::before {
+  transform: scaleY(1);
+}
+.course-layout[data-course='ocsc'] .pab-subject-card.is-empty {
+  background: #fffdfa;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-body {
+  height: 100%;
+  padding: 22px 24px;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-header {
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-num {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-cat {
+  margin-top: 4px;
+  padding: 4px 9px;
+  border-radius: 0;
+  background: var(--color-primary);
+  color: #fff3cd;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-title {
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.4;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-desc {
+  margin-bottom: 22px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-stats {
+  margin-top: auto;
+  padding-top: 0;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-count {
+  padding: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-cta {
+  color: var(--color-text);
+  font-size: 12px;
+}
+.course-layout[data-course='ocsc'] .pab-subject-card-cta::after {
+  content: ' →';
+}
+
+[data-theme='dark'] .course-layout[data-course='ocsc'] {
+  --color-bg: #10131a;
+  --color-surface: #171b24;
+  --color-text: #f5efe0;
+  --color-text-muted: #a29b8a;
+  --color-border: #2d3442;
+  --color-primary: #f1d06e;
+  --color-primary-dark: #c19d3a;
+  --color-accent: #e0bb58;
+  --color-accent-soft: #261f11;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-hero {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(224, 187, 88, 0.12), transparent 26%),
+    radial-gradient(circle at 84% 24%, rgba(241, 208, 110, 0.08), transparent 22%),
+    linear-gradient(180deg, #131824 0%, #171b24 100%);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-hero-badge {
+  background: #2a2111;
+  color: #f0d99b;
+  box-shadow: 0 4px 0 #0e1117, var(--shadow-sm);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-hero-mascot img {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.28));
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-section {
+  background: #10131a;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-card {
+  background: linear-gradient(135deg, #171b24 0%, #1b2030 100%);
+  border-color: #2d3442;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-card-top {
+  background: linear-gradient(90deg, #e0bb58 0%, #a37d25 100%);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-badge {
+  background: rgba(224, 187, 88, 0.12);
+  color: #f0d99b;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-title {
+  color: #f5efe0;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-desc {
+  color: var(--color-text-muted);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-meta span {
+  background: #151922;
+  border-color: #2d3442;
+  color: #c7beaa;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-mock-actions .pab-btn-primary {
+  background: var(--color-accent);
+  color: #10131a;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-hero-desc,
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-copy p,
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-section-subtitle,
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card-desc {
+  color: var(--color-text-muted);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-section {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(224, 187, 88, 0.10), transparent 26%),
+    radial-gradient(circle at 88% 24%, rgba(241, 208, 110, 0.08), transparent 22%),
+    linear-gradient(180deg, #131824 0%, #171b24 100%);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-chip {
+  color: var(--color-accent);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-copy h2 {
+  color: var(--color-text);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-icon {
+  background: var(--color-accent);
+  color: #10131a;
+  box-shadow: 5px 5px 0 #0e1117;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-meta span {
+  color: #d5c88d;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-primary {
+  background: var(--color-accent);
+  color: #10131a;
+  box-shadow: 0 3px 0 #8e6f25;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .course-exam-secondary {
+  background: #151922;
+  border-color: #2d3442;
+  color: var(--color-text);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-section-part {
+  border-color: #0e1117;
+  color: #10131a;
+  box-shadow: 4px 4px 0 #8e6f25;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card {
+  border-color: #2d3442;
+  background: linear-gradient(180deg, #171b24 0%, #131720 100%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card::before {
+  background: linear-gradient(180deg, var(--color-accent) 0%, #f3de9b 100%);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card::after {
+  background: radial-gradient(circle, rgba(224, 187, 88, 0.18) 0%, rgba(224, 187, 88, 0.05) 60%, transparent 72%);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card-num,
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card-cta,
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-section-title,
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-hero-title {
+  color: var(--color-text);
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card-cat {
+  background: #2a2111;
+  color: #f0d99b;
+}
+[data-theme='dark'] .course-layout[data-course='ocsc'] .pab-subject-card-count {
+  color: #f0d99b;
+}
+
+.course-nav-action,
+.course-nav-theme {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.course-nav-action { padding: 8px 14px; }
+.course-nav-theme {
+  position: relative;
+  width: 52px;
+  min-height: 30px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: #e5e5ea;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.course-nav-theme.is-dark { background: var(--color-accent); }
+.course-theme-sun,
+.course-theme-moon {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  font-size: 11px;
+  line-height: 1;
+}
+.course-theme-sun { left: 6px; color: #a07900; }
+.course-theme-moon { right: 7px; color: #69697a; }
+.course-theme-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: transform 220ms cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+.course-nav-theme.is-dark .course-theme-knob { transform: translateX(22px); }
+.course-nav-theme:hover { background: #e5e5ea; }
+.course-nav-theme.is-dark:hover { background: var(--color-accent); }
+.course-nav-action:hover,
+.course-nav-theme:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.course-nav-donate { cursor: pointer; }
+.course-nav-exam {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #1a1a2e;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-accent) 70%, #000);
+}
+.course-nav-exam:hover {
+  background: color-mix(in srgb, var(--color-accent) 88%, #fff);
+  color: #1a1a2e;
+}
+
+/* ───── ลานฝึก dropdown (police_admin minimal nav) ───── */
+.course-nav-dropdown {
+  position: relative;
+}
+.course-nav-caret {
+  font-size: 10px;
+  line-height: 1;
+  margin-left: 4px;
+  transition: transform 220ms cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+.course-nav-dropdown-trigger.is-open .course-nav-caret {
+  transform: rotate(180deg);
+}
+.course-nav-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(320px, calc(100vw - 32px));
+  max-height: min(78vh, 640px);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text, #1a1a2e);
+  border-radius: 18px;
+  box-shadow:
+    0 24px 60px rgba(26, 26, 46, 0.18),
+    0 4px 12px rgba(26, 26, 46, 0.08);
+  border: 1px solid var(--color-border, #e5e0d8);
+  overflow: hidden;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  animation: course-nav-dropdown-pop 180ms cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+@keyframes course-nav-dropdown-pop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.course-nav-dropdown-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border, #e5e0d8);
+  background: var(--color-bg-warm, #f5f0e8);
+}
+.course-nav-dropdown-head strong {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+}
+.course-nav-dropdown-head-link {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-accent, #c97d3a);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 140ms ease, color 140ms ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.course-nav-dropdown-head-link:hover {
+  background: var(--color-accent-soft, #f4ecd8);
+  color: var(--color-accent-deep, #8b5e3c);
+}
+.course-nav-dropdown-head-link span {
+  font-size: 12px;
+  line-height: 1;
+  transition: transform 140ms ease;
+}
+.course-nav-dropdown-head-link:hover span {
+  transform: translateX(2px);
+}
+.course-nav-dropdown-head span {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--color-text-muted, #7a756d);
+}
+.course-nav-dropdown-list {
+  overflow-y: auto;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 4px;
+}
+.course-nav-dropdown-section {
+  border-radius: 12px;
+  padding: 6px 4px 4px;
+}
+.course-nav-dropdown-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px 6px;
+  border-bottom: 1px dashed var(--color-border, #e5e0d8);
+  margin-bottom: 4px;
+}
+.course-nav-dropdown-section-head strong {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text, #1a1a2e);
+  letter-spacing: 0.01em;
+}
+.course-nav-dropdown-section-head span {
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: var(--color-text-muted, #7a756d);
+  background: var(--color-bg-warm, #f5f0e8);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.course-nav-dropdown-section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.course-nav-dropdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-text, #1a1a2e);
+  font-family: var(--font-display);
+  border-left: 2px solid transparent;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.course-nav-dropdown-item:hover {
+  background: var(--color-bg-warm, #f5f0e8);
+  border-left-color: var(--color-accent, #c97d3a);
+}
+.course-nav-dropdown-item.is-current {
+  background: var(--color-accent-soft, #f4ecd8);
+  border-left-color: var(--color-accent, #c97d3a);
+}
+.course-nav-dropdown-item-name {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.course-nav-dropdown-item-desc {
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--color-text-muted, #7a756d);
+  line-height: 1.4;
+}
+.course-nav-dropdown-item.is-current .course-nav-dropdown-item-name {
+  color: var(--color-accent-deep, #8b5e3c);
+}
+.course-nav-dropdown-list-single {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px;
+  grid-template-columns: none;
+  min-width: 240px;
+}
+.course-nav-dropdown-list-single .course-nav-dropdown-item {
+  padding: 9px 12px;
+}
+
+
+/* PAB uses yellow as the dominant visual color while preserving dark text. */
+.course-layout[data-course='pab'] .pab-hero {
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-bg) 92%, transparent) 0%, color-mix(in srgb, var(--color-bg) 70%, transparent) 38%, color-mix(in srgb, var(--color-bg) 0%, transparent) 62%),
+    var(--hero-image-url, none);
+  background-color: var(--color-surface);
+  background-repeat: no-repeat;
+  background-size: cover, contain;
+  background-position: left center, right center;
+}
+.course-layout[data-course='pab'] .pab-hero-badge,
+.course-layout[data-course='pab'] .pab-section-chip,
+.course-layout[data-course='pab'] .pab-subject-card-cat,
+.course-layout[data-course='pab'] .pab-part1 {
+  background: var(--color-accent);
+  color: #1a1a2e;
+}
+.course-layout[data-course='pab'] .pab-section-part,
+.course-layout[data-course='pab'] .pab-subject-card::before {
+  background: var(--color-accent);
+}
+.course-layout[data-course='pab'] .pab-section-part {
+  color: #1a1a2e;
+  box-shadow: 4px 4px 0 #1a1a2e;
+}
+.course-layout[data-course='pab'] .pab-btn-primary {
+  background: var(--color-accent);
+  color: #1a1a2e;
+  box-shadow: 0 4px 0 #a69c00, var(--shadow-sm);
+}
+.course-layout[data-course='pab'] .pab-btn-primary:hover {
+  background: #e1d500;
+  box-shadow: 0 6px 0 #a69c00, var(--shadow-md);
+}
+
+/* Unframed course mark, matching the simpler reference hero. */
+.pab-hero-mascot img {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 18px 24px rgba(26, 26, 46, 0.13));
+}
+
+.course-exam-section {
+  padding: 34px 16px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background:
+    linear-gradient(115deg, var(--color-accent-soft), var(--color-surface) 58%),
+    var(--color-surface);
+}
+.course-exam-inner {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+}
+.course-exam-icon {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-text);
+  background: var(--color-accent);
+  box-shadow: 5px 5px 0 var(--color-text);
+  font-size: 28px;
+}
+.course-exam-chip {
+  margin-bottom: 5px;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.course-exam-copy h2 {
+  margin-bottom: 5px;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.25;
+}
+.course-exam-copy p {
+  max-width: 720px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.course-exam-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+.course-exam-meta span { color: var(--color-text-muted); font-size: 12px; font-weight: 600; }
+.course-exam-actions { display: flex; min-width: 180px; flex-direction: column; gap: 8px; }
+.course-exam-primary,
+.course-exam-secondary {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+}
+.course-exam-primary {
+  gap: 8px;
+  background: var(--color-accent);
+  color: #1a1a2e;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-accent) 70%, #000);
+}
+.course-exam-secondary { border: 1px solid var(--color-border); background: var(--color-surface); }
+
+.course-footer {
+  position: relative;
+  padding: 34px 0 18px;
+  background: #171726;
+  color: #f7f2e8;
+}
+.course-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+}
+.course-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.course-footer-brand { display: flex; align-items: center; gap: 14px; }
+.course-footer-brand img {
+  width: 46px;
+  height: 46px;
+  padding: 4px;
+  border-radius: 12px;
+  background: #fff;
+  object-fit: contain;
+}
+.course-footer-brand strong { font-family: var(--font-display); font-size: 18px; }
+.course-footer-brand strong span { color: var(--color-accent); }
+.course-footer-brand p { margin-top: 2px; color: rgba(247, 242, 232, 0.55); font-size: 12px; }
+.course-footer-links { display: flex; align-items: center; gap: 20px; }
+.course-footer-links a { color: rgba(247, 242, 232, 0.7); font-size: 13px; }
+.course-footer-links a:hover { color: var(--color-accent); }
+.course-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(247, 242, 232, 0.42);
+  font-size: 11px;
+}
+.course-footer-bottom a { color: inherit; }
+
+.nav-theme-toggle {
+  position: relative;
+  display: inline-flex;
+  width: 52px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: #e5e5ea;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.nav-theme-toggle.is-dark { background: var(--color-accent); }
+.nav-theme-sun,
+.nav-theme-moon { position: absolute; top: 50%; transform: translateY(-50%); font-size: 11px; }
+.nav-theme-sun { left: 6px; color: #a07900; }
+.nav-theme-moon { right: 7px; color: #69697a; }
+.nav-theme-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: transform 220ms cubic-bezier(0.22, 0.8, 0.35, 1);
+}
+.nav-theme-toggle.is-dark .nav-theme-knob { transform: translateX(22px); }
+
+@media (max-width: 900px) {
+  .course-nav-brand-copy small { max-width: 180px; }
+  .course-nav-label { display: none; }
+  .course-nav-action { width: 38px; padding: 0; }
+  .course-exam-inner { grid-template-columns: 56px minmax(0, 1fr); }
+  .course-exam-icon { width: 56px; height: 56px; }
+  .course-exam-actions { grid-column: 1 / -1; min-width: 0; flex-direction: row; }
+  .course-exam-actions > * { flex: 1; }
+}
+
+@media (max-width: 600px) {
+  .course-nav-inner { min-height: 58px; }
+  .course-nav-brand img { width: 34px; height: 34px; }
+  .course-nav-brand-copy strong { font-size: 13px; }
+  .course-nav-brand-copy small { display: none; }
+  .course-nav-actions { gap: 5px; }
+  .course-nav-action { width: 34px; min-height: 34px; font-size: 12px; }
+  .course-nav-theme { width: 48px; min-height: 28px; }
+  .course-theme-knob { width: 22px; height: 22px; }
+  .course-nav-theme.is-dark .course-theme-knob { transform: translateX(20px); }
+  .course-exam-section { padding: 28px 4px; }
+  .course-exam-inner { grid-template-columns: 1fr; }
+  .course-exam-icon { width: 52px; height: 52px; }
+  .course-exam-actions { flex-direction: column; }
+  .course-footer-inner { align-items: flex-start; flex-direction: column; gap: 22px; }
+  .course-footer-links { width: 100%; justify-content: space-between; gap: 10px; }
+  .course-footer-bottom { gap: 12px; }
+}
+
+@media (max-width: 700px) {
+  .course-nav { overflow: visible; }
+  .course-nav-inner { min-height: 60px; }
+  .course-nav-actions { display: none; }
+  .course-nav-mobile-controls { display: flex; align-items: center; gap: 9px; }
+  .course-nav-mobile-home {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .course-nav-brand { min-width: 0; }
+  .course-nav-brand-copy { min-width: 0; }
+  .course-nav-brand-copy strong { white-space: nowrap; }
+  .course-nav-hamburger {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-content: center;
+    gap: 4px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface);
+  }
+  .course-nav-hamburger span {
+    display: block;
+    width: 17px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-text);
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+  .course-nav-hamburger.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .course-nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .course-nav-hamburger.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .course-mobile-menu {
+    position: fixed;
+    top: 68px;
+    right: 12px;
+    left: 12px;
+    z-index: 70;
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 22px;
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+    box-shadow: 0 24px 70px rgba(20, 20, 32, 0.22);
+    backdrop-filter: blur(24px) saturate(170%);
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .course-mobile-menu.is-open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .course-mobile-menu-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 4px 13px;
+  }
+  .course-mobile-menu-head > div { display: flex; min-width: 0; flex-direction: column; }
+  .course-mobile-menu-head strong { color: var(--color-text); font-family: var(--font-display); font-size: 15px; }
+  .course-mobile-menu-head span { overflow: hidden; color: var(--color-text-muted); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+  .course-mobile-menu-head .course-mobile-menu-badge {
+    flex: 0 0 auto;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--color-accent-soft);
+    color: var(--color-text);
+    font-weight: 700;
+  }
+  .course-mobile-menu-list { display: grid; gap: 8px; }
+  .course-mobile-menu-list > a,
+  .course-mobile-menu-list > button {
+    display: grid;
+    min-height: 64px;
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    text-align: left;
+  }
+  .course-mobile-menu-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--color-surface);
+    font-size: 19px;
+  }
+  .course-mobile-menu-list > * > span:nth-child(2) { display: flex; min-width: 0; flex-direction: column; }
+  .course-mobile-menu-list strong { font-family: var(--font-display); font-size: 14px; }
+  .course-mobile-menu-list small { margin-top: 2px; color: var(--color-text-muted); font-size: 11px; }
+  .course-mobile-menu-list i { color: var(--color-text-muted); font-style: normal; }
+  .course-mobile-theme-switch {
+    position: relative;
+    width: 46px;
+    height: 26px;
+    border-radius: 999px;
+    background: #d7d7dc;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+  .course-mobile-theme-switch > i {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+    transition: transform 200ms ease;
+  }
+  .course-mobile-theme-switch.is-dark { background: var(--color-accent); }
+  .course-mobile-theme-switch.is-dark > i { transform: translateX(20px); }
+  .course-mobile-menu-list .is-primary {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #1a1a2e;
+  }
+  .course-mobile-menu-list .is-primary .course-mobile-menu-icon { background: rgba(255, 255, 255, 0.7); }
+  .course-mobile-menu-list .is-primary small,
+  .course-mobile-menu-list .is-primary i { color: rgba(26, 26, 46, 0.68); }
+}
+
+[data-theme='dark'] .course-nav {
+  background: rgba(23, 23, 38, 0.9);
+  border-bottom-color: #34344a;
+}
+[data-theme='dark'] .course-nav-action,
+[data-theme='dark'] .course-nav-theme,
+[data-theme='dark'] .course-exam-secondary {
+  background: #222238;
+  color: #f7f2e8;
+}
+[data-theme='dark'] .course-layout[data-course='pab'] .pab-hero {
+  background:
+    radial-gradient(circle at 84% 20%, rgba(212, 200, 0, 0.13), transparent 27%),
+    linear-gradient(180deg, #181827 0%, #1e1e32 100%);
+}
+[data-theme='dark'] .pab-hero-title,
+[data-theme='dark'] .pab-hero-kicker {
+  color: #f7f2e8;
+}
+[data-theme='dark'] .pab-hero-desc,
+[data-theme='dark'] .pab-hero-mascot-label {
+  color: #aaa6b8;
+}
+[data-theme='dark'] .pab-hero-desc { border-left-color: #414158; }
+[data-theme='dark'] .pab-hero-badge {
+  background: rgba(212, 200, 0, 0.14);
+  color: #e3d923;
+  box-shadow: none;
+}
+[data-theme='dark'] .course-nav-brand-copy strong,
+[data-theme='dark'] .course-nav-brand-copy strong span {
+  color: #f7f2e8;
+}
+[data-theme='dark'] .course-nav-brand-copy strong i,
+[data-theme='dark'] .course-nav-brand-copy small {
+  color: var(--color-accent);
+}
+[data-theme='dark'] .pab-course-content,
+[data-theme='dark'] .pab-section {
+  background: #171726;
+}
+[data-theme='dark'] .pab-section-header {
+  border-color: #34344a;
+  background: #1e1e32;
+}
+[data-theme='dark'] .pab-section-title,
+[data-theme='dark'] .pab-subject-card-title,
+[data-theme='dark'] .course-exam-copy h2 {
+  color: #f7f2e8;
+}
+[data-theme='dark'] .pab-section-subtitle,
+[data-theme='dark'] .pab-subject-card-desc,
+[data-theme='dark'] .pab-subject-card-count,
+[data-theme='dark'] .course-exam-copy p,
+[data-theme='dark'] .course-exam-meta span {
+  color: #aaa6b8;
+}
+[data-theme='dark'] .pab-subject-card,
+[data-theme='dark'] .pab-subject-card.is-empty {
+  border-color: #37374e;
+  background: #222238;
+  box-shadow: none;
+}
+[data-theme='dark'] .pab-subject-card:hover {
+  border-color: var(--color-accent);
+  background: #292940;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+[data-theme='dark'] .pab-subject-card-cta { color: var(--color-accent); }
+[data-theme='dark'] .pab-section-count {
+  border-color: #404058;
+  background: #292940;
+  color: #f7f2e8;
+}
+[data-theme='dark'] .course-exam-section {
+  border-color: #34344a;
+  background: linear-gradient(115deg, rgba(212, 200, 0, 0.1), #1e1e32 58%);
+}
+[data-theme='dark'] .course-nav-theme { background: var(--color-accent); }
+[data-theme='dark'] .course-nav-hamburger,
+[data-theme='dark'] .course-nav-mobile-home,
+[data-theme='dark'] .course-mobile-menu {
+  border-color: #3a3a50;
+  background: rgba(30, 30, 50, 0.96);
+}
+[data-theme='dark'] .course-nav-mobile-home { color: #f7f2e8; }
+[data-theme='dark'] .course-nav-hamburger span { background: #f7f2e8; }
+[data-theme='dark'] .course-mobile-menu-list > a,
+[data-theme='dark'] .course-mobile-menu-list > button {
+  border-color: #37374e;
+  background: #222238;
+  color: #f7f2e8;
+}
+[data-theme='dark'] .course-mobile-menu-list .course-mobile-menu-icon { background: #2d2d45; }
+[data-theme='dark'] .course-mobile-menu-head strong { color: #f7f2e8; }
+
+/* ============================================================
+   POLICE ADMIN STYLE OVERRIDES (Crimson Red / Gold theme)
+   ============================================================ */
+.course-layout[data-course='police_admin'] .course-subject-icon {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .course-subject-chip {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-progress-track span {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light, var(--color-accent-soft)) 100%) !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice {
+  border-radius: 14px 4px 14px 4px !important;
+  border: 2px solid var(--color-border) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 4px !important;
+  height: 24px !important;
+  background-color: var(--color-primary) !important;
+  border-radius: 0 4px 4px 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice:hover:not(:disabled) {
+  border-color: var(--color-primary) !important;
+  background: var(--color-bg-warm, #fcfaf7) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(122, 24, 34, 0.08) !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice:hover:not(:disabled)::before {
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice:hover:not(:disabled) .quiz-choice-key {
+  border-color: var(--color-primary) !important;
+  background: var(--color-primary-bg) !important;
+  color: var(--color-primary) !important;
+}
+
+/* Choice Key default style */
+.course-layout[data-course='police_admin'] .quiz-choice-key {
+  border-radius: 8px 3px 8px 3px !important;
+  border: 1.5px solid var(--color-border) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Correct State */
+.course-layout[data-course='police_admin'] .quiz-choice.is-correct {
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice.is-correct::before {
+  background-color: #10b981 !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice.is-correct .quiz-choice-key {
+  border-color: #10b981 !important;
+  background: #10b981 !important;
+  color: #ffffff !important;
+}
+
+/* Wrong State */
+.course-layout[data-course='police_admin'] .quiz-choice.is-wrong {
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice.is-wrong::before {
+  background-color: #ef4444 !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-choice.is-wrong .quiz-choice-key {
+  border-color: #ef4444 !important;
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+/* Muted State */
+.course-layout[data-course='police_admin'] .quiz-choice.is-muted {
+  opacity: 0.46 !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-mode-card {
+  border-radius: 14px 4px 14px 4px !important;
+  border: 2px solid var(--color-border) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-mode-card::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 4px !important;
+  height: 24px !important;
+  background-color: var(--color-primary) !important;
+  border-radius: 0 4px 4px 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-mode-card-icon {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-mode-card:hover {
+  border-color: var(--color-primary) !important;
+  background: var(--color-bg-warm, #fcfaf7) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(122, 24, 34, 0.08) !important;
+}
+
+.course-layout[data-course='police_admin'] .quiz-mode-card:hover::before {
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Base large section style */
+.course-layout[data-course='police_admin'] .pab-knowledge-section {
+  border-radius: 16px 4px 16px 4px !important;
+  border: 2px solid var(--color-border) !important;
+  box-shadow: 0 4px 20px rgba(122, 24, 34, 0.03) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-knowledge-section-icon {
+  background: var(--color-primary-bg, #fbeef0) !important;
+  color: var(--color-primary) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-knowledge-section-chip,
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-chip,
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-vocab-eng {
+  color: var(--color-primary) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-timeline-step {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-knowledge-callout,
+.course-layout[data-course='police_admin'] .pab-knowledge-list-block {
+  border-left-color: var(--color-primary) !important;
+  background: var(--color-primary-bg, #fbeef0) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-rich mark {
+  background: var(--color-primary-bg, #fbeef0) !important;
+  color: var(--color-primary) !important;
+}
+
+/* Practice Hub drill-cta button overrides */
+.course-layout[data-course='police_admin'] .drill-cta {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .drill-item.is-featured .drill-cta {
+  background: var(--color-primary-dark, #560f17) !important;
+}
+
+.course-layout[data-course='police_admin'] .drill-item.is-disabled .drill-cta {
+  background: var(--color-border, #e5e0d8) !important;
+  color: var(--color-text-muted, #7a756d) !important;
+}
+
+/* NAV Exam and mobile menu button overrides */
+.course-layout[data-course='police_admin'] .course-nav-exam {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-primary) 70%, #000) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-nav-exam:hover {
+  background: var(--color-primary-dark) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .course-mobile-menu-list .is-primary {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .course-mobile-menu-list .is-primary .course-mobile-menu-icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .course-mobile-menu-list .is-primary small,
+.course-layout[data-course='police_admin'] .course-mobile-menu-list .is-primary i {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Subject Page Navigation Sidebar overrides */
+.course-layout[data-course='police_admin'] .pab-knowledge-nav a > span {
+  color: var(--color-primary) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-knowledge-nav a:hover {
+  background: var(--color-primary-bg, #fbeef0) !important;
+  color: var(--color-primary-dark, #560f17) !important;
+}
+
+/* Subject Page Navigation Sidebar Quiz Link overrides */
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  border-color: var(--color-text, #1a1a2e) !important;
+  box-shadow: 4px 4px 0 var(--color-text, #1a1a2e) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link:hover {
+  background: var(--color-primary-dark, #560f17) !important;
+  color: #ffffff !important;
+  border-color: var(--color-text, #1a1a2e) !important;
+  box-shadow: 5px 6px 0 var(--color-text, #1a1a2e) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link small,
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link strong,
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link .pab-knowledge-quiz-arrow,
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link .pab-knowledge-quiz-icon {
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Dark mode overrides for Subject Page Navigation Sidebar Quiz Link */
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  border-color: #5f202a !important;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.38) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link:hover {
+  background: var(--color-primary-light, #b5495b) !important;
+  border-color: #5f202a !important;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.42) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link small,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link strong,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link .pab-knowledge-quiz-arrow,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-link .pab-knowledge-quiz-icon {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-nav .pab-knowledge-quiz-icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Navigation Practice Dropdown overrides for police_admin */
+.course-layout[data-course='police_admin'] .course-nav-dropdown-head-link {
+  color: var(--color-primary) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-nav-dropdown-head-link:hover {
+  background: var(--color-primary-bg, #fbeef0) !important;
+  color: var(--color-primary-dark, #560f17) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-nav-dropdown-item.is-current {
+  background: var(--color-primary-bg, #fbeef0) !important;
+  border-left-color: var(--color-primary) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-nav-dropdown-item.is-current .course-nav-dropdown-item-name {
+  color: var(--color-primary-dark, #560f17) !important;
+}
+
+.course-layout[data-course='police_admin'] .course-nav-dropdown-item:hover {
+  background: var(--color-bg-warm, #f5f0e8) !important;
+  border-left-color: var(--color-primary) !important;
+}
+
+/* Landing Page Hero and Button styles for police_admin */
+.course-layout[data-course='police_admin'] .pab-hero {
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-bg) 92%, transparent) 0%, color-mix(in srgb, var(--color-bg) 70%, transparent) 38%, color-mix(in srgb, var(--color-bg) 0%, transparent) 62%),
+    var(--hero-image-url, none) !important;
+  background-color: var(--color-surface) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover, contain !important;
+  background-position: left center, right center !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-hero-badge,
+.course-layout[data-course='police_admin'] .pab-section-chip,
+.course-layout[data-course='police_admin'] .pab-subject-card-cat,
+.course-layout[data-course='police_admin'] .pab-part1,
+.course-layout[data-course='police_admin'] .pab-part2 {
+  background: var(--color-primary) !important;
+  color: #f6e7c4 !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-section-part,
+.course-layout[data-course='police_admin'] .pab-subject-card::before {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 55%, #eaa0ab 100%) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-section-part {
+  color: #f6e7c4 !important;
+  box-shadow: 4px 4px 0 var(--color-primary-dark) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-btn-primary {
+  background: var(--color-primary) !important;
+  color: #f6e7c4 !important;
+  box-shadow: 0 4px 0 var(--color-primary-dark), var(--shadow-sm) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-btn-primary:hover {
+  background: var(--color-primary-dark, #560f17) !important;
+  box-shadow: 0 6px 0 var(--color-primary-dark), var(--shadow-md) !important;
+}
+
+.course-layout[data-course='police_admin'] .pab-hero-badge::before {
+  background: var(--color-accent, #c84f60) !important;
+}
+
+/* Dark mode overrides for police_admin */
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-choice {
+  background: #171b23 !important;
+  border-color: #2a3140 !important;
+  color: #f0ece4 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-choice:hover:not(:disabled) {
+  border-color: var(--color-accent) !important;
+  background: #1f2430 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-choice-key {
+  background: #101725 !important;
+  border-color: #2a3140 !important;
+  color: #f0ece4 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-section-chip,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-chip,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .course-subject-chip,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-vocab-eng,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-nav a > span {
+  color: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .course-subject-chip {
+  background: #242016 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-rich mark {
+  background: rgba(200, 79, 96, 0.18) !important;
+  color: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-table th {
+  background: #242016 !important;
+  color: #f6e7c4 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-page .pab-knowledge-timeline-step {
+  background: var(--color-accent) !important;
+  color: #101725 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-nav a:hover {
+  background: rgba(200, 79, 96, 0.12) !important;
+  color: #f7c1c9 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-callout,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-list-block {
+  border-left-color: var(--color-accent) !important;
+  background: rgba(122, 24, 34, 0.16) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-nav-dropdown-head-link {
+  color: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-nav-dropdown-item.is-current {
+  background: rgba(200, 79, 96, 0.12) !important;
+  border-left-color: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-nav-dropdown-item.is-current .course-nav-dropdown-item-name {
+  color: #f6e7c4 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] {
+  --color-bg-warm: #171b23 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .drill-tag {
+  color: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .drill-item.is-featured .drill-num,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .drill-item.is-featured .drill-num-label {
+  color: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .course-subject-header {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(200, 79, 96, 0.12), transparent 27%),
+    linear-gradient(180deg, #131824 0%, #171b23 100%) !important;
+}
+
+/* Quiz Results Page and Save Popup Button Overrides for police_admin */
+.course-layout[data-course='police_admin'] .quiz-result-actions .btn-primary,
+.course-layout[data-course='police_admin'] .quiz-save-popup-form .btn {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+.course-layout[data-course='police_admin'] .quiz-result-actions .btn-primary:hover:not(:disabled),
+.course-layout[data-course='police_admin'] .quiz-save-popup-form .btn:hover:not(:disabled) {
+  background: var(--color-primary-dark, #560f17) !important;
+  color: #ffffff !important;
+}
+.course-layout[data-course='police_admin'] .quiz-result-actions .btn-secondary:hover:not(:disabled),
+.course-layout[data-course='police_admin'] .quiz-save-popup-form .btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-result-actions .btn-primary,
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-save-popup-form .btn {
+  background: var(--color-accent) !important;
+  color: #101725 !important;
+}
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-result-actions .btn-primary:hover:not(:disabled),
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-save-popup-form .btn:hover:not(:disabled) {
+  background: #f3b6be !important;
+  color: #101725 !important;
+}
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-result-actions .btn-secondary:hover:not(:disabled),
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-save-popup-form .btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+}
+
+/* Dark mode overrides for Landing Page elements */
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-hero {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(200, 79, 96, 0.12), transparent 24%),
+    radial-gradient(circle at 84% 24%, rgba(122, 24, 34, 0.22), transparent 20%),
+    linear-gradient(180deg, #131824 0%, #171b23 100%) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-hero-badge {
+  background: #2d1519 !important;
+  color: #f7c1c9 !important;
+  border: 1px solid #5f202a !important;
+  box-shadow: none !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-hero-badge::before {
+  background: var(--color-accent) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-btn-primary {
+  background: var(--color-accent) !important;
+  color: #101725 !important;
+  box-shadow: 0 4px 0 var(--color-primary) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-btn-primary:hover {
+  background: #f3b6be !important;
+  color: #101725 !important;
+  box-shadow: 0 6px 0 var(--color-primary-dark) !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+}
+
+/* Dark mode overrides for Mock Test card */
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-mock-section {
+  background: #13151b !important;
+}
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-mock-card {
+  background: linear-gradient(135deg, #171b23 0%, #1c2130 100%) !important;
+  border-color: #2a3140 !important;
+}
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-mock-badge {
+  background: rgba(200, 79, 96, 0.12) !important;
+  color: var(--color-accent) !important;
+}
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-mock-meta span {
+  background: #171b23 !important;
+  border-color: #2a3140 !important;
+  color: #9ca2ad !important;
+}
+
+/* Dark mode overrides for Quiz card and sections */
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-section {
+  background: #171b23 !important;
+  border-color: #2a3140 !important;
+  box-shadow: none !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .pab-knowledge-section-icon {
+  background: #2d1519 !important;
+  color: var(--color-accent) !important;
+  border-color: #5f202a !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-mode-card {
+  background: #171b23 !important;
+  border-color: #2a3140 !important;
+  color: #f0ece4 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .quiz-mode-card:hover {
+  border-color: var(--color-accent) !important;
+  background: #1f2430 !important;
+  box-shadow: 0 6px 16px rgba(27, 39, 64, 0.22) !important;
+}
+
+/* ───── Sorting Game Custom Premium Styling ───── */
+.course-layout[data-course='police_admin'] .sorting-bucket {
+  border-radius: 14px 4px 14px 4px !important;
+  border: 2px solid var(--color-border) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 16px 12px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03) !important;
+  width: 100% !important;
+}
+
+.course-layout[data-course='police_admin'] .sorting-bucket::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 4px !important;
+  height: 24px !important;
+  background-color: var(--color-primary) !important;
+  border-radius: 0 4px 4px 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.course-layout[data-course='police_admin'] .sorting-bucket:hover:not(:disabled) {
+  border-color: var(--color-primary) !important;
+  background: var(--color-bg-warm, #fcfaf7) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(122, 24, 34, 0.08) !important;
+}
+
+.course-layout[data-course='police_admin'] .sorting-bucket:hover:not(:disabled)::before {
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Correct bucket state */
+.course-layout[data-course='police_admin'] .sorting-bucket.is-correct {
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+}
+
+.course-layout[data-course='police_admin'] .sorting-bucket.is-correct::before {
+  background-color: #10b981 !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Wrong bucket state */
+.course-layout[data-course='police_admin'] .sorting-bucket.is-wrong {
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+  color: #991b1b !important;
+}
+
+.course-layout[data-course='police_admin'] .sorting-bucket.is-wrong::before {
+  background-color: #ef4444 !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Muted bucket state */
+.course-layout[data-course='police_admin'] .sorting-bucket.is-muted {
+  opacity: 0.46 !important;
+  cursor: default !important;
+  box-shadow: none !important;
+}
+
+.course-layout[data-course='police_admin'] .sorting-word-display {
+  font-family: var(--font-display, 'Kanit', sans-serif) !important;
+  font-size: clamp(28px, 4vw, 42px) !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+  text-shadow: 2px 2px 0 var(--color-accent-soft) !important;
+  margin: 16px 0 !important;
+  text-align: center !important;
+}
+
+/* Dark mode overrides for Sorting Game */
+[data-theme='dark'] .course-layout[data-course='police_admin'] .sorting-bucket {
+  background: #1f1819 !important;
+  border-color: #2a2223 !important;
+  color: #f0ece4 !important;
+  box-shadow: none !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .sorting-bucket:hover:not(:disabled) {
+  border-color: var(--color-primary-light, #b5495b) !important;
+  background: #2a1a1f !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .sorting-bucket.is-correct {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #a7f3d0 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .sorting-bucket.is-wrong {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+}
+
+[data-theme='dark'] .course-layout[data-course='police_admin'] .sorting-word-display {
+  color: var(--color-primary-light, #e05e71) !important;
+  text-shadow: 2px 2px 0 rgba(180, 138, 62, 0.2) !important;
+}
