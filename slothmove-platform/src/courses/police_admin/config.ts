@@ -100,7 +100,7 @@ export const policeAdminConfig: CourseConfig = {
       mascot: '/pic/police-mascot/computer.png',
       desc: 'คอมพิวเตอร์ (40 ข้อ) · พื้นฐานคอมฯ · ระบบคอมฯ · เครือข่าย · อินเทอร์เน็ต · Social Media · MS Word · MS Excel · MS PowerPoint',
       count: getSubjectItemCount('computer', 'quiz'),
-      games: ['quiz', 'flashcard', 'match', 'cloze', 'truefalse']
+      games: ['quiz', 'flashcard', 'match', 'truefalse']
     },
     {
       id: 'saraban',
@@ -108,7 +108,7 @@ export const policeAdminConfig: CourseConfig = {
       titleEn: 'Saraban Regulation',
       icon: '📁',
       mascot: '/pic/police-mascot/saraban.png',
-      desc: 'ระเบียบงานสารบรรณ (30 ข้อ) · ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ · ระเบียบสำนักงานตำรวจแห่งชาติที่เกี่ยวข้อง',
+      desc: 'งานสารบรรณและลักษณะที่ 54 (30 ข้อ) · ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ · หลักเกณฑ์งานสารบรรณตำรวจและแนวปฏิบัติภายใน ตร.',
       count: getSubjectItemCount('saraban', 'quiz'),
       games: ['quiz', 'flashcard', 'match', 'cloze', 'order', 'sorting', 'number-match', 'process-sort', 'authority', 'truefalse']
     },
@@ -130,7 +130,7 @@ export const policeAdminConfig: CourseConfig = {
       mascot: '/pic/police-mascot/english.png',
       desc: 'ภาษาอังกฤษ (15 ข้อ) · Reading Comprehension · Vocabulary · Grammar / Structure · Conversation · ใช้ในชีวิตประจำวันและการทำงาน',
       count: getSubjectItemCount('english', 'quiz'),
-      games: ['quiz', 'cloze', 'dialogue', 'error-detector']
+      games: ['quiz', 'cloze', 'dialogue']
     }
   ],
   games: SHARED_GAMES,

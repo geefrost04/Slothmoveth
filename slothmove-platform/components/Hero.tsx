@@ -1,6 +1,8 @@
+import Image from 'next/image';
+
 export function Hero() {
   return (
-    <section className="home-hero">
+    <section className="home-hero" aria-labelledby="home-hero-title">
       <div className="container">
         <div className="home-hero-inner">
           <div className="home-hero-content">
@@ -8,7 +10,7 @@ export function Hero() {
               เรียนฟรีทุกคอร์ส · คอร์สใหม่ทยอยอัปเดต
             </div>
             <div className="home-hero-kicker">แพลตฟอร์มเตรียมสอบราชการออนไลน์</div>
-            <h1 className="home-hero-title">
+            <h1 className="home-hero-title" id="home-hero-title">
               <span>Being Better</span>
               <span>with little move</span>
               <small>SlothMove</small>
@@ -23,13 +25,16 @@ export function Hero() {
               </a>
             </div>
           </div>
-          <div className="home-hero-mascot">
-            <img
+
+          <div className="home-hero-mascot" aria-hidden="true">
+            <Image
               src="/pic/slothmove_hero_study.png"
-              alt="สลอธนักเรียนสอบราชการ SlothMove — เรียนฟรี เตรียมสอบราชการแบบเข้าใจง่าย"
+              alt=""
               width={1100}
               height={614}
-              decoding="async"
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 800px) min(100vw - 40px, 320px), 480px"
             />
           </div>
         </div>

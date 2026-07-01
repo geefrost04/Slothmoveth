@@ -1,4 +1,21 @@
 export type JobRecord = Record<string, any>;
+export type JobSlimRecord = {
+  id: string;
+  title: string;
+  agency: string;
+  ministry: string;
+  type: string;
+  method: string;
+  province: string;
+  education: string;
+  startDate: string;
+  endDate: string;
+  minSalary: string;
+  maxSalary: string;
+  openings: string;
+  logoUrl: string;
+  views: string;
+};
 
 export const MINISTRY_COLORS: Record<string, { color: string; bg: string }> = {
   'กระทรวงสาธารณสุข': { color: '#2f7a63', bg: '#e6f5ef' },
@@ -118,3 +135,128 @@ export function getActiveOcscJobs(jobs: JobRecord[], now = new Date()) {
   });
 }
 
+export type JobsRadarSummary = {
+  totalPositions: number;
+  activeJobCount: number;
+  agenciesCount: number;
+  ministriesCount: number;
+  civilPercent: number;
+  officialPercent: number;
+  otherPercent: number;
+  needOcscPercent: number;
+  noOcscPercent: number;
+  urgentJobs: number;
+  topJobs: Array<{
+    id: string;
+    title: string;
+    agency: string;
+    ministry: string;
+    type: string;
+    status: ReturnType<typeof getStatus>;
+    views: number;
+    query: string;
+    initials: string;
+    logoUrl: string;
+  }>;
+};
+
+export function buildJobsRadarSummary(jobs: JobRecord[], now = new Date()): JobsRadarSummary {
+  const activeJobs = getActiveOcscJobs(jobs, now);
+
+  let totalPositions = 0;
+  let civilCount = 0;
+  let officialCount = 0;
+  let otherCount = 0;
+  let needOcsc = 0;
+  let noOcsc = 0;
+  const agencies = new Set<string>();
+  const ministries = new Set<string>();
+
+  activeJobs.forEach((job) => {
+    const count = parseInt(String(job['จำนวนรับ'] || '0').replace(/,/g, ''), 10);
+    const positions = Number.isNaN(count) ? 1 : count;
+    totalPositions += positions;
+
+    const type = (job['ประเภทงาน'] || '').trim();
+    if (type.includes('ข้าราชการ')) {
+      civilCount += positions;
+    } else if (type.includes('พนักงานราชการ')) {
+      officialCount += positions;
+    } else {
+      otherCount += positions;
+    }
+
+    const requiresOcsc = (job['วิธีการสรรหา'] || '').includes('สอบแข่งขัน');
+    if (requiresOcsc) {
+      needOcsc += positions;
+    } else {
+      noOcsc += positions;
+    }
+
+    if (job['หน่วยงาน']) agencies.add(job['หน่วยงาน']);
+    if (job['กระทรวง']) ministries.add(job['กระทรวง']);
+  });
+
+  const totalType = civilCount + officialCount + otherCount || 1;
+  const civilPercent = Math.round((civilCount / totalType) * 100);
+  const officialPercent = Math.round((officialCount / totalType) * 100);
+  const otherPercent = Math.max(0, 100 - civilPercent - officialPercent);
+
+  const totalOcsc = needOcsc + noOcsc || 1;
+  const needOcscPercent = Math.round((needOcsc / totalOcsc) * 100);
+  const noOcscPercent = Math.max(0, 100 - needOcscPercent);
+
+  const urgentJobs = activeJobs.filter(
+    (job) => getStatus(job['วันเริ่มสมัคร'], job['วันหมดสมัคร'], now).id === 'urgent'
+  ).length;
+
+  const topJobs = [...activeJobs]
+    .sort((left, right) => parseInt(right['ยอดเข้าชม'] || '0', 10) - parseInt(left['ยอดเข้าชม'] || '0', 10))
+    .slice(0, 3)
+    .map((job) => ({
+      id: String(job.id),
+      title: getCleanTitle(job['ตำแหน่ง'] || ''),
+      agency: job['หน่วยงาน'] || '',
+      ministry: job['กระทรวง'] || '',
+      type: job['ประเภทงาน'] || 'งานราชการ',
+      status: getStatus(job['วันเริ่มสมัคร'], job['วันหมดสมัคร'], now),
+      views: parseInt(job['ยอดเข้าชม'] || '0', 10),
+      query: getCleanTitle(job['ตำแหน่ง'] || ''),
+      initials: agencyInitials(job['หน่วยงาน']),
+      logoUrl: String(job['โลโก้หน่วยงาน'] || ''),
+    }));
+
+  return {
+    totalPositions,
+    activeJobCount: activeJobs.length,
+    agenciesCount: agencies.size,
+    ministriesCount: ministries.size,
+    civilPercent,
+    officialPercent,
+    otherPercent,
+    needOcscPercent,
+    noOcscPercent,
+    urgentJobs,
+    topJobs,
+  };
+}
+
+export function toSlimJob(job: JobRecord): JobSlimRecord {
+  return {
+    id: String(job.id || ''),
+    title: String(job['ตำแหน่ง'] || ''),
+    agency: String(job['หน่วยงาน'] || ''),
+    ministry: String(job['กระทรวง'] || ''),
+    type: String(job['ประเภทงาน'] || ''),
+    method: String(job['วิธีการสรรหา'] || ''),
+    province: String(job['จังหวัด'] || ''),
+    education: String(job['ระดับการศึกษา'] || ''),
+    startDate: String(job['วันเริ่มสมัคร'] || ''),
+    endDate: String(job['วันหมดสมัคร'] || ''),
+    minSalary: String(job['เงินเดือนต่ำสุด'] || ''),
+    maxSalary: String(job['เงินเดือนสูงสุด'] || ''),
+    openings: String(job['จำนวนรับ'] || ''),
+    logoUrl: String(job['โลโก้หน่วยงาน'] || ''),
+    views: String(job['ยอดเข้าชม'] || ''),
+  };
+}

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { TrueFalseItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 
 function formatTime(sec: number) {
@@ -33,6 +34,8 @@ export function TrueFalseGame({
   const hasAnswered = picked !== null;
   const isCorrect = currentItem ? picked === currentItem.answer : false;
   const answeredCount = idx + (hasAnswered ? 1 : 0);
+
+  useDonatePromptOnDone(done);
 
   useEffect(() => {
     if (!isPlaying || done) return undefined;

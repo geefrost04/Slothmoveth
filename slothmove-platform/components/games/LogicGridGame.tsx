@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 
 export interface LogicGridItem {
   title: string;
@@ -28,6 +29,8 @@ export function LogicGridGame({
   const [success, setSuccess] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   const currentItem = items[idx];
 

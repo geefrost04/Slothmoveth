@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { useMatchGame, type MatchItem } from './useMatchGame';
 
 export function AuthorityGame({
@@ -14,6 +15,7 @@ export function AuthorityGame({
 }) {
   const game = useMatchGame(items);
   const { roundItems, rightOrder, picks, matched, wrong, score, round, totalRounds, done, pick, reset } = game;
+  useDonatePromptOnDone(done);
   const isLaw = subjectId === 'law';
   const badgeLabel = isLaw ? 'Law Authority' : 'Saraban Authority';
   const pageTitle = isLaw ? 'จับคู่ศาล หน่วยงาน และอำนาจหน้าที่' : 'จับคู่หน่วยงานกับหน้าที่ให้แม่น';

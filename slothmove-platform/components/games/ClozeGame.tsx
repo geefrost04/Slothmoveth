@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import type { ClozeItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { saveGameResult } from '@/lib/games-storage';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 import Link from 'next/link';
@@ -23,6 +24,8 @@ export function ClozeGame({
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const startTimeRef = useRef<number>(Date.now());
+
+  useDonatePromptOnDone(done);
 
   // Discover distinct categories
   const categories = Array.from(

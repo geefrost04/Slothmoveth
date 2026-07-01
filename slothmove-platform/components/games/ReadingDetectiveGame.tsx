@@ -12,6 +12,7 @@
 
 import { useState, useMemo } from 'react';
 import type { QuizItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { buildDistinctRandomSession, distinctScope } from '@/lib/randomization';
 
 function shuffle<T>(arr: T[]): T[] {
@@ -50,6 +51,8 @@ export function ReadingDetectiveGame({
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
   const [startTime, setStartTime] = useState(0);
+
+  useDonatePromptOnDone(done);
 
   // Infer a readable skill label from the question text
   function inferSkill(q: QuizItem): string {

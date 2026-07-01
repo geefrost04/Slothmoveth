@@ -8,6 +8,8 @@ import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { DonatePopup } from '@/components/DonatePopup';
 import { VISIBLE_COURSES } from '@/courses/registry';
+import { JOBS_DATA } from '@/data/jobs';
+import { buildJobsRadarSummary } from '@/lib/jobs-board';
 import { absoluteUrl, buildMetadata, siteConfig } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
@@ -19,6 +21,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function PlatformHome() {
+  const jobsRadarSummary = buildJobsRadarSummary(JOBS_DATA);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -44,11 +47,14 @@ export default function PlatformHome() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <a href="#main-content" className="skip-link">
+        ข้ามไปยังเนื้อหาหลัก
+      </a>
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
-        <CourseGrid />
-        <Articles />
+        <CourseGrid previewOnly={true} />
+        <Articles summary={jobsRadarSummary} />
         <Why />
         <FAQ />
       </main>

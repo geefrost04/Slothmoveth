@@ -1,83 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { JOBS_DATA } from '@/data/jobs';
 import {
-  agencyInitials,
-  getActiveOcscJobs,
-  getCleanTitle,
   getMinistryColor,
-  getStatus,
+  type JobsRadarSummary,
 } from '@/lib/jobs-board';
 
-export function Articles() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Use a stable date for SSR to prevent hydration mismatches
-  const now = mounted ? new Date() : new Date('2026-06-23T00:00:00');
-  const activeJobs = getActiveOcscJobs(JOBS_DATA, now);
-
-  let totalPositions = 0;
-  let civilCount = 0;
-  let officialCount = 0;
-  let otherCount = 0;
-  let needOcsc = 0;
-  let noOcsc = 0;
-  const agencies = new Set<string>();
-  const ministries = new Set<string>();
-
-  activeJobs.forEach((job: any) => {
-    const count = parseInt(String(job['จำนวนรับ'] || '0').replace(/,/g, ''), 10);
-    const positions = Number.isNaN(count) ? 1 : count;
-    totalPositions += positions;
-
-    const type = (job['ประเภทงาน'] || '').trim();
-    if (type.includes('ข้าราชการ')) {
-      civilCount += positions;
-    } else if (type.includes('พนักงานราชการ')) {
-      officialCount += positions;
-    } else {
-      otherCount += positions;
-    }
-
-    const requiresOcsc = (job['วิธีการสรรหา'] || '').includes('สอบแข่งขัน');
-    if (requiresOcsc) {
-      needOcsc += positions;
-    } else {
-      noOcsc += positions;
-    }
-
-    if (job['หน่วยงาน']) agencies.add(job['หน่วยงาน']);
-    if (job['กระทรวง']) ministries.add(job['กระทรวง']);
-  });
-
-  const totalType = civilCount + officialCount + otherCount || 1;
-  const civilPercent = Math.round((civilCount / totalType) * 100);
-  const officialPercent = Math.round((officialCount / totalType) * 100);
-  const otherPercent = Math.max(0, 100 - civilPercent - officialPercent);
-
-  const totalOcsc = needOcsc + noOcsc || 1;
-  const needOcscPercent = Math.round((needOcsc / totalOcsc) * 100);
-  const noOcscPercent = Math.max(0, 100 - needOcscPercent);
-
-  const urgentJobs = activeJobs.filter(
-    (job: any) => getStatus(job['วันเริ่มสมัคร'], job['วันหมดสมัคร'], now).id === 'urgent'
-  ).length;
-
-  const topJobs = [...activeJobs]
-    .sort((left: any, right: any) => parseInt(right['ยอดเข้าชม'] || '0', 10) - parseInt(left['ยอดเข้าชม'] || '0', 10))
-    .slice(0, 3);
-
+export function Articles({ summary }: { summary: JobsRadarSummary }) {
   return (
-    <section id="articles" className="py-16 bg-[#faf8f4] dark:bg-[#171726]">
+    <section id="articles" className="py-16 bg-[#e8f7ec] dark:bg-[#091b10]">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className="mb-6 flex items-center justify-between">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#dfe8df] bg-[#f5f0e8] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#3d8c6c] font-display">
-            <span className="h-2 w-2 rounded-full bg-[#3d8c6c]" />
+            <img src="/pic/slothmove_mascot.png" alt="" className="h-4 w-4 object-contain" />
             SlothMove Jobs Radar
           </div>
           <Link
@@ -89,22 +24,19 @@ export function Articles() {
           </Link>
         </div>
 
-        <div className="overflow-hidden rounded-[24px] border border-[#e5e0d8] bg-[#fffdfa] shadow-sm dark:border-[#2d2d4a] dark:bg-[#1e1e32]">
+        <div className="overflow-hidden rounded-2xl border border-[#ebe4da] bg-white shadow-sm dark:border-[#2d2d4a] dark:bg-[#1e1e32]">
           <div className="grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr]">
             <div className="relative overflow-hidden border-b border-[#e8e1d7] px-5 py-6 sm:px-7 lg:border-b-0 lg:border-r lg:px-8 lg:py-7 dark:border-[#2d2d4a]">
-              <div className="absolute right-[-72px] top-[-96px] h-52 w-52 rounded-full bg-[#eef7f1] blur-3xl" />
-              <div className="absolute bottom-[-84px] left-[-64px] h-44 w-44 rounded-full bg-[#f7efe3] blur-3xl" />
-
               <div className="relative">
                 <div className="mb-5 flex flex-col gap-3">
                   <div className="max-w-2xl">
                     <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-[#eef5ef] px-3 py-1 text-[11px] font-semibold text-[#2f7a63] dark:bg-[#2a3c34] dark:text-[#8ad1b0]">
                       ข้อมูลเสริมสำหรับวางแผนสมัครงาน
                     </div>
-                    <h2 className="font-display text-2xl font-extrabold tracking-[-0.03em] text-slate-900 dark:text-white sm:text-3xl">
+                    <h2 className="font-display text-lg font-extrabold tracking-[-0.02em] text-slate-900 dark:text-white sm:text-xl md:text-2xl">
                       ประกาศสอบแข่งขันและรับสมัครงานราชการ
                     </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-500 dark:text-slate-400">
+                    <p className="mt-1.5 max-w-2xl text-[12px] sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                       ใช้ดูภาพรวมตำแหน่งที่เปิดรับควบคู่กับการเลือกคอร์สที่เหมาะกับเป้าหมายของคุณ
                       เห็นทั้งจำนวนอัตรา แนวโน้มการสมัคร และตำแหน่งที่คนสนใจมากที่สุดในช่วงนี้
                     </p>
@@ -133,57 +65,57 @@ export function Articles() {
 
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
                   {[
-                    { label: 'อัตราที่เปิดรับ', value: totalPositions.toLocaleString(), accent: '#2f7a63' },
-                    { label: 'ประกาศที่เปิดรับ', value: activeJobs.length.toLocaleString(), accent: '#18231d' },
-                    { label: 'หน่วยงานที่ประกาศ', value: agencies.size.toLocaleString(), accent: '#18231d' },
-                    { label: 'ใกล้ปิดรับ', value: urgentJobs.toLocaleString(), accent: '#b77933' },
+                    { label: 'อัตราที่เปิดรับ', value: summary.totalPositions.toLocaleString(), className: 'text-[#2f7a63] dark:text-[#8ad1b0]' },
+                    { label: 'ประกาศที่เปิดรับ', value: summary.activeJobCount.toLocaleString(), className: 'text-[#18231d] dark:text-[#f7f2e8]' },
+                    { label: 'หน่วยงานที่ประกาศ', value: summary.agenciesCount.toLocaleString(), className: 'text-[#18231d] dark:text-[#f7f2e8]' },
+                    { label: 'ใกล้ปิดรับ', value: summary.urgentJobs.toLocaleString(), className: 'text-[#b77933] dark:text-[#e0a870]' },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-[18px] border border-[#ebe4da] bg-white p-3 text-center dark:border-[#37374e] dark:bg-[#222238]">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400 font-display">
+                    <div key={item.label} className="rounded-2xl border border-[#d3eedf] bg-[#f0f9f4] p-2.5 sm:p-3 text-center dark:border-[#2d3a33] dark:bg-[#1b2b23]">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#2f7a63] font-display">
                         {item.label}
                       </div>
-                      <div className="mt-1.5 font-display text-xl font-extrabold" style={{ color: item.accent }}>
+                      <div className={`mt-1 font-display text-lg sm:text-xl font-extrabold ${item.className}`}>
                         {item.value}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-5 grid gap-4 rounded-[16px] border border-[#ebe4da] bg-[#faf8f4] p-4 dark:border-[#37374e] dark:bg-[#252540]">
+                <div className="mt-5 hidden xl:grid grid-cols-1 md:grid-cols-2 gap-6 rounded-2xl border border-[#ebe4da] bg-[#faf8f4] p-4 dark:border-[#37374e] dark:bg-[#252540]">
                   <div>
                     <div className="mb-2 flex items-center justify-between text-[11px]">
                       <span className="font-bold text-slate-700 dark:text-slate-300">สัดส่วนประเภทงาน</span>
                     </div>
                     <div className="flex h-2 overflow-hidden rounded-full bg-[#e9e3d9] dark:bg-slate-700">
-                      <div className="h-full bg-[#3d8c6c]" style={{ width: `${civilPercent}%` }} title={`ข้าราชการ ${civilPercent}%`} />
-                      <div className="h-full bg-[#c48a45]" style={{ width: `${officialPercent}%` }} title={`พนักงานราชการ ${officialPercent}%`} />
-                      <div className="h-full bg-[#d4cdc0]" style={{ width: `${otherPercent}%` }} title={`อื่นๆ ${otherPercent}%`} />
+                      <div className="h-full bg-[#3d8c6c]" style={{ width: `${summary.civilPercent}%` }} title={`ข้าราชการ ${summary.civilPercent}%`} />
+                      <div className="h-full bg-[#c48a45]" style={{ width: `${summary.officialPercent}%` }} title={`พนักงานราชการ ${summary.officialPercent}%`} />
+                      <div className="h-full bg-[#d4cdc0]" style={{ width: `${summary.otherPercent}%` }} title={`อื่นๆ ${summary.otherPercent}%`} />
                     </div>
-                    <div className="mt-2 flex flex-wrap gap-4 text-[10px] font-semibold text-slate-500 dark:text-slate-400">
-                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#3d8c6c]" />ข้าราชการ {civilPercent}%</span>
-                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#c48a45]" />พนักงานราชการ {officialPercent}%</span>
-                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#d4cdc0]" />อื่นๆ {otherPercent}%</span>
+                    <div className="mt-2 flex flex-wrap gap-3 text-[10px] font-semibold text-slate-500 dark:text-slate-400">
+                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#3d8c6c]" />ข้าราชการ {summary.civilPercent}%</span>
+                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#c48a45]" />พนักงานราชการ {summary.officialPercent}%</span>
+                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#d4cdc0]" />อื่นๆ {summary.otherPercent}%</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-[#ebe4da] dark:border-[#37374e]">
+                  <div className="pt-4 border-t border-[#ebe4da] md:pt-0 md:border-t-0 md:border-l md:pl-6 dark:border-[#37374e]">
                     <div className="mb-2 flex items-center justify-between text-[11px]">
                       <span className="font-bold text-slate-700 dark:text-slate-300">เงื่อนไขภาค ก.</span>
                     </div>
                     <div className="flex h-2 overflow-hidden rounded-full bg-[#efe4d5] dark:bg-slate-700">
-                      <div className="h-full bg-[#3d8c6c]" style={{ width: `${noOcscPercent}%` }} title={`ไม่ต้องมีภาค ก. ${noOcscPercent}%`} />
-                      <div className="h-full bg-[#b77933]" style={{ width: `${needOcscPercent}%` }} title={`ต้องมีภาค ก. ${needOcscPercent}%`} />
+                      <div className="h-full bg-[#3d8c6c]" style={{ width: `${summary.noOcscPercent}%` }} title={`ไม่ต้องมีภาค ก. ${summary.noOcscPercent}%`} />
+                      <div className="h-full bg-[#b77933]" style={{ width: `${summary.needOcscPercent}%` }} title={`ต้องมีภาค ก. ${summary.needOcscPercent}%`} />
                     </div>
-                    <div className="mt-2 flex flex-wrap gap-4 text-[10px] font-semibold text-slate-500 dark:text-slate-400">
-                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#3d8c6c]" />ไม่ต้องมีภาค ก. {noOcscPercent}%</span>
-                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#b77933]" />ต้องมีภาค ก. {needOcscPercent}%</span>
+                    <div className="mt-2 flex flex-wrap gap-3 text-[10px] font-semibold text-slate-500 dark:text-slate-400">
+                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#3d8c6c]" />ไม่ต้องมีภาค ก. {summary.noOcscPercent}%</span>
+                      <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#b77933]" />ต้องมีภาค ก. {summary.needOcscPercent}%</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-4 flex flex-wrap items-center gap-2.5 text-[11px] text-slate-500 dark:text-slate-400">
                   <span className="rounded-full border border-[#e8e1d7] bg-[#faf8f4] px-3 py-1.5 font-semibold dark:border-[#37374e] dark:bg-[#252540]">
-                    ครอบคลุม {ministries.size.toLocaleString()} กระทรวง / ส่วนราชการ
+                    ครอบคลุม {summary.ministriesCount.toLocaleString()} กระทรวง / ส่วนราชการ
                   </span>
                   <span className="rounded-full border border-[#e8e1d7] bg-[#faf8f4] px-3 py-1.5 font-semibold dark:border-[#37374e] dark:bg-[#252540]">
                     ดึงข้อมูลตรงจาก `job.ocsc.go.th`
@@ -192,7 +124,7 @@ export function Articles() {
               </div>
             </div>
 
-            <div className="bg-[#faf6ef] px-5 py-6 sm:px-7 lg:px-8 lg:py-7 dark:bg-[#222238]">
+            <div className="bg-[#fafbf9] xl:bg-[#faf6ef] px-5 py-6 sm:px-7 lg:px-8 lg:py-7 dark:bg-[#1b1b2f] xl:dark:bg-[#222238]">
               <div className="mb-5 flex items-end justify-between gap-4">
                 <div>
                   <div className="font-display text-xs font-extrabold uppercase tracking-[0.16em] text-[#c97d3a]">
@@ -210,49 +142,39 @@ export function Articles() {
               </div>
 
               <div className="space-y-4">
-                {topJobs.map((job, index) => {
-                  const initials = agencyInitials(job['หน่วยงาน']);
-                  const status = getStatus(job['วันเริ่มสมัคร'], job['วันหมดสมัคร'], now);
-                  const cleanTitle = getCleanTitle(job['ตำแหน่ง'] || '');
-                  const ministryColor = getMinistryColor(job['กระทรวง'] || '');
+                {summary.topJobs.map((job, index) => {
+                  const ministryColor = getMinistryColor(job.ministry || '');
 
                   let statusClasses = 'bg-[#e7f5ee] text-[#2f7a63]';
-                  if (status.id === 'urgent') statusClasses = 'bg-[#fdf1e4] text-[#b77933]';
-                  if (status.id === 'before') statusClasses = 'bg-[#eceff2] text-[#67747c]';
+                  if (job.status.id === 'urgent') statusClasses = 'bg-[#fdf1e4] text-[#b77933]';
+                  if (job.status.id === 'before') statusClasses = 'bg-[#eceff2] text-[#67747c]';
 
                   return (
                     <Link
                       key={job.id}
-                      href={`/rat-ngan?q=${encodeURIComponent(cleanTitle)}`}
+                      href={`/rat-ngan?q=${encodeURIComponent(job.query)}`}
                       className="group block rounded-[20px] border border-[#e7dfd3] bg-white p-4 transition hover:-translate-y-0.5 hover:border-[#d9d0c3] dark:border-[#37374e] dark:bg-[#252540]"
                     >
                       <div className="flex items-start gap-4">
-                        <div
-                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#efe6d9] bg-[#fbf7f0] text-xs font-bold"
-                          style={{ color: ministryColor.color }}
-                        >
-                          {job['โลโก้หน่วยงาน'] && job['โลโก้หน่วยงาน'] !== 'null' && job['โลโก้หน่วยงาน'] !== '-' ? (
+                        <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#efe6d9] bg-white p-1">
+                          {job.logoUrl && job.logoUrl !== 'null' && job.logoUrl !== '-' ? (
                             <img
-                              src={job['โลโก้หน่วยงาน']}
-                              alt={job['หน่วยงาน'] || 'logo'}
-                              className="max-h-full max-w-full object-contain"
-                              onError={(event) => {
-                                (event.target as HTMLElement).style.display = 'none';
-                                const fallback = (event.target as HTMLElement).nextElementSibling;
-                                if (fallback) (fallback as HTMLElement).style.display = 'flex';
+                              src={job.logoUrl}
+                              alt=""
+                              className="h-full w-full object-contain"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'flex';
                               }}
                             />
                           ) : null}
-                          <span
-                            style={{
-                              display:
-                                job['โลโก้หน่วยงาน'] && job['โลโก้หน่วยงาน'] !== 'null' && job['โลโก้หน่วยงาน'] !== '-'
-                                  ? 'none'
-                                  : 'block',
-                            }}
+                          <div
+                            className="flex h-full w-full items-center justify-center bg-[#fbf7f0] text-[11px] font-bold font-display"
+                            style={job.logoUrl && job.logoUrl !== 'null' && job.logoUrl !== '-' ? { display: 'none', color: ministryColor.color } : { color: ministryColor.color }}
                           >
-                            {initials}
-                          </span>
+                            {job.initials}
+                          </div>
                         </div>
 
                         <div className="min-w-0 flex-1">
@@ -261,18 +183,18 @@ export function Articles() {
                               อันดับ {index + 1}
                             </span>
                             <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold font-display ${statusClasses}`}>
-                              {status.id === 'urgent' && (
+                              {job.status.id === 'urgent' && (
                                 <span className="relative flex h-1.5 w-1.5">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#b77933] opacity-75"></span>
                                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#b77933]"></span>
                                 </span>
                               )}
-                              {status.label}
+                              {job.status.label}
                             </span>
                           </div>
 
                           <h4 className="line-clamp-2 break-words font-display text-base font-bold leading-6 text-slate-900 transition group-hover:text-[#2f7a63] dark:text-white">
-                            {cleanTitle}
+                            {job.title}
                           </h4>
 
                           <div className="mt-2 flex flex-wrap gap-2 text-[11px] font-semibold text-[#6a756e]">
@@ -280,14 +202,14 @@ export function Articles() {
                               className="max-w-full truncate rounded-full px-2.5 py-1"
                               style={{ color: ministryColor.color, backgroundColor: ministryColor.bg }}
                             >
-                              {job['กระทรวง'] ? job['กระทรวง'].replace('กระทรวง', '').trim() : 'หน่วยงานอิสระ'}
+                              {job.ministry ? job.ministry.replace('กระทรวง', '').trim() : 'หน่วยงานอิสระ'}
                             </span>
-                            <span className="max-w-full truncate rounded-full bg-[#f3efe7] px-2.5 py-1">{job['หน่วยงาน']}</span>
+                            <span className="max-w-full truncate rounded-full bg-[#f3efe7] px-2.5 py-1">{job.agency}</span>
                           </div>
 
                           <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500 dark:text-slate-400">
-                            <span>👁️ {parseInt(job['ยอดเข้าชม'] || '0', 10).toLocaleString()} ครั้ง</span>
-                            <span>{job['ประเภทงาน'] || 'งานราชการ'}</span>
+                            <span>👁️ {job.views.toLocaleString()} ครั้ง</span>
+                            <span>{job.type}</span>
                           </div>
                         </div>
 

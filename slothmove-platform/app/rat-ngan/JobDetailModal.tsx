@@ -27,9 +27,11 @@ function formatNumber(value: unknown): string {
 
 export function JobDetailModal({
   job,
+  loading = false,
   onClose
 }: {
   job: any | null;
+  loading?: boolean;
   onClose: () => void;
 }) {
   // ESC to close
@@ -51,6 +53,45 @@ export function JobDetailModal({
       document.body.style.overflow = prev;
     };
   }, [job]);
+
+  if (!job && !loading) return null;
+
+  if (loading) {
+    return (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4"
+        onClick={onClose}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="job-modal-loading"
+      >
+        <div
+          className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-[#1e1e32]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="ปิดหน้าต่าง"
+            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200 dark:bg-[#2d2d4a] dark:text-slate-300 dark:hover:bg-[#37374e]"
+          >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+          <div className="px-6 py-16 text-center">
+            <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-[#dff1e7] border-t-[#3d8c6c]" />
+            <h2 id="job-modal-loading" className="font-display text-lg font-bold text-slate-900 dark:text-white">
+              กำลังโหลดรายละเอียดตำแหน่ง
+            </h2>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+              โปรดรอสักครู่
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!job) return null;
 

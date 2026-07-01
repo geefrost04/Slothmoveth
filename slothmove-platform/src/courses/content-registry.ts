@@ -13,6 +13,8 @@ import { policeAdminConfig } from './police_admin/config';
 import { getSubjectData as getOcscSubjectData } from './ocsc/data-loader';
 import { getOcscKnowledgeData } from './ocsc/knowledge-loader';
 import { ocscConfig } from './ocsc/config';
+import * as railwayDataLoader from './railway/data-loader';
+import { getRailwayKnowledgeData } from './railway/knowledge-loader';
 
 type CourseContentSource = {
   getGameData: (subjectId: string, gameId: GameId) => unknown[];
@@ -44,6 +46,24 @@ const CONTENT_SOURCES: Record<string, CourseContentSource> = {
   ocsc: {
     getGameData: (subjectId, gameId) => getOcscSubjectData(ocscConfig, subjectId, gameId),
     getKnowledgeData: getOcscKnowledgeData
+  },
+  railway: {
+    getGameData: (subjectId, gameId) => {
+      switch (gameId) {
+        case 'quiz': return railwayDataLoader.getQuiz(subjectId);
+        case 'flashcard': return railwayDataLoader.getFlashcards(subjectId);
+        case 'match': return railwayDataLoader.getMatchPairs(subjectId);
+        case 'cloze': return railwayDataLoader.getCloze(subjectId);
+        case 'sorting': return railwayDataLoader.getSorting(subjectId);
+        case 'order': return railwayDataLoader.getOrder(subjectId);
+        case 'spelling': return railwayDataLoader.getSpelling(subjectId);
+        case 'truefalse': return railwayDataLoader.getTrueFalse(subjectId);
+        case 'authority': return railwayDataLoader.getAuthority(subjectId);
+        case 'logic': return railwayDataLoader.getLogic(subjectId);
+        default: return [];
+      }
+    },
+    getKnowledgeData: getRailwayKnowledgeData
   }
 };
 

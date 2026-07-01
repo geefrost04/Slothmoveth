@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { saveGameResult } from '@/lib/games-storage';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 import type { MatchItem } from './useMatchGame';
@@ -71,6 +72,8 @@ function MatchGameContent({
   const [isRunning, setIsRunning] = useState(false);
   const [done, setDone] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(Date.now());

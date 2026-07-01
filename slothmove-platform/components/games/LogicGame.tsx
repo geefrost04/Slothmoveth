@@ -2,12 +2,15 @@
 
 import { useState } from 'react';
 import type { LogicItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 
 export function LogicGame({ items }: { items: LogicItem[] }) {
   const [idx, setIdx] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   if (!items.length) return <p style={{ textAlign: 'center', padding: 32 }}>ยังไม่มีข้อมูล</p>;
   if (done) {

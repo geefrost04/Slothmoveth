@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import type { FlashcardItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { buildDistinctRandomSession, distinctScope } from '@/lib/randomization';
 
 // Helper to shuffle array
@@ -108,6 +109,8 @@ export function FlashcardGame({
   const [elapsed, setElapsed] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [done, setDone] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 

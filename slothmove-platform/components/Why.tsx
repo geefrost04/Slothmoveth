@@ -15,7 +15,6 @@ export function Why() {
 
         <div className="why-grid">
           <div className="why-card">
-            <div className="why-accent-line" />
             <div className="why-icon-wrap">🎯</div>
             <div className="why-card-content">
               <h3 className="why-title">เนื้อหาตรงประเด็น</h3>
@@ -24,14 +23,13 @@ export function Why() {
                 โฟกัสได้เร็ว ทบทวนได้ทันที
               </p>
               <div className="why-tags">
-                <span className="why-tag">✓ สรุปครบ ทุกวิชา</span>
+                <span className="why-tag"><span aria-hidden="true">✓</span> สรุปครบ ทุกวิชา</span>
               </div>
             </div>
             <div className="why-number">01</div>
           </div>
 
           <div className="why-card">
-            <div className="why-accent-line" />
             <div className="why-icon-wrap">✏️</div>
             <div className="why-card-content">
               <h3 className="why-title">ข้อสอบพร้อมเฉลย</h3>
@@ -40,14 +38,13 @@ export function Why() {
                 เข้าใจได้ด้วยตัวเองโดยไม่ต้องพึ่งติวเตอร์
               </p>
               <div className="why-tags">
-                <span className="why-tag">✓ เฉลยละเอียด ทุกข้อ</span>
+                <span className="why-tag"><span aria-hidden="true">✓</span> เฉลยละเอียด ทุกข้อ</span>
               </div>
             </div>
             <div className="why-number">02</div>
           </div>
 
           <div className="why-card">
-            <div className="why-accent-line" />
             <div className="why-icon-wrap">💸</div>
             <div className="why-card-content">
               <h3 className="why-title">ฟรี 100% ไม่มีเงื่อนไข</h3>
@@ -56,7 +53,7 @@ export function Why() {
                 เพราะเราเชื่อว่าการศึกษาควรเข้าถึงได้ทุกคน
               </p>
               <div className="why-tags">
-                <span className="why-tag">✓ ฟรีตลอด ไม่มีหมดอายุ</span>
+                <span className="why-tag"><span aria-hidden="true">✓</span> ฟรีตลอด ไม่มีหมดอายุ</span>
               </div>
             </div>
             <div className="why-number">03</div>

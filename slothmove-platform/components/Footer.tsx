@@ -1,23 +1,52 @@
+import Link from 'next/link';
+
+function FacebookIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
 export function Footer() {
   return (
-    <footer className="course-footer home-footer">
-      <div className="container course-footer-inner">
-        <div className="course-footer-brand">
-          <img src="/pic/slothmove_mascot.png" alt="" aria-hidden="true" />
-          <div>
-            <strong>Sloth<span>Move</span></strong>
-            <p>Being Better with little move · แพลตฟอร์มเรียนฟรีเตรียมสอบราชการ</p>
+    <footer className="footer" id="footer">
+      <div className="container">
+        <div className="footer-inner">
+          <div className="footer-brand-section">
+            <Link href="/" className="footer-brand-logo">
+              <img
+                src="/pic/slothmove_mascot.png"
+                alt="SlothMove"
+                width={28}
+                height={28}
+                style={{ objectFit: 'contain' }}
+              />
+              <strong>Sloth<span>Move</span></strong>
+            </Link>
+            <span className="footer-brand-tagline">เรียนฟรี ทบทวนได้ทุกเวลา</span>
+          </div>
+
+          <div className="footer-navigation">
+            <Link href="/">หน้าแรก</Link>
+            <span className="separator">·</span>
+            <Link href="/#courses">คอร์สเรียน</Link>
+            <span className="separator">·</span>
+            <a
+              href="https://www.facebook.com/profile.php?id=61589670089745"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook
+            </a>
+            <span className="separator">·</span>
+            <a href="#navbar">กลับด้านบน ↑</a>
+          </div>
+
+          <div className="footer-copyright">
+            <span>© 2026 SlothMove. All rights reserved.</span>
           </div>
         </div>
-        <div className="course-footer-links">
-          <a href="#courses">คอร์สเรียน</a>
-          <a href="#faq">คำถามที่พบบ่อย</a>
-          <a href="https://www.facebook.com/profile.php?id=61589670089745" target="_blank" rel="noopener noreferrer">Facebook</a>
-        </div>
-      </div>
-      <div className="container course-footer-bottom">
-        <span>© 2026 SlothMove · เนื้อหาทุกอย่างให้เรียนฟรี</span>
-        <a href="#top">กลับด้านบน ↑</a>
       </div>
     </footer>
   );

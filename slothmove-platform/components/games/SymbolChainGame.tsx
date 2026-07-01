@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 
 export interface SymbolChainItem {
   statement: string;
@@ -31,6 +32,8 @@ export function SymbolChainGame({
   const [answerSuccess, setAnswerSuccess] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   const currentItem = items[idx];
 

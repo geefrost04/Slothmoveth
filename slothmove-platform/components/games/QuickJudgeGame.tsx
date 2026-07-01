@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import type { QuickJudgeItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 
 
@@ -42,6 +43,8 @@ export function QuickJudgeGame({
   const [showExplanation, setShowExplanation] = useState(false);
   const [bestStreak, setBestStreak] = useState(0);
   const [currentStreak, setCurrentStreak] = useState(0);
+
+  useDonatePromptOnDone(done);
 
   const questionCount = mode === 'practice' ? Math.min(10, items.length) : items.length;
   const currentItem = questionPool[idx];

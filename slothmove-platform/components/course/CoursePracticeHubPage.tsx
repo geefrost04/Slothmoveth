@@ -150,15 +150,6 @@ export function CoursePracticeHubPage({
           status: 'full'
         },
         {
-          id: 'cloze',
-          tag: 'CLOZE',
-          title: 'เติมคำในประโยค',
-          desc: 'ฝึกอ่านบริบทแล้วเติมคำที่ขาด เหมาะกับการทวนความหมายของคำสั่ง โปรแกรม ไฟล์ และระบบเครือข่าย',
-          cta: 'เริ่มเติมคำ →',
-          href: `/courses/${course.id}/${subject.id}/cloze`,
-          status: 'full'
-        },
-        {
           id: 'truefalse',
           tag: 'TRUE / FALSE',
           title: 'ตัดสินถูกหรือผิด',
@@ -329,15 +320,6 @@ export function CoursePracticeHubPage({
           href: `/courses/${course.id}/${subject.id}/dialogue`,
           status: 'full'
         },
-        {
-          id: 'error-detector',
-          tag: 'ERROR CHECK',
-          title: 'จับจุดผิดประโยค',
-          desc: 'ฝึกมองจุดผิดของประโยคอังกฤษ เช่น subject-verb agreement, tense, preposition, conjunction และรูปคำที่หลอกบ่อยในข้อสอบ',
-          cta: 'เริ่มจับจุดผิด →',
-          href: `/courses/${course.id}/${subject.id}/error-detector`,
-          status: 'full'
-        }
       ];
     }
 

@@ -11,52 +11,42 @@ export function Footer() {
     <footer className="footer" id="footer" data-analytics-section="footer">
       <div className="container">
         <div className="footer-inner">
-          <div className="footer-top">
-            <div className="footer-brand-col">
-              <a href="/" className="footer-brand-logo">
-                <img
-                  src="/pic/slothmove_mascot.png"
-                  alt="SlothMove"
-                  width={36}
-                  height={36}
-                  style={{ objectFit: 'contain' }}
-                />
-                Sloth<span className="accent">Move</span>
-              </a>
-              <p className="footer-brand-desc">
-                แพลตฟอร์มเรียนฟรีเตรียมสอบราชการ เนื้อหาสรุปตรงประเด็นและข้อสอบพร้อมเฉลย
-              </p>
-            </div>
-
-            <div className="footer-social">
-              <a
-                href="https://www.facebook.com/profile.php?id=61589670089745"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                data-analytics-event="click_social"
-                data-analytics-label="footer_facebook"
-                data-analytics-section-name="footer"
-                data-analytics-destination="facebook"
-              >
-                <FacebookIcon />
-              </a>
-            </div>
+          <div className="footer-brand-section">
+            <a href="/" className="footer-brand-logo">
+              <img
+                src="/pic/slothmove_mascot.png"
+                alt="SlothMove"
+                width={28}
+                height={28}
+                style={{ objectFit: 'contain' }}
+              />
+              <strong>Sloth<span>Move</span></strong>
+            </a>
+            <span className="footer-brand-tagline">เรียนฟรี ทบทวนได้ทุกเวลา</span>
           </div>
 
-          <div className="footer-bottom">
-            <p className="footer-copy">
-              © 2025 SlothMove
-              <span className="heart"> ❤ </span>
-              เนื้อหาทุกอย่างให้เรียนฟรี
-            </p>
-            <div className="footer-bottom-links">
-              <a href="/privacy">นโยบายความเป็นส่วนตัว</a>
-              <span className="separator">·</span>
-              <a href="/terms">เงื่อนไขการใช้งาน</a>
-              <span className="separator">·</span>
-              <a href="#navbar">↑ กลับด้านบน</a>
-            </div>
+          <div className="footer-navigation">
+            <a href="/">หน้าแรก</a>
+            <span className="separator">·</span>
+            <a href="#courses">คอร์สเรียน</a>
+            <span className="separator">·</span>
+            <a
+              href="https://www.facebook.com/profile.php?id=61589670089745"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics-event="click_social"
+              data-analytics-label="footer_facebook"
+              data-analytics-section-name="footer"
+              data-analytics-destination="facebook"
+            >
+              Facebook
+            </a>
+            <span className="separator">·</span>
+            <a href="#navbar">กลับด้านบน ↑</a>
+          </div>
+
+          <div className="footer-copyright">
+            <span>© 2026 SlothMove. All rights reserved.</span>
           </div>
         </div>
       </div>

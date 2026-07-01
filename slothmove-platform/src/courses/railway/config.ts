@@ -4,16 +4,8 @@ import { getSubjectItemCount } from './data-loader';
 /**
  * State Railway of Thailand (SRT) — exam prep course.
  *
- * Skeleton config — real data not yet migrated. Following the `ocsc` model:
- *   - `migrated: false` → drives "คอร์สนี้ยังไม่พร้อมให้บริการ" banner
- *   - `hideQuestionCounts: true` → suppress aspirational counts
- *   - subjects list = planned syllabus (verified from
- *     https://file.thaijobjob.com/prakad/railway202607/railway202607_1)
- *
- * Color story (SRT brand):
- *   primary  = deep wine/maroon (replaces navy as SRT identity)
- *   accent   = brass gold (railway heraldry)
- *   accentSoft = pale cream-gold wash
+ * Config aligned with the official syllabus for
+ * "เจ้าหน้าที่วิเคราะห์นโยบายและแผน 2 (ระดับ 6)" from thaijobjob.com
  */
 
 const SHARED_GAMES = [
@@ -46,124 +38,117 @@ export const railwayConfig: CourseConfig = {
   },
   subjects: [
     {
-      id: 'railway_act',
-      title: 'พ.ร.บ. การรถไฟแห่งประเทศไทย พ.ศ. 2494',
-      icon: '🚂',
-      desc: 'โครงสร้าง อำนาจหน้าที่ และการบริหารงานของการรถไฟแห่งประเทศไทย',
-      count: getSubjectItemCount('railway_act', 'quiz')
-    },
-    {
       id: 'rail_transport_act',
-      title: 'พ.ร.บ. การขนส่งทางราง พ.ศ. 2549',
+      title: 'พ.ร.บ. การขนส่งทางราง และกฎระเบียบที่เกี่ยวข้อง',
       icon: '🛤️',
-      desc: 'การกำกับดูแลการขนส่งทางรางและโครงสร้างพื้นฐานรถไฟ',
+      desc: 'การกำกับดูแลการขนส่งทางราง โครงสร้างพื้นฐาน และมาตรฐานความปลอดภัยทางราง',
       count: getSubjectItemCount('rail_transport_act', 'quiz')
     },
     {
-      id: 'labor_relations_act',
-      title: 'พ.ร.บ. แรงงานรัฐวิสาหกิจสัมพันธ์ พ.ศ. 2543',
-      icon: '🤝',
-      desc: 'สิทธิและหน้าที่ของลูกจ้าง สหภาพแรงงาน และนายจ้างในรัฐวิสาหกิจ',
-      count: getSubjectItemCount('labor_relations_act', 'quiz')
+      id: 'national_plans',
+      title: 'แผนยุทธศาสตร์ชาติ 20 ปี และแผนพัฒนาฯ ฉบับปัจจุบัน',
+      icon: '📋',
+      desc: 'ยุทธศาสตร์ชาติ แผนแม่บท แผนพัฒนาเศรษฐกิจและสังคมแห่งชาติ และแผนปฏิบัติการคมนาคม',
+      count: getSubjectItemCount('national_plans', 'quiz')
+    },
+    {
+      id: 'srt_vision_strategy',
+      title: 'วิสัยทัศน์ พันธกิจ และยุทธศาสตร์ของ ร.ฟ.ท.',
+      icon: '🎯',
+      desc: 'ทิศทางนโยบาย วิสัยทัศน์ พันธกิจ และแผนยุทธศาสตร์ของการรถไฟแห่งประเทศไทย',
+      count: getSubjectItemCount('srt_vision_strategy', 'quiz')
+    },
+    {
+      id: 'policy_analysis',
+      title: 'ความรู้เกี่ยวกับการวิเคราะห์นโยบายและแผน',
+      icon: '📊',
+      desc: 'การวิเคราะห์ยุทธศาสตร์ ทิศทางนโยบาย การวางแผนยุทธศาสตร์เชิงเชื่อมโยงสู่แผนปฏิบัติการ',
+      count: getSubjectItemCount('policy_analysis', 'quiz')
+    },
+    {
+      id: 'state_enterprise_eval',
+      title: 'การติดตามประเมินผลและการบริหารจัดการรัฐวิสาหกิจ',
+      icon: '🏢',
+      desc: 'หลักเกณฑ์การประเมินผลการดำเนินงาน การควบคุมภายใน การบริหารความเสี่ยงรัฐวิสาหกิจ',
+      count: getSubjectItemCount('state_enterprise_eval', 'quiz')
+    },
+    {
+      id: 'sipoc_process',
+      title: 'การวิเคราะห์กระบวนการทำงานและแผนภาพรวม (SIPOC)',
+      icon: '🔄',
+      desc: 'การวิเคราะห์กระบวนการทํางานแบบครบวงจรและเครื่องมือบริหารจัดการสมัยใหม่',
+      count: getSubjectItemCount('sipoc_process', 'quiz')
     },
     {
       id: 'railway_general_knowledge',
       title: 'ความรู้ทั่วไปเกี่ยวกับการรถไฟแห่งประเทศไทย',
       icon: '📰',
-      desc: 'ประวัติ พัฒนาการ โครงข่ายเส้นทาง และบริการหลักของ ร.ฟ.ท.',
+      desc: 'ประวัติ พัฒนาการ โครงข่ายเส้นทาง และการให้บริการหลักของ ร.ฟ.ท.',
       count: getSubjectItemCount('railway_general_knowledge', 'quiz')
     },
     {
-      id: 'state_enterprise_management',
-      title: 'ความรู้เกี่ยวกับการบริหารจัดการรัฐวิสาหกิจ',
-      icon: '🏢',
-      desc: 'หลักการบริหารรัฐวิสาหกิจ การกำกับดูแล และแผนฟื้นฟูกิจการ',
-      count: getSubjectItemCount('state_enterprise_management', 'quiz')
-    },
-    {
-      id: 'public_policy_analysis',
-      title: 'ความรู้เกี่ยวกับการวิเคราะห์นโยบายสาธารณะและแผนงาน',
-      icon: '🎯',
-      desc: 'กระบวนการนโยบาย การวิเคราะห์ การวางแผน และการประเมินผล',
-      count: getSubjectItemCount('public_policy_analysis', 'quiz')
-    },
-    {
-      id: 'labor_law',
-      title: 'กฎหมายแรงงานและการคุ้มครองแรงงาน',
-      icon: '⚖️',
-      desc: 'ความคุ้มครองแรงงาน สวัสดิการ ค่าตอบแทน และสิทธิประโยชน์ลูกจ้าง',
-      count: getSubjectItemCount('labor_law', 'quiz')
-    },
-    {
-      id: 'business_ethics',
-      title: 'จริยธรรมและธรรมาภิบาลขององค์กร',
-      icon: '🪞',
-      desc: 'จรรยาบรรณ การกำกับดูแลกิจการที่ดี และการต่อต้านทุจริต',
-      count: getSubjectItemCount('business_ethics', 'quiz')
-    },
-    {
-      id: 'data_analysis',
-      title: 'ความรู้เกี่ยวกับการวิเคราะห์ข้อมูลและสถิติเบื้องต้น',
-      icon: '📊',
-      desc: 'การวิเคราะห์ข้อมูล การอ่านกราฟ และสถิติสำหรับงานราชการ',
-      count: getSubjectItemCount('data_analysis', 'quiz')
+      id: 'railway_act',
+      title: 'พ.ร.บ. การรถไฟแห่งประเทศไทย พ.ศ. 2494',
+      icon: '🚂',
+      desc: 'โครงสร้าง อำนาจหน้าที่ คณะกรรมการ ผู้ว่าการ และการกำกับดูแล ร.ฟ.ท.',
+      count: getSubjectItemCount('railway_act', 'quiz')
     },
     {
       id: 'aptitude_test',
       title: 'ความถนัดทางเชาว์ปัญญา (Aptitude Test)',
       icon: '🧠',
-      desc: 'ความสามารถในการคิดวิเคราะห์ เหตุผล และมิติสัมพันธ์',
+      desc: 'การวิเคราะห์เหตุผล เชาว์ปัญญา มิติสัมพันธ์ และความสามารถในการคิดวิเคราะห์',
       count: getSubjectItemCount('aptitude_test', 'quiz')
     },
     {
       id: 'english',
-      title: 'ภาษาอังกฤษ',
+      title: 'ภาษาอังกฤษ (English)',
       icon: '🌍',
-      desc: 'Reading · Vocabulary · Grammar · Conversation สำหรับงานรัฐวิสาหกิจ',
+      desc: 'ไวยากรณ์ การอ่าน คำศัพท์ และการสนทนาสำหรับงานรัฐวิสาหกิจ',
       count: getSubjectItemCount('english', 'quiz')
     },
     {
-      id: 'railway_safety',
-      title: 'ความปลอดภัยในการเดินรถและการป้องกันอุบัติเหตุ',
-      icon: '🚨',
-      desc: 'ระเบียบความปลอดภัย การป้องกันอุบัติเหตุ และการบริหารความเสี่ยง',
-      count: getSubjectItemCount('railway_safety', 'quiz')
+      id: 'labor_relations_act',
+      title: 'พ.ร.บ. แรงงานรัฐวิสาหกิจสัมพันธ์ พ.ศ. 2543',
+      icon: '🤝',
+      desc: 'กฎหมายแรงงานรัฐวิสาหกิจสัมพันธ์ สิทธิหน้าที่สหภาพแรงงานและข้อพิพาทแรงงาน',
+      count: getSubjectItemCount('labor_relations_act', 'quiz')
     }
   ],
   games: SHARED_GAMES,
   meta: {
-    description: 'คอร์สเตรียมสอบเจ้าหน้าที่การรถไฟแห่งประเทศไทย (ร.ฟ.ท.) ครอบคลุมกฎหมายเฉพาะ การบริหารรัฐวิสาหกิจ และความรู้ทั่วไปตามหลักสูตร พ.ศ. 2567',
-    keywords: ['การรถไฟ', 'ร.ฟ.ท.', 'รัฐวิสาหกิจ', 'สอบราชการ', 'คมนาคม', 'ขนส่งทางราง'],
-    updated: '27/06/26',
-    totalSubjects: 12,
+    description: 'คอร์สเตรียมสอบเจ้าหน้าที่วิเคราะห์นโยบายและแผน 2 (ระดับ 6) การรถไฟแห่งประเทศไทย (ร.ฟ.ท.) ครอบคลุมกฎหมายเฉพาะ การบริหารยุทธศาสตร์รัฐวิสาหกิจ และวิชาความรู้ทั่วไปครบทุกวิชา',
+    keywords: ['การรถไฟ', 'ร.ฟ.ท.', 'นักวิเคราะห์', 'ยุทธศาสตร์ชาติ', 'รัฐวิสาหกิจ', 'สอบวิเคราะห์', 'แรงงานรัฐวิสาหกิจ'],
+    updated: '28/06/26',
+    totalSubjects: 11,
     totalQuestions: 0,
     hideQuestionCounts: true,
-    migrated: false,
-    migrationNote: 'คอร์สนี้อยู่ระหว่างเตรียมเนื้อหาและคลังข้อสอบ — โครงสร้างวิชาอ้างอิงจากประกาศรับสมัครของ ร.ฟ.ท. ปี 2567 (ไฟล์ประกาศต้นฉบับ: thaijobjob.com)',
+    migrated: true,
+    migrationNote: 'คอร์สนี้ปรับปรุงโครงสร้างวิชาให้ตรงตามประกาศรับสมัครสอบตำแหน่ง เจ้าหน้าที่วิเคราะห์นโยบายและแผน 2 พ.ศ. 2567 (ไฟล์ประกาศ thaijobjob.com)',
     landing: {
-      heroBadge: 'คอร์สเตรียมสอบ · การรถไฟแห่งประเทศไทย · ฟรีทั้งหมด',
+      heroBadge: 'คอร์สเตรียมสอบ · เจ้าหน้าที่วิเคราะห์นโยบายและแผน 2 · ร.ฟ.ท.',
       heroTitleLead: 'เตรียมสอบ',
-      heroTitleLines: ['เจ้าหน้าที่', 'การรถไฟแห่งประเทศไทย'],
+      heroTitleLines: ['นักวิเคราะห์ 6', 'การรถไฟแห่งประเทศไทย'],
       heroTitleAccent: 'SlothMove',
-      heroDescription: 'เนื้อหาสรุปครบทั้ง 2 วิชา วิชาละ 100 คะแนน · ครอบคลุมกฎหมายเฉพาะ การบริหารรัฐวิสาหกิจ และความถนัดทางเชาว์ปัญญา พร้อมคลังข้อสอบและเกมฝึกทบทวน',
-      primaryCtaLabel: 'เข้าเรียนเลย',
+      heroDescription: 'สรุปเนื้อหาเจาะลึกเฉพาะตำแหน่งและวิชาความรู้ทั่วไป รวม 200 คะแนนเต็ม ตรงตามประกาศสอบอย่างเป็นทางการ พ.ศ. 2567',
+      primaryCtaLabel: 'เข้าเรียนบทเรียนสรุป',
       primaryCtaHref: '#railway-subject-1',
       secondaryCtaLabel: 'กลับไปดูคอร์สทั้งหมด',
       secondaryCtaHref: '/',
       mascotLabel: 'State Railway of Thailand',
       scrollLabel: 'เลื่อนลง',
       stats: [
-        { value: '2', label: 'วิชาหลัก' },
-        { value: '12', label: 'หัวข้อที่จะครอบคลุม' },
-        { value: '200', label: 'คะแนนเต็ม (ข้อเขียน)' }
+        { value: '2', label: 'วิชาหลัก (200 คะแนน)' },
+        { value: '11', label: 'หัวข้อวิชาสอบจริง' },
+        { value: '180', label: 'เวลาสอบจริง (นาที)' }
       ],
       feature: {
         icon: '🎯',
         chip: 'จำลองสอบสนามจริง',
-        title: 'จำลองสอบสนามจริง 200 คะแนน',
-        desc: 'ทดลองทำข้อสอบจริงตามโครงสร้างการสอบของ ร.ฟ.ท. ปี 2567 แบ่งเป็น 2 วิชา วิชาละ 100 คะแนน — วิชาที่ 1 เฉพาะตำแหน่ง และวิชาที่ 2 ความรู้ทั่วไป + พ.ร.บ. แรงงานรัฐวิสาหกิจสัมพันธ์',
-        meta: ['📝 เวลาสอบ 180 นาที', '🚂 รวม 200 คะแนน', '🎯 วิชาที่ 1 (100 ข้อ) + วิชาที่ 2 (100 ข้อ)'],
-        primaryCtaLabel: 'เริ่มทำข้อสอบจำลอง →',
+        title: 'โครงสร้างข้อสอบจำลอง 200 คะแนน',
+        desc: 'ทดลองฝึกฝนทำข้อสอบตามข้อสอบจริงระดับ 6 แบ่งเป็นวิชาที่ 1 (วิชาเฉพาะตำแหน่ง 100 คะแนน) และวิชาที่ 2 (ความรู้ทั่วไป + กฎหมายรัฐวิสาหกิจ 100 คะแนน)',
+        meta: ['📝 แบ่งเป็น 2 วิชาหลัก', '🚂 รวม 200 คะแนนเต็ม', '🎯 เฉลยละเอียดและเกร็ดจำสำหรับวิเคราะห์นโยบาย'],
+        primaryCtaLabel: 'เริ่มฝึกฝนข้อสอบ',
         primaryCtaHref: '#railway-subject-1',
         secondaryCtaLabel: '',
         secondaryCtaHref: ''
@@ -172,35 +157,34 @@ export const railwayConfig: CourseConfig = {
         {
           id: 'railway-subject-1',
           chip: 'วิชาที่ 1 · Part 1',
-          title: 'ความรู้ความสามารถเฉพาะตำแหน่ง',
-          subtitle: 'กฎหมาย กฎระเบียบ และการบริหารจัดการที่เกี่ยวข้องกับการดำเนินงานของ ร.ฟ.ท.',
+          title: 'ความรู้ความสามารถเฉพาะตำแหน่ง (100 คะแนน)',
+          subtitle: 'กฎหมายยุทธศาสตร์ ยุทธศาสตร์ชาติ ยุทธศาสตร์ ร.ฟ.ท. กระบวนการประเมินผล และการวิเคราะห์กระบวนการทำงาน (SIPOC)',
           partClass: 'part1',
           partLabel: '1',
           categoryLabel: 'เฉพาะตำแหน่ง',
           subjectIds: [
-            'railway_act',
             'rail_transport_act',
-            'labor_law',
-            'state_enterprise_management',
-            'public_policy_analysis',
-            'data_analysis',
-            'railway_safety',
-            'business_ethics'
+            'national_plans',
+            'srt_vision_strategy',
+            'policy_analysis',
+            'state_enterprise_eval',
+            'sipoc_process'
           ]
         },
         {
           id: 'railway-subject-2',
           chip: 'วิชาที่ 2 · Part 2',
-          title: 'ความรู้ทั่วไป และ พ.ร.บ. แรงงานรัฐวิสาหกิจสัมพันธ์',
-          subtitle: 'ความรู้ทั่วไปเกี่ยวกับ ร.ฟ.ท. กฎหมายแรงงาน ความถนัดทางเชาว์ปัญญา และภาษาอังกฤษ',
+          title: 'ความรู้ทั่วไป และ พ.ร.บ. แรงงานรัฐวิสาหกิจสัมพันธ์ (100 คะแนน)',
+          subtitle: 'ความรู้ทั่วไปเกี่ยวกับ ร.ฟ.ท. กฎหมายการรถไฟ เชาว์ปัญญา ภาษาอังกฤษ และกฎหมายแรงงานสัมพันธ์',
           partClass: 'part2',
           partLabel: '2',
-          categoryLabel: 'ทั่วไป',
+          categoryLabel: 'ความรู้ทั่วไป',
           subjectIds: [
             'railway_general_knowledge',
-            'labor_relations_act',
+            'railway_act',
             'aptitude_test',
-            'english'
+            'english',
+            'labor_relations_act'
           ]
         }
       ]

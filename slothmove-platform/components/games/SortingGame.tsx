@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import type { SortingItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 
 type PromptItem = {
@@ -127,6 +128,8 @@ export function SortingGame({
 
   const availableCount = items.length;
   const questionCount = Math.min(10, availableCount);
+
+  useDonatePromptOnDone(done);
 
   const categories = useMemo(() => {
     return Array.from(new Set(items.map((item) => item.categoryName).filter(Boolean)));

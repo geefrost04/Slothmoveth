@@ -18,6 +18,16 @@ export function Hero() {
               <br />
               เรียนฟรี เตรียมสอบได้ทุกที่ทุกเวลา
             </p>
+            <div className="hero-mascot">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/pic/slothmove_hero_study.png"
+                alt="สลอธนักเรียนสอบราชการ SlothMove — เรียนฟรี เตรียมสอบราชการแบบเข้าใจง่าย"
+                width={768}
+                height={512}
+                decoding="async"
+              />
+            </div>
             <div className="hero-actions">
               <a
                 href="#courses"
@@ -44,16 +54,6 @@ export function Hero() {
                 </svg>
               </a>
             </div>
-          </div>
-          <div className="hero-mascot">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/pic/slothmove_hero_study.png"
-              alt="สลอธนักเรียนสอบราชการ SlothMove — เรียนฟรี เตรียมสอบราชการแบบเข้าใจง่าย"
-              width={768}
-              height={512}
-              decoding="async"
-            />
           </div>
         </div>
       </div>

@@ -89,12 +89,6 @@ function CourseCard({ course }: { course: Course }) {
               <span><strong>{course.subjects}</strong> วิชา</span>
             </span>
           )}
-          {typeof course.questions === 'number' && (
-            <span className="card-meta-item">
-              <ClipboardIcon />
-              <span><strong>{course.questions}</strong> ข้อ</span>
-            </span>
-          )}
         </div>
         <p className="card-desc">{course.desc}</p>
         {course.tags.length > 0 && (

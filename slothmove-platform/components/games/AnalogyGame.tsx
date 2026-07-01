@@ -20,6 +20,7 @@
 
 import { useState, useMemo } from 'react';
 import type { QuizItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { buildDistinctRandomSession, distinctScope } from '@/lib/randomization';
 
 const PATTERN_LABELS: Record<string, string> = {
@@ -52,6 +53,8 @@ export function AnalogyGame({ items }: { items: QuizItem[] }) {
   const [done, setDone] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [startTime, setStartTime] = useState(0);
+
+  useDonatePromptOnDone(done);
 
   if (items.length === 0) {
     return <p className="container" style={{ padding: 32 }}>ยังไม่มีข้อมูล</p>;

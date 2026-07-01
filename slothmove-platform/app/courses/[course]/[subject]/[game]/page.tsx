@@ -8,7 +8,7 @@ import {
   QuizGame, FlashcardGame, MatchGame, ClozeGame,
   SortingGame, OrderGame, SpellingGame, TrueFalseGame, ComputerTrueFalseGame, AuthorityGame,
   AnalogyGame, SeriesGame, QuickJudgeGame, LogicGridGame, SymbolChainGame,
-  ReadingDetectiveGame
+  ReadingDetectiveGame, ErrorDetectorGame
 } from '@/components/games';
 import type { GameId } from '@/lib/course-types';
 import { buildMetadata } from '@/lib/seo';
@@ -181,22 +181,7 @@ function GameView({
         />
       );
     case 'error-detector':
-      return (
-        <QuizGame
-          items={items}
-          title={`${subjectTitle} · หาข้อผิด`}
-          subtitle="สุ่มโจทย์ไวยากรณ์เพื่อฝึกจับ tense, subject-verb agreement, passive voice, preposition และ part of speech"
-          courseId={courseId}
-          leaderboardHref={`/courses/${courseId}/leaderboard`}
-          subjectMascot={subjectMascot}
-          gameMascot={gameMascot}
-          subjectId={subjectId}
-          introChip="Grammar Error Check"
-          introTitle={`จับจุดผิดประโยค · ${subjectTitle}`}
-          introDescription="ฝึกตัดสินโครงสร้างประโยคอังกฤษที่ข้อสอบชอบหลอก พร้อมเฉลยเหตุผลหลังตอบ"
-          introStats={['60 ข้อในคลัง', 'Grammar A2-B1', 'เฉลยทันที']}
-        />
-      );
+      return <ErrorDetectorGame items={items} courseId={courseId} subjectId={subjectId} />;
     case 'sorting': return <SortingGame items={items} courseId={courseId} subjectId={subjectId} />;
     case 'order': return <OrderGame items={items} courseId={courseId} subjectId={subjectId} />;
     case 'spelling': return <SpellingGame items={items} courseId={courseId} subjectId={subjectId} />;

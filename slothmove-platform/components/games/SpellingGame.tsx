@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import type { SpellingItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { saveGameResult } from '@/lib/games-storage';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 
@@ -71,6 +72,7 @@ function BombDefusalGame({
   const [done, setDone] = useState(false);
   const [isWin, setIsWin] = useState(false);
   const [questionLocked, setQuestionLocked] = useState(false);
+  useDonatePromptOnDone(done);
   
   // Timer States
   const [remainingTime, setRemainingTime] = useState(TIME_PER_QUESTION);
@@ -792,6 +794,8 @@ function AnagramSpellingGame({ items }: { items: SpellingItem[] }) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   if (!items.length) return <p style={{ textAlign: 'center', padding: 32 }}>ยังไม่มีข้อมูล</p>;
   if (done) {

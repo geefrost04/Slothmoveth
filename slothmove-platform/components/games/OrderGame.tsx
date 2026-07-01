@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import type { OrderItem } from '@/lib/course-types';
+import { useDonatePromptOnDone } from '@/lib/donate-prompt';
 import { saveGameResult } from '@/lib/games-storage';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
 
@@ -37,6 +38,8 @@ export function OrderGame({
   const [wrongCount, setWrongCount] = useState(0);
   const [elapsed, setElapsed] = useState(0);
   const [done, setDone] = useState(false);
+
+  useDonatePromptOnDone(done);
 
   // Current Question States
   const [currentOrder, setCurrentOrder] = useState<number[]>([]);

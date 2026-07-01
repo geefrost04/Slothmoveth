@@ -15,5 +15,6 @@ export { SeriesGame } from './SeriesGame';
 export { QuickJudgeGame } from './QuickJudgeGame';
 export { LogicGridGame } from './LogicGridGame';
 export { SymbolChainGame } from './SymbolChainGame';
+export { ErrorDetectorGame } from './ErrorDetectorGame';
 // Phase C: Rank A games (ocsc analytical_thinking).
 export { ReadingDetectiveGame } from './ReadingDetectiveGame';
