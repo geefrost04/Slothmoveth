@@ -583,10 +583,12 @@
 .course-layout[data-course='ocsc'] .ocsc-v3-hero-copy {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   max-width: 760px;
   min-height: 232px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .course-layout[data-course='ocsc'] .ocsc-v3-hero-badge {
@@ -646,7 +648,8 @@
 
 .course-layout[data-course='ocsc'] .ocsc-v3-hero-actions {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 18px;
