@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { COURSES, getCourse } from '@/courses/registry';
+import { COURSES, getCourse, isCourseOpen } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
 import { CourseHero } from '@/components/course/CourseHero';
 import { SubjectCard } from '@/components/course/SubjectCard';
 import { CourseLanding } from '@/components/course/CourseLanding';
+import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import { buildMetadata } from '@/lib/seo';
 
 export default async function CoursePage({
@@ -16,6 +17,7 @@ export default async function CoursePage({
   const { course: courseId } = await params;
   const course = getCourse(courseId);
   if (!course) notFound();
+  const isOpen = isCourseOpen(course.id);
 
   // Course-level migration banner — only show if explicitly marked
   // `migrated: false`. Courses that don't set the field default to
@@ -24,6 +26,10 @@ export default async function CoursePage({
 
   return (
     <CourseLayout course={course}>
+      {!isOpen ? (
+        <CourseMaintenancePage course={course} />
+      ) : (
+        <>
       {course.meta.landing ? <CourseLanding course={course} /> : <CourseHero course={course} />}
 
       {!course.meta.landing && !isMigrated && (
@@ -87,6 +93,8 @@ export default async function CoursePage({
             </div>
           </div>
         </section>
+      )}
+        </>
       )}
     </CourseLayout>
   );

@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { COURSES, resolveTriple } from '@/courses/registry';
+import { COURSES, resolveTriple, isCourseOpen } from '@/courses/registry';
 import { getCourseGameData, hasCourseContentSource } from '@/courses/content-registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
+import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import {
   QuizGame, FlashcardGame, MatchGame, ClozeGame,
   SortingGame, OrderGame, SpellingGame, TrueFalseGame, ComputerTrueFalseGame, AuthorityGame,
@@ -28,6 +29,13 @@ export default async function GamePage({
   const triple = resolveTriple(courseId, subjectId, gameId);
   if (!triple) notFound();
   const { course, subject, game } = triple;
+  if (!isCourseOpen(course.id)) {
+    return (
+      <CourseLayout course={course}>
+        <CourseMaintenancePage course={course} />
+      </CourseLayout>
+    );
+  }
 
   // Enforce that the game is explicitly enabled for this subject
   if (!subject.games?.includes(gameId as any)) {

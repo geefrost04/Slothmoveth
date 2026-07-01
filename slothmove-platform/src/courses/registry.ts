@@ -28,8 +28,14 @@ export const COURSES: CourseConfig[] = [
   railwayConfig
 ];
 
+export const OPEN_COURSE_IDS = new Set(['police_admin', 'ocsc']);
+
 /** Only show courses that aren't hidden from the platform index */
 export const VISIBLE_COURSES = COURSES.filter((c) => !c.hidden);
+
+export function isCourseOpen(courseId: string) {
+  return OPEN_COURSE_IDS.has(courseId);
+}
 
 /** Look up a course by id (used by dynamic routes) */
 export function getCourse(id: string): CourseConfig | null {

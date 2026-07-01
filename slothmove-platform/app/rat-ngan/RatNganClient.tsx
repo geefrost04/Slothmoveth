@@ -41,6 +41,10 @@ function getEducationLevels(raw?: string) {
   return Array.from(new Set(matched));
 }
 
+function requiresOcsc(job: JobSlimRecord) {
+  return job.method.includes('สอบแข่งขัน');
+}
+
 function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -48,6 +52,7 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('all');
   const [educationFilter, setEducationFilter] = useState('all');
+  const [ocscFilter, setOcscFilter] = useState<'all' | 'pass' | 'nopass'>('all');
   const [sort, setSort] = useState<'fetched' | 'alpha'>('fetched');
   const [openJob, setOpenJob] = useState<JobRecord | null>(null);
   const [openJobId, setOpenJobId] = useState<string | null>(null);
@@ -108,6 +113,12 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
     'อื่นๆ': baseJobs.filter((job) => !job.type.includes('ข้าราชการ') && !job.type.includes('พนักงานราชการ')).length,
   };
 
+  const ocscFilters = [
+    { id: 'all' as const, label: 'ภาค ก ทั้งหมด', count: baseJobs.length },
+    { id: 'pass' as const, label: 'ผ่านภาค ก', count: baseJobs.filter((job) => requiresOcsc(job)).length },
+    { id: 'nopass' as const, label: 'ไม่ผ่านภาค ก', count: baseJobs.filter((job) => !requiresOcsc(job)).length },
+  ];
+
   const filteredJobs = baseJobs.filter((job) => {
     if (filter !== 'all') {
       if (filter === 'ข้าราชการพลเรือน' && !job.type.includes('ข้าราชการ')) return false;
@@ -118,6 +129,12 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
     if (educationFilter !== 'all') {
       const jobEducation = getEducationLevels(job.education);
       if (!jobEducation.includes(educationFilter)) return false;
+    }
+
+    if (ocscFilter !== 'all') {
+      const needsOcsc = requiresOcsc(job);
+      if (ocscFilter === 'pass' && !needsOcsc) return false;
+      if (ocscFilter === 'nopass' && needsOcsc) return false;
     }
 
     if (deferredQuery.trim()) {
@@ -186,6 +203,7 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
     setQuery('');
     setFilter('all');
     setEducationFilter('all');
+    setOcscFilter('all');
     setSort('fetched');
     router.replace('/rat-ngan');
   };
@@ -207,6 +225,7 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
     deferredQuery.trim() ? `ค้นหา: ${deferredQuery.trim()}` : null,
     filter !== 'all' ? `ประเภทงาน: ${filters.find((item) => item.id === filter)?.label}` : null,
     educationFilter !== 'all' ? `วุฒิ: ${selectedEducationLabel}` : null,
+    ocscFilter !== 'all' ? `ภาค ก: ${ocscFilters.find((item) => item.id === ocscFilter)?.label}` : null,
     sort === 'alpha' ? 'เรียง: ชื่อตำแหน่ง ก-ฮ' : null,
   ].filter(Boolean) as string[];
 
@@ -310,6 +329,30 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
               ))}
             </div>
 
+            <div className="mt-3 flex flex-wrap gap-2">
+              {ocscFilters.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setOcscFilter(tab.id)}
+                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition font-display ${
+                    ocscFilter === tab.id
+                      ? 'bg-[#8b5e34] text-white shadow-sm'
+                      : 'bg-[#f5f0e8] text-[#6a5a47] hover:bg-[#ece3d4] dark:bg-[#252540] dark:text-slate-300 dark:hover:bg-[#2d2d4a]'
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[10px] ${
+                      ocscFilter === tab.id ? 'bg-white/15 text-white' : 'bg-white text-[#8a775f]'
+                    }`}
+                  >
+                    {tab.count.toLocaleString()}
+                  </span>
+                </button>
+              ))}
+            </div>
+
             <div className="mt-3 flex flex-wrap items-center gap-2">
               {activeRefinements.length > 0 ? (
                 activeRefinements.map((item) => (
@@ -325,7 +368,7 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
                   แสดงทุกประกาศที่ยังเปิดรับ
                 </span>
               )}
-              {activeRefinements.length > 0 || query || filter !== 'all' || educationFilter !== 'all' || sort !== 'fetched' ? (
+              {activeRefinements.length > 0 || query || filter !== 'all' || educationFilter !== 'all' || ocscFilter !== 'all' || sort !== 'fetched' ? (
                 <button
                   type="button"
                   onClick={handleResetFilters}
@@ -469,7 +512,7 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
             const status = getStatus(job.startDate, job.endDate, now);
             const ministryColor = getMinistryColor(job.ministry || '');
             const cleanTitle = getCleanTitle(job.title || '').trim();
-            const requiresOcsc = job.method.includes('สอบแข่งขัน');
+            const needsOcsc = requiresOcsc(job);
             const province = job.province || '';
             const showProvince = province && province !== 'กรุงเทพมหานคร' && province !== 'ไม่มีข้อมูล' && province !== 'หลายจังหวัด';
 
@@ -525,6 +568,18 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
                 </span>
 
                 <div className="flex flex-1 flex-col p-5">
+                  <div className="mb-2 flex justify-center">
+                    <span
+                      className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wide ${
+                        needsOcsc
+                          ? 'bg-[#f6eadc] text-[#8b5e34] dark:bg-[#3a2d20] dark:text-[#f1cca0]'
+                          : 'bg-[#e7f4ec] text-[#2f7a63] dark:bg-[#1f3a31] dark:text-[#9fe0c2]'
+                      }`}
+                    >
+                      {needsOcsc ? 'ผ่านภาค ก' : 'ไม่ผ่านภาค ก'}
+                    </span>
+                  </div>
+
                   <div className="relative mb-4 flex flex-col items-center pt-5">
                     <span className={`absolute right-0 top-0 rounded-full px-2.5 py-1 text-[10px] font-bold font-display ${urgencyClass}`}>
                       {urgencyLabel}
@@ -600,13 +655,13 @@ function JobBoardContent({ jobs }: { jobs: JobSlimRecord[] }) {
                     ) : null}
                     <span className="inline-flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
                       <svg className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        {requiresOcsc ? (
+                        {needsOcsc ? (
                           <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd"/>
                         ) : (
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                         )}
                       </svg>
-                      {requiresOcsc ? 'ต้องมี ภาค ก.' : 'ไม่ต้องมี ก.'}
+                      {needsOcsc ? 'ต้องมี ภาค ก.' : 'ไม่ต้องมี ก.'}
                     </span>
                   </div>
 

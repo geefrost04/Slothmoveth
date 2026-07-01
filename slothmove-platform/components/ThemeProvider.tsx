@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -12,41 +12,19 @@ interface ThemeCtx {
 const ThemeContext = createContext<ThemeCtx>({ theme: 'light', toggle: () => {} });
 
 function readThemeFromDocument(): Theme {
-  if (typeof document === 'undefined') return 'light';
-  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  return 'light';
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
-
   useEffect(() => {
-    setTheme(readThemeFromDocument());
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme', 'light');
     try {
-      localStorage.setItem('slothmove-theme', theme);
+      localStorage.setItem('slothmove-theme', 'light');
     } catch {}
-  }, [theme]);
-
-  useEffect(() => {
-    const onStorage = (event: StorageEvent) => {
-      if (event.key !== 'slothmove-theme') return;
-      const nextTheme = event.newValue === 'dark' ? 'dark' : 'light';
-      setTheme(nextTheme);
-    };
-
-    window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
   }, []);
-
-  function toggle() {
-    setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
-  }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggle }}>
+    <ThemeContext.Provider value={{ theme: readThemeFromDocument(), toggle: () => {} }}>
       {children}
     </ThemeContext.Provider>
   );

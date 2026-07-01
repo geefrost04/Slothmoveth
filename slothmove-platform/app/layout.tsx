@@ -79,7 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var s=localStorage.getItem('slothmove-theme');document.documentElement.setAttribute('data-theme',s||'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"
+              "(function(){try{localStorage.setItem('slothmove-theme','light');}catch(e){}document.documentElement.setAttribute('data-theme','light');})();"
           }}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-W60TF5WHSB" />

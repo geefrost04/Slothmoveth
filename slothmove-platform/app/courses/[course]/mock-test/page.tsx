@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getCourse, COURSES } from '@/courses/registry';
+import { getCourse, COURSES, isCourseOpen } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
+import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import { MockTestClient } from './MockTestClient';
 import { buildMetadata } from '@/lib/seo';
 
@@ -21,7 +22,17 @@ export default async function Page({
 
   // Mock test is available for police_admin and ocsc.
   // Touch this route so the dev server picks up the new mock-test path.
-  if (!course || (course.id !== 'police_admin' && course.id !== 'ocsc')) {
+  if (!course) {
+    notFound();
+  }
+  if (!isCourseOpen(course.id)) {
+    return (
+      <CourseLayout course={course}>
+        <CourseMaintenancePage course={course} />
+      </CourseLayout>
+    );
+  }
+  if (course.id !== 'police_admin' && course.id !== 'ocsc') {
     notFound();
   }
 

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { getCurrentPagePath, trackEvent } from '@/lib/gtag';
-import { useTheme } from './ThemeProvider';
 
 function FacebookIcon() {
   return (
@@ -29,7 +28,6 @@ function MenuCloseIcon() {
 }
 
 export function Navbar() {
-  const { theme, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showFirstVisitHint, setShowFirstVisitHint] = useState(false);
@@ -190,26 +188,6 @@ export function Navbar() {
               <span className={`ripple${rippleActive ? ' fire' : ''}`} />
             </button>
 
-            <button
-              type="button"
-              className={`theme-toggle nav-theme-toggle${theme === 'dark' ? ' dark-mode' : ''}`}
-              onClick={() => {
-                const nextTheme = theme === 'dark' ? 'light' : 'dark';
-                trackEvent('toggle_theme', {
-                  page_path: getCurrentPagePath(),
-                  section: 'navbar',
-                  label: nextTheme
-                });
-                toggle();
-              }}
-              aria-label={`สลับเป็นโหมด${theme === 'dark' ? 'สว่าง' : 'มืด'}`}
-              role="switch"
-              aria-checked={theme === 'dark'}
-            >
-              <span className="toggle-icon sun">☀️</span>
-              <span className="toggle-icon moon">🌙</span>
-              <span className="toggle-knob" />
-            </button>
           </div>
         </div>
 

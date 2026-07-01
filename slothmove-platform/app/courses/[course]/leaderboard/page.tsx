@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { COURSES, getCourse } from '@/courses/registry';
+import { COURSES, getCourse, isCourseOpen } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
+import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import { CourseLeaderboard } from '@/components/course/CourseLeaderboard';
 import { buildMetadata } from '@/lib/seo';
 
@@ -20,6 +21,13 @@ export default async function CourseLeaderboardPage({
   const { course: courseId } = await params;
   const course = getCourse(courseId);
   if (!course) notFound();
+  if (!isCourseOpen(course.id)) {
+    return (
+      <CourseLayout course={course}>
+        <CourseMaintenancePage course={course} />
+      </CourseLayout>
+    );
+  }
 
   return (
     <CourseLayout course={course}>

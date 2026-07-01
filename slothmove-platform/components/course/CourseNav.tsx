@@ -4,10 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import type { CourseConfig } from '@/lib/course-types';
-import { useTheme } from '@/components/ThemeProvider';
 
 export function CourseNav({ course }: { course: CourseConfig }) {
-  const { theme, toggle } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [practiceOpen, setPracticeOpen] = useState(false);
   const practiceRef = useRef<HTMLDivElement | null>(null);
@@ -225,17 +223,6 @@ export function CourseNav({ course }: { course: CourseConfig }) {
             </Link>
           )}
 
-          <button
-            type="button"
-            className={`course-nav-theme${theme === 'dark' ? ' is-dark' : ''}`}
-            onClick={toggle}
-            aria-label="สลับโหมดมืด/สว่าง"
-            aria-pressed={theme === 'dark'}
-          >
-            <span className="course-theme-sun" aria-hidden="true">☀</span>
-            <span className="course-theme-moon" aria-hidden="true">☾</span>
-            <span className="course-theme-knob" aria-hidden="true" />
-          </button>
         </div>
 
         <div className="course-nav-mobile-controls">
@@ -286,16 +273,6 @@ export function CourseNav({ course }: { course: CourseConfig }) {
               <i>→</i>
             </Link>
           )}
-          <button type="button" onClick={toggle} aria-pressed={theme === 'dark'}>
-            <span className="course-mobile-menu-icon">{theme === 'dark' ? '☀' : '☾'}</span>
-            <span>
-              <strong>โหมดการแสดงผล</strong>
-              <small>{theme === 'dark' ? 'กำลังใช้โหมดมืด' : 'กำลังใช้โหมดสว่าง'}</small>
-            </span>
-            <span className={`course-mobile-theme-switch${theme === 'dark' ? ' is-dark' : ''}`} aria-hidden="true">
-              <i />
-            </span>
-          </button>
           <button type="button" onClick={openDonate}>
             <span className="course-mobile-menu-icon">☕</span>
             <span><strong>เลี้ยงกาแฟ</strong><small>สนับสนุนให้เนื้อหาเปิดฟรีต่อไป</small></span>

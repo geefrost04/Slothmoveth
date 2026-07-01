@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { VISIBLE_COURSES, Course } from '@/lib/courses';
+import { isCourseOpen } from '@/courses/registry';
 
 function CourseCard({ course }: { course: Course }) {
-  const isComingSoon = course.status === 'coming-soon';
+  const isComingSoon = course.status === 'coming-soon' || !isCourseOpen(course.id);
   const isDisabled = isComingSoon || !course.fullLink || course.fullLink === '#';
   const updatedLabel = new Intl.DateTimeFormat('th-TH', {
     day: 'numeric',
@@ -27,11 +28,11 @@ function CourseCard({ course }: { course: Course }) {
       <p className="home-course-desc">{course.desc}</p>
       <div className="home-course-meta">
         {course.subjects ? <span><strong>{course.subjects}</strong> วิชา</span> : null}
-        <span>{isComingSoon ? 'กำลังเตรียมเนื้อหา' : 'เรียนฟรี'}</span>
+        <span>{isComingSoon ? 'Under maintenance' : 'เรียนฟรี'}</span>
       </div>
       <div className="home-course-card-footer">
         <span>{course.type}</span>
-        <strong className="home-course-card-cta">{isComingSoon ? 'เร็วๆ นี้' : 'เข้าคอร์ส →'}</strong>
+        <strong className="home-course-card-cta">{isComingSoon ? 'ปิดปรับปรุงชั่วคราว' : 'เข้าคอร์ส →'}</strong>
       </div>
     </div>
   );

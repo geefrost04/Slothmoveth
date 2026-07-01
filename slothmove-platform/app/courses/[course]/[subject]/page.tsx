@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { COURSES, getSubject } from '@/courses/registry';
+import { COURSES, getSubject, isCourseOpen } from '@/courses/registry';
 import { getCourseKnowledgeData } from '@/courses/content-registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
+import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import { CourseSubjectPage } from '@/components/course/CourseSubjectPage';
 import { buildMetadata } from '@/lib/seo';
 
@@ -16,6 +17,13 @@ export default async function SubjectPage({
   if (!result) notFound();
 
   const { course, subject } = result;
+  if (!isCourseOpen(course.id)) {
+    return (
+      <CourseLayout course={course}>
+        <CourseMaintenancePage course={course} />
+      </CourseLayout>
+    );
+  }
   const knowledge = getCourseKnowledgeData(course.id, subject.id);
 
   return (

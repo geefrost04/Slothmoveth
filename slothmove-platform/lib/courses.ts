@@ -52,7 +52,7 @@ export const COURSES: Course[] = [
     moreTags: '+17 วิชา',
     subjects: 20,
     questions: 425,
-    status: 'ready'
+    status: 'coming-soon'
   },
   {
     id: 'industry',
@@ -68,7 +68,7 @@ export const COURSES: Course[] = [
     moreTags: '+5 วิชา',
     subjects: 9,
     questions: 500,
-    status: 'partial'
+    status: 'coming-soon'
   },
   {
     id: 'opsd',
@@ -84,7 +84,7 @@ export const COURSES: Course[] = [
     moreTags: '+3 วิชา',
     subjects: 7,
     questions: 821,
-    status: 'partial'
+    status: 'coming-soon'
   },
   {
     id: 'police_admin',

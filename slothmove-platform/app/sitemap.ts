@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { COURSES } from '@/courses/registry';
+import { COURSES, isCourseOpen } from '@/courses/registry';
 import { absoluteUrl } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const coursePages: MetadataRoute.Sitemap = COURSES.flatMap((course) => [
+  const coursePages: MetadataRoute.Sitemap = COURSES.filter((course) => isCourseOpen(course.id)).flatMap((course) => [
     {
       url: absoluteUrl(`/courses/${course.id}`),
       lastModified: now,

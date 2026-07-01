@@ -1,7 +1,8 @@
 import { notFound, redirect } from 'next/navigation';
 import type { Metadata } from 'next';
-import { COURSES, getSubject } from '@/courses/registry';
+import { COURSES, getSubject, isCourseOpen } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
+import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import { CoursePracticeHubPage } from '@/components/course/CoursePracticeHubPage';
 import { buildMetadata } from '@/lib/seo';
 
@@ -21,6 +22,13 @@ export default async function SubjectPracticesPage({
   if (!result) notFound();
 
   const { course, subject } = result;
+  if (!isCourseOpen(course.id)) {
+    return (
+      <CourseLayout course={course}>
+        <CourseMaintenancePage course={course} />
+      </CourseLayout>
+    );
+  }
 
   if (courseId !== 'police_admin' && courseId !== 'ocsc') {
     redirect(`/courses/${courseId}/${subjectId}/quiz`);
