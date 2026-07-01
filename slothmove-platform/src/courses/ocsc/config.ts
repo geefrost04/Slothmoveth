@@ -18,15 +18,14 @@ const SHARED_GAMES = [
   // Rank A games
   { id: 'series' as const, label: 'Series', labelTh: 'อนุกรม', icon: '🔢', desc: 'เติมตัวเลข/ตัวอักษรในลำดับ — หา pattern บวก/ลบ/คูณ', status: 'full' as const },
   { id: 'reading-detective' as const, label: 'Reading Detective', labelTh: 'นักสืบบทความ', icon: '🔍', desc: 'อ่านบทความแล้วหาใจความสำคัญและตีความ', status: 'full' as const },
-  { id: 'dialogue' as const, label: 'Dialogue', labelTh: 'สนทนา', icon: '💬', desc: 'เติมคำในบทสนทนาภาษาอังกฤษ', status: 'full' as const },
-  { id: 'error-detector' as const, label: 'Error Detector', labelTh: 'หาข้อผิด', icon: '🔍', desc: 'หาข้อผิดทางไวยากรณ์ภาษาอังกฤษ', status: 'full' as const }
+  { id: 'dialogue' as const, label: 'Dialogue', labelTh: 'สนทนา', icon: '💬', desc: 'เติมคำในบทสนทนาภาษาอังกฤษ', status: 'full' as const }
 ];
 
 export const ocscConfig: CourseConfig = {
   id: 'ocsc',
   title: 'สอบ ก.พ. ภาค ก.',
   tagline: 'สำนักงานคณะกรรมการข้าราชการพลเรือน',
-  subtitle: 'หลักสูตรใหม่ พ.ศ. 2569 · สรุปครบ 3 วิชาหลัก',
+  subtitle: 'ภาค ก อย่างเดียว · ครบ 3 วิชาหลัก · เน้นฝึกทำข้อสอบและอ่านเนื้อหาให้จบในหน้าเดียว',
   category: 'ก.พ. (ภาค ก.)',
   type: 'สอบภาค ก. (ก.พ.)',
   sourceFolder: 'OCSC',
@@ -56,7 +55,7 @@ export const ocscConfig: CourseConfig = {
       desc: 'Reading · Vocabulary · Grammar · Conversation ระดับ A2-B1 สำหรับงานราชการและชีวิตประจำวัน',
       count: getSubjectItemCount('english', 'quiz'),
       mascot: '/pic/ocsc-mascot/english.png',
-      games: ['quiz', 'cloze', 'dialogue', 'error-detector']
+      games: ['quiz', 'cloze', 'dialogue']
     },
     {
       id: 'civil_servant_rules',
@@ -79,27 +78,27 @@ export const ocscConfig: CourseConfig = {
     migrated: true,
     migrationNote: 'ย้ายข้อมูลวิชาการคิดวิเคราะห์แล้ว 331 ข้อ วิชาลักษณะข้าราชการที่ดี 304 ข้อ + สรุปเนื้อหา 9 บท และเพิ่มวิชาภาษาอังกฤษ 200 ข้อจากชุดปรับปรุงใหม่ ครอบคลุม Reading, Vocabulary, Grammar และ Conversation',
     landing: {
-      heroBadge: 'คอร์สเตรียมสอบ · ภาค ก · โทนราชการสีเหลือง',
+      heroBadge: 'คอร์สเตรียมสอบภาค ก. · ฟรีทั้งหมด · โทนเหลืองราชการ',
       heroTitleLead: 'เตรียมสอบ ก.พ.',
-      heroTitleLines: ['OCSC ภาค ก.', 'สายข้าราชการพลเรือน'],
+      heroTitleLines: ['สอบ ก.พ. ภาค ก.', 'สายข้าราชการพลเรือน'],
       heroTitleAccent: 'SlothMove',
-      heroDescription: 'สรุปครบ 3 วิชาหลักในหน้าเดียว จัดลำดับให้เข้าเนื้อหาเร็ว ลดการเลื่อน และคุมสไตล์ให้ใกล้หน้า Police_admin แต่ใช้โทนเหลือง-ทองที่อ่านสบายตา',
-      primaryCtaLabel: 'เริ่มฝึกทันที',
+      heroDescription: 'รวม 3 วิชาหลักของภาค ก. ไว้ในโครงสร้างเดียว อ่านง่าย เข้าลานฝึกไว และคุมทิศทางให้ชัดว่าเป็นคอร์สภาค ก. อย่างเดียว',
+      primaryCtaLabel: 'เริ่มเรียนเลย',
       primaryCtaHref: '#course-content',
-      secondaryCtaLabel: '',
-      secondaryCtaHref: '',
+      secondaryCtaLabel: 'ดูคอร์สทั้งหมด',
+      secondaryCtaHref: '/courses',
       mascotLabel: 'Office of the Civil Service Commission',
       scrollLabel: 'เลื่อนลง',
       stats: [
         { value: '3', label: 'วิชาหลัก' },
-        { value: '835+', label: 'ข้อสรุปและแบบฝึก' },
-        { value: 'พร้อม', label: 'เข้าเรียนได้ทันที' }
+        { value: '835+', label: 'ข้อฝึกพร้อมเฉลย' },
+        { value: 'ภาค ก', label: 'อย่างเดียว' }
       ],
       feature: {
         icon: '📝',
         chip: 'จำลองสอบเสมือนจริง',
-        title: 'ข้อสอบ ก.พ. ระดับปริญญาตรี 100 ข้อ',
-        desc: 'ข้อสอบเสมือนจริง 100 ข้อ คะแนนเต็ม 200 คะแนน แบ่งเป็น 3 หมวดหลัก: คิดวิเคราะห์ 100 คะแนน, ภาษาอังกฤษ 50 คะแนน และความรู้และลักษณะการเป็นข้าราชการที่ดี 50 คะแนน',
+        title: 'จำลองสอบภาค ก. 100 ข้อ',
+        desc: 'สุ่มข้อสอบตามโครงสร้างจริงของภาค ก. ครบ 3 หมวดหลัก พร้อมสรุปคะแนนและเฉลยหลังส่งคำตอบ เหมาะกับการซ้อมก่อนลงสนามจริง',
         meta: ['100 ข้อ', '200 คะแนนเต็ม', 'ผ่านขั้นต่ำ 60% หรือ 120 คะแนน'],
         primaryCtaLabel: 'เริ่มทำข้อสอบจำลอง',
         primaryCtaHref: '/courses/ocsc/mock-test',
@@ -109,12 +108,12 @@ export const ocscConfig: CourseConfig = {
       sections: [
         {
           id: 'ocsc-core',
-          chip: 'ภาค ก · 3 หมวดหลัก',
-          title: 'วิชาที่ต้องใช้จริง',
+          chip: 'ภาค ก · 3 วิชาหลัก',
+          title: 'วิชาที่ต้องอ่านให้ครบก่อนสอบ',
           subtitle: 'คิดวิเคราะห์ · ภาษาอังกฤษ · ความรู้และลักษณะการเป็นข้าราชการที่ดี',
           partClass: 'part1',
           partLabel: 'ก',
-          categoryLabel: 'หมวดหลัก',
+          categoryLabel: 'ภาค ก',
           subjectIds: ['analytical_thinking', 'english', 'civil_servant_rules']
         }
       ]

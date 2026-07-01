@@ -29,11 +29,6 @@ export function getSubjectData(
     return Array.isArray(quiz) ? englishQuizByCategory(quiz, 'conversation') : [];
   }
 
-  if (subjectId === 'english' && game === 'error-detector') {
-    const quiz = OCSC_MODULES['english_quiz'];
-    return Array.isArray(quiz) ? englishQuizByCategory(quiz, 'grammar') : [];
-  }
-
   // Derived games: when quiz data exists for a subject but the requested
   // game (flashcard / match / cloze) has no dedicated export, derive it
   // from the quiz pool. Matches the pattern in courses/police_admin.
@@ -87,11 +82,6 @@ export function getSubjectItemCount(subjectId: string, game: GameId): number {
   if (subjectId === 'english' && game === 'dialogue') {
     const quiz = OCSC_MODULES['english_quiz'];
     return Array.isArray(quiz) ? quiz.filter((q: any) => q?.category === 'conversation').length : 0;
-  }
-
-  if (subjectId === 'english' && game === 'error-detector') {
-    const quiz = OCSC_MODULES['english_quiz'];
-    return Array.isArray(quiz) ? quiz.filter((q: any) => q?.category === 'grammar').length : 0;
   }
 
   // Derived games derive their count from the quiz pool.
