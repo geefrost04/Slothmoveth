@@ -687,6 +687,27 @@
   box-shadow: none;
 }
 
+.course-layout[data-course='ocsc'] .ocsc-v3-btn-leaderboard {
+  position: relative;
+  border: 1px solid rgba(125, 92, 0, 0.78);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.48), transparent 52%),
+    linear-gradient(135deg, #fff6cc 0%, #f2c94c 48%, #d79a0b 100%);
+  color: #5a3c00;
+  box-shadow:
+    0 10px 24px rgba(187, 135, 10, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.course-layout[data-course='ocsc'] .ocsc-v3-btn-leaderboard::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  pointer-events: none;
+}
+
 .course-layout[data-course='ocsc'] .ocsc-v3-hero-visual {
   display: none;
 }
@@ -1368,6 +1389,14 @@
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(240, 217, 155, 0.32);
   color: #f5efe0;
+}
+
+[data-theme='dark'] .course-layout[data-course='ocsc'] .ocsc-v3-btn-leaderboard {
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 50%),
+    linear-gradient(135deg, #f2cf6d 0%, #cf9720 52%, #8a5f08 100%);
+  border-color: rgba(240, 217, 155, 0.42);
+  color: #17120a;
 }
 
 @media (max-width: 900px) {

@@ -110,6 +110,10 @@ function PoliceAdminV3Landing({ course }: { course: CourseConfig }) {
   const outlineText = isOcsc
     ? 'มีเฉพาะ <strong>ภาค ก</strong> โดยแบ่งเป็น 3 หมวดหลัก: ความสามารถในการคิดวิเคราะห์ · ภาษาอังกฤษ · ความรู้และลักษณะการเป็นข้าราชการที่ดี'
     : '<strong>ภาค ก (40 คะแนน)</strong> ความรู้ความสามารถทั่วไป · <strong>ภาค ข (110 คะแนน)</strong> ความรู้เฉพาะตำแหน่ง';
+  const leaderboardButtonClass = isOcsc
+    ? 'ocsc-v3-btn ocsc-v3-btn-leaderboard'
+    : 'police-v3-btn police-v3-btn-secondary';
+  const showLeaderboardButton = isOcsc || course.id === 'police_admin';
 
   return (
     <div className="police-v3-page">
@@ -227,6 +231,11 @@ function PoliceAdminV3Landing({ course }: { course: CourseConfig }) {
             <Link href={`/courses/${course.id}/mock-test`} className="police-v3-btn police-v3-btn-primary">
               {mockButtonLabel} <span aria-hidden="true">→</span>
             </Link>
+            {showLeaderboardButton ? (
+              <Link href={`/courses/${course.id}/leaderboard`} className={leaderboardButtonClass}>
+                🏆 เข้าสู่ Leaderboard
+              </Link>
+            ) : null}
           </div>
         </section>
 

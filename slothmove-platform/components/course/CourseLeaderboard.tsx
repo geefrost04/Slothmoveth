@@ -197,6 +197,8 @@ function isMockExam(row: ScoreRow) {
 }
 
 export function CourseLeaderboard({ course }: { course: CourseConfig }) {
+  const isOcsc = course.id === 'ocsc';
+  const isPoliceAdmin = course.id === 'police_admin';
   const [rows, setRows] = useState<ScoreRow[]>([]);
   const [status, setStatus] = useState<'loading' | 'ready' | 'empty' | 'error'>('loading');
   const [sortBy, setSortBy] = useState<'pct' | 'time' | 'recent'>('pct');
@@ -314,27 +316,62 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
   const rankRows = filteredRows.slice(3, 100);
 
   return (
-    <div className="leaderboard-shell">
-      <section className="leaderboard-hero">
+    <div className={`leaderboard-shell${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
+      <section className={`leaderboard-hero${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
         <div className="container leaderboard-hero-inner">
-          <div className="leaderboard-hero-copy">
-            <div className="course-subject-chip">Leaderboard</div>
-            <h1>กระดานคะแนน {course.id.toUpperCase()}</h1>
-            <p>รวมผลคะแนนจากผู้ที่ทำข้อสอบในคอร์สนี้ เรียงตามความแม่น เวลา และรอบที่ทำล่าสุด</p>
+          <div className={`leaderboard-hero-copy${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
+            <div className={`course-subject-chip${isOcsc ? ' leaderboard-arcade-chip' : ''}${isPoliceAdmin ? ' leaderboard-police-chip' : ''}`}>
+              {isOcsc ? 'Arcade Leaderboard' : isPoliceAdmin ? 'Police Leaderboard' : 'Leaderboard'}
+            </div>
+            <h1>
+              {isOcsc
+                ? 'OCSC คะแนนนักลุยสนาม'
+                : isPoliceAdmin
+                  ? 'Police Admin กระดานคะแนนสนามสอบ'
+                  : `กระดานคะแนน ${course.id.toUpperCase()}`}
+            </h1>
+            <p>
+              {isOcsc
+                ? 'จัดอันดับเหมือนหน้าเกม ดูทั้งคะแนน ความเร็ว และฟอร์มล่าสุดของผู้เล่นในสนามภาค ก.'
+                : isPoliceAdmin
+                  ? 'รวมคะแนนผู้ที่ทำข้อสอบตำรวจสายอำนวยการ ทั้งควิซรายวิชาและ mock test เรียงตามความแม่นและความเร็ว'
+                  : 'รวมผลคะแนนจากผู้ที่ทำข้อสอบในคอร์สนี้ เรียงตามความแม่น เวลา และรอบที่ทำล่าสุด'}
+            </p>
+            {isOcsc ? (
+              <div className="leaderboard-arcade-marquee" aria-hidden="true">
+                <span>SEASON RANKING</span>
+                <span>MOCK TEST</span>
+                <span>SPEED RUN</span>
+                <span>HIGH SCORE</span>
+              </div>
+            ) : null}
+            {isOcsc ? (
+              <div className="leaderboard-arcade-actions">
+                <a href="/courses/ocsc/mock-test" className="leaderboard-arcade-cta is-primary">⚔️ เข้าโหมด Mock Test</a>
+                <a href="/courses/ocsc" className="leaderboard-arcade-cta is-secondary">↩ กลับหน้าคอร์ส</a>
+              </div>
+            ) : null}
+            {isPoliceAdmin ? (
+              <div className="leaderboard-police-actions">
+                <a href="/courses/police_admin/mock-test" className="leaderboard-police-cta is-primary">📝 ไปทำ Mock Test</a>
+                <a href="/courses/police_admin" className="leaderboard-police-cta is-secondary">↩ กลับหน้าคอร์ส</a>
+              </div>
+            ) : null}
           </div>
-          <div className="leaderboard-stat-grid">
-            <article><span>ผู้เล่น</span><strong>{stats.total}</strong></article>
-            <article><span>ค่าเฉลี่ย</span><strong>{stats.avg}</strong></article>
-            <article><span>สูงสุด</span><strong>{stats.top}</strong></article>
-            <article><span>เร็วสุด</span><strong>{stats.fastest}</strong></article>
+          <div className={`leaderboard-stat-grid${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
+            {isOcsc ? <div className="leaderboard-stat-board-title">LIVE ARENA STATUS</div> : null}
+            <article><span>{isOcsc ? 'Players' : isPoliceAdmin ? 'ผู้เข้าสอบ' : 'ผู้เล่น'}</span><strong>{stats.total}</strong></article>
+            <article><span>{isOcsc ? 'AVG SCORE' : isPoliceAdmin ? 'ค่าเฉลี่ยคะแนน' : 'ค่าเฉลี่ย'}</span><strong>{stats.avg}</strong></article>
+            <article><span>{isOcsc ? 'HIGH SCORE' : isPoliceAdmin ? 'คะแนนสูงสุด' : 'สูงสุด'}</span><strong>{stats.top}</strong></article>
+            <article><span>{isOcsc ? 'FASTEST RUN' : isPoliceAdmin ? 'เวลาน้อยสุด' : 'เร็วสุด'}</span><strong>{stats.fastest}</strong></article>
           </div>
         </div>
       </section>
 
       <div className="container course-subject-body leaderboard-body">
-        <section className="pab-knowledge-section leaderboard-filter-panel">
+        <section className={`pab-knowledge-section leaderboard-filter-panel${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
           <div className="leaderboard-filter-row">
-            <div className="leaderboard-tabs">
+            <div className={`leaderboard-tabs${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
               <button
                 type="button"
                 className={typeFilter === 'quiz' ? 'is-active' : ''}
@@ -351,7 +388,7 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
               </button>
             </div>
 
-            <div className="leaderboard-sort-row">
+            <div className={`leaderboard-sort-row${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
               <button type="button" className={sortBy === 'pct' ? 'is-active' : ''} onClick={() => setSortBy('pct')}>คะแนน</button>
               <button type="button" className={sortBy === 'time' ? 'is-active' : ''} onClick={() => setSortBy('time')}>เวลา</button>
               <button type="button" className={sortBy === 'recent' ? 'is-active' : ''} onClick={() => setSortBy('recent')}>ล่าสุด</button>
@@ -360,7 +397,7 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
 
           <div className="leaderboard-filter-row">
             <input
-              className="leaderboard-search"
+              className={`leaderboard-search${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}
               type="text"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
@@ -369,7 +406,7 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
 
             {typeFilter === 'quiz' && (
               <select
-                className="leaderboard-subject-select"
+                className={`leaderboard-subject-select${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}
                 value={subjectFilter}
                 onChange={(event) => setSubjectFilter(event.target.value)}
               >
@@ -404,13 +441,19 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
 
         {status === 'ready' && filteredRows.length > 0 && (
           <>
-            <section className="pab-knowledge-section leaderboard-podium-panel">
+            <section className={`pab-knowledge-section leaderboard-podium-panel${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
               <div className="pab-knowledge-section-header">
                 <div className="pab-knowledge-section-icon">🏆</div>
                 <div>
-                  <div className="pab-knowledge-section-chip">Top Ranking</div>
-                  <h2 className="pab-knowledge-section-title">อันดับเด่นของรอบนี้</h2>
-                  <p className="pab-knowledge-section-desc">เรียงตามคะแนนสูงสุด เวลาน้อยกว่าได้เปรียบเมื่อเปอร์เซ็นต์เท่ากัน</p>
+                  <div className="pab-knowledge-section-chip">{isOcsc ? 'Arena Bosses' : isPoliceAdmin ? 'Police Top Rank' : 'Top Ranking'}</div>
+                  <h2 className="pab-knowledge-section-title">{isOcsc ? 'ผู้เล่นตัวท็อปของสนามนี้' : isPoliceAdmin ? 'ผู้ทำคะแนนเด่นของรอบนี้' : 'อันดับเด่นของรอบนี้'}</h2>
+                  <p className="pab-knowledge-section-desc">
+                    {isOcsc
+                      ? 'คะแนนสูงสุดขึ้นก่อน ถ้าคะแนนเท่ากันคนที่ใช้เวลาน้อยกว่าจะชนะเหมือนเกมสปีดรัน'
+                      : isPoliceAdmin
+                        ? 'เหมาะกับใช้ดูว่ารอบนี้ใครแม่นและใครเร็วที่สุดในสนามจำลองตำรวจสายอำนวยการ'
+                        : 'เรียงตามคะแนนสูงสุด เวลาน้อยกว่าได้เปรียบเมื่อเปอร์เซ็นต์เท่ากัน'}
+                  </p>
                 </div>
               </div>
 
@@ -422,7 +465,7 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
                   return (
                     <article
                       key={`${row.nickname}-${rank}-${row.created_at ?? ''}`}
-                      className={`leaderboard-podium-card is-rank-${rank}`}
+                      className={`leaderboard-podium-card is-rank-${rank}${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}
                       style={{ animationDelay: `${index * 120}ms` }}
                     >
                       <span className="leaderboard-podium-medal">{medal?.emoji}</span>
@@ -441,13 +484,13 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
               </div>
             </section>
 
-            <section className="pab-knowledge-section leaderboard-list-panel">
+            <section className={`pab-knowledge-section leaderboard-list-panel${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}>
               <div className="pab-knowledge-section-header">
                 <div className="pab-knowledge-section-icon">📋</div>
                 <div>
-                  <div className="pab-knowledge-section-chip">Full Ranking</div>
-                  <h2 className="pab-knowledge-section-title">อันดับทั้งหมด</h2>
-                  <p className="pab-knowledge-section-desc">แสดงสูงสุด 100 รายการแรกของผลลัพธ์ชุดนี้</p>
+                  <div className="pab-knowledge-section-chip">{isOcsc ? 'Stage Ranking' : isPoliceAdmin ? 'Police Full Ranking' : 'Full Ranking'}</div>
+                  <h2 className="pab-knowledge-section-title">{isOcsc ? 'ลำดับผู้เล่นทั้งหมดในสนาม' : isPoliceAdmin ? 'อันดับทั้งหมดของสนามตำรวจ' : 'อันดับทั้งหมด'}</h2>
+                  <p className="pab-knowledge-section-desc">{isOcsc ? 'สรุปฟอร์มผู้เล่น 100 คนแรกแบบเกมจัดอันดับ' : isPoliceAdmin ? 'รวมผู้เข้าสอบ 100 อันดับแรกของผลลัพธ์ชุดนี้' : 'แสดงสูงสุด 100 รายการแรกของผลลัพธ์ชุดนี้'}</p>
                 </div>
               </div>
 
@@ -468,7 +511,7 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
                     return (
                       <article
                         key={`${row.nickname}-${index}-${row.created_at ?? ''}`}
-                        className="leaderboard-rank-card"
+                        className={`leaderboard-rank-card${isOcsc ? ' is-ocsc' : ''}${isPoliceAdmin ? ' is-police-admin' : ''}`}
                         style={{ animationDelay: `${(index + 3) * 60}ms` }}
                       >
                         <div className="leaderboard-rank-num">

@@ -247,6 +247,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
   const [nickname, setNickname] = useState('');
   const [remoteSaveState, setRemoteSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [remoteSaveMessage, setRemoteSaveMessage] = useState('');
+  const [showSaveSuccessPopup, setShowSaveSuccessPopup] = useState(false);
 
   // 1. Initialize mock paper on mount (avoid hydration mismatches)
   useEffect(() => {
@@ -289,6 +290,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
     setShowReview(false);
     setRemoteSaveState('idle');
     setRemoteSaveMessage('');
+    setShowSaveSuccessPopup(false);
   };
 
   const selectChoice = (choiceIdx: number) => {
@@ -454,6 +456,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
       }
       setRemoteSaveState('saved');
       setRemoteSaveMessage('บันทึกคะแนนขึ้นกระดานเรียบร้อยแล้ว! 🎉');
+      setShowSaveSuccessPopup(true);
     } catch (err) {
       setRemoteSaveState('error');
       setRemoteSaveMessage(err instanceof Error ? `ข้อผิดพลาด: ${err.message}` : 'ไม่สามารถบันทึกได้');
@@ -912,6 +915,35 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
                     {remoteSaveMessage}
                   </p>
                 )}
+              </div>
+            )}
+
+            {showSaveSuccessPopup && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+                <div className="w-full max-w-md rounded-xl border-2 border-[#1a1a2e] bg-white p-6 text-center shadow-[8px_8px_0_#1a1a2e] dark:border-[#34344a] dark:bg-[#1e1e32] dark:shadow-none">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#1a1a2e] bg-emerald-50 text-3xl dark:border-[#34344a] dark:bg-emerald-950/30">
+                    🎉
+                  </div>
+                  <h3 className="text-xl font-black text-gray-800 dark:text-[#f7f2e8]">บันทึกคะแนนสำเร็จ</h3>
+                  <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                    คะแนนของคุณถูกส่งขึ้นกระดานเรียบร้อยแล้ว ถ้าต้องการดูอันดับตอนนี้ กดไปที่ Leaderboard ได้เลย
+                  </p>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <Link
+                      href={`/courses/${course.id}/leaderboard`}
+                      className="flex w-full items-center justify-center rounded-lg border-2 border-[#1a1a2e] bg-[var(--color-primary)] px-4 py-3 text-sm font-bold text-white shadow-[3px_3px_0_#1a1a2e] transition hover:bg-[var(--color-primary-dark)] dark:border-[#34344a] dark:shadow-none"
+                    >
+                      🏆 ไปดู Leaderboard
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setShowSaveSuccessPopup(false)}
+                      className="w-full rounded-lg border-2 border-[#1a1a2e] bg-white px-4 py-3 text-sm font-bold text-gray-700 transition hover:bg-gray-50 dark:border-[#34344a] dark:bg-[#25253e] dark:text-[#f7f2e8] dark:hover:bg-[#2d2d46]"
+                    >
+                      อยู่หน้าสรุปคะแนนต่อ
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
 
