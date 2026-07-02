@@ -238,11 +238,13 @@ export function CourseLeaderboard({ course }: { course: CourseConfig }) {
         if (result.error) throw result.error;
 
         const filtered = (result.data as ScoreRow[]).filter((row) => {
+          const rowDept = (row.dept ?? '').trim().toLowerCase();
+          const courseDept = course.id.trim().toLowerCase();
           // Match legacy leaderboard.html behaviour: keep rows whose `dept`
           // matches this course. Legacy also did a substring search for
           // "ป้องกันและบรรเทา" / "แผนการป้องกันและบรรเทา" as a fallback for
           // older rows that pre-date the `dept` column.
-          if (row.dept === course.id) return true;
+          if (rowDept === courseDept) return true;
           const subject = row.subject ?? '';
           return (
             subject.includes('ป้องกันและบรรเทา') ||
