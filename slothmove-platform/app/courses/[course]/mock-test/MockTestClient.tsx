@@ -67,6 +67,19 @@ type MockExamConfig = {
   backLabel: string;
 };
 
+type PerformanceSummary = {
+  id: string;
+  title: string;
+  correct: number;
+  total: number;
+  pct: number;
+  points: number;
+  maxPoints: number;
+  href?: string;
+  desc?: string;
+  topicHints?: string[];
+};
+
 function buildQuestions(source: QuizItem[], count: number, subjectTitle: string, subjectId: string) {
   return shuffleList(source)
     .slice(0, count)
@@ -164,6 +177,62 @@ function formatDuration(seconds: number) {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 }
 
+function getScoreMultiplier(courseId: string) {
+  return courseId === 'ocsc' ? 2 : 1;
+}
+
+function formatTopicLabel(raw?: string) {
+  if (!raw) return null;
+
+  const normalized = raw.trim().toLowerCase();
+  const topicMap: Record<string, string> = {
+    math: 'คณิตพื้นฐาน',
+    analogy: 'อุปมาอุปไมย',
+    series: 'อนุกรม',
+    percentage: 'ร้อยละและเปอร์เซ็นต์',
+    'profit-loss': 'กำไร-ขาดทุน',
+    'speed-distance': 'ความเร็ว ระยะทาง เวลา',
+    relationship: 'ความสัมพันธ์ของคำ',
+    function: 'หน้าที่และการใช้งาน',
+    opposite: 'คำตรงข้าม',
+    category: 'การจัดหมวดหมู่',
+    property: 'คุณสมบัติ',
+    growth: 'การเปลี่ยนแปลง/เติบโต',
+    'part-whole': 'ส่วนและองค์รวม',
+    meaning: 'ความหมายของคำ',
+    grammar: 'Grammar',
+    vocabulary: 'Vocabulary',
+    reading: 'Reading',
+    conversation: 'Conversation',
+    law: 'กฎหมาย',
+    saraban: 'งานสารบรรณ',
+    computer: 'คอมพิวเตอร์',
+    thai: 'ภาษาไทย',
+    english: 'ภาษาอังกฤษ',
+    'analytical-thinking': 'คิดวิเคราะห์',
+    analytical_thinking: 'คิดวิเคราะห์',
+    civil_servant_rules: 'ลักษณะข้าราชการที่ดี',
+  };
+
+  if (topicMap[normalized]) {
+    return topicMap[normalized];
+  }
+
+  return raw
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function getQuestionTopics(question: MockQuestion) {
+  const source = [
+    ...(question.themes || []),
+    question.pattern,
+    question.category,
+  ];
+
+  return Array.from(new Set(source.map((item) => formatTopicLabel(item)).filter(Boolean))) as string[];
+}
+
 export function MockTestClient({ course }: { course: CourseConfig }) {
   const mockExam = getMockExamConfig(course.id);
   const [step, setStep] = useState<'start' | 'quiz' | 'result'>('start');
@@ -252,6 +321,81 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
   }, 0);
   const pct = Math.round((correctCount / total) * 100);
   const elapsedSec = mockExam.durationSec - timeLeft;
+  const scoreMultiplier = getScoreMultiplier(course.id);
+  const landingSections = course.meta.landing?.sections || [];
+
+  const partSummaries: PerformanceSummary[] = landingSections
+    .map((section) => {
+      const sectionQuestions = questions.filter((question) => section.subjectIds.includes(question.subjectId));
+      const sectionTotal = sectionQuestions.length;
+      if (sectionTotal === 0) return null;
+
+      const sectionCorrect = sectionQuestions.reduce((acc, question) => {
+        const questionIndex = questions.indexOf(question);
+        return acc + (userAnswers[questionIndex] === question.answer ? 1 : 0);
+      }, 0);
+
+      return {
+        id: section.id,
+        title: `${section.chip} · ${section.title}`,
+        correct: sectionCorrect,
+        total: sectionTotal,
+        pct: Math.round((sectionCorrect / sectionTotal) * 100),
+        points: sectionCorrect * scoreMultiplier,
+        maxPoints: sectionTotal * scoreMultiplier,
+      };
+    })
+    .filter(Boolean) as PerformanceSummary[];
+
+  const subjectSummaries: PerformanceSummary[] = course.subjects
+    .map((subject) => {
+      const subjectQuestions = questions.filter((question) => question.subjectId === subject.id);
+      const subjectTotal = subjectQuestions.length;
+      if (subjectTotal === 0) return null;
+
+      const subjectCorrect = subjectQuestions.reduce((acc, question) => {
+        const questionIndex = questions.indexOf(question);
+        return acc + (userAnswers[questionIndex] === question.answer ? 1 : 0);
+      }, 0);
+
+      const missedQuestions = subjectQuestions.filter((question) => {
+        const questionIndex = questions.indexOf(question);
+        return userAnswers[questionIndex] !== question.answer;
+      });
+
+      const topicCounts = new Map<string, number>();
+      missedQuestions.forEach((question) => {
+        getQuestionTopics(question).forEach((topic) => {
+          topicCounts.set(topic, (topicCounts.get(topic) || 0) + 1);
+        });
+      });
+
+      const topicHints = [...topicCounts.entries()]
+        .sort((left, right) => right[1] - left[1])
+        .slice(0, 3)
+        .map(([topic]) => topic);
+
+      return {
+        id: subject.id,
+        title: subject.title,
+        correct: subjectCorrect,
+        total: subjectTotal,
+        pct: Math.round((subjectCorrect / subjectTotal) * 100),
+        points: subjectCorrect * scoreMultiplier,
+        maxPoints: subjectTotal * scoreMultiplier,
+        href: `/courses/${course.id}/${subject.id}`,
+        desc: subject.desc,
+        topicHints,
+      };
+    })
+    .filter(Boolean) as PerformanceSummary[];
+
+  const weakestSubjects = [...subjectSummaries]
+    .sort((left, right) => {
+      if (left.pct !== right.pct) return left.pct - right.pct;
+      return left.correct - right.correct;
+    })
+    .slice(0, 3);
 
   const gradeText = (() => {
     if (pct >= 80) return 'ผ่านเกณฑ์ดีเยี่ยม — ความรู้แน่นปึ้ก สมบูรณ์แบบ พร้อมลงสอบจริงแล้ว!';
@@ -429,7 +573,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
                 ← ข้อก่อนหน้า
               </button>
               <button
-                disabled={currentIdx === 149}
+                disabled={currentIdx === mockExam.totalQuestions - 1}
                 onClick={() => setCurrentIdx((prev) => prev + 1)}
                 className="px-6 py-3 bg-white dark:bg-[#1e1e32] text-gray-700 dark:text-[#f7f2e8] border-2 border-[#1a1a2e] dark:border-[#34344a] rounded-lg font-bold shadow-[2px_2px_0_#1a1a2e] active:translate-y-[2px] active:shadow-none transition-all disabled:opacity-40 disabled:cursor-not-allowed"
               >
@@ -559,7 +703,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
               <div className="p-2 bg-white dark:bg-[#1e1e32] border border-gray-100 dark:border-[#34344a] rounded-lg shadow-sm">
                 <span className="text-[10px] text-gray-400 block mb-0.5">คะแนนสุทธิ</span>
                 <strong className="text-lg font-black text-gray-800 dark:text-[#f7f2e8]">
-                  {correctCount} <small className="text-xs font-medium">/ {mockExam.totalQuestions}</small>
+                  {correctCount * scoreMultiplier} <small className="text-xs font-medium">/ {mockExam.totalQuestions * scoreMultiplier}</small>
                 </strong>
               </div>
               <div className="p-2 bg-white dark:bg-[#1e1e32] border border-gray-100 dark:border-[#34344a] rounded-lg shadow-sm">
@@ -581,6 +725,160 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
                 </strong>
               </div>
             </div>
+
+            {partSummaries.length > 0 && (
+              <div className="mb-6 rounded-xl border border-gray-100 bg-gray-50 p-4 text-left dark:border-[#34344a] dark:bg-[#25253e]">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div>
+                    <h2 className="text-sm font-black text-gray-800 dark:text-[#f7f2e8]">
+                      {partSummaries.length > 1 ? 'คะแนนแยกตามภาค' : 'คะแนนแยกตามหมวด'}
+                    </h2>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      ดูได้ทันทีว่าพลาดหนักในส่วนไหนของข้อสอบจำลอง
+                    </p>
+                  </div>
+                </div>
+                <div className={`grid gap-3 ${partSummaries.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1'}`}>
+                  {partSummaries.map((part) => (
+                    <div
+                      key={part.id}
+                      className="rounded-xl border border-gray-100 bg-white p-4 dark:border-[#34344a] dark:bg-[#1e1e32]"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-bold text-gray-800 dark:text-[#f7f2e8]">{part.title}</p>
+                          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            {part.points} / {part.maxPoints} คะแนน
+                          </p>
+                        </div>
+                        <span className={`rounded-full px-2.5 py-1 text-[11px] font-black ${
+                          part.pct >= 70
+                            ? 'bg-emerald-100 text-emerald-700'
+                            : part.pct >= 50
+                              ? 'bg-amber-100 text-amber-700'
+                              : 'bg-rose-100 text-rose-700'
+                        }`}>
+                          {part.pct}%
+                        </span>
+                      </div>
+                      <div className="mt-3 h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-[#2d2d46]">
+                        <div
+                          className={`h-full rounded-full ${
+                            part.pct >= 70
+                              ? 'bg-emerald-500'
+                              : part.pct >= 50
+                                ? 'bg-amber-500'
+                                : 'bg-rose-500'
+                          }`}
+                          style={{ width: `${part.pct}%` }}
+                        />
+                      </div>
+                      <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        ตอบถูก {part.correct} จาก {part.total} ข้อ
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {subjectSummaries.length > 0 && (
+              <div className="mb-6 rounded-xl border border-gray-100 bg-gray-50 p-4 text-left dark:border-[#34344a] dark:bg-[#25253e]">
+                <div className="mb-3">
+                  <h2 className="text-sm font-black text-gray-800 dark:text-[#f7f2e8]">คะแนนแยกตามวิชา</h2>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    ใช้ดูว่าวิชาไหนควรกลับไปทบทวนก่อนรอบถัดไป
+                  </p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {subjectSummaries.map((subject) => (
+                    <div
+                      key={subject.id}
+                      className="rounded-xl border border-gray-100 bg-white p-4 dark:border-[#34344a] dark:bg-[#1e1e32]"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-bold text-gray-800 dark:text-[#f7f2e8]">{subject.title}</p>
+                          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            {subject.points} / {subject.maxPoints} คะแนน
+                          </p>
+                        </div>
+                        <span className={`rounded-full px-2.5 py-1 text-[11px] font-black ${
+                          subject.pct >= 70
+                            ? 'bg-emerald-100 text-emerald-700'
+                            : subject.pct >= 50
+                              ? 'bg-amber-100 text-amber-700'
+                              : 'bg-rose-100 text-rose-700'
+                        }`}>
+                          {subject.pct}%
+                        </span>
+                      </div>
+                      <div className="mt-3 h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-[#2d2d46]">
+                        <div
+                          className={`h-full rounded-full ${
+                            subject.pct >= 70
+                              ? 'bg-emerald-500'
+                              : subject.pct >= 50
+                                ? 'bg-amber-500'
+                                : 'bg-rose-500'
+                          }`}
+                          style={{ width: `${subject.pct}%` }}
+                        />
+                      </div>
+                      <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        ตอบถูก {subject.correct} จาก {subject.total} ข้อ
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {weakestSubjects.length > 0 && (
+              <div className="mb-8 rounded-xl border border-[#ead9bf] bg-[#fff8ed] p-4 text-left dark:border-[#5a4630] dark:bg-[#2f261d]">
+                <div className="mb-3">
+                  <h2 className="text-sm font-black text-[#7a4b13] dark:text-[#f3d29d]">ควรกลับไปอ่านตรงไหนเพิ่ม</h2>
+                  <p className="text-xs text-[#8e6b3f] dark:text-[#d9bf97]">
+                    ระบบเลือกจากวิชาที่คะแนนตกที่สุดในรอบนี้ เพื่อให้รู้ว่าควรเก็บเรื่องไหนก่อน
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  {weakestSubjects.map((subject) => (
+                    <div
+                      key={subject.id}
+                      className="rounded-xl border border-[#f1dfc2] bg-white p-4 dark:border-[#4d3a28] dark:bg-[#1e1e32]"
+                    >
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                          <p className="text-sm font-black text-gray-800 dark:text-[#f7f2e8]">{subject.title}</p>
+                          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            พลาด {subject.total - subject.correct} จาก {subject.total} ข้อ · ได้ {subject.points} / {subject.maxPoints} คะแนน
+                          </p>
+                          <p className="mt-2 text-xs leading-5 text-gray-600 dark:text-gray-300">
+                            {subject.topicHints && subject.topicHints.length > 0
+                              ? `ควรทบทวนเรื่อง ${subject.topicHints.join(' · ')}`
+                              : `ควรกลับไปเก็บพื้นฐานในวิชา ${subject.title} เพิ่มอีกหนึ่งรอบ`}
+                          </p>
+                          {subject.desc ? (
+                            <p className="mt-1 text-[11px] leading-5 text-gray-500 dark:text-gray-400">
+                              เนื้อหาหลัก: {subject.desc}
+                            </p>
+                          ) : null}
+                        </div>
+                        {subject.href ? (
+                          <Link
+                            href={subject.href}
+                            className="inline-flex items-center justify-center rounded-lg border-2 border-[#1a1a2e] bg-[var(--color-primary)] px-4 py-2 text-xs font-bold text-white shadow-[2px_2px_0_#1a1a2e] transition hover:bg-[var(--color-primary-dark)]"
+                          >
+                            ไปอ่านวิชานี้
+                          </Link>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Remote Leaderboard Form */}
             {remoteSaveState !== 'saved' && (
