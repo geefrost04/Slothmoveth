@@ -247,7 +247,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
   const [nickname, setNickname] = useState('');
   const [remoteSaveState, setRemoteSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [remoteSaveMessage, setRemoteSaveMessage] = useState('');
-  const [showSaveSuccessPopup, setShowSaveSuccessPopup] = useState(false);
+  const [showSavePromptPopup, setShowSavePromptPopup] = useState(false);
 
   // 1. Initialize mock paper on mount (avoid hydration mismatches)
   useEffect(() => {
@@ -273,12 +273,12 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
     return () => clearInterval(interval);
   }, [step, showConfirmSubmit]);
 
-  // 3. Firing Buy-me-a-Coffee Popup Event on completion
+  // 3. Prompt score save flow immediately after exam completion
   useEffect(() => {
-    if (step === 'result') {
-      window.dispatchEvent(new CustomEvent('slothmove:donate'));
+    if (step === 'result' && remoteSaveState !== 'saved') {
+      setShowSavePromptPopup(true);
     }
-  }, [step]);
+  }, [remoteSaveState, step]);
 
   const startExam = () => {
     const nextQuestions = generateMockExamPaper(course.id);
@@ -290,7 +290,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
     setShowReview(false);
     setRemoteSaveState('idle');
     setRemoteSaveMessage('');
-    setShowSaveSuccessPopup(false);
+    setShowSavePromptPopup(false);
   };
 
   const selectChoice = (choiceIdx: number) => {
@@ -456,7 +456,8 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
       }
       setRemoteSaveState('saved');
       setRemoteSaveMessage('บันทึกคะแนนขึ้นกระดานเรียบร้อยแล้ว! 🎉');
-      setShowSaveSuccessPopup(true);
+      setShowSavePromptPopup(false);
+      window.dispatchEvent(new CustomEvent('slothmove:donate'));
     } catch (err) {
       setRemoteSaveState('error');
       setRemoteSaveMessage(err instanceof Error ? `ข้อผิดพลาด: ${err.message}` : 'ไม่สามารถบันทึกได้');
@@ -883,66 +884,94 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
               </div>
             )}
 
-            {/* Remote Leaderboard Form */}
-            {remoteSaveState !== 'saved' && (
-              <div className="mb-8 p-4 bg-gray-50 dark:bg-[#25253e] border border-gray-100 dark:border-[#34344a] rounded-xl text-left">
-                <label htmlFor="mock-nickname" className="text-xs font-bold text-gray-700 dark:text-gray-300 block mb-2">
-                  📝 บันทึกคะแนนของคุณขึ้นกระดานคะแนน (Leaderboard)
-                </label>
-                <div className="flex gap-2">
-                  <input
-                    id="mock-nickname"
-                    type="text"
-                    placeholder="กรอกชื่อเล่นหรือนามสมมุติ..."
-                    maxLength={16}
-                    value={nickname}
-                    onChange={(e) => setNickname(e.target.value)}
-                    disabled={remoteSaveState === 'saving'}
-                    className="flex-1 px-3 py-2 text-sm border-2 border-[#1a1a2e] dark:border-[#34344a] dark:bg-[#1e1e32] dark:text-[#f7f2e8] rounded-md focus:outline-none focus:border-[var(--color-primary)]"
-                  />
-                  <button
-                    onClick={saveScoreToSupabase}
-                    disabled={remoteSaveState === 'saving'}
-                    className="px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white border-2 border-[#1a1a2e] rounded-md text-xs font-bold shadow-[2px_2px_0_#1a1a2e] disabled:opacity-40"
+            {remoteSaveState === 'saved' && (
+              <div className="mb-8 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-left dark:border-emerald-900/60 dark:bg-emerald-950/20">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-sm font-black text-emerald-800 dark:text-emerald-200">บันทึกคะแนนเรียบร้อยแล้ว</p>
+                    <p className="mt-1 text-xs text-emerald-700 dark:text-emerald-300">
+                      คะแนนของคุณถูกส่งขึ้นกระดานแล้ว สามารถเข้าไปดูอันดับล่าสุดได้ทันที
+                    </p>
+                  </div>
+                  <Link
+                    href={`/courses/${course.id}/leaderboard`}
+                    className="inline-flex items-center justify-center rounded-lg border-2 border-[#1a1a2e] bg-[var(--color-primary)] px-4 py-2 text-xs font-bold text-white shadow-[2px_2px_0_#1a1a2e] transition hover:bg-[var(--color-primary-dark)]"
                   >
-                    {remoteSaveState === 'saving' ? 'กำลังบันทึก...' : 'ส่งคะแนน'}
-                  </button>
+                    🏆 ไปดู Leaderboard
+                  </Link>
                 </div>
-                {remoteSaveMessage && (
-                  <p className={`text-xs mt-2 font-bold ${
-                    remoteSaveState === 'error' ? 'text-rose-500' : 'text-emerald-500'
-                  }`}>
-                    {remoteSaveMessage}
-                  </p>
-                )}
               </div>
             )}
 
-            {showSaveSuccessPopup && (
+            {showSavePromptPopup && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
                 <div className="w-full max-w-md rounded-xl border-2 border-[#1a1a2e] bg-white p-6 text-center shadow-[8px_8px_0_#1a1a2e] dark:border-[#34344a] dark:bg-[#1e1e32] dark:shadow-none">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#1a1a2e] bg-emerald-50 text-3xl dark:border-[#34344a] dark:bg-emerald-950/30">
-                    🎉
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#1a1a2e] bg-[var(--color-primary-bg,#fbeef0)] text-3xl dark:border-[#34344a]">
+                    📝
                   </div>
-                  <h3 className="text-xl font-black text-gray-800 dark:text-[#f7f2e8]">บันทึกคะแนนสำเร็จ</h3>
+                  <h3 className="text-xl font-black text-gray-800 dark:text-[#f7f2e8]">บันทึกคะแนนขึ้น Leaderboard</h3>
                   <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
-                    คะแนนของคุณถูกส่งขึ้นกระดานเรียบร้อยแล้ว ถ้าต้องการดูอันดับตอนนี้ กดไปที่ Leaderboard ได้เลย
+                    ทำข้อสอบเสร็จแล้ว กรอกชื่อเล่นสั้น ๆ เพื่อบันทึกคะแนนของคุณได้ทันที
                   </p>
+                  <div className="mt-6 text-left">
+                    <label htmlFor="ocsc-save-nickname" className="mb-2 block text-xs font-bold text-gray-700 dark:text-gray-300">
+                      ชื่อเล่น / นามสมมุติ
+                    </label>
+                    <input
+                      id="ocsc-save-nickname"
+                      type="text"
+                      placeholder="เช่น Gee, Mint, Sloth"
+                      maxLength={16}
+                      value={nickname}
+                      onChange={(e) => setNickname(e.target.value)}
+                      disabled={remoteSaveState === 'saving'}
+                      className="w-full rounded-md border-2 border-[#1a1a2e] px-3 py-3 text-sm text-gray-800 focus:outline-none focus:border-[var(--color-primary)] dark:border-[#34344a] dark:bg-[#25253e] dark:text-[#f7f2e8]"
+                    />
+                    {remoteSaveMessage && (
+                      <p className={`mt-2 text-xs font-bold ${
+                        remoteSaveState === 'error' ? 'text-rose-500' : 'text-emerald-500'
+                      }`}>
+                        {remoteSaveMessage}
+                      </p>
+                    )}
+                  </div>
                   <div className="mt-6 flex flex-col gap-3">
-                    <Link
-                      href={`/courses/${course.id}/leaderboard`}
-                      className="flex w-full items-center justify-center rounded-lg border-2 border-[#1a1a2e] bg-[var(--color-primary)] px-4 py-3 text-sm font-bold text-white shadow-[3px_3px_0_#1a1a2e] transition hover:bg-[var(--color-primary-dark)] dark:border-[#34344a] dark:shadow-none"
-                    >
-                      🏆 ไปดู Leaderboard
-                    </Link>
                     <button
                       type="button"
-                      onClick={() => setShowSaveSuccessPopup(false)}
+                      onClick={saveScoreToSupabase}
+                      disabled={remoteSaveState === 'saving'}
+                      className="w-full rounded-lg border-2 border-[#1a1a2e] bg-[var(--color-primary)] px-4 py-3 text-sm font-bold text-white shadow-[3px_3px_0_#1a1a2e] transition hover:bg-[var(--color-primary-dark)] disabled:cursor-not-allowed disabled:opacity-50 dark:border-[#34344a] dark:shadow-none"
+                    >
+                      {remoteSaveState === 'saving' ? 'กำลังบันทึก...' : 'บันทึกคะแนน'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowSavePromptPopup(false)}
                       className="w-full rounded-lg border-2 border-[#1a1a2e] bg-white px-4 py-3 text-sm font-bold text-gray-700 transition hover:bg-gray-50 dark:border-[#34344a] dark:bg-[#25253e] dark:text-[#f7f2e8] dark:hover:bg-[#2d2d46]"
                     >
-                      อยู่หน้าสรุปคะแนนต่อ
+                      ไว้ก่อน ยังไม่บันทึก
                     </button>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {remoteSaveState !== 'saved' && !showSavePromptPopup && (
+              <div className="mb-8 rounded-xl border border-dashed border-[#d7c8b4] bg-[#fffaf2] p-4 text-left dark:border-[#4c4337] dark:bg-[#211d18]">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-sm font-black text-gray-800 dark:text-[#f7f2e8]">ยังไม่ได้บันทึกคะแนนรอบนี้</p>
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      ถ้าต้องการขึ้นกระดานคะแนน กดเปิดหน้าบันทึกคะแนนได้อีกครั้ง
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowSavePromptPopup(true)}
+                    className="inline-flex items-center justify-center rounded-lg border-2 border-[#1a1a2e] bg-white px-4 py-2 text-xs font-bold text-gray-700 shadow-[2px_2px_0_#1a1a2e] transition hover:bg-gray-50 dark:border-[#34344a] dark:bg-[#25253e] dark:text-[#f7f2e8] dark:shadow-none"
+                  >
+                    เปิดหน้าบันทึกคะแนน
+                  </button>
                 </div>
               </div>
             )}
