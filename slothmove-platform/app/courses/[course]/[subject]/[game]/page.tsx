@@ -5,6 +5,7 @@ import { COURSES, resolveTriple, isCourseOpen } from '@/courses/registry';
 import { getCourseGameData, hasCourseContentSource } from '@/courses/content-registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
 import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
+import { ExamSystemPausedNotice } from '@/components/course/ExamSystemPausedNotice';
 import {
   QuizGame, FlashcardGame, MatchGame, ClozeGame,
   SortingGame, OrderGame, SpellingGame, TrueFalseGame, ComputerTrueFalseGame, AuthorityGame,
@@ -19,6 +20,8 @@ export const metadata: Metadata = buildMetadata({
   description: 'หน้าเกมฝึกทำข้อสอบสำหรับผู้ใช้งานในแพลตฟอร์ม SlothMove',
   noIndex: true
 });
+
+const EXAM_SYSTEM_PAUSED = true;
 
 export default async function GamePage({
   params
@@ -40,6 +43,10 @@ export default async function GamePage({
   // Enforce that the game is explicitly enabled for this subject
   if (!subject.games?.includes(gameId as any)) {
     notFound();
+  }
+
+  if (EXAM_SYSTEM_PAUSED) {
+    return <ExamSystemPausedNotice />;
   }
 
   // Game templates that exist for every course but only have data wired

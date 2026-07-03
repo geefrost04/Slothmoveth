@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getCourse, COURSES, isCourseOpen } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
 import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
+import { ExamSystemPausedNotice } from '@/components/course/ExamSystemPausedNotice';
 import { MockTestClient } from './MockTestClient';
 import { buildMetadata } from '@/lib/seo';
 
@@ -11,6 +12,8 @@ export const metadata: Metadata = buildMetadata({
   description: 'หน้าข้อสอบจำลองสำหรับผู้ใช้งานในแพลตฟอร์ม SlothMove',
   noIndex: true
 });
+
+const EXAM_SYSTEM_PAUSED = true;
 
 export default async function Page({
   params
@@ -34,6 +37,10 @@ export default async function Page({
   }
   if (course.id !== 'police_admin' && course.id !== 'ocsc') {
     notFound();
+  }
+
+  if (EXAM_SYSTEM_PAUSED) {
+    return <ExamSystemPausedNotice />;
   }
 
   return (

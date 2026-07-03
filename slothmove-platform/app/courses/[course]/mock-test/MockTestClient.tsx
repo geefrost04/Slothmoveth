@@ -242,6 +242,7 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
   const [timeLeft, setTimeLeft] = useState(mockExam.durationSec);
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [recentSelection, setRecentSelection] = useState<{ questionIdx: number; choiceIdx: number } | null>(null);
 
   // Score saving state
   const [nickname, setNickname] = useState('');
@@ -297,12 +298,13 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
     const nextAnswers = [...userAnswers];
     nextAnswers[currentIdx] = choiceIdx;
     setUserAnswers(nextAnswers);
+    setRecentSelection({ questionIdx: currentIdx, choiceIdx });
 
-    // Auto-advance with a tiny visual delay
+    // Leave enough time for the selection feedback animation to register.
     if (currentIdx < mockExam.totalQuestions - 1) {
       setTimeout(() => {
         setCurrentIdx((prev) => prev + 1);
-      }, 200);
+      }, 420);
     }
   };
 
@@ -542,19 +544,29 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
                 <div className="space-y-3">
                   {q.choices.map((choice, index) => {
                     const isSelected = userAnswers[currentIdx] === index;
+                    const isFreshSelection =
+                      recentSelection?.questionIdx === currentIdx && recentSelection?.choiceIdx === index;
                     return (
                       <button
                         key={index}
                         onClick={() => selectChoice(index)}
-                        className={`w-full text-left p-4 rounded-lg border-2 font-medium text-sm transition-all flex items-start gap-3 ${
+                        className={`relative w-full overflow-hidden text-left p-4 rounded-lg border-2 font-medium text-sm transition-all duration-300 flex items-start gap-3 ${
                           isSelected
-                            ? 'border-[var(--color-primary)] bg-[var(--color-primary-bg,#fbeef0)] text-[var(--color-primary)] font-bold'
-                            : 'border-[#e5e0d8] dark:border-[#34344a] bg-white dark:bg-[#25253e] hover:border-[var(--color-primary)] text-gray-700 dark:text-gray-200'
+                            ? 'border-[#d1a11c] bg-[#fff7dd] text-[#6f5312] font-bold shadow-[0_0_0_1px_rgba(209,161,28,0.08)] dark:border-[#d1a11c] dark:bg-[#3a3118] dark:text-[#f7e3a3]'
+                            : 'border-[#e5e0d8] dark:border-[#34344a] bg-white dark:bg-[#25253e] hover:border-[#d1a11c] text-gray-700 dark:text-gray-200'
                         }`}
                       >
-                        <span className={`w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
+                        {isFreshSelection ? (
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-lg [animation:quiz-pencil-mark_420ms_ease-out]"
+                          >
+                            ✏️
+                          </span>
+                        ) : null}
+                        <span className={`w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-colors ${
                           isSelected
-                            ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white'
+                            ? 'border-[#b78700] bg-[#b78700] text-white'
                             : 'border-gray-400 text-gray-500'
                         }`}>
                           {String.fromCharCode(65 + index)}
@@ -613,19 +625,28 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
                   {userAnswers.map((ans, idx) => {
                     const isAnswered = ans !== null;
                     const isCurrent = idx === currentIdx;
+                    const isFreshSelection = recentSelection?.questionIdx === idx;
                     return (
                       <button
                         key={idx}
                         onClick={() => setCurrentIdx(idx)}
-                        className={`w-8 h-8 rounded text-[11px] font-black border transition-all flex items-center justify-center ${
+                        className={`relative w-8 h-8 rounded text-[11px] font-black border transition-all flex items-center justify-center ${
                           isCurrent
                             ? 'border-2 border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-sm'
                             : isAnswered
-                              ? 'border-[var(--color-primary)] bg-[var(--color-primary-bg,#fbeef0)] text-[var(--color-primary)]'
+                              ? 'border-[#d1a11c] bg-[#fff7dd] text-[#8a6600] dark:border-[#d1a11c] dark:bg-[#3a3118] dark:text-[#f7e3a3]'
                               : 'border-gray-200 dark:border-[#34344a] bg-white dark:bg-[#25253e] text-gray-400 dark:text-gray-500 hover:border-gray-400'
                         }`}
                       >
                         {idx + 1}
+                        {isFreshSelection ? (
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute -right-1 -top-1 text-[10px] [animation:quiz-pencil-pop_420ms_ease-out]"
+                          >
+                            ✏️
+                          </span>
+                        ) : null}
                       </button>
                     );
                   })}
@@ -634,6 +655,38 @@ export function MockTestClient({ course }: { course: CourseConfig }) {
             </div>
           </div>
         </div>
+
+        <style jsx>{`
+          @keyframes quiz-pencil-mark {
+            0% {
+              opacity: 0;
+              transform: translate(16px, -50%) rotate(18deg) scale(0.75);
+            }
+            45% {
+              opacity: 1;
+              transform: translate(-2px, -50%) rotate(-10deg) scale(1.08);
+            }
+            100% {
+              opacity: 0;
+              transform: translate(8px, -50%) rotate(6deg) scale(0.92);
+            }
+          }
+
+          @keyframes quiz-pencil-pop {
+            0% {
+              opacity: 0;
+              transform: translate(0, 0) rotate(10deg) scale(0.6);
+            }
+            40% {
+              opacity: 1;
+              transform: translate(-1px, 1px) rotate(-8deg) scale(1.05);
+            }
+            100% {
+              opacity: 0;
+              transform: translate(2px, -2px) rotate(4deg) scale(0.85);
+            }
+          }
+        `}</style>
 
         {/* Submit Confirmation Modal */}
         {showConfirmSubmit && (
