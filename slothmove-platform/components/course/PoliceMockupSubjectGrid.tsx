@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { CourseConfig } from '@/lib/course-types';
 
@@ -27,6 +27,23 @@ export function PoliceMockupSubjectGrid({
   }>;
 }) {
   const [activeSubject, setActiveSubject] = useState<any | null>(null);
+
+  useEffect(() => {
+    if (!activeSubject) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveSubject(null);
+    };
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [activeSubject]);
 
   // Helper icons copied from CourseLanding
   const MathGraphIcon = () => (
@@ -100,7 +117,13 @@ export function PoliceMockupSubjectGrid({
       {/* Modal Popup Overlay */}
       {activeSubject && (
         <div className="police-v2-modal-overlay" onClick={() => setActiveSubject(null)}>
-          <div className="police-v2-modal-container" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="police-v2-modal-container"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`เลือกเนื้อหาวิชา${activeSubject.title}`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               type="button"
               className="police-v2-modal-close"
