@@ -54,6 +54,15 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
     return () => subscription.unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
   const isValidSubject =
     segments.length >= 3 &&
     segments[0] === 'courses' &&
@@ -216,6 +225,14 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
         </div>
       </div>
 
+      <button
+        type="button"
+        className={`course-mobile-menu-backdrop${mobileOpen ? ' is-open' : ''}`}
+        onClick={() => setMobileOpen(false)}
+        aria-label="ปิดเมนู"
+        tabIndex={mobileOpen ? 0 : -1}
+      />
+
       <div
         id="course-mobile-menu"
         className={`course-mobile-menu${mobileOpen ? ' is-open' : ''}`}
@@ -223,14 +240,22 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
       >
         <div className="course-mobile-menu-head">
           <div>
-            <strong>เมนูคอร์ส</strong>
-            <span>{course.id.toUpperCase()} · {course.title}</span>
+            <span className="course-mobile-menu-kicker">SLOTHMOVE</span>
+            <strong>เมนูสนามสอบ</strong>
+            <span>นายสิบตำรวจ · ตำรวจสายอำนวยการ</span>
           </div>
-          <span className="course-mobile-menu-badge">เริ่มเรียนฟรี</span>
+          <button
+            type="button"
+            className="course-mobile-menu-close"
+            onClick={() => setMobileOpen(false)}
+            aria-label="ปิดเมนู"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
         <div className="course-mobile-menu-list">
           <Link href="/" onClick={() => setMobileOpen(false)}>
-            <span className="course-mobile-menu-icon">🏠</span>
+            <span className="course-mobile-menu-icon" aria-hidden="true">⌂</span>
             <span><strong>หน้าแรก SlothMove</strong><small>กลับสู่หน้าหลักของเว็บไซต์</small></span>
             <i>→</i>
           </Link>
@@ -242,7 +267,7 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
             </Link>
           )}
           <Link href={user ? '/dashboard' : '/login'} onClick={() => setMobileOpen(false)}>
-            <span className="course-mobile-menu-icon">👤</span>
+            <span className="course-mobile-menu-icon" aria-hidden="true">○</span>
             <span>
               <strong>{user ? displayName || 'สมาชิก' : 'เข้าสู่ระบบ'}</strong>
               <small>{user ? 'ดูประวัติผลการสอบและชุดข้อสอบ' : 'เข้าสู่ระบบเพื่อบันทึกประวัติการสอบ'}</small>
