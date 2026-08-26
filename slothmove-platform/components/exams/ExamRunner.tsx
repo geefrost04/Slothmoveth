@@ -144,6 +144,8 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
   const [showReview, setShowReview] = useState(false);
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>('wrong');
   const [expandedReviewIds, setExpandedReviewIds] = useState<Set<string>>(new Set());
+  const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
+  const [showAllCategoryResults, setShowAllCategoryResults] = useState(false);
   const [progressSaveState, setProgressSaveState] = useState<'idle' | 'account' | 'guest' | 'error'>('idle');
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [loading, setLoading] = useState(!initialData);
@@ -325,14 +327,16 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
   }, [questions.length, result, secondsLeft, sessionReady]);
 
   useEffect(() => {
-    if (!showLoginPrompt) return;
+    if (!showLoginPrompt && !showSubmitConfirm) return;
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setShowLoginPrompt(false);
+      if (event.key !== 'Escape') return;
+      setShowLoginPrompt(false);
+      setShowSubmitConfirm(false);
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [showLoginPrompt]);
+  }, [showLoginPrompt, showSubmitConfirm]);
 
   function finishExam(reason: ExamResult['reason']) {
     const score = questions.reduce(
@@ -439,7 +443,15 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
 
   function submitExam() {
     const unanswered = questions.length - Object.keys(answers).length;
-    if (unanswered > 0 && !window.confirm(`ยังไม่ได้ตอบ ${unanswered} ข้อ ต้องการส่งข้อสอบหรือไม่?`)) return;
+    if (unanswered > 0) {
+      setShowSubmitConfirm(true);
+      return;
+    }
+    finishExam('submitted');
+  }
+
+  function confirmSubmitExam() {
+    setShowSubmitConfirm(false);
     finishExam('submitted');
   }
 
@@ -454,6 +466,8 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
     setShowReview(false);
     setReviewFilter('wrong');
     setExpandedReviewIds(new Set());
+    setShowSubmitConfirm(false);
+    setShowAllCategoryResults(false);
     setProgressSaveState('idle');
     setShowLoginPrompt(false);
   }
@@ -525,7 +539,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
 
       return (
         <div className={styles.examPage}>
-          <ExamHeader secondsLeft={secondsLeft} exitHref={subjectHref} />
+          <ExamHeader completedSeconds={result.durationSeconds} exitHref={subjectHref} />
           <main className={styles.reviewPage}>
             <div className={styles.reviewHeader}>
               <div>
@@ -650,6 +664,15 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                 );
               })}
             </div>
+            <button
+              type="button"
+              className={styles.reviewBackToTop}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="กลับด้านบน"
+            >
+              <span aria-hidden="true">↑</span>
+              ด้านบน
+            </button>
           </main>
         </div>
       );
@@ -657,7 +680,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
 
     return (
       <div className={styles.examPage}>
-        <ExamHeader secondsLeft={secondsLeft} exitHref={subjectHref} />
+        <ExamHeader completedSeconds={result.durationSeconds} exitHref={subjectHref} />
         <main className={styles.resultPage}>
           <section className={styles.resultCard}>
             <span className={styles.resultEyebrow}>{result.reason === 'timeout' ? 'หมดเวลา' : 'ส่งข้อสอบแล้ว'}</span>
@@ -673,10 +696,13 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
             </div>
             <div className={styles.categoryResults}>
               <div className={styles.categoryResultsHead}>
-                <h2>ผลแยกตามประเภทข้อสอบ</h2>
+                <h2>จุดที่ควรฝึกก่อน</h2>
                 <span>{result.categoryResults.length} หมวด</span>
               </div>
-              {result.categoryResults.map((categoryResult) => {
+              {[...result.categoryResults]
+                .sort((a, b) => (a.correct / a.total) - (b.correct / b.total))
+                .slice(0, showAllCategoryResults ? undefined : 6)
+                .map((categoryResult) => {
                 const categoryPercent = Math.round((categoryResult.correct / categoryResult.total) * 100);
                 return (
                   <div className={styles.categoryResultRow} key={categoryResult.category}>
@@ -686,6 +712,16 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                   </div>
                 );
               })}
+              {result.categoryResults.length > 6 ? (
+                <button
+                  type="button"
+                  className={styles.categoryToggleButton}
+                  onClick={() => setShowAllCategoryResults((current) => !current)}
+                >
+                  {showAllCategoryResults ? 'แสดงเฉพาะจุดที่ควรฝึก' : `ดูครบทั้ง ${result.categoryResults.length} หมวด`}
+                  <span aria-hidden="true">{showAllCategoryResults ? '↑' : '↓'}</span>
+                </button>
+              ) : null}
             </div>
             <p className={styles.progressSaveMessage}>
               {progressSaveState === 'account' && 'บันทึกผลและความก้าวหน้ารายหมวดในบัญชีแล้ว'}
@@ -694,7 +730,14 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
               {progressSaveState === 'idle' && 'กำลังบันทึกความก้าวหน้า...'}
             </p>
             <div className={styles.resultActions}>
-              <button type="button" onClick={openReview} className={styles.primaryButton}>ดูเฉลยทุกข้อ</button>
+              <button type="button" onClick={openReview} className={`${styles.primaryButton} ${styles.reviewCta}`}>
+                <span className={styles.reviewCtaIcon} aria-hidden="true">✓</span>
+                <span className={styles.reviewCtaCopy}>
+                  <strong>ดูเฉลยพร้อมวิธีคิด</strong>
+                  <small>เช็กข้อผิดและเทคนิคจำทุกข้อ</small>
+                </span>
+                <span className={styles.reviewCtaArrow} aria-hidden="true">→</span>
+              </button>
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
               <Link href={subjectHref} className={styles.secondaryButton}>กลับหน้าวิชา{subjectTitle}</Link>
             </div>
@@ -752,7 +795,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
 
   return (
     <div className={styles.examPage}>
-      <ExamHeader secondsLeft={secondsLeft} exitHref={subjectHref} />
+      <ExamHeader secondsLeft={sessionReady ? secondsLeft : durationSeconds} exitHref={subjectHref} />
 
       <main className={styles.examMain}>
         <section className={styles.questionPanel}>
@@ -837,7 +880,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                 className={styles.primaryButton}
                 onClick={() => setCurrentIndex((index) => Math.min(questions.length - 1, index + 1))}
               >
-                {answers[currentQuestion.id] === undefined ? 'ข้ามไปข้อถัดไป' : 'บันทึกและข้อถัดไป'}
+                {answers[currentQuestion.id] === undefined ? 'ข้ามไปข้อถัดไป' : 'บันทึกและไปข้อถัดไป'}
                 <span aria-hidden="true">→</span>
               </button>
             )}
@@ -881,21 +924,65 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
       <div className={styles.autoSaveNote}>
         <span>i</span> ระบบบันทึกคำตอบและเวลาที่เหลือไว้ในอุปกรณ์นี้โดยอัตโนมัติ
       </div>
+
+      {showSubmitConfirm ? (
+        <div
+          className={styles.submitConfirmBackdrop}
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setShowSubmitConfirm(false);
+          }}
+        >
+          <section
+            className={styles.submitConfirm}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="submit-confirm-title"
+            aria-describedby="submit-confirm-description"
+          >
+            <button
+              type="button"
+              className={styles.submitConfirmClose}
+              onClick={() => setShowSubmitConfirm(false)}
+              aria-label="ปิดหน้าต่าง"
+            >
+              ×
+            </button>
+            <span className={styles.submitConfirmIcon} aria-hidden="true">!</span>
+            <span className={styles.submitConfirmEyebrow}>ตรวจคำตอบก่อนส่ง</span>
+            <h2 id="submit-confirm-title">ยังไม่ได้ตอบ {questions.length - answeredCount} ข้อ</h2>
+            <p id="submit-confirm-description">
+              ข้อที่เว้นว่างจะนับเป็นคำตอบผิด คุณสามารถกลับไปทำต่อ หรือส่งข้อสอบตอนนี้ได้
+            </p>
+            <div className={styles.submitConfirmSummary}>
+              <div><span>ตอบแล้ว</span><strong>{answeredCount}</strong></div>
+              <div><span>ยังไม่ตอบ</span><strong>{questions.length - answeredCount}</strong></div>
+              <div><span>ปักหมุด</span><strong>{flaggedIds.size}</strong></div>
+            </div>
+            <div className={styles.submitConfirmActions}>
+              <button type="button" onClick={() => setShowSubmitConfirm(false)}>กลับไปทำต่อ</button>
+              <button type="button" onClick={confirmSubmitExam}>ยืนยันส่งข้อสอบ</button>
+            </div>
+          </section>
+        </div>
+      ) : null}
     </div>
   );
 }
 
-function ExamHeader({ secondsLeft, exitHref }: { secondsLeft: number; exitHref: string }) {
+function ExamHeader({ secondsLeft, completedSeconds, exitHref }: { secondsLeft?: number; completedSeconds?: number; exitHref: string }) {
+  const isCompleted = completedSeconds !== undefined;
+  const displayedSeconds = isCompleted ? completedSeconds : secondsLeft ?? 0;
   return (
     <header className={styles.examHeaderOuter}>
       <div className={styles.examHeaderInner}>
         <Link href="/" className={styles.wordmark} aria-label="SlothMove หน้าแรก">
           SLOTH<span>MOVE</span>
         </Link>
-        <div className={`${styles.timer} ${secondsLeft <= 300 ? styles.timerWarning : ''}`}>
+        <div className={`${styles.timer} ${!isCompleted && displayedSeconds <= 300 ? styles.timerWarning : ''}`}>
           <ClockIcon />
-          <span>เวลาคงเหลือ</span>
-          <strong>{formatTime(secondsLeft)}</strong>
+          <span>{isCompleted ? 'เวลาที่ใช้' : 'เวลาคงเหลือ'}</span>
+          <strong>{formatTime(displayedSeconds)}</strong>
         </div>
         <Link href={exitHref} className={styles.exitButton}>
           <ExitIcon /> ออกจากข้อสอบ

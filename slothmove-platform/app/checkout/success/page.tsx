@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { getStripe } from '@/lib/stripe';
+import { headers } from 'next/headers';
+import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 import { completePaidCheckoutSession } from '@/lib/stripe-orders';
 
 export const dynamic = 'force-dynamic';
@@ -16,6 +17,10 @@ export default async function CheckoutSuccessPage({
 
   if (sessionId?.startsWith('cs_')) {
     try {
+      const requestHeaders = await headers();
+      const host = requestHeaders.get('host') || 'localhost';
+      const protocol = host.includes('localhost') ? 'http' : 'https';
+      assertLiveStripeOnPublicSite(`${protocol}://${host}`);
       const session = await getStripe().checkout.sessions.retrieve(sessionId);
       if (session.metadata?.product_id?.startsWith('police_mock_test_set_')) {
         returnHref = '/courses/police_admin/mock-test';

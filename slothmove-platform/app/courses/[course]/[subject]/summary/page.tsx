@@ -11,22 +11,31 @@ export default async function StudySheetIndex({ params }: { params: Promise<{ co
   if (!course || !subject) notFound();
 
   let bundle: StudySheetBundle | null = null;
-  if (courseId === 'police_admin' && subjectId === 'math') {
+  const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
+
+  if (courseId === 'police_admin' && normalizedSubjectId === 'math') {
     const localData = require('@/content/study-sheets/police-general-ability-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
-  } else if (courseId === 'police_admin' && subjectId === 'computer') {
+  } else if (courseId === 'police_admin' && normalizedSubjectId === 'computer') {
     const localData = require('@/content/study-sheets/police-computer-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && normalizedSubjectId === 'saraban') {
+    const localData = require('@/content/study-sheets/police-saraban-summary.json');
+    bundle = {
+      sheet: localData.sheet,
+      sections: localData.sections,
+      assets: localData.assets
+    } as StudySheetBundle;
   } else {
-    bundle = await getPublishedStudySheet(courseId, subjectId);
+    bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
   }
 
   const firstSection = bundle?.sections[0];

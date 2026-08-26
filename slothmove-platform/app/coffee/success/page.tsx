@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getStripe } from '@/lib/stripe';
+import { headers } from 'next/headers';
+import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,6 +15,10 @@ export default async function CoffeeSuccessPage({
   const { session_id: sessionId } = await searchParams;
   if (sessionId?.startsWith('cs_')) {
     try {
+      const requestHeaders = await headers();
+      const host = requestHeaders.get('host') || 'localhost';
+      const protocol = host.includes('localhost') ? 'http' : 'https';
+      assertLiveStripeOnPublicSite(`${protocol}://${host}`);
       const session = await getStripe().checkout.sessions.retrieve(sessionId);
       const pdfPath = session.metadata?.pdf_path;
       if (

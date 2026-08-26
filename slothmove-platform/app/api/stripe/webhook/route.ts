@@ -1,10 +1,15 @@
 import { NextResponse } from 'next/server';
 import type Stripe from 'stripe';
-import { getStripe } from '@/lib/stripe';
+import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 import { getSupabaseAdmin } from '@/lib/supabase-admin';
 import { completePaidCheckoutSession } from '@/lib/stripe-orders';
 
 export async function POST(request: Request) {
+  try {
+    assertLiveStripeOnPublicSite(request.url);
+  } catch {
+    return new NextResponse('Live Stripe is not configured.', { status: 503 });
+  }
   const signature = request.headers.get('stripe-signature');
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!signature || !webhookSecret) return new NextResponse('Webhook is not configured.', { status: 400 });

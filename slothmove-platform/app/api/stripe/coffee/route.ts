@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import { getStripe } from '@/lib/stripe';
+import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 
 const COFFEE_AMOUNTS = new Set([10, 20, 50]);
 const PDF_PATHS = new Set(['/files/สรุปเรื่องเซต.pdf']);
 
 export async function POST(request: Request) {
   try {
+    assertLiveStripeOnPublicSite(request.url);
     const body = await request.json() as { amount?: number; pdfPath?: string };
     if (!body.amount || !COFFEE_AMOUNTS.has(body.amount) || !body.pdfPath || !PDF_PATHS.has(body.pdfPath)) {
       return NextResponse.json({ error: 'ตัวเลือกการสนับสนุนไม่ถูกต้อง' }, { status: 400 });

@@ -1,7 +1,7 @@
 .catalog {
   display: grid;
-  gap: 8px;
-  margin: 18px 0;
+  gap: 12px;
+  margin: 22px 0 0;
 }
 
 .heading {
@@ -10,7 +10,7 @@
   justify-content: space-between;
   gap: 12px;
   color: #182132;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .heading strong { display: flex; align-items: center; gap: 8px; }
@@ -20,7 +20,8 @@
   padding: 5px 10px;
   border-radius: 99px;
   color: #7a1822;
-  background: #fde7ea;
+  border: 1px solid #edd5d8;
+  background: #fff5f5;
   font-weight: 850;
 }
 
@@ -29,16 +30,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 12px;
-  border: 1px solid #eee0e2;
-  border-radius: 8px;
+  padding: 16px 18px;
+  border: 1px solid #eadcdf;
+  border-radius: 12px;
   color: #172033;
-  background: #fff;
+  background: linear-gradient(110deg, #fff 0%, #fffbf6 100%);
 }
 
 .overview strong {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .overview span {
@@ -70,14 +71,15 @@
   grid-template-columns: auto 1fr auto;
   gap: 12px;
   align-items: center;
-  min-height: 72px;
-  padding: 11px 14px;
-  border: 1px solid #efb5bc;
-  border-radius: 8px;
+  min-height: 82px;
+  padding: 14px 16px;
+  border: 1px solid #e8cfd3;
+  border-radius: 12px;
   color: #172033;
   background: #fff;
   text-decoration: none;
-  transition: 160ms ease;
+  box-shadow: 0 8px 24px rgba(58, 37, 40, 0.035);
+  transition: 180ms ease;
 }
 
 .ownedCard { border-color: #b9d1bc; background: #fff; }
@@ -98,37 +100,38 @@
   grid-template-columns: auto 1fr auto;
   gap: 12px;
   align-items: center;
-  min-height: 72px;
-  padding: 11px 14px;
+  min-height: 82px;
+  padding: 14px 16px;
   border: 1px dashed #cfc7c8;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #172033;
   background: #fff;
 }
 
 .examCard:hover {
   border-color: #b92334;
-  box-shadow: 0 8px 20px rgba(122, 24, 34, 0.09);
-  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(122, 24, 34, 0.1);
+  transform: translateY(-2px);
 }
 
 .examIcon {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
   color: #fff;
-  background: #9d1e2c;
+  background: linear-gradient(145deg, #a32636, #761822);
+  box-shadow: 0 8px 18px rgba(122, 24, 34, 0.16);
   font-weight: 950;
 }
 
 .examIcon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.lockedIcon { color: #fff; background: #aaa7a8; }
+.lockedIcon { color: #fff; background: linear-gradient(145deg, #a8a3a4, #7f7b7c); box-shadow: none; }
 
 .examCopy { min-width: 0; }
 .examCopy > div { display: flex; align-items: center; gap: 8px; }
-.examCopy strong { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.examCopy strong { overflow: hidden; font-size: 15px; text-overflow: ellipsis; white-space: nowrap; }
 .examCopy em { padding: 3px 7px; border-radius: 6px; color: #7a1822; background: #fde7ea; font-size: 10px; font-style: normal; font-weight: 900; }
 .ownedCard .examCopy em { color: #527958; background: #eaf3e9; }
 .examCopy span, .examCopy small { display: block; margin-top: 2px; color: #6b7482; font-size: 11px; }
@@ -139,7 +142,7 @@
 
 .toggleButton {
   justify-self: center;
-  padding: 7px 12px;
+  padding: 9px 16px;
   border: 1px solid #ead5d8;
   border-radius: 999px;
   color: #7a1822;

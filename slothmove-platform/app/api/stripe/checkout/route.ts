@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getStripe } from '@/lib/stripe';
+import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 import { getSupabaseAdmin } from '@/lib/supabase-admin';
 import { getSupabaseServer } from '@/lib/supabase-server';
 
 export async function POST(request: Request) {
   try {
+    assertLiveStripeOnPublicSite(request.url);
     const body = await request.json() as { productId?: string };
     if (!body.productId) return NextResponse.json({ error: 'ไม่พบสินค้า' }, { status: 400 });
 

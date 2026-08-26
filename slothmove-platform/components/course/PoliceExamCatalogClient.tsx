@@ -70,15 +70,19 @@ export function PoliceExamCatalogClient({
     return <div className={styles.state}>ยังไม่มีชุดข้อสอบที่เปิดใช้งาน</div>;
   }
 
-  const compactSets = showAllSets ? examSets : examSets.slice(-3);
+  const previewSets = [
+    ...examSets.filter((examSet) => examSet.access_type === 'free'),
+    ...examSets.filter((examSet) => examSet.access_type !== 'free')
+  ].slice(0, 3);
+  const compactSets = showAllSets ? examSets : previewSets;
   const freeCount = examSets.filter((examSet) => examSet.access_type === 'free').length;
   const subjectCopy: Record<string, { title: string; source: string }> = {
-    math: { title: 'คลังข้อสอบความรู้ทั่วไป', source: 'จัดเป็นชุดสั้นสำหรับซ้อมจับเวลา ไม่แสดงจำนวนข้อรวมให้รกหน้า' },
-    computer: { title: 'คลังข้อสอบคอมพิวเตอร์', source: 'สร้างโดย NotebookLM จากโครงสร้างต้นฉบับท้ายบทคอม.pdf' },
-    thai: { title: 'คลังข้อสอบภาษาไทย', source: 'สร้างโดย NotebookLM จากโครงสร้างต้นฉบับไทย.pdf' },
-    law: { title: 'คลังข้อสอบกฎหมาย', source: 'สร้างโดย NotebookLM จากโครงสร้างต้นฉบับกฏหมาย.pdf' },
-    saraban: { title: 'คลังข้อสอบงานสารบรรณ', source: 'สร้างโดย NotebookLM จากโครงสร้างต้นฉบับสารบรรณ.pdf' },
-    english: { title: 'คลังข้อสอบภาษาอังกฤษ', source: 'สร้างโดย NotebookLM จากโครงสร้างต้นฉบับอังกฤษ.pdf' }
+    math: { title: 'คลังข้อสอบความรู้ทั่วไป', source: 'ฝึกคิดวิเคราะห์และคำนวณภายใต้เวลาจำกัด พร้อมเฉลยทบทวนหลังทำ' },
+    computer: { title: 'คลังข้อสอบคอมพิวเตอร์', source: 'ครอบคลุมพื้นฐานคอมพิวเตอร์ โปรแกรมสำนักงาน เครือข่าย และความปลอดภัยดิจิทัล' },
+    thai: { title: 'คลังข้อสอบภาษาไทย', source: 'ฝึกอ่านจับใจความ หลักภาษา การใช้คำ และการวิเคราะห์ข้อความอย่างเป็นระบบ' },
+    law: { title: 'คลังข้อสอบกฎหมาย', source: 'ทบทวนหลักกฎหมายสำคัญและการประยุกต์ใช้ผ่านสถานการณ์ที่หลากหลาย' },
+    saraban: { title: 'คลังข้อสอบงานสารบรรณ', source: 'ฝึกจำหลักเกณฑ์ ชนิดหนังสือ ขั้นตอนปฏิบัติ และรายละเอียดที่มักสับสน' },
+    english: { title: 'คลังข้อสอบภาษาอังกฤษ', source: 'ฝึก Vocabulary, Grammar, Conversation และ Reading ในรูปแบบจับเวลา' }
   };
   const overview = subjectCopy[subjectId] ?? subjectCopy.math;
 
@@ -89,7 +93,7 @@ export function PoliceExamCatalogClient({
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M9 5h6M9 3h6v4H9zM7 5H5v16h14V5h-2M8 11h8M8 15h8" />
           </svg>
-          Overview ชุดข้อสอบ
+          ภาพรวมชุดข้อสอบ
         </strong>
         <span>{examSets.length} ชุดพร้อมทำ</span>
       </div>

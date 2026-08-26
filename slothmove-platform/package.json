@@ -11,7 +11,9 @@
     "lint": "next lint",
     "content:import:study-sheet": "node scripts/import-study-sheet.mjs",
     "content:validate:study-sheet": "node scripts/import-study-sheet.mjs --validate-only",
-    "content:seed:study-sheet": "node scripts/generate-study-sheet-seed.mjs"
+    "content:seed:study-sheet": "node scripts/generate-study-sheet-seed.mjs",
+    "commerce:audit": "node scripts/migrate-stripe-live-products.mjs --dry-run",
+    "commerce:migrate:live": "node scripts/migrate-stripe-live-products.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.0",

@@ -16,22 +16,31 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
   if (!course || !subject) notFound();
 
   let bundle: StudySheetBundle | null = null;
-  if (courseId === 'police_admin' && subjectId === 'math') {
+  const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
+
+  if (courseId === 'police_admin' && normalizedSubjectId === 'math') {
     const localData = require('@/content/study-sheets/police-general-ability-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-section-${idx}` })),
       assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-asset-${idx}` }))
     } as StudySheetBundle;
-  } else if (courseId === 'police_admin' && subjectId === 'computer') {
+  } else if (courseId === 'police_admin' && normalizedSubjectId === 'computer') {
     const localData = require('@/content/study-sheets/police-computer-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-computer-section-${idx}` })),
       assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-computer-asset-${idx}` }))
     } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && normalizedSubjectId === 'saraban') {
+    const localData = require('@/content/study-sheets/police-saraban-summary.json');
+    bundle = {
+      sheet: localData.sheet,
+      sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-saraban-section-${idx}` })),
+      assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-saraban-asset-${idx}` }))
+    } as StudySheetBundle;
   } else {
-    bundle = await getPublishedStudySheet(courseId, subjectId);
+    bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
   }
 
   const current = bundle?.sections.find((section) => section.slug === sectionSlug);
@@ -44,22 +53,31 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
   const { course: courseId, subject: subjectId, section: sectionSlug } = await params;
 
   let bundle: StudySheetBundle | null = null;
-  if (courseId === 'police_admin' && subjectId === 'math') {
+  const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
+
+  if (courseId === 'police_admin' && normalizedSubjectId === 'math') {
     const localData = require('@/content/study-sheets/police-general-ability-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
-  } else if (courseId === 'police_admin' && subjectId === 'computer') {
+  } else if (courseId === 'police_admin' && normalizedSubjectId === 'computer') {
     const localData = require('@/content/study-sheets/police-computer-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && normalizedSubjectId === 'saraban') {
+    const localData = require('@/content/study-sheets/police-saraban-summary.json');
+    bundle = {
+      sheet: localData.sheet,
+      sections: localData.sections,
+      assets: localData.assets
+    } as StudySheetBundle;
   } else {
-    bundle = await getPublishedStudySheet(courseId, subjectId);
+    bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
   }
 
   const section = bundle?.sections.find((item: any) => item.slug === sectionSlug);

@@ -49,6 +49,18 @@ export function CourseSubjectPage({
     );
   }
 
+  if (course.id === 'police_admin') {
+    return (
+      <PoliceSubjectLandingPage
+        course={course}
+        subject={subject}
+        practiceHref={practiceHref}
+        examSets={examSets}
+        ownedProductIds={ownedProductIds}
+      />
+    );
+  }
+
   return (
     <div className="course-subject-page">
       <div className="course-subject-breadcrumb-wrap">
@@ -85,8 +97,8 @@ export function CourseSubjectPage({
           <section style={{ marginBottom: 28 }}>
             <h2>ชีทสรุปสำหรับอ่านสอบ</h2>
             <p>
-              รวมเนื้อหาวิชาคอมพิวเตอร์จาก NotebookLM เรียงเป็น 5 Part พร้อมภาพประกอบช่วยจำ
-              สำหรับอ่านทบทวนก่อนทำข้อสอบ
+              เรียงเนื้อหาคอมพิวเตอร์เป็นหมวด พร้อมภาพประกอบและจุดสำคัญที่ควรจำ
+              สำหรับอ่านทบทวนก่อนลงมือฝึก
             </p>
             <div className="course-message-actions">
               <Link href={studySheetHref} className="course-action-primary">
@@ -103,8 +115,7 @@ export function CourseSubjectPage({
           <section style={{ marginBottom: 28 }}>
             <h2>ชุดข้อสอบ{subject.title}</h2>
             <p>
-              ชุดข้อสอบสร้างโดย NotebookLM จากไฟล์ต้นฉบับของวิชานี้ แล้วผ่าน Quality Pass ก่อนนำเข้าเว็บ
-              เหมาะสำหรับซ้อมจับเวลาและดูเฉลยหลังทำ
+              ฝึกทำเป็นชุดภายใต้เวลาจำกัด พร้อมดูเฉลยและย้อนทบทวนจุดที่ควรพัฒนาได้หลังทำ
             </p>
             <PoliceExamCatalogClient
               courseId={course.id}
@@ -153,6 +164,166 @@ export function CourseSubjectPage({
         ) : hasStudySheet || hasPoliceSubjectExamCatalog ? null : (
           <SubjectNotReady course={course} subject={subject} />
         )}
+      </div>
+    </div>
+  );
+}
+
+const POLICE_SUBJECT_DETAILS: Record<string, {
+  eyebrow: string;
+  summary: string;
+  highlight: string;
+  hasSummary: boolean;
+}> = {
+  thai: {
+    eyebrow: 'ภาษาและการสื่อสาร',
+    summary: 'จับประเด็นให้แม่น ใช้ภาษาให้ถูก และวิเคราะห์ข้อความได้อย่างเป็นระบบ',
+    highlight: 'อ่านจับใจความ · หลักภาษา · การใช้ภาษา',
+    hasSummary: false
+  },
+  computer: {
+    eyebrow: 'เทคโนโลยีสารสนเทศ',
+    summary: 'ทบทวนพื้นฐานคอมพิวเตอร์ โปรแกรมสำนักงาน เครือข่าย และความปลอดภัยดิจิทัล',
+    highlight: 'พื้นฐานคอมฯ · Microsoft Office · อินเทอร์เน็ต',
+    hasSummary: true
+  },
+  saraban: {
+    eyebrow: 'ระเบียบและงานอำนวยการ',
+    summary: 'เข้าใจชนิดหนังสือ ขั้นตอนรับส่ง การเก็บรักษา และแนวปฏิบัติงานสารบรรณ',
+    highlight: 'ชนิดหนังสือ · ขั้นตอนงาน · ระเบียบที่ใช้',
+    hasSummary: true
+  },
+  law: {
+    eyebrow: 'กฎหมายสำหรับงานตำรวจ',
+    summary: 'ทบทวนหลักกฎหมายสำคัญผ่านสถานการณ์และคำถามที่เน้นการประยุกต์ใช้',
+    highlight: 'อาญา · แพ่ง · วิธีพิจารณาความอาญา',
+    hasSummary: false
+  },
+  english: {
+    eyebrow: 'English for Examination',
+    summary: 'ฝึกคำศัพท์ ไวยากรณ์ บทสนทนา และการอ่านเพื่อเลือกคำตอบอย่างมีเหตุผล',
+    highlight: 'Vocabulary · Grammar · Reading',
+    hasSummary: false
+  }
+};
+
+function PoliceSubjectLandingPage({
+  course,
+  subject,
+  practiceHref,
+  examSets,
+  ownedProductIds
+}: {
+  course: CourseConfig;
+  subject: SubjectMeta;
+  practiceHref: string;
+  examSets: CatalogExamSet[];
+  ownedProductIds: string[];
+}) {
+  const details = POLICE_SUBJECT_DETAILS[subject.id] ?? {
+    eyebrow: 'เตรียมสอบนายสิบตำรวจ',
+    summary: subject.desc,
+    highlight: 'ทบทวน · ฝึกทำ · วิเคราะห์ผล',
+    hasSummary: false
+  };
+  const totalQuestions = examSets.reduce((total, examSet) => total + examSet.total_questions, 0);
+  const freeSets = examSets.filter((examSet) => examSet.access_type === 'free').length;
+  const summaryHref = `/courses/${course.id}/${subject.id}/summary`;
+
+  return (
+    <div className={`police-subject-page police-subject-page--catalog subject-${subject.id}`}>
+      <div className="container">
+        <nav className="police-subject-breadcrumb" aria-label="breadcrumb">
+          <Link href="/">หน้าแรก</Link>
+          <span className="police-subject-breadcrumb-separator">&gt;</span>
+          <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
+          <span className="police-subject-breadcrumb-separator">&gt;</span>
+          <span className="police-subject-breadcrumb-current">{subject.title}</span>
+        </nav>
+
+        <section className="police-subject-hero police-subject-hero--catalog">
+          <div className="police-subject-hero-left">
+            <span className="police-subject-eyebrow">{details.eyebrow}</span>
+            <div className="police-subject-hero-title-row">
+              <span className="police-subject-hero-icon police-subject-hero-icon--emoji" aria-hidden="true">
+                {subject.icon ?? '📘'}
+              </span>
+              <h1 className="police-subject-hero-title">{subject.title}</h1>
+            </div>
+            <p className="police-subject-hero-subtitle">{details.summary}</p>
+            <div className="police-subject-hero-stats">
+              <div className="police-subject-hero-stat-card">
+                <span className="police-subject-hero-stat-icon"><SheetIcon /></span>
+                <div className="police-subject-hero-stat-info">
+                  <strong>คลังข้อสอบ</strong>
+                  <span>{examSets.length} ชุด · {totalQuestions.toLocaleString('th-TH')} ข้อ</span>
+                </div>
+              </div>
+              <div className="police-subject-hero-stat-card">
+                <span className="police-subject-hero-stat-icon"><CheckIcon /></span>
+                <div className="police-subject-hero-stat-info">
+                  <strong>เริ่มฝึกได้ทันที</strong>
+                  <span>{freeSets > 0 ? `${freeSets} ชุดทดลองฟรี` : 'เลือกชุดที่ต้องการ'}</span>
+                </div>
+              </div>
+              <div className="police-subject-hero-stat-card">
+                <span className="police-subject-hero-stat-icon"><BookOpenIcon /></span>
+                <div className="police-subject-hero-stat-info">
+                  <strong>หัวข้อสำคัญ</strong>
+                  <span>{details.highlight}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="police-subject-hero-right police-subject-hero-visual" aria-hidden="true">
+            <span className="police-subject-hero-watermark">SLOTHMOVE</span>
+            <img className="police-subject-hero-mascot" src={subject.mascot || '/pic/course-mascot/police-hero.png'} alt="" />
+            <img className="police-subject-hero-seal" src="/pic/logo_police.png" alt="" />
+          </div>
+        </section>
+
+        <section className="police-subject-summary-panel">
+          <div className="police-subject-summary-icon" aria-hidden="true"><BookOpenIcon /></div>
+          <div className="police-subject-summary-copy">
+            <span>{details.hasSummary ? 'ชีทสรุปพร้อมอ่าน' : 'พื้นที่ทบทวนเนื้อหา'}</span>
+            <h2>{details.hasSummary ? `สรุป${subject.title}แบบอ่านง่าย` : `สรุป${subject.title}กำลังจัดทำ`}</h2>
+            <p>
+              {details.hasSummary
+                ? 'เรียงประเด็นสำคัญเป็นลำดับ พร้อมตัวอย่างและจุดที่ควรจำก่อนลงสนามสอบ'
+                : 'ทีมงานกำลังเรียบเรียงสรุปแบบ Visual ให้กระชับ สวยงาม และเหมาะกับการทบทวนบนทุกหน้าจอ'}
+            </p>
+          </div>
+          {details.hasSummary ? (
+            <Link className="police-subject-summary-action" href={summaryHref}>เปิดชีทสรุป <span>›</span></Link>
+          ) : (
+            <span className="police-subject-summary-status">เร็ว ๆ นี้</span>
+          )}
+        </section>
+
+        <section className="police-subject-exam-section">
+          <div className="police-subject-section-heading">
+            <div>
+              <span>ฝึกทำอย่างเป็นระบบ</span>
+              <h2>ชุดข้อสอบ{subject.title}</h2>
+            </div>
+            <Link href={practiceHref}>เปิดลานฝึก <span>›</span></Link>
+          </div>
+          <PoliceExamCatalogClient
+            courseId={course.id}
+            subjectId={subject.id}
+            examSets={examSets}
+            ownedProductIds={ownedProductIds}
+          />
+        </section>
+
+        <section className="police-subject-footer-banner police-subject-footer-banner--luxury">
+          <span className="police-subject-footer-banner-icon"><LightbulbIcon /></span>
+          <div className="police-subject-footer-banner-text">
+            <h3>เริ่มจากชุดทดลอง แล้วค่อยวางแผนฝึกต่อ</h3>
+            <p>ระบบจะเก็บคะแนน เวลา และประวัติการทำข้อสอบไว้ในบัญชีของคุณ</p>
+          </div>
+          <Link href={practiceHref} className="police-subject-footer-action">ไปที่ลานฝึก <span>›</span></Link>
+        </section>
       </div>
     </div>
   );

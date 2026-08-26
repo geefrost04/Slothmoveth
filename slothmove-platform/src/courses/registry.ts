@@ -40,7 +40,8 @@ export function getCourse(id: string): CourseConfig | null {
 export function getSubject(courseId: string, subjectId: string) {
   const course = getCourse(courseId);
   if (!course) return null;
-  const subject = course.subjects.find((s) => s.id === subjectId);
+  const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
+  const subject = course.subjects.find((s) => s.id === normalizedSubjectId);
   return subject ? { course, subject } : null;
 }
 
@@ -56,7 +57,8 @@ export function getGame(courseId: string, gameId: string) {
 export function resolveTriple(courseId: string, subjectId: string, gameId: string) {
   const course = getCourse(courseId);
   if (!course) return null;
-  const subject = course.subjects.find((s) => s.id === subjectId);
+  const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
+  const subject = course.subjects.find((s) => s.id === normalizedSubjectId);
   const game = course.games.find((g) => g.id === gameId);
   if (!subject || !game) return null;
   return { course, subject, game };
