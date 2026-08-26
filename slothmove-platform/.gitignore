@@ -23,6 +23,9 @@ dist/
 *.log
 npm-debug.log*
 
+# local data snapshots
+*.backup-*
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

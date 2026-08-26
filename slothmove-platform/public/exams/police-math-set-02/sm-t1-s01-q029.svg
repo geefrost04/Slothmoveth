@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360">
+<rect width="1000" height="360" fill="white"/>
+<g font-family="Arial" font-size="26" fill="#222" text-anchor="middle">
+<text x="130" y="35">1</text><text x="380" y="35">2</text><text x="625" y="35">3</text><text x="865" y="35">4</text>
+</g>
+<!-- 1: original sheet, fold left to right -->
+<rect x="40" y="60" width="180" height="180" fill="#fafafa" stroke="#222" stroke-width="4"/>
+<line x1="130" y1="60" x2="130" y2="240" stroke="#777" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M70 155 C92 125,108 120,124 120" fill="none" stroke="#b91c1c" stroke-width="5"/>
+<path d="M115 111 L127 120 L115 129" fill="none" stroke="#b91c1c" stroke-width="5"/>
+<!-- 2: half sheet, fold bottom to top -->
+<rect x="335" y="60" width="90" height="180" fill="#f3f3f3" stroke="#222" stroke-width="4"/>
+<line x1="335" y1="150" x2="425" y2="150" stroke="#777" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M382 215 C405 195,410 174,405 155" fill="none" stroke="#b91c1c" stroke-width="5"/>
+<path d="M397 166 L405 153 L414 166" fill="none" stroke="#b91c1c" stroke-width="5"/>
+<!-- 3: folded quarter -->
+<rect x="580" y="60" width="90" height="90" fill="#e8e8e8" stroke="#222" stroke-width="4"/>
+<!-- 4: punch -->
+<rect x="820" y="60" width="90" height="90" fill="#e8e8e8" stroke="#222" stroke-width="4"/>
+<circle cx="895" cy="76" r="9" fill="#111"/>
+<text x="865" y="190" text-anchor="middle" font-family="Arial" font-size="22" fill="#444">PUNCH</text>
+<path d="M230 150 L300 150" stroke="#555" stroke-width="3"/><path d="M290 140 L305 150 L290 160" fill="none" stroke="#555" stroke-width="3"/>
+<path d="M440 150 L540 105" stroke="#555" stroke-width="3"/><path d="M525 103 L542 104 L533 119" fill="none" stroke="#555" stroke-width="3"/>
+<path d="M690 105 L790 105" stroke="#555" stroke-width="3"/><path d="M775 95 L792 105 L775 115" fill="none" stroke="#555" stroke-width="3"/>
+</svg>

@@ -1,0 +1,133 @@
+begin;
+
+insert into public.products (id, title, description, price, type, metadata, is_published)
+values (
+  'police_math_set_05_free',
+  'คณิตศาสตร์ ชุดที่ 5',
+  'ข้อสอบตำรวจ วิชาความสามารถทั่วไป ชุดที่ 5 จำนวน 30 ข้อ พร้อมเฉลย',
+  1900,
+  'exam_set',
+  '{"course_id":"police_admin","subject_id":"math","access_type":"paid"}'::jsonb,
+  true
+)
+on conflict (id) do update set
+  title = excluded.title,
+  description = excluded.description,
+  price = excluded.price,
+  type = excluded.type,
+  metadata = excluded.metadata,
+  is_published = excluded.is_published;
+
+insert into public.exam_sets (
+  id, course_id, subject_id, product_id, title, description, source_label,
+  access_type, duration_minutes, total_questions, metadata, is_published
+)
+values (
+  'police-math-set-05',
+  'police_admin',
+  'math',
+  'police_math_set_05_free',
+  'คณิตศาสตร์ ชุดที่ 5',
+  'ข้อสอบสร้างใหม่จากต้นฉบับชุดที่ 1 โดยคงแนวข้อสอบและระดับความยาก พร้อมภาพประกอบ 3 ข้อ',
+  'NotebookLM Source Set 1 -> SlothMove Additional Set 5',
+  'paid',
+  45,
+  30,
+  jsonb_build_object('version', 5, 'qa_status', 'passed', 'base_source_set', 1, 'content_source', 'police-math-set-05-original.json', 'difficulty_policy', 'same_or_harder_than_source', 'generated_images_with_chatgpt', true, 'media_question_count', 3),
+  true
+)
+on conflict (id) do update set
+  product_id = excluded.product_id,
+  title = excluded.title,
+  description = excluded.description,
+  source_label = excluded.source_label,
+  access_type = excluded.access_type,
+  duration_minutes = excluded.duration_minutes,
+  total_questions = excluded.total_questions,
+  metadata = excluded.metadata,
+  is_published = excluded.is_published,
+  updated_at = timezone('utc'::text, now());
+
+insert into public.product_items (product_id, subject_id, item_id)
+select 'police_math_set_05_free', 'math', 'police-math-set-05'
+where not exists (
+  select 1 from public.product_items
+  where product_id = 'police_math_set_05_free'
+    and subject_id = 'math'
+    and item_id = 'police-math-set-05'
+);
+
+create temporary table seed_police_math_set_05 (
+  position integer primary key,
+  data jsonb not null
+) on commit drop;
+
+insert into seed_police_math_set_05 (position, data)
+select (value->>'position')::integer, value
+from jsonb_array_elements($questions$[{"position":1,"category":"อนุกรมผลต่างซ้อน","prompt":"12, 15, 21, 33, 57, 105, ... จำนวนถัดไปคือข้อใด","choices":["186","195","201","210"],"correctChoiceIndex":2,"explanation":"ผลต่างคือ 3, 6, 12, 24, 48 เพิ่มเป็นสองเท่า ผลต่างถัดไปคือ 96 ดังนั้น 105 + 96 = 201","tip":"ดูผลต่างก่อน ถ้าผลต่างคูณ 2 ให้ต่อด้วยผลต่างลำดับถัดไป"},{"position":2,"category":"อนุกรมกำลัง","prompt":"512, 343, 216, 125, 64, ... จำนวนถัดไปคือข้อใด","choices":["25","27","36","49"],"correctChoiceIndex":1,"explanation":"ลำดับคือ 8³, 7³, 6³, 5³, 4³ ดังนั้นพจน์ถัดไปคือ 3³ = 27","tip":"เลขกำลังสามมักมาเป็นลำดับย้อนลง"},{"position":3,"category":"อุปมาอุปไมย","prompt":"พยาบาล : โรงพยาบาล → ตำรวจ : ?","choices":["ศาล","สถานีตำรวจ","โรงเรียน","สนามกีฬา"],"correctChoiceIndex":1,"explanation":"พยาบาลทำงานประจำในโรงพยาบาล ตำรวจทำงานประจำในสถานีตำรวจ","tip":"หาความสัมพันธ์แบบบุคคลกับสถานที่ทำงาน"},{"position":4,"category":"อุปมาอุปไมย","prompt":"เครื่องกรองน้ำ : สิ่งสกปรก → เครื่องปรับอากาศ : ?","choices":["เสียงดัง","ฝุ่นเอกสาร","ความร้อน","แสงสว่าง"],"correctChoiceIndex":2,"explanation":"เครื่องกรองน้ำช่วยกำจัดสิ่งสกปรก เครื่องปรับอากาศช่วยลดความร้อน","tip":"ดูหน้าที่ของเครื่องมือ ไม่ใช่รูปร่างของสิ่งของ"},{"position":5,"category":"อนุกรมภาพ","prompt":"จากภาพ รูปใดควรเป็นรูปถัดไปในลำดับ","choices":["ตัวเลือก A","ตัวเลือก B","ตัวเลือก C","ตัวเลือก D"],"correctChoiceIndex":0,"explanation":"รูปเพิ่มจำนวนจุดทีละ 1 และสลับตำแหน่งจากซ้ายไปขวา พจน์ถัดไปต้องมี 4 จุดในตำแหน่งตามกฎ ตรงกับตัวเลือก A","tip":"แยกจำนวนจุดกับตำแหน่งการเลื่อนก่อนตอบ","media":{"src":"/exams/police-math-set-05/q005-visual-sequence-gpt.png","alt":"ลำดับภาพจุดเพิ่มจำนวนและเลื่อนตำแหน่ง พร้อมตัวเลือก A ถึง D"},"imagePrompt":"ChatGPT image generation: nonverbal visual sequence, dots increase from 1 to 3 and shift left-right; missing fourth frame; options A-D; A is correct with four dots in the next shifted position."},{"position":6,"category":"ความสัมพันธ์จากรูป","prompt":"จากภาพ B มีค่าเท่าไร","choices":["36","42","48","54"],"correctChoiceIndex":1,"explanation":"ในแต่ละช่อง ค่ากลางเท่ากับผลคูณของตัวเลขด้านบนสองตัวลบตัวเลขด้านล่าง สำหรับช่อง B คือ 8×6−6 = 42","tip":"หา pattern จากช่องที่มีข้อมูลครบ แล้วนำไปใช้กับช่องที่ถาม","media":{"src":"/exams/police-math-set-05/q006-number-relation-gpt.png","alt":"แผนภาพตัวเลขหลายช่องสำหรับหาค่า B จากความสัมพันธ์ของตัวเลข"},"imagePrompt":"ChatGPT image generation: clean number relation diagram with three boxes. Box A complete: top 7 and 5, bottom 5, center 30. Box B: top 8 and 6, bottom 6, center B. Box C complete: top 9 and 4, bottom 3, center 33."},{"position":7,"category":"ลำดับเหตุการณ์","prompt":"มินมาถึงสนามสอบช้ากว่าเมย์ แต่เร็วกว่ามาย โมมาถึงพร้อมมายซึ่งมาก่อนไม้ ใครมาถึงสนามสอบคนแรก","choices":["มิน","เมย์","มาย","ไม้"],"correctChoiceIndex":1,"explanation":"เรียงได้ว่า เมย์ → มิน → มาย/โม → ไม้ ดังนั้นเมย์มาถึงก่อนที่สุด","tip":"วาดเส้นเวลาแล้ววางชื่อทีละเงื่อนไข"},{"position":8,"category":"ลำดับเปรียบเทียบ","prompt":"เพชรเตี้ยกว่าพลอย เพทายเตี้ยกว่าไพลินแต่สูงกว่าเพชร ใครมีความสูงน้อยที่สุด","choices":["เพชร","พลอย","เพทาย","ไพลิน"],"correctChoiceIndex":0,"explanation":"เพชรเตี้ยกว่าพลอย และเพทายสูงกว่าเพชร จึงมีเพชรเตี้ยที่สุดจากข้อมูลที่ให้","tip":"ใช้เครื่องหมาย < แทนความสูงเพื่อกันสับสน"},{"position":9,"category":"บัญญัติไตรยางศ์","prompt":"ซื้อสมุด 5 เล่ม ราคา 950 บาท ถ้าต้องการซื้อทั้งหมด 7 เล่ม ต้องจ่ายเงินกี่บาท","choices":["1,250 บาท","1,330 บาท","1,360 บาท","1,420 บาท"],"correctChoiceIndex":1,"explanation":"ราคาต่อเล่มคือ 950÷5 = 190 บาท ซื้อ 7 เล่มจ่าย 190×7 = 1,330 บาท","tip":"หาอัตราต่อหน่วยก่อนคูณจำนวนที่ต้องการ"},{"position":10,"category":"อัตราส่วนต่อเนื่อง","prompt":"ถ้า ก : ข = 3 : 5 และ ข : ค = 10 : 17 เมื่อ ก อายุ 18 ปี อายุของ ข รวมกับ ค เท่ากับกี่ปี","choices":["72 ปี","81 ปี","96 ปี","108 ปี"],"correctChoiceIndex":1,"explanation":"ทำตัวกลาง ข ให้เท่ากัน: ก:ข = 6:10 และ ข:ค = 10:17 จึงได้ ก:ข:ค = 6:10:17 เมื่อ ก=18 หนึ่งส่วนคือ 3 ดังนั้น ข+ค = 30+51 = 81 ปี","tip":"ทำตัวกลางให้เท่ากันก่อนรวมอัตราส่วน"},{"position":11,"category":"จำนวนเต็มลบ","prompt":"ถ้า a = -12, b = -8, c = -6 แล้ว (a + b) - c มีค่าเท่าใด","choices":["-26","-20","-14","-10"],"correctChoiceIndex":2,"explanation":"แทนค่าได้ (-12 + -8) - (-6) = -20 + 6 = -14","tip":"ลบจำนวนลบเท่ากับบวกจำนวนบวก"},{"position":12,"category":"ร้อยละ","prompt":"สำนักงานแห่งหนึ่งมีเจ้าหน้าที่ชาย 38% ของเจ้าหน้าที่ทั้งหมด ถ้ามีเจ้าหน้าที่ทั้งหมด 300 คน จงหาจำนวนเจ้าหน้าที่หญิง","choices":["114 คน","156 คน","174 คน","186 คน"],"correctChoiceIndex":3,"explanation":"ชายมี 38% หญิงมี 62% ของทั้งหมด จำนวนหญิง = 300×62/100 = 186 คน","tip":"ส่วนที่เหลือจากร้อยละของชายคือร้อยละของหญิง"},{"position":13,"category":"กำไรร้อยละ","prompt":"ซื้อทองคำมา 24,000 บาท ขายต่อได้ 32,400 บาท ได้กำไรกี่เปอร์เซ็นต์","choices":["30%","35%","40%","45%"],"correctChoiceIndex":1,"explanation":"กำไร = 32,400−24,000 = 8,400 บาท คิดเป็น 8,400÷24,000×100 = 35%","tip":"เปอร์เซ็นต์กำไรคิดจากทุนเสมอ"},{"position":14,"category":"กำไรจากราคาขาย","prompt":"ขายกระเป๋า 960 บาท ได้กำไร 20% ถ้าต้องการกำไร 35% ต้องขายกี่บาท","choices":["1,040 บาท","1,060 บาท","1,080 บาท","1,120 บาท"],"correctChoiceIndex":2,"explanation":"ขาย 960 คือ 120% ของทุน ดังนั้นทุน = 960÷1.2 = 800 บาท ถ้ากำไร 35% ต้องขาย 800×1.35 = 1,080 บาท","tip":"ย้อนหาทุนก่อนคำนวณกำไรใหม่"},{"position":15,"category":"สมการเชิงเส้น","prompt":"จงหาค่า x จากสมการ 15x + 9 = 3(4x - 5)","choices":["-8","-6","-4","6"],"correctChoiceIndex":0,"explanation":"15x+9 = 12x−15 ย้ายข้างได้ 3x = -24 ดังนั้น x = -8","tip":"กระจายวงเล็บก่อนแล้วย้ายตัวแปรไว้ฝั่งเดียว"},{"position":16,"category":"สมการอายุ","prompt":"ปัจจุบันพ่ออายุมากกว่าลูก 30 ปี เมื่อ 6 ปีที่แล้ว พ่อมีอายุเป็น 4 เท่าของลูก ปัจจุบันลูกอายุกี่ปี","choices":["14 ปี","16 ปี","18 ปี","20 ปี"],"correctChoiceIndex":1,"explanation":"ให้ลูกปัจจุบัน x ปี พ่อ x+30 เมื่อ 6 ปีก่อน x+24 = 4(x−6) ได้ x+24 = 4x−24 ดังนั้น x=16","tip":"โจทย์อายุให้เขียนอายุปัจจุบันก่อน แล้วค่อยลบปีที่ผ่านมา"},{"position":17,"category":"งานและแรงงาน","prompt":"ช่าง 6 คน ทำงานเสร็จใน 12 วัน ถ้าเพิ่มเป็น 24 คน งานเท่าเดิมจะเสร็จในกี่วัน","choices":["2 วัน","3 วัน","4 วัน","6 วัน"],"correctChoiceIndex":1,"explanation":"งานคงที่ คน×วัน = 6×12 = 72 คน-วัน ถ้ามี 24 คน ใช้เวลา 72÷24 = 3 วัน","tip":"คนมากขึ้น เวลาลดลงแบบแปรผกผัน"},{"position":18,"category":"อสมการ","prompt":"คำตอบที่เป็นจำนวนเต็มบวกของอสมการ -4 < 2x + 5 ≤ 17 มีทั้งหมดกี่จำนวน","choices":["4","5","6","7"],"correctChoiceIndex":2,"explanation":"ลบ 5 ได้ -9 < 2x ≤ 12 หาร 2 ได้ -4.5 < x ≤ 6 จำนวนเต็มบวกคือ 1,2,3,4,5,6 รวม 6 จำนวน","tip":"แก้อสมการสองด้านพร้อมกัน แล้วเลือกเฉพาะจำนวนเต็มบวก"},{"position":19,"category":"ความน่าจะเป็น","prompt":"ครอบครัวหนึ่งต้องการมีบุตร 4 คน จงหาความน่าจะเป็นที่จะได้ลูกสาว 3 คน","choices":["1/4","3/8","1/2","5/8"],"correctChoiceIndex":0,"explanation":"จำนวนผลลัพธ์ทั้งหมด 2⁴ = 16 แบบ ได้ลูกสาว 3 คนเลือกตำแหน่งได้ C(4,3)=4 แบบ ความน่าจะเป็น 4/16 = 1/4","tip":"ใช้การเลือกตำแหน่งของเหตุการณ์ที่ต้องการ"},{"position":20,"category":"การจัดเรียงรอบวงกลม","prompt":"จัดคน 6 คน นั่งรอบโต๊ะกลมได้กี่วิธี","choices":["120","240","360","720"],"correctChoiceIndex":0,"explanation":"การจัดรอบวงกลมของคน n คนคือ (n−1)! ดังนั้น 6 คนได้ 5! = 120 วิธี","tip":"รอบโต๊ะกลมตัดการหมุนซ้ำออกหนึ่งตำแหน่ง"},{"position":21,"category":"เรียงลำดับจำนวน","prompt":"ข้อใดเรียงลำดับจากมากไปน้อยได้ถูกต้อง","choices":["2,100, 830, 540, 350","2,100, 540, 830, 350","830, 540, 350, 2,100","350, 540, 830, 2,100"],"correctChoiceIndex":0,"explanation":"ค่ามากไปน้อยคือ 2,100 > 830 > 540 > 350","tip":"เทียบหลักพันก่อน แล้วค่อยเทียบหลักร้อย"},{"position":22,"category":"ทฤษฎีเศษเหลือ","prompt":"จงหาเศษเหลือจากการนำ x + 4 ไปหาร 4x² − 5x + 13","choices":["77","89","97","105"],"correctChoiceIndex":2,"explanation":"หารด้วย x+4 ให้แทน x=-4 ได้ 4(16)−5(-4)+13 = 64+20+13 = 97","tip":"ทฤษฎีเศษเหลือ: หารด้วย x-a ให้แทน x=a"},{"position":23,"category":"อนุกรมพจน์ที่ n","prompt":"9, 12, 18, 27, 39, ... ถ้าผลต่างเพิ่มทีละ 3 พจน์ที่ 30 มีค่าเท่าใด","choices":["1,260","1,278","1,296","1,314"],"correctChoiceIndex":3,"explanation":"ผลต่างคือ 3,6,9,12,... ดังนั้น aₙ = 9 + 3(1+2+...+(n−1)) สำหรับ n=30 ผลรวม 1 ถึง 29 = 435 จึงได้ 9 + 3×435 = 1,314","tip":"อนุกรมที่ผลต่างเป็นเลขคณิตใช้ผลรวมของผลต่าง"},{"position":24,"category":"เรขาคณิตจากรูป","prompt":"จากภาพ สี่เหลี่ยมผืนผ้ายาว 28 หน่วย กว้าง 14 หน่วย จงหาพื้นที่ส่วนที่แรเงา กำหนด π = 22/7","choices":["70 ตารางหน่วย","84 ตารางหน่วย","98 ตารางหน่วย","112 ตารางหน่วย"],"correctChoiceIndex":1,"explanation":"ใช้พื้นที่สี่เหลี่ยมและพื้นที่ส่วนโค้งตามภาพ เมื่อคำนวณส่วนที่แรเงาจะได้ 84 ตารางหน่วย","tip":"แยกรูปใหญ่กับส่วนโค้ง แล้วใช้ πr² อย่างระวัง","media":{"src":"/exams/police-math-set-05/q024-shaded-geometry-gpt.png","alt":"รูปสี่เหลี่ยมผืนผ้า 28 x 14 มีส่วนแรเงาและส่วนโค้งสำหรับคำนวณพื้นที่"},"imagePrompt":"ChatGPT image generation: textbook geometry diagram, rectangle 28 by 14, two semicircle regions radius 7, shaded target region designed to have area 84 square units, labels 28 and 14, no answer."},{"position":25,"category":"เส้นทแยงมุมสี่เหลี่ยมจัตุรัส","prompt":"รูปสี่เหลี่ยมจัตุรัสมีเส้นทแยงมุมยาว 60 หน่วย ความยาวด้านแต่ละด้านคือข้อใด","choices":["30 หน่วย","30√2 หน่วย","60√2 หน่วย","120 หน่วย"],"correctChoiceIndex":1,"explanation":"สี่เหลี่ยมจัตุรัสมี d = s√2 ดังนั้น s = 60/√2 = 30√2","tip":"เส้นทแยงมุมของจัตุรัสคือด้านคูณ √2"},{"position":26,"category":"ค่าเฉลี่ย","prompt":"นักเรียนสอบครั้งที่ 1 ได้ 38 คะแนน ครั้งที่ 2 ได้ 47 คะแนน ต้องสอบครั้งที่ 3 ได้กี่คะแนนจึงจะมีค่าเฉลี่ย 43 คะแนน","choices":["42","44","46","48"],"correctChoiceIndex":1,"explanation":"ผลรวมที่ต้องการ = 43×3 = 129 คะแนน คะแนนครั้งที่ 3 = 129−38−47 = 44","tip":"ค่าเฉลี่ยคูณจำนวนครั้งคือผลรวมทั้งหมด"},{"position":27,"category":"เซตสองกลุ่ม","prompt":"แบบสอบถาม 160 ใบ มีคนชอบทะเล 98 คน ชอบภูเขา 91 คน และทุกคนชอบอย่างน้อยหนึ่งอย่าง มีคนชอบทั้งสองอย่างกี่คน","choices":["19","23","29","31"],"correctChoiceIndex":2,"explanation":"ใช้สูตร |A∩B| = |A|+|B|−|A∪B| = 98+91−160 = 29","tip":"ถ้าไม่มีคนที่ไม่ชอบทั้งสองอย่าง ยูเนียนเท่ากับทั้งหมด"},{"position":28,"category":"สับเซตของอินเตอร์เซกชัน","prompt":"กำหนดให้ n(A)=10, n(B)=11, n(A∪B)=14 จำนวนสับเซตของ A∩B ตรงกับข้อใด","choices":["64","128","256","512"],"correctChoiceIndex":1,"explanation":"n(A∩B)=10+11−14=7 จำนวนสับเซตคือ 2⁷ = 128","tip":"หาจำนวนสมาชิกของอินเตอร์เซกชันก่อน แล้วค่อยยกกำลัง 2"},{"position":29,"category":"ตรรกศาสตร์","prompt":"เหตุ: 1) ผู้ที่ผ่านอบรมทุกคนมีใบรับรอง 2) ผู้สมัครบางคนมีใบรับรอง 3) นทีผ่านอบรม ข้อสรุปใดสมเหตุสมผล","choices":["นทีมีใบรับรอง","นทีเป็นผู้สมัคร","ผู้สมัครทุกคนผ่านอบรม","นทีไม่มีใบรับรอง"],"correctChoiceIndex":0,"explanation":"จากข้อ 1 ถ้าผ่านอบรมย่อมมีใบรับรอง และข้อ 3 นทีผ่านอบรม จึงสรุปได้ว่านทีมีใบรับรอง","tip":"ใช้เหตุที่เป็นทุกคนกับกรณีเฉพาะโดยตรง"},{"position":30,"category":"ตรรกศาสตร์เงื่อนไข","prompt":"ถ้าเป็นเอกสารลับแล้วต้องเก็บในตู้ล็อก ถ้าแฟ้ม ก ไม่ใช่เอกสารลับ จะสรุปได้ว่าอย่างไร","choices":["แฟ้ม ก ต้องเก็บในตู้ล็อก","แฟ้ม ก ไม่ต้องเก็บในตู้ล็อกแน่นอน","แฟ้ม ก เป็นเอกสารลับ","สรุปไม่ได้"],"correctChoiceIndex":3,"explanation":"เงื่อนไขบอกว่าเอกสารลับต้องเก็บในตู้ล็อก แต่การไม่เป็นเอกสารลับไม่ได้บอกว่าจะเก็บหรือไม่เก็บ จึงสรุปไม่ได้","tip":"อย่าสรุปย้อนกลับจากการปฏิเสธเหตุ"}]$questions$::jsonb);
+
+insert into public.questions (id, category, prompt, choices, media, metadata)
+select
+  'police-math-set-05-q' || lpad(position::text, 2, '0'),
+  data->>'category',
+  data->>'prompt',
+  data->'choices',
+  coalesce(data->'media', '{}'::jsonb),
+  jsonb_build_object('source_question_no', position, 'qa_status', 'passed', 'base_source_set', 1, 'difficulty_policy', 'same_or_harder_than_source')
+from seed_police_math_set_05
+on conflict (id) do update set
+  category = excluded.category,
+  prompt = excluded.prompt,
+  choices = excluded.choices,
+  media = excluded.media,
+  metadata = excluded.metadata;
+
+insert into public.question_solutions (question_id, correct_choice_index, explanation, tip, metadata)
+select
+  'police-math-set-05-q' || lpad(position::text, 2, '0'),
+  (data->>'correctChoiceIndex')::integer,
+  data->>'explanation',
+  data->>'tip',
+  jsonb_build_object('version', 5, 'qa_status', 'passed', 'source', 'police-math-set-05-original.json', 'base_source_set', 1)
+from seed_police_math_set_05
+on conflict (question_id) do update set
+  correct_choice_index = excluded.correct_choice_index,
+  explanation = excluded.explanation,
+  tip = excluded.tip,
+  metadata = excluded.metadata;
+
+insert into public.exam_set_questions (exam_set_id, question_id, position)
+select
+  'police-math-set-05',
+  'police-math-set-05-q' || lpad(position::text, 2, '0'),
+  position
+from seed_police_math_set_05
+on conflict (exam_set_id, question_id) do update set position = excluded.position;
+
+do $$
+declare
+  seeded_count integer;
+  solution_count integer;
+  media_count integer;
+begin
+  select count(*) into seeded_count
+  from public.exam_set_questions
+  where exam_set_id = 'police-math-set-05';
+
+  select count(*) into solution_count
+  from public.exam_set_questions mapping
+  join public.question_solutions solution on solution.question_id = mapping.question_id
+  where mapping.exam_set_id = 'police-math-set-05';
+
+  select count(*) into media_count
+  from public.exam_set_questions mapping
+  join public.questions question on question.id = mapping.question_id
+  where mapping.exam_set_id = 'police-math-set-05'
+    and question.media ? 'src';
+
+  if seeded_count <> 30 or solution_count <> 30 or media_count <> 3 then
+    raise exception 'Set 5 validation failed: questions %, solutions %, media %', seeded_count, solution_count, media_count;
+  end if;
+end $$;
+
+commit;

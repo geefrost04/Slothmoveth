@@ -30,7 +30,7 @@ export function CourseMaintenancePage({ course }: { course: CourseConfig }) {
             marginBottom: 14
           }}
         >
-          UNDER MAINTENANCE
+          COMING SOON
         </div>
         <h1
           style={{
@@ -42,11 +42,11 @@ export function CourseMaintenancePage({ course }: { course: CourseConfig }) {
             lineHeight: 1.08
           }}
         >
-          คอร์ส {course.title} กำลังปรับปรุงอยู่
+          คอร์ส {course.title} กำลังเตรียมเปิด
         </h1>
         <p style={{ margin: 0, color: 'var(--color-text-muted)', fontSize: 16, lineHeight: 1.75 }}>
-          ตอนนี้ระบบเปิดใช้งานเฉพาะคอร์ส <strong>Police_admin</strong> และ <strong>OCSC</strong> ก่อน
-          ส่วนคอร์สนี้ถูกปิดไว้ชั่วคราวเพื่อจัดการเนื้อหา โครงสร้าง และประสบการณ์ใช้งานให้เรียบร้อยก่อนเปิดอีกครั้ง
+          ตอนนี้เรากำลังเตรียมเนื้อหาและประสบการณ์การเรียนให้พร้อมก่อนเปิดใช้งาน
+          ระหว่างนี้สามารถเริ่มฝึกกับคอร์สตำรวจได้ก่อน
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 22 }}>
           <Link
@@ -64,25 +64,7 @@ export function CourseMaintenancePage({ course }: { course: CourseConfig }) {
               fontWeight: 800
             }}
           >
-            ไปที่ Police_admin
-          </Link>
-          <Link
-            href="/courses/ocsc"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: 46,
-              padding: '0 18px',
-              borderRadius: 999,
-              border: '1px solid var(--color-border)',
-              background: 'var(--color-surface)',
-              color: 'var(--color-text)',
-              textDecoration: 'none',
-              fontWeight: 700
-            }}
-          >
-            ไปที่ OCSC
+            เริ่มฝึกคอร์สตำรวจ
           </Link>
         </div>
       </div>

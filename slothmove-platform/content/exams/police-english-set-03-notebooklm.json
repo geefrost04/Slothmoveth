@@ -1,0 +1,588 @@
+{
+  "examSet": {
+    "id": "police-english-set-03",
+    "title": "ภาษาอังกฤษ ชุดที่ 3",
+    "description": "ข้อสอบภาษาอังกฤษ 30 ข้อ พร้อมเฉลย สร้างจากโครงสร้างต้นฉบับชุดที่ 3",
+    "sourceReference": "อังกฤษ.pdf ชุดที่ 3",
+    "durationMinutes": 45,
+    "totalQuestions": 30
+  },
+  "qualityNotes": {
+    "sourceSet": 3,
+    "policy": "DNA package converted without changing questions or solutions",
+    "generatedBy": "External DNA package",
+    "qaBy": "Package audit and SlothMove schema validator"
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A woman drops several folders while entering an office.\n\nWoman: \"Oh no, everything fell out.\"\nYou: \"__________\"\nWoman: \"Thank you. I really appreciate it.\"",
+      "choices": [
+        "You should be more careful next time.",
+        "Let me help you pick those up.",
+        "Those folders look expensive.",
+        "Are you finished with them?"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "อีกฝ่ายทำของตกและตอบกลับด้วยการขอบคุณ จึงต้องเป็นข้อเสนอช่วยเหลือ “Let me help you pick those up.” ตัวเลือกอื่นอาจถูกไวยากรณ์แต่ไม่เหมาะกับสถานการณ์เท่า.",
+      "tip": "Offering help: Let me help you... / Can I help you...?",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 1",
+      "verificationRef": "English pragmatics: offering help",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 2,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: Two friends are talking after a difficult practice test.\n\nKai: \"That test was much harder than I expected. I don't think I did well.\"\nFern: \"__________ You prepared seriously all week.\"",
+      "choices": [
+        "You should stop studying.",
+        "The test was probably easy.",
+        "I knew you would fail.",
+        "Don't be too hard on yourself."
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Fern ต้องการปลอบและให้กำลังใจเพื่อนที่กังวลเรื่องผลสอบ จึงเหมาะกับ “Don't be too hard on yourself.” มากที่สุด.",
+      "tip": "Reassurance: ดูว่าผู้พูดกำลังลดความกังวลของอีกฝ่ายหรือไม่",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 2",
+      "verificationRef": "English pragmatics: reassurance and encouragement",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 3,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A man is reporting a stolen bicycle at a police station.\n\nOfficer: \"Can you tell me where you last saw the bicycle?\"\nMan: \"__________\"\nOfficer: \"All right. We'll check the security cameras in that area.\"",
+      "choices": [
+        "I bought it three years ago.",
+        "It was outside the convenience store on King Street.",
+        "The bicycle is blue and black.",
+        "I usually ride it to work."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Officer ถามสถานที่ที่เห็นจักรยานครั้งสุดท้าย คำตอบจึงต้องระบุตำแหน่งโดยตรง ตัวเลือกอื่นเป็นข้อมูลที่เกี่ยวข้องแต่ไม่ตอบ where.",
+      "tip": "ตอบ WH-question ให้ตรงชนิดข้อมูล: where → สถานที่",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 3",
+      "verificationRef": "English pragmatics: answering a police-report question",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 4,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: A team is discussing a proposal.\n\nManager: \"I think we should launch the new system next Monday.\"\nEmployee: \"__________, but I think we need another week for testing.\"",
+      "choices": [
+        "You are completely wrong",
+        "I refuse to discuss it",
+        "With all due respect",
+        "That is ridiculous"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“With all due respect” เป็นวลีที่ใช้เกริ่นก่อนแสดงความเห็นไม่เห็นด้วยอย่างสุภาพ โดยเฉพาะในบริบทเป็นทางการ.",
+      "tip": "Polite disagreement: With all due respect, but...",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 4",
+      "verificationRef": "English pragmatics: polite disagreement",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 5,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: Two friends have just finished an easy quiz.\n\nNate: \"How was the quiz?\"\nPloy: \"Honestly, it was __________. I finished in ten minutes.\"",
+      "choices": [
+        "a piece of cake",
+        "a long shot",
+        "a dead end",
+        "a gray area"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "“a piece of cake” หมายถึงง่ายมาก เหมาะกับบริบทที่ผู้พูดทำเสร็จในเวลาเพียงสิบ分钟.",
+      "tip": "a piece of cake = very easy",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 5",
+      "verificationRef": "Standard English idiom: a piece of cake",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 6,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: A supervisor wants a direct answer.\n\nSupervisor: \"Did you send the confidential file to the wrong address?\"\nEmployee: \"Well, there were several messages, and the system was...\"\nSupervisor: \"Please don't __________. Just tell me yes or no.\"",
+      "choices": [
+        "spill the beans",
+        "hit the books",
+        "call it a day",
+        "beat around the bush"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“beat around the bush” หมายถึงพูดอ้อม ไม่เข้าประเด็น จึงตรงกับหัวหน้าที่ต้องการคำตอบ yes/no โดยตรง.",
+      "tip": "beat around the bush = avoid saying something directly",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 6",
+      "verificationRef": "Standard English idiom: beat around the bush",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 7,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The agency introduced new measures to strengthen security at public buildings.",
+      "choices": [
+        "weaken",
+        "reinforce",
+        "ignore",
+        "remove"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "“strengthen” หมายถึงทำให้แข็งแรงหรือมีประสิทธิภาพมากขึ้น จึงใกล้กับ “reinforce”.",
+      "tip": "strengthen = reinforce",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 7",
+      "verificationRef": "Standard English vocabulary: strengthen = reinforce",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 8,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "Police are questioning a __________ who was seen leaving the building shortly before the alarm sounded.",
+      "choices": [
+        "suspect",
+        "victim",
+        "witness",
+        "judge"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "“suspect” คือบุคคลที่ตำรวจสงสัยว่าอาจเกี่ยวข้องกับความผิด.",
+      "tip": "Legal vocabulary: suspect = ผู้ต้องสงสัย",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 8",
+      "verificationRef": "Standard English legal vocabulary: suspect",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 9,
+      "category": "Vocabulary",
+      "difficulty": "ปานกลาง",
+      "prompt": "The information in the first report was inaccurate and had to be corrected.",
+      "choices": [
+        "precise",
+        "reliable",
+        "incorrect",
+        "complete"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“inaccurate” หมายถึงไม่ถูกต้องหรือคลาดเคลื่อน จึงตรงกับ “incorrect”.",
+      "tip": "inaccurate = incorrect / not accurate",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 9",
+      "verificationRef": "Standard English vocabulary: inaccurate = incorrect",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "difficulty": "ปานกลาง",
+      "prompt": "His explanation was illogical because the conclusion did not follow from the evidence.",
+      "choices": [
+        "reasonable",
+        "coherent",
+        "convincing",
+        "irrational"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“illogical” หมายถึงไม่เป็นเหตุเป็นผล จึงใกล้กับ “irrational” มากที่สุดในชุดตัวเลือกนี้.",
+      "tip": "illogical = irrational / not logical",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 10",
+      "verificationRef": "Standard English vocabulary: illogical = irrational",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "difficulty": "ปานกลาง",
+      "prompt": "The museum confirmed that the newly discovered document was authentic.",
+      "choices": [
+        "fake",
+        "damaged",
+        "genuine",
+        "modern"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“authentic” หมายถึงแท้หรือเป็นของจริง จึงตรงกับ “genuine”.",
+      "tip": "authentic = genuine",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 11",
+      "verificationRef": "Standard English vocabulary: authentic = genuine",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "difficulty": "ปานกลาง",
+      "prompt": "After reviewing the results, the company decided to terminate the unsuccessful trial program.",
+      "choices": [
+        "expand",
+        "delay",
+        "restart",
+        "end"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“terminate” ในบริบทนี้หมายถึงยุติหรือทำให้สิ้นสุด จึงตรงกับ “end”. Mock รักษากลไกคำศัพท์และตำแหน่งเฉลยของต้นฉบับ แต่ไม่ทำซ้ำ semantic mismatch ในต้นฉบับ.",
+      "tip": "terminate = end / bring to an end",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 12",
+      "verificationRef": "Standard English vocabulary: terminate = end",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 13,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Look at the traffic sign.\n\n[ NO PARKING ]\n\nWhat does this sign mean?",
+      "choices": [
+        "You may park here after dark.",
+        "You must stop here for five minutes.",
+        "You must not park your vehicle in this area.",
+        "This area is reserved for motorcycles."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ป้าย NO PARKING หมายถึงห้ามจอดรถในบริเวณนั้น.",
+      "tip": "NO PARKING = ห้ามจอดรถ",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 13",
+      "verificationRef": "Reading evidence: standard NO PARKING sign",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 14,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read this notice.\n\nONE-DAY BOOK FAIR SALE\nFriday Only\n\nAll general books: 40% off\nMembers receive an additional 10% off.\nDoors open at 10:00 a.m.\nDiscounts do not apply to gift cards or special-order books.\n\nWhich statement is TRUE?",
+      "choices": [
+        "All items in the store are discounted.",
+        "The store opens at 8:00 a.m.",
+        "The sale lasts for one day.",
+        "Gift cards are 40% off."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ประกาศระบุ “Friday Only” จึงเป็นการลดราคาหนึ่งวัน ตัวเลือกอื่นขัดกับเวลาเปิดร้านหรือข้อยกเว้นของส่วนลด.",
+      "tip": "Sale notice: คำว่า Only และ exception เป็น clue สำคัญ",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 14",
+      "verificationRef": "Reading evidence: sale notice details",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 15,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read this email.\n\nTo: Building Staff\nFrom: Security Office\nSubject: Entrance Change This Saturday\n\nThe main entrance will be closed on Saturday morning while the access-control system is being repaired. Staff should use the east entrance near the parking area. Please bring your ID card because security officers will check identification at the temporary entrance.\n\nWhat should staff do on Saturday morning?",
+      "choices": [
+        "Wait outside the main entrance.",
+        "Use the east entrance near the parking area.",
+        "Enter without showing identification.",
+        "Use the main entrance as usual."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "อีเมลระบุว่าทางเข้าหลักปิดและให้ใช้ east entrance ใกล้ที่จอดรถ.",
+      "tip": "Email instruction: มองหาประโยค should + verb",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 15",
+      "verificationRef": "Reading evidence: instruction explicitly stated in the email",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 16,
+      "category": "Reading",
+      "difficulty": "ปานกลาง",
+      "prompt": "Read the passage.\n\nClimate change refers to long-term changes in average temperatures and weather patterns. Although climate can change naturally, the rapid warming observed in recent decades is strongly linked to human activities, especially the burning of coal, oil, and natural gas. These activities release greenhouse gases that trap heat in the atmosphere.\n\nThe effects of a warming climate can be seen in many regions. Heat waves may become more frequent, glaciers and ice sheets can lose mass, and sea levels can rise. Some areas may also experience changes in rainfall, increasing the risk of floods or droughts.\n\nReducing greenhouse-gas emissions is an important part of limiting future warming. This can include using energy more efficiently, expanding cleaner energy sources, and reducing unnecessary use of fossil fuels.\n\nAccording to the passage, what is a major cause of recent rapid warming?",
+      "choices": [
+        "Natural seasonal changes alone.",
+        "Changes in ocean color.",
+        "Greenhouse gases released by burning fossil fuels.",
+        "The melting of glaciers."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Passage ระบุว่าการเผา coal, oil และ natural gas ปล่อย greenhouse gases ที่กักเก็บความร้อน และเชื่อมโยงกับ rapid warming.",
+      "tip": "Cause question: แยก “สาเหตุ” ออกจาก “ผล”",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 16",
+      "verificationRef": "Reading evidence: cause explicitly stated in the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 17,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read the passage.\n\nClimate change refers to long-term changes in average temperatures and weather patterns. Although climate can change naturally, the rapid warming observed in recent decades is strongly linked to human activities, especially the burning of coal, oil, and natural gas. These activities release greenhouse gases that trap heat in the atmosphere.\n\nThe effects of a warming climate can be seen in many regions. Heat waves may become more frequent, glaciers and ice sheets can lose mass, and sea levels can rise. Some areas may also experience changes in rainfall, increasing the risk of floods or droughts.\n\nReducing greenhouse-gas emissions is an important part of limiting future warming. This can include using energy more efficiently, expanding cleaner energy sources, and reducing unnecessary use of fossil fuels.\n\nWhich of the following is an effect of climate change mentioned in the passage?",
+      "choices": [
+        "Lower sea levels everywhere.",
+        "More frequent heat waves.",
+        "Permanent rainfall in all regions.",
+        "The disappearance of all storms."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "บทอ่านระบุว่า heat waves may become more frequent.",
+      "tip": "Effect question: เลือกผลที่กล่าวใน passage โดยตรง",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 17",
+      "verificationRef": "Reading evidence: effect explicitly mentioned in the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "difficulty": "ปานกลาง",
+      "prompt": "Read the passage.\n\nClimate change refers to long-term changes in average temperatures and weather patterns. Although climate can change naturally, the rapid warming observed in recent decades is strongly linked to human activities, especially the burning of coal, oil, and natural gas. These activities release greenhouse gases that trap heat in the atmosphere.\n\nThe effects of a warming climate can be seen in many regions. Heat waves may become more frequent, glaciers and ice sheets can lose mass, and sea levels can rise. Some areas may also experience changes in rainfall, increasing the risk of floods or droughts.\n\nReducing greenhouse-gas emissions is an important part of limiting future warming. This can include using energy more efficiently, expanding cleaner energy sources, and reducing unnecessary use of fossil fuels.\n\nWhich action is suggested as a way to limit future warming?",
+      "choices": [
+        "Use more fossil fuels.",
+        "Reduce energy efficiency.",
+        "Ignore greenhouse-gas emissions.",
+        "Expand cleaner energy sources."
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ย่อหน้าสุดท้ายเสนอให้เพิ่มแหล่งพลังงานที่สะอาดกว่า และลดการใช้ fossil fuels ที่ไม่จำเป็น.",
+      "tip": "Solution question: มองหาคำว่า reducing / include / can",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 18",
+      "verificationRef": "Reading evidence: solution stated in the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 19,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "Mr. Wilson __________ at this company for twelve years.",
+      "choices": [
+        "works",
+        "worked",
+        "has worked",
+        "is working"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“for twelve years” สื่อระยะเวลาที่เริ่มในอดีตและต่อเนื่องถึงปัจจุบัน จึงใช้ Present Perfect: has worked.",
+      "tip": "for + ระยะเวลาที่ต่อถึงปัจจุบัน → Present Perfect",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 19",
+      "verificationRef": "Standard English grammar: Present Perfect with for",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 20,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "While I __________ dinner, the fire alarm suddenly went off.",
+      "choices": [
+        "cook",
+        "was cooking",
+        "have cooked",
+        "cooked"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "เหตุการณ์ที่กำลังดำเนินอยู่ในอดีตใช้ Past Continuous และถูกแทรกด้วยเหตุการณ์สั้นใน Past Simple.",
+      "tip": "While + action in progress in the past → was/were + V-ing",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 20",
+      "verificationRef": "Standard English grammar: Past Continuous",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 21,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The missing laptop __________ by a security guard yesterday evening.",
+      "choices": [
+        "found",
+        "is finding",
+        "has found",
+        "was found"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ประธาน laptop เป็นสิ่งที่ถูกพบ และ yesterday evening เป็นอดีตที่จบแล้ว จึงใช้ Past Simple Passive: was found.",
+      "tip": "Past passive = was/were + V3",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 21",
+      "verificationRef": "Standard English grammar: Past Simple Passive",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 22,
+      "category": "Grammar",
+      "difficulty": "ยาก",
+      "prompt": "If the officer had checked the address more carefully, he __________ to the wrong building.",
+      "choices": [
+        "will not go",
+        "would not go",
+        "would not have gone",
+        "did not go"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "เป็น Third Conditional กล่าวถึงเหตุการณ์สมมติที่ไม่เกิดขึ้นในอดีต: If + had + V3, would have + V3.",
+      "tip": "Third Conditional: If + had V3, would have V3",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 22",
+      "verificationRef": "Standard English grammar: Third Conditional",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 23,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "This is the neighborhood __________ I grew up.",
+      "choices": [
+        "which",
+        "where",
+        "who",
+        "whose"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "เมื่อกล่าวถึงสถานที่และต้องการคำเชื่อมที่หมายถึง “ในสถานที่นั้น” ใช้ where.",
+      "tip": "Place + where + clause",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 23",
+      "verificationRef": "Standard English grammar: relative adverb where",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 24,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "The woman __________ near the reception desk is our new consultant.",
+      "choices": [
+        "standing",
+        "stood",
+        "stands",
+        "is stand"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "วลี participial phrase ขยาย “The woman” ใช้ present participle “standing”.",
+      "tip": "V-ing หลังคำนามสามารถย่อ relative clause แบบ active",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 24",
+      "verificationRef": "Standard English grammar: present participle as postmodifier",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 25,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "I look forward to __________ from you soon.",
+      "choices": [
+        "hear",
+        "hearing",
+        "heard",
+        "have heard"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ใน “look forward to” คำว่า to เป็น preposition จึงตามด้วย noun หรือ V-ing: hearing.",
+      "tip": "look forward to + V-ing",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 25",
+      "verificationRef": "Standard English grammar: look forward to + gerund",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 26,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "There is very __________ water left in the bottle. We should buy some more.",
+      "choices": [
+        "few",
+        "a few",
+        "a little",
+        "little"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "water เป็นนามนับไม่ได้ และบริบทบอกว่าเหลือน้อยจนควรซื้อเพิ่ม จึงใช้ “little”.",
+      "tip": "little + uncountable = มีน้อย (นัยไม่พอ)",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 26",
+      "verificationRef": "Standard English grammar: little vs a little",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 27,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The training center is located __________ 85 River Road.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "by"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ใช้ “at” กับเลขที่อยู่เฉพาะ เช่น at 85 River Road.",
+      "tip": "เลขที่อยู่เฉพาะ → at",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 27",
+      "verificationRef": "Standard English grammar: preposition at with an address",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 28,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The road was blocked by an accident, __________ we took a different route.",
+      "choices": [
+        "so",
+        "but",
+        "or",
+        "for"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ประโยคแรกเป็นเหตุและประโยคหลังเป็นผล จึงใช้ so.",
+      "tip": "เหตุ → ผล: ..., so ...",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 28",
+      "verificationRef": "Standard English grammar: conjunction so",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 29,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "My sister speaks English __________ than I do.",
+      "choices": [
+        "fluent",
+        "more fluently",
+        "most fluently",
+        "fluently"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "กริยา speaks ต้องขยายด้วย adverb และมี than จึงต้องใช้ comparative adverb: more fluently.",
+      "tip": "verb + comparative adverb + than",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 29",
+      "verificationRef": "Standard English grammar: comparative adverb",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 30,
+      "category": "Grammar",
+      "difficulty": "ยาก",
+      "prompt": "I'm responsible for this report, __________?",
+      "choices": [
+        "am I",
+        "amn't I",
+        "isn't I",
+        "aren't I"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Question tag มาตรฐานของ “I am” ในประโยคบอกเล่าคือ “aren't I?”.",
+      "tip": "I am ..., aren't I?",
+      "sourceRef": "ต้นฉบับชุดที่ 3 ข้อ 30",
+      "verificationRef": "Standard English grammar: question tag with I am",
+      "dnaType": null,
+      "media": {}
+    }
+  ]
+}

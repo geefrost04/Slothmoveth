@@ -1,0 +1,128 @@
+/* Final navigation contract. Keep this import after page-specific styles. */
+.home-shell .nav-wrapper,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav {
+  min-height: 78px;
+}
+
+.home-shell .nav-inner,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-inner {
+  height: 78px;
+  min-height: 78px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 901px) {
+  .course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-inner {
+    width: calc(100% - 64px);
+    max-width: 1136px;
+  }
+}
+
+.home-shell .nav-logo,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-wordmark {
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.home-shell .nav-actions,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-actions {
+  gap: 8px !important;
+}
+
+.home-shell .nav-account-btn,
+.home-shell .nav-logout-btn,
+.home-shell .nav-login-btn,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-profile,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-logout {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 0 12px !important;
+  border: 1px solid #d8e0e8 !important;
+  border-radius: 10px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  color: #334155 !important;
+  font-family: var(--font-display) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+.home-shell .nav-account-btn svg,
+.home-shell .nav-logout-btn svg,
+.home-shell .nav-login-btn svg,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-profile svg,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-logout svg,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-account-icon {
+  box-sizing: border-box;
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+}
+
+.nav-control-icon {
+  display: inline-grid;
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  place-items: center;
+}
+
+.nav-control-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.home-shell .nav-account-btn > .nav-control-label,
+.home-shell .nav-logout-btn > .nav-control-label,
+.home-shell .nav-login-btn > .nav-control-label,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-profile .course-nav-label,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-logout .course-nav-label {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-shell .nav-account-btn:hover,
+.home-shell .nav-logout-btn:hover {
+  border-color: #a9cbbb !important;
+  background: #f3faf6 !important;
+  color: #2d6f54 !important;
+}
+
+.home-shell .nav-login-btn {
+  border-color: #2d6f54 !important;
+  background: #2d6f54 !important;
+  color: #ffffff !important;
+}
+
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-profile:hover,
+.course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-logout:hover {
+  border-color: #d7a3aa !important;
+  background: #fff6f7 !important;
+  color: #7a1822 !important;
+}
+
+@media (max-width: 900px) {
+  .course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-actions {
+    display: none !important;
+  }
+}

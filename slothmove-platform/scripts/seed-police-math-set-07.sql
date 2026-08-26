@@ -1,0 +1,133 @@
+begin;
+
+insert into public.products (id, title, description, price, type, metadata, is_published)
+values (
+  'police_math_set_07_free',
+  'คณิตศาสตร์ ชุดที่ 7',
+  'ข้อสอบตำรวจ วิชาความสามารถทั่วไป ชุดที่ 7 จำนวน 30 ข้อ พร้อมเฉลย',
+  1900,
+  'exam_set',
+  '{"course_id":"police_admin","subject_id":"math","access_type":"paid"}'::jsonb,
+  true
+)
+on conflict (id) do update set
+  title = excluded.title,
+  description = excluded.description,
+  price = excluded.price,
+  type = excluded.type,
+  metadata = excluded.metadata,
+  is_published = excluded.is_published;
+
+insert into public.exam_sets (
+  id, course_id, subject_id, product_id, title, description, source_label,
+  access_type, duration_minutes, total_questions, metadata, is_published
+)
+values (
+  'police-math-set-07',
+  'police_admin',
+  'math',
+  'police_math_set_07_free',
+  'คณิตศาสตร์ ชุดที่ 7',
+  'ข้อสอบสร้างใหม่จากต้นฉบับชุดที่ 3 โดยคงแนวข้อสอบและระดับความยาก พร้อมภาพประกอบ 3 ข้อ',
+  'NotebookLM Source Set 3 -> SlothMove Additional Set 7',
+  'paid',
+  45,
+  30,
+  jsonb_build_object('version', 7, 'qa_status', 'passed', 'base_source_set', 3, 'content_source', 'police-math-set-07-original.json', 'difficulty_policy', 'same_or_harder_than_source', 'generated_images_with_chatgpt', true, 'media_question_count', 3),
+  true
+)
+on conflict (id) do update set
+  product_id = excluded.product_id,
+  title = excluded.title,
+  description = excluded.description,
+  source_label = excluded.source_label,
+  access_type = excluded.access_type,
+  duration_minutes = excluded.duration_minutes,
+  total_questions = excluded.total_questions,
+  metadata = excluded.metadata,
+  is_published = excluded.is_published,
+  updated_at = timezone('utc'::text, now());
+
+insert into public.product_items (product_id, subject_id, item_id)
+select 'police_math_set_07_free', 'math', 'police-math-set-07'
+where not exists (
+  select 1 from public.product_items
+  where product_id = 'police_math_set_07_free'
+    and subject_id = 'math'
+    and item_id = 'police-math-set-07'
+);
+
+create temporary table seed_police_math_set_07 (
+  position integer primary key,
+  data jsonb not null
+) on commit drop;
+
+insert into seed_police_math_set_07 (position, data)
+select (value->>'position')::integer, value
+from jsonb_array_elements($questions$[{"position":1,"category":"อนุกรมคูณสอง","prompt":"9, 20, 42, 86, 174, ... จำนวนถัดไปคือข้อใด","choices":["338","346","350","356"],"correctChoiceIndex":2,"explanation":"แต่ละพจน์คูณ 2 แล้วบวก 2: 9×2+2=20, 20×2+2=42 ดังนั้น 174×2+2 = 350","tip":"ลองดูความสัมพันธ์แบบคูณแล้วบวกเมื่อเลขโตเร็ว"},{"position":2,"category":"อนุกรมแบ่งกลุ่ม","prompt":"6, 3, 4, 8, 2, 4, 9, 1, 4, 5, 3, ... จำนวนถัดไปคือข้อใด","choices":["2","3","4","5"],"correctChoiceIndex":2,"explanation":"ลำดับแบ่งเป็นชุดละ 3 ตัว โดยตัวที่สามคงที่เป็น 4 ดังนั้นหลัง 5,3 ต้องเป็น 4","tip":"บางอนุกรมต้องแบ่งเป็นกลุ่ม ไม่ใช่ดูทีละตัวต่อเนื่อง"},{"position":3,"category":"อุปมาอุปไมย","prompt":"กลางคืน : กลางวัน → คม : ?","choices":["ทื่อ","แหลม","แข็ง","บาง"],"correctChoiceIndex":0,"explanation":"กลางคืนกับกลางวันเป็นคำตรงข้าม คมกับทื่อเป็นคำตรงข้าม","tip":"ดูความหมายตรงข้ามของคำ"},{"position":4,"category":"อุปมาอุปไมย","prompt":"หม้อ : ปากกา → กระทะ : ?","choices":["ยางลบ","เตาแก๊ส","อาหาร","ครัว"],"correctChoiceIndex":0,"explanation":"หม้อกับปากกาเป็นของคนละประเภท กระทะกับยางลบก็เป็นของคนละประเภทในลักษณะเดียวกัน","tip":"บางข้อวัดการจับคู่ “ต่างประเภท” ไม่ใช่หน้าที่"},{"position":5,"category":"อนุกรมภาพ","prompt":"จากภาพ รูปที่หายไปคือรูปใด","choices":["ตัวเลือก A","ตัวเลือก B","ตัวเลือก C","ตัวเลือก D"],"correctChoiceIndex":0,"explanation":"รูปหมุนตามเข็มนาฬิกาและเพิ่มจุดดำทีละหนึ่งตำแหน่ง ช่องที่หายไปจึงตรงกับตัวเลือก A","tip":"ดูการหมุนและจำนวนเครื่องหมายประกอบพร้อมกัน","media":{"src":"/exams/police-math-set-07/q005-missing-figure-gpt.png","alt":"ลำดับภาพหมุนและเพิ่มจุดดำ พร้อมช่องหายไปและตัวเลือก A ถึง D"},"imagePrompt":"ChatGPT image generation: nonverbal sequence puzzle, geometric shape rotates clockwise and black dots increase; missing figure; four options A-D; option A correct."},{"position":6,"category":"สัญลักษณ์แทนการคำนวณ","prompt":"ถ้า 4 * 7 = 32 และ 11 * 9 = 110 โดย a * b = ab + a แล้ว 13 * 2 = ?","choices":["26","32","39","45"],"correctChoiceIndex":2,"explanation":"ใช้กฎ a*b = ab+a จะได้ 13*2 = 26+13 = 39","tip":"หากฎจากตัวอย่างให้ตรงทุกตัวอย่างก่อน"},{"position":7,"category":"ความสัมพันธ์จากรูป","prompt":"จากภาพ ตัวเลขที่หายไปคือเลขอะไร","choices":["9","11","13","15"],"correctChoiceIndex":1,"explanation":"ในแต่ละวง จำนวนกลางเท่ากับผลรวมของตัวเลขรอบนอกหารด้วย 3 ช่องที่ถามได้ 11","tip":"รวมตัวเลขรอบรูปแล้วดูว่าถูกหารหรือบวกคงที่หรือไม่","media":{"src":"/exams/police-math-set-07/q007-number-missing-gpt.png","alt":"แผนภาพวงกลมตัวเลขหลายชุดสำหรับหาตัวเลขกลางที่หายไป"},"imagePrompt":"ChatGPT image generation: clean number puzzle with three circles. Circle 1 outer 6,9,12 center 9; circle 2 outer 8,10,15 center 11; circle 3 outer 7,11,15 center question mark."},{"position":8,"category":"ลำดับเหตุการณ์","prompt":"ในการวิ่งมาราธอน นัทเข้าเส้นชัยก่อนแนท ไนท์เข้าเส้นชัยหลังโน้ตและนัทแต่ก่อนน็อต แนทเข้าเส้นชัยก่อนโน้ต ใครเข้าเส้นชัยเป็นคนที่สอง","choices":["นัท","โน้ต","ไนท์","แนท"],"correctChoiceIndex":3,"explanation":"เรียงได้ว่า นัท → แนท → โน้ต → ไนท์ → น็อต ดังนั้นคนที่สองคือแนท","tip":"จัดลำดับจากคำว่า ก่อน/หลัง ทีละคู่"},{"position":9,"category":"เลขยกกำลังหลักหน่วย","prompt":"จงหาหลักหน่วยของ 7^123","choices":["1","3","7","9"],"correctChoiceIndex":1,"explanation":"หลักหน่วยของ 7 วน 7,9,3,1 รอบละ 4 และ 123 mod 4 = 3 จึงได้หลักหน่วยเป็น 3","tip":"หลักหน่วยของเลขยกกำลังใช้รอบซ้ำ mod 4 หรือ mod ตามฐาน"},{"position":10,"category":"บัญญัติไตรยางศ์","prompt":"ซื้อกางเกง 5 ตัว ราคา 875 บาท ถ้าซื้อทั้งหมด 7 ตัว ต้องจ่ายกี่บาท","choices":["1,175 บาท","1,225 บาท","1,250 บาท","1,275 บาท"],"correctChoiceIndex":1,"explanation":"ราคาต่อชิ้น = 875÷5 = 175 บาท ซื้อ 7 ตัวจ่าย 175×7 = 1,225 บาท","tip":"หาอัตราต่อหนึ่งหน่วยก่อนเสมอ"},{"position":11,"category":"เลขยกกำลังหลักหน่วย","prompt":"จงหาหลักหน่วยของ 43^23","choices":["1","3","7","9"],"correctChoiceIndex":2,"explanation":"หลักหน่วยของ 3 วน 3,9,7,1 รอบละ 4 และ 23 mod 4 = 3 จึงได้ 7","tip":"ใช้เฉพาะหลักหน่วยของฐานก็พอ"},{"position":12,"category":"ร้อยละ","prompt":"สอบคัดเลือกมีผู้สอบผ่านรอบแรก 12% หากผู้สอบไม่ผ่าน 30,800 คน ผู้สอบผ่านมีกี่คน","choices":["3,600 คน","4,200 คน","4,800 คน","5,040 คน"],"correctChoiceIndex":1,"explanation":"ไม่ผ่านคือ 88% เท่ากับ 30,800 ดังนั้นทั้งหมด = 35,000 คน ผ่าน 12% = 4,200 คน","tip":"ถ้ารู้จำนวนที่ไม่ผ่าน ต้องเทียบกับ 88%"},{"position":13,"category":"ร้อยละย้อนกลับ","prompt":"มัดจำที่ดิน 40% เป็นเงิน 62,000 บาท ราคาที่ดินทั้งหมดกี่บาท","choices":["145,000 บาท","155,000 บาท","165,000 บาท","175,000 บาท"],"correctChoiceIndex":1,"explanation":"40% ของราคา = 62,000 ดังนั้นราคาเต็ม = 62,000÷0.40 = 155,000 บาท","tip":"เปอร์เซ็นต์ย้อนกลับใช้หารด้วยอัตราร้อยละ"},{"position":14,"category":"ดอกเบี้ยอย่างง่าย","prompt":"ฝากเงิน 8,000 บาท อัตราดอกเบี้ย 4.5% ต่อปี ครบ 1 ปีได้ดอกเบี้ยกี่บาท","choices":["320 บาท","340 บาท","360 บาท","380 บาท"],"correctChoiceIndex":2,"explanation":"ดอกเบี้ย = 8,000×4.5/100 = 360 บาท","tip":"ดอกเบี้ย 1 ปีใช้เงินต้น×อัตราดอกเบี้ย"},{"position":15,"category":"ระบบสมการธนบัตร","prompt":"ในกระเป๋ามีธนบัตร 20 บาทและ 100 บาท รวม 48 ใบ เป็นเงิน 4,480 บาท ธนบัตรสองชนิดต่างกันกี่ใบ","choices":["22 ใบ","24 ใบ","30 ใบ","40 ใบ"],"correctChoiceIndex":3,"explanation":"ให้ธนบัตร 100 บาท x ใบ ได้ 100x + 20(48−x)=4,480 ดังนั้น 80x=3,520 x=44 ใบ ธนบัตร 20 บาทมี 4 ใบ ต่างกัน 40 ใบ","tip":"ใช้จำนวนใบรวมแทนธนบัตรอีกชนิด"},{"position":16,"category":"ปัญหาขาสัตว์","prompt":"แมว 18 ตัว นับขารวมกับขานกได้ 180 ขา จงหาว่ามีนกทั้งหมดกี่ตัว","choices":["48","51","54","57"],"correctChoiceIndex":2,"explanation":"ขาแมว = 18×4 = 72 ขา ขานก = 180−72 = 108 ขา นกมี 108÷2 = 54 ตัว","tip":"แยกขาของสัตว์ที่รู้จำนวนก่อน"},{"position":17,"category":"การนับการแข่งขัน","prompt":"ฟุตบอล 20 ทีม แข่งขันแบบเหย้าเยือน ทุกทีมพบกันครบ จะมีการแข่งขันทั้งหมดกี่ครั้ง","choices":["360 ครั้ง","380 ครั้ง","400 ครั้ง","420 ครั้ง"],"correctChoiceIndex":1,"explanation":"พบกันเป็นคู่ได้ C(20,2)=190 คู่ แบบเหย้าเยือนคูณ 2 ได้ 380 ครั้ง","tip":"เหย้าเยือนคือแข่งสองนัดต่อหนึ่งคู่ทีม"},{"position":18,"category":"อสมการ","prompt":"คำตอบของอสมการ -3x + 5 < 17 ที่เป็นจำนวนเต็มลบมีกี่จำนวน","choices":["2 จำนวน","3 จำนวน","4 จำนวน","5 จำนวน"],"correctChoiceIndex":1,"explanation":"ลบ 5 ได้ -3x < 12 หารด้วย -3 ต้องกลับเครื่องหมาย ได้ x > -4 จำนวนเต็มลบคือ -3,-2,-1 รวม 3 จำนวน","tip":"หารด้วยจำนวนลบต้องกลับเครื่องหมายอสมการ"},{"position":19,"category":"เรียงวงกลมแบบพวงมาลัย","prompt":"นำดอกไม้ 7 ดอกที่สีต่างกันมาร้อยเป็นพวงมาลัยวงกลม โดยกลับด้านถือว่าเหมือนกัน จะทำได้กี่แบบ","choices":["120 แบบ","240 แบบ","360 แบบ","720 แบบ"],"correctChoiceIndex":2,"explanation":"การเรียงวงกลมที่กลับด้านเหมือนกันคือ (n−1)!/2 สำหรับ 7 ดอก ได้ 6!/2 = 360 แบบ","tip":"พวงมาลัยกลับด้านได้ จึงหาร 2 เพิ่มจากการเรียงรอบวงกลม"},{"position":20,"category":"ความน่าจะเป็นลูกเต๋า","prompt":"ทอดลูกเต๋า 1 ลูก 2 ครั้ง ความน่าจะเป็นที่ผลรวมแต้มเป็นจำนวนเฉพาะคือเท่าใด","choices":["5/12","7/18","1/2","11/18"],"correctChoiceIndex":0,"explanation":"ผลรวมที่เป็นจำนวนเฉพาะคือ 2,3,5,7,11 มีจำนวนวิธี 1+2+4+6+2 = 15 จาก 36 ได้ 15/36 = 5/12","tip":"นับจำนวนวิธีของแต่ละผลรวมจากตาราง 6×6"},{"position":21,"category":"เลขยกกำลัง","prompt":"4^5 × 2^3 × 25^2 × 20^4 มีค่าเทียบเท่าข้อใด","choices":["2^24 × 5^8","2^22 × 5^8","2^24 × 5^6","2^21 × 5^8"],"correctChoiceIndex":3,"explanation":"4^5=2^10, 2^3, 25^2=5^4, 20^4=(2^2×5)^4=2^8×5^4 รวมเป็น 2^(10+3+8)×5^8 = 2^21×5^8","tip":"แยกทุกจำนวนเป็นฐานเฉพาะ 2 และ 5"},{"position":22,"category":"ผลรวมจำนวนเต็ม","prompt":"จงหาผลรวมของจำนวนเต็มตั้งแต่ 9 ถึง 24","choices":["252","264","276","288"],"correctChoiceIndex":1,"explanation":"มี 16 จำนวน ค่าเฉลี่ยของตัวแรกและตัวสุดท้ายคือ (9+24)/2 = 16.5 ผลรวม = 16×16.5 = 264","tip":"ผลรวมเลขเรียงกัน = จำนวนพจน์×ค่าเฉลี่ยปลายสองข้าง"},{"position":23,"category":"ปริมาตร","prompt":"บ่อน้ำกว้าง 9 เมตร ยาว 14 เมตร ลึก 2 เมตร จุน้ำได้มากที่สุดกี่ลูกบาศก์เมตร","choices":["232","252","272","292"],"correctChoiceIndex":1,"explanation":"ปริมาตรทรงสี่เหลี่ยมมุมฉาก = กว้าง×ยาว×ลึก = 9×14×2 = 252","tip":"ปริมาตรใช้สามมิติ ไม่ใช่พื้นที่ฐานอย่างเดียว"},{"position":24,"category":"สถิติ","prompt":"ข้อมูล 12, 9, 9, 6, 9, 12, 9, 10, 11, 10 ข้อใดถูกต้อง","choices":["ค่าเฉลี่ย < มัธยฐาน > ฐานนิยม","ค่าเฉลี่ย > มัธยฐาน < ฐานนิยม","ค่าเฉลี่ย < มัธยฐาน < ฐานนิยม","ค่าเฉลี่ย > มัธยฐาน > ฐานนิยม"],"correctChoiceIndex":3,"explanation":"เรียงข้อมูลได้ 6,9,9,9,9,10,10,11,12,12 มัธยฐาน = 9.5 ฐานนิยม = 9 ค่าเฉลี่ย = 9.7 ดังนั้นค่าเฉลี่ย > มัธยฐาน > ฐานนิยม","tip":"หาค่าเฉลี่ย มัธยฐาน ฐานนิยมแยกกันก่อนเปรียบเทียบ"},{"position":25,"category":"แก้ค่าเฉลี่ยผิดพลาด","prompt":"ค่าเฉลี่ยคะแนน 30 คนเท่ากับ 22 อ่านผิด 2 คน คือ 28 เป็น 8 และ 17 เป็น 7 ค่าเฉลี่ยที่ถูกต้องเป็นเท่าใด","choices":["21","22","23","24"],"correctChoiceIndex":2,"explanation":"ผลรวมเดิมที่อ่านผิด = 22×30 = 660 ต้องเพิ่มกลับ (28−8)+(17−7)=30 ผลรวมถูกต้อง = 690 ค่าเฉลี่ย = 690÷30 = 23","tip":"แก้ผลรวมก่อน แล้วค่อยหารจำนวนข้อมูล"},{"position":26,"category":"เซตสองวิชา","prompt":"สำรวจนักเรียน 60 คน ชอบคณิตศาสตร์ 18 คน ชอบวิทยาศาสตร์ 50 คน และไม่มีใครไม่ชอบทั้งสองวิชา มีนักเรียนชอบทั้งสองวิชากี่คน","choices":["8 คน","10 คน","12 คน","15 คน"],"correctChoiceIndex":0,"explanation":"ยูเนียนเท่ากับ 60 คน ดังนั้นชอบทั้งสอง = 18+50−60 = 8 คน","tip":"เมื่อไม่มีคนนอกเซต ยูเนียนเท่ากับทั้งหมด"},{"position":27,"category":"ค.ร.น.","prompt":"A, B, C ไปเยี่ยมเพื่อนทุก 12, 18, 30 วัน ถ้าวันนี้มาพร้อมกัน อีกกี่วันจะมาพร้อมกันอีกครั้ง","choices":["90 วัน","120 วัน","150 วัน","180 วัน"],"correctChoiceIndex":3,"explanation":"ค.ร.น. ของ 12,18,30 คือ 180 ดังนั้นจะมาพร้อมกันอีกครั้งใน 180 วัน","tip":"เหตุการณ์ซ้ำพร้อมกันใช้ ค.ร.น."},{"position":28,"category":"ความสัมพันธ์จากรูป","prompt":"จากภาพ จงหาตัวเลขที่หายไป","choices":["27","35","42","56"],"correctChoiceIndex":1,"explanation":"ตัวเลขกลางเท่ากับผลต่างของผลคูณแนวทแยงสองคู่ จากรูปได้ 35","tip":"โจทย์ภาพตัวเลขต้องหากฎจากช่องที่ครบก่อน","media":{"src":"/exams/police-math-set-07/q028-number-relation-gpt.png","alt":"แผนภาพตัวเลขแบบช่องสี่เหลี่ยมสำหรับหาตัวเลขที่หายไป"},"imagePrompt":"ChatGPT image generation: clean number grid puzzle with two completed examples and one question grid. Example 1 produces 18, example 2 produces 24, final grid has question mark; designed so answer is 35; no answer highlight."},{"position":29,"category":"ค่าเฉลี่ยถ่วงน้ำหนัก","prompt":"ห้องหนึ่งมีนักเรียน 40 คน เป็นชาย 15 คน คะแนนเฉลี่ยชาย 72 คะแนน หญิงเฉลี่ย 76 คะแนน ค่าเฉลี่ยทั้งห้องเท่าใด","choices":["73.5 คะแนน","74.5 คะแนน","75 คะแนน","75.5 คะแนน"],"correctChoiceIndex":1,"explanation":"นักเรียนหญิงมี 25 คน ค่าเฉลี่ยรวม = (15×72 + 25×76)÷40 = (1,080+1,900)÷40 = 74.5","tip":"ใช้ค่าเฉลี่ยถ่วงน้ำหนักตามจำนวนคนแต่ละกลุ่ม"},{"position":30,"category":"ตรรกศาสตร์เชิงสัญลักษณ์","prompt":"ถ้า [p ∧ (~q ∧ r)] → (s ∨ ~r) มีค่าความจริงเป็นเท็จ ค่าความจริงของ s และ q ตรงกับข้อใด","choices":["T, T","F, T","T, F","F, F"],"correctChoiceIndex":3,"explanation":"อิมพลิเคชันเท็จเมื่อหน้าเป็นจริงหลังเป็นเท็จ หลัง s∨~r เท็จจึง s=F และ r=T ส่วนหน้าเป็นจริงต้อง ~q=T จึง q=F","tip":"A→B เท็จเฉพาะเมื่อ A จริงและ B เท็จ"}]$questions$::jsonb);
+
+insert into public.questions (id, category, prompt, choices, media, metadata)
+select
+  'police-math-set-07-q' || lpad(position::text, 2, '0'),
+  data->>'category',
+  data->>'prompt',
+  data->'choices',
+  coalesce(data->'media', '{}'::jsonb),
+  jsonb_build_object('source_question_no', position, 'qa_status', 'passed', 'base_source_set', 3, 'difficulty_policy', 'same_or_harder_than_source')
+from seed_police_math_set_07
+on conflict (id) do update set
+  category = excluded.category,
+  prompt = excluded.prompt,
+  choices = excluded.choices,
+  media = excluded.media,
+  metadata = excluded.metadata;
+
+insert into public.question_solutions (question_id, correct_choice_index, explanation, tip, metadata)
+select
+  'police-math-set-07-q' || lpad(position::text, 2, '0'),
+  (data->>'correctChoiceIndex')::integer,
+  data->>'explanation',
+  data->>'tip',
+  jsonb_build_object('version', 7, 'qa_status', 'passed', 'source', 'police-math-set-07-original.json', 'base_source_set', 3)
+from seed_police_math_set_07
+on conflict (question_id) do update set
+  correct_choice_index = excluded.correct_choice_index,
+  explanation = excluded.explanation,
+  tip = excluded.tip,
+  metadata = excluded.metadata;
+
+insert into public.exam_set_questions (exam_set_id, question_id, position)
+select
+  'police-math-set-07',
+  'police-math-set-07-q' || lpad(position::text, 2, '0'),
+  position
+from seed_police_math_set_07
+on conflict (exam_set_id, question_id) do update set position = excluded.position;
+
+do $$
+declare
+  seeded_count integer;
+  solution_count integer;
+  media_count integer;
+begin
+  select count(*) into seeded_count
+  from public.exam_set_questions
+  where exam_set_id = 'police-math-set-07';
+
+  select count(*) into solution_count
+  from public.exam_set_questions mapping
+  join public.question_solutions solution on solution.question_id = mapping.question_id
+  where mapping.exam_set_id = 'police-math-set-07';
+
+  select count(*) into media_count
+  from public.exam_set_questions mapping
+  join public.questions question on question.id = mapping.question_id
+  where mapping.exam_set_id = 'police-math-set-07'
+    and question.media ? 'src';
+
+  if seeded_count <> 30 or solution_count <> 30 or media_count <> 3 then
+    raise exception 'Set 7 validation failed: questions %, solutions %, media %', seeded_count, solution_count, media_count;
+  end if;
+end $$;
+
+commit;

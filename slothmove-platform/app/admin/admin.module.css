@@ -1,0 +1,39 @@
+.page { min-height: 100vh; color: #172033; background: linear-gradient(180deg, #fbfaf9, #f4f5f7); }
+.header { display: flex; align-items: center; justify-content: space-between; min-height: 72px; padding: 0 clamp(20px, 5vw, 64px); border-bottom: 1px solid #e2e5ea; background: rgba(255,255,255,.92); }
+.wordmark { color: #111827; font-size: 20px; font-weight: 950; letter-spacing: -.055em; text-decoration: none; }
+.wordmark span { color: #8d2434; }
+.backLink { color: #606978; font-size: 12px; font-weight: 800; text-decoration: none; }
+.content { width: min(1050px, calc(100% - 32px)); margin: 42px auto 70px; }
+.titleRow { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+.titleRow span { color: #8d2434; font-size: 10px; font-weight: 900; letter-spacing: .14em; }
+.titleRow h1 { margin: 5px 0 3px; font-size: clamp(30px, 5vw, 44px); letter-spacing: -.04em; }
+.titleRow p { margin: 0; color: #697180; font-size: 13px; }
+.titleRow > strong { padding: 10px 13px; border-radius: 10px; color: #7a1822; background: #fde7ea; font-size: 12px; white-space: nowrap; }
+.userList { display: grid; gap: 10px; }
+.userCard { display: grid; grid-template-columns: 44px minmax(180px, 1fr) 80px minmax(180px, .7fr) 110px; gap: 15px; align-items: center; padding: 17px 19px; border: 1px solid #e0e4ea; border-radius: 13px; background: #fff; box-shadow: 0 8px 24px rgba(25,35,55,.035); }
+.userIndex { color: #a4abb6; font-size: 12px; font-weight: 900; }
+.userIdentity { display: grid; min-width: 0; }
+.userIdentity strong { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.userIdentity span { overflow: hidden; color: #747d8b; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.roleBadge { justify-self: start; padding: 5px 8px; border-radius: 6px; color: #52606f; background: #eef1f4; font-size: 9px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+.adminRole { color: #fff; background: linear-gradient(135deg, #7a1822, #b63d56); }
+.userStats { display: flex; gap: 18px; }
+.userStats span { display: grid; color: #8a929f; font-size: 9px; }
+.userStats strong { color: #303846; font-size: 13px; }
+.userCard time { color: #818a98; font-size: 10px; text-align: right; }
+.error { margin-bottom: 15px; padding: 12px; border-radius: 8px; color: #7a1822; background: #fde7ea; font-size: 12px; font-weight: 750; }
+.state { display: grid; min-height: 100vh; place-content: center; justify-items: center; padding: 24px; text-align: center; background: #f7f8fa; }
+.state h1 { margin: 16px 0 5px; }
+.state p { margin: 0 0 18px; color: #697180; }
+.state a { color: #7a1822; font-weight: 800; }
+.loader { width: 38px; height: 38px; border: 3px solid #edd0d5; border-top-color: #8d2434; border-radius: 50%; animation: spin .8s linear infinite; }
+.deniedIcon { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 50%; color: #fff; background: #8d2434; font-size: 23px; font-weight: 900; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 760px) {
+  .content { margin-top: 28px; }
+  .titleRow { align-items: flex-start; flex-direction: column; }
+  .userCard { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 10px; }
+  .userStats { grid-column: 2 / -1; }
+  .userCard time { grid-column: 2 / -1; text-align: left; }
+}

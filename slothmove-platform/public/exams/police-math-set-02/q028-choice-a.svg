@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" role="img" aria-labelledby="title">
+  <title id="title">สามเหลี่ยมชี้ขึ้น สีดำ</title>
+  <rect x="2" y="2" width="236" height="146" rx="14" fill="#fff" stroke="#d8dee8" stroke-width="4"/>
+  <path d="M120 29 177 121H63Z" fill="#171717" stroke="#171717" stroke-width="5" stroke-linejoin="round"/>
+</svg>

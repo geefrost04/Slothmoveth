@@ -7,6 +7,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'slothmoveth.com' },
       { protocol: 'https', hostname: '**.supabase.co' }
     ]
+  },
+  experimental: {
+    devtoolSegmentExplorer: false
   }
 };
 

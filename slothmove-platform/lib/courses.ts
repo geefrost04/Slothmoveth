@@ -38,55 +38,6 @@ export const PLATFORM_HOME_URL = '/';
 
 export const COURSES: Course[] = [
   {
-    id: 'pab',
-    category: 'กระทรวงมหาดไทย',
-    updatedAt: '2026-06-17',
-    priority: 90,
-    title: 'นักวิเคราะห์นโยบายและแผน',
-    subtitle: 'กรมป้องกันและบรรเทาสาธารณภัย (ปภ.)',
-    type: 'ข้าราชการพลเรือนสามัญ',
-    desc: 'เนื้อหาสรุปครบ 20 วิชา · กฎหมายที่เกี่ยวข้อง · ความรู้เฉพาะตำแหน่ง · คลังข้อสอบพร้อมเฉลย',
-    image: '/pic/logo-ปภ.png',
-    fullLink: platformCourseUrl('pab'),
-    tags: ['พ.ร.บ. ป้องกันภัย', 'สาธารณภัย', 'งบประมาณ'],
-    moreTags: '+17 วิชา',
-    subjects: 20,
-    questions: 425,
-    status: 'coming-soon'
-  },
-  {
-    id: 'industry',
-    category: 'กระทรวงอุตสาหกรรม',
-    updatedAt: '2026-06-18',
-    title: 'นักวิเคราะห์นโยบายและแผน',
-    subtitle: 'สำนักงานปลัดกระทรวงอุตสาหกรรม',
-    type: 'พนักงานราชการทั่วไป',
-    desc: 'ย้ายขึ้นแพลตฟอร์มแล้วบางส่วน · เปิดแล้ว 5 จาก 9 วิชา · คลังข้อสอบพร้อมเฉลยละเอียด',
-    image: '/pic/logo_industry.png',
-    fullLink: platformCourseUrl('industry'),
-    tags: ['วางแผนกลยุทธ์', 'ข้อมูลข่าวสาร', 'บ้านเมืองที่ดี', 'พ.ร.บ. โรงงาน'],
-    moreTags: '+5 วิชา',
-    subjects: 9,
-    questions: 500,
-    status: 'coming-soon'
-  },
-  {
-    id: 'opsd',
-    category: 'กระทรวงกลาโหม',
-    updatedAt: '2026-06-18',
-    title: 'นักวิเคราะห์นโยบายและแผน',
-    subtitle: 'สำนักงานปลัดกระทรวงกลาโหม',
-    type: 'ข้าราชการสามัญกลาโหม',
-    desc: 'ย้ายขึ้นแพลตฟอร์มแล้วบางส่วน · เปิดแล้ว 4 จาก 7 วิชา · คลังข้อสอบพร้อมเฉลยละเอียด',
-    image: '/pic/logo_OPSDD.png',
-    fullLink: platformCourseUrl('opsd'),
-    tags: ['สารบรรณ', 'ข้อมูลข่าวสาร', 'ความรู้ทั่วไป', 'ภาษาอังกฤษ'],
-    moreTags: '+3 วิชา',
-    subjects: 7,
-    questions: 821,
-    status: 'coming-soon'
-  },
-  {
     id: 'police_admin',
     category: 'สำนักงานตำรวจแห่งชาติ',
     updatedAt: '2026-06-26',
@@ -94,13 +45,13 @@ export const COURSES: Course[] = [
     title: 'ตำรวจสายอำนวยการและสนับสนุน',
     subtitle: 'สำนักงานตำรวจแห่งชาติ',
     type: 'ข้าราชการตำรวจชั้นประทวน',
-    desc: 'สรุปครบ 6 วิชา · ภาค ก. และภาค ข. · คลังข้อสอบพร้อมเฉลยและเกมฝึกทำข้อสอบ',
+    desc: 'สรุปแบบ Visual แยกรายวิชา · ชุดข้อสอบใหม่กำลังจัดทำ',
     image: '/pic/logo_police.png',
     fullLink: platformCourseUrl('police_admin'),
     tags: ['คอมพิวเตอร์', 'งานสารบรรณ', 'ภาษาอังกฤษ', 'กฎหมายประชาชน'],
     moreTags: '+2 วิชา',
     subjects: 6,
-    questions: 1400,
+    questions: 0,
     status: 'ready'
   },
   {
@@ -117,23 +68,8 @@ export const COURSES: Course[] = [
     tags: ['คิดวิเคราะห์', 'ภาษาอังกฤษ', 'ข้าราชการที่ดี'],
     moreTags: '+เกมฝึกวิเคราะห์',
     subjects: 3,
-    questions: 835,
-    status: 'ready'
-  },
-  {
-    id: 'kpi',
-    category: 'ภาค ก. ก.พ.',
-    updatedAt: '2026-06-08',
-    title: 'ติวสอบ ก.พ. ภาค ก. ระดับ ป.ตรี',
-    subtitle: 'ความรู้ความสามารถทั่วไป',
-    type: 'ข้าราชการพลเรือน · ทุกสายงาน',
-    desc: 'พ.ร.บ. ระเบียบบริหารราชการแผ่นดิน · พ.ร.บ. ข้อมูลข่าวสารฯ · พ.ร.บ. ระเบียบข้าราชการพลเรือน · ระเบียบสำนักนายกฯ ว่าด้วยงานสารบรรณ',
-    image: '/pic/logo_kpi.svg',
-    fullLink: '#',
-    tags: ['พ.ร.บ. บริหารราชการ', 'พ.ร.บ. ข้อมูลข่าวสาร', 'พ.ร.บ. ข้าราชการพลเรือน', 'ระเบียบสารบรรณ'],
-    moreTags: '+500 ข้อสอบ',
-    status: 'coming-soon',
-    hidden: true
+    questions: 635,
+    status: 'coming-soon'
   }
 ];
 

@@ -3,13 +3,56 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import type { CourseConfig } from '@/lib/course-types';
+import { getSupabase } from '@/lib/supabase';
+import { NavControlIcon } from '@/components/nav/NavControlIcons';
 
 export function PoliceAdminNav({ course }: { course: CourseConfig }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [displayName, setDisplayName] = useState('');
   const pathname = usePathname() ?? '';
   const firstReadySubject = course.subjects.find((subject) => subject.count > 0);
   const segments = pathname.split('/').filter(Boolean); // ['courses', 'police_admin', ...]
+
+  useEffect(() => {
+    const supabase = getSupabase();
+    if (!supabase) return;
+    const client = supabase;
+
+    async function applySession(session: Session | null) {
+      const sessionUser = session?.user ?? null;
+      setUser(sessionUser);
+      if (!sessionUser) {
+        setDisplayName('');
+        return;
+      }
+
+      const sessionName =
+        sessionUser.user_metadata?.full_name ||
+        sessionUser.user_metadata?.name ||
+        sessionUser.email?.split('@')[0] ||
+        'สมาชิก';
+      setDisplayName(sessionName);
+
+      const { data: profile } = await client
+        .from('profiles')
+        .select('full_name')
+        .eq('id', sessionUser.id)
+        .maybeSingle();
+      if (profile?.full_name) setDisplayName(profile.full_name);
+    }
+
+    client.auth.getSession().then(({ data: { session } }) => applySession(session));
+
+    // Listen for auth changes
+    const { data: { subscription } } = client.auth.onAuthStateChange((_event, session) => {
+      void applySession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const isValidSubject =
     segments.length >= 3 &&
@@ -66,6 +109,20 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
     window.dispatchEvent(new CustomEvent('slothmove:donate'));
   }
 
+  async function handleLogout(e: React.MouseEvent) {
+    e.preventDefault();
+    const supabase = getSupabase();
+    if (supabase) {
+      try {
+        await supabase.auth.signOut();
+      } catch (err) {
+        // ignore
+      }
+    }
+    setUser(null);
+    window.location.href = '/';
+  }
+
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -86,41 +143,56 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
   return (
     <nav className="course-nav is-police-admin is-v3-nav">
       <div className="container course-nav-inner">
-        <Link href={`/courses/${course.id}`} className="course-nav-brand">
-          <img src="/pic/slothmove_mascot.png" alt="Sloth × Police" className="course-nav-brand-mascot" />
-          <img src={course.theme.logo} alt={course.title} className="course-nav-brand-logo" />
-          <span className="course-nav-brand-copy">
-            <strong>Sloth <span className="course-nav-brand-x">×</span> <span className="course-nav-brand-accent">Police</span></strong>
+        <Link href={`/courses/${course.id}`} className="course-nav-brand" style={{ textDecoration: 'none' }}>
+          <span className="course-nav-wordmark" style={{ display: 'inline-flex', alignItems: 'center', fontSize: '20px', fontWeight: 900, letterSpacing: '-0.02em' }}>
+            SLOTH<span style={{ color: '#7a1822' }}>MOVE</span>
           </span>
         </Link>
 
-        <div className="course-nav-actions">
+        {/* Desktop Back Button */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexGrow: 1, marginLeft: '24px' }} className="course-nav-desktop-back-container">
           <Link
             href={backHref}
-            className="course-nav-action course-nav-home"
+            className="course-nav-back-btn-desktop"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              background: '#fde7ea',
+              color: '#7a1822',
+              fontSize: '13px',
+              fontWeight: 800,
+              textDecoration: 'none',
+              boxShadow: '0 1px 2px rgba(122, 24, 34, 0.05)',
+              transition: 'all 0.2s'
+            }}
           >
-            <span className="course-nav-label">{backLabel}</span>
+            <span style={{ fontSize: '15px', fontWeight: 900 }}>←</span>
+            <span>{backLabel}</span>
+          </Link>
+        </div>
+
+        <div className="course-nav-actions">
+          <Link href={user ? '/dashboard' : '/login'} className="course-nav-action course-nav-profile" aria-label="บัญชีผู้ใช้">
+            <NavControlIcon type="account" />
+            <span className="course-nav-label">
+              {user ? displayName || 'สมาชิก' : 'เข้าสู่ระบบ'}
+            </span>
           </Link>
 
-          <Link href={examHref} className="course-nav-action course-nav-exam">
-            <span className="course-nav-label">{examLabel}</span>
-          </Link>
-
-          <a
-            href="https://www.facebook.com/profile.php?id=61589670089745"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="course-nav-action course-nav-facebook"
-            aria-label="Facebook"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-          </a>
-
-          <button type="button" className="course-nav-action course-nav-donate" onClick={openDonate}>
-            <span aria-hidden="true">☕</span><span className="course-nav-label">เลี้ยงกาแฟ</span>
-          </button>
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="course-nav-action course-nav-logout"
+              type="button"
+              aria-label="ออกจากระบบ"
+            >
+              <NavControlIcon type="logout" />
+              <span className="course-nav-label">ออกจากระบบ</span>
+            </button>
+          )}
         </div>
 
         <div className="course-nav-mobile-controls">
@@ -154,9 +226,14 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
             <strong>เมนูคอร์ส</strong>
             <span>{course.id.toUpperCase()} · {course.title}</span>
           </div>
-          <span className="course-mobile-menu-badge">เรียนฟรี</span>
+          <span className="course-mobile-menu-badge">เริ่มเรียนฟรี</span>
         </div>
         <div className="course-mobile-menu-list">
+          <Link href="/" onClick={() => setMobileOpen(false)}>
+            <span className="course-mobile-menu-icon">🏠</span>
+            <span><strong>หน้าแรก SlothMove</strong><small>กลับสู่หน้าหลักของเว็บไซต์</small></span>
+            <i>→</i>
+          </Link>
           {!isCourseHub && (
             <Link href={backHref} onClick={() => setMobileOpen(false)}>
               <span className="course-mobile-menu-icon">←</span>
@@ -164,11 +241,14 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
               <i>→</i>
             </Link>
           )}
-          <button type="button" onClick={openDonate}>
-            <span className="course-mobile-menu-icon">☕</span>
-            <span><strong>เลี้ยงกาแฟ</strong><small>สนับสนุนให้เนื้อหาเปิดฟรีต่อไป</small></span>
+          <Link href={user ? '/dashboard' : '/login'} onClick={() => setMobileOpen(false)}>
+            <span className="course-mobile-menu-icon">👤</span>
+            <span>
+              <strong>{user ? displayName || 'สมาชิก' : 'เข้าสู่ระบบ'}</strong>
+              <small>{user ? 'ดูประวัติผลการสอบและชุดข้อสอบ' : 'เข้าสู่ระบบเพื่อบันทึกประวัติการสอบ'}</small>
+            </span>
             <i>→</i>
-          </button>
+          </Link>
           <a
             href="https://www.facebook.com/profile.php?id=61589670089745"
             target="_blank"

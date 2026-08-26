@@ -3,8 +3,10 @@ import './globals.css';
 import './course-shell.css';
 import './home-shell.css';
 import './subject-shell.css';
+import './nav-consistency.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { absoluteUrl, siteConfig } from '@/lib/seo';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { absoluteUrl, serializeJsonLd, siteConfig } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: {
@@ -16,6 +18,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'SlothMove' }],
   creator: 'SlothMove',
   publisher: 'SlothMove',
+  applicationName: 'SlothMove',
+  category: 'education',
+  classification: 'Exam preparation and online learning',
   metadataBase: new URL(siteConfig.baseUrl),
   alternates: { canonical: '/' },
   icons: {
@@ -37,7 +42,10 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImage]
   },
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION
+  }
 };
 
 export const viewport: Viewport = {
@@ -54,7 +62,7 @@ const jsonLd = {
       '@id': `${siteConfig.baseUrl}/#website`,
       name: siteConfig.siteName,
       url: siteConfig.baseUrl,
-      inLanguage: 'th',
+      inLanguage: 'th-TH',
       description: siteConfig.description,
       publisher: { '@id': `${siteConfig.baseUrl}/#organization` }
     },
@@ -64,13 +72,15 @@ const jsonLd = {
       name: siteConfig.siteName,
       alternateName: 'SlothMove เตรียมสอบราชการ',
       url: siteConfig.baseUrl,
-      logo: absoluteUrl(siteConfig.ogImage),
-      description: 'แพลตฟอร์มเรียนออนไลน์ฟรีสำหรับเตรียมสอบราชการ โดยมีคอร์สที่พร้อมใช้งานและคอร์สที่ทยอยย้ายขึ้นระบบ',
+      logo: absoluteUrl('/apple-icon.png'),
+      description: 'แพลตฟอร์มเตรียมสอบนายสิบตำรวจ พร้อมข้อสอบออนไลน์ 6 วิชา Mock Test จับเวลา เฉลยละเอียด และระบบวิเคราะห์ผล',
       areaServed: { '@type': 'Country', name: 'ประเทศไทย' },
       sameAs: [siteConfig.facebook]
     }
   ]
 };
+
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-W60TF5WHSB';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -82,22 +92,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "(function(){try{localStorage.setItem('slothmove-theme','light');}catch(e){}document.documentElement.setAttribute('data-theme','light');})();"
           }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W60TF5WHSB" />
         <script
           dangerouslySetInnerHTML={{
-            __html:
-              "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-W60TF5WHSB');"
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaMeasurementId}',{send_page_view:false});`
           }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </head>
       <body>
         <ThemeProvider>
           {children}
         </ThemeProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );

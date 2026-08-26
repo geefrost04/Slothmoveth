@@ -1,0 +1,233 @@
+.page {
+  --login-primary: #3d8c6c;
+  --login-primary-dark: #2d6f54;
+  --login-soft: #e2f3eb;
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  overflow: hidden;
+  padding: 86px 20px 44px;
+  color: #172033;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(61, 140, 108, 0.16), transparent 25rem),
+    radial-gradient(circle at 90% 90%, rgba(45, 111, 84, 0.11), transparent 30rem),
+    linear-gradient(145deg, #f7fcf9 0%, #f7f9f8 52%, #eff9f4 100%);
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  opacity: 0.32;
+  background-image: radial-gradient(rgba(45, 111, 84, 0.2) 0.75px, transparent 0.75px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(135deg, #000, transparent 65%);
+  pointer-events: none;
+}
+
+.wordmark {
+  position: absolute;
+  top: 28px;
+  left: clamp(24px, 5vw, 70px);
+  color: #111827;
+  font-size: 23px;
+  font-weight: 950;
+  letter-spacing: -0.055em;
+  text-decoration: none;
+}
+
+.wordmark span { color: var(--login-primary); }
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(440px, 100%);
+  padding: clamp(26px, 5vw, 42px);
+  border: 1px solid rgba(61, 140, 108, 0.16);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 30px 90px rgba(31, 75, 57, 0.13);
+  backdrop-filter: blur(22px);
+}
+
+.brandMark {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 20px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 17px;
+  background: var(--login-soft);
+}
+
+.brandMark img { width: 48px; height: 48px; object-fit: contain; }
+.eyebrow { color: var(--login-primary); font-size: 10px; font-weight: 900; letter-spacing: 0.15em; }
+
+.card h1 {
+  margin: 6px 0 7px;
+  color: #171827;
+  font-size: clamp(28px, 6vw, 36px);
+  letter-spacing: -0.035em;
+}
+
+.subtitle { margin: 0 0 25px; color: #697180; font-size: 13px; line-height: 1.7; }
+
+.error {
+  margin-bottom: 17px;
+  padding: 11px 13px;
+  border: 1px solid #e8abb5;
+  border-radius: 9px;
+  color: #7a1822;
+  background: #fff1f3;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.googleButton {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  border: 1px solid #d7e4dd;
+  border-radius: 11px;
+  color: #25352e;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(45, 111, 84, 0.07);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 150ms ease;
+}
+
+.googleButton:hover { border-color: #9bc5b1; background: #f8fcfa; transform: translateY(-1px); }
+.googleButton:disabled { opacity: 0.55; cursor: wait; transform: none; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: #8a958f;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.divider::before,
+.divider::after { content: ''; height: 1px; flex: 1; background: #e4ebe7; }
+
+.form { display: grid; gap: 17px; }
+.form label { display: grid; gap: 7px; }
+.form label > span { color: #343b4a; font-size: 12px; font-weight: 800; }
+
+.form input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid #d8dde5;
+  border-radius: 10px;
+  outline: none;
+  color: #172033;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  transition: 150ms ease;
+}
+
+.form input:focus { border-color: var(--login-primary); box-shadow: 0 0 0 4px rgba(61, 140, 108, 0.1); }
+.passwordField { position: relative; }
+.passwordField input { padding-right: 68px; }
+
+.passwordField button {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  min-height: 34px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 7px;
+  color: var(--login-primary-dark);
+  background: var(--login-soft);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 850;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  margin-top: 3px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--login-primary-dark), var(--login-primary));
+  box-shadow: 0 12px 24px rgba(45, 111, 84, 0.22);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.submitButton:disabled { opacity: 0.55; cursor: wait; }
+.submitButton span { font-size: 19px; }
+
+.securityNote {
+  display: grid;
+  gap: 2px;
+  margin-top: 22px;
+  padding: 13px 14px;
+  border-radius: 10px;
+  color: #667080;
+  background: #f7f8fa;
+  font-size: 11px;
+}
+
+.securityNote strong { color: #343b4a; font-size: 12px; }
+.accountPrompt { margin: 19px 0 0; color: #707887; font-size: 12px; font-weight: 650; text-align: center; }
+.accountPrompt a { color: var(--login-primary-dark); font-weight: 850; text-decoration: none; }
+.successState { text-align: center; }
+.successIcon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  place-items: center;
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--login-primary-dark), var(--login-primary));
+  box-shadow: 0 14px 30px rgba(45, 111, 84, 0.22);
+  font-size: 28px;
+  font-weight: 900;
+}
+.successState .subtitle strong { color: #2d6f54; overflow-wrap: anywhere; }
+.submitLink {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 17px;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--login-primary-dark), var(--login-primary));
+  box-shadow: 0 12px 24px rgba(45, 111, 84, 0.22);
+  font-size: 14px;
+  font-weight: 850;
+  text-decoration: none;
+}
+.submitLink span { font-size: 19px; }
+.textButton { margin-top: 16px; border: 0; color: #697180; background: transparent; font: inherit; font-size: 11px; font-weight: 750; cursor: pointer; }
+.backLink { display: inline-flex; margin-top: 20px; color: #707887; font-size: 12px; font-weight: 750; text-decoration: none; }
+
+@media (max-width: 520px) {
+  .page { padding: 76px 14px 24px; place-items: start center; }
+  .wordmark { top: 24px; left: 20px; font-size: 20px; }
+  .card { border-radius: 19px; }
+}

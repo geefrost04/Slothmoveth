@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="520" viewBox="0 0 760 520">
+<rect width="760" height="520" fill="white"/>
+<g stroke="#222" stroke-width="4" fill="#fafafa" font-family="Arial" font-size="48" text-anchor="middle" dominant-baseline="middle">
+<rect x="260" y="180" width="120" height="120"/><text x="320" y="240" fill="#111" stroke="none">A</text>
+<rect x="140" y="180" width="120" height="120"/><text x="200" y="240" fill="#111" stroke="none">B</text>
+<rect x="380" y="180" width="120" height="120"/><text x="440" y="240" fill="#111" stroke="none">C</text>
+<rect x="500" y="180" width="120" height="120"/><text x="560" y="240" fill="#111" stroke="none">D</text>
+<rect x="260" y="60" width="120" height="120"/><text x="320" y="120" fill="#111" stroke="none">E</text>
+<rect x="260" y="300" width="120" height="120"/><text x="320" y="360" fill="#111" stroke="none">F</text>
+</g>
+</svg>

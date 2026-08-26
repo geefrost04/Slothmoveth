@@ -73,10 +73,10 @@ export const ocscConfig: CourseConfig = {
     keywords: ['ก.พ.', 'สอบ ก.พ.', 'ภาค ก.', 'ข้าราชการพลเรือน', 'เตรียมสอบ'],
     updated: '26/06/26',
     totalSubjects: 3,
-    totalQuestions: 835,
+    totalQuestions: 635,
     hideQuestionCounts: true,
     migrated: true,
-    migrationNote: 'ย้ายข้อมูลวิชาการคิดวิเคราะห์แล้ว 331 ข้อ วิชาลักษณะข้าราชการที่ดี 304 ข้อ + สรุปเนื้อหา 9 บท และเพิ่มวิชาภาษาอังกฤษ 200 ข้อจากชุดปรับปรุงใหม่ ครอบคลุม Reading, Vocabulary, Grammar และ Conversation',
+    migrationNote: 'มีข้อมูลวิชาการคิดวิเคราะห์และวิชาลักษณะข้าราชการที่ดี ส่วนภาษาอังกฤษกำลังจัดทำชุดใหม่โดยแยกจากคลังตำรวจเดิม',
     landing: {
       heroBadge: 'คอร์สเตรียมสอบภาค ก. · ฟรีทั้งหมด · โทนเหลืองราชการ',
       heroTitleLead: 'เตรียมสอบ ก.พ.',
@@ -91,7 +91,7 @@ export const ocscConfig: CourseConfig = {
       scrollLabel: 'เลื่อนลง',
       stats: [
         { value: '3', label: 'วิชาหลัก' },
-        { value: '835+', label: 'ข้อฝึกพร้อมเฉลย' },
+        { value: '635+', label: 'ข้อฝึกพร้อมเฉลย' },
         { value: 'ภาค ก', label: 'อย่างเดียว' }
       ],
       feature: {

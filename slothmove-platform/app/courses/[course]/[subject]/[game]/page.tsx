@@ -95,10 +95,10 @@ export default async function GamePage({
 export function generateStaticParams() {
   return COURSES.flatMap((course) =>
     course.subjects.flatMap((subject) =>
-      course.games.map((game) => ({
+      (subject.games ?? []).map((gameId) => ({
         course: course.id,
         subject: subject.id,
-        game: game.id
+        game: gameId
       }))
     )
   );

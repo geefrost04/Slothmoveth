@@ -10,4 +10,7 @@ export {
 
 export { civil_servant_rules_quiz } from './civil_servant_rules';
 
-export { english_quiz } from '../../police_admin/data/english';
+// OCSC previously reused the legacy police English bank. Keep the subject
+// empty until it receives its own purpose-built question sets.
+export const english_quiz: QuizItem[] = [];
+import type { QuizItem } from '@/lib/course-types';

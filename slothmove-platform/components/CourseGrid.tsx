@@ -28,11 +28,11 @@ function CourseCard({ course }: { course: Course }) {
       <p className="home-course-desc">{course.desc}</p>
       <div className="home-course-meta">
         {course.subjects ? <span><strong>{course.subjects}</strong> วิชา</span> : null}
-        <span>{isComingSoon ? 'Under maintenance' : 'เรียนฟรี'}</span>
+        <span>{isComingSoon ? 'เร็ว ๆ นี้' : 'เรียนฟรี'}</span>
       </div>
       <div className="home-course-card-footer">
         <span>{course.type}</span>
-        <strong className="home-course-card-cta">{isComingSoon ? 'ปิดปรับปรุงชั่วคราว' : 'เข้าคอร์ส →'}</strong>
+        <strong className="home-course-card-cta">{isComingSoon ? 'เปิดเร็ว ๆ นี้' : 'เข้าคอร์ส →'}</strong>
       </div>
     </div>
   );
@@ -54,21 +54,21 @@ export function CourseGrid({ previewOnly = false }: { previewOnly?: boolean }) {
       <div className="container">
         <div className="home-section-header">
           <div>
-            <div className="section-label">คอร์สเรียน</div>
-            <h2 className="section-title">{previewOnly ? 'คอร์สแนะนำ' : 'คอร์สเรียนทั้งหมด'}</h2>
-            <p className="section-subtitle">เนื้อหาสรุปตรงประเด็น ข้อสอบพร้อมเฉลย และเข้าเรียนได้ฟรี</p>
+            <div className="section-label">เลือกเส้นทาง</div>
+            <h2 className="section-title">{previewOnly ? 'เริ่มจากสนามที่เปิดอยู่' : 'สนามฝึกทั้งหมด'}</h2>
+            <p className="section-subtitle">เริ่มฝึกกับสายตำรวจได้ทันที ส่วนคอร์ส ก.พ. กำลังเตรียมเปิดในลำดับถัดไป</p>
           </div>
           {previewOnly ? (
             <Link
               href="/courses"
               className="inline-flex items-center gap-1 text-sm font-bold text-[#3d8c6c] hover:text-[#2d6f54] transition font-display"
             >
-              ดูทั้งหมด ({VISIBLE_COURSES.length})
+              ดูสนามทั้งหมด ({VISIBLE_COURSES.length})
               <span aria-hidden="true" className="text-base">→</span>
             </Link>
           ) : (
             <span className="text-sm font-bold text-slate-400 font-display">
-              {VISIBLE_COURSES.length} คอร์ส
+              {VISIBLE_COURSES.length} สนามฝึก
             </span>
           )}
         </div>

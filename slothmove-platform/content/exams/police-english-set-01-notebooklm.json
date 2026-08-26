@@ -1,0 +1,588 @@
+{
+  "examSet": {
+    "id": "police-english-set-01",
+    "title": "ภาษาอังกฤษ ชุดที่ 1",
+    "description": "ข้อสอบภาษาอังกฤษ 30 ข้อ พร้อมเฉลย สร้างจากโครงสร้างต้นฉบับชุดที่ 1",
+    "sourceReference": "อังกฤษ.pdf ชุดที่ 1",
+    "durationMinutes": 45,
+    "totalQuestions": 30
+  },
+  "qualityNotes": {
+    "sourceSet": 1,
+    "policy": "DNA package converted without changing questions or solutions",
+    "generatedBy": "External DNA package",
+    "qaBy": "Package audit and SlothMove schema validator"
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A visitor is looking for the train station.\n\nVisitor: \"Excuse me, officer. Could you tell me how to get to the train station?\"\nPolice Officer: \"__________ Go straight for one block, then turn left. It's next to the bank.\"",
+      "choices": [
+        "Certainly. It's about a five-minute walk from here.",
+        "I'm not sure why you need to go there.",
+        "You should come back tomorrow.",
+        "Why don't you take a taxi instead?"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "คำตอบต้องตอบรับคำขอเส้นทางอย่างสุภาพและเชื่อมต่อกับประโยคบอกทางที่ตามมาได้เป็นธรรมชาติ “Certainly...” จึงเหมาะที่สุด ตัวเลือกอื่นไม่ตอบคำถามโดยตรงหรือเปลี่ยนประเด็น.",
+      "tip": "Conversation: ดูว่าคำตอบเชื่อมกับประโยคก่อนและหลังได้จริงหรือไม่",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 1",
+      "verificationRef": "English pragmatics: asking for and giving directions",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 2,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: Two friends are talking about Sunday.\n\nMina: \"What are you doing this Sunday?\"\nTom: \"I'm visiting my grandparents in the morning. __________\"\nMina: \"I'll probably stay home and finish a book.\"",
+      "choices": [
+        "I don't like Sundays.",
+        "What about you?",
+        "Can I visit your grandparents?",
+        "You should read more books."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "หลัง Tom บอกแผนของตนเอง คำตอบของ Mina เป็นการบอกแผนของตัวเอง จึงต้องมีคำถามย้อนว่า “What about you?” ตัวเลือกอื่นไม่ทำให้บทสนทนาต่อเนื่องตามคำตอบของ Mina.",
+      "tip": "ถ้าคนถัดไปตอบเกี่ยวกับตัวเอง มักมีคำถามย้อน เช่น What about you?",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 2",
+      "verificationRef": "English conversation: reciprocal questions",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 3,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A customer is ordering lunch.\n\nServer: \"Are you ready to order?\"\nCustomer: \"Yes, __________ the grilled chicken sandwich, please.\"",
+      "choices": [
+        "I could have",
+        "I should have",
+        "I'll have",
+        "I had"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“I'll have ... , please.” เป็นรูปธรรมชาติและสุภาพสำหรับสั่งอาหารในร้านอาหาร ส่วนรูปอื่นสื่อความหมายเรื่องความเป็นไปได้ หน้าที่ หรืออดีต ไม่เหมาะกับสถานการณ์สั่งอาหาร.",
+      "tip": "Ordering food: “I'll have + เมนู, please.” เป็นรูปที่ใช้บ่อย",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 3",
+      "verificationRef": "English pragmatics: ordering food",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 4,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: Two coworkers are talking after an exam.\n\nNok: \"You look really happy today!\"\nBeam: \"I just found out that I passed the promotion exam. I'm __________!\"",
+      "choices": [
+        "under the weather",
+        "in hot water",
+        "out of the woods",
+        "over the moon"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“over the moon” หมายถึงมีความสุขมาก เหมาะกับการสอบผ่าน ส่วน under the weather = ไม่สบาย, in hot water = มีปัญหา, out of the woods = พ้นช่วงอันตรายหรือปัญหาหนักแล้ว.",
+      "tip": "Idiom ให้แปลทั้งวลี ไม่แปลทีละคำ",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 4",
+      "verificationRef": "Standard English idiom: over the moon = extremely happy",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 5,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A supervisor asks about a document.\n\nSupervisor: \"Have you completed the incident summary?\"\nOfficer: \"I'm sorry, sir. __________ It will be ready before lunch.\"",
+      "choices": [
+        "I'm finishing the last section now.",
+        "I forgot where I put it.",
+        "I don't think it is necessary.",
+        "I haven't decided whether to do it."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ผู้พูดบอกต่อว่าเอกสารจะเสร็จก่อนเที่ยง จึงต้องเป็นคำตอบที่แสดงว่างานกำลังดำเนินอยู่ “I'm finishing the last section now.” เชื่อมเหตุผลได้ดีที่สุด.",
+      "tip": "อ่านข้อความหลังช่องว่างด้วย เพราะมักเป็น clue สำคัญของคำตอบ",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 5",
+      "verificationRef": "English conversation: reporting work progress",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 6,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: Two colleagues have finished a late shift.\n\nPim: \"Everything is done, and it's already 9 p.m.\"\nDan: \"Great. Let's __________ and go home.\"",
+      "choices": [
+        "break the ice",
+        "hit the books",
+        "call it a night",
+        "spill the beans"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“call it a night” หมายถึงหยุดกิจกรรมหรือเลิกงานสำหรับคืนนั้น เหมาะกับสถานการณ์ที่งานเสร็จและกำลังจะกลับบ้าน. สำนวนอื่นหมายถึงเริ่มสร้างความคุ้นเคย, ตั้งใจอ่านหนังสือ, และเปิดเผยความลับ.",
+      "tip": "Idioms ใน Conversation ต้องเข้ากับสถานการณ์จริง ไม่ใช่แค่ถูกไวยากรณ์",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 6",
+      "verificationRef": "Standard English idiom: call it a night = stop an activity for the night",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 7,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The safety briefing is mandatory for all new employees.",
+      "choices": [
+        "optional",
+        "temporary",
+        "ordinary",
+        "required"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“mandatory” หมายถึง required หรือ compulsory คือเป็นสิ่งที่ต้องทำตามข้อกำหนด ส่วน optional หมายถึงเลือกได้, temporary = ชั่วคราว และ ordinary = ธรรมดา.",
+      "tip": "Synonym: mandatory = required = compulsory",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 7",
+      "verificationRef": "Standard English vocabulary: mandatory = required",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 8,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "Officers will __________ the neighborhood throughout the festival to keep the area safe.",
+      "choices": [
+        "patrol",
+        "testify",
+        "negotiate",
+        "confess"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "“patrol” หมายถึงตรวจตราพื้นที่เป็นระยะเพื่อรักษาความปลอดภัย จึงเข้ากับ officers + neighborhood. testify ใช้ให้การ, negotiate = เจรจา, confess = สารภาพ.",
+      "tip": "Police context: patrol = ตรวจตราพื้นที่",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 8",
+      "verificationRef": "Standard English vocabulary/collocation: patrol an area",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 9,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The chief decided to commend the rescue team for their excellent work.",
+      "choices": [
+        "criticize",
+        "ignore",
+        "praise",
+        "blame"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "คำว่า “commend” หมายถึง praise คือกล่าวชื่นชมหรือยกย่อง ส่วน criticize, ignore และ blame มีความหมายต่างออกไป.",
+      "tip": "Synonym: commend = praise",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 9",
+      "verificationRef": "Standard English vocabulary: commend = praise",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The new work schedule is adaptable and can be changed when necessary.",
+      "choices": [
+        "rigid",
+        "permanent",
+        "flexible",
+        "narrow"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“adaptable” ในบริบทนี้หมายถึง flexible คือปรับเปลี่ยนให้เหมาะกับสถานการณ์ได้ ส่วน rigid หมายถึงแข็ง/ไม่ยืดหยุ่น และ permanent คือถาวร.",
+      "tip": "ดูคำอธิบายหลัง and: “can be changed” ช่วยชี้ความหมาย",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 10",
+      "verificationRef": "Standard English vocabulary: adaptable = flexible",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The village has an ample supply of clean drinking water.",
+      "choices": [
+        "scarce",
+        "plentiful",
+        "limited",
+        "rare"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "“ample” หมายถึงมีมากพอหรือมากมาย ใกล้กับ plentiful ส่วน scarce, limited และ rare สื่อถึงปริมาณน้อยหรือข้อจำกัด.",
+      "tip": "Synonym: ample = plentiful / abundant",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 11",
+      "verificationRef": "Standard English vocabulary: ample = plentiful",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The driver was asked to __________ in court about what he had seen.",
+      "choices": [
+        "confess",
+        "testify",
+        "suspect",
+        "assault"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "“testify” ใช้เมื่อบุคคลให้การต่อศาลเกี่ยวกับสิ่งที่ตนรู้หรือเห็น. confess = สารภาพ, suspect = สงสัย/ผู้ต้องสงสัย, assault = ทำร้าย.",
+      "tip": "Collocation: testify in court",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 12",
+      "verificationRef": "Standard English legal vocabulary: testify in court",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 13,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Look at the traffic sign.\n\n[ YIELD ]\n\nWhat does this sign mean?",
+      "choices": [
+        "You must give way to other traffic before proceeding.",
+        "You must stop and park your vehicle.",
+        "You may drive without checking other traffic.",
+        "You are entering a one-way street."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ป้าย YIELD หมายถึงให้ทางแก่รถหรือผู้ใช้ทางที่มีสิทธิก่อน และดำเนินต่อเมื่อปลอดภัย ไม่ได้หมายถึงต้องจอดรถถาวรหรือขับต่อโดยไม่ตรวจทาง.",
+      "tip": "Traffic signs: YIELD = give way",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 13",
+      "verificationRef": "Reading evidence: meaning of a standard YIELD traffic sign",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 14,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read this notice.\n\nPOLICE RECORDS ASSISTANT - VACANCY\n\nA district police office is accepting applications for a Police Records Assistant.\n\nDuties:\n- Organize case files\n- Enter information into the computer system\n- Assist officers with document searches\n\nQualifications:\n- Thai citizen\n- 20-32 years old\n- High school diploma or higher\n\nApply online by September 30.\n\nWhich of the following is TRUE?",
+      "choices": [
+        "Applicants must be at least 35 years old.",
+        "The job only involves searching for documents.",
+        "Applicants must be Thai citizens.",
+        "Applicants must apply in person."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ประกาศระบุชัดว่า Thai citizen เป็นหนึ่งในคุณสมบัติ ส่วนอายุคือ 20-32 ปี งานมีหลายหน้าที่ และต้อง apply online ไม่ใช่สมัครด้วยตนเอง.",
+      "tip": "Reading notice: เทียบตัวเลือกกับข้อมูลที่เขียนไว้ตรง ๆ",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 14",
+      "verificationRef": "Reading evidence: information stated in the notice",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 15,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read this email.\n\nTo: All Training Staff\nFrom: Lt. Anan\nSubject: Rescheduled First-Aid Training\n\nThe first-aid training session originally scheduled for Friday at 9:00 a.m. has been moved to Monday at 1:00 p.m. The training room remains the same. Please update your schedules.\n\nWhat is the purpose of this email?",
+      "choices": [
+        "To announce a new time and date for the training session.",
+        "To cancel the training session.",
+        "To change the training room.",
+        "To introduce a new instructor."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "อีเมลแจ้งว่า session เดิมวันศุกร์ถูกย้ายเป็นวันจันทร์เวลา 1:00 p.m. และห้องเดิม ดังนั้นจุดประสงค์คือแจ้งกำหนดใหม่ ไม่ได้ยกเลิกหรือเปลี่ยนสถานที่.",
+      "tip": "Email purpose: หา “สิ่งที่เปลี่ยน” และ “สิ่งที่ยังเหมือนเดิม”",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 15",
+      "verificationRef": "Reading evidence: stated purpose of the email",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 16,
+      "category": "Reading",
+      "difficulty": "ปานกลาง",
+      "prompt": "Read the passage.\n\nRegular physical activity is important for both the body and the mind. Exercise helps strengthen the heart and muscles, and it can also improve mood and reduce stress. Adults are generally encouraged to be active on most days of the week. However, exercise does not have to be intense to be useful. Walking, taking the stairs, or doing short workouts at home can all contribute to a more active lifestyle.\n\nA lack of physical activity may increase the risk of several health problems over time. To become more active, experts suggest choosing activities that are enjoyable, setting realistic goals, and building exercise into a regular routine.\n\nWhat is the main idea of the passage?",
+      "choices": [
+        "Only intense exercise provides real health benefits.",
+        "Regular physical activity supports physical and mental health.",
+        "Adults should exercise only at a gym.",
+        "Walking is the only useful form of exercise."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "บทอ่านกล่าวถึงประโยชน์ของกิจกรรมทางกายทั้งต่อร่างกายและจิตใจ พร้อมยกตัวอย่างกิจกรรมและวิธีสร้างนิสัย จึงมีใจความหลักว่าการเคลื่อนไหวอย่างสม่ำเสมอมีประโยชน์ต่อสุขภาพโดยรวม.",
+      "tip": "Main idea ต้องครอบคลุมทั้ง passage ไม่ใช่รายละเอียดเพียงประโยคเดียว",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 16",
+      "verificationRef": "Reading evidence: main idea derived from the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 17,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read the passage.\n\nRegular physical activity is important for both the body and the mind. Exercise helps strengthen the heart and muscles, and it can also improve mood and reduce stress. Adults are generally encouraged to be active on most days of the week. However, exercise does not have to be intense to be useful. Walking, taking the stairs, or doing short workouts at home can all contribute to a more active lifestyle.\n\nA lack of physical activity may increase the risk of several health problems over time. To become more active, experts suggest choosing activities that are enjoyable, setting realistic goals, and building exercise into a regular routine.\n\nAccording to the passage, what is one benefit of exercise?",
+      "choices": [
+        "It guarantees that people will never get sick.",
+        "It can improve mood and reduce stress.",
+        "It makes sleep unnecessary.",
+        "It eliminates the need for a healthy diet."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "บทอ่านระบุโดยตรงว่า exercise “can also improve mood and reduce stress.” ตัวเลือกอื่นเป็นข้อสรุปที่บทอ่านไม่ได้กล่าวและเกินจริง.",
+      "tip": "Detail question: มองหาประโยคที่ใช้คำเดียวหรือความหมายตรงกับตัวเลือก",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 17",
+      "verificationRef": "Reading evidence: detail explicitly stated in the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read the passage.\n\nRegular physical activity is important for both the body and the mind. Exercise helps strengthen the heart and muscles, and it can also improve mood and reduce stress. Adults are generally encouraged to be active on most days of the week. However, exercise does not have to be intense to be useful. Walking, taking the stairs, or doing short workouts at home can all contribute to a more active lifestyle.\n\nA lack of physical activity may increase the risk of several health problems over time. To become more active, experts suggest choosing activities that are enjoyable, setting realistic goals, and building exercise into a regular routine.\n\nWhich of the following is NOT mentioned as a way to become more active?",
+      "choices": [
+        "Buying expensive exercise equipment.",
+        "Choosing activities you enjoy.",
+        "Setting realistic goals.",
+        "Building exercise into a regular routine."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "บทอ่านกล่าวถึง choosing enjoyable activities, setting realistic goals และ building exercise into a routine แต่ไม่ได้กล่าวถึงการซื้ออุปกรณ์ราคาแพง.",
+      "tip": "NOT mentioned: ติ๊กสิ่งที่ passage กล่าวไว้ทีละข้อ แล้วเลือกข้อที่ไม่พบ",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 18",
+      "verificationRef": "Reading evidence: NOT-mentioned question based only on the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 19,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The sun __________ in the east.",
+      "choices": [
+        "rises",
+        "is rising",
+        "has risen",
+        "rose"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "เป็นข้อเท็จจริงทั่วไป จึงใช้ Present Simple: “The sun rises in the east.” ประธานเอกพจน์ the sun ทำให้กริยาเติม -s.",
+      "tip": "General fact -> Present Simple",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 19",
+      "verificationRef": "Standard English grammar: Present Simple for general facts",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 20,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "She __________ the incident report yesterday afternoon.",
+      "choices": [
+        "submits",
+        "is submitting",
+        "has submitted",
+        "submitted"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "คำว่า “yesterday afternoon” เป็นเวลาที่จบแล้วในอดีต จึงใช้ Past Simple: submitted. Present Perfect ไม่ใช้ร่วมกับเวลาที่ระบุชัดว่าเป็นอดีตที่จบแล้วแบบ yesterday.",
+      "tip": "yesterday / last... / ago -> มอง Past Simple ก่อน",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 20",
+      "verificationRef": "Standard English grammar: Past Simple with finished past time",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 21,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "All visitors __________ at the entrance before entering the building.",
+      "choices": [
+        "are checked",
+        "check",
+        "are checking",
+        "checked"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ประธาน “All visitors” เป็นผู้ถูกตรวจ ไม่ใช่ผู้ตรวจ จึงใช้ Passive Voice ใน Present Simple: are checked.",
+      "tip": "ผู้ถูกกระทำเป็นประธาน -> be + V3",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 21",
+      "verificationRef": "Standard English grammar: Present Simple Passive",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 22,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "If I __________ more free time, I would join the evening class.",
+      "choices": [
+        "have",
+        "had",
+        "will have",
+        "had had"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "โครงสร้าง Second Conditional ใช้ If + Past Simple, would + base verb เพื่อพูดถึงสถานการณ์สมมติในปัจจุบัน/อนาคต: If I had more free time, I would join...",
+      "tip": "If + V2, would + V1 = Second Conditional",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 22",
+      "verificationRef": "Standard English grammar: Second Conditional",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 23,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The officer __________ helped us at the station was very polite.",
+      "choices": [
+        "who",
+        "which",
+        "whose",
+        "whom"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ช่องว่างแทนบุคคลและทำหน้าที่เป็นประธานของกริยา helped จึงใช้ “who”. which ใช้กับสิ่งของ, whose แสดงความเป็นเจ้าของ, whom ใช้เป็นกรรม.",
+      "tip": "คน + เป็นประธานใน relative clause -> who",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 23",
+      "verificationRef": "Standard English grammar: relative pronoun who",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 24,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The long delay was very __________, so everyone felt __________.",
+      "choices": [
+        "frustrating / frustrating",
+        "frustrated / frustrated",
+        "frustrating / frustrated",
+        "frustrated / frustrating"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "สิ่งหรือเหตุการณ์ที่ทำให้เกิดความรู้สึกใช้ -ing: the delay was frustrating. คนที่รู้สึกใช้ -ed: everyone felt frustrated.",
+      "tip": "สิ่งที่ทำให้รู้สึก = -ing / คนที่รู้สึก = -ed",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 24",
+      "verificationRef": "Standard English grammar: -ing vs -ed participial adjectives",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 25,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "They enjoy __________ in the park after work.",
+      "choices": [
+        "to jog",
+        "jogging",
+        "jog",
+        "jogged"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "กริยา enjoy ตามด้วย gerund (V-ing) จึงใช้ “enjoy jogging”. ไม่ใช้ enjoy + to-infinitive ในโครงสร้างนี้.",
+      "tip": "enjoy + V-ing",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 25",
+      "verificationRef": "Standard English grammar: enjoy + gerund",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 26,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "How __________ information do we need before making the decision?",
+      "choices": [
+        "many",
+        "much",
+        "a few",
+        "some"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "information เป็นคำนามนับไม่ได้ จึงใช้ “How much information...?” many และ a few ใช้กับคำนามนับได้พหูพจน์.",
+      "tip": "Uncountable noun -> much",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 26",
+      "verificationRef": "Standard English grammar: much with uncountable nouns",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 27,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The training course starts __________ September.",
+      "choices": [
+        "at",
+        "on",
+        "in",
+        "by"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ใช้ “in” กับเดือน เช่น in September. on ใช้กับวัน/วันที่ และ at ใช้กับเวลาเฉพาะ.",
+      "tip": "เดือน/ปี -> in; วัน/วันที่ -> on; เวลา -> at",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 27",
+      "verificationRef": "Standard English grammar: prepositions of time",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 28,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "I wanted to join the trip, __________ I had to work that day.",
+      "choices": [
+        "so",
+        "and",
+        "but",
+        "or"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "สองใจความมีความขัดแย้งกัน: อยากไป แต่ต้องทำงาน จึงใช้ conjunction “but”.",
+      "tip": "ความหมายขัดแย้งกัน -> but",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 28",
+      "verificationRef": "Standard English grammar: coordinating conjunction but",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 29,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "This route is __________ than the one we used yesterday.",
+      "choices": [
+        "short",
+        "shorter",
+        "the shortest",
+        "as short"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "มีคำว่า “than” จึงใช้ comparative adjective: shorter than. “the shortest” เป็น superlative และ “as short” ต้องใช้โครง as...as.",
+      "tip": "เห็น than -> comparative",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 29",
+      "verificationRef": "Standard English grammar: comparative adjectives",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 30,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "They are ready to leave, __________?",
+      "choices": [
+        "are they",
+        "do they",
+        "don't they",
+        "aren't they"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ประโยคหลักเป็นบอกเล่าและใช้ verb to be “are” จึงใช้ tag ปฏิเสธ “aren't they?”. สรรพนามใน tag ต้องแทนประธาน They.",
+      "tip": "Positive be-clause -> negative be tag",
+      "sourceRef": "ต้นฉบับชุดที่ 1 ข้อ 30",
+      "verificationRef": "Standard English grammar: question tags",
+      "dnaType": null,
+      "media": {}
+    }
+  ]
+}

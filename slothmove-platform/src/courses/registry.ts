@@ -12,23 +12,17 @@
 
 import type { CourseConfig } from '@/lib/course-types';
 
-import { pabConfig } from './pab/config';
-import { opsdConfig } from './opsd/config';
-import { industryConfig } from './industry/config';
 import { policeAdminConfig } from './police_admin/config';
 import { ocscConfig } from './ocsc/config';
-import { railwayConfig } from './railway/config';
 
 export const COURSES: CourseConfig[] = [
-  pabConfig,
-  opsdConfig,
-  industryConfig,
   policeAdminConfig,
   ocscConfig,
-  railwayConfig
 ];
 
-export const OPEN_COURSE_IDS = new Set(['police_admin', 'ocsc']);
+// The MVP launches with the police preparation track first. Keep OCSC in the
+// registry so its content can be reopened later without deleting it.
+export const OPEN_COURSE_IDS = new Set(['police_admin']);
 
 /** Only show courses that aren't hidden from the platform index */
 export const VISIBLE_COURSES = COURSES.filter((c) => !c.hidden);

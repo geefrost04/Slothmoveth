@@ -1,0 +1,193 @@
+.catalog {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #182132;
+  font-size: 13px;
+}
+
+.heading strong { display: flex; align-items: center; gap: 8px; }
+.heading strong svg { width: 19px; height: 19px; fill: none; stroke: #7a1822; stroke-width: 1.9; }
+
+.heading span {
+  padding: 5px 10px;
+  border-radius: 99px;
+  color: #7a1822;
+  background: #fde7ea;
+  font-weight: 850;
+}
+
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #eee0e2;
+  border-radius: 8px;
+  color: #172033;
+  background: #fff;
+}
+
+.overview strong {
+  display: block;
+  font-size: 13px;
+}
+
+.overview span {
+  display: block;
+  margin-top: 2px;
+  color: #6b7482;
+  font-size: 11px;
+}
+
+.overviewStats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.overviewStats span {
+  margin: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #7a1822;
+  background: #fff1f3;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.examCard {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 72px;
+  padding: 11px 14px;
+  border: 1px solid #efb5bc;
+  border-radius: 8px;
+  color: #172033;
+  background: #fff;
+  text-decoration: none;
+  transition: 160ms ease;
+}
+
+.ownedCard { border-color: #b9d1bc; background: #fff; }
+
+.checkoutCard { display: block; }
+.checkoutCard > button {
+  width: 100%;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.checkoutCard > button:disabled { cursor: wait; opacity: .72; }
+.checkoutCard > small { display: block; margin-top: 6px; color: #9d1e2c; font-size: 10px; }
+.checkoutCard .examCard { width: 100%; }
+.checkoutCard > button {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 72px;
+  padding: 11px 14px;
+  border: 1px dashed #cfc7c8;
+  border-radius: 8px;
+  color: #172033;
+  background: #fff;
+}
+
+.examCard:hover {
+  border-color: #b92334;
+  box-shadow: 0 8px 20px rgba(122, 24, 34, 0.09);
+  transform: translateY(-1px);
+}
+
+.examIcon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  color: #fff;
+  background: #9d1e2c;
+  font-weight: 950;
+}
+
+.examIcon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lockedIcon { color: #fff; background: #aaa7a8; }
+
+.examCopy { min-width: 0; }
+.examCopy > div { display: flex; align-items: center; gap: 8px; }
+.examCopy strong { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.examCopy em { padding: 3px 7px; border-radius: 6px; color: #7a1822; background: #fde7ea; font-size: 10px; font-style: normal; font-weight: 900; }
+.ownedCard .examCopy em { color: #527958; background: #eaf3e9; }
+.examCopy span, .examCopy small { display: block; margin-top: 2px; color: #6b7482; font-size: 11px; }
+.examCopy small { color: #9d1e2c; font-weight: 750; }
+.ownedCard .examCopy small { color: #6b7482; }
+.examCard > b, .checkoutCard > button > b { color: #7a1822; font-size: 13px; white-space: nowrap; }
+.examCard > b span, .checkoutCard > button > b span { margin-left: 6px; font-size: 20px; line-height: 0; vertical-align: -2px; }
+
+.toggleButton {
+  justify-self: center;
+  padding: 7px 12px;
+  border: 1px solid #ead5d8;
+  border-radius: 999px;
+  color: #7a1822;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.toggleButton:hover {
+  border-color: #b92334;
+  background: #fff7f8;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 64px;
+  margin: 16px 0;
+  border: 1px dashed #d9dee6;
+  border-radius: 9px;
+  color: #737c89;
+  font-size: 11px;
+  font-weight: 750;
+  background: #fafbfc;
+}
+
+.state i {
+  width: 13px;
+  height: 13px;
+  border: 2px solid #e3b8bd;
+  border-top-color: #9d1e2c;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 520px) {
+  .overview { align-items: flex-start; flex-direction: column; }
+  .overviewStats { justify-content: flex-start; }
+  .examCard { grid-template-columns: auto 1fr; }
+  .examCard > b { grid-column: 2; }
+  .checkoutCard > button { grid-template-columns: auto 1fr; }
+  .checkoutCard > button > b { grid-column: 2; }
+  .examIcon { width: 38px; height: 38px; }
+  .examCopy strong { font-size: 13px; }
+}

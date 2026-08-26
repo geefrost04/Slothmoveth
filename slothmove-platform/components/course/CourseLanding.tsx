@@ -1,6 +1,9 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import type { CourseConfig, CourseLandingSection, SubjectMeta } from '@/lib/course-types';
+import { PoliceExamCatalog } from './PoliceExamCatalog';
+import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
+import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 
 function findSubjects(course: CourseConfig, ids: string[]) {
   return ids
@@ -76,6 +79,101 @@ function SubjectPanel({
         )}
       </div>
     </Link>
+  );
+}
+
+function PoliceWireLanding({ course }: { course: CourseConfig }) {
+  const subjectById = new Map(course.subjects.map((subject) => [subject.id, subject]));
+
+  const subjectIcons: Record<string, string> = {
+    math: '▦',
+    thai: '▤',
+    english: 'ABC',
+    law: '⚖',
+    computer: '▣',
+    saraban: '📁'
+  };
+
+  const cards = course.subjects.map((subj) => {
+    return {
+      id: subj.id,
+      title: subj.title,
+      sets: 'กำลังจัดเนื้อหาใหม่',
+      progress: 0,
+      href: `/courses/${course.id}/${subj.id}`,
+      icon: subjectIcons[subj.id] || subj.icon || '📘',
+      available: true
+    };
+  });
+
+  return (
+    <div className="police-wire-page">
+      <div className="container police-wire-inner">
+        <nav className="police-wire-breadcrumb" aria-label="breadcrumb">
+          <Link href="/">หน้าแรก</Link>
+          <span aria-hidden="true">›</span>
+          <span>นายสิบตำรวจ</span>
+        </nav>
+
+        <section className="police-wire-hero" aria-labelledby="police-wire-title">
+          <div className="police-wire-badge" aria-hidden="true">
+            <img src={course.theme.logo} alt="" />
+          </div>
+          <div className="police-wire-copy">
+            <h1 id="police-wire-title">นายสิบตำรวจ</h1>
+            <p>สรุปแบบ Visual และชุดข้อสอบใหม่ แยกเป็นรายวิชาเพื่อเลือกเรียนและเลือกซื้อได้ชัดเจน</p>
+          </div>
+          <div className="police-wire-progress">
+            <strong>กำลังปรับโครงสร้างใหม่</strong>
+            <span>เตรียมเนื้อหา {cards.length} วิชา</span>
+            <span>ชุดข้อสอบ <b>เร็ว ๆ นี้</b></span>
+            <div className="police-wire-progressbar"><span /></div>
+            <Link href={`/courses/${course.id}/math`}>ดูรายวิชา →</Link>
+          </div>
+        </section>
+
+        <section className="police-wire-subjects" aria-labelledby="police-wire-subject-title">
+          <h2 id="police-wire-subject-title">เลือกวิชาที่ต้องการฝึก</h2>
+          <div className="police-wire-subject-grid">
+            {cards.map((card) => {
+              const source = subjectById.get(card.id);
+              const content = (
+                <>
+                  <div className="police-wire-subject-icon" aria-hidden="true">{card.icon}</div>
+                  <h3>{card.title}</h3>
+                  <p>{card.sets}</p>
+                  <span>สรุป Visual และชุดข้อสอบใหม่</span>
+                  <div className="police-wire-card-progress">
+                    <i style={{ width: `${card.progress}%` }} />
+                  </div>
+                  <em>ใหม่</em>
+                  <b>{card.available ? 'ดูวิชา' : 'เร็ว ๆ นี้'}</b>
+                </>
+              );
+
+              return card.available && source ? (
+                <Link href={card.href} className="police-wire-subject-card" key={card.id}>
+                  {content}
+                </Link>
+              ) : (
+                <div className="police-wire-subject-card is-locked" key={card.id}>
+                  {content}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="police-wire-guide">
+          <div className="police-wire-guide-icon" aria-hidden="true">▱</div>
+          <div>
+            <h2>ยังไม่แน่ใจจะเริ่มวิชาไหนดี?</h2>
+            <p>แนะนำแนวทางการเตรียมตัว และวิชาที่ควรโฟกัสก่อนลงสนามสอบ</p>
+          </div>
+          <Link href={`/courses/${course.id}/math`}>ดูแนะนำการเตรียมตัว</Link>
+        </section>
+      </div>
+    </div>
   );
 }
 
@@ -303,6 +401,193 @@ function PoliceAdminV3Landing({ course }: { course: CourseConfig }) {
   );
 }
 
+const DocIcon = () => (
+  <svg className="police-v2-quiz-doc-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <line x1="10" y1="9" x2="8" y2="9" />
+  </svg>
+);
+
+const ScalesIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="12" y1="2" x2="12" y2="22" />
+    <line x1="5" y1="7" x2="19" y2="7" />
+    <path d="M5 7L2 14c0 1.5 1.5 2.5 3 2.5s3-1 3-2.5L5 7z" />
+    <path d="M19 7l-3 7c0 1.5 1.5 2.5 3 2.5s3-1 3-2.5l-3-7z" />
+    <path d="M9 22h6" />
+  </svg>
+);
+
+const LaptopIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="18" height="12" x="3" y="4" rx="2" ry="2" />
+    <line x1="2" y1="20" x2="22" y2="20" />
+    <line x1="12" y1="20" x2="12" y2="16" />
+  </svg>
+);
+
+const FolderIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
+const MathGraphIcon = () => (
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M10 7v32h31M13 31c6-1 8-19 15-19 5 0 5 15 12 17" />
+    <path d="M17 36v3M25 36v3M33 36v3M7 29h3M7 20h3M7 11h3" />
+    <text x="29" y="10" fill="currentColor" stroke="none" fontSize="8">f(x)</text>
+  </svg>
+);
+
+function PoliceMockupLanding({ course }: { course: CourseConfig }) {
+  const mathCatalog = <PoliceExamCatalog courseId={course.id} subjectId="math" />;
+  const thaiCatalog = <PoliceExamCatalog courseId={course.id} subjectId="thai" />;
+  const englishCatalog = <PoliceExamCatalog courseId={course.id} subjectId="english" />;
+  const computerCatalog = <PoliceExamCatalog courseId={course.id} subjectId="computer" />;
+  const lawCatalog = <PoliceExamCatalog courseId={course.id} subjectId="law" />;
+  const sarabanCatalog = <PoliceExamCatalog courseId={course.id} subjectId="saraban" />;
+
+  const subjects = [
+    {
+      id: 'math',
+      title: 'ความรู้ทั่วไป',
+      iconText: '123',
+      desc: 'คิดวิเคราะห์, คิดเชิงเหตุผล, คณิตศาสตร์พื้นฐาน, อนุกรม, ความน่าจะเป็น, สถิติพื้นฐาน',
+      active: true,
+      quizzes: [
+        { title: 'สรุปสูตรที่ใช้', price: 'ฟรี', href: `/courses/${course.id}/math`, isFormula: true },
+      ]
+    },
+    {
+      id: 'thai',
+      title: 'ภาษาไทย',
+      iconText: 'ก',
+      desc: 'การอ่านจับใจความ, การเขียน, หลักภาษา, การใช้คำ, การสรุปความและตีความ',
+      active: true,
+    },
+    {
+      id: 'english',
+      title: 'ภาษาอังกฤษ',
+      iconText: 'EN',
+      desc: 'Reading Ability, Grammar & Structure, Vocabulary, Conversation',
+      active: true,
+    },
+    {
+      id: 'law',
+      title: 'กฎหมาย',
+      iconCustom: <ScalesIcon />,
+      desc: 'กฎหมายที่ประชาชนควรรู้, กฎหมายอาญา, กฎหมายแพ่ง, กฎหมายในชีวิตประจำวัน',
+      active: true,
+    },
+    {
+      id: 'computer',
+      title: 'คอมพิวเตอร์',
+      iconCustom: <LaptopIcon />,
+      desc: 'เทคโนโลยีสารสนเทศ, เครือข่ายคอมพิวเตอร์เบื้องต้น, MS Word, Excel, PowerPoint',
+      active: true,
+      quizzes: [
+        { title: 'ชีทสรุปคอมพิวเตอร์', price: 'ฟรี', href: `/courses/${course.id}/computer/summary`, isFormula: true },
+      ]
+    },
+    {
+      id: 'saraban',
+      title: 'งานสารบรรณ',
+      iconCustom: <FolderIcon />,
+      desc: 'ระเบียบงานสารบรรณ พ.ศ. 2526 และประมวลระเบียบการตำรวจ ลักษณะที่ 54',
+      active: true,
+    }
+  ];
+
+  return (
+    <div className="police-v2-landing">
+      <div className="container">
+        <nav className="police-v2-breadcrumb" aria-label="breadcrumb">
+          <Link href="/">หน้าแรก</Link>
+          <span className="police-v2-breadcrumb-separator">&gt;</span>
+          <span className="police-v2-breadcrumb-current">สนามสอบ</span>
+          <span className="police-v2-breadcrumb-separator">&gt;</span>
+          <span className="police-v2-breadcrumb-current">นายสิบตำรวจ</span>
+        </nav>
+
+        <section className="police-v2-hero">
+          <div className="police-v2-hero-content">
+            <div className="police-v2-hero-title-row">
+              <span className="police-v2-hero-shield-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 11 2 2 4-4" />
+                </svg>
+              </span>
+              <h1 className="police-v2-hero-title">นายสิบตำรวจ</h1>
+            </div>
+            <h2 className="police-v2-hero-subtitle">เลือกวิชาที่ต้องการฝึก</h2>
+            <p className="police-v2-hero-desc">
+              ฝึกข้อสอบตามวิชาที่ต้องการ หรือดูสรุปเนื้อหาเพื่อเพิ่มความเข้าใจก่อนทำข้อสอบ
+            </p>
+          </div>
+          <div className="police-v2-hero-image">
+            <img src="/pic/logo_police.png" alt="ตราสำนักงานตำรวจแห่งชาติ" />
+          </div>
+        </section>
+
+        <section className="police-v2-mock-hero" aria-labelledby="police-mock-hero-title">
+          <div className="police-v2-mock-copy">
+            <span className="police-v2-mock-eyebrow">
+              <i aria-hidden="true" /> Hero Product
+            </span>
+            <h2 id="police-mock-hero-title">Mock Test จำลองสนามจริง</h2>
+            <p>รวมทุกวิชาในข้อสอบเดียว จับเวลาต่อเนื่องและสรุปคะแนนแยกรายวิชา เพื่อให้รู้จุดอ่อนก่อนลงสนามจริง</p>
+            <div className="police-v2-mock-meta" aria-label="รายละเอียด Mock Test">
+              <span><strong>150</strong> ข้อ</span>
+              <span><strong>180</strong> นาที</span>
+              <span><strong>6</strong> วิชา</span>
+            </div>
+          </div>
+          <PoliceMockTestCatalog courseId={course.id} compact />
+        </section>
+
+        <h2 className="police-v2-section-heading">เลือกวิชา</h2>
+
+        <PoliceMockupSubjectGrid
+          course={course}
+          subjects={subjects}
+          catalogs={{
+            math: mathCatalog,
+            thai: thaiCatalog,
+            english: englishCatalog,
+            computer: computerCatalog,
+            law: lawCatalog,
+            saraban: sarabanCatalog
+          }}
+        />
+
+        <section className="police-v2-guide-banner">
+          <div className="police-v2-guide-info">
+            <span className="police-v2-guide-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5" />
+                <path d="M9 18h6" />
+                <path d="M10 22h4" />
+              </svg>
+            </span>
+            <div className="police-v2-guide-text">
+              <h3>ยังไม่รู้จะเริ่มตรงไหน?</h3>
+              <p>ระหว่างรอชุดข้อสอบใหม่ สามารถดูโครงสร้างวิชาและสรุปเนื้อหาที่มีอยู่ได้</p>
+            </div>
+          </div>
+          <Link href={`/courses/${course.id}/math`} className="police-v2-guide-button">
+            ดูสรุปความรู้ทั่วไป
+          </Link>
+        </section>
+      </div>
+    </div>
+  );
+}
+
 export function CourseLanding({ course }: { course: CourseConfig }) {
   const landing = course.meta.landing;
   if (!landing) return null;
@@ -318,6 +603,10 @@ export function CourseLanding({ course }: { course: CourseConfig }) {
     ? `/courses/${course.id}/${firstReadySubject.id}/quiz`
     : landing.feature?.primaryCtaHref ?? `#${contentAnchorId}`;
   const firstSectionHref = `#${firstSectionId}`;
+
+  if (course.id === 'police_admin') {
+    return <PoliceMockupLanding course={course} />;
+  }
 
   if (useEditorialLanding) {
     return <PoliceAdminV3Landing course={course} />;

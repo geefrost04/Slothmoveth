@@ -6,8 +6,8 @@ import { DonatePopup } from '@/components/DonatePopup';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'คอร์สเรียนทั้งหมด - SlothMove',
-  description: 'คอร์สเรียนเตรียมสอบราชการทั้งหมด สรุปเนื้อหาตรงประเด็น ข้อสอบพร้อมเฉลย เข้าเรียนฟรีไม่มีค่าใช้จ่าย',
+  title: 'คอร์สเตรียมสอบราชการและนายสิบตำรวจ',
+  description: 'รวมคอร์สเตรียมสอบราชการ เริ่มจากนายสิบตำรวจครบ 6 วิชา พร้อมชีทสรุป ชุดทดลองฟรี ข้อสอบพร้อมเฉลย และ Mock Test',
   path: '/courses',
 });
 

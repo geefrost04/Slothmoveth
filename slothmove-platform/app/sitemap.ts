@@ -13,9 +13,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: absoluteUrl('/rat-ngan'),
+      url: absoluteUrl('/courses'),
       lastModified: now,
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: absoluteUrl('/courses/police_admin/mock-test'),
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
   ];
@@ -35,5 +41,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]);
 
-  return [...staticPages, ...coursePages];
+  const summarySections = [
+    ...Array.from({ length: 20 }, (_, index) => `/courses/police_admin/math/summary/chapter-${String(index + 1).padStart(2, '0')}`),
+    '/courses/police_admin/math/summary/quick-review',
+    ...Array.from({ length: 5 }, (_, index) => `/courses/police_admin/computer/summary/part-${String(index + 1).padStart(2, '0')}`),
+  ].map((path) => ({
+    url: absoluteUrl(path),
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...coursePages, ...summarySections];
 }

@@ -24,13 +24,19 @@ export function Footer() {
               />
               <strong>Sloth<span>Move</span></strong>
             </Link>
-            <span className="footer-brand-tagline">เรียนฟรี ทบทวนได้ทุกเวลา</span>
+            <span className="footer-brand-tagline">เริ่มฝึกฟรี · เลือกชุดฝึกเมื่อพร้อม</span>
           </div>
 
           <div className="footer-navigation">
             <Link href="/">หน้าแรก</Link>
             <span className="separator">·</span>
-            <Link href="/#courses">คอร์สเรียน</Link>
+            <Link href="/#exam-selection">สนามสอบ</Link>
+            <span className="separator">·</span>
+            <Link href="/courses/police_admin">ข้อสอบนายสิบตำรวจ</Link>
+            <span className="separator">·</span>
+            <Link href="/courses/police_admin/mock-test">Mock Test</Link>
+            <span className="separator">·</span>
+            <Link href="/#faq">FAQ</Link>
             <span className="separator">·</span>
             <a
               href="https://www.facebook.com/profile.php?id=61589670089745"

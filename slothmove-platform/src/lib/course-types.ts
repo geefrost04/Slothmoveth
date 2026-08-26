@@ -141,7 +141,7 @@ export interface CourseMeta {
 }
 
 export interface CourseConfig {
-  /** URL-safe id, e.g. "pab", "opsd", "industry" */
+  /** URL-safe id, e.g. "police_admin" or "ocsc" */
   id: string;
   /** Display title */
   title: string;

@@ -1,9 +1,5 @@
-import { JOBS_DATA } from '@/data/jobs';
-import RatNganClient from './RatNganClient';
-import { toSlimJob } from '@/lib/jobs-board';
+import { redirect } from 'next/navigation';
 
 export default function RatNganPage() {
-  const jobs = JOBS_DATA.map(toSlimJob);
-
-  return <RatNganClient jobs={jobs} />;
+  redirect('/');
 }

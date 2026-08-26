@@ -1,0 +1,588 @@
+{
+  "examSet": {
+    "id": "police-english-set-02",
+    "title": "ภาษาอังกฤษ ชุดที่ 2",
+    "description": "ข้อสอบภาษาอังกฤษ 30 ข้อ พร้อมเฉลย สร้างจากโครงสร้างต้นฉบับชุดที่ 2",
+    "sourceReference": "อังกฤษ.pdf ชุดที่ 2",
+    "durationMinutes": 45,
+    "totalQuestions": 30
+  },
+  "qualityNotes": {
+    "sourceSet": 2,
+    "policy": "DNA package converted without changing questions or solutions",
+    "generatedBy": "External DNA package",
+    "qaBy": "Package audit and SlothMove schema validator"
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A customer is looking for batteries in a supermarket.\n\nCustomer: \"Excuse me. Where can I find the batteries?\"\nClerk: \"__________ They're on the shelf beside the flashlights.\"",
+      "choices": [
+        "They're in aisle six.",
+        "You should buy a flashlight first.",
+        "I don't use batteries very often.",
+        "The store closes at nine."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "คำตอบต้องบอกตำแหน่งสินค้าและเชื่อมกับข้อความว่าอยู่ข้างไฟฉาย “They're in aisle six.” จึงเหมาะที่สุด.",
+      "tip": "Where can I find...? → ตอบตำแหน่งหรือเส้นทาง",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 1",
+      "verificationRef": "English pragmatics: asking for a product location",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 2,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: The office printer is not working.\n\nNina: \"The printer has stopped again, and we need these reports now.\"\nMark: \"__________\"\nNina: \"Good idea. I'll call the IT desk.\"",
+      "choices": [
+        "I'll print them tomorrow.",
+        "Why don't we ask IT for help?",
+        "The reports are already finished.",
+        "We bought the printer last year."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "คำตอบของ Nina ว่า “Good idea. I'll call the IT desk.” ชี้ว่า Mark ต้องเสนอให้ติดต่อฝ่าย IT.",
+      "tip": "Good idea มักตอบรับ suggestion เช่น Why don't we...?",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 2",
+      "verificationRef": "English pragmatics: making a workplace suggestion",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 3,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: A friend offers you a drink.\n\nFriend: \"Would you like some iced coffee?\"\nYou: \"__________ I'm trying to avoid caffeine this evening.\"",
+      "choices": [
+        "I'd love another cup.",
+        "Make it extra strong, please.",
+        "Coffee is on the table.",
+        "No, thanks."
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ผู้พูดกำลังหลีกเลี่ยงคาเฟอีน จึงต้องปฏิเสธอย่างสุภาพด้วย “No, thanks.”",
+      "tip": "ปฏิเสธข้อเสนออย่างสุภาพ: No, thanks.",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 3",
+      "verificationRef": "English pragmatics: politely declining an offer",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 4,
+      "category": "Conversation",
+      "difficulty": "ง่าย",
+      "prompt": "Situation: An employee arrives late for a meeting.\n\nEmployee: \"I'm really sorry I'm late. The traffic was terrible.\"\nManager: \"__________ Let's get started.\"",
+      "choices": [
+        "You should leave immediately.",
+        "The meeting was yesterday.",
+        "That's all right. Please take a seat.",
+        "I don't know where the traffic is."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Manager ยอมรับคำขอโทษและดำเนินการประชุมต่อ จึงตอบ “That's all right. Please take a seat.”",
+      "tip": "ตอบรับคำขอโทษ: That's all right. / No problem.",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 4",
+      "verificationRef": "English pragmatics: responding to an apology",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 5,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: Your friend is nervous before a job interview.\n\nFriend: \"I'm really nervous about the interview.\"\nYou: \"__________ I'm sure you'll do well.\"",
+      "choices": [
+        "Break a leg!",
+        "Hit the road!",
+        "Keep an eye on it!",
+        "Call it a day!"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "“Break a leg!” เป็นสำนวนอวยพรให้โชคดี เหมาะกับก่อนการสัมภาษณ์.",
+      "tip": "Break a leg! = Good luck!",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 5",
+      "verificationRef": "Standard English idiom: break a leg",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 6,
+      "category": "Conversation",
+      "difficulty": "ปานกลาง",
+      "prompt": "Situation: A colleague has explained a new computer procedure very quickly.\n\nColleague: \"...and after that, synchronize the folders before you update the permissions.\"\nYou: \"Sorry, I'm still a little confused. __________\"",
+      "choices": [
+        "Could you send it to someone else?",
+        "Should I stop using the computer?",
+        "Could you explain that in simpler terms?",
+        "Why did you change the procedure?"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "เมื่อผู้พูดบอกว่ายังสับสน คำตอบที่เหมาะคือขอให้อธิบายใหม่ให้ง่ายขึ้น.",
+      "tip": "ขอ clarification: Could you explain that in simpler terms?",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 6",
+      "verificationRef": "English pragmatics: asking for clarification",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 7,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The instructions were so vague that several employees misunderstood them.",
+      "choices": [
+        "detailed",
+        "accurate",
+        "unclear",
+        "formal"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“vague” หมายถึงไม่ชัดเจนหรือคลุมเครือ จึงใกล้กับ “unclear”.",
+      "tip": "vague = unclear / not specific",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 7",
+      "verificationRef": "Standard English vocabulary: vague = unclear",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 8,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "Driving without a valid license is a serious __________.",
+      "choices": [
+        "privilege",
+        "offense",
+        "permission",
+        "reward"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "“offense” หมายถึงการกระทำที่ผิดกฎหมายหรือผิดข้อกำหนด.",
+      "tip": "commit an offense = กระทำความผิด",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 8",
+      "verificationRef": "Standard English legal vocabulary: offense",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 9,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The city has agreed to __________ construction of the new bridge next month.",
+      "choices": [
+        "permit",
+        "prevent",
+        "refuse",
+        "forbid"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "“permit” หมายถึงอนุญาตให้ทำสิ่งใด ส่วน prevent/forbid คือขัดขวางหรือห้าม.",
+      "tip": "permit = allow",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 9",
+      "verificationRef": "Standard English vocabulary: permit = allow",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "The temporary office will be used only until the main building is repaired.",
+      "choices": [
+        "permanent",
+        "final",
+        "provisional",
+        "unchangeable"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "“temporary” หมายถึงชั่วคราว และ “provisional” หมายถึงจัดไว้ชั่วคราวหรือยังไม่ถาวร.",
+      "tip": "temporary ≈ provisional",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 10",
+      "verificationRef": "Standard English vocabulary: temporary / provisional",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "Police discovered the __________ motorcycle in an empty warehouse two days after it was reported missing.",
+      "choices": [
+        "expensive",
+        "damaged",
+        "new",
+        "stolen"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "บริบทว่า reported missing และตำรวจพบภายหลังทำให้ “stolen motorcycle” เหมาะที่สุด.",
+      "tip": "stolen vehicle = ยานพาหนะที่ถูกขโมย",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 11",
+      "verificationRef": "Standard English collocation: stolen vehicle",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "difficulty": "ง่าย",
+      "prompt": "It is crucial that emergency exits remain clear at all times.",
+      "choices": [
+        "optional",
+        "minor",
+        "ordinary",
+        "essential"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“crucial” หมายถึงสำคัญอย่างยิ่ง จึงตรงกับ “essential”.",
+      "tip": "crucial = essential / extremely important",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 12",
+      "verificationRef": "Standard English vocabulary: crucial = essential",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 13,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Look at the traffic sign.\n\n[ NO U-TURN ]\n\nWhat does this sign mean?",
+      "choices": [
+        "You must turn left.",
+        "You may turn around here.",
+        "You must not make a U-turn.",
+        "You must stop before turning."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ป้าย NO U-TURN หมายถึงห้ามกลับรถ.",
+      "tip": "NO U-TURN = ห้ามกลับรถ",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 13",
+      "verificationRef": "Reading evidence: standard NO U-TURN traffic sign",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 14,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read this notice.\n\nSCHEDULED POWER OUTAGE\nBuilding C\n\nDate: October 14\nTime: 2:00-4:00 p.m.\nReason: Electrical system maintenance\n\nAll computers and electrical equipment should be turned off before 2:00 p.m.\nEmergency lighting will remain available.\n\nWhat should employees in Building C do before the outage?",
+      "choices": [
+        "Leave the building before noon.",
+        "Continue using all equipment during maintenance.",
+        "Turn off computers and electrical equipment before 2:00 p.m.",
+        "Move all computers to another building."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ประกาศระบุโดยตรงว่าต้องปิดคอมพิวเตอร์และอุปกรณ์ไฟฟ้าก่อน 2:00 p.m.",
+      "tip": "อ่าน action ที่ประกาศกำหนดโดยตรง",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 14",
+      "verificationRef": "Reading evidence: action explicitly required by the notice",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 15,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read this memo.\n\nTo: Patrol Officers\nFrom: Operations Division\nSubject: Updated Sector Maps\n\nNew patrol maps for Sectors 3 and 4 are now available in the briefing room. The maps include revised street closures and two new checkpoint locations. Officers assigned to these sectors should review the maps before their next shift.\n\nWhat is the main purpose of this memo?",
+      "choices": [
+        "To announce a change in officers' salaries.",
+        "To inform officers about updated patrol maps.",
+        "To cancel patrols in Sectors 3 and 4.",
+        "To report a traffic accident."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Memo มุ่งแจ้งว่ามีแผนที่ตรวจตราฉบับปรับปรุงและให้เจ้าหน้าที่ตรวจดูก่อนกะถัดไป.",
+      "tip": "Subject line มักชี้ main purpose ของ memo",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 15",
+      "verificationRef": "Reading evidence: main purpose of the memo",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 16,
+      "category": "Reading",
+      "difficulty": "ปานกลาง",
+      "prompt": "Read the passage.\n\nArtificial intelligence, or AI, refers to computer systems that can perform tasks that normally require human intelligence. These tasks include recognizing speech, identifying patterns, translating languages, and making predictions from large amounts of data.\n\nAI is already used in everyday life. Email services use it to detect spam, map applications use it to suggest routes, and some hospitals use AI tools to help doctors analyze medical images. Businesses also use AI to automate repetitive tasks.\n\nHowever, AI also raises concerns. Some workers worry that automation may reduce the number of jobs in certain industries. Others are concerned that AI systems can make unfair decisions if they are trained with biased data. For this reason, many experts say AI should be developed and used responsibly.\n\nWhat is the best title for this passage?",
+      "choices": [
+        "Why Computers Are Dangerous",
+        "How to Create an Email Account",
+        "Artificial Intelligence in Hospitals Only",
+        "Artificial Intelligence: Uses and Concerns"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "บทอ่านอธิบายความหมาย การใช้งาน และข้อกังวลของ AI จึงควรใช้ชื่อที่ครอบคลุมทั้ง uses และ concerns.",
+      "tip": "Best title ต้องครอบคลุมเนื้อหาทั้ง passage",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 16",
+      "verificationRef": "Reading evidence: best title based on the whole passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 17,
+      "category": "Reading",
+      "difficulty": "ง่าย",
+      "prompt": "Read the passage.\n\nArtificial intelligence, or AI, refers to computer systems that can perform tasks that normally require human intelligence. These tasks include recognizing speech, identifying patterns, translating languages, and making predictions from large amounts of data.\n\nAI is already used in everyday life. Email services use it to detect spam, map applications use it to suggest routes, and some hospitals use AI tools to help doctors analyze medical images. Businesses also use AI to automate repetitive tasks.\n\nHowever, AI also raises concerns. Some workers worry that automation may reduce the number of jobs in certain industries. Others are concerned that AI systems can make unfair decisions if they are trained with biased data. For this reason, many experts say AI should be developed and used responsibly.\n\nWhich of the following is an example of AI use mentioned in the passage?",
+      "choices": [
+        "Making coffee by hand.",
+        "Detecting spam in email.",
+        "Printing a newspaper.",
+        "Repairing a bicycle."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Passage ระบุว่า email services use AI to detect spam.",
+      "tip": "Detail question: หาข้อมูลที่กล่าวตรง ๆ",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 17",
+      "verificationRef": "Reading evidence: example explicitly mentioned in the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "difficulty": "ปานกลาง",
+      "prompt": "Read the passage.\n\nArtificial intelligence, or AI, refers to computer systems that can perform tasks that normally require human intelligence. These tasks include recognizing speech, identifying patterns, translating languages, and making predictions from large amounts of data.\n\nAI is already used in everyday life. Email services use it to detect spam, map applications use it to suggest routes, and some hospitals use AI tools to help doctors analyze medical images. Businesses also use AI to automate repetitive tasks.\n\nHowever, AI also raises concerns. Some workers worry that automation may reduce the number of jobs in certain industries. Others are concerned that AI systems can make unfair decisions if they are trained with biased data. For this reason, many experts say AI should be developed and used responsibly.\n\nWhat is one concern about AI mentioned in the passage?",
+      "choices": [
+        "It cannot process large amounts of data.",
+        "It always makes perfectly fair decisions.",
+        "It may reduce some jobs through automation.",
+        "It cannot be used in hospitals."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Passage ระบุว่าคนงานบางส่วนกังวลว่า automation อาจลดจำนวนงานในบางอุตสาหกรรม.",
+      "tip": "Concern question: ตัดตัวเลือกที่ passage บอกตรงข้าม",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 18",
+      "verificationRef": "Reading evidence: concern explicitly stated in the passage",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 19,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "Look! The children __________ across the street without checking the traffic.",
+      "choices": [
+        "run",
+        "are running",
+        "have run",
+        "ran"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "“Look!” ชี้เหตุการณ์ที่กำลังเกิดขณะพูด จึงใช้ Present Continuous: are running.",
+      "tip": "Look! / Listen! → Present Continuous",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 19",
+      "verificationRef": "Standard English grammar: Present Continuous",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 20,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "She __________ the application form yet, so she cannot submit it.",
+      "choices": [
+        "doesn't complete",
+        "didn't complete",
+        "isn't completing",
+        "hasn't completed"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "“yet” ในประโยคปฏิเสธที่เชื่อมถึงปัจจุบันเหมาะกับ Present Perfect: hasn't completed.",
+      "tip": "yet → haven't/hasn't + V3",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 20",
+      "verificationRef": "Standard English grammar: Present Perfect with yet",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 21,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The new police station __________ in 2018.",
+      "choices": [
+        "built",
+        "is built",
+        "was built",
+        "has built"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "สถานีตำรวจเป็นผู้ถูกสร้าง และ 2018 เป็นอดีตที่จบแล้ว จึงใช้ Past Simple Passive: was built.",
+      "tip": "Past passive = was/were + V3",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 21",
+      "verificationRef": "Standard English grammar: Past Simple Passive",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 22,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "If the weather __________ bad tomorrow, the outdoor drill will be postponed.",
+      "choices": [
+        "is",
+        "will be",
+        "was",
+        "had been"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "First Conditional ใช้ If + Present Simple, will + V1 จึงใช้ “is”.",
+      "tip": "If + Present Simple, will + V1",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 22",
+      "verificationRef": "Standard English grammar: First Conditional",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 23,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The laptop __________ I bought last month is already having problems.",
+      "choices": [
+        "who",
+        "which",
+        "whose",
+        "where"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "laptop เป็นสิ่งของ จึงใช้ relative pronoun “which”.",
+      "tip": "สิ่งของ → which/that",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 23",
+      "verificationRef": "Standard English grammar: relative pronoun which",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 24,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "Maya is very __________ in forensic science because she finds the subject __________.",
+      "choices": [
+        "interesting / interested",
+        "interested / interesting",
+        "interested / interested",
+        "interesting / interesting"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "คนที่รู้สึกใช้ interested ส่วนเรื่องที่ทำให้รู้สึกใช้ interesting.",
+      "tip": "คนรู้สึก = -ed / สิ่งที่ก่อความรู้สึก = -ing",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 24",
+      "verificationRef": "Standard English grammar: interested vs interesting",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 25,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "He is used to __________ up before sunrise.",
+      "choices": [
+        "get",
+        "gets",
+        "to get",
+        "getting"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ใน “be used to” คำว่า to เป็น preposition จึงตามด้วย V-ing: getting.",
+      "tip": "be used to + noun/V-ing",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 25",
+      "verificationRef": "Standard English grammar: be used to + gerund",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 26,
+      "category": "Grammar",
+      "difficulty": "ปานกลาง",
+      "prompt": "There are __________ officers on duty tonight because several are attending training.",
+      "choices": [
+        "few",
+        "a few",
+        "little",
+        "a little"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "officers เป็นคำนามนับได้พหูพจน์ และบริบทสื่อว่ามีน้อยกว่าที่ต้องการ จึงใช้ “few”.",
+      "tip": "few = มีน้อย/แทบไม่พอ; a few = มีอยู่บ้าง",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 26",
+      "verificationRef": "Standard English grammar: few vs a few",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 27,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The briefing begins __________ 7:30 a.m. sharp.",
+      "choices": [
+        "at",
+        "on",
+        "in",
+        "for"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ใช้ at กับเวลาเฉพาะเจาะจง เช่น at 7:30 a.m.",
+      "tip": "เวลาเป็นนาฬิกา → at",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 27",
+      "verificationRef": "Standard English grammar: preposition of time at",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 28,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "The road was flooded, __________ the officers used another route.",
+      "choices": [
+        "so",
+        "but",
+        "or",
+        "because"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ข้อความแรกเป็นเหตุและข้อความหลังเป็นผล จึงใช้ “so”.",
+      "tip": "เหตุ → ผล: ..., so ...",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 28",
+      "verificationRef": "Standard English grammar: conjunction so",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 29,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "This is __________ building in the entire complex.",
+      "choices": [
+        "taller",
+        "tall",
+        "the tallest",
+        "the more tall"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "เปรียบเทียบกับอาคารทั้งหมดใน complex จึงใช้ superlative: the tallest.",
+      "tip": "in/of + กลุ่มทั้งหมด → superlative",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 29",
+      "verificationRef": "Standard English grammar: superlative adjective",
+      "dnaType": null,
+      "media": {}
+    },
+    {
+      "position": 30,
+      "category": "Grammar",
+      "difficulty": "ง่าย",
+      "prompt": "They don't work here anymore, __________?",
+      "choices": [
+        "do they",
+        "don't they",
+        "are they",
+        "aren't they"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ประโยคหลักเป็นปฏิเสธด้วย don't จึงใช้ tag บอกเล่า “do they?”.",
+      "tip": "Negative statement → positive tag",
+      "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 30",
+      "verificationRef": "Standard English grammar: question tags",
+      "dnaType": null,
+      "media": {}
+    }
+  ]
+}

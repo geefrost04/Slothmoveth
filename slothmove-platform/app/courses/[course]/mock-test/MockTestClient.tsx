@@ -5,14 +5,6 @@ import Link from 'next/link';
 import type { CourseConfig, QuizItem } from '@/lib/course-types';
 import { getSupabase } from '@/lib/supabase';
 import {
-  math_quiz,
-  thai_quiz,
-  computer_quiz,
-  saraban_quiz,
-  law_quiz,
-  english_quiz
-} from '@/courses/police_admin/data';
-import {
   analytical_thinking_quiz,
   civil_servant_rules_quiz,
   english_quiz as ocsc_english_quiz
@@ -95,14 +87,9 @@ function generateMockExamPaper(courseId: string): MockQuestion[] {
     ];
   }
 
-  const math = buildQuestions(math_quiz, 20, 'ความสามารถทั่วไป', 'math');
-  const thai = buildQuestions(thai_quiz, 20, 'ภาษาไทย', 'thai');
-  const computer = buildQuestions(computer_quiz, 40, 'คอมพิวเตอร์และ IT', 'computer');
-  const saraban = buildQuestions(saraban_quiz, 30, 'ระเบียบงานสารบรรณ', 'saraban');
-  const law = buildQuestions(law_quiz, 25, 'กฎหมายที่ประชาชนควรรู้', 'law');
-  const english = buildQuestions(english_quiz, 15, 'ภาษาอังกฤษ', 'english');
-
-  return [...math, ...thai, ...computer, ...saraban, ...law, ...english];
+  // The legacy police bank was removed. The paid exam-set service will
+  // provide this paper after the new Supabase content contract is ready.
+  return [];
 }
 
 function getMockExamConfig(courseId: string): MockExamConfig {

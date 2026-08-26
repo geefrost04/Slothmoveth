@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" role="img" aria-labelledby="title">
+  <title id="title">แปดรูกระจายเท่ากัน</title>
+  <rect x="55" y="14" width="130" height="122" fill="#f7f7f7" stroke="#262626" stroke-width="4"/>
+  <g fill="#171717">
+    <circle cx="76" cy="34" r="7"/><circle cx="120" cy="34" r="7"/><circle cx="164" cy="34" r="7"/>
+    <circle cx="76" cy="75" r="7"/><circle cx="164" cy="75" r="7"/>
+    <circle cx="76" cy="116" r="7"/><circle cx="120" cy="116" r="7"/><circle cx="164" cy="116" r="7"/>
+  </g>
+  <path d="M120 14v122M55 75h130" stroke="#b5b5b5" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>

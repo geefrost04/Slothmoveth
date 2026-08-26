@@ -1,13 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { COURSES, getCourse, isCourseOpen } from '@/courses/registry';
+import { getCourse, isCourseOpen } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
 import { CourseHero } from '@/components/course/CourseHero';
 import { SubjectCard } from '@/components/course/SubjectCard';
 import { CourseLanding } from '@/components/course/CourseLanding';
 import { CourseMaintenancePage } from '@/components/course/CourseMaintenancePage';
 import { buildMetadata } from '@/lib/seo';
+import { absoluteUrl, serializeJsonLd, siteConfig } from '@/lib/seo';
+
+// Police exam catalog is database-backed; render at runtime while its data
+// loader keeps the published catalog cached for five minutes.
+export const dynamic = 'force-dynamic';
 
 export default async function CoursePage({
   params
@@ -23,9 +28,32 @@ export default async function CoursePage({
   // `migrated: false`. Courses that don't set the field default to
   // 'truthful unknown' (i.e. we treat missing as not-yet-migrated).
   const isMigrated = course.meta.migrated === true;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Course',
+        name: `${course.title} ${course.tagline}`,
+        description: course.meta.description,
+        url: absoluteUrl(`/courses/${course.id}`),
+        inLanguage: 'th-TH',
+        provider: { '@id': `${siteConfig.baseUrl}/#organization` },
+        about: course.subjects.map((subject) => subject.title),
+        educationalLevel: 'เตรียมสอบราชการ'
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: absoluteUrl('/') },
+          { '@type': 'ListItem', position: 2, name: course.title, item: absoluteUrl(`/courses/${course.id}`) }
+        ]
+      }
+    ]
+  };
 
   return (
     <CourseLayout course={course}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       {!isOpen ? (
         <CourseMaintenancePage course={course} />
       ) : (
@@ -52,16 +80,6 @@ export default async function CoursePage({
                   'ข้อมูลวิชาและเกมของคอร์สนี้ยังอยู่ระหว่างการย้ายเข้าสู่แพลตฟอร์ม Next.js — counts ที่แสดงเป็นตัวเลขจากแผนงาน ไม่ใช่ข้อมูลจริง'}
               </p>
             </div>
-            <Link
-              href="/courses/pab"
-              style={{
-                alignSelf: 'center',
-                padding: '10px 18px', background: 'var(--color-primary)', color: '#fff',
-                borderRadius: 10, textDecoration: 'none', fontWeight: 700, fontSize: 14
-              }}
-            >
-              → เปิดคอร์ส PAB ที่พร้อมใช้งาน
-            </Link>
           </div>
         </div>
       )}
@@ -100,10 +118,6 @@ export default async function CoursePage({
   );
 }
 
-export async function generateStaticParams() {
-  return COURSES.map((course) => ({ course: course.id }));
-}
-
 export async function generateMetadata({
   params
 }: {
@@ -122,7 +136,7 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `${course.title} ${course.tagline}`,
+    title: `${course.title} ${course.tagline} ข้อสอบพร้อมเฉลย`,
     description: course.meta.description,
     path: `/courses/${course.id}`,
     keywords: [
@@ -131,6 +145,7 @@ export async function generateMetadata({
       course.category,
       course.type,
       ...course.meta.keywords
-    ]
+    ],
+    noIndex: !isCourseOpen(course.id)
   });
 }

@@ -73,11 +73,11 @@ export const policeAdminConfig: CourseConfig = {
     // ───── ภาค ก. ความรู้ความสามารถทั่วไป (40 คะแนน) ─────
     {
       id: 'math',
-      title: 'ความสามารถทั่วไป',
+      title: 'ความรู้ทั่วไป',
       titleEn: 'General Ability',
       icon: '🔢',
       mascot: '/pic/police-mascot/math.png',
-      desc: 'ความสามารถทั่วไป (20 ข้อ) · คิดวิเคราะห์ · คิดเชิงเหตุผล · คณิตศาสตร์พื้นฐาน · อนุกรม · สถิติพื้นฐาน · การตีความข้อมูล',
+      desc: 'ความรู้ทั่วไป (20 ข้อ) · คิดวิเคราะห์ · คิดเชิงเหตุผล · คณิตศาสตร์พื้นฐาน · อนุกรม · สถิติพื้นฐาน · การตีความข้อมูล',
       count: getSubjectItemCount('math', 'quiz'),
       games: ['quiz', 'survival', 'speed', 'series', 'matrix', 'logic', 'analogy']
     },
@@ -128,26 +128,27 @@ export const policeAdminConfig: CourseConfig = {
       titleEn: 'English',
       icon: '🇬🇧',
       mascot: '/pic/police-mascot/english.png',
-      desc: 'ภาษาอังกฤษ (15 ข้อ) · Reading Comprehension · Vocabulary · Grammar / Structure · Conversation · ใช้ในชีวิตประจำวันและการทำงาน',
+      desc: 'ภาษาอังกฤษ (สัดส่วนสนามจำลอง 15 ข้อ) · Reading Comprehension · Vocabulary · Grammar / Structure · Conversation · ใช้ในชีวิตประจำวันและการทำงาน',
       count: getSubjectItemCount('english', 'quiz'),
       games: ['quiz', 'cloze', 'dialogue']
     }
   ],
   games: SHARED_GAMES,
   meta: {
-    description: 'คอร์สเตรียมสอบนายสิบตำรวจ สายอำนวยการ — 6 วิชา พร้อมเกมฝึกทำข้อสอบและทบทวน',
+    description: 'เตรียมสอบนายสิบตำรวจ สายอำนวยการ ครบ 6 วิชา พร้อมข้อสอบออนไลน์ ชีทสรุป เฉลยละเอียด Mock Test 150 ข้อ และวิเคราะห์ผลรายวิชา',
     keywords: ['นายสิบตำรวจ', 'สายอำนวยการ', 'สอบตำรวจ', 'คณิตศาสตร์', 'ภาษาไทย', 'คอมพิวเตอร์', 'งานสารบรรณ', 'กฎหมาย', 'ภาษาอังกฤษ'],
     updated: '23/06/26',
     totalSubjects: 6,
-    totalQuestions: 1400,
-    migrated: true,
-    migrationNote: 'ย้ายข้อมูลแล้วครบ 6 วิชา · Quiz/Flashcard/Match/Cloze ใช้งานได้ · เพิ่มชุดกฎหมายอ่านสอบและข้อสอบเสริมสำหรับสนามตำรวจสายอำนวยการ · เกมอื่นที่ยังไม่พร้อมจะแสดงเป็นกำลังพัฒนาตามจริง',
+    totalQuestions: 0,
+    hideQuestionCounts: true,
+    migrated: false,
+    migrationNote: 'กำลังออกแบบสรุปแบบ Visual และชุดข้อสอบใหม่สำหรับจำหน่ายแยกเป็นชุด',
     landing: {
-      heroBadge: 'คอร์สเตรียมสอบ · นายสิบตำรวจ สายอำนวยการ · ฟรีทั้งหมด',
+      heroBadge: 'คอร์สเตรียมสอบ · นายสิบตำรวจ สายอำนวยการ · มีชุดทดลองฟรี',
       heroTitleLead: 'เตรียมสอบนายสิบตำรวจ',
       heroTitleLines: ['นายสิบตำรวจ', 'สายอำนวยการ'],
       heroTitleAccent: 'SlothMove',
-      heroDescription: 'เนื้อหาสรุปครบ 6 วิชา · ภาค ก. 40 คะแนน + ภาค ข. 110 คะแนน · คลังข้อสอบ 1,400 ข้อ และเกมฝึกทำข้อสอบหลากหลายรูปแบบ',
+      heroDescription: 'เตรียมครบ 6 วิชา ด้วยชีทสรุป ข้อสอบแยกรายวิชา และ Mock Test 150 ข้อ พร้อมเฉลยและระบบวิเคราะห์ผล',
       primaryCtaLabel: 'เข้าเรียนเลย',
       primaryCtaHref: '#police-part1',
       secondaryCtaLabel: 'กลับไปดูคอร์สทั้งหมด',
@@ -156,7 +157,7 @@ export const policeAdminConfig: CourseConfig = {
       scrollLabel: 'เลื่อนลง',
       stats: [
         { value: '6', label: 'วิชาทั้งหมด' },
-        { value: '1,400+', label: 'ข้อสอบพร้อมเฉลย' },
+        { value: 'หลายชุด', label: 'ข้อสอบพร้อมเฉลย' },
         { value: '150', label: 'คะแนนเต็ม (ภาค ก + ภาค ข)' }
       ],
       sections: [
