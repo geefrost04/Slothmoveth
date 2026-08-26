@@ -316,14 +316,6 @@ function PoliceSubjectLandingPage({
           />
         </section>
 
-        <section className="police-subject-footer-banner police-subject-footer-banner--luxury">
-          <span className="police-subject-footer-banner-icon"><LightbulbIcon /></span>
-          <div className="police-subject-footer-banner-text">
-            <h3>เริ่มจากชุดทดลอง แล้วค่อยวางแผนฝึกต่อ</h3>
-            <p>ระบบจะเก็บคะแนน เวลา และประวัติการทำข้อสอบไว้ในบัญชีของคุณ</p>
-          </div>
-          <Link href={practiceHref} className="police-subject-footer-action">ไปที่ลานฝึก <span>›</span></Link>
-        </section>
       </div>
     </div>
   );

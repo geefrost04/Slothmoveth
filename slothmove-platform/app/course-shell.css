@@ -10627,28 +10627,6 @@
 
 .police-subject-section-heading > a span { font-size: 20px; }
 
-.police-subject-footer-banner--luxury {
-  border-color: #e2cfd2;
-  background: linear-gradient(115deg, #fff8f7 0%, #fbf2ea 100%);
-}
-
-.police-subject-footer-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-  padding: 10px 16px;
-  border-radius: 8px;
-  color: #fff;
-  background: #7a1822;
-  font-size: 12px;
-  font-weight: 850;
-  white-space: nowrap;
-}
-
-.police-subject-footer-action:hover { color: #fff; background: #931f2c; }
-.police-subject-footer-action span { font-size: 18px; }
-
 /* Responsive Custom math page */
 @media (max-width: 1024px) {
   .police-sheet-card {
@@ -10782,8 +10760,6 @@
     border-radius: 14px;
   }
   .police-subject-section-heading { align-items: flex-start; }
-  .police-subject-footer-banner--luxury { align-items: flex-start; flex-wrap: wrap; }
-  .police-subject-footer-action { width: 100%; justify-content: center; margin-left: 0; }
 }
 
 @media (max-width: 480px) {
