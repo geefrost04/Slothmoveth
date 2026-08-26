@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './CoffeePdfButton.module.css';
+import { getDownloadAnalyticsData, trackAnalyticsEvent } from '@/lib/analytics';
 
 const AMOUNTS = [10, 20, 50] as const;
 
@@ -35,12 +36,21 @@ export function CoffeePdfButton({
   }, [open, loadingAmount]);
 
   function openPdf() {
+    trackAnalyticsEvent('file_download', {
+      ...getDownloadAnalyticsData(pdfPath),
+      download_method: 'free_skip'
+    });
     const pdfWindow = window.open(pdfPath, '_blank', 'noopener,noreferrer');
     if (!pdfWindow) window.location.assign(pdfPath);
     setOpen(false);
   }
 
   async function payCoffee(amount: number) {
+    trackAnalyticsEvent('coffee_checkout_start', {
+      ...getDownloadAnalyticsData(pdfPath),
+      value: amount,
+      currency: 'THB'
+    });
     setLoadingAmount(amount);
     setError('');
     try {
@@ -60,7 +70,15 @@ export function CoffeePdfButton({
 
   return (
     <>
-      <button type="button" className={className} style={style} onClick={() => setOpen(true)}>
+      <button
+        type="button"
+        className={className}
+        style={style}
+        onClick={() => {
+          trackAnalyticsEvent('pdf_download_click', getDownloadAnalyticsData(pdfPath));
+          setOpen(true);
+        }}
+      >
         {children}
       </button>
 
