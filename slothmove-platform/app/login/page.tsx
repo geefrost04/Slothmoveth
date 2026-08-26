@@ -12,6 +12,11 @@ function getLoginError(message: string) {
   return 'เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
 }
 
+function getSafeNextPath() {
+  const requested = new URLSearchParams(window.location.search).get('next');
+  return requested?.startsWith('/') && !requested.startsWith('//') ? requested : '/';
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,11 +25,6 @@ export default function LoginPage() {
   const [checkingSession, setCheckingSession] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
-
-  function getNextPath() {
-    const requested = new URLSearchParams(window.location.search).get('next');
-    return requested?.startsWith('/') ? requested : '/dashboard';
-  }
 
   useEffect(() => {
     const supabase = getSupabase();
@@ -36,7 +36,7 @@ export default function LoginPage() {
 
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
-        router.replace('/dashboard');
+        router.replace(getSafeNextPath());
         return;
       }
       setCheckingSession(false);
@@ -66,7 +66,7 @@ export default function LoginPage() {
       return;
     }
 
-    router.replace(getNextPath());
+    router.replace(getSafeNextPath());
     router.refresh();
   }
 
@@ -84,7 +84,7 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getNextPath())}`,
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeNextPath())}`,
         queryParams: {
           access_type: 'offline',
           prompt: 'select_account'

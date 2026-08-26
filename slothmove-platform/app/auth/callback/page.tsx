@@ -29,7 +29,7 @@ export default function AuthCallbackPage() {
       }
 
       const nextPath = new URLSearchParams(window.location.search).get('next');
-      router.replace(nextPath?.startsWith('/') ? nextPath : '/dashboard');
+      router.replace(nextPath?.startsWith('/') && !nextPath.startsWith('//') ? nextPath : '/');
       router.refresh();
     }
 
