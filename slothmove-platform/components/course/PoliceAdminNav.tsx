@@ -141,7 +141,7 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
   }, []);
 
   return (
-    <nav className="course-nav is-police-admin is-v3-nav">
+    <nav className={`course-nav is-police-admin is-v3-nav${mobileOpen ? ' is-mobile-open' : ''}`}>
       <div className="container course-nav-inner">
         <Link href={`/courses/${course.id}`} className="course-nav-brand" style={{ textDecoration: 'none' }}>
           <span className="course-nav-wordmark" style={{ display: 'inline-flex', alignItems: 'center', fontSize: '20px', fontWeight: 900, letterSpacing: '-0.02em' }}>
