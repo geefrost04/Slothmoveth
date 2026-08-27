@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server';
 import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 
 const COFFEE_AMOUNTS = new Set([10, 20, 50]);
-const PDF_PATHS = new Set(['/files/สรุปเรื่องเซต.pdf']);
+const PDF_PATHS = new Set([
+  '/files/สรุปเรื่องเซต.pdf',
+  '/files/police-general-ability-work-rate-sheet.png'
+]);
 
 export async function POST(request: Request) {
   try {

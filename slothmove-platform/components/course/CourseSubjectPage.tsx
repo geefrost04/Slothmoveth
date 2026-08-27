@@ -519,10 +519,10 @@ function PoliceMathSubjectPage({
               file: '/files/สรุปเรื่องเซต.pdf'
             },
             {
-              title: 'เร็ว ๆ นี้',
-              desc: 'เตรียมพบกับชีทสรุปสูตรลัดและแนวข้อสอบหัวข้อถัดไปเร็ว ๆ นี้',
-              meta: 'PDF · เร็ว ๆ นี้',
-              file: null
+              title: 'ความสัมพันธ์ระหว่าง คน งาน เวลา',
+              desc: 'ชีทสรุปสูตรคน-งาน-เวลา พร้อมหลักคิดสำคัญ สูตรใช้บ่อย วิธีทำโจทย์ให้ไว และตัวอย่างออกสอบ',
+              meta: '2.0 MB · PNG · ดาวน์โหลดฟรี',
+              file: '/files/police-general-ability-work-rate-sheet.png'
             },
             {
               title: 'เร็ว ๆ นี้',
