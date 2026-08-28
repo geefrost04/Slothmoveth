@@ -525,6 +525,12 @@ function PoliceMathSubjectPage({
               file: '/files/police-general-ability-work-rate-sheet.png'
             },
             {
+              title: 'กำไร-ขาดทุน : สูตรลัดและวิธีคิดเร็ว',
+              desc: 'สรุปการหาราคาขาย ทุน กำไร ขาดทุน และเปอร์เซ็นต์ พร้อมตัวอย่างทำโจทย์แบบเป็นขั้นตอน',
+              meta: '3 หน้า · PDF · ดาวน์โหลดฟรี',
+              file: '/files/police-general-ability-profit-loss-sheet.pdf'
+            },
+            {
               title: 'เร็ว ๆ นี้',
               desc: 'เตรียมพบกับชีทสรุปสูตรลัดและแนวข้อสอบหัวข้อถัดไปเร็ว ๆ นี้',
               meta: 'PDF · เร็ว ๆ นี้',
