@@ -90,6 +90,10 @@ export function Navbar({ backHref, backLabel = 'กลับหน้าหล�
           <div className="nav-actions" aria-label="เครื่องมือ">
             {user ? (
               <>
+                <Link href="/dashboard" className="nav-dashboard-btn" aria-label="Dashboard">
+                  <NavControlIcon type="dashboard" />
+                  <span className="nav-control-label">Dashboard</span>
+                </Link>
                 <Link href="/dashboard" className="nav-account-btn" aria-label={`บัญชี ${displayName || 'สมาชิก'}`}>
                   <NavControlIcon type="account" />
                   <span className="nav-control-label">{displayName || 'สมาชิก'}</span>

@@ -50,6 +50,11 @@ function getAttemptGroup(subjectId: string): AttemptGroup {
   return 'other';
 }
 
+function normalizeAttemptSubject(attempt: Pick<AttemptRow, 'subject_id' | 'quiz_id'>) {
+  // Older Mock Test rows were written with the legacy math subject id.
+  return attempt.quiz_id.startsWith('police-mock_test-') ? 'mock_test' : attempt.subject_id;
+}
+
 function summarizeAttempts(groupAttempts: AttemptRow[]) {
   const questions = groupAttempts.reduce((total, attempt) => total + attempt.total_questions, 0);
   const score = groupAttempts.reduce((total, attempt) => total + attempt.score, 0);
@@ -200,7 +205,11 @@ export default function DashboardPage() {
       if (syncResult.synced > 0) setSyncMessage(`นำเข้าประวัติจากอุปกรณ์นี้แล้ว ${syncResult.synced} รายการ`);
 
       setProfile(profileResponse.data as AccountProfile | null);
-      const realAttempts = ((attemptsResponse.data ?? []) as AttemptRow[]).map((attempt) => ({ ...attempt, category_results: Array.isArray(attempt.category_results) ? attempt.category_results : [] }));
+      const realAttempts = ((attemptsResponse.data ?? []) as AttemptRow[]).map((attempt) => ({
+        ...attempt,
+        subject_id: normalizeAttemptSubject(attempt),
+        category_results: Array.isArray(attempt.category_results) ? attempt.category_results : []
+      }));
       setAttempts(realAttempts);
       const examSetIds = [...new Set(realAttempts.map((attempt) => attempt.exam_set_id).filter(Boolean))] as string[];
       if (examSetIds.length > 0) {
@@ -314,6 +323,24 @@ export default function DashboardPage() {
           </header>
           {syncMessage ? <div className="dashboard-sync-message" role="status">✓ {syncMessage}</div> : null}
           {dataError ? <div className="dashboard-data-error" role="alert"><span>{dataError}</span><button type="button" onClick={() => setReloadToken((value) => value + 1)}>ลองใหม่</button></div> : null}
+
+          {view === 'overview' ? (
+            <section className="dashboard-premium-hero" aria-label="สรุปเป้าหมายการฝึก">
+              <div className="dashboard-premium-hero-copy">
+                <span className="dashboard-premium-kicker">YOUR PREPARATION STATUS</span>
+                <h2>{attempts.length > 0 ? 'กำลังพัฒนาได้ถูกทาง' : 'วางแผนการเตรียมตัวของคุณ'}</h2>
+                <p>{attempts.length > 0 ? `ทำข้อสอบมาแล้ว ${attempts.length} ครั้ง ระบบจัดลำดับหัวข้อที่ควรฝึกให้คุณแล้ว` : 'เริ่มทำข้อสอบชุดแรก เพื่อให้ระบบวิเคราะห์คะแนนและสร้างแผนฝึกเฉพาะคุณ'}</p>
+              </div>
+              <div className="dashboard-premium-goal">
+                <div className="dashboard-premium-goal-heading"><span>เป้าหมายคะแนน</span><strong>{averageScore}% <small>/ 80%</small></strong></div>
+                <div className="dashboard-premium-goal-track"><i style={{ width: `${Math.min(100, Math.round((averageScore / 80) * 100))}%` }} /></div>
+                <span className="dashboard-premium-goal-note">{averageScore >= 80 ? 'ถึงเป้าหมายแล้ว รักษาระดับต่อไป' : `อีก ${Math.max(0, 80 - averageScore)}% เพื่อถึงเป้าหมาย`}</span>
+              </div>
+              <Link href={weaknesses[0] ? getPracticeHref(weaknesses[0].subjectId) : '/courses/police_admin'} className="dashboard-premium-next-action">
+                <span><small>แนะนำให้ทำต่อ</small><strong>{weaknesses[0] ? `ฝึก ${weaknesses[0].title}` : 'เริ่มทำข้อสอบชุดแรก'}</strong></span><i aria-hidden="true">→</i>
+              </Link>
+            </section>
+          ) : null}
 
           {view === 'overview' ? <>
             <section className="stats-section" aria-labelledby="stats-title"><div className="dashboard-section-heading"><h2 id="stats-title">ภาพรวมการฝึก</h2><span>อัปเดตจาก {attempts.length} ครั้ง</span></div><div className="stats-grid">

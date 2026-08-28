@@ -56,7 +56,7 @@ function readLegacyAttempts(): PendingAttempt[] {
 
         attempts.push({
           id,
-          subject_id: 'math',
+          subject_id: String(entry.examSetId).startsWith('police-mock_test-') ? 'mock_test' : 'math',
           quiz_id: entry.examSetId,
           exam_set_id: entry.examSetId,
           score: entry.score,
