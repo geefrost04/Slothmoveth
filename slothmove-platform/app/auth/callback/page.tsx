@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getSupabase } from '@/lib/supabase';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 export default function AuthCallbackPage() {
   const [error, setError] = useState('');
@@ -27,6 +28,8 @@ export default function AuthCallbackPage() {
         setError('ยืนยันตัวตนไม่สำเร็จ กรุณากลับไปเข้าสู่ระบบอีกครั้ง');
         return;
       }
+
+      trackAnalyticsEvent('login', { method: data.session.user.app_metadata?.provider || 'oauth' });
 
       const nextPath = new URLSearchParams(window.location.search).get('next');
       router.replace(nextPath?.startsWith('/') && !nextPath.startsWith('//') ? nextPath : '/');

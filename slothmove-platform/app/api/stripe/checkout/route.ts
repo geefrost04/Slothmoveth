@@ -69,7 +69,21 @@ export async function POST(request: Request) {
     });
 
     await admin.from('orders').update({ stripe_session_id: session.id }).eq('id', order.id);
-    return NextResponse.json({ url: session.url });
+    return NextResponse.json({
+      url: session.url,
+      analytics: {
+        currency: 'THB',
+        value: product.price / 100,
+        items: [
+          {
+            item_id: product.id,
+            item_name: product.title,
+            price: product.price / 100,
+            quantity: 1
+          }
+        ]
+      }
+    });
   } catch (error) {
     console.error('Stripe checkout error', error);
     return NextResponse.json({ error: 'ระบบชำระเงินยังไม่พร้อม กรุณาลองใหม่อีกครั้ง' }, { status: 500 });

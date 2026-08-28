@@ -1,4 +1,5 @@
-type AnalyticsValue = string | number | boolean;
+type AnalyticsPrimitive = string | number | boolean | null;
+type AnalyticsValue = AnalyticsPrimitive | AnalyticsValue[] | { [key: string]: AnalyticsValue };
 
 export function trackAnalyticsEvent(
   eventName: string,

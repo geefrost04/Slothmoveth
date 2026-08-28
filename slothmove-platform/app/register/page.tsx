@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSupabase } from '@/lib/supabase';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 import styles from '../login/login.module.css';
 
 function getSignupError(message: string) {
@@ -40,6 +41,7 @@ export default function RegisterPage() {
   const router = useRouter();
 
   useEffect(() => {
+    trackAnalyticsEvent('register_view', { method: 'page' });
     const supabase = getSupabase();
     if (!supabase) {
       setErrorMessage('ยังไม่ได้ตั้งค่าการเชื่อมต่อ Supabase');
@@ -88,12 +90,14 @@ export default function RegisterPage() {
     }
 
     if (data.session) {
+      trackAnalyticsEvent('sign_up', { method: 'email' });
       router.replace('/dashboard');
       router.refresh();
       return;
     }
 
     setRegisteredEmail(normalizedEmail);
+    trackAnalyticsEvent('sign_up', { method: 'email', confirmation_required: true });
     setLoading(false);
   }
 
@@ -114,6 +118,7 @@ export default function RegisterPage() {
         queryParams: { access_type: 'offline', prompt: 'select_account' }
       }
     });
+    if (!error) trackAnalyticsEvent('sign_up_start', { method: 'google' });
     if (error) {
       setErrorMessage('สมัครด้วย Google ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
       setLoading(false);

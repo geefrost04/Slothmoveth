@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import type { Session } from '@supabase/supabase-js';
 import { getSupabase } from '@/lib/supabase';
 import { NavControlIcon } from '@/components/nav/NavControlIcons';
+import { TrackedLink } from '@/components/analytics/TrackedLink';
 
 type NavbarProps = {
   backHref?: string;
@@ -104,10 +105,20 @@ export function Navbar({ backHref, backLabel = 'กลับหน้าหล�
                 </button>
               </>
             ) : (
-              <Link href="/login" className="nav-login-btn">
-                <NavControlIcon type="account" />
-                <span className="nav-control-label">เข้าสู่ระบบ</span>
-              </Link>
+              <>
+                <Link href="/login" className="nav-login-btn">
+                  <NavControlIcon type="account" />
+                  <span className="nav-control-label">เข้าสู่ระบบ</span>
+                </Link>
+                <TrackedLink
+                  href="/register"
+                  className="nav-register-btn"
+                  eventName="register_cta_click"
+                  parameters={{ location: 'home_nav' }}
+                >
+                  <span className="nav-control-label">สมัครฟรี</span>
+                </TrackedLink>
+              </>
             )}
           </div>
         </nav>

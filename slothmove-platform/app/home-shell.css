@@ -134,6 +134,21 @@ body:has(.home-shell) { padding-top: 0; }
   justify-content: center;
   color: #0f172a;
 }
+.home-shell .nav-register-btn {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 6px;
+  background: var(--home-green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(61, 140, 108, .18);
+}
+.home-shell .nav-register-btn:hover { background: var(--home-green-dark); }
 .home-shell .nav-icon-btn {
   width: 42px;
   border: 0;

@@ -46,6 +46,20 @@ export function CoffeePdfButton({
   }
 
   async function payCoffee(amount: number) {
+    trackAnalyticsEvent('begin_checkout', {
+      currency: 'THB',
+      value: amount,
+      item_category: 'coffee_support',
+      items: [
+        {
+          item_id: pdfPath,
+          item_name: 'Pay me a coffee',
+          item_category: 'coffee_support',
+          price: amount,
+          quantity: 1
+        }
+      ]
+    });
     trackAnalyticsEvent('coffee_checkout_start', {
       ...getDownloadAnalyticsData(pdfPath),
       value: amount,

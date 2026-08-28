@@ -777,7 +777,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                 <strong>{result.score} / {result.total}</strong>
               </div>
               <div className={styles.loginPromptActions}>
-                <Link href="/login" className={styles.loginPromptPrimary}>เข้าสู่ระบบและบันทึก</Link>
+                <Link href="/register" className={styles.loginPromptPrimary}>สมัครฟรีและบันทึกผล</Link>
                 <button type="button" onClick={() => setShowLoginPrompt(false)}>ไว้ทีหลัง</button>
               </div>
               <small>ไม่บังคับสมัครสมาชิก คุณยังดูเฉลยและใช้งานต่อได้ตามปกติ</small>

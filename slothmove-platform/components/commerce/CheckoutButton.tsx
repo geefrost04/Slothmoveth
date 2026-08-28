@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 export function CheckoutButton({
   productId,
@@ -26,13 +27,34 @@ export function CheckoutButton({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productId })
       });
-      const result = await response.json() as { url?: string; error?: string; loginRequired?: boolean };
+      const result = await response.json() as {
+        url?: string;
+        error?: string;
+        loginRequired?: boolean;
+        analytics?: {
+          currency: string;
+          value: number;
+          items: Array<{
+            item_id: string;
+            item_name: string;
+            price: number;
+            quantity: number;
+          }>;
+        };
+      };
 
       if (response.status === 401 || result.loginRequired) {
         router.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
         return;
       }
       if (!response.ok || !result.url) throw new Error(result.error || 'สร้างหน้าชำระเงินไม่สำเร็จ');
+      if (result.analytics) {
+        trackAnalyticsEvent('begin_checkout', {
+          currency: result.analytics.currency,
+          value: result.analytics.value,
+          items: result.analytics.items
+        });
+      }
       window.location.assign(result.url);
     } catch (checkoutError) {
       setError(checkoutError instanceof Error ? checkoutError.message : 'สร้างหน้าชำระเงินไม่สำเร็จ');

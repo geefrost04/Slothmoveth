@@ -1,3 +1,5 @@
+import { TrackedLink } from '@/components/analytics/TrackedLink';
+
 export function Hero() {
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
@@ -9,13 +11,21 @@ export function Hero() {
               <span>ครบ 6 วิชา ให้เป็นระบบ</span>
             </h1>
             <p className="home-hero-desc">
-              ฝึกข้อสอบตำรวจออนไลน์ จับเวลา ดูเฉลยละเอียด ทำ Mock Test 150 ข้อ และกลับมาฝึกจุดที่พลาดได้
+              เริ่มทำชุดทดลองฟรีได้ทันที ฝึกข้อสอบตำรวจออนไลน์ จับเวลา ดูเฉลยละเอียด และกลับมาฝึกจุดที่พลาดได้
             </p>
             <div className="home-hero-actions">
-              <a href="#exam-selection" className="home-btn-primary">
+              <TrackedLink
+                href="/register"
+                className="home-btn-primary"
+                eventName="register_cta_click"
+                parameters={{ location: 'home_hero' }}
+              >
+                สมัครฟรี เริ่มฝึกได้เลย
+              </TrackedLink>
+              <a href="#exam-selection" className="home-btn-secondary">
                 เริ่มเลือกสนามสอบ
               </a>
-              <a href="#why-slothmove" className="home-btn-secondary">
+              <a href="#why-slothmove" className="home-btn-secondary home-hero-howto">
                 ดูวิธีใช้งาน
               </a>
             </div>

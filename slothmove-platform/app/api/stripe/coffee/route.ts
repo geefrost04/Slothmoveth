@@ -39,9 +39,7 @@ export async function POST(request: Request) {
         amount_thb: String(body.amount),
         pdf_path: body.pdfPath
       },
-      // Coffee support does not gate the PDF, so return directly to the sheet page.
-      // This avoids a second synchronous Stripe lookup that can time out after payment.
-      success_url: `${siteUrl}/courses/police_admin/math?coffee=thanks`,
+      success_url: `${siteUrl}/coffee/success?session_id={CHECKOUT_SESSION_ID}&amount=${body.amount}&pdf=${encodeURIComponent(body.pdfPath)}`,
       cancel_url: `${siteUrl}/courses/police_admin/math`
     });
 
