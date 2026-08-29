@@ -17,7 +17,14 @@ function AnalyticsPageView() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!measurementId || !window.gtag) return;
+    if (!measurementId) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || ((...args: unknown[]) => {
+      window.dataLayer.push(args);
+    });
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, { send_page_view: false });
 
     window.gtag('event', 'page_view', {
       page_title: document.title,
