@@ -531,6 +531,12 @@ function PoliceMathSubjectPage({
               file: '/files/police-general-ability-profit-loss-sheet.pdf'
             },
             {
+              title: 'การสับเปลี่ยน : สรุปสูตรและวิธีทำโจทย์',
+              desc: 'สรุปการสับเปลี่ยน 4 รูปแบบ: เรียงของต่างกัน เลือกมาเรียง เรียงของซ้ำ และเรียงเป็นวงกลม',
+              meta: '4 หน้า · PDF · ดาวน์โหลดฟรี',
+              file: '/files/police-general-ability-permutation-sheet.pdf'
+            },
+            {
               title: 'เร็ว ๆ นี้',
               desc: 'เตรียมพบกับชีทสรุปสูตรลัดและแนวข้อสอบหัวข้อถัดไปเร็ว ๆ นี้',
               meta: 'PDF · เร็ว ๆ นี้',
