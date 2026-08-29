@@ -33,6 +33,7 @@
 }
 
 .home-shell .nav-account-btn,
+.home-shell .nav-exams-btn,
 .home-shell .nav-dashboard-btn,
 .home-shell .nav-logout-btn,
 .home-shell .nav-login-btn,
@@ -62,6 +63,7 @@
 }
 
 .home-shell .nav-account-btn svg,
+.home-shell .nav-exams-btn svg,
 .home-shell .nav-dashboard-btn svg,
 .home-shell .nav-logout-btn svg,
 .home-shell .nav-login-btn svg,
@@ -91,6 +93,7 @@
 }
 
 .home-shell .nav-account-btn > .nav-control-label,
+.home-shell .nav-exams-btn > .nav-control-label,
 .home-shell .nav-dashboard-btn > .nav-control-label,
 .home-shell .nav-logout-btn > .nav-control-label,
 .home-shell .nav-login-btn > .nav-control-label,
@@ -105,11 +108,24 @@
 }
 
 .home-shell .nav-account-btn:hover,
+.home-shell .nav-exams-btn:hover,
 .home-shell .nav-dashboard-btn:hover,
 .home-shell .nav-logout-btn:hover {
   border-color: #a9cbbb !important;
   background: #f3faf6 !important;
   color: #2d6f54 !important;
+}
+
+.home-shell .nav-exams-btn {
+  border-color: #d8e8de !important;
+  background: #f5fbf7 !important;
+  color: #2d6f54 !important;
+}
+
+.home-shell .nav-exams-btn:hover {
+  border-color: #a9cbbb !important;
+  background: #e9f6ee !important;
+  color: #245c46 !important;
 }
 
 .home-shell .nav-dashboard-btn {

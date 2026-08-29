@@ -4022,6 +4022,8 @@ img { max-width: 100%; display: block; }
         }
 
         .nav-account-btn,
+        .nav-exams-btn,
+        .nav-dashboard-btn,
         .nav-logout-btn,
         .nav-login-btn {
             display: inline-flex;
@@ -4045,6 +4047,8 @@ img { max-width: 100%; display: block; }
         }
 
         .nav-account-btn svg,
+        .nav-exams-btn svg,
+        .nav-dashboard-btn svg,
         .nav-logout-btn svg,
         .nav-login-btn svg {
             width: 18px;
@@ -4053,6 +4057,8 @@ img { max-width: 100%; display: block; }
         }
 
         .nav-account-btn > .nav-control-label,
+        .nav-exams-btn > .nav-control-label,
+        .nav-dashboard-btn > .nav-control-label,
         .nav-logout-btn > .nav-control-label,
         .nav-login-btn > .nav-control-label {
             overflow: hidden;
@@ -4061,11 +4067,27 @@ img { max-width: 100%; display: block; }
         }
 
         .nav-account-btn:hover,
+        .nav-exams-btn:hover,
+        .nav-dashboard-btn:hover,
         .nav-logout-btn:hover {
             border-color: #a9cbbb;
             color: #2d6f54;
             background: #f3faf6;
         }
+
+        .nav-exams-btn {
+            border-color: #d8e8de;
+            color: #2d6f54;
+            background: #f5fbf7;
+        }
+
+        .nav-dashboard-btn {
+            border-color: #2d6f54;
+            color: #ffffff;
+            background: #2d6f54;
+        }
+
+        .nav-dashboard-btn:hover { border-color: #245c46; color: #ffffff; background: #245c46; }
 
         .nav-login-btn {
             border-color: #2d6f54;
@@ -4080,6 +4102,8 @@ img { max-width: 100%; display: block; }
             .nav-actions { gap: 6px; }
 
             .nav-account-btn,
+            .nav-exams-btn,
+            .nav-dashboard-btn,
             .nav-logout-btn {
                 width: 42px;
                 min-width: 42px;
@@ -4087,6 +4111,8 @@ img { max-width: 100%; display: block; }
             }
 
             .nav-account-btn > .nav-control-label,
+            .nav-exams-btn > .nav-control-label,
+            .nav-dashboard-btn > .nav-control-label,
             .nav-logout-btn > .nav-control-label {
                 position: absolute;
                 width: 1px;

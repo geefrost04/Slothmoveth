@@ -90,6 +90,10 @@ export function Navbar({ backHref, backLabel = 'กลับหน้าหล�
           <div className="nav-actions" aria-label="เครื่องมือ">
             {user ? (
               <>
+                <Link href="/courses/police_admin" className="nav-exams-btn" aria-label="ไปทำข้อสอบ">
+                  <NavControlIcon type="exam" />
+                  <span className="nav-control-label">ทำข้อสอบ</span>
+                </Link>
                 <Link href="/dashboard" className="nav-dashboard-btn" aria-label="Dashboard">
                   <NavControlIcon type="dashboard" />
                   <span className="nav-control-label">Dashboard</span>

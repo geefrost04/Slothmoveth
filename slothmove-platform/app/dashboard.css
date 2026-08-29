@@ -1021,6 +1021,22 @@
 }
 .dashboard-account-actions { display: flex; align-items: center; gap: 10px; }
 .dashboard-account-actions > a { color: #7a1822; font-size: 12px; font-weight: 800; text-decoration: none; }
+.dashboard-account-actions .dashboard-primary-action {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  border: 1px solid #2d6f54;
+  border-radius: 8px;
+  color: #fff;
+  background: #2d6f54;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 150ms ease, transform 150ms ease;
+}
+.dashboard-account-actions .dashboard-primary-action:hover { background: #245c46; transform: translateY(-1px); }
 .dashboard-refresh-button {
   min-height: 36px;
   padding: 0 12px;
