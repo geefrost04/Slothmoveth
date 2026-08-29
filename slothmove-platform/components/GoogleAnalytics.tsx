@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-W60TF5WHSB';
 
@@ -19,14 +20,7 @@ function AnalyticsPageView() {
   useEffect(() => {
     if (!measurementId) return;
 
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || ((...args: unknown[]) => {
-      window.dataLayer.push(args);
-    });
-    window.gtag('js', new Date());
-    window.gtag('config', measurementId, { send_page_view: false });
-
-    window.gtag('event', 'page_view', {
+    trackAnalyticsEvent('page_view', {
       page_title: document.title,
       page_location: window.location.href,
       page_path: `${pathname}${window.location.search}`,

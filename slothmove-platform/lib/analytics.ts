@@ -1,11 +1,36 @@
 type AnalyticsPrimitive = string | number | boolean | null;
 type AnalyticsValue = AnalyticsPrimitive | AnalyticsValue[] | { [key: string]: AnalyticsValue };
 
+const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-W60TF5WHSB';
+
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    __slothmoveAnalyticsInitialized?: boolean;
+  }
+}
+
+function ensureAnalytics() {
+  if (typeof window === 'undefined' || !measurementId) return false;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || ((...args: unknown[]) => {
+    window.dataLayer?.push(args);
+  });
+  if (!window.__slothmoveAnalyticsInitialized) {
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, { send_page_view: false });
+    window.__slothmoveAnalyticsInitialized = true;
+  }
+  return true;
+}
+
 export function trackAnalyticsEvent(
   eventName: string,
   parameters: Record<string, AnalyticsValue> = {}
 ) {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  if (!ensureAnalytics() || typeof window.gtag !== 'function') return;
 
   window.gtag('event', eventName, parameters);
 }
