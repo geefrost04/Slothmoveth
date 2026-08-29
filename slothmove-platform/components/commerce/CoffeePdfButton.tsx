@@ -38,7 +38,8 @@ export function CoffeePdfButton({
   function openPdf() {
     trackAnalyticsEvent('file_download', {
       ...getDownloadAnalyticsData(pdfPath),
-      download_method: 'free_skip'
+      download_method: 'free_skip',
+      file_type: 'study_sheet'
     });
     const pdfWindow = window.open(pdfPath, '_blank', 'noopener,noreferrer');
     if (!pdfWindow) window.location.assign(pdfPath);
@@ -89,7 +90,8 @@ export function CoffeePdfButton({
         className={className}
         style={style}
         onClick={() => {
-          trackAnalyticsEvent('pdf_download_click', getDownloadAnalyticsData(pdfPath));
+          // This is the prompt interaction, not a completed download.
+          trackAnalyticsEvent('pdf_support_prompt_open', getDownloadAnalyticsData(pdfPath));
           setOpen(true);
         }}
       >
