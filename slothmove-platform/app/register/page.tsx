@@ -51,7 +51,7 @@ export default function RegisterPage() {
 
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
-        router.replace('/dashboard');
+        router.replace('/dashboard?welcome=1');
         return;
       }
       setCheckingSession(false);
@@ -79,7 +79,7 @@ export default function RegisterPage() {
       password,
       options: {
         data: { full_name: fullName.trim() },
-        emailRedirectTo: `${window.location.origin}/auth/callback`
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/dashboard?welcome=1')}`
       }
     });
 
@@ -91,7 +91,7 @@ export default function RegisterPage() {
 
     if (data.session) {
       trackAnalyticsEvent('sign_up', { method: 'email' });
-      router.replace('/dashboard');
+      router.replace('/dashboard?welcome=1');
       router.refresh();
       return;
     }
@@ -114,7 +114,7 @@ export default function RegisterPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/dashboard?welcome=1')}`,
         queryParams: { access_type: 'offline', prompt: 'select_account' }
       }
     });
@@ -137,7 +137,7 @@ export default function RegisterPage() {
             <span className={styles.eyebrow}>EMAIL CONFIRMATION</span>
             <h1 id="register-title">ตรวจสอบอีเมลของคุณ</h1>
             <p className={styles.subtitle}>เราส่งลิงก์ยืนยันไปที่ <strong>{registeredEmail}</strong> แล้ว กดยืนยันในอีเมลก่อนเข้าสู่ระบบ</p>
-            <Link href="/login" className={styles.submitLink}>ไปหน้าเข้าสู่ระบบ <span>→</span></Link>
+            <Link href="/login?next=%2Fdashboard%3Fwelcome%3D1" className={styles.submitLink}>ไปหน้าเข้าสู่ระบบ <span>→</span></Link>
             <button type="button" className={styles.textButton} onClick={() => setRegisteredEmail('')}>ใช้อีเมลอื่น</button>
           </div>
         ) : (
