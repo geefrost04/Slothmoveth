@@ -3,10 +3,10 @@ import Link from 'next/link';
 const examFields = [
   {
     title: 'นายสิบตำรวจ',
-    description: 'พร้อมใช้งาน',
+    description: 'ข้อสอบรายวิชา + Mock Test',
     href: '/courses/police_admin',
     image: '/pic/logo_police.png',
-    cta: 'เริ่มฝึกได้เลย',
+    cta: 'ดูคอร์สและเริ่มทดลอง',
     active: true,
   },
   {
@@ -85,7 +85,7 @@ export function ProductShowcase() {
         <div className="home-exam-selection">
           <div className="home-exam-selection-head">
             <div>
-              <h2 className="section-title" id="courses-title">เลือกสนามสอบที่คุณต้องการเตรียมตัว</h2>
+              <h2 className="section-title" id="courses-title">เริ่มจากสนามสอบที่คุณกำลังเตรียมตัว</h2>
             </div>
           </div>
           <div className="home-exam-field-grid">

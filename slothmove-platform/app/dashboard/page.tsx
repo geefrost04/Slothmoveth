@@ -9,7 +9,7 @@ import { readPendingAttempts, removePendingAttempts } from '@/lib/pending-attemp
 import { getSupabase } from '@/lib/supabase';
 import '../dashboard.css';
 
-type DashboardView = 'overview' | 'history' | 'analysis';
+type DashboardView = 'overview' | 'history' | 'analysis' | 'review';
 type AccountProfile = { id: string; email: string; full_name: string | null; role: 'admin' | 'user' };
 type CategoryResult = { category: string; total: number; answered: number; correct: number };
 type AttemptRow = {
@@ -23,6 +23,23 @@ type AttemptRow = {
   duration_seconds: number | null;
   completion_reason: 'submitted' | 'timeout' | null;
   created_at: string;
+  answers: AttemptAnswer[] | null;
+};
+type AttemptAnswer = {
+  question_id: string;
+  category: string;
+  selected_choice_index: number | null;
+  correct_choice_index: number;
+  is_correct: boolean;
+};
+type ReviewQuestion = {
+  id: string;
+  category: string;
+  prompt: string;
+  choices: string[];
+  correctChoiceIndex: number;
+  explanation: string | null;
+  tip: string | null;
 };
 type PerformanceStat = { id: string; title: string; subjectId: string; score: number; total: number; percentage: number };
 type AttemptGroup = 'subject' | 'mock' | 'other';
@@ -75,6 +92,7 @@ function getViewFromHash(): DashboardView {
   if (typeof window === 'undefined') return 'overview';
   if (window.location.hash === '#history') return 'history';
   if (window.location.hash === '#analysis') return 'analysis';
+  if (window.location.hash === '#review') return 'review';
   return 'overview';
 }
 
@@ -95,6 +113,22 @@ function formatDate(value: string, includeTime = false) {
 
 function getPercentage(score: number, total: number) {
   return total > 0 ? Math.round((score / total) * 100) : 0;
+}
+
+function getLatestWrongAnswers(attempts: AttemptRow[]) {
+  const seenQuestionIds = new Set<string>();
+  const wrongAnswers: Array<{ answer: AttemptAnswer; attempt: AttemptRow }> = [];
+
+  // Attempts arrive newest first. A later correct answer removes an earlier mistake from review.
+  for (const attempt of attempts) {
+    for (const answer of attempt.answers ?? []) {
+      if (!answer?.question_id || seenQuestionIds.has(answer.question_id)) continue;
+      seenQuestionIds.add(answer.question_id);
+      if (!answer.is_correct) wrongAnswers.push({ answer, attempt });
+    }
+  }
+
+  return wrongAnswers;
 }
 
 function EmptyState({ title, children }: { title: string; children: string }) {
@@ -163,6 +197,7 @@ export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<AccountProfile | null>(null);
   const [attempts, setAttempts] = useState<AttemptRow[]>([]);
+  const [reviewQuestions, setReviewQuestions] = useState<Record<string, ReviewQuestion>>({});
   const [examSetTitles, setExamSetTitles] = useState<Record<string, string>>({});
   const [view, setView] = useState<DashboardView>('overview');
   const [historyFilter, setHistoryFilter] = useState('all');
@@ -198,7 +233,7 @@ export default function DashboardPage() {
       const syncResult = await syncPendingAttempts(sessionUser.id);
       const [profileResponse, attemptsResponse] = await Promise.all([
         client.from('profiles').select('id,email,full_name,role').eq('id', sessionUser.id).maybeSingle(),
-        client.from('attempts').select('id,subject_id,quiz_id,score,total_questions,exam_set_id,category_results,duration_seconds,completion_reason,created_at').eq('user_id', sessionUser.id).order('created_at', { ascending: false })
+        client.from('attempts').select('id,subject_id,quiz_id,score,total_questions,exam_set_id,answers,category_results,duration_seconds,completion_reason,created_at').eq('user_id', sessionUser.id).order('created_at', { ascending: false })
       ]);
       if (!active) return;
       if (profileResponse.error || attemptsResponse.error || syncResult.error) setDataError('ข้อมูลบางส่วนโหลดหรือซิงก์ไม่สำเร็จ กรุณากดลองใหม่');
@@ -208,9 +243,36 @@ export default function DashboardPage() {
       const realAttempts = ((attemptsResponse.data ?? []) as AttemptRow[]).map((attempt) => ({
         ...attempt,
         subject_id: normalizeAttemptSubject(attempt),
+        answers: Array.isArray(attempt.answers) ? attempt.answers as AttemptAnswer[] : [],
         category_results: Array.isArray(attempt.category_results) ? attempt.category_results : []
       }));
       setAttempts(realAttempts);
+      const wrongQuestionIds = getLatestWrongAnswers(realAttempts).map(({ answer }) => answer.question_id);
+      if (wrongQuestionIds.length > 0) {
+        const [questionsResponse, solutionsResponse] = await Promise.all([
+          client.from('questions').select('id,category,prompt,choices').in('id', wrongQuestionIds),
+          client.from('question_solutions').select('question_id,correct_choice_index,explanation,tip').in('question_id', wrongQuestionIds)
+        ]);
+        if (active && !questionsResponse.error && !solutionsResponse.error) {
+          const solutionsById = new Map((solutionsResponse.data ?? []).map((solution) => [solution.question_id, solution]));
+          const nextReviewQuestions = Object.fromEntries((questionsResponse.data ?? []).flatMap((question) => {
+            const solution = solutionsById.get(question.id);
+            if (!solution || !Array.isArray(question.choices)) return [];
+            return [[question.id, {
+              id: question.id,
+              category: question.category,
+              prompt: question.prompt,
+              choices: question.choices.map(String),
+              correctChoiceIndex: solution.correct_choice_index,
+              explanation: solution.explanation,
+              tip: solution.tip
+            } satisfies ReviewQuestion]];
+          }));
+          setReviewQuestions(nextReviewQuestions);
+        }
+      } else {
+        setReviewQuestions({});
+      }
       const examSetIds = [...new Set(realAttempts.map((attempt) => attempt.exam_set_id).filter(Boolean))] as string[];
       if (examSetIds.length > 0) {
         const { data: examSets } = await client.from('exam_sets').select('id,title').in('id', examSetIds);
@@ -291,6 +353,7 @@ export default function DashboardPage() {
       ? attempts.filter((attempt) => getAttemptGroup(attempt.subject_id) === historyFilter.slice(6))
       : attempts.filter((attempt) => attempt.subject_id === historyFilter);
   const getAttemptTitle = (attempt: AttemptRow) => (attempt.exam_set_id && examSetTitles[attempt.exam_set_id]) || SUBJECT_TITLES[attempt.subject_id] || attempt.quiz_id;
+  const wrongAnswers = getLatestWrongAnswers(attempts);
 
   function openHistoryGroup(group: AttemptGroup) {
     setHistoryFilter(`group:${group}`);
@@ -306,6 +369,7 @@ export default function DashboardPage() {
             <button type="button" className={`dashboard-menu-item${view === 'overview' ? ' active' : ''}`} onClick={() => selectView('overview')}><span>▦</span><span>ภาพรวม</span></button>
             <button type="button" className={`dashboard-menu-item${view === 'history' ? ' active' : ''}`} onClick={() => selectView('history')}><span>◷</span><span>ประวัติการฝึก</span><b>{attempts.length}</b></button>
             <button type="button" className={`dashboard-menu-item${view === 'analysis' ? ' active' : ''}`} onClick={() => selectView('analysis')}><span>◎</span><span>วิเคราะห์จุดอ่อน</span></button>
+            <button type="button" className={`dashboard-menu-item${view === 'review' ? ' active' : ''}`} onClick={() => selectView('review')}><span>▣</span><span>สมุดข้อผิด</span><b>{wrongAnswers.length}</b></button>
           </div>
           <div className="sidebar-exam-card">
             <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src="/pic/logo_police.png" alt="นายสิบตำรวจ" className="sidebar-exam-logo" />
@@ -317,7 +381,7 @@ export default function DashboardPage() {
         <main className="dashboard-content">
           <header className="dashboard-page-header">
             <div className="dashboard-account-heading">
-              <div className="dashboard-account-copy"><Link href="/" className="dashboard-home-breadcrumb">← กลับหน้าแรก</Link><span className="dashboard-view-eyebrow">{view === 'overview' ? 'ภาพรวมบัญชี' : view === 'history' ? 'ประวัติทั้งหมด' : 'วิเคราะห์ผลการฝึก'}</span><h1>{view === 'overview' ? `สวัสดี, ${username}` : view === 'history' ? 'ประวัติการฝึกของฉัน' : 'จุดที่ควรฝึกต่อ'}</h1><p>{view === 'overview' ? 'ติดตามคะแนน เวลา และความก้าวหน้าจากข้อมูลจริงของคุณ' : view === 'history' ? 'เปิดดูผลรายหมวดและกลับไปฝึกชุดเดิมได้ทุกเมื่อ' : 'เรียงจากหมวดที่ได้คะแนนต่ำ เพื่อช่วยเลือกสิ่งที่ควรทบทวนก่อน'}</p></div>
+              <div className="dashboard-account-copy"><Link href="/" className="dashboard-home-breadcrumb">← กลับหน้าแรก</Link><span className="dashboard-view-eyebrow">{view === 'overview' ? 'ภาพรวมบัญชี' : view === 'history' ? 'ประวัติทั้งหมด' : view === 'analysis' ? 'วิเคราะห์ผลการฝึก' : 'ทบทวนเฉพาะข้อที่ยังพลาด'}</span><h1>{view === 'overview' ? `สวัสดี, ${username}` : view === 'history' ? 'ประวัติการฝึกของฉัน' : view === 'analysis' ? 'จุดที่ควรฝึกต่อ' : 'สมุดข้อผิดของฉัน'}</h1><p>{view === 'overview' ? 'ติดตามคะแนน เวลา และความก้าวหน้าจากข้อมูลจริงของคุณ' : view === 'history' ? 'เปิดดูผลรายหมวดและกลับไปฝึกชุดเดิมได้ทุกเมื่อ' : view === 'analysis' ? 'เรียงจากหมวดที่คะแนนต่ำ เพื่อช่วยเลือกสิ่งที่ควรทบทวนก่อน' : 'ข้อที่ตอบถูกในภายหลังจะถูกนำออก เพื่อให้เหลือเฉพาะจุดที่ควรทบทวน'}</p></div>
               <div className="dashboard-account-actions"><Link href="/courses/police_admin" className="dashboard-primary-action">ทำข้อสอบต่อ <span aria-hidden="true">→</span></Link><button type="button" className="dashboard-refresh-button" onClick={() => setReloadToken((value) => value + 1)}>↻ อัปเดตข้อมูล</button><span className={`account-role-badge is-${profile?.role ?? 'user'}`}>{profile?.role === 'admin' ? 'ADMIN' : 'USER'}</span>{profile?.role === 'admin' ? <Link href="/admin">ระบบจัดการ →</Link> : null}</div>
             </div>
           </header>
@@ -325,7 +389,8 @@ export default function DashboardPage() {
           {dataError ? <div className="dashboard-data-error" role="alert"><span>{dataError}</span><button type="button" onClick={() => setReloadToken((value) => value + 1)}>ลองใหม่</button></div> : null}
 
           {view === 'overview' ? (
-            <section className="dashboard-premium-hero" aria-label="สรุปเป้าหมายการฝึก">
+            <>
+              <section className="dashboard-premium-hero" aria-label="สรุปเป้าหมายการฝึก">
               <div className="dashboard-premium-hero-copy">
                 <span className="dashboard-premium-kicker">YOUR PREPARATION STATUS</span>
                 <h2>{attempts.length > 0 ? 'กำลังพัฒนาได้ถูกทาง' : 'วางแผนการเตรียมตัวของคุณ'}</h2>
@@ -339,7 +404,9 @@ export default function DashboardPage() {
               <Link href={weaknesses[0] ? getPracticeHref(weaknesses[0].subjectId) : '/courses/police_admin'} className="dashboard-premium-next-action">
                 <span><small>แนะนำให้ทำต่อ</small><strong>{weaknesses[0] ? `ฝึก ${weaknesses[0].title}` : 'เริ่มทำข้อสอบชุดแรก'}</strong></span><i aria-hidden="true">→</i>
               </Link>
-            </section>
+              </section>
+              {wrongAnswers.length > 0 ? <button type="button" className="dashboard-review-summary" onClick={() => selectView('review')}><span className="dashboard-review-summary-icon" aria-hidden="true">▣</span><span><strong>มีข้อที่ควรทบทวน {wrongAnswers.length} ข้อ</strong><small>เปิดสมุดข้อผิดเพื่ออ่านเฉลย แล้วกลับไปฝึกวิชานั้นได้ทันที</small></span><i aria-hidden="true">→</i></button> : null}
+            </>
           ) : null}
 
           {view === 'overview' ? <>
@@ -447,6 +514,19 @@ export default function DashboardPage() {
                 <Link href={weaknesses[0] ? getPracticeHref(weaknesses[0].subjectId) : '/courses/police_admin'}>ไปหน้าฝึก →</Link>
               </aside>
             </div>
+          ) : null}
+
+          {view === 'review' ? (
+            <section className="dashboard-view-card dashboard-wrong-book">
+              <div className="dashboard-view-toolbar"><div><h2>รายการที่ยังต้องทบทวน</h2><p>ระบบเก็บเฉพาะคำตอบล่าสุดของแต่ละข้อ เพื่อไม่ให้ข้อที่ทำถูกแล้วกลับมารบกวน</p></div><span className="analysis-count">{wrongAnswers.length} ข้อ</span></div>
+              {wrongAnswers.length > 0 ? <div className="dashboard-wrong-book-list">{wrongAnswers.map(({ answer, attempt }) => {
+                const question = reviewQuestions[answer.question_id];
+                const subjectTitle = SUBJECT_TITLES[attempt.subject_id] ?? attempt.subject_id;
+                const selectedChoice = answer.selected_choice_index === null ? 'ไม่ได้ตอบ' : `${String.fromCharCode(65 + answer.selected_choice_index)}. ${question?.choices[answer.selected_choice_index] ?? 'คำตอบเดิม'}`;
+                const correctChoice = `${String.fromCharCode(65 + answer.correct_choice_index)}. ${question?.choices[answer.correct_choice_index] ?? 'ดูเฉลยในชุดข้อสอบ'}`;
+                return <article className="dashboard-wrong-book-item" key={answer.question_id}><header><span>{subjectTitle}</span><small>{question?.category ?? answer.category}</small><time>{formatDate(attempt.created_at)}</time></header><h3>{question?.prompt ?? 'กำลังโหลดรายละเอียดข้อสอบ...'}</h3><div className="dashboard-wrong-book-answers"><p><span>คำตอบของคุณ</span><strong className="is-wrong">{selectedChoice}</strong></p><p><span>คำตอบที่ถูก</span><strong className="is-correct">{correctChoice}</strong></p></div>{question?.explanation ? <p className="dashboard-wrong-book-explanation">{question.explanation}</p> : null}<Link href={getPracticeHref(attempt.subject_id, attempt.exam_set_id)} className="dashboard-wrong-book-action">กลับไปฝึกวิชานี้ →</Link></article>;
+              })}</div> : <EmptyState title="สมุดข้อผิดว่างแล้ว">เมื่อทำข้อที่เคยพลาดได้ถูกต้อง ข้อนั้นจะหายจากรายการนี้</EmptyState>}
+            </section>
           ) : null}
 
           <div className="footer-banner-cta"><div className="footer-banner-left"><div className="footer-banner-icon">✓</div><div className="footer-banner-info"><h2>{attempts.length > 0 ? 'พร้อมพัฒนาคะแนนต่อหรือยัง?' : 'เริ่มเก็บผลการฝึกครั้งแรก'}</h2><p>ทุกครั้งที่ส่งข้อสอบ ระบบจะอัปเดต Dashboard ให้อัตโนมัติ</p></div></div><Link href="/courses/police_admin" className="footer-banner-btn">เลือกชุดข้อสอบ <span aria-hidden="true">→</span></Link></div>

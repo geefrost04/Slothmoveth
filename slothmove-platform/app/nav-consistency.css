@@ -140,7 +140,8 @@
   color: #ffffff !important;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .home-shell .nav-login-btn,
   .home-shell .nav-dashboard-btn {
     width: 42px !important;
     min-width: 42px !important;
@@ -148,6 +149,7 @@
     padding: 0 !important;
   }
 
+  .home-shell .nav-login-btn > .nav-control-label,
   .home-shell .nav-dashboard-btn > .nav-control-label {
     position: absolute;
     width: 1px;

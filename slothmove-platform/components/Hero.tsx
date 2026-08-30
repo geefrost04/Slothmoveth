@@ -15,19 +15,14 @@ export function Hero() {
             </p>
             <div className="home-hero-actions">
               <TrackedLink
-                href="/register"
+                href="/courses/police_admin"
                 className="home-btn-primary"
-                eventName="register_cta_click"
+                eventName="start_free_practice_click"
                 parameters={{ location: 'home_hero' }}
               >
-                สมัครฟรี เริ่มฝึกได้เลย
+                ทดลองทำข้อสอบฟรี
               </TrackedLink>
-              <a href="#exam-selection" className="home-btn-secondary">
-                เริ่มเลือกสนามสอบ
-              </a>
-              <a href="#why-slothmove" className="home-btn-secondary home-hero-howto">
-                ดูวิธีใช้งาน
-              </a>
+              <TrackedLink href="/register" className="home-btn-secondary" eventName="register_cta_click" parameters={{ location: 'home_hero' }}>สมัครเพื่อบันทึกผล</TrackedLink>
             </div>
           </div>
         </div>

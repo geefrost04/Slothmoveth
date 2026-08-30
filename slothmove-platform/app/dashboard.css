@@ -668,6 +668,46 @@
   margin-bottom: 24px;
 }
 
+.dashboard-review-summary {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  margin: -12px 0 24px;
+  padding: 14px 18px;
+  border: 1px solid #f0d7aa;
+  border-radius: 10px;
+  color: #5d4418;
+  background: #fffaf0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.dashboard-review-summary:hover { border-color: #d9b56c; background: #fff6e4; }
+.dashboard-review-summary-icon { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 8px; color: #946319; background: #ffedc8; font-weight: 900; }
+.dashboard-review-summary strong, .dashboard-review-summary small { display: block; }
+.dashboard-review-summary strong { font-size: 13px; }
+.dashboard-review-summary small { margin-top: 3px; color: #876e42; font-size: 11px; }
+.dashboard-review-summary > i { color: #946319; font-size: 20px; font-style: normal; }
+
+.dashboard-wrong-book-list { display: grid; gap: 14px; }
+.dashboard-wrong-book-item { padding: 18px; border: 1px solid #e5e9ed; border-radius: 10px; background: #fff; }
+.dashboard-wrong-book-item > header { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; color: #6e7c85; font-size: 10px; font-weight: 750; }
+.dashboard-wrong-book-item > header > span { color: #8d5a11; }
+.dashboard-wrong-book-item > header > small { padding: 3px 6px; border-radius: 99px; background: #f2f5f6; font-size: 9px; }
+.dashboard-wrong-book-item > header > time { margin-left: auto; color: #9ba5ad; }
+.dashboard-wrong-book-item h3 { margin: 12px 0; color: #24342c; font-size: 15px; line-height: 1.6; }
+.dashboard-wrong-book-answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.dashboard-wrong-book-answers p { min-width: 0; margin: 0; padding: 10px; border-radius: 7px; background: #f8faf9; }
+.dashboard-wrong-book-answers span, .dashboard-wrong-book-answers strong { display: block; }
+.dashboard-wrong-book-answers span { margin-bottom: 3px; color: #89958f; font-size: 9px; font-weight: 750; }
+.dashboard-wrong-book-answers strong { overflow-wrap: anywhere; font-size: 11px; line-height: 1.5; }
+.dashboard-wrong-book-answers .is-wrong { color: #a3363d; }
+.dashboard-wrong-book-answers .is-correct { color: #277053; }
+.dashboard-wrong-book-explanation { margin: 11px 0 0; padding: 10px 12px; border-left: 3px solid #a8cdb7; color: #557065; background: #f4faf6; font-size: 11px; line-height: 1.7; white-space: pre-line; }
+.dashboard-wrong-book-action { display: inline-flex; margin-top: 12px; color: #33765a; font-size: 11px; font-weight: 850; text-decoration: none; }
+
 .weakness-row {
   display: flex;
   align-items: center;
@@ -1207,6 +1247,11 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
   .dashboard-category-row { grid-template-columns: 90px 1fr 34px; gap: 7px; }
   .weakness-row { align-items: flex-start; flex-direction: column; gap: 10px; }
   .weakness-stats { width: 100%; justify-content: space-between; }
+  .dashboard-review-summary { grid-template-columns: 34px minmax(0, 1fr) auto; padding: 12px; }
+  .dashboard-review-summary-icon { width: 34px; height: 34px; }
+  .dashboard-wrong-book-item { padding: 14px 12px; }
+  .dashboard-wrong-book-item > header > time { width: 100%; margin-left: 0; }
+  .dashboard-wrong-book-answers { grid-template-columns: 1fr; }
   .trend-bars { gap: 4px; }
   .trend-column > small { display: none; }
   .trend-column { grid-template-rows: 18px 1fr; }
