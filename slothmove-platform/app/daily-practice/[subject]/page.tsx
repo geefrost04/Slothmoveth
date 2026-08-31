@@ -45,6 +45,8 @@ export default async function DailyPracticePage({
       courseId="police_admin"
       subjectId={sourceSubject}
       examSetId={freeSet.id}
+      autoStart
+      isDailyPractice
       introChip="FREE DAILY PRACTICE"
       introTitle="ควิซฟรี 10 ข้อ"
       introDescription="สุ่มเฉพาะจากชุดข้อสอบฟรี ไม่รวมข้อจากชุดที่ต้องซื้อ"

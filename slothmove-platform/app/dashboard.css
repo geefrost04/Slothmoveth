@@ -1117,6 +1117,7 @@
 .dashboard-daily-practice-copy { min-width: 0; }
 .dashboard-daily-practice h2 { margin: 3px 0 2px; color: #1f3027; font-size: 15px; }
 .dashboard-daily-practice p { margin: 0; color: #718078; font-size: 11px; }
+.dashboard-daily-streak { display: inline-flex; margin-top: 7px; color: #276b4c; font-size: 10px; font-weight: 850; }
 .dashboard-daily-practice.is-review { border-color: #f0d6bd; background: #fffcf8; }
 .dashboard-daily-practice.is-review .dashboard-daily-practice-mark { color: #a85a14; background: #fff1e3; }
 .dashboard-daily-practice.is-review > button { background: #a85a14; }

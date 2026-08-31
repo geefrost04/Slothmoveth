@@ -94,9 +94,22 @@ function getFreePracticeHref(subjectId: string) {
 }
 
 function getBangkokStudyDate(value: string) {
-  return new Intl.DateTimeFormat('en-CA', {
+  const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit'
-  }).format(new Date(value));
+  }).formatToParts(new Date(value));
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function getDailyStreak(attempts: AttemptRow[]) {
+  const practiceDays = new Set(attempts.map((attempt) => getBangkokStudyDate(attempt.created_at)));
+  let streak = 0;
+  const cursor = new Date(`${getBangkokStudyDate(new Date().toISOString())}T12:00:00Z`);
+  while (practiceDays.has(cursor.toISOString().slice(0, 10))) {
+    streak += 1;
+    cursor.setUTCDate(cursor.getUTCDate() - 1);
+  }
+  return streak;
 }
 
 function getViewFromHash(): DashboardView {
@@ -377,10 +390,9 @@ export default function DashboardPage() {
   const getAttemptTitle = (attempt: AttemptRow) => (attempt.exam_set_id && examSetTitles[attempt.exam_set_id]) || SUBJECT_TITLES[attempt.subject_id] || attempt.quiz_id;
   const wrongAnswers = getLatestWrongAnswers(attempts);
   const practicedToday = attempts.some((attempt) => getBangkokStudyDate(attempt.created_at) === getBangkokStudyDate(new Date().toISOString()));
+  const dailyStreak = getDailyStreak(attempts);
   const suggestedSubject = weaknesses[0]?.subjectId ?? 'math';
-  const dailyPractice = wrongAnswers.length > 0
-    ? { mode: 'review' as const, eyebrow: 'TODAY\'S REVIEW', title: `ทบทวนข้อที่ยังพลาด ${wrongAnswers.length} ข้อ`, detail: 'เคลียร์จุดที่ยังไม่แม่นก่อนเริ่มชุดใหม่', action: 'เปิดสมุดข้อผิด' }
-    : practicedToday
+  const dailyPractice = practicedToday
       ? { mode: 'complete' as const, eyebrow: 'TODAY\'S PRACTICE', title: 'ภารกิจวันนี้เสร็จแล้ว', detail: 'ฝึกเพิ่มจากข้อสอบฟรีอีก 10 ข้อเพื่อรักษาจังหวะ', action: 'ฝึกฟรีเพิ่ม 10 ข้อ', href: getFreePracticeHref(suggestedSubject) }
       : { mode: 'quiz' as const, eyebrow: 'TODAY\'S PRACTICE', title: 'ควิซฟรี 10 ข้อของวันนี้', detail: attempts.length === 0 ? 'เริ่มจากชุดข้อสอบฟรี ใช้เวลาประมาณ 10 นาที' : `สุ่มจากชุดฟรีของ ${SUBJECT_TITLES[suggestedSubject] ?? 'วิชาที่ควรฝึกต่อ'} เท่านั้น`, action: 'เริ่มควิซฟรี 10 ข้อ', href: getFreePracticeHref(suggestedSubject) };
 
@@ -440,9 +452,9 @@ export default function DashboardPage() {
               </section>
 
               <section className={`dashboard-daily-practice is-${dailyPractice.mode}`} aria-label="ภารกิจประจำวัน">
-                <div className="dashboard-daily-practice-mark" aria-hidden="true">{dailyPractice.mode === 'review' ? '▣' : dailyPractice.mode === 'complete' ? '✓' : '10'}</div>
-                <div className="dashboard-daily-practice-copy"><span>{dailyPractice.eyebrow}</span><h2>{dailyPractice.title}</h2><p>{dailyPractice.detail}</p></div>
-                {dailyPractice.mode === 'review' ? <button type="button" onClick={() => { trackAnalyticsEvent('daily_review_start_click', { wrong_answers: wrongAnswers.length }); selectView('review'); }}>{dailyPractice.action} <span aria-hidden="true">→</span></button> : <Link href={dailyPractice.href} onClick={() => trackAnalyticsEvent('daily_practice_start_click', { subject_id: suggestedSubject, state: dailyPractice.mode })}>{dailyPractice.action} <span aria-hidden="true">→</span></Link>}
+                <div className="dashboard-daily-practice-mark" aria-hidden="true">{dailyPractice.mode === 'complete' ? '✓' : '10'}</div>
+                <div className="dashboard-daily-practice-copy"><span>{dailyPractice.eyebrow}</span><h2>{dailyPractice.title}</h2><p>{dailyPractice.detail}</p><small className="dashboard-daily-streak">{practicedToday ? `ทำต่อเนื่อง ${dailyStreak} วัน` : dailyStreak > 0 ? `กลับมาทำวันนี้เพื่อเริ่ม streak ใหม่` : 'เริ่ม streak ของคุณด้วยควิซวันนี้'}</small></div>
+                <Link href={dailyPractice.href} onClick={() => trackAnalyticsEvent('daily_practice_start_click', { subject_id: suggestedSubject, state: dailyPractice.mode, streak: dailyStreak })}>{dailyPractice.action} <span aria-hidden="true">→</span></Link>
               </section>
               {wrongAnswers.length > 0 ? <button type="button" className="dashboard-review-summary" onClick={() => selectView('review')}><span className="dashboard-review-summary-icon" aria-hidden="true">▣</span><span><strong>มีข้อที่ควรทบทวน {wrongAnswers.length} ข้อ</strong><small>เปิดสมุดข้อผิดเพื่ออ่านเฉลย แล้วกลับไปฝึกวิชานั้นได้ทันที</small></span><i aria-hidden="true">→</i></button> : null}
             </>

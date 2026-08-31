@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import type { QuizItem } from '@/lib/course-types';
 import { getSupabase } from '@/lib/supabase';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
@@ -221,7 +222,9 @@ export function QuizGame({
   subjectMascot,
   gameMascot,
   subjectId,
-  examSetId
+  examSetId,
+  autoStart,
+  isDailyPractice = false
 }: {
   items: QuizItem[];
   title?: string;
@@ -240,6 +243,8 @@ export function QuizGame({
   subjectMascot?: string;
   gameMascot?: string;
   examSetId?: string;
+  autoStart?: boolean;
+  isDailyPractice?: boolean;
 }) {
   const [sessionItems, setSessionItems] = useState<QuizItem[] | null>(null);
   const [modeCount, setModeCount] = useState<number | null>(null);
@@ -264,6 +269,7 @@ export function QuizGame({
   const [showReview, setShowReview] = useState(false);
   const [answerSelections, setAnswerSelections] = useState<Record<string, number | null>>({});
   const hasPersistedPractice = useRef(false);
+  const hasAutoStarted = useRef(false);
 
   const storageKey = getStorageKey(title?.split(' · ')[0]);
   const bestStreakKey = getBestStreakKey(title?.split(' · ')[0]);
@@ -485,6 +491,12 @@ export function QuizGame({
       exam_set_id: examSetId ?? null
     });
   }
+
+  useEffect(() => {
+    if (!autoStart || hasAutoStarted.current || sessionItems) return;
+    hasAutoStarted.current = true;
+    startQuiz(Math.min(10, items.length));
+  }, [autoStart, items.length, sessionItems]);
 
   async function persistPracticeAttempt(nextSelections: Record<string, number | null>, nextCorrectCount: number) {
     if (!examSetId || !sessionItems || hasPersistedPractice.current || sessionItems.some((item) => !item.id)) return;
@@ -1010,12 +1022,7 @@ export function QuizGame({
                   รีวิวข้อที่ผิด ({wrongAnswers.length})
                 </button>
               ) : null}
-              <button
-                className="btn btn-primary"
-                onClick={() => startQuiz(modeCount ?? total, isSpeed ? speedSeconds : undefined)}
-              >
-                เล่นอีกครั้ง
-              </button>
+              {isDailyPractice ? <Link className="btn btn-primary" href="/dashboard" onClick={() => trackAnalyticsEvent('daily_practice_dashboard_click', { score: pct, wrong_answers: wrongCount })}>ดู streak และแผนฝึกของฉัน</Link> : <button className="btn btn-primary" onClick={() => startQuiz(modeCount ?? total, isSpeed ? speedSeconds : undefined)}>เล่นอีกครั้ง</button>}
               <button
                 className={`btn btn-secondary ${!hasSavedCurrent ? 'quiz-btn-save-score-animate' : ''}`}
                 onClick={() => setShowSavePopup(true)}
