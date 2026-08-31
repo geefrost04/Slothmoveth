@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { QuizItem } from '@/lib/course-types';
 import { getSupabase } from '@/lib/supabase';
 import { buildDistinctRandomSession, distinctScope, shuffleArray } from '@/lib/randomization';
+import { queuePendingAttempt, type PendingAttempt } from '@/lib/pending-attempts';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 
 const CORRECT_DELAY_MS = 1400;
 const WRONG_DELAY_MS = 2600;
@@ -218,7 +220,8 @@ export function QuizGame({
   defaultSpeedSeconds = 10,
   subjectMascot,
   gameMascot,
-  subjectId
+  subjectId,
+  examSetId
 }: {
   items: QuizItem[];
   title?: string;
@@ -236,6 +239,7 @@ export function QuizGame({
   defaultSpeedSeconds?: number;
   subjectMascot?: string;
   gameMascot?: string;
+  examSetId?: string;
 }) {
   const [sessionItems, setSessionItems] = useState<QuizItem[] | null>(null);
   const [modeCount, setModeCount] = useState<number | null>(null);
@@ -258,6 +262,8 @@ export function QuizGame({
   const [isPremium, setIsPremium] = useState(false);
   const [wrongAnswers, setWrongAnswers] = useState<{ item: QuizItem; picked: number | null; questionIndex: number }[]>([]);
   const [showReview, setShowReview] = useState(false);
+  const [answerSelections, setAnswerSelections] = useState<Record<string, number | null>>({});
+  const hasPersistedPractice = useRef(false);
 
   const storageKey = getStorageKey(title?.split(' · ')[0]);
   const bestStreakKey = getBestStreakKey(title?.split(' · ')[0]);
@@ -470,6 +476,48 @@ export function QuizGame({
     setWrongAnswers([]);
     setShowReview(false);
     setShowSavePopup(false);
+    setAnswerSelections({});
+    hasPersistedPractice.current = false;
+    trackAnalyticsEvent('practice_started', {
+      practice_type: examSetId ? 'free_daily_practice' : mode,
+      subject_id: subjectId ?? 'unknown',
+      question_count: count,
+      exam_set_id: examSetId ?? null
+    });
+  }
+
+  async function persistPracticeAttempt(nextSelections: Record<string, number | null>, nextCorrectCount: number) {
+    if (!examSetId || !sessionItems || hasPersistedPractice.current || sessionItems.some((item) => !item.id)) return;
+    hasPersistedPractice.current = true;
+    const completedAt = new Date().toISOString();
+    const categoryMap = new Map<string, { category: string; total: number; answered: number; correct: number }>();
+    const answers = sessionItems.map((item) => {
+      const selectedChoiceIndex = nextSelections[item.id!] ?? null;
+      const category = item.category ?? 'ทั่วไป';
+      const categoryResult = categoryMap.get(category) ?? { category, total: 0, answered: 0, correct: 0 };
+      categoryResult.total += 1;
+      if (selectedChoiceIndex !== null) categoryResult.answered += 1;
+      if (selectedChoiceIndex === item.answer) categoryResult.correct += 1;
+      categoryMap.set(category, categoryResult);
+      return {
+        question_id: item.id!, category, selected_choice_index: selectedChoiceIndex,
+        correct_choice_index: item.answer, is_correct: selectedChoiceIndex === item.answer
+      };
+    });
+    const pendingAttempt: PendingAttempt = {
+      id: `${examSetId}:${completedAt}`,
+      subject_id: subjectId ?? 'math', quiz_id: 'free-daily-practice', exam_set_id: examSetId,
+      score: nextCorrectCount, total_questions: sessionItems.length, answers,
+      category_results: Array.from(categoryMap.values()), duration_seconds: elapsedSec,
+      completion_reason: 'submitted', created_at: completedAt
+    };
+    const supabase = getSupabase();
+    if (!supabase) { queuePendingAttempt(pendingAttempt); return; }
+    const { data: authData } = await supabase.auth.getUser();
+    if (!authData.user) { queuePendingAttempt(pendingAttempt); return; }
+    const { id: _pendingId, ...attemptRow } = pendingAttempt;
+    const { error } = await supabase.from('attempts').insert({ user_id: authData.user.id, ...attemptRow });
+    if (error) queuePendingAttempt(pendingAttempt);
   }
 
   function saveCurrentResult() {
@@ -571,12 +619,15 @@ export function QuizGame({
     const item = sessionItems[idx];
     const isCorrect = choiceIndex === item.answer;
     const nextCorrectCount = correctCount + (isCorrect ? 1 : 0);
+    const answerKey = item.id ?? String(idx);
+    const nextSelections = { ...answerSelections, [answerKey]: choiceIndex };
     const nextScore = isSpeed
       ? score + (isCorrect ? speedBaseScore + timeLeft : 0)
       : score + (isCorrect ? 1 : 0);
 
     setPicked(choiceIndex);
     setDidTimeout(timedOut);
+    setAnswerSelections(nextSelections);
     if (isCorrect) {
       setCorrectCount(nextCorrectCount);
       setScore(nextScore);
@@ -602,6 +653,12 @@ export function QuizGame({
 
       if (shouldEndNow) {
         setDone(true);
+        trackAnalyticsEvent('practice_completed', {
+          practice_type: examSetId ? 'free_daily_practice' : mode,
+          subject_id: subjectId ?? 'unknown', question_count: sessionItems.length,
+          score: nextCorrectCount, exam_set_id: examSetId ?? null
+        });
+        void persistPracticeAttempt(nextSelections, nextCorrectCount);
         window.dispatchEvent(new CustomEvent('slothmove:donate'));
         return;
       }

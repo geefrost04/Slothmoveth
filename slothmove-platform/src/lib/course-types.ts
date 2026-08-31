@@ -175,6 +175,8 @@ export interface CourseConfig {
 
 /** Multiple-choice quiz question */
 export interface QuizItem {
+  /** Stable database id when a quiz is backed by a published exam set. */
+  id?: string;
   /** The question text (matches original `question` field in PAB data) */
   question: string;
   /** Multiple-choice options */

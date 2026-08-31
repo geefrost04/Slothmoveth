@@ -27,6 +27,7 @@ export default async function DailyPracticePage({
   if (!bundle || bundle.questions.length < 10) notFound();
 
   const items: QuizItem[] = bundle.questions.map((question) => ({
+    id: question.id,
     question: question.prompt,
     choices: question.choices,
     answer: question.correctChoiceIndex,
@@ -43,6 +44,7 @@ export default async function DailyPracticePage({
       subtitle={`สุ่มจาก ${bundle.examSet.title} ซึ่งเป็นชุดข้อสอบฟรี`}
       courseId="police_admin"
       subjectId={sourceSubject}
+      examSetId={freeSet.id}
       introChip="FREE DAILY PRACTICE"
       introTitle="ควิซฟรี 10 ข้อ"
       introDescription="สุ่มเฉพาะจากชุดข้อสอบฟรี ไม่รวมข้อจากชุดที่ต้องซื้อ"

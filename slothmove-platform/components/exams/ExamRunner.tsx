@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { queuePendingAttempt, type PendingAttempt } from '@/lib/pending-attempts';
 import { getSupabase } from '@/lib/supabase';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 import type { ExamBundle, ExamQuestionData, ExamSetData } from '@/lib/exam-data';
 import styles from './ExamRunner.module.css';
 
@@ -148,6 +149,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
   const [showAllCategoryResults, setShowAllCategoryResults] = useState(false);
   const [progressSaveState, setProgressSaveState] = useState<'idle' | 'account' | 'guest' | 'error'>('idle');
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const hasTrackedPracticeStart = useRef(false);
   const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState('');
 
@@ -287,6 +289,10 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
     setStartedAt(sessionStartedAt);
     setSecondsLeft(Math.max(0, durationSeconds - Math.floor((Date.now() - sessionStartedAt) / 1000)));
     setSessionReady(true);
+    if (!stored?.startedAt && !hasTrackedPracticeStart.current) {
+      hasTrackedPracticeStart.current = true;
+      trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId });
+    }
   }, [durationSeconds, examSet, questions, sessionReady, storageKey]);
 
   useEffect(() => {
@@ -367,6 +373,10 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
     };
 
     setResult(completedResult);
+    trackAnalyticsEvent('practice_completed', {
+      practice_type: 'exam_set', subject_id: subjectId, question_count: completedResult.total,
+      score: completedResult.score, completion_reason: reason, exam_set_id: examSetId
+    });
     void saveProgress(completedResult);
     try {
       window.localStorage.removeItem(storageKey);
@@ -470,6 +480,8 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
     setShowAllCategoryResults(false);
     setProgressSaveState('idle');
     setShowLoginPrompt(false);
+    hasTrackedPracticeStart.current = true;
+    trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId, restarted: true });
   }
 
   function openReview() {
@@ -739,6 +751,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                 <span className={styles.reviewCtaArrow} aria-hidden="true">→</span>
               </button>
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
+              {subjectId === 'mock_test' ? <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link> : null}
               <Link href={subjectHref} className={styles.secondaryButton}>กลับหน้าวิชา{subjectTitle}</Link>
             </div>
           </section>
