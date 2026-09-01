@@ -13,6 +13,7 @@
     "content:import:study-sheet": "node scripts/import-study-sheet.mjs",
     "content:validate:study-sheet": "node scripts/import-study-sheet.mjs --validate-only",
     "content:seed:study-sheet": "node scripts/generate-study-sheet-seed.mjs",
+    "content:create:police-mini-mock": "node scripts/create-police-mini-mock-set.mjs",
     "verify:mock-route": "node scripts/verify-mock-test-route.mjs",
     "commerce:audit": "node scripts/migrate-stripe-live-products.mjs --dry-run",
     "commerce:migrate:live": "node scripts/migrate-stripe-live-products.mjs"

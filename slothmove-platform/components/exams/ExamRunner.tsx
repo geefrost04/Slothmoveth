@@ -45,7 +45,8 @@ const SUBJECT_LABELS: Record<string, string> = {
   computer: 'คอมพิวเตอร์',
   law: 'กฎหมาย',
   saraban: 'งานสารบรรณ',
-  mock_test: 'Mock Test'
+  mock_test: 'Mock Test',
+  mini_mock: 'Mini Mock'
 };
 const RICH_TEXT_PATTERN = /(https?:\/\/[^\s]+|\^\{[^}]+\}|\^[+-]?\d+|[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ]+)/g;
 const SUPERSCRIPT_CHARACTERS: Record<string, string> = {
@@ -132,7 +133,9 @@ function DocumentIcon() {
 export function ExamRunner({ examSetId, initialData }: { examSetId: string; initialData?: ExamBundle }) {
   const subjectId = examSetId.match(/^police-([a-z_]+)-set-/)?.[1] ?? 'math';
   const subjectTitle = SUBJECT_LABELS[subjectId] ?? 'รายวิชา';
-  const subjectHref = subjectId === 'mock_test' ? '/courses/police_admin' : `/courses/police_admin/${subjectId}`;
+  const subjectHref = subjectId === 'mock_test' || subjectId === 'mini_mock'
+    ? '/courses/police_admin'
+    : `/courses/police_admin/${subjectId}`;
   const [examSet, setExamSet] = useState<ExamSet | null>(initialData?.examSet ?? null);
   const [questions, setQuestions] = useState<ExamQuestion[]>(initialData?.questions ?? []);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -150,15 +153,16 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
   const [progressSaveState, setProgressSaveState] = useState<'idle' | 'account' | 'guest' | 'error'>('idle');
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const hasTrackedPracticeStart = useRef(false);
+  const lastProgressMilestone = useRef(0);
   const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState('');
 
   const storageKey = `slothmove:exam-session:${examSetId}`;
-  const durationSeconds = subjectId === 'mock_test'
-    ? (examSet?.duration_minutes ?? 180) * 60
+  const durationSeconds = examSet?.duration_minutes
+    ? examSet.duration_minutes * 60
     : questions.length > 0
-    ? questions.length * SECONDS_PER_QUESTION
-    : (examSet?.duration_minutes ?? 30) * 60;
+      ? questions.length * SECONDS_PER_QUESTION
+      : 30 * 60;
 
   useEffect(() => {
     if (initialData) return;
@@ -326,6 +330,36 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
   }, [durationSeconds, result, sessionReady, startedAt]);
 
   useEffect(() => {
+    if (!sessionReady || result || questions.length === 0) return;
+
+    const answeredCount = Object.keys(answers).length;
+    const progressPercent = Math.round((answeredCount / questions.length) * 100);
+    const milestone = progressPercent >= 75 ? 75 : progressPercent >= 50 ? 50 : progressPercent >= 25 ? 25 : 0;
+    if (milestone === 0 || milestone <= lastProgressMilestone.current) return;
+
+    const trackingKey = `slothmove:analytics:exam-progress:${examSetId}:${startedAt}`;
+    try {
+      const trackedMilestone = Number(window.sessionStorage.getItem(trackingKey) ?? 0);
+      if (milestone <= trackedMilestone) {
+        lastProgressMilestone.current = trackedMilestone;
+        return;
+      }
+      window.sessionStorage.setItem(trackingKey, String(milestone));
+    } catch {
+      // The event is still useful when session storage is unavailable.
+    }
+
+    lastProgressMilestone.current = milestone;
+    trackAnalyticsEvent('exam_progress_checkpoint', {
+      exam_set_id: examSetId,
+      subject_id: subjectId,
+      question_count: questions.length,
+      answered_count: answeredCount,
+      progress_percent: milestone
+    });
+  }, [answers, examSetId, questions.length, result, sessionReady, subjectId]);
+
+  useEffect(() => {
     if (!sessionReady || result || secondsLeft > 0 || questions.length === 0) return;
     finishExam('timeout');
     // finishExam intentionally reads the latest answer state when time reaches zero.
@@ -430,6 +464,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
       queuePendingAttempt(pendingAttempt);
       setProgressSaveState('guest');
       setShowLoginPrompt(true);
+      trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'missing_supabase_session' });
       return;
     }
 
@@ -438,6 +473,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
       queuePendingAttempt(pendingAttempt);
       setProgressSaveState('guest');
       setShowLoginPrompt(true);
+      trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'guest_session' });
       return;
     }
 
@@ -481,6 +517,7 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
     setProgressSaveState('idle');
     setShowLoginPrompt(false);
     hasTrackedPracticeStart.current = true;
+    lastProgressMilestone.current = 0;
     trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId, restarted: true });
   }
 
@@ -790,7 +827,13 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                 <strong>{result.score} / {result.total}</strong>
               </div>
               <div className={styles.loginPromptActions}>
-                <Link href="/register" className={styles.loginPromptPrimary}>สมัครฟรีและบันทึกผล</Link>
+                <Link
+                  href="/register"
+                  className={styles.loginPromptPrimary}
+                  onClick={() => trackAnalyticsEvent('exam_save_prompt_register_click', { exam_set_id: examSetId })}
+                >
+                  สมัครฟรีและบันทึกผล
+                </Link>
                 <button type="button" onClick={() => setShowLoginPrompt(false)}>ไว้ทีหลัง</button>
               </div>
               <small>ไม่บังคับสมัครสมาชิก คุณยังดูเฉลยและใช้งานต่อได้ตามปกติ</small>

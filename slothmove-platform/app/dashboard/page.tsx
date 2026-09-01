@@ -48,7 +48,7 @@ type AttemptGroup = 'subject' | 'mock' | 'other';
 const SUBJECT_TITLES: Record<string, string> = {
   math: 'ความรู้ทั่วไป', thai: 'ภาษาไทย', english: 'ภาษาอังกฤษ', law: 'กฎหมาย',
   computer: 'คอมพิวเตอร์', social: 'สังคมศึกษา', saraban: 'งานสารบรรณ',
-  analytical_thinking: 'ความสามารถในการคิดวิเคราะห์', mock_test: 'Mock Test'
+  analytical_thinking: 'ความสามารถในการคิดวิเคราะห์', mock_test: 'Mock Test', mini_mock: 'Mini Mock'
 };
 
 const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
@@ -60,17 +60,23 @@ const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
   'ภาษาอังกฤษ': 'english'
 };
 
-const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => subjectId !== 'mock_test'));
+const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => subjectId !== 'mock_test' && subjectId !== 'mini_mock'));
+
+function isMockAttempt(subjectId: string) {
+  return subjectId === 'mock_test' || subjectId === 'mini_mock';
+}
 
 function getAttemptGroup(subjectId: string): AttemptGroup {
-  if (subjectId === 'mock_test') return 'mock';
+  if (isMockAttempt(subjectId)) return 'mock';
   if (SUBJECT_PRACTICE_IDS.has(subjectId)) return 'subject';
   return 'other';
 }
 
 function normalizeAttemptSubject(attempt: Pick<AttemptRow, 'subject_id' | 'quiz_id'>) {
   // Older Mock Test rows were written with the legacy math subject id.
-  return attempt.quiz_id.startsWith('police-mock_test-') ? 'mock_test' : attempt.subject_id;
+  if (attempt.quiz_id.startsWith('police-mock_test-')) return 'mock_test';
+  if (attempt.quiz_id.startsWith('police-mini_mock-')) return 'mini_mock';
+  return attempt.subject_id;
 }
 
 function summarizeAttempts(groupAttempts: AttemptRow[]) {
@@ -84,6 +90,11 @@ function getPracticeHref(subjectId: string, examSetId?: string | null) {
     return examSetId
       ? `/courses/police_admin/mock-test/${examSetId}`
       : '/courses/police_admin/mock-test';
+  }
+  if (subjectId === 'mini_mock') {
+    return examSetId
+      ? `/courses/police_admin/mini-mock/${examSetId}`
+      : '/courses/police_admin';
   }
   if (examSetId && subjectId === 'math') return `/courses/police_admin/math/exams/${examSetId}`;
   return `/courses/police_admin/${subjectId}`;
@@ -340,15 +351,15 @@ export default function DashboardPage() {
   const categoryMap = new Map<string, PerformanceStat>();
 
   for (const attempt of attempts) {
-    if (attempt.subject_id !== 'mock_test') {
+    if (!isMockAttempt(attempt.subject_id)) {
       const subject = subjectMap.get(attempt.subject_id) ?? { score: 0, total: 0 };
       subject.score += attempt.score; subject.total += attempt.total_questions; subjectMap.set(attempt.subject_id, subject);
     }
     for (const category of attempt.category_results) {
-      const categorySubjectId = attempt.subject_id === 'mock_test'
+      const categorySubjectId = isMockAttempt(attempt.subject_id)
         ? MOCK_CATEGORY_SUBJECT_IDS[category.category] ?? 'mock_test'
         : attempt.subject_id;
-      if (attempt.subject_id === 'mock_test') {
+      if (isMockAttempt(attempt.subject_id)) {
         const subject = subjectMap.get(categorySubjectId) ?? { score: 0, total: 0 };
         subject.score += category.correct; subject.total += category.total; subjectMap.set(categorySubjectId, subject);
       }
@@ -365,7 +376,7 @@ export default function DashboardPage() {
     .map((subject) => ({
       ...subject,
       attemptCount: attempts.filter((attempt) => attempt.subject_id === subject.subjectId || (
-        attempt.subject_id === 'mock_test' && attempt.category_results.some((category) => MOCK_CATEGORY_SUBJECT_IDS[category.category] === subject.subjectId)
+        isMockAttempt(attempt.subject_id) && attempt.category_results.some((category) => MOCK_CATEGORY_SUBJECT_IDS[category.category] === subject.subjectId)
       )).length,
       categories: categoryStats.filter((category) => category.subjectId === subject.subjectId)
     }))
@@ -439,15 +450,15 @@ export default function DashboardPage() {
               <div className="dashboard-premium-hero-copy">
                 <span className="dashboard-premium-kicker">YOUR PREPARATION STATUS</span>
                 <h2>{attempts.length > 0 ? 'กำลังพัฒนาได้ถูกทาง' : 'วางแผนการเตรียมตัวของคุณ'}</h2>
-                <p>{attempts.length > 0 ? `ทำข้อสอบมาแล้ว ${attempts.length} ครั้ง ระบบจัดลำดับหัวข้อที่ควรฝึกให้คุณแล้ว` : 'เริ่มทำข้อสอบชุดแรก เพื่อให้ระบบวิเคราะห์คะแนนและสร้างแผนฝึกเฉพาะคุณ'}</p>
+                <p>{attempts.length > 0 ? `ทำข้อสอบมาแล้ว ${attempts.length} ครั้ง ดูผลล่าสุดและเลือกสิ่งที่ควรฝึกต่อได้จากหน้านี้` : 'เริ่มจาก Mini Mock ฟรี 30 ข้อ แล้วระบบจะบันทึกผลไว้ให้คุณ'}</p>
               </div>
               <div className="dashboard-premium-goal">
-                <div className="dashboard-premium-goal-heading"><span>เป้าหมายคะแนน</span><strong>{averageScore}% <small>/ 80%</small></strong></div>
-                <div className="dashboard-premium-goal-track"><i style={{ width: `${Math.min(100, Math.round((averageScore / 80) * 100))}%` }} /></div>
-                <span className="dashboard-premium-goal-note">{averageScore >= 80 ? 'ถึงเป้าหมายแล้ว รักษาระดับต่อไป' : `อีก ${Math.max(0, 80 - averageScore)}% เพื่อถึงเป้าหมาย`}</span>
+                <div className="dashboard-premium-goal-heading"><span>ความแม่นยำเฉลี่ย</span><strong>{attempts.length > 0 ? `${averageScore}%` : '–'}</strong></div>
+                <div className="dashboard-premium-goal-track"><i style={{ width: `${attempts.length > 0 ? averageScore : 0}%` }} /></div>
+                <span className="dashboard-premium-goal-note">{attempts.length > 0 ? `คำนวณจาก ${totalQuestions.toLocaleString('th-TH')} ข้อที่ทำแล้ว` : 'ผลจะปรากฏหลังส่งข้อสอบชุดแรก'}</span>
               </div>
-              <Link href={weaknesses[0] ? getPracticeHref(weaknesses[0].subjectId) : '/courses/police_admin'} className="dashboard-premium-next-action">
-                <span><small>แนะนำให้ทำต่อ</small><strong>{weaknesses[0] ? `ฝึก ${weaknesses[0].title}` : 'เริ่มทำข้อสอบชุดแรก'}</strong></span><i aria-hidden="true">→</i>
+              <Link href={weaknesses[0] ? getPracticeHref(weaknesses[0].subjectId) : '/courses/police_admin/mini-mock/police-mini_mock-set-01'} className="dashboard-premium-next-action">
+                <span><small>แนะนำให้ทำต่อ</small><strong>{weaknesses[0] ? `ฝึก ${weaknesses[0].title}` : 'เริ่ม Mini Mock ฟรี'}</strong></span><i aria-hidden="true">→</i>
               </Link>
               </section>
 
@@ -461,7 +472,7 @@ export default function DashboardPage() {
           ) : null}
 
           {view === 'overview' ? <>
-            <section className="stats-section" aria-labelledby="stats-title"><div className="dashboard-section-heading"><h2 id="stats-title">ภาพรวมการฝึก</h2><span>อัปเดตจาก {attempts.length} ครั้ง</span></div><div className="stats-grid">
+            <section className="stats-section" aria-labelledby="stats-title"><div className="dashboard-section-heading"><h2 id="stats-title">ภาพรวม</h2><span>อัปเดตจาก {attempts.length} ครั้ง</span></div><div className="stats-grid">
               <button type="button" className="stat-card" onClick={() => selectView('history')}><span className="stat-icon green">▤</span><span><strong className="stat-value">{attempts.length}<small>ครั้ง</small></strong><span className="stat-label">การทำข้อสอบทั้งหมด</span></span></button>
               <button type="button" className="stat-card" onClick={() => selectView('history')}><span className="stat-icon blue">◎</span><span><strong className="stat-value">{totalQuestions.toLocaleString('th-TH')}<small>ข้อ</small></strong><span className="stat-label">ข้อที่ทำทั้งหมด</span></span></button>
               <button type="button" className="stat-card" onClick={() => selectView('analysis')}><span className="stat-icon orange">↗</span><span><strong className="stat-value">{averageScore}%</strong><span className="stat-label">คะแนนเฉลี่ยรวม</span></span></button>
@@ -482,7 +493,7 @@ export default function DashboardPage() {
                 </button>
                 <button type="button" className="dashboard-space-card is-mock" onClick={() => openHistoryGroup('mock')}>
                   <span className="dashboard-space-icon" aria-hidden="true">02</span>
-                  <span className="dashboard-space-copy"><small>สนามสอบจำลอง</small><strong>Mock Test</strong><span>ติดตามผลชุดจำลองสอบเต็มรูปแบบแยกจากการฝึกรายวิชา</span></span>
+                  <span className="dashboard-space-copy"><small>สนามสอบจำลอง</small><strong>Mini Mock + Mock Test</strong><span>ติดตามผลชุดสั้นและสนามจำลองเต็มรูปแบบแยกจากการฝึกรายวิชา</span></span>
                   <span className="dashboard-space-metrics"><span><strong>{mockSummary.attempts}</strong> ครั้ง</span><span><strong>{mockSummary.questions.toLocaleString('th-TH')}</strong> ข้อ</span><span><strong>{mockSummary.average}%</strong> เฉลี่ย</span></span>
                   <span className="dashboard-space-action">ดูประวัติ <i aria-hidden="true">→</i></span>
                 </button>
@@ -501,12 +512,12 @@ export default function DashboardPage() {
             </div>
 
             <div className="bottom-sections-grid">
-              <section className="chart-card"><div className="chart-header"><div><h2 className="chart-title">การฝึกล่าสุด</h2><p className="chart-subtitle">กดรายการเพื่อดูผลแยกหมวด</p></div><button type="button" className="chart-btn-detail" onClick={() => selectView('history')}>ดูทั้งหมด</button></div>{recentAttempts.length > 0 ? <div className="dashboard-attempt-list">{recentAttempts.map((attempt) => <AttemptItem key={attempt.id} attempt={attempt} title={getAttemptTitle(attempt)} expanded={expandedAttemptId === attempt.id} onToggle={() => setExpandedAttemptId((current) => current === attempt.id ? null : attempt.id)} />)}</div> : <EmptyState title="ยังไม่มีประวัติ">เริ่มทำข้อสอบเพื่อดูคะแนนและรายละเอียดที่นี่</EmptyState>}</section>
+              <section className="chart-card"><div className="chart-header"><div><h2 className="chart-title">การฝึกล่าสุด</h2><p className="chart-subtitle">กดรายการเพื่อดูผลแยกหมวด</p></div><button type="button" className="chart-btn-detail" onClick={() => selectView('history')}>ดูทั้งหมด</button></div>{recentAttempts.length > 0 ? <div className="dashboard-attempt-list">{recentAttempts.slice(0, 3).map((attempt) => <AttemptItem key={attempt.id} attempt={attempt} title={getAttemptTitle(attempt)} expanded={expandedAttemptId === attempt.id} onToggle={() => setExpandedAttemptId((current) => current === attempt.id ? null : attempt.id)} />)}</div> : <EmptyState title="ยังไม่มีประวัติ">เริ่มทำข้อสอบเพื่อดูคะแนนและรายละเอียดที่นี่</EmptyState>}</section>
               <section className="chart-card"><div className="chart-header"><div><h2 className="chart-title">ควรฝึกอะไรต่อ</h2><p className="chart-subtitle">อ้างอิงจากหมวดที่คะแนนต่ำที่สุด</p></div><button type="button" className="chart-btn-detail" onClick={() => selectView('analysis')}>ดูทั้งหมด</button></div>{weaknesses.length > 0 ? <div className="weakness-list">{weaknesses.slice(0, 3).map((item, index) => <div className="weakness-row" key={item.id}><div className="weakness-subject"><span className="weakness-number">{index + 1}</span><span className="weakness-name">{item.title}<small>{SUBJECT_TITLES[item.subjectId] ?? item.subjectId}</small></span></div><div className="weakness-stats"><div className="weakness-score">{item.percentage}%<span>{item.score}/{item.total} ข้อ</span></div><Link href={getPracticeHref(item.subjectId)} className="weakness-btn-action">ฝึกต่อ</Link></div></div>)}</div> : <EmptyState title="ข้อมูลยังไม่พอ">ส่งข้อสอบอย่างน้อยหนึ่งครั้งเพื่อวิเคราะห์จุดอ่อน</EmptyState>}</section>
             </div>
           </> : null}
 
-          {view === 'history' ? <section className="dashboard-view-card"><div className="dashboard-view-toolbar"><div><h2>รายการทั้งหมด</h2><p>{filteredAttempts.length} จาก {attempts.length} ครั้ง</p></div><label>กรองประวัติ<select value={historyFilter} onChange={(event) => setHistoryFilter(event.target.value)}><option value="all">ทุกกิจกรรม</option><optgroup label="รูปแบบการฝึก"><option value="group:subject">ฝึกแยกวิชา ({subjectSummary.attempts})</option><option value="group:mock">Mock Test ({mockSummary.attempts})</option><option value="group:other">กิจกรรมอื่น ๆ ({otherSummary.attempts})</option></optgroup>{subjectFilters.length > 0 ? <optgroup label="เลือกเฉพาะวิชา">{subjectFilters.map((subjectId) => <option value={subjectId} key={subjectId}>{SUBJECT_TITLES[subjectId] ?? subjectId}</option>)}</optgroup> : null}</select></label></div>{filteredAttempts.length > 0 ? <div className="dashboard-attempt-list is-full">{filteredAttempts.map((attempt) => <AttemptItem key={attempt.id} attempt={attempt} title={getAttemptTitle(attempt)} expanded={expandedAttemptId === attempt.id} onToggle={() => setExpandedAttemptId((current) => current === attempt.id ? null : attempt.id)} />)}</div> : <EmptyState title="ไม่พบประวัติ">ยังไม่มีผลสอบตรงกับตัวกรองที่เลือก</EmptyState>}</section> : null}
+          {view === 'history' ? <section className="dashboard-view-card"><div className="dashboard-view-toolbar"><div><h2>รายการทั้งหมด</h2><p>{filteredAttempts.length} จาก {attempts.length} ครั้ง</p></div><label>กรองประวัติ<select value={historyFilter} onChange={(event) => setHistoryFilter(event.target.value)}><option value="all">ทุกกิจกรรม</option><optgroup label="รูปแบบการฝึก"><option value="group:subject">ฝึกแยกวิชา ({subjectSummary.attempts})</option><option value="group:mock">Mini Mock + Mock Test ({mockSummary.attempts})</option><option value="group:other">กิจกรรมอื่น ๆ ({otherSummary.attempts})</option></optgroup>{subjectFilters.length > 0 ? <optgroup label="เลือกเฉพาะวิชา">{subjectFilters.map((subjectId) => <option value={subjectId} key={subjectId}>{SUBJECT_TITLES[subjectId] ?? subjectId}</option>)}</optgroup> : null}</select></label></div>{filteredAttempts.length > 0 ? <div className="dashboard-attempt-list is-full">{filteredAttempts.map((attempt) => <AttemptItem key={attempt.id} attempt={attempt} title={getAttemptTitle(attempt)} expanded={expandedAttemptId === attempt.id} onToggle={() => setExpandedAttemptId((current) => current === attempt.id ? null : attempt.id)} />)}</div> : <EmptyState title="ไม่พบประวัติ">ยังไม่มีผลสอบตรงกับตัวกรองที่เลือก</EmptyState>}</section> : null}
 
           {view === 'analysis' ? (
             <div className="dashboard-analysis-layout">

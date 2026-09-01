@@ -5,6 +5,7 @@ import { PoliceExamCatalog } from './PoliceExamCatalog';
 import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
 import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
+import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 
 function findSubjects(course: CourseConfig, ids: string[]) {
@@ -547,6 +548,8 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
             <img src="/pic/logo_police.png" alt="ตราสำนักงานตำรวจแห่งชาติ" />
           </div>
         </section>
+
+        <PoliceMiniMockCallout />
 
         <section className="police-v2-mock-hero" aria-labelledby="police-mock-hero-title">
           <div className="police-v2-mock-copy">

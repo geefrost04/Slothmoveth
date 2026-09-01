@@ -9123,6 +9123,86 @@
   object-fit: contain;
 }
 
+.police-v2-mini-mock {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 24px 28px;
+  border: 1px solid #8f2330;
+  border-radius: 12px;
+  color: #fff;
+  background: #7a1822;
+  box-shadow: 0 12px 26px rgba(122, 24, 34, 0.18);
+}
+
+.police-v2-mini-mock-copy > span {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #ffd8dd;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.police-v2-mini-mock h2 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.police-v2-mini-mock p {
+  margin: 0;
+  color: #ffe9ec;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.police-v2-mini-mock-action {
+  display: grid;
+  min-width: 278px;
+  gap: 10px;
+}
+
+.police-v2-mini-mock-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.police-v2-mini-mock-meta span {
+  color: #ffd8dd;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.police-v2-mini-mock-meta strong { color: #fff; font-size: 14px; }
+
+.police-v2-mini-mock-button {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 18px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  background: #a51f2f;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.police-v2-mini-mock-button:hover {
+  background: #a51f2f;
+}
+
+.police-v2-mini-mock-button span { font-size: 19px; line-height: 1; }
+
 /* Mock Test hero product */
 .police-v2-mock-hero {
   position: relative;
@@ -9848,6 +9928,14 @@
     padding: 26px;
   }
 
+  .police-v2-mini-mock {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px;
+  }
+
+  .police-v2-mini-mock-action { min-width: 0; }
+
   .police-v2-mock-product {
     justify-content: space-between;
   }
@@ -9937,6 +10025,15 @@
     padding: 22px 18px;
     border-radius: 15px;
   }
+
+  .police-v2-mini-mock {
+    gap: 16px;
+    padding: 20px 18px;
+    border-radius: 10px;
+  }
+
+  .police-v2-mini-mock h2 { font-size: 21px; }
+  .police-v2-mini-mock p { font-size: 12px; }
 
   .police-v2-mock-copy h2 {
     font-size: 25px;
