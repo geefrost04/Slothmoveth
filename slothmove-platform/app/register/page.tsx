@@ -17,6 +17,10 @@ function getSignupError(message: string) {
   return 'สมัครสมาชิกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
 }
 
+function getSafeNextPath(value: string | null) {
+  return value?.startsWith('/') && !value.startsWith('//') ? value : '/dashboard?welcome=1';
+}
+
 function GoogleIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -38,10 +42,17 @@ export default function RegisterPage() {
   const [checkingSession, setCheckingSession] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const [registeredEmail, setRegisteredEmail] = useState('');
+  const [nextPath, setNextPath] = useState('/dashboard?welcome=1');
+  const [signupSource, setSignupSource] = useState('direct');
   const router = useRouter();
 
   useEffect(() => {
-    trackAnalyticsEvent('register_view', { method: 'page' });
+    const params = new URLSearchParams(window.location.search);
+    const requestedNextPath = getSafeNextPath(params.get('next'));
+    const requestedSource = params.get('source') ?? 'direct';
+    setNextPath(requestedNextPath);
+    setSignupSource(requestedSource);
+    trackAnalyticsEvent('register_view', { method: 'page', source: requestedSource });
     const supabase = getSupabase();
     if (!supabase) {
       setErrorMessage('ยังไม่ได้ตั้งค่าการเชื่อมต่อ Supabase');
@@ -51,7 +62,7 @@ export default function RegisterPage() {
 
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
-        router.replace('/dashboard?welcome=1');
+        router.replace(requestedNextPath);
         return;
       }
       setCheckingSession(false);
@@ -79,7 +90,7 @@ export default function RegisterPage() {
       password,
       options: {
         data: { full_name: fullName.trim() },
-        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/dashboard?welcome=1')}`
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`
       }
     });
 
@@ -90,14 +101,14 @@ export default function RegisterPage() {
     }
 
     if (data.session) {
-      trackAnalyticsEvent('sign_up', { method: 'email' });
-      router.replace('/dashboard?welcome=1');
+      trackAnalyticsEvent('sign_up', { method: 'email', source: signupSource });
+      router.replace(nextPath);
       router.refresh();
       return;
     }
 
     setRegisteredEmail(normalizedEmail);
-    trackAnalyticsEvent('sign_up', { method: 'email', confirmation_required: true });
+    trackAnalyticsEvent('sign_up', { method: 'email', confirmation_required: true, source: signupSource });
     setLoading(false);
   }
 
@@ -114,11 +125,11 @@ export default function RegisterPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/dashboard?welcome=1')}`,
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`,
         queryParams: { access_type: 'offline', prompt: 'select_account' }
       }
     });
-    if (!error) trackAnalyticsEvent('sign_up_start', { method: 'google' });
+    if (!error) trackAnalyticsEvent('sign_up_start', { method: 'google', source: signupSource });
     if (error) {
       setErrorMessage('สมัครด้วย Google ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
       setLoading(false);
@@ -137,7 +148,7 @@ export default function RegisterPage() {
             <span className={styles.eyebrow}>EMAIL CONFIRMATION</span>
             <h1 id="register-title">ตรวจสอบอีเมลของคุณ</h1>
             <p className={styles.subtitle}>เราส่งลิงก์ยืนยันไปที่ <strong>{registeredEmail}</strong> แล้ว กดยืนยันในอีเมลก่อนเข้าสู่ระบบ</p>
-            <Link href="/login?next=%2Fdashboard%3Fwelcome%3D1" className={styles.submitLink}>ไปหน้าเข้าสู่ระบบ <span>→</span></Link>
+            <Link href={`/login?next=${encodeURIComponent(nextPath)}`} className={styles.submitLink}>ไปหน้าเข้าสู่ระบบ <span>→</span></Link>
             <button type="button" className={styles.textButton} onClick={() => setRegisteredEmail('')}>ใช้อีเมลอื่น</button>
           </div>
         ) : (
@@ -169,7 +180,7 @@ export default function RegisterPage() {
                 {!checkingSession && !loading ? <span aria-hidden="true">→</span> : null}
               </button>
             </form>
-            <p className={styles.accountPrompt}>มีบัญชีอยู่แล้ว? <Link href="/login">เข้าสู่ระบบ</Link></p>
+            <p className={styles.accountPrompt}>มีบัญชีอยู่แล้ว? <Link href={`/login?next=${encodeURIComponent(nextPath)}`}>เข้าสู่ระบบ</Link></p>
             <div className={styles.securityNote}><strong>บัญชีใหม่เป็นผู้ใช้ทั่วไป</strong><span>สิทธิ์ผู้ดูแลระบบไม่สามารถเลือกจากหน้าสมัครได้</span></div>
             <Link href="/" className={styles.backLink}>← กลับหน้าแรก</Link>
           </>

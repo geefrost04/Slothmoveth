@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import type { CatalogExamSet } from '@/lib/exam-data';
 import { CheckoutButton } from '@/components/commerce/CheckoutButton';
+import { trackAnalyticsEvent } from '@/lib/analytics';
 import styles from './PoliceMockTestCatalog.module.css';
 
 export function PoliceMockTestCatalogClient({
@@ -17,6 +19,22 @@ export function PoliceMockTestCatalogClient({
   compact: boolean;
 }) {
   const ownedProducts = new Set(ownedProductIds);
+  const trackedView = useRef(false);
+
+  useEffect(() => {
+    if (trackedView.current || examSets.length === 0) return;
+    trackedView.current = true;
+    trackAnalyticsEvent('view_item_list', {
+      item_list_id: 'police_mock_test',
+      item_list_name: 'Mock Test นายสิบตำรวจ',
+      items: examSets.map((examSet, index) => ({
+        item_id: examSet.product_id || examSet.id,
+        item_name: examSet.title,
+        price: examSet.price / 100,
+        index: index + 1
+      }))
+    });
+  }, [examSets]);
 
   if (examSets.length === 0) {
     return <div className={styles.empty}>กำลังเตรียม Mock Test ชุดแรก</div>;
@@ -27,9 +45,9 @@ export function PoliceMockTestCatalogClient({
       <header className={styles.header}>
         <div>
           <span>MOCK TEST SERIES</span>
-          <strong>เลือกชุดที่ต้องการสอบ</strong>
+          <strong>เริ่มจากชุดฟรี แล้วฝึกต่อเมื่อพร้อม</strong>
         </div>
-        <em>{examSets.length} ชุด</em>
+        <em>{examSets.length} ชุดพร้อมสอบ</em>
       </header>
 
       <div className={styles.list}>
@@ -42,30 +60,61 @@ export function PoliceMockTestCatalogClient({
             : new Intl.NumberFormat('th-TH', {
               style: 'currency', currency: 'THB', maximumFractionDigits: 0
             }).format(examSet.price / 100);
+          const priceDetail = examSet.access_type === 'free'
+            ? 'ฟรี'
+            : unlocked
+              ? 'ซื้อแล้ว'
+              : 'เฉลย + วิเคราะห์';
+          const actionLabel = unlocked
+            ? 'เริ่มทำ Mock Test'
+            : `ปลดล็อก ${priceLabel}`;
           const href = `/courses/${courseId}/mock-test/${examSet.id}`;
+          const itemClassName = examSet.access_type === 'free'
+            ? `${styles.item} ${styles.freeItem}`
+            : `${styles.item} ${styles.paidItem}`;
+          const checkoutClassName = examSet.access_type === 'free'
+            ? `${styles.checkout} ${styles.freeItem}`
+            : `${styles.checkout} ${styles.paidItem}`;
           const content = (
             <>
               <span className={styles.number}>{String(index + 1).padStart(2, '0')}</span>
               <span className={styles.copy}>
                 <strong>{examSet.title}</strong>
                 <small>{examSet.total_questions} ข้อ · {examSet.duration_minutes ?? 180} นาที · 6 วิชา</small>
+                <small className={styles.benefit}>
+                  {examSet.access_type === 'free'
+                    ? 'ลองดูข้อสอบ เฉลย และผลวิเคราะห์จริง'
+                    : 'เฉลยละเอียด + วิเคราะห์จุดอ่อนแยกรายวิชา'}
+                </small>
               </span>
               <span className={styles.price}>
-                <em>{unlocked && examSet.access_type === 'paid' ? 'ซื้อแล้ว' : priceLabel}</em>
-                <b>{unlocked ? 'เริ่มสอบ' : 'ปลดล็อก'} <i>›</i></b>
+                <em>{priceDetail}</em>
+                <b>{actionLabel} <i>›</i></b>
               </span>
             </>
           );
 
           if (!unlocked && examSet.product_id) {
             return (
-              <CheckoutButton productId={examSet.product_id} className={styles.checkout} key={examSet.id}>
+              <CheckoutButton productId={examSet.product_id} className={checkoutClassName} key={examSet.id}>
                 {content}
               </CheckoutButton>
             );
           }
 
-          return <Link href={href} className={styles.item} key={examSet.id}>{content}</Link>;
+          return (
+            <Link
+              href={href}
+              className={itemClassName}
+              key={examSet.id}
+              onClick={() => trackAnalyticsEvent('mock_free_start_click', {
+                exam_set_id: examSet.id,
+                source: compact ? 'course_landing' : 'mock_catalog'
+              })}
+            >
+              {content}
+            </Link>
+          );
         })}
       </div>
 

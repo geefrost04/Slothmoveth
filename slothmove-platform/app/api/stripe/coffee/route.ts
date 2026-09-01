@@ -4,7 +4,8 @@ import { assertLiveStripeOnPublicSite, getStripe } from '@/lib/stripe';
 const COFFEE_AMOUNTS = new Set([10, 20, 50]);
 const PDF_PATHS = new Set([
   '/files/สรุปเรื่องเซต.pdf',
-  '/files/police-general-ability-work-rate-sheet.png',
+  '/files/police-general-ability-set-02-sheet.pdf',
+  '/files/police-general-ability-work-rate-sheet.pdf',
   '/files/police-general-ability-profit-loss-sheet.pdf',
   '/files/police-general-ability-permutation-sheet.pdf'
 ]);

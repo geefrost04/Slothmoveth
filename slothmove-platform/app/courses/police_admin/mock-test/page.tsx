@@ -56,6 +56,7 @@ export default function PoliceMockTestCatalogPage() {
               <span>FULL EXAM SIMULATION</span>
               <h1>Mock Test จำลองสนามจริง</h1>
               <p>เลือกซื้อแยกเป็นรายชุด ทุกชุดรวม 6 วิชาตามสัดส่วนสนามสอบ พร้อมเฉลยและผลวิเคราะห์แยกรายวิชา</p>
+              <p className={styles.heroPurchaseNote}>ชุดฟรีให้ลองทำข้อสอบ ดูเฉลย และผลวิเคราะห์จริงก่อนซื้อ · ชุดถัดไป ฿49</p>
             </div>
             <div className={styles.pageStats}>
               <span><strong>150</strong>ข้อ</span>
@@ -66,8 +67,8 @@ export default function PoliceMockTestCatalogPage() {
           <main className={styles.pageBody}>
             <section className={styles.guide}>
               <span>รูปแบบการสอบ</span>
-              <h2>ซื้อครั้งเดียว ทำซ้ำได้ตลอด</h2>
-              <p>เวลาจะเดินต่อเนื่อง 180 นาที ระบบบันทึกคำตอบให้อัตโนมัติ และสรุปจุดอ่อนหลังส่งข้อสอบ</p>
+              <h2>150 ข้อ ครบ 6 วิชา</h2>
+              <p>จับเวลา 180 นาที บันทึกคำตอบอัตโนมัติ พร้อมเฉลยและวิเคราะห์ผลหลังส่งข้อสอบ</p>
               <ul>
                 <li>ความรู้ทั่วไป 20 ข้อ</li><li>ภาษาไทย 20 ข้อ</li><li>คอมพิวเตอร์ 40 ข้อ</li>
                 <li>งานสารบรรณ 30 ข้อ</li><li>กฎหมาย 25 ข้อ</li><li>ภาษาอังกฤษ 15 ข้อ</li>

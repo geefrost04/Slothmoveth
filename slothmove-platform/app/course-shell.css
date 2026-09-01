@@ -9297,6 +9297,165 @@
   text-decoration: none;
 }
 
+/* QR entry: one real free question before the signup request. */
+.qr-quiz-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(5px);
+}
+
+.qr-quiz-dialog {
+  width: min(560px, 100%);
+  max-height: min(760px, 92dvh);
+  overflow-y: auto;
+  padding: 30px;
+  border: 1px solid #ead6d9;
+  border-radius: 8px;
+  color: #172033;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+}
+
+.qr-quiz-close {
+  float: right;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  color: #667085;
+  background: #f2f4f7;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qr-quiz-eyebrow {
+  display: block;
+  margin: 2px 42px 8px 0;
+  color: #7a1822;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.qr-quiz-dialog h2 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 25px;
+  font-weight: 850;
+}
+
+.qr-quiz-intro {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.qr-quiz-question {
+  margin: 22px 0 14px;
+  padding: 16px;
+  border-left: 4px solid #7a1822;
+  background: #fff8f8;
+}
+
+.qr-quiz-question > span {
+  color: #7a1822;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.qr-quiz-question p {
+  margin: 7px 0 0;
+  color: #172033;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.qr-quiz-choices {
+  display: grid;
+  gap: 9px;
+}
+
+.qr-quiz-choice {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dbe1e8;
+  border-radius: 7px;
+  color: #344054;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+}
+
+.qr-quiz-choice:not(:disabled):hover {
+  border-color: #7a1822;
+  background: #fff8f8;
+}
+
+.qr-quiz-choice > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  color: #7a1822;
+  background: #fde7ea;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.qr-quiz-choice.is-correct { border-color: #2d7a55; color: #174c3c; background: #f0faf4; }
+.qr-quiz-choice.is-correct > span { color: #fff; background: #2d7a55; }
+.qr-quiz-choice.is-incorrect { border-color: #c94a57; color: #8a1d2a; background: #fff4f4; }
+.qr-quiz-choice.is-incorrect > span { color: #fff; background: #c94a57; }
+
+.qr-quiz-result {
+  margin-top: 16px;
+  padding: 13px 14px;
+  border: 1px solid;
+  border-radius: 7px;
+}
+
+.qr-quiz-result strong { display: block; font-size: 14px; }
+.qr-quiz-result p { margin: 3px 0 0; font-size: 13px; line-height: 1.5; }
+.qr-quiz-result.is-correct { border-color: #b9e1cc; color: #175c3d; background: #f0faf4; }
+.qr-quiz-result.is-incorrect { border-color: #f0c8cc; color: #8a1d2a; background: #fff6f6; }
+
+.qr-quiz-primary-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  margin-top: 16px;
+  padding: 11px 16px;
+  border-radius: 7px;
+  color: #fff;
+  background: #7a1822;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.qr-quiz-primary-action:hover { background: #5e1119; }
+.qr-quiz-note { margin: 16px 0 0; color: #798594; font-size: 11px; text-align: center; }
+
 /* Sections */
 .police-v2-section-heading {
   font-size: 20px;
@@ -10044,6 +10203,107 @@
   color: #7a1822;
 }
 
+.police-subject-study-path {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .85fr);
+  overflow: hidden;
+  margin: 0 0 32px;
+  border: 1px solid #dce2e8;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(30, 41, 59, .06);
+}
+
+.police-subject-study-path-copy {
+  padding: 30px 34px;
+}
+
+.police-subject-study-path-kicker {
+  margin: 0 0 9px;
+  color: #8c1c29;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+
+.police-subject-study-path h2 {
+  max-width: 620px;
+  margin: 0;
+  color: #172033;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.police-subject-study-path-copy > p:not(.police-subject-study-path-kicker) {
+  max-width: 600px;
+  margin: 12px 0 20px;
+  color: #58667a;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.police-subject-study-path-free,
+.police-subject-study-path-checkout button,
+.police-subject-study-path-checkout > a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8c1c29;
+  border-radius: 6px;
+  padding: 0 16px;
+  color: #fff;
+  background: #8c1c29;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.police-subject-study-path-checkout {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8c1c29;
+  border-radius: 6px;
+  padding: 0 16px;
+  color: #fff;
+  background: #8c1c29;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.police-subject-study-path-free:hover { background: #6f1520; border-color: #6f1520; }
+
+.police-subject-study-path-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+  border-left: 1px solid #efd9dc;
+  background: #fff7f7;
+}
+
+.police-subject-study-path-step {
+  margin-bottom: 9px;
+  color: #8c1c29;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.police-subject-study-path-offer strong { color: #24131a; font-size: 17px; }
+.police-subject-study-path-offer > p { margin: 8px 0 17px; color: #6d5660; font-size: 12px; line-height: 1.55; }
+.police-subject-study-path-checkout { display: inline-flex; }
+.police-subject-study-path-checkout button,
+.police-subject-study-path-checkout > a { border-color: #8c1c29; background: #8c1c29; }
+.police-subject-study-path-checkout button:hover,
+.police-subject-study-path-checkout > a:hover { border-color: #6f1520; background: #6f1520; }
+.police-subject-study-path-checkout small { display: block; max-width: 230px; margin-top: 7px; color: #a11f2d; font-size: 11px; line-height: 1.35; }
+.police-subject-study-path-offer > small { margin-top: 10px; color: #8d7980; font-size: 11px; }
+
 /* Sheet Card */
 .police-sheet-card {
   background: #ffffff;
@@ -10382,6 +10642,33 @@
   box-shadow: 0 6px 18px rgba(217, 119, 6, 0.3);
 }
 
+.police-exam-card-checkout {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.police-exam-card-checkout button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d97706;
+  border-radius: 8px;
+  padding: 0 18px;
+  color: #fff;
+  background: #d97706;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, .2);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 850;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.police-exam-card-checkout button:hover:not(:disabled) { background: #b45309; border-color: #b45309; }
+.police-exam-card-checkout button:disabled { cursor: wait; opacity: .7; }
+.police-exam-card-checkout small { display: block; max-width: 180px; margin-top: 6px; color: #a11f2d; font-size: 11px; }
+
 /* Footer Banner */
 .police-subject-footer-banner {
   display: flex;
@@ -10715,6 +11002,28 @@
   .police-subject-hero-stat-info strong,
   .police-subject-hero-stat-info span {
     line-height: 1.35;
+  }
+  .police-subject-study-path {
+    grid-template-columns: 1fr;
+  }
+  .police-subject-study-path-copy,
+  .police-subject-study-path-offer {
+    padding: 22px 20px;
+  }
+  .police-subject-study-path-offer {
+    border-top: 1px solid #efd9dc;
+    border-left: 0;
+  }
+  .police-subject-study-path h2 { font-size: 21px; }
+  .police-sheet-download-scroll-box > div {
+    align-items: flex-start !important;
+  }
+  .police-sheet-download-scroll-box .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .police-sheet-download-scroll-box .police-sheet-btn-primary {
+    flex: 1;
   }
   .police-sheet-download-scroll-box {
     max-height: none;

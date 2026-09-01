@@ -38,7 +38,7 @@ export function CoffeePdfButton({
   function openPdf() {
     trackAnalyticsEvent('file_download', {
       ...getDownloadAnalyticsData(pdfPath),
-      download_method: 'free_skip',
+      download_method: 'direct',
       file_type: 'study_sheet'
     });
     const pdfWindow = window.open(pdfPath, '_blank', 'noopener,noreferrer');
@@ -85,18 +85,21 @@ export function CoffeePdfButton({
 
   return (
     <>
-      <button
-        type="button"
-        className={className}
-        style={style}
-        onClick={() => {
-          // This is the prompt interaction, not a completed download.
-          trackAnalyticsEvent('pdf_support_prompt_open', getDownloadAnalyticsData(pdfPath));
-          setOpen(true);
-        }}
-      >
-        {children}
-      </button>
+      <div className={styles.actions}>
+        <button type="button" className={className} style={style} onClick={openPdf}>
+          {children}
+        </button>
+        <button
+          type="button"
+          className={styles.supportTrigger}
+          onClick={() => {
+            trackAnalyticsEvent('coffee_support_prompt_open', getDownloadAnalyticsData(pdfPath));
+            setOpen(true);
+          }}
+        >
+          สนับสนุนผู้จัดทำ
+        </button>
+      </div>
 
       {open ? (
         <div
@@ -120,9 +123,9 @@ export function CoffeePdfButton({
             </button>
             <div className={styles.cup} aria-hidden="true">☕</div>
             <p className={styles.eyebrow}>SUPPORT SLOTHMOVE</p>
-            <h2 id="coffee-dialog-title">Pay me a coffee</h2>
+            <h2 id="coffee-dialog-title">สนับสนุนผู้จัดทำชีท</h2>
             <p className={styles.description}>
-              ถ้าชีทนี้ช่วยให้คุณอ่านสอบง่ายขึ้น<br />สนับสนุนค่ากาแฟผู้จัดทำได้ตามสะดวกครับ
+              ชีททุกไฟล์เปิดอ่านฟรีเสมอ<br />หากช่วยให้คุณอ่านสอบง่ายขึ้น สนับสนุนได้ตามสะดวกครับ
             </p>
 
             <div className={styles.amounts} aria-label="เลือกจำนวนเงินสนับสนุน">
@@ -147,9 +150,9 @@ export function CoffeePdfButton({
               disabled={loadingAmount !== null}
               onClick={openPdf}
             >
-              ไว้คราวหน้า <span>0 บาท</span>
+              เปิดชีท PDF ฟรี
             </button>
-            <p className={styles.note}>PDF เปิดอ่านได้ฟรี การสนับสนุนเป็นทางเลือกเสมอ</p>
+            <p className={styles.note}>การสนับสนุนเป็นทางเลือก ไม่มีผลต่อการเปิดอ่านชีท</p>
           </section>
         </div>
       ) : null}

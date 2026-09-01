@@ -75,10 +75,35 @@
 .copy { display: grid; min-width: 0; gap: 3px; }
 .copy strong { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
 .copy small { color: #748092; font-size: 10px; }
+.copy .benefit { color: #496778; font-weight: 750; }
 .price { display: grid; justify-items: end; gap: 4px; }
 .price em { color: #7a1822; font-size: 13px; font-style: normal; font-weight: 950; }
-.price b { color: #6e7683; font-size: 10px; white-space: nowrap; }
-.price i { margin-left: 3px; color: #7a1822; font-size: 17px; font-style: normal; line-height: 0; }
+.price b {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  color: #fff;
+  background: #7a1822;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.price i { color: inherit; font-size: 16px; font-style: normal; line-height: 0; }
+
+.freeItem { background: #fff8f8; }
+.freeItem.item:hover,
+.freeItem.checkout > button:hover { background: #fff1f2; }
+.freeItem .number { border-color: #dbaeb4; color: #7a1822; background: #fff; }
+.freeItem .price em { color: #7a1822; }
+.freeItem .price b { background: #7a1822; }
+.paidItem .price b {
+  min-height: 40px;
+  padding: 7px 13px;
+  background: #7a1822;
+  font-size: 11px;
+}
 
 .allLink {
   display: flex;
@@ -139,6 +164,12 @@
 .guide > span { color: #9b4350; font-size: 10px; font-weight: 950; letter-spacing: .14em; }
 .pageHero h1 { margin: 8px 0 10px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; }
 .pageHero p { max-width: 68ch; margin: 0; color: #687487; font-size: 14px; line-height: 1.7; }
+.pageHero .heroPurchaseNote {
+  margin-top: 12px;
+  color: #7a1822;
+  font-size: 12px;
+  font-weight: 750;
+}
 
 .pageStats { display: flex; gap: 8px; }
 .pageStats span {
@@ -164,15 +195,15 @@
 
 .pageBody .catalog { width: 100%; }
 .guide {
-  padding: 28px;
+  padding: 18px;
   border: 1px solid #e3e8ef;
-  border-radius: 18px;
+  border-radius: 8px;
   background: rgba(255,255,255,.9);
 }
-.guide h2 { margin: 8px 0 9px; font-size: 21px; }
-.guide p { margin: 0; color: #6c788a; font-size: 12px; line-height: 1.65; }
-.guide ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
-.guide li { padding: 8px 10px; border-radius: 9px; color: #73404a; background: #fff2f3; font-size: 10px; font-weight: 800; }
+.guide h2 { margin: 5px 0 6px; font-size: 17px; }
+.guide p { margin: 0; color: #6c788a; font-size: 11px; line-height: 1.5; }
+.guide ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 13px 0 0; padding: 0; list-style: none; }
+.guide li { padding: 6px 7px; border-radius: 6px; color: #73404a; background: #fff2f3; font-size: 9px; font-weight: 800; }
 
 @media (max-width: 900px) {
   .compact { width: 100%; max-width: none; }
@@ -192,8 +223,10 @@
   .pageHero { gap: 22px; padding: 25px 20px; border-radius: 16px; }
   .pageHero h1 { font-size: 28px; }
   .pageHero p { font-size: 12px; }
+  .pageHero .heroPurchaseNote { margin-top: 10px; color: #7a1822; font-size: 11px; line-height: 1.55; }
   .pageStats { display: grid; grid-template-columns: repeat(3, 1fr); }
   .pageStats span { min-width: 0; padding: 9px 7px; }
-  .guide { padding: 21px 18px; }
-  .guide ul { grid-template-columns: 1fr; }
+  .guide { padding: 16px; }
+  .guide ul { grid-template-columns: repeat(2, 1fr); }
+  .pageBody .catalog { order: -1; }
 }

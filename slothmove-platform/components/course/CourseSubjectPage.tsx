@@ -5,6 +5,8 @@ import type { CatalogExamSet } from '@/lib/exam-data';
 import { CourseKnowledgeContent } from './CourseKnowledgeContent';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
 import { CoffeePdfButton } from '@/components/commerce/CoffeePdfButton';
+import { CheckoutButton } from '@/components/commerce/CheckoutButton';
+import { TrackedLink } from '@/components/analytics/TrackedLink';
 
 export function CourseSubjectPage({
   course,
@@ -435,6 +437,11 @@ function PoliceMathSubjectPage({
 }) {
   const sheetHref = `/courses/${course.id}/${subject.id}/summary/chapter-01`;
   const ownedProducts = new Set(ownedProductIds);
+  const firstFreeExam = examSets.find((examSet) => examSet.access_type === 'free');
+  const firstPaidExam = examSets.find((examSet) => examSet.access_type === 'paid' && examSet.product_id);
+  const formatPrice = (price: number) => new Intl.NumberFormat('th-TH', {
+    style: 'currency', currency: 'THB', maximumFractionDigits: 0
+  }).format(price / 100);
 
   return (
     <div className="police-subject-page">
@@ -465,7 +472,7 @@ function PoliceMathSubjectPage({
                 <span className="police-subject-hero-stat-icon"><SheetIcon /></span>
                 <div className="police-subject-hero-stat-info">
                   <strong>ชีทสรุป</strong>
-                  <span>20 บท · Quick Review</span>
+                  <span>ฟรีพร้อมอ่าน · อัปเดตเรื่อย ๆ</span>
                 </div>
               </div>
               <div className="police-subject-hero-stat-card">
@@ -479,7 +486,7 @@ function PoliceMathSubjectPage({
                 <span className="police-subject-hero-stat-icon"><CalendarIcon /></span>
                 <div className="police-subject-hero-stat-info">
                   <strong>อัปเดตล่าสุด</strong>
-                  <span>24 เม.ย. 2568</span>
+                  <span>อัปเดตตามชุดที่เผยแพร่</span>
                 </div>
               </div>
             </div>
@@ -494,8 +501,39 @@ function PoliceMathSubjectPage({
           </div>
         </section>
 
+        <section className="police-subject-study-path" aria-labelledby="study-path-title">
+          <div className="police-subject-study-path-copy">
+            <p className="police-subject-study-path-kicker">START WITH A FREE SET</p>
+            <h2 id="study-path-title">เริ่มทำข้อสอบฟรี แล้วค่อยปลดล็อกชุดถัดไปเมื่อพร้อม</h2>
+            <p>ลองทำข้อสอบความรู้ทั่วไป 30 ข้อพร้อมจับเวลาและเฉลยก่อน เพื่อดูรูปแบบจริงของการฝึกบน SlothMove</p>
+            {firstFreeExam ? (
+              <TrackedLink
+                href={`/courses/police_admin/math/exams/${firstFreeExam.id === 'police-math-set-04' ? 'police-math-set-01' : firstFreeExam.id}`}
+                className="police-subject-study-path-free"
+                eventName="free_exam_start_click"
+                parameters={{ subject_id: 'math', source: 'study_path' }}
+              >
+                เริ่มทำชุดฟรี <span aria-hidden="true">→</span>
+              </TrackedLink>
+            ) : null}
+          </div>
+          <div className="police-subject-study-path-offer">
+            <span className="police-subject-study-path-step">ขั้นถัดไป</span>
+            <strong>{firstPaidExam ? firstPaidExam.title : 'ชุดข้อสอบเพิ่มเติม'}</strong>
+            <p>{firstPaidExam ? `${firstPaidExam.total_questions} ข้อ · ${firstPaidExam.duration_minutes ?? Math.ceil(firstPaidExam.total_questions * 1.5)} นาที · เฉลยละเอียด` : 'เลือกซื้อเป็นชุดเมื่อพร้อมฝึกต่อ'}</p>
+            {firstPaidExam?.product_id ? (
+              <CheckoutButton productId={firstPaidExam.product_id} className="police-subject-study-path-checkout">
+                ปลดล็อก {formatPrice(firstPaidExam.price)}
+              </CheckoutButton>
+            ) : (
+              <a href="#exam-sets" className="police-subject-study-path-checkout">ดูชุดข้อสอบทั้งหมด</a>
+            )}
+            <small>ซื้อครั้งเดียว สิทธิ์ผูกกับบัญชีของคุณ</small>
+          </div>
+        </section>
+
         <h2 className="police-subject-section-title">
-          <span>📄</span> 1. ชีทสรุปความรู้ทั่วไป
+          <span>📄</span> ชีทสรุปอ่านฟรี
         </h2>
 
         <div
@@ -521,14 +559,14 @@ function PoliceMathSubjectPage({
             {
               title: 'เซต (2)',
               desc: 'สรุปความหมายและการนับเซต 2 กลุ่ม พร้อมแผนภาพเวนน์-ออยเลอร์',
-              meta: '157 KB · JPG · ดาวน์โหลดฟรี',
-              file: '/files/police-general-ability-set-02-sheet.jpg'
+              meta: 'PDF · เปิดอ่านฟรี',
+              file: '/files/police-general-ability-set-02-sheet.pdf'
             },
             {
               title: 'ความสัมพันธ์ระหว่าง คน งาน เวลา',
               desc: 'ชีทสรุปสูตรคน-งาน-เวลา พร้อมหลักคิดสำคัญ สูตรใช้บ่อย วิธีทำโจทย์ให้ไว และตัวอย่างออกสอบ',
-              meta: '2.0 MB · PNG · ดาวน์โหลดฟรี',
-              file: '/files/police-general-ability-work-rate-sheet.png'
+              meta: 'PDF · เปิดอ่านฟรี',
+              file: '/files/police-general-ability-work-rate-sheet.pdf'
             },
             {
               title: 'กำไร-ขาดทุน : สูตรลัดและวิธีคิดเร็ว',
@@ -590,7 +628,7 @@ function PoliceMathSubjectPage({
                     whiteSpace: 'nowrap'
                   }}
                 >
-                  <DownloadIcon /> ดาวน์โหลดไฟล์
+                  <DownloadIcon /> เปิดชีท PDF
                 </CoffeePdfButton>
               ) : (
                 <button
@@ -619,8 +657,8 @@ function PoliceMathSubjectPage({
           ))}
         </div>
 
-        <h2 className="police-subject-section-title">
-          <span>📝</span> 2. ชุดข้อสอบ
+        <h2 className="police-subject-section-title" id="exam-sets">
+          <span>📝</span> ชุดข้อสอบ
         </h2>
 
         <div className="police-exam-grid">
@@ -645,16 +683,18 @@ function PoliceMathSubjectPage({
                     </p>
                   </div>
                 </div>
-                <Link
-                  href={`/courses/police_admin/math/exams/${publicExamSetId}`}
-                  className={`police-exam-card-btn ${isUnlocked ? 'is-unlocked' : 'is-locked'}`}
-                >
-                  {isUnlocked
-                    ? 'เริ่มทำข้อสอบ'
-                    : `ปลดล็อก ${new Intl.NumberFormat('th-TH', {
-                        style: 'currency', currency: 'THB', maximumFractionDigits: 0
-                      }).format(examSet.price / 100)}`}
-                </Link>
+                {isUnlocked ? (
+                  <Link
+                    href={`/courses/police_admin/math/exams/${publicExamSetId}`}
+                    className="police-exam-card-btn is-unlocked"
+                  >
+                    เริ่มทำข้อสอบ
+                  </Link>
+                ) : examSet.product_id ? (
+                  <CheckoutButton productId={examSet.product_id} className="police-exam-card-checkout">
+                    ปลดล็อก {formatPrice(examSet.price)}
+                  </CheckoutButton>
+                ) : null}
               </div>
             );
           })}

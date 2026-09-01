@@ -44,7 +44,13 @@ export function CheckoutButton({
       };
 
       if (response.status === 401 || result.loginRequired) {
-        router.push(`/login?next=${encodeURIComponent(window.location.pathname)}`);
+        const returnTo = `${window.location.pathname}${window.location.search}`;
+        const continuePath = `/checkout/continue?product_id=${encodeURIComponent(productId)}&return_to=${encodeURIComponent(returnTo)}`;
+        trackAnalyticsEvent('checkout_login_required', {
+          product_id: productId,
+          return_path: returnTo
+        });
+        router.push(`/login?next=${encodeURIComponent(continuePath)}`);
         return;
       }
       if (!response.ok || !result.url) throw new Error(result.error || 'สร้างหน้าชำระเงินไม่สำเร็จ');

@@ -4,11 +4,25 @@ import type { CourseConfig, CourseLandingSection, SubjectMeta } from '@/lib/cour
 import { PoliceExamCatalog } from './PoliceExamCatalog';
 import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
 import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
+import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
+import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 
 function findSubjects(course: CourseConfig, ids: string[]) {
   return ids
     .map((id) => course.subjects.find((subject) => subject.id === id))
     .filter(Boolean) as SubjectMeta[];
+}
+
+function getBangkokDateKey() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function getDailyQuestionIndex(seed: string, totalQuestions: number) {
+  return Array.from(seed).reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 0) % totalQuestions;
 }
 
 function SubjectPanel({
@@ -536,11 +550,9 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
 
         <section className="police-v2-mock-hero" aria-labelledby="police-mock-hero-title">
           <div className="police-v2-mock-copy">
-            <span className="police-v2-mock-eyebrow">
-              <i aria-hidden="true" /> Hero Product
-            </span>
+            <span className="police-v2-mock-eyebrow"><i aria-hidden="true" /> FULL MOCK EXPERIENCE</span>
             <h2 id="police-mock-hero-title">Mock Test จำลองสนามจริง</h2>
-            <p>รวมทุกวิชาในข้อสอบเดียว จับเวลาต่อเนื่องและสรุปคะแนนแยกรายวิชา เพื่อให้รู้จุดอ่อนก่อนลงสนามจริง</p>
+            <p>ทำข้อสอบครบ 6 วิชาในรอบเดียว จับเวลา 180 นาที แล้วรับคะแนนรวม คะแนนแยกรายวิชา และเฉลยไว้กลับไปฝึกต่อ</p>
             <div className="police-v2-mock-meta" aria-label="รายละเอียด Mock Test">
               <span><strong>150</strong> ข้อ</span>
               <span><strong>180</strong> นาที</span>
@@ -588,7 +600,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
   );
 }
 
-export function CourseLanding({ course }: { course: CourseConfig }) {
+export async function CourseLanding({ course }: { course: CourseConfig }) {
   const landing = course.meta.landing;
   if (!landing) return null;
   const isPoliceAdmin = course.id === 'police_admin';
@@ -605,7 +617,24 @@ export function CourseLanding({ course }: { course: CourseConfig }) {
   const firstSectionHref = `#${firstSectionId}`;
 
   if (course.id === 'police_admin') {
-    return <PoliceMockupLanding course={course} />;
+    const examSets = await getPublishedExamCatalog(course.id, 'math');
+    const freeExamSet = examSets.find((examSet) => examSet.access_type === 'free');
+    const bundle = freeExamSet ? await getPublishedExamBundle(freeExamSet.id) : null;
+    const dailyKey = getBangkokDateKey();
+    const dailyQuestion = bundle?.questions.length
+      ? bundle.questions[getDailyQuestionIndex(`${course.id}-${freeExamSet?.id}-${dailyKey}`, bundle.questions.length)]
+      : null;
+    const sampleQuestion = dailyQuestion
+      ? {
+          prompt: dailyQuestion.prompt,
+          choices: dailyQuestion.choices,
+          correctChoiceIndex: dailyQuestion.correctChoiceIndex,
+          explanation: dailyQuestion.explanation,
+          dailyKey
+        }
+      : null;
+
+    return <><PoliceQrQuizPrompt question={sampleQuestion} /><PoliceMockupLanding course={course} /></>;
   }
 
   if (useEditorialLanding) {
