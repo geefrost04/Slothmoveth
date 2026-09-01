@@ -5,6 +5,7 @@
   "description": "SlothMove — Config-driven Next.js platform for multi-course learning (Phase 2 of the lean architecture)",
   "scripts": {
     "dev": "next dev -p 3040",
+    "prebuild": "npm run verify:mock-route",
     "build": "next build",
     "start": "next start -p 3040",
     "clean": "rm -rf .next",
@@ -12,6 +13,7 @@
     "content:import:study-sheet": "node scripts/import-study-sheet.mjs",
     "content:validate:study-sheet": "node scripts/import-study-sheet.mjs --validate-only",
     "content:seed:study-sheet": "node scripts/generate-study-sheet-seed.mjs",
+    "verify:mock-route": "node scripts/verify-mock-test-route.mjs",
     "commerce:audit": "node scripts/migrate-stripe-live-products.mjs --dry-run",
     "commerce:migrate:live": "node scripts/migrate-stripe-live-products.mjs"
   },
