@@ -11612,3 +11612,60 @@ a.police-subject-study-path-checkout {
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Math Set 1 is a single entry point on the subject page, with category choice
+   deferred to its own grid so the overview does not read like a long exam list. */
+.police-math-set-one-entry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 100px;
+  padding: 20px 22px;
+  border: 1px solid #e8d5d8;
+  border-radius: 8px;
+  color: #202938;
+  background: #fffafa;
+  box-shadow: 0 8px 20px rgba(122, 24, 34, .06);
+  text-decoration: none;
+}
+.police-math-set-one-entry:hover { border-color: #9d1e2c; box-shadow: 0 12px 26px rgba(122, 24, 34, .12); }
+.police-math-set-one-entry-icon { display: grid; flex: 0 0 44px; width: 44px; height: 44px; place-items: center; border-radius: 8px; color: #fff; background: #8c1c29; }
+.police-math-set-one-entry-copy { display: grid; gap: 4px; min-width: 0; }
+.police-math-set-one-entry-copy strong { font-size: 16px; }
+.police-math-set-one-entry-copy small { color: #697386; font-size: 12px; }
+.police-math-set-one-entry-action { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; color: #8c1c29; font-size: 13px; font-weight: 800; white-space: nowrap; }
+.police-math-set-one-entry-action b { font-size: 22px; line-height: 1; }
+
+.police-math-set-one-page { min-height: calc(100vh - 64px); padding: 0 0 64px; background: #fbfcfe; }
+.police-math-set-one-hero { margin: 8px 0 30px; padding: 34px 38px; border: 1px solid #ead6d9; border-radius: 8px; color: #fff; background: #7a1822; box-shadow: 0 14px 34px rgba(122, 24, 34, .16); }
+.police-math-set-one-hero p { margin: 0 0 8px; color: #f9d9d9; font-size: 11px; font-weight: 850; letter-spacing: .12em; }
+.police-math-set-one-hero h1 { margin: 0; font-size: clamp(27px, 4vw, 38px); line-height: 1.2; }
+.police-math-set-one-hero > span { display: block; margin-top: 10px; color: #fdeff0; font-size: 14px; }
+.police-math-set-one-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
+.police-math-set-one-heading h2 { margin: 0; color: #1e293b; font-size: 20px; }
+.police-math-set-one-heading p { margin: 6px 0 0; color: #697386; font-size: 13px; }
+.police-math-set-one-back { color: #7a1822; font-size: 13px; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.police-math-set-one-back:hover { text-decoration: underline; text-underline-offset: 3px; }
+.police-math-set-one-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.police-math-set-one-card { display: flex; min-height: 224px; flex-direction: column; padding: 20px; border: 1px solid #e1e6ed; border-radius: 8px; color: #1f2937; background: #fff; box-shadow: 0 3px 10px rgba(30, 41, 59, .035); text-decoration: none; transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease; }
+.police-math-set-one-card:hover { border-color: #9d1e2c; box-shadow: 0 12px 24px rgba(122, 24, 34, .1); transform: translateY(-2px); }
+.police-math-set-one-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.police-math-set-one-card-top span { color: #8a5e63; font-size: 10px; font-weight: 850; letter-spacing: .1em; }
+.police-math-set-one-card-top b { padding: 3px 8px; border-radius: 4px; color: #8c1c29; background: #fff0f1; font-size: 11px; }
+.police-math-set-one-card > strong { font-size: 17px; line-height: 1.35; }
+.police-math-set-one-card > p { min-height: 40px; margin: 8px 0 16px; color: #667085; font-size: 12px; line-height: 1.55; }
+.police-math-set-one-card-meta { color: #7c8798; font-size: 12px; }
+.police-math-set-one-card-action { display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 16px; color: #8c1c29; font-size: 13px; font-weight: 800; }
+.police-math-set-one-card-action b { font-size: 20px; line-height: .8; }
+
+@media (max-width: 760px) {
+  .police-math-set-one-entry { align-items: flex-start; flex-wrap: wrap; }
+  .police-math-set-one-entry-action { width: 100%; margin-left: 60px; }
+  .police-math-set-one-hero { padding: 27px 22px; }
+  .police-math-set-one-heading { align-items: flex-start; flex-direction: column; }
+  .police-math-set-one-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .police-math-set-one-grid { grid-template-columns: 1fr; }
+  .police-math-set-one-card { min-height: 198px; }
+}

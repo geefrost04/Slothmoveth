@@ -5,8 +5,6 @@ import type { CatalogExamSet } from '@/lib/exam-data';
 import { CourseKnowledgeContent } from './CourseKnowledgeContent';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
 import { CoffeePdfButton } from '@/components/commerce/CoffeePdfButton';
-import { CheckoutButton } from '@/components/commerce/CheckoutButton';
-import { TrackedLink } from '@/components/analytics/TrackedLink';
 
 export function CourseSubjectPage({
   course,
@@ -44,9 +42,7 @@ export function CourseSubjectPage({
       <PoliceMathSubjectPage
         course={course}
         subject={subject}
-        practiceHref={practiceHref}
         examSets={examSets}
-        ownedProductIds={ownedProductIds}
       />
     );
   }
@@ -425,23 +421,12 @@ const LightbulbIcon = () => (
 function PoliceMathSubjectPage({
   course,
   subject,
-  practiceHref,
-  examSets,
-  ownedProductIds
+  examSets
 }: {
   course: CourseConfig;
   subject: SubjectMeta;
-  practiceHref: string;
   examSets: CatalogExamSet[];
-  ownedProductIds: string[];
 }) {
-  const sheetHref = `/courses/${course.id}/${subject.id}/summary/chapter-01`;
-  const ownedProducts = new Set(ownedProductIds);
-  const firstFreeExam = examSets.find((examSet) => examSet.access_type === 'free');
-  const firstPaidExam = examSets.find((examSet) => examSet.access_type === 'paid' && examSet.product_id);
-  const formatPrice = (price: number) => new Intl.NumberFormat('th-TH', {
-    style: 'currency', currency: 'THB', maximumFractionDigits: 0
-  }).format(price / 100);
 
   return (
     <div className="police-subject-page">
@@ -479,7 +464,7 @@ function PoliceMathSubjectPage({
                 <span className="police-subject-hero-stat-icon"><SheetIcon /></span>
                 <div className="police-subject-hero-stat-info">
                   <strong>ชุดข้อสอบ</strong>
-                  <span>{examSets.length} ชุด · ชุดแรกฟรี · ชุดถัดไป 19 บาท</span>
+                  <span>Set 1 · 140 ข้อ · ฟรีทั้งหมด</span>
                 </div>
               </div>
               <div className="police-subject-hero-stat-card">
@@ -503,32 +488,19 @@ function PoliceMathSubjectPage({
 
         <section className="police-subject-study-path" aria-labelledby="study-path-title">
           <div className="police-subject-study-path-copy">
-            <p className="police-subject-study-path-kicker">START WITH A FREE SET</p>
-            <h2 id="study-path-title">เริ่มทำข้อสอบฟรี แล้วค่อยปลดล็อกชุดถัดไปเมื่อพร้อม</h2>
-            <p>ลองทำข้อสอบความรู้ทั่วไป 30 ข้อพร้อมจับเวลาและเฉลยก่อน เพื่อดูรูปแบบจริงของการฝึกบน SlothMove</p>
-            {firstFreeExam ? (
-              <TrackedLink
-                href={`/courses/police_admin/math/exams/${firstFreeExam.id === 'police-math-set-04' ? 'police-math-set-01' : firstFreeExam.id}`}
-                className="police-subject-study-path-free"
-                eventName="free_exam_start_click"
-                parameters={{ subject_id: 'math', source: 'study_path' }}
-              >
-                เริ่มทำชุดฟรี <span aria-hidden="true">→</span>
-              </TrackedLink>
-            ) : null}
+            <p className="police-subject-study-path-kicker">FREE PRACTICE SET</p>
+            <h2 id="study-path-title">Set 1: ข้อสอบแยกหมวด</h2>
+            <p>รวม 140 ข้อ แบ่งตามหัวข้อเพื่อเลือกฝึกเรื่องที่ต้องการ พร้อมเฉลยทุกข้อ เปิดให้ทำฟรีทั้งหมด</p>
+            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-free">
+              เข้า Set 1 <span aria-hidden="true">→</span>
+            </Link>
           </div>
           <div className="police-subject-study-path-offer">
-            <span className="police-subject-study-path-step">ขั้นถัดไป</span>
-            <strong>{firstPaidExam ? firstPaidExam.title : 'ชุดข้อสอบเพิ่มเติม'}</strong>
-            <p>{firstPaidExam ? `${firstPaidExam.total_questions} ข้อ · ${firstPaidExam.duration_minutes ?? Math.ceil(firstPaidExam.total_questions * 1.5)} นาที · เฉลยละเอียด` : 'เลือกซื้อเป็นชุดเมื่อพร้อมฝึกต่อ'}</p>
-            {firstPaidExam?.product_id ? (
-              <CheckoutButton productId={firstPaidExam.product_id} className="police-subject-study-path-checkout">
-                ปลดล็อก {formatPrice(firstPaidExam.price)}
-              </CheckoutButton>
-            ) : (
-              <a href="#exam-sets" className="police-subject-study-path-checkout">ดูชุดข้อสอบทั้งหมด</a>
-            )}
-            <small>ซื้อครั้งเดียว สิทธิ์ผูกกับบัญชีของคุณ</small>
+            <span className="police-subject-study-path-step">SET 1</span>
+            <strong>6 หมวดฝึก</strong>
+            <p>เลือกทำเฉพาะหัวข้อที่อยากฝึกได้ ไม่จำเป็นต้องทำเรียงลำดับ</p>
+            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-checkout">เลือกหมวดข้อสอบ</Link>
+            <small>ฟรีทุกหมวด พร้อมเฉลย</small>
           </div>
         </section>
 
@@ -658,55 +630,25 @@ function PoliceMathSubjectPage({
         </div>
 
         <h2 className="police-subject-section-title" id="exam-sets">
-          <span>📝</span> ชุดข้อสอบ
+          <span>📝</span> ข้อสอบแยกหมวด
         </h2>
 
-        <div className="police-exam-grid">
-          {examSets.map((examSet) => {
-            const publicExamSetId = examSet.id === 'police-math-set-04' ? 'police-math-set-01' : examSet.id;
-            const isUnlocked = examSet.access_type === 'free' || Boolean(
-              examSet.product_id && ownedProducts.has(examSet.product_id)
-            );
-            return (
-              <div className="police-exam-card" key={examSet.id}>
-                <div className="police-exam-card-left">
-                  <span className="police-exam-card-icon"><SheetIcon /></span>
-                  <div className="police-exam-card-info">
-                    <div className="police-exam-card-title-row">
-                      <h4>{examSet.title}</h4>
-                      <span className={`police-exam-card-price ${examSet.access_type === 'free' ? 'is-free' : ''}`}>
-                        {examSet.access_type === 'free' ? 'ฟรี' : isUnlocked ? '🔓' : '🔒'}
-                      </span>
-                    </div>
-                    <p className="police-exam-card-desc">
-                      {examSet.total_questions} ข้อ · {examSet.duration_minutes ?? Math.ceil(examSet.total_questions * 1.5)} นาที · {examSet.description}
-                    </p>
-                  </div>
-                </div>
-                {isUnlocked ? (
-                  <Link
-                    href={`/courses/police_admin/math/exams/${publicExamSetId}`}
-                    className="police-exam-card-btn is-unlocked"
-                  >
-                    เริ่มทำข้อสอบ
-                  </Link>
-                ) : examSet.product_id ? (
-                  <CheckoutButton productId={examSet.product_id} className="police-exam-card-checkout">
-                    ปลดล็อก {formatPrice(examSet.price)}
-                  </CheckoutButton>
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
+        <Link href="/courses/police_admin/math/set-1" className="police-math-set-one-entry">
+          <span className="police-math-set-one-entry-icon"><SheetIcon /></span>
+          <span className="police-math-set-one-entry-copy">
+            <strong>Set 1: ฝึกตามหมวด</strong>
+            <small>{examSets.filter((examSet) => examSet.id.startsWith('police-math-category-')).length || 6} หมวด · 140 ข้อ · ฟรีทั้งหมด</small>
+          </span>
+          <span className="police-math-set-one-entry-action">ดูทุกหมวด <b aria-hidden="true">›</b></span>
+        </Link>
 
         <section className="police-subject-footer-banner">
           <span className="police-subject-footer-banner-icon">
             <LightbulbIcon />
           </span>
           <div className="police-subject-footer-banner-text">
-            <h3>พร้อมลองวัดพื้นฐานแล้วหรือยัง?</h3>
-            <p>เลือกชุดที่ต้องการ ระบบจะบันทึกคำตอบและเวลาที่เหลือให้อัตโนมัติ</p>
+            <h3>เลือกหัวข้อแล้วเริ่มฝึกได้เลย</h3>
+            <p>Set 1 ไม่บังคับทำเรียงลำดับ เลือกหมวดที่อยากฝึกและกลับมาทำต่อภายหลังได้</p>
           </div>
         </section>
       </div>
