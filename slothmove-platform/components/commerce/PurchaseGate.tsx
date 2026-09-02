@@ -15,7 +15,9 @@ export function PurchaseGate({
   price,
   productId,
   backHref = '/courses/police_admin/math',
-  backLabel = 'กลับหน้าความรู้ทั่วไป'
+  backLabel = 'กลับหน้าความรู้ทั่วไป',
+  analyticsEventName,
+  analyticsParameters
 }: {
   title: string;
   description: string | null;
@@ -23,6 +25,8 @@ export function PurchaseGate({
   productId: string;
   backHref?: string;
   backLabel?: string;
+  analyticsEventName?: string;
+  analyticsParameters?: Record<string, string | number | boolean | null>;
 }) {
   return (
     <main className="purchase-gate">
@@ -32,7 +36,12 @@ export function PurchaseGate({
         <h1>{title}</h1>
         <p>{description || 'ซื้อครั้งเดียวเพื่อปลดล็อกชุดข้อสอบและเฉลยแบบละเอียด'}</p>
         <strong>{formatPrice(price)}</strong>
-        <CheckoutButton productId={productId} className="purchase-gate-checkout">
+        <CheckoutButton
+          productId={productId}
+          className="purchase-gate-checkout"
+          analyticsEventName={analyticsEventName}
+          analyticsParameters={analyticsParameters}
+        >
           ซื้อและปลดล็อก
         </CheckoutButton>
         <Link href={backHref}>{backLabel}</Link>

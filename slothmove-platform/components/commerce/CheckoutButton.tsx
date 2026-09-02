@@ -7,17 +7,27 @@ import { trackAnalyticsEvent } from '@/lib/analytics';
 export function CheckoutButton({
   productId,
   className,
-  children
+  children,
+  analyticsEventName,
+  analyticsParameters
 }: {
   productId: string;
   className?: string;
   children: React.ReactNode;
+  analyticsEventName?: string;
+  analyticsParameters?: Record<string, string | number | boolean | null>;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
 
   async function startCheckout() {
+    if (analyticsEventName) {
+      trackAnalyticsEvent(analyticsEventName, {
+        product_id: productId,
+        ...analyticsParameters
+      });
+    }
     setLoading(true);
     setError('');
 

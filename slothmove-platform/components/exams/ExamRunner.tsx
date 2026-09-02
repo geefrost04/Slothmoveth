@@ -6,6 +6,7 @@ import { queuePendingAttempt, type PendingAttempt } from '@/lib/pending-attempts
 import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
 import type { ExamBundle, ExamQuestionData, ExamSetData } from '@/lib/exam-data';
+import { CheckoutButton } from '@/components/commerce/CheckoutButton';
 import styles from './ExamRunner.module.css';
 
 type ExamSet = ExamSetData;
@@ -35,6 +36,13 @@ type CategoryResult = {
 };
 
 type ReviewFilter = 'wrong' | 'correct' | 'all';
+
+type NextMockOffer = {
+  examSetId: string;
+  title: string;
+  productId: string;
+  price: number;
+};
 
 const CHOICE_KEYS = ['A', 'B', 'C', 'D', 'E'];
 const SECONDS_PER_QUESTION = 90;
@@ -130,7 +138,15 @@ function DocumentIcon() {
   );
 }
 
-export function ExamRunner({ examSetId, initialData }: { examSetId: string; initialData?: ExamBundle }) {
+export function ExamRunner({
+  examSetId,
+  initialData,
+  nextMockOffer
+}: {
+  examSetId: string;
+  initialData?: ExamBundle;
+  nextMockOffer?: NextMockOffer;
+}) {
   const subjectId = examSetId.match(/^police-([a-z_]+)-set-/)?.[1] ?? 'math';
   const subjectTitle = SUBJECT_LABELS[subjectId] ?? 'รายวิชา';
   const subjectHref = subjectId === 'mock_test' || subjectId === 'mini_mock'
@@ -411,6 +427,16 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
       practice_type: 'exam_set', subject_id: subjectId, question_count: completedResult.total,
       score: completedResult.score, completion_reason: reason, exam_set_id: examSetId
     });
+    if (nextMockOffer) {
+      trackAnalyticsEvent('mock_paid_offer_impression', {
+        source: 'free_mock_completion',
+        free_exam_set_id: examSetId,
+        paid_exam_set_id: nextMockOffer.examSetId,
+        score: completedResult.score,
+        total_questions: completedResult.total,
+        price: nextMockOffer.price / 100
+      });
+    }
     void saveProgress(completedResult);
     try {
       window.localStorage.removeItem(storageKey);
@@ -788,7 +814,29 @@ export function ExamRunner({ examSetId, initialData }: { examSetId: string; init
                 <span className={styles.reviewCtaArrow} aria-hidden="true">→</span>
               </button>
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
-              {subjectId === 'mock_test' ? <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link> : null}
+              {nextMockOffer ? (
+                <section className={styles.mockOffer} aria-label="Mock Test ชุดถัดไป">
+                  <span>ฝึกต่อให้เหมือนสนามจริง</span>
+                  <strong>{nextMockOffer.title}</strong>
+                  <p>150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียดและวิเคราะห์จุดอ่อนรายวิชา</p>
+                  <CheckoutButton
+                    productId={nextMockOffer.productId}
+                    className={styles.mockOfferCheckout}
+                    analyticsEventName="mock_unlock_click"
+                    analyticsParameters={{
+                      exam_set_id: nextMockOffer.examSetId,
+                      source: 'free_mock_completion',
+                      price: nextMockOffer.price / 100,
+                      free_exam_set_id: examSetId
+                    }}
+                  >
+                    ปลดล็อก ฿{Math.round(nextMockOffer.price / 100)}
+                  </CheckoutButton>
+                  <Link href="/courses/police_admin/mock-test" onClick={() => trackAnalyticsEvent('mock_catalog_open_click', { source: 'free_mock_completion' })}>ดู Mock Test ทุกชุด</Link>
+                </section>
+              ) : subjectId === 'mock_test' ? (
+                <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link>
+              ) : null}
               <Link href={subjectHref} className={styles.secondaryButton}>กลับหน้าวิชา{subjectTitle}</Link>
             </div>
           </section>

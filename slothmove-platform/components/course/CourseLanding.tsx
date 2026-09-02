@@ -6,6 +6,7 @@ import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
+import { TrackedLink } from '@/components/analytics/TrackedLink';
 
 function findSubjects(course: CourseConfig, ids: string[]) {
   return ids
@@ -340,9 +341,14 @@ function PoliceAdminV3Landing({ course }: { course: CourseConfig }) {
           <div className="police-v3-mock-actions">
             <span className="police-v3-mock-ready">{mockReady}</span>
             <strong>{mockDuration}</strong>
-            <Link href={`/courses/${course.id}/mock-test`} className="police-v3-btn police-v3-btn-primary">
+            <TrackedLink
+              href={`/courses/${course.id}/mock-test`}
+              className="police-v3-btn police-v3-btn-primary"
+              eventName="mock_catalog_open_click"
+              parameters={{ source: 'course_mock_hero' }}
+            >
               {mockButtonLabel} <span aria-hidden="true">→</span>
-            </Link>
+            </TrackedLink>
             {showLeaderboardButton ? (
               <Link href={`/courses/${course.id}/leaderboard`} className={leaderboardButtonClass}>
                 🏆 เข้าสู่ Leaderboard

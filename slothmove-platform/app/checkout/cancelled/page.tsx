@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { TrackEventOnMount } from '@/components/analytics/TrackEventOnMount';
 
 export default async function CheckoutCancelledPage({
   searchParams
@@ -11,6 +12,11 @@ export default async function CheckoutCancelledPage({
     : '/courses/police_admin/math';
   return (
     <main className="checkout-result">
+      <TrackEventOnMount
+        eventName="checkout_cancelled"
+        eventKey={`checkout-cancelled:${productId || 'unknown'}`}
+        parameters={{ product_id: productId || 'unknown' }}
+      />
       <section>
         <span aria-hidden="true">←</span>
         <p>ยังไม่มีการเรียกเก็บเงิน</p>

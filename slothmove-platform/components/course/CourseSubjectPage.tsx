@@ -42,7 +42,6 @@ export function CourseSubjectPage({
       <PoliceMathSubjectPage
         course={course}
         subject={subject}
-        examSets={examSets}
       />
     );
   }
@@ -410,22 +409,12 @@ const ShieldCheckIcon = () => (
   </svg>
 );
 
-const LightbulbIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5" />
-    <path d="M9 18h6" />
-    <path d="M10 22h4" />
-  </svg>
-);
-
 function PoliceMathSubjectPage({
   course,
-  subject,
-  examSets
+  subject
 }: {
   course: CourseConfig;
   subject: SubjectMeta;
-  examSets: CatalogExamSet[];
 }) {
 
   return (
@@ -504,11 +493,16 @@ function PoliceMathSubjectPage({
           </div>
         </section>
 
-        <h2 className="police-subject-section-title">
-          <span>📄</span> ชีทสรุปอ่านฟรี
-        </h2>
-
-        <div
+        <details className="police-sheet-library">
+          <summary>
+            <span className="police-sheet-library-icon"><SheetIcon /></span>
+            <span className="police-sheet-library-copy">
+              <strong>ชีทสรุปอ่านฟรี</strong>
+              <small>5 ไฟล์ PDF สำหรับทบทวนสูตรและวิธีคิด</small>
+            </span>
+            <span className="police-sheet-library-action">ดูชีท <b aria-hidden="true">⌄</b></span>
+          </summary>
+          <div
           className="police-sheet-download-scroll-box"
           style={{
             border: '1.5px solid #e2e8f0',
@@ -518,9 +512,9 @@ function PoliceMathSubjectPage({
             display: 'flex',
             flexDirection: 'column',
             gap: '12px',
-            marginBottom: '32px'
+            marginBottom: '0'
           }}
-        >
+          >
           {[
             {
               title: 'เรื่อง เซต : สรุปสูตรลัด & เทคนิคทำโจทย์',
@@ -627,30 +621,8 @@ function PoliceMathSubjectPage({
               )}
             </div>
           ))}
-        </div>
-
-        <h2 className="police-subject-section-title" id="exam-sets">
-          <span>📝</span> ข้อสอบแยกหมวด
-        </h2>
-
-        <Link href="/courses/police_admin/math/set-1" className="police-math-set-one-entry">
-          <span className="police-math-set-one-entry-icon"><SheetIcon /></span>
-          <span className="police-math-set-one-entry-copy">
-            <strong>Set 1: ฝึกตามหมวด</strong>
-            <small>{examSets.filter((examSet) => examSet.id.startsWith('police-math-category-')).length || 6} หมวด · 140 ข้อ · ฟรีทั้งหมด</small>
-          </span>
-          <span className="police-math-set-one-entry-action">ดูทุกหมวด <b aria-hidden="true">›</b></span>
-        </Link>
-
-        <section className="police-subject-footer-banner">
-          <span className="police-subject-footer-banner-icon">
-            <LightbulbIcon />
-          </span>
-          <div className="police-subject-footer-banner-text">
-            <h3>เลือกหัวข้อแล้วเริ่มฝึกได้เลย</h3>
-            <p>Set 1 ไม่บังคับทำเรียงลำดับ เลือกหมวดที่อยากฝึกและกลับมาทำต่อภายหลังได้</p>
           </div>
-        </section>
+        </details>
       </div>
     </div>
   );

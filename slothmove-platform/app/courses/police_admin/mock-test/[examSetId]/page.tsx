@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ExamRunner } from '@/components/exams/ExamRunner';
 import { PurchaseGate } from '@/components/commerce/PurchaseGate';
-import { getExamAccessSummary, getPublishedExamBundle } from '@/lib/exam-data';
+import { getExamAccessSummary, getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { buildMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
@@ -33,11 +33,33 @@ export default async function PoliceMockTestExamPage({
         productId={access.product_id}
         backHref="/courses/police_admin/mock-test"
         backLabel="ดู Mock Test ชุดอื่น"
+        analyticsEventName="mock_unlock_click"
+        analyticsParameters={{
+          exam_set_id: examSetId,
+          source: 'paid_exam_gate',
+          price: access.price / 100
+        }}
       />
     );
   }
 
   const initialData = await getPublishedExamBundle(examSetId);
   if (!initialData) notFound();
-  return <ExamRunner examSetId={examSetId} initialData={initialData} />;
+  const catalog = access.access_type === 'free'
+    ? await getPublishedExamCatalog('police_admin', 'mock_test')
+    : [];
+  const nextPaidMock = catalog.find((examSet) => examSet.access_type === 'paid' && examSet.product_id);
+
+  return (
+    <ExamRunner
+      examSetId={examSetId}
+      initialData={initialData}
+      nextMockOffer={nextPaidMock?.product_id ? {
+        examSetId: nextPaidMock.id,
+        title: nextPaidMock.title,
+        productId: nextPaidMock.product_id,
+        price: nextPaidMock.price
+      } : undefined}
+    />
+  );
 }

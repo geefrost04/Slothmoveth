@@ -627,6 +627,39 @@
 .reviewCtaArrow { font-size: 22px; transition: transform 160ms ease; }
 .reviewCta:hover .reviewCtaArrow { transform: translateX(4px); }
 
+.mockOffer {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 7px;
+  padding: 19px;
+  border: 1px solid #e5c6cb;
+  border-radius: 14px;
+  color: #202532;
+  background: #fff7f8;
+  text-align: left;
+}
+.mockOffer > span { color: var(--exam-red); font-size: 10px; font-weight: 900; letter-spacing: .1em; }
+.mockOffer > strong { font-size: 16px; }
+.mockOffer > p { margin: 0 0 4px; color: #697180; font-size: 12px; line-height: 1.55; }
+.mockOffer > a { width: fit-content; color: var(--exam-red); font-size: 12px; font-weight: 800; text-decoration: none; }
+.mockOffer > a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mockOfferCheckout { display: block; }
+.mockOfferCheckout > button {
+  width: 100%;
+  min-height: 47px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--exam-red);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.mockOfferCheckout > button:hover:not(:disabled) { background: var(--exam-red-dark); }
+.mockOfferCheckout > button:disabled { cursor: wait; opacity: .7; }
+.mockOfferCheckout > small { display: block; margin-top: 7px; color: #b42335; font-size: 11px; }
+
 .categoryResults {
   display: grid;
   gap: 10px;

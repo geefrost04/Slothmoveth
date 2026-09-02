@@ -10401,6 +10401,106 @@ a.police-subject-study-path-checkout {
 .police-subject-study-path-checkout small { display: block; max-width: 230px; margin-top: 7px; color: #a11f2d; font-size: 11px; line-height: 1.35; }
 .police-subject-study-path-offer > small { margin-top: 10px; color: #8d7980; font-size: 11px; }
 
+.police-sheet-library {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.police-sheet-library > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.police-sheet-library > summary::-webkit-details-marker {
+  display: none;
+}
+
+.police-sheet-library-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 8px;
+  color: #7a1822;
+  background: #fff5f5;
+}
+
+.police-sheet-library-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.police-sheet-library-copy strong {
+  color: #172033;
+  font-size: 14px;
+}
+
+.police-sheet-library-copy small {
+  color: #697386;
+  font-size: 12px;
+}
+
+.police-sheet-library-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  color: #7a1822;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.police-sheet-library-action b {
+  font-size: 17px;
+  transition: transform 0.16s ease;
+}
+
+.police-sheet-library[open] {
+  border-color: #ead5d8;
+  background: #fffafa;
+}
+
+.police-sheet-library[open] > summary {
+  border-bottom: 1px solid #eee0e2;
+}
+
+.police-sheet-library[open] .police-sheet-library-action b {
+  transform: rotate(180deg);
+}
+
+.police-sheet-library .police-sheet-download-scroll-box {
+  margin: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+@media (max-width: 550px) {
+  .police-sheet-library > summary {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .police-sheet-library-action {
+    margin-top: 4px;
+  }
+
+  .police-sheet-library-copy small {
+    line-height: 1.45;
+  }
+}
+
 /* Sheet Card */
 .police-sheet-card {
   background: #ffffff;

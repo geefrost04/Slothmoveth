@@ -45,7 +45,7 @@ export default async function ContinueCheckoutPage({
       <TrackEventOnMount
         eventName="checkout_continue_view"
         eventKey={`checkout-continue:${productId}`}
-        parameters={{ product_id: productId, return_path: returnTo }}
+        parameters={{ product_id: productId, exam_set_id: access.id, return_path: returnTo }}
       />
       <PurchaseGate
         title={access.title}
@@ -54,6 +54,12 @@ export default async function ContinueCheckoutPage({
         productId={access.product_id}
         backHref={returnTo}
         backLabel="กลับไปหน้าชุดข้อสอบ"
+        analyticsEventName={access.id.startsWith('police-mock_test-') ? 'mock_unlock_click' : undefined}
+        analyticsParameters={access.id.startsWith('police-mock_test-') ? {
+          exam_set_id: access.id,
+          source: 'checkout_continue',
+          price: access.price / 100
+        } : undefined}
       />
     </>
   );
