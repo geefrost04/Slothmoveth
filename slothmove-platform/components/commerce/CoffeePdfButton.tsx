@@ -86,18 +86,16 @@ export function CoffeePdfButton({
   return (
     <>
       <div className={styles.actions}>
-        <button type="button" className={className} style={style} onClick={openPdf}>
-          {children}
-        </button>
         <button
           type="button"
-          className={styles.supportTrigger}
+          className={className}
+          style={style}
           onClick={() => {
-            trackAnalyticsEvent('coffee_support_prompt_open', getDownloadAnalyticsData(pdfPath));
+            trackAnalyticsEvent('file_download_prompt_open', getDownloadAnalyticsData(pdfPath));
             setOpen(true);
           }}
         >
-          สนับสนุนผู้จัดทำ
+          {children}
         </button>
       </div>
 
@@ -122,10 +120,10 @@ export function CoffeePdfButton({
               ×
             </button>
             <div className={styles.cup} aria-hidden="true">☕</div>
-            <p className={styles.eyebrow}>SUPPORT SLOTHMOVE</p>
-            <h2 id="coffee-dialog-title">สนับสนุนผู้จัดทำชีท</h2>
+            <p className={styles.eyebrow}>FREE STUDY SHEET</p>
+            <h2 id="coffee-dialog-title">ก่อนเปิดชีทสรุป</h2>
             <p className={styles.description}>
-              ชีททุกไฟล์เปิดอ่านฟรีเสมอ<br />หากช่วยให้คุณอ่านสอบง่ายขึ้น สนับสนุนได้ตามสะดวกครับ
+              ชีททุกไฟล์เปิดอ่านฟรีเสมอ<br />หากชีทนี้ช่วยให้คุณอ่านสอบง่ายขึ้น สนับสนุนผู้จัดทำได้ตามสะดวกครับ
             </p>
 
             <div className={styles.amounts} aria-label="เลือกจำนวนเงินสนับสนุน">

@@ -6,6 +6,7 @@ import { getExamAccessSummary, getPublishedExamBundle } from '@/lib/exam-data';
 import { buildMetadata } from '@/lib/seo';
 
 function resolveDatabaseExamSetId(examSetId: string) {
+  if (/^police-math-category-[a-z-]+$/.test(examSetId)) return examSetId;
   if (!/^police-math-set-\d{2}$/.test(examSetId)) return null;
   // Keep the original database ID while exposing it publicly as Set 1.
   return examSetId === 'police-math-set-01' ? 'police-math-set-04' : examSetId;
@@ -33,11 +34,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { examSetId } = await params;
   const setNumber = resolvePublicSetNumber(examSetId) ?? 1;
+  const isCategorySet = examSetId.startsWith('police-math-category-');
 
   return buildMetadata({
-    title: `ความรู้ทั่วไป ชุดที่ ${setNumber} - นายสิบตำรวจ`,
-    description: `ข้อสอบความรู้ทั่วไปนายสิบตำรวจ ชุดที่ ${setNumber} จำนวน 30 ข้อ พร้อมจับเวลาและเฉลย`,
-    path: `/courses/police_admin/math/exams/police-math-set-${String(setNumber).padStart(2, '0')}`,
+    title: isCategorySet ? 'แบบฝึกความรู้ทั่วไป - นายสิบตำรวจ' : `ความรู้ทั่วไป ชุดที่ ${setNumber} - นายสิบตำรวจ`,
+    description: isCategorySet ? 'แบบฝึกความรู้ทั่วไปแยกหมวด พร้อมจับเวลาและเฉลย' : `ข้อสอบความรู้ทั่วไปนายสิบตำรวจ ชุดที่ ${setNumber} จำนวน 30 ข้อ พร้อมจับเวลาและเฉลย`,
+    path: `/courses/police_admin/math/exams/${examSetId}`,
     noIndex: true
   });
 }

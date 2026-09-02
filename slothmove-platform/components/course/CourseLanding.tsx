@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import type { CourseConfig, CourseLandingSection, SubjectMeta } from '@/lib/course-types';
-import { PoliceExamCatalog } from './PoliceExamCatalog';
 import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
 import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
@@ -459,13 +458,6 @@ const MathGraphIcon = () => (
 );
 
 function PoliceMockupLanding({ course }: { course: CourseConfig }) {
-  const mathCatalog = <PoliceExamCatalog courseId={course.id} subjectId="math" />;
-  const thaiCatalog = <PoliceExamCatalog courseId={course.id} subjectId="thai" />;
-  const englishCatalog = <PoliceExamCatalog courseId={course.id} subjectId="english" />;
-  const computerCatalog = <PoliceExamCatalog courseId={course.id} subjectId="computer" />;
-  const lawCatalog = <PoliceExamCatalog courseId={course.id} subjectId="law" />;
-  const sarabanCatalog = <PoliceExamCatalog courseId={course.id} subjectId="saraban" />;
-
   const subjects = [
     {
       id: 'math',
@@ -570,14 +562,6 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
         <PoliceMockupSubjectGrid
           course={course}
           subjects={subjects}
-          catalogs={{
-            math: mathCatalog,
-            thai: thaiCatalog,
-            english: englishCatalog,
-            computer: computerCatalog,
-            law: lawCatalog,
-            saraban: sarabanCatalog
-          }}
         />
 
         <section className="police-v2-guide-banner">

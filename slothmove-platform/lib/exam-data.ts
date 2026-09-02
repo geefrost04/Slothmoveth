@@ -41,6 +41,7 @@ export type CatalogExamSet = {
   total_questions: number;
   product_id: string | null;
   price: number;
+  metadata?: { catalog_order?: number } | null;
 };
 
 export async function getPublishedExamCatalog(
@@ -50,7 +51,7 @@ export async function getPublishedExamCatalog(
   const supabase = await getSupabaseServer();
   const { data, error } = await supabase
     .from('exam_sets')
-    .select('id,title,description,access_type,duration_minutes,total_questions,product_id,products(price)')
+    .select('id,title,description,access_type,duration_minutes,total_questions,product_id,metadata,products(price)')
     .eq('course_id', courseId)
     .eq('subject_id', subjectId)
     .eq('is_published', true)
@@ -63,9 +64,11 @@ export async function getPublishedExamCatalog(
       ? Number(examSet.products[0]?.price ?? 0)
       : Number((examSet.products as { price?: number } | null)?.price ?? 0)
   })).sort((left, right) => {
+    const leftOrder = left.metadata?.catalog_order ?? Number.MAX_SAFE_INTEGER;
+    const rightOrder = right.metadata?.catalog_order ?? Number.MAX_SAFE_INTEGER;
     const leftSetNumber = Number(left.title.match(/ชุดที่\s*(\d+)/)?.[1] ?? Number.MAX_SAFE_INTEGER);
     const rightSetNumber = Number(right.title.match(/ชุดที่\s*(\d+)/)?.[1] ?? Number.MAX_SAFE_INTEGER);
-    return leftSetNumber - rightSetNumber || left.id.localeCompare(right.id);
+    return leftOrder - rightOrder || leftSetNumber - rightSetNumber || left.id.localeCompare(right.id);
   }) as CatalogExamSet[];
 }
 

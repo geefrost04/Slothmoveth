@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#ffffff"/>
+  <style>.line{fill:none;stroke:#172554;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.thin{fill:none;stroke:#64748b;stroke-width:4}.accent{fill:none;stroke:#be123c;stroke-width:7;stroke-dasharray:16 10}.label{font:600 42px Arial,sans-serif;fill:#172554}.small{font:500 30px Arial,sans-serif;fill:#334155}.fill{fill:#e0f2fe;stroke:#172554;stroke-width:6}</style><path class="line" d="M290 690L600 170 930 690z"/><text class="label" x="340" y="665">50°</text><text class="label" x="570" y="255">2x</text><text class="label" x="805" y="665">3x</text></svg>
