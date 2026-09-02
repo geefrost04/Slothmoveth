@@ -88,12 +88,29 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
     segments[0] === 'courses' &&
     segments[1] === course.id &&
     segments[3] === 'practices';
+  const isMathSetOne =
+    segments.length === 4 &&
+    segments[0] === 'courses' &&
+    segments[1] === course.id &&
+    segments[2] === 'math' &&
+    segments[3] === 'set-1';
+  const isMathSetOneExam =
+    segments.length === 5 &&
+    segments[0] === 'courses' &&
+    segments[1] === course.id &&
+    segments[2] === 'math' &&
+    segments[3] === 'exams' &&
+    segments[4].startsWith('police-math-category-');
   const isSubjectHub =
     segments.length === 3 && segments[0] === 'courses' && segments[1] === course.id;
   const isCourseHub =
     segments.length === 2 && segments[0] === 'courses' && segments[1] === course.id;
 
-  const backHref = isPractices
+  const backHref = isMathSetOne
+    ? `/courses/${course.id}/math`
+    : isMathSetOneExam
+      ? `/courses/${course.id}/math/set-1`
+      : isPractices
     ? `/courses/${course.id}/${segments[2]}`
     : isSubjectGame
       ? `/courses/${course.id}/${segments[2]}/practices`
@@ -103,7 +120,11 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
           ? '/'
           : `/courses/${course.id}`;
 
-  const backLabel = isPractices
+  const backLabel = isMathSetOne
+    ? 'กลับหน้าวิชา'
+    : isMathSetOneExam
+      ? 'กลับไป Set 1'
+      : isPractices
     ? 'กลับไปหน้าเนื้อหา'
     : isSubjectGame
       ? 'กลับไปลานฝึก'
