@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" width="240" height="150">
+  <rect x="2" y="2" width="236" height="146" rx="14" fill="#ffffff" stroke="#d8dee8" stroke-width="3"/>
+  <style>
+    .line { fill:none; stroke:#172554; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .thin { fill:none; stroke:#94a3b8; stroke-width:2; }
+    .dash { fill:none; stroke:#cbd5e1; stroke-width:2; stroke-dasharray:4 4; }
+    .accent { fill:none; stroke:#be123c; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .fill-accent { fill:#be123c; }
+    .shape { fill:#e0f2fe; stroke:#172554; stroke-width:4; stroke-linejoin:round; stroke-linecap:round; }
+    .tile { fill:#f0f9ff; stroke:#0284c7; stroke-width:4; rx:8; }
+    .lbl { font:bold 36px Arial,sans-serif; fill:#0369a1; text-anchor:middle; dominant-baseline:central; }
+    .dir { font:bold 14px Arial,sans-serif; fill:#64748b; text-anchor:middle; dominant-baseline:central; }
+  </style>
+  
+  <circle class="dash" cx="120" cy="75" r="44"/>
+  <line class="thin" x1="68" y1="75" x2="172" y2="75"/>
+  <line class="thin" x1="120" y1="23" x2="120" y2="127"/>
+  <text class="dir" x="120" y="19">N</text>
+  <text class="dir" x="178" y="75">E</text>
+  <text class="dir" x="120" y="131">S</text>
+  <text class="dir" x="62" y="75">W</text>
+  <line class="accent" x1="120.0" y1="93.0" x2="120.0" y2="37.0"/>
+  <path class="accent" d="M125.6 47.6 L120.0 37.0 L114.4 47.6"/>
+  <circle cx="120" cy="75" r="4" fill="#be123c"/>
+</svg>
