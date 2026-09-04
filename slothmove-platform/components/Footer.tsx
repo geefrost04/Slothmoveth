@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import styles from './Footer.module.css';
 
 function FacebookIcon() {
   return (
@@ -8,50 +11,186 @@ function FacebookIcon() {
   );
 }
 
-export function Footer() {
+function ArrowUpIcon() {
   return (
-    <footer className="footer" id="footer">
-      <div className="container">
-        <div className="footer-inner">
-          <div className="footer-brand-section">
-            <Link href="/" className="footer-brand-logo">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="12" y1="19" x2="12" y2="5" />
+      <polyline points="5 12 12 5 19 12" />
+    </svg>
+  );
+}
+
+export function Footer() {
+  function scrollToTop() {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  return (
+    <footer className={styles.masterFooter} id="footer">
+      <div className={styles.footerContainer}>
+        {/* Top Branding & Social Bar */}
+        <div className={styles.footerTopBar}>
+          <div className={styles.brandCol}>
+            <Link href="/" className={styles.brandLogo} aria-label="กลับหน้าแรก SlothMove">
               <img
                 src="/pic/slothmove_mascot.png"
-                alt="SlothMove"
-                width={28}
-                height={28}
+                alt="SlothMove Mascot"
+                width={32}
+                height={32}
                 style={{ objectFit: 'contain' }}
               />
               <strong>Sloth<span>Move</span></strong>
             </Link>
-            <span className="footer-brand-tagline">เริ่มฝึกฟรี · เลือกชุดฝึกเมื่อพร้อม</span>
+            <p className={styles.brandTagline}>
+              แพลตฟอร์มเตรียมสอบราชการและนายสิบตำรวจยุคใหม่ ฝึกตรงจุด วัดผลจริง รู้จุดอ่อนทันที
+            </p>
           </div>
 
-          <div className="footer-navigation">
-            <Link href="/">หน้าแรก</Link>
-            <span className="separator">·</span>
-            <Link href="/#exam-selection">สนามสอบ</Link>
-            <span className="separator">·</span>
-            <Link href="/courses/police_admin">ข้อสอบนายสิบตำรวจ</Link>
-            <span className="separator">·</span>
-            <Link href="/courses/police_admin/mock-test">Mock Test</Link>
-            <span className="separator">·</span>
-            <Link href="/#faq">FAQ</Link>
-            <span className="separator">·</span>
+          <div className={styles.socialBox}>
             <a
               href="https://www.facebook.com/profile.php?id=61589670089745"
               target="_blank"
               rel="noopener noreferrer"
+              className={styles.socialBtn}
+              aria-label="ติดตามข่าวสารบน Facebook"
             >
-              Facebook
+              <FacebookIcon />
+              <span>Facebook Page</span>
             </a>
-            <span className="separator">·</span>
-            <a href="#navbar">กลับด้านบน ↑</a>
+          </div>
+        </div>
+
+        {/* 4-Column Navigation Grid */}
+        <div className={styles.footerGrid}>
+          {/* Column 1: Exams */}
+          <div className={styles.navGroup}>
+            <h3 className={styles.groupTitle}>สนามสอบราชการ</h3>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/courses/police_admin">
+                  นายสิบตำรวจ (สายอำนวยการ)
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses">
+                  ภาค ก ก.พ. <span className={styles.badgeComingSoon}>เร็ว ๆ นี้</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses">
+                  ครูผู้ช่วย <span className={styles.badgeComingSoon}>เร็ว ๆ นี้</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses">
+                  ดูสนามสอบทั้งหมด →
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <div className="footer-copyright">
-            <span>© 2026 SlothMove. All rights reserved.</span>
+          {/* Column 2: Practice & Features */}
+          <div className={styles.navGroup}>
+            <h3 className={styles.groupTitle}>ระบบฝึก &amp; ข้อสอบ</h3>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/courses/police_admin/mock-test">
+                  Mock Test 150 ข้อ <span className={styles.badgeNew}>สนามจริง</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/daily-practice/math">
+                  ควิซฟรี 10 ข้อประจำวัน
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/police_admin">
+                  คลังข้อสอบแยก 6 หมวด
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/police_admin/computer/summary">
+                  ชีทสรุป &amp; เทคนิคจำ
+                </Link>
+              </li>
+            </ul>
           </div>
+
+          {/* Column 3: Dashboard & Stats */}
+          <div className={styles.navGroup}>
+            <h3 className={styles.groupTitle}>แดชบอร์ด &amp; ผลสอบ</h3>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/dashboard">
+                  ภาพรวมสถิติของฉัน
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard">
+                  ประวัติการฝึก &amp; คะแนน
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard">
+                  สมุดทบทวนข้อผิด
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard">
+                  จำลองเกณฑ์ตัดผ่าน 60%
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Help & Trust */}
+          <div className={styles.navGroup}>
+            <h3 className={styles.groupTitle}>ช่วยเหลือ &amp; นโยบาย</h3>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/#faq">
+                  คำถามที่พบบ่อย (FAQ)
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61589670089745"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ติดต่อทีมงาน (Inbox)
+                </a>
+              </li>
+              <li>
+                <Link href="/login">
+                  ระบบความปลอดภัยบัญชี
+                </Link>
+              </li>
+              <li>
+                <Link href="/#exam-selection">
+                  เลือกสนามสอบเริ่มต้น
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Utility Bar */}
+        <div className={styles.footerBottomBar}>
+          <p className={styles.copyright}>
+            © 2026 SlothMove. All rights reserved. มุ่งมั่นสร้างแพลตฟอร์มเตรียมสอบราชการที่ดีที่สุด
+          </p>
+          <button
+            type="button"
+            className={styles.backToTopBtn}
+            onClick={scrollToTop}
+            aria-label="เลื่อนกลับด้านบนของหน้าเว็บ"
+          >
+            <span>กลับด้านบน</span>
+            <ArrowUpIcon />
+          </button>
         </div>
       </div>
     </footer>

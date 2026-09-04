@@ -41,15 +41,15 @@
 .course-layout[data-course='police_admin'] .course-nav.is-police-admin.is-v3-nav .course-nav-logout {
   box-sizing: border-box !important;
   display: inline-flex !important;
-  width: 132px !important;
-  min-width: 132px !important;
-  max-width: 132px !important;
+  width: auto !important;
+  min-width: 90px !important;
+  max-width: 180px !important;
   height: 42px !important;
   min-height: 42px !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-  padding: 0 12px !important;
+  padding: 0 14px !important;
   border: 1px solid #d8e0e8 !important;
   border-radius: 10px !important;
   background: #ffffff !important;

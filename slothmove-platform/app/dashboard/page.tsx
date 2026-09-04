@@ -5,6 +5,7 @@ import type { User } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
 import { readPendingAttempts, removePendingAttempts } from '@/lib/pending-attempts';
 import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
@@ -853,6 +854,7 @@ export default function DashboardPage() {
           <div className="footer-banner-cta"><div className="footer-banner-left"><div className="footer-banner-icon"><CheckMarkIcon size={22} /></div><div className="footer-banner-info"><h2>{attempts.length > 0 ? 'พร้อมพัฒนาคะแนนต่อหรือยัง?' : 'เริ่มเก็บผลการฝึกครั้งแรก'}</h2><p>ทุกครั้งที่ส่งข้อสอบ ระบบจะอัปเดต Dashboard ให้อัตโนมัติ</p></div></div><Link href="/courses/police_admin" className="footer-banner-btn">เลือกชุดข้อสอบ <span aria-hidden="true">→</span></Link></div>
         </main>
       </div>
+      <Footer />
     </div>
   );
 }

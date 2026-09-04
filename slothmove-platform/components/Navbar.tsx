@@ -83,16 +83,26 @@ export function Navbar({ backHref, backLabel = 'กลับหน้าหล�
     <header className={`nav-wrapper${scrolled ? ' scrolled' : ''}`} id="navbar">
       <div className="container">
         <nav className="nav-inner" aria-label="เมนูหลัก">
-          <Link href="/" className="nav-logo" aria-label="SlothMove">
+          <Link href="/" className="nav-logo" aria-label="SlothMove" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <img
+              src="/pic/slothmove_mascot.png"
+              alt="SlothMove"
+              width={26}
+              height={26}
+              style={{ objectFit: 'contain' }}
+            />
             <span>Sloth<span className="logo-accent">Move</span></span>
           </Link>
 
           <div className="nav-actions" aria-label="เครื่องมือ">
             {user ? (
               <>
-                <Link href="/courses/police_admin" className="nav-exams-btn" aria-label="ไปทำข้อสอบ">
+                <Link href="/courses" className="nav-exams-btn" aria-label="ดูสนามสอบทั้งหมด">
                   <NavControlIcon type="exam" />
-                  <span className="nav-control-label">ทำข้อสอบ</span>
+                  <span className="nav-control-label">สนามสอบ</span>
+                </Link>
+                <Link href="/courses/police_admin/mock-test" className="nav-exams-btn" aria-label="Mock Test 150 ข้อ">
+                  <span className="nav-control-label">Mock Test</span>
                 </Link>
                 <Link href="/dashboard" className="nav-dashboard-btn" aria-label="Dashboard">
                   <NavControlIcon type="dashboard" />
@@ -114,6 +124,13 @@ export function Navbar({ backHref, backLabel = 'กลับหน้าหล�
               </>
             ) : (
               <>
+                <Link href="/courses" className="nav-exams-btn" aria-label="ดูสนามสอบทั้งหมด">
+                  <NavControlIcon type="exam" />
+                  <span className="nav-control-label">สนามสอบ</span>
+                </Link>
+                <Link href="/courses/police_admin/mock-test" className="nav-exams-btn" aria-label="Mock Test 150 ข้อ">
+                  <span className="nav-control-label">Mock Test</span>
+                </Link>
                 <Link href="/login" className="nav-login-btn">
                   <NavControlIcon type="account" />
                   <span className="nav-control-label">เข้าสู่ระบบ</span>
