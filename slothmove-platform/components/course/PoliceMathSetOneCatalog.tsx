@@ -1,6 +1,46 @@
 import Link from 'next/link';
 import type { CatalogExamSet } from '@/lib/exam-data';
 
+const SET_ONE_TOPICS: Record<string, string[]> = {
+  'police-math-category-foundations': [
+    'การคำนวณ & PEMDAS',
+    'ห.ร.ม. / ค.ร.น.',
+    'เลขฐาน (2, 8, 10)',
+    'เลขยกกำลัง & พหุนาม'
+  ],
+  'police-math-category-algebra': [
+    'โจทย์อายุ / ขาสัตว์',
+    'ท่อน้ำ / แรงงาน',
+    'ความเร็ว (s = vt)',
+    'อสมการ & ช่วงคำตอบ'
+  ],
+  'police-math-category-ratios-percent': [
+    'อัตราส่วนต่อเนื่อง',
+    'ของผสม & สารละลาย',
+    'ร้อยละ / เปอร์เซ็นต์',
+    'กำไร-ขาดทุน & ส่วนลด'
+  ],
+  'police-math-category-geometry': [
+    'พีทาโกรัส & สามเหลี่ยมคล้าย',
+    'เส้นขนาน & มุม',
+    'พื้นที่ & ส่วนแรเงา (2D)',
+    'ปริมาตรทรงตัน (3D)'
+  ],
+  'police-math-category-stats-prob': [
+    'เซต & แผนภาพเวนน์',
+    'กฎการนับ & ความน่าจะเป็น',
+    'การจัดหมู่ & สับเปลี่ยน',
+    'สถิติ (ค่าเฉลี่ย/มัธยฐาน)'
+  ],
+  'police-math-category-aptitude-logic': [
+    'อนุกรมตัวเลข',
+    'อุปมาอุปไมย',
+    'ตรรกศาสตร์ (ถ้า...แล้ว)',
+    'มิติสัมพันธ์ (คลี่ลูกบาศก์)',
+    'เงื่อนไขเชาวน์ปัญญา'
+  ]
+};
+
 export function PoliceMathSetOneCatalog({ examSets }: { examSets: CatalogExamSet[] }) {
   const categorySets = examSets.filter((examSet) => examSet.id.startsWith('police-math-category-'));
   const totalQuestions = categorySets.reduce((total, examSet) => total + examSet.total_questions, 0);
@@ -46,6 +86,15 @@ export function PoliceMathSetOneCatalog({ examSets }: { examSets: CatalogExamSet
                 </span>
                 <strong>{examSet.title}</strong>
                 <p>{examSet.description}</p>
+                {SET_ONE_TOPICS[examSet.id] && (
+                  <div className="police-math-set-one-topics" aria-label="หัวข้อในชุดนี้">
+                    {SET_ONE_TOPICS[examSet.id].map((topic) => (
+                      <span key={topic} className="police-math-set-one-topic-chip">
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <span className="police-math-set-one-card-meta">
                   {examSet.total_questions} ข้อ · {examSet.duration_minutes ?? Math.ceil(examSet.total_questions * 1.5)} นาที
                 </span>
