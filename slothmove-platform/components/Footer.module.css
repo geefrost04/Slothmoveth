@@ -89,8 +89,22 @@
   transform: translateY(-1px);
 }
 
-.socialBtn svg {
+.socialBtnFacebook svg {
   color: #1877f2;
+}
+
+.socialBtnTiktok svg {
+  color: #0f172a;
+}
+
+.socialBtnTiktok:hover {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+}
+
+.socialBtnTiktok:hover svg {
+  color: #ffffff;
 }
 
 /* 4-Column Navigation Grid */

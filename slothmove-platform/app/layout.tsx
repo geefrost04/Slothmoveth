@@ -1,12 +1,32 @@
 import type { Metadata, Viewport } from 'next';
+import { Kanit, Noto_Sans_Thai, Sarabun } from 'next/font/google';
 import './globals.css';
-import './course-shell.css';
 import './home-shell.css';
-import './subject-shell.css';
 import './nav-consistency.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { absoluteUrl, serializeJsonLd, siteConfig } from '@/lib/seo';
+
+const kanit = Kanit({
+  weight: ['400', '600', '700', '800', '900'],
+  subsets: ['thai', 'latin'],
+  display: 'swap',
+  variable: '--font-kanit',
+});
+
+const notoSansThai = Noto_Sans_Thai({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['thai', 'latin'],
+  display: 'swap',
+  variable: '--font-noto-sans-thai',
+});
+
+const sarabun = Sarabun({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['thai', 'latin'],
+  display: 'swap',
+  variable: '--font-sarabun',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -75,7 +95,7 @@ const jsonLd = {
       logo: absoluteUrl('/apple-icon.png'),
       description: 'แพลตฟอร์มเตรียมสอบนายสิบตำรวจ พร้อมข้อสอบออนไลน์ 6 วิชา Mock Test จับเวลา เฉลยละเอียด และระบบวิเคราะห์ผล',
       areaServed: { '@type': 'Country', name: 'ประเทศไทย' },
-      sameAs: [siteConfig.facebook]
+      sameAs: [siteConfig.facebook, siteConfig.tiktok]
     }
   ]
 };
@@ -84,14 +104,12 @@ const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-W60TF5WH
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" suppressHydrationWarning>
+    <html
+      lang="th"
+      className={`${kanit.variable} ${notoSansThai.variable} ${sarabun.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Noto+Sans+Thai:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           dangerouslySetInnerHTML={{
             __html:

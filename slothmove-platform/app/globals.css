@@ -7,8 +7,8 @@
    Per-course overrides via `data-course-theme` on a wrapper.
    ============================================================ */
 :root {
-  --font-display: 'Kanit', 'Noto Sans Thai', system-ui, sans-serif;
-  --font-body: 'Sarabun', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-display: var(--font-kanit), var(--font-noto-sans-thai), 'Kanit', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-body: var(--font-sarabun), var(--font-noto-sans-thai), 'Sarabun', 'Noto Sans Thai', system-ui, sans-serif;
 
   /* Sensible defaults — courses override via theme */
   --color-bg: #faf8f4;

@@ -32,6 +32,7 @@ export const siteConfig = {
   ],
   ogImage: '/opengraph-image',
   facebook: 'https://www.facebook.com/profile.php?id=61589670089745',
+  tiktok: 'https://www.tiktok.com/@geefrostt',
 } as const;
 
 export function absoluteUrl(path = '/') {
