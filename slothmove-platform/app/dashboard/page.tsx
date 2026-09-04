@@ -548,8 +548,8 @@ export default function DashboardPage() {
             <button type="button" className={`dashboard-menu-item${view === 'review' ? ' active' : ''}`} onClick={() => selectView('review')}><span><ReviewNavIcon /></span><span>สมุดข้อผิด</span><b>{wrongAnswers.length}</b></button>
           </div>
           <div className="sidebar-exam-card">
-            <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src="/pic/logo_police.png" alt="นายสิบตำรวจ" className="sidebar-exam-logo" />
-            <div className="sidebar-exam-title is-course-name">นายสิบตำรวจ</div><Link href="/courses/police_admin" className="sidebar-exam-btn">ไปหน้าคอร์ส</Link><Link href="/#exam-selection" className="sidebar-change-link">เปลี่ยนสนามสอบ</Link>
+            <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src="/pic/logo_police.png" alt="นายสิบตำรวจ สายอำนวยการ" className="sidebar-exam-logo" />
+            <div className="sidebar-exam-title is-course-name">นายสิบตำรวจ สายอำนวยการ</div><Link href="/courses/police_admin" className="sidebar-exam-btn">ไปหน้าคอร์ส</Link><Link href="/#exam-selection" className="sidebar-change-link">เปลี่ยนสนามสอบ</Link>
           </div>
           <a href="https://www.facebook.com/profile.php?id=61589670089745" target="_blank" rel="noopener noreferrer" className="sidebar-help-box"><span>มีคำถามหรือปัญหา?</span><span>ติดต่อทีมงาน ›</span></a>
         </aside>

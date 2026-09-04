@@ -7,11 +7,11 @@ export function Hero() {
         <div className="home-hero-inner">
           <div className="home-hero-content">
             <h1 className="home-hero-title" id="home-hero-title">
-              <span>เตรียมสอบนายสิบตำรวจ</span>
+              <span>เตรียมสอบนายสิบตำรวจ สายอำนวยการ</span>
               <span>ครบ 6 วิชา ให้เป็นระบบ</span>
             </h1>
             <p className="home-hero-desc">
-              เริ่มทำชุดทดลองฟรีได้ทันที ฝึกข้อสอบตำรวจออนไลน์ จับเวลา ดูเฉลยละเอียด และกลับมาฝึกจุดที่พลาดได้
+              เริ่มทำชุดทดลองฟรีได้ทันที ฝึกข้อสอบตำรวจสายอำนวยการออนไลน์ จับเวลา ดูเฉลยละเอียด และกลับมาฝึกจุดที่พลาดได้
             </p>
             <div className="home-hero-actions">
               <TrackedLink

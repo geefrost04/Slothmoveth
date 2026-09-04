@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const examFields = [
   {
-    title: 'นายสิบตำรวจ',
+    title: 'นายสิบตำรวจ สายอำนวยการ',
     description: 'ข้อสอบรายวิชา + Mock Test',
     href: '/courses/police_admin',
     image: '/pic/logo_police.png',
