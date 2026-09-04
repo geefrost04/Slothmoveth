@@ -3460,7 +3460,7 @@
       "subjectTitle": "ภาษาอังกฤษ",
       "category": "ภาษาอังกฤษ",
       "originalCategory": "Reading",
-      "prompt": "Look at the traffic sign.\n\n[ YIELD ]\n\nWhat does this sign mean?",
+      "prompt": "Look at the traffic sign.\n\nWhat does this sign mean?",
       "choices": [
         "You must give way to other traffic before proceeding.",
         "You must stop and park your vehicle.",
@@ -3468,9 +3468,13 @@
         "You are entering a one-way street."
       ],
       "correctChoiceIndex": 0,
-      "explanation": "ป้าย YIELD หมายถึงให้ทางแก่รถหรือผู้ใช้ทางที่มีสิทธิก่อน และดำเนินต่อเมื่อปลอดภัย ไม่ได้หมายถึงต้องจอดรถถาวรหรือขับต่อโดยไม่ตรวจทาง.",
-      "tip": "Traffic signs: YIELD = give way",
-      "media": {},
+      "explanation": "แปลโจทย์และป้ายจราจร:\nโจทย์: \"Look at the traffic sign. What does this sign mean?\" (จงดูป้ายจราจรนี้ ป้ายนี้มีความหมายว่าอย่างไร?)\nป้ายที่แสดง: ป้าย YIELD (ป้ายให้ทาง) มีลักษณะเป็นรูปสามเหลี่ยมหัวกลับสีแดง-ขาว\n\nคำตอบที่ถูกต้องคือข้อ A: \"You must give way to other traffic before proceeding.\" (คุณต้องให้ทางแก่รถคันอื่นก่อนที่จะขับต่อไป)\nป้าย YIELD ในมาตรฐานสากลมีความหมายเดียวกับคำว่า \"GIVE WAY\" คือผู้ขับขี่ต้องชะลอความเร็วและยอมให้รถในทางเอกหรือทางร่วมผ่านไปก่อนอย่างปลอดภัย\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ B: \"You must stop and park your vehicle.\" (คุณต้องหยุดและจอดรถของคุณ) — ผิด ป้ายนี้ไม่ใช่ป้ายสั่งจอดรถ\n• ข้อ C: \"You may drive without checking other traffic.\" (คุณสามารถขับผ่านไปได้โดยไม่ต้องมองรถคันอื่น) — ผิดและอันตรายมาก ขัดแย้งกับหลักความปลอดภัย\n• ข้อ D: \"You are entering a one-way street.\" (คุณกำลังเข้าสู่ถนนเดินรถทางเดียว) — ป้ายเดินรถทางเดียวคือป้าย One Way (รูปลูกศรชี้ทิศทาง)\n\nคำศัพท์ป้ายจราจรสากลที่ออกสอบบ่อย:\n- Yield / Give way = ให้ทาง\n- Proceed = ดำเนินการต่อ, ขับต่อไป\n- Pedestrian crossing = ทางข้ามม้าลาย\n- Roundabout ahead = วงเวียนข้างหน้า",
+      "tip": "ป้ายสามเหลี่ยมหัวกลับเขียนว่า 'YIELD' คือป้ายให้ทาง (Give Way) ต้องจำคู่กัน: 'Yield = Give way to other traffic'",
+      "media": {
+        "type": "image",
+        "src": "/exams/police-english/traffic-yield.svg",
+        "alt": "YIELD traffic sign"
+      },
       "sourceExamSetId": "police-english-set-01",
       "sourceQuestionId": "police-english-set-01-q13",
       "sourcePosition": 13,

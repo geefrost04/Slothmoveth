@@ -9,6 +9,7 @@ import { readPendingAttempts, removePendingAttempts } from '@/lib/pending-attemp
 import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
+import { evaluatePoliceBenchmark } from '@/lib/police-exam-benchmark';
 import '../dashboard.css';
 
 type DashboardView = 'overview' | 'history' | 'analysis' | 'review';
@@ -511,6 +512,10 @@ export default function DashboardPage() {
   const subjectSummary = summarizeAttempts(subjectAttempts);
   const mockSummary = summarizeAttempts(mockAttempts);
   const otherSummary = summarizeAttempts(otherAttempts);
+  const latestMockAttempt = mockAttempts[0];
+  const mockBenchmark = latestMockAttempt
+    ? evaluatePoliceBenchmark(latestMockAttempt.score, latestMockAttempt.total_questions, latestMockAttempt.category_results)
+    : null;
   const filteredAttempts = historyFilter === 'all'
     ? attempts
     : historyFilter.startsWith('group:')
@@ -621,6 +626,127 @@ export default function DashboardPage() {
                   <span className="dashboard-space-metrics"><span><strong>{otherSummary.attempts}</strong> ครั้ง</span><span><strong>{otherSummary.questions.toLocaleString('th-TH')}</strong> ข้อ</span><span><strong>{otherSummary.average}%</strong> เฉลี่ย</span></span>
                   <span className="dashboard-space-action">{otherSummary.attempts > 0 ? 'ดูประวัติ' : 'ยังไม่มีกิจกรรม'} <i aria-hidden="true">→</i></span>
                 </button>
+              </div>
+            </section>
+
+            {/* Police Exam Benchmark Section */}
+            <section className="dashboard-benchmark-section" aria-label="การประเมินเกณฑ์สอบตำรวจ">
+              <div className="dashboard-section-heading is-benchmark-heading">
+                <div>
+                  <h2 className="dashboard-section-title">
+                    การประเมินเกณฑ์สอบตำรวจ & โอกาสสอบติด (สายอำนวยการ)
+                  </h2>
+                  <p className="dashboard-section-subtitle">
+                    วิเคราะห์เกณฑ์ขั้นต่ำ ภาค ก (60%) + ภาค ข (60%) และเทียบสถิติตัวจริงปี 62 และ 65
+                  </p>
+                </div>
+                {mockBenchmark ? (
+                  <span className={`dashboard-benchmark-tag is-${mockBenchmark.zone}`}>
+                    {mockBenchmark.zoneLabel}
+                  </span>
+                ) : (
+                  <span className="dashboard-benchmark-tag is-pending">
+                    ยังไม่มีผลสอบจำลอง
+                  </span>
+                )}
+              </div>
+
+              <div className="dashboard-benchmark-card">
+                {mockBenchmark ? (
+                  <>
+                    <div className="dashboard-benchmark-summary-row">
+                      <div className="dashboard-benchmark-rank-badge">
+                        <span className="dashboard-benchmark-kicker-label">ประมาณการอันดับจากการสอบล่าสุด</span>
+                        <div className={`rank-value is-${mockBenchmark.zone}`}>
+                          {mockBenchmark.zoneBadge}
+                        </div>
+                        <small>ประมาณการ: {mockBenchmark.estimatedRankText}</small>
+                      </div>
+
+                      <div className="dashboard-benchmark-cutoffs-box">
+                        <div className="dashboard-cutoff-stat">
+                          <span>คะแนนของคุณ</span>
+                          <strong className="is-user">{mockBenchmark.score} / {mockBenchmark.total}</strong>
+                          <small>{mockBenchmark.percentage}%</small>
+                        </div>
+                        <div className="dashboard-cutoff-divider" />
+                        <div className="dashboard-cutoff-stat">
+                          <span>ต่ำสุดปี 62</span>
+                          <strong>107</strong>
+                          <small>71.3% (รับ 350)</small>
+                        </div>
+                        <div className="dashboard-cutoff-divider" />
+                        <div className="dashboard-cutoff-stat">
+                          <span>ต่ำสุดปี 65</span>
+                          <strong className="is-highlight">117</strong>
+                          <small>78.0% (รับ 725)</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="dashboard-dual-cutoff-wrap">
+                      <div className="dashboard-dual-cutoff-header">
+                        <strong>เกณฑ์ตัดผ่าน 60% สองภาควิชา (ระเบียบ ตร.)</strong>
+                        {mockBenchmark.isOfficialPassed ? (
+                          <span className="status-pass">✓ ผ่านทั้งสองภาค</span>
+                        ) : (
+                          <span className="status-fail">✕ ยังไม่ผ่านเกณฑ์คู่</span>
+                        )}
+                      </div>
+                      <div className="dashboard-dual-cutoff-grid">
+                        <div className={`dashboard-part-stat ${mockBenchmark.partA.isPassed ? 'is-pass' : 'is-fail'}`}>
+                          <div className="dashboard-part-label">
+                            <strong>ภาค ก (ความรู้ทั่วไป + ไทย)</strong>
+                            <span>{mockBenchmark.partA.correct}/{mockBenchmark.partA.total} ข้อ ({mockBenchmark.partA.percentage}%)</span>
+                          </div>
+                          <div className="dashboard-part-track">
+                            <i style={{ width: `${Math.min(100, mockBenchmark.partA.percentage)}%` }} />
+                            <div className="dashboard-part-marker" style={{ left: '60%' }} title="เกณฑ์ผ่าน 60% (24 ข้อ)" />
+                          </div>
+                          <small>{mockBenchmark.partA.isPassed ? `✓ ผ่านเกณฑ์ (เกินเกณฑ์ ${mockBenchmark.partA.scoreDiff} ข้อ)` : `✕ ขาดอีก ${Math.abs(mockBenchmark.partA.scoreDiff)} ข้อ เพื่อแตะ 60% (${mockBenchmark.partA.passingScore} ข้อ)`}</small>
+                        </div>
+
+                        <div className={`dashboard-part-stat ${mockBenchmark.partB.isPassed ? 'is-pass' : 'is-fail'}`}>
+                          <div className="dashboard-part-label">
+                            <strong>ภาค ข (วิชาการ + กฎหมาย + อังกฤษ)</strong>
+                            <span>{mockBenchmark.partB.correct}/{mockBenchmark.partB.total} ข้อ ({mockBenchmark.partB.percentage}%)</span>
+                          </div>
+                          <div className="dashboard-part-track">
+                            <i style={{ width: `${Math.min(100, mockBenchmark.partB.percentage)}%` }} />
+                            <div className="dashboard-part-marker" style={{ left: '60%' }} title="เกณฑ์ผ่าน 60% (66 ข้อ)" />
+                          </div>
+                          <small>{mockBenchmark.partB.isPassed ? `✓ ผ่านเกณฑ์ (เกินเกณฑ์ ${mockBenchmark.partB.scoreDiff} ข้อ)` : `✕ ขาดอีก ${Math.abs(mockBenchmark.partB.scoreDiff)} ข้อ เพื่อแตะ 60% (${mockBenchmark.partB.passingScore} ข้อ)`}</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="dashboard-benchmark-footer">
+                      <p>{mockBenchmark.advice}</p>
+                      <Link href="/courses/police_admin/mock-test" className="dashboard-benchmark-action-btn">
+                        ทดสอบใหม่เพื่อไต่อันดับ →
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  <div className="dashboard-benchmark-empty">
+                    <div className="dashboard-benchmark-empty-copy">
+                      <span className="dashboard-benchmark-empty-kicker">Target Cutoff Benchmark</span>
+                      <h3>เป้าหมายคะแนนตัวจริง: 117+ / 150</h3>
+                      <p>
+                        การสอบสายอำนวยการมีผู้สมัครกว่า 1.35 แสนคน ต้องผ่านทั้งภาค ก (≥24 ข้อ) และ ภาค ข (≥66 ข้อ) 
+                        และทำคะแนนรวมให้ถึง 117 ขึ้นไปเพื่อการันตีตัวจริง ลองทำ Mock Test เต็มรูปแบบเพื่อดูโอกาสสอบติดของคุณ
+                      </p>
+                    </div>
+                    <div className="dashboard-benchmark-empty-cutoffs">
+                      <div><span>เกณฑ์ผ่านคู่</span><strong>90 / 150</strong></div>
+                      <div><span>ต่ำสุดปี 62</span><strong>107 / 150</strong></div>
+                      <div><span>เป้าหมายปี 65</span><strong className="is-highlight">117 / 150</strong></div>
+                    </div>
+                    <Link href="/courses/police_admin/mock-test" className="dashboard-benchmark-start-btn">
+                      เริ่มทำ Mock Test 150 ข้อ →
+                    </Link>
+                  </div>
+                )}
               </div>
             </section>
 

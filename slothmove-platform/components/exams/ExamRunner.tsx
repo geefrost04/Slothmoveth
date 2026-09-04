@@ -7,6 +7,7 @@ import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
 import type { ExamBundle, ExamQuestionData, ExamSetData } from '@/lib/exam-data';
 import { CheckoutButton } from '@/components/commerce/CheckoutButton';
+import { evaluatePoliceBenchmark } from '@/lib/police-exam-benchmark';
 import styles from './ExamRunner.module.css';
 
 type ExamSet = ExamSetData;
@@ -599,6 +600,7 @@ export function ExamRunner({
 
   if (result) {
     const percent = Math.round((result.score / result.total) * 100);
+    const benchmark = evaluatePoliceBenchmark(result.score, result.total, result.categoryResults);
 
     if (showReview) {
       const reviewItems = questions
@@ -762,12 +764,138 @@ export function ExamRunner({
             <div className={styles.scoreRing} style={{ '--score': `${percent * 3.6}deg` } as React.CSSProperties}>
               <div><strong>{percent}%</strong><span>{result.score} / {result.total}</span></div>
             </div>
-            <h1>{percent >= 60 ? 'ผ่านเกณฑ์ชุดทดลอง' : 'ทบทวนอีกนิดแล้วลองใหม่'}</h1>
+            <h1>
+              {benchmark.isDualPart
+                ? benchmark.isOfficialPassed
+                  ? (benchmark.zone === 'safe' ? 'ผ่านเกณฑ์ระดับตัวจริง!' : 'ผ่านเกณฑ์สนามจริงทั้งสองภาค!')
+                  : (percent >= 60 ? 'คะแนนรวมผ่าน แต่ติดเกณฑ์รายภาค' : 'ทบทวนอีกนิดแล้วลองใหม่')
+                : (percent >= 60 ? 'ผ่านเกณฑ์ชุดทดลอง' : 'ทบทวนอีกนิดแล้วลองใหม่')}
+            </h1>
             <p>{examSet.title} · ตอบแล้ว {result.answered} ข้อ</p>
             <div className={styles.resultStats}>
               <div><span>ตอบถูก</span><strong>{result.score}</strong></div>
               <div><span>ตอบผิด/ว่าง</span><strong>{result.total - result.score}</strong></div>
               <div><span>ปักหมุด</span><strong>{flaggedIds.size}</strong></div>
+            </div>
+
+            {benchmark.isDualPart ? (
+              <div className={styles.benchmarkCutoffSection}>
+                <div className={styles.benchmarkSectionHead}>
+                  <div>
+                    <span className={styles.benchmarkSectionKicker}>OFFICIAL CRITERIA SIMULATION</span>
+                    <h3>เกณฑ์ตัดผ่านสนามจริง (ภาค ก &amp; ภาค ข)</h3>
+                  </div>
+                  <span className={`${styles.benchmarkOverallBadge} ${benchmark.isOfficialPassed ? styles.badgePass : styles.badgeFail}`}>
+                    {benchmark.isOfficialPassed ? '✓ ผ่านเกณฑ์ทั้งสองภาค' : '✕ ยังไม่ผ่านเกณฑ์สนามจริง'}
+                  </span>
+                </div>
+                <p className={styles.benchmarkCriteriaNote}>
+                  ตามเกณฑ์สำนักงานตำรวจแห่งชาติ ผู้สอบต้องได้คะแนนไม่น้อยกว่า 60% ทั้งใน ภาค ก (ความรู้ทั่วไป+ภาษาไทย) และ ภาค ข (วิชาเฉพาะตำแหน่ง)
+                </p>
+                <div className={styles.benchmarkPartsGrid}>
+                  <div className={`${styles.benchmarkPartCard} ${benchmark.partA.isPassed ? styles.cardPass : styles.cardFail}`}>
+                    <div className={styles.benchmarkPartTop}>
+                      <span className={styles.benchmarkPartBadge}>ภาค ก</span>
+                      <span className={`${styles.benchmarkPartStatus} ${benchmark.partA.isPassed ? styles.statusPass : styles.statusFail}`}>
+                        {benchmark.partA.isPassed ? '✓ ผ่านเกณฑ์ 60%' : '✕ ต่ำกว่า 60%'}
+                      </span>
+                    </div>
+                    <strong>ความรู้ความสามารถทั่วไป</strong>
+                    <div className={styles.benchmarkPartScoreRow}>
+                      <span>{benchmark.partA.correct} / {benchmark.partA.total} ข้อ</span>
+                      <em>{benchmark.partA.percentage}%</em>
+                    </div>
+                    <div className={styles.benchmarkPartBar}>
+                      <i style={{ width: `${Math.min(100, benchmark.partA.percentage)}%` }} />
+                      <span className={styles.benchmarkTargetMarker} style={{ left: '60%' }} title="เกณฑ์ผ่าน 60%" />
+                    </div>
+                    <small>
+                      {benchmark.partA.isPassed
+                        ? `เกินเกณฑ์ผ่าน +${benchmark.partA.scoreDiff} ข้อ (เกณฑ์ ${benchmark.partA.passingScore} ข้อ)`
+                        : `ขาดอีก ${Math.abs(benchmark.partA.scoreDiff)} ข้อ เพื่อผ่านเกณฑ์ (${benchmark.partA.passingScore} ข้อ)`}
+                    </small>
+                  </div>
+
+                  <div className={`${styles.benchmarkPartCard} ${benchmark.partB.isPassed ? styles.cardPass : styles.cardFail}`}>
+                    <div className={styles.benchmarkPartTop}>
+                      <span className={styles.benchmarkPartBadge}>ภาค ข</span>
+                      <span className={`${styles.benchmarkPartStatus} ${benchmark.partB.isPassed ? styles.statusPass : styles.statusFail}`}>
+                        {benchmark.partB.isPassed ? '✓ ผ่านเกณฑ์ 60%' : '✕ ต่ำกว่า 60%'}
+                      </span>
+                    </div>
+                    <strong>ความรู้ความสามารถเฉพาะตำแหน่ง</strong>
+                    <div className={styles.benchmarkPartScoreRow}>
+                      <span>{benchmark.partB.correct} / {benchmark.partB.total} ข้อ</span>
+                      <em>{benchmark.partB.percentage}%</em>
+                    </div>
+                    <div className={styles.benchmarkPartBar}>
+                      <i style={{ width: `${Math.min(100, benchmark.partB.percentage)}%` }} />
+                      <span className={styles.benchmarkTargetMarker} style={{ left: '60%' }} title="เกณฑ์ผ่าน 60%" />
+                    </div>
+                    <small>
+                      {benchmark.partB.isPassed
+                        ? `เกินเกณฑ์ผ่าน +${benchmark.partB.scoreDiff} ข้อ (เกณฑ์ ${benchmark.partB.passingScore} ข้อ)`
+                        : `ขาดอีก ${Math.abs(benchmark.partB.scoreDiff)} ข้อ เพื่อผ่านเกณฑ์ (${benchmark.partB.passingScore} ข้อ)`}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
+            <div className={`${styles.historicalRankSection} ${styles[`rankZone_${benchmark.zone}`]}`}>
+              <div className={styles.historicalRankHead}>
+                <div>
+                  <span className={styles.benchmarkSectionKicker}>ADMISSION BENCHMARK</span>
+                  <h3>จำลองโอกาสสอบติด (เทียบสถิติจริงสายอำนวยการ)</h3>
+                </div>
+                <span className={styles.rankZoneBadge}>{benchmark.zoneBadge}</span>
+              </div>
+
+              <div className={styles.rankHighlightRow}>
+                <div className={styles.rankPercentileBox}>
+                  <span>อันดับจำลองโดยประมาณ</span>
+                  <strong>{benchmark.percentileText}</strong>
+                  <small>{benchmark.estimatedRankText}</small>
+                </div>
+                <div className={styles.rankCutoffSummary}>
+                  <div className={styles.rankCutoffItem}>
+                    <span>สถิติต่ำสุดปี 62</span>
+                    <strong>{benchmark.historicalCutoffs.year2562} คะแนน</strong>
+                    <small>อัตรารับ 350 / สมัคร 9.5 หมื่น</small>
+                  </div>
+                  <div className={styles.rankCutoffDivider} />
+                  <div className={styles.rankCutoffItem}>
+                    <span>สถิติต่ำสุดปี 65 (ล่าสุด)</span>
+                    <strong>{benchmark.historicalCutoffs.year2565} คะแนน</strong>
+                    <small>อัตรารับ 725 / สมัคร 1.35 แสน</small>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.benchmarkScaleWrap}>
+                <div className={styles.benchmarkScaleTrack}>
+                  <div className={styles.scaleMarker} style={{ left: '60%' }}>
+                    <span>60% ({benchmark.historicalCutoffs.minimum60} ข้อ)</span>
+                    <i>|</i>
+                  </div>
+                  <div className={styles.scaleMarker} style={{ left: '71.3%' }}>
+                    <span>ปี 62 ({benchmark.historicalCutoffs.year2562})</span>
+                    <i>|</i>
+                  </div>
+                  <div className={`${styles.scaleMarker} ${styles.markerCutoffYear65}`} style={{ left: '78%' }}>
+                    <span>ปี 65 ({benchmark.historicalCutoffs.year2565})</span>
+                    <i>|</i>
+                  </div>
+                  <div className={styles.userScorePin} style={{ left: `${Math.min(98, Math.max(2, benchmark.percentage))}%` }}>
+                    <span className={styles.userPinBubble}>คุณได้ {benchmark.score} ข้อ ({benchmark.percentage}%)</span>
+                    <div className={styles.userPinNeedle} />
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.rankAdviceBox}>
+                <p>💡 <strong>บทวิเคราะห์:</strong> {benchmark.advice}</p>
+              </div>
             </div>
             <div className={styles.categoryResults}>
               <div className={styles.categoryResultsHead}>

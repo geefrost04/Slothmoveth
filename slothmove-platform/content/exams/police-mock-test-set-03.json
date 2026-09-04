@@ -3844,7 +3844,7 @@
       "sourceDnaSet": "Set 3",
       "sourceDnaRef": "ต้นฉบับชุดที่ 3 ข้อ 13",
       "verificationRef": "Reading evidence: standard NO PARKING sign",
-      "prompt": "Look at the traffic sign.\n\n[ NO PARKING ]\n\nWhat does this sign mean?",
+      "prompt": "Look at the traffic sign.\n\nWhat does this sign mean?",
       "choices": [
         "You may park here after dark.",
         "You must stop here for five minutes.",
@@ -3852,9 +3852,13 @@
         "This area is reserved for motorcycles."
       ],
       "correctChoiceIndex": 2,
-      "explanation": "ป้าย NO PARKING หมายถึงห้ามจอดรถในบริเวณนั้น.",
-      "tip": "NO PARKING = ห้ามจอดรถ",
-      "media": {},
+      "explanation": "แปลโจทย์และป้ายจราจร:\nโจทย์: \"Look at the traffic sign. What does this sign mean?\" (จงดูป้ายจราจรนี้ ป้ายนี้มีความหมายว่าอย่างไร?)\nป้ายที่แสดง: ป้าย NO PARKING (ป้ายห้ามจอดรถ) มีลักษณะเป็นวงกลมขอบสีแดง ตัวอักษร P สีดำ และมีแถบสีแดงขีดทับเฉียง\n\nคำตอบที่ถูกต้องคือข้อ C: \"You must not park your vehicle in this area.\" (คุณต้องไม่จอดรถในบริเวณนี้)\nตัวอักษร P ย่อมาจาก Parking (การจอดรถ) เมื่อมีวงกลมขอบแดงและขีดฆ่าทับ จึงเป็นป้ายบังคับห้ามจอดรถทุกชนิดในบริเวณดังกล่าว\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ A: \"You may park here after dark.\" (คุณจอดรถที่นี่ได้หลังจากฟ้ามืดแล้ว) — ผิด ป้ายห้ามจอดตลอดเวลาไม่มีข้อยกเว้นเรื่องเวลา\n• ข้อ B: \"You must stop here for five minutes.\" (คุณต้องหยุดรถที่นี่ 5 นาที) — ผิด ป้ายนี้ไม่ใช่ป้ายกำหนดเวลาหยุด\n• ข้อ D: \"This area is reserved for motorcycles.\" (พื้นที่นี้สงวนไว้สำหรับรถจักรยานยนต์) — ผิด ไม่มีสัญลักษณ์รถจักรยานยนต์\n\nคำศัพท์เกี่ยวกับป้ายจราจรการจอด:\n- No parking = ห้ามจอดรถ\n- No waiting / No stopping = ห้ามหยุดรถ\n- Tow-away zone = เขตยกรถฝ่าฝืน",
+      "tip": "ตัวอักษร 'P' ขีดฆ่าสีแดงคือป้ายห้ามจอดรถสากล: 'P' = Parking, ขีดฆ่า = ห้าม ตอบ 'must not park your vehicle'",
+      "media": {
+        "type": "image",
+        "src": "/exams/police-english/traffic-no-parking.svg",
+        "alt": "NO PARKING traffic sign"
+      },
       "sourceType": "audited-set-03-selection",
       "sourceExamSetId": "police-english-set-03-notebooklm",
       "sourcePosition": 13

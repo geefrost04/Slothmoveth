@@ -1650,3 +1650,402 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
   }
 }
 
+/* Police Exam Benchmark Section in Dashboard */
+.dashboard-benchmark-section {
+  margin: 28px 0;
+}
+
+.dashboard-section-heading.is-benchmark-heading {
+  margin-bottom: 14px;
+}
+
+.dashboard-benchmark-tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.dashboard-benchmark-tag.is-safe {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+}
+
+.dashboard-benchmark-tag.is-competitive {
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+}
+
+.dashboard-benchmark-tag.is-passed_minimum {
+  color: #9a3412;
+  background: #ffedd5;
+  border: 1px solid #fed7aa;
+}
+
+.dashboard-benchmark-tag.is-below_minimum {
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+}
+
+.dashboard-benchmark-tag.is-pending {
+  color: #7a1822;
+  background: #fff1f3;
+  border: 1px solid #edd5d8;
+}
+
+.dashboard-benchmark-card {
+  padding: 24px 26px;
+  border-radius: 18px;
+  border: 1.5px solid #ead6d9;
+  background: linear-gradient(135deg, #ffffff 0%, #fffcfc 60%, #fff8f8 100%);
+  box-shadow: 0 10px 30px rgba(122, 24, 34, 0.05);
+}
+
+.dashboard-benchmark-summary-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.2fr) minmax(320px, 2.2fr);
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0e1e3;
+}
+
+.dashboard-benchmark-rank-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dashboard-benchmark-kicker-label {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rank-value {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.rank-value.is-safe { color: #15803d; }
+.rank-value.is-competitive { color: #b45309; }
+.rank-value.is-passed_minimum { color: #c2410c; }
+.rank-value.is-below_minimum { color: #b91c1c; }
+
+.dashboard-benchmark-rank-badge small {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dashboard-benchmark-cutoffs-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e8cfd3;
+}
+
+.dashboard-cutoff-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dashboard-cutoff-stat span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.dashboard-cutoff-stat strong {
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.dashboard-cutoff-stat strong.is-highlight {
+  color: #7a1822;
+  font-size: 17px;
+}
+
+.dashboard-cutoff-stat strong.is-user {
+  color: #2563eb;
+  font-size: 17px;
+}
+
+.dashboard-cutoff-stat small {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.dashboard-cutoff-divider {
+  width: 1px;
+  height: 34px;
+  background: #e2e8f0;
+}
+
+.dashboard-dual-cutoff-wrap {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #f0e1e3;
+}
+
+.dashboard-dual-cutoff-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.dashboard-dual-cutoff-header strong {
+  font-size: 13.5px;
+  color: #1e293b;
+}
+
+.dashboard-dual-cutoff-header .status-pass {
+  color: #16a34a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dashboard-dual-cutoff-header .status-fail {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dashboard-dual-cutoff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.dashboard-part-stat {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.dashboard-part-stat.is-pass {
+  border-color: #bbf7d0;
+  background: #fafffc;
+}
+
+.dashboard-part-stat.is-fail {
+  border-color: #fecaca;
+  background: #fffbfb;
+}
+
+.dashboard-part-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 12.5px;
+  margin-bottom: 6px;
+}
+
+.dashboard-part-label strong {
+  color: #1e293b;
+}
+
+.dashboard-part-label span {
+  color: #64748b;
+  font-weight: 750;
+}
+
+.dashboard-part-track {
+  position: relative;
+  height: 7px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: visible;
+  margin-bottom: 6px;
+}
+
+.dashboard-part-track i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #3b82f6;
+}
+
+.dashboard-part-stat.is-pass .dashboard-part-track i {
+  background: #16a34a;
+}
+
+.dashboard-part-stat.is-fail .dashboard-part-track i {
+  background: #ef4444;
+}
+
+.dashboard-part-marker {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background: #0f172a;
+  border-radius: 2px;
+}
+
+.dashboard-part-stat small {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dashboard-benchmark-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid #f0e1e3;
+}
+
+.dashboard-benchmark-footer p {
+  margin: 0;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 260px;
+}
+
+.dashboard-benchmark-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #7a1822;
+  color: #ffffff !important;
+  font-size: 12.5px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.dashboard-benchmark-action-btn:hover {
+  background: #941e2b;
+  transform: translateY(-1px);
+}
+
+/* Empty State for Benchmark */
+.dashboard-benchmark-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dashboard-benchmark-empty-copy {
+  flex: 1;
+  min-width: 280px;
+}
+
+.dashboard-benchmark-empty-kicker {
+  display: block;
+  color: #8c1c29;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dashboard-benchmark-empty-copy h3 {
+  margin: 4px 0 6px;
+  color: #172033;
+  font-size: 18px;
+}
+
+.dashboard-benchmark-empty-copy p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12.5px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.dashboard-benchmark-empty-cutoffs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.dashboard-benchmark-empty-cutoffs div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dashboard-benchmark-empty-cutoffs span {
+  color: #64748b;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.dashboard-benchmark-empty-cutoffs strong {
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.dashboard-benchmark-empty-cutoffs strong.is-highlight {
+  color: #7a1822;
+  font-size: 16px;
+}
+
+.dashboard-benchmark-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: #7a1822;
+  color: #ffffff !important;
+  font-size: 13.5px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(122, 24, 34, 0.22);
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.dashboard-benchmark-start-btn:hover {
+  background: #941e2b;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .dashboard-benchmark-summary-row {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-dual-cutoff-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-benchmark-empty {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+

@@ -1228,3 +1228,467 @@
   .questionCard, .loader, .timerWarning, .reviewCardBody, .loginPromptBackdrop, .loginPrompt { animation: none; }
   .choiceButton, .progressTrack i, .primaryButton, .reviewCtaArrow { transition: none; }
 }
+
+/* ==========================================================================
+   Police Exam Dual-Cutoff & Admission Benchmark Simulation
+   ========================================================================== */
+
+.benchmarkCutoffSection {
+  margin-top: 24px;
+  padding: 22px 24px;
+  border: 1px solid #ead6d9;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #fffcfc 100%);
+  box-shadow: 0 4px 18px rgba(122, 24, 34, 0.04);
+}
+
+.benchmarkSectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.benchmarkSectionKicker {
+  display: block;
+  color: #8c1c29;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.benchmarkSectionHead h3 {
+  margin: 2px 0 0;
+  color: #172033;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.benchmarkOverallBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.badgePass {
+  color: #15803d;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.badgeFail {
+  color: #be123c;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+
+.benchmarkCriteriaNote {
+  margin: 6px 0 16px;
+  color: #64748b;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.benchmarkPartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.benchmarkPartCard {
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.benchmarkPartCard.cardPass {
+  border-color: #86efac;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.benchmarkPartCard.cardFail {
+  border-color: #fca5a5;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+}
+
+.benchmarkPartTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.benchmarkPartBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.cardPass .benchmarkPartBadge {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.cardFail .benchmarkPartBadge {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.benchmarkPartStatus {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.statusPass { color: #16a34a; }
+.statusFail { color: #dc2626; }
+
+.benchmarkPartCard strong {
+  color: #1e293b;
+  font-size: 14.5px;
+  font-weight: 800;
+}
+
+.benchmarkPartScoreRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.benchmarkPartScoreRow span {
+  color: #334155;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.benchmarkPartScoreRow em {
+  font-size: 15px;
+  font-weight: 850;
+  font-style: normal;
+  color: #1e293b;
+}
+
+.benchmarkPartBar {
+  position: relative;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: visible;
+  margin: 4px 0 2px;
+}
+
+.benchmarkPartBar i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.cardPass .benchmarkPartBar i {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.cardFail .benchmarkPartBar i {
+  background: linear-gradient(90deg, #f87171, #dc2626);
+}
+
+.benchmarkTargetMarker {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2.5px;
+  background: #0f172a;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.benchmarkPartCard small {
+  color: #64748b;
+  font-size: 11.5px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Admission Benchmark Card */
+.historicalRankSection {
+  margin-top: 18px;
+  padding: 22px 24px;
+  border-radius: 16px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.rankZone_safe {
+  border-color: #86efac;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fef9 100%);
+}
+
+.rankZone_competitive {
+  border-color: #fde68a;
+  background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%);
+}
+
+.rankZone_passed_minimum {
+  border-color: #fed7aa;
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf5 100%);
+}
+
+.rankZone_below_minimum {
+  border-color: #fecaca;
+  background: linear-gradient(180deg, #ffffff 0%, #fffbfb 100%);
+}
+
+.historicalRankHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.historicalRankHead h3 {
+  margin: 2px 0 0;
+  color: #172033;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.rankZoneBadge {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.rankZone_safe .rankZoneBadge {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+}
+
+.rankZone_competitive .rankZoneBadge {
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+}
+
+.rankZone_passed_minimum .rankZoneBadge {
+  color: #9a3412;
+  background: #ffedd5;
+  border: 1px solid #fed7aa;
+}
+
+.rankZone_below_minimum .rankZoneBadge {
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+}
+
+.rankHighlightRow {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.2fr) minmax(240px, 1.8fr);
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.85);
+  border: 1px solid #e2e8f0;
+}
+
+.rankPercentileBox {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rankPercentileBox span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rankPercentileBox strong {
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.rankZone_safe .rankPercentileBox strong { color: #15803d; }
+.rankZone_competitive .rankPercentileBox strong { color: #b45309; }
+.rankZone_passed_minimum .rankPercentileBox strong { color: #c2410c; }
+.rankZone_below_minimum .rankPercentileBox strong { color: #b91c1c; }
+
+.rankPercentileBox small {
+  color: #64748b;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.rankCutoffSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  padding-left: 14px;
+  border-left: 1px solid #cbd5e1;
+}
+
+.rankCutoffItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.rankCutoffItem span {
+  color: #64748b;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.rankCutoffItem strong {
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.rankCutoffItem small {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.rankCutoffDivider {
+  width: 1px;
+  height: 32px;
+  background: #e2e8f0;
+}
+
+/* Visual Benchmark Scale Track */
+.benchmarkScaleWrap {
+  margin: 36px 8px 24px;
+  position: relative;
+}
+
+.benchmarkScaleTrack {
+  position: relative;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f87171 0%, #fb923c 60%, #fbbf24 71.3%, #4ade80 78%, #22c55e 100%);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.scaleMarker {
+  position: absolute;
+  top: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.scaleMarker span {
+  font-size: 10.5px;
+  font-weight: 750;
+  color: #64748b;
+}
+
+.scaleMarker i {
+  position: absolute;
+  top: -18px;
+  font-size: 9px;
+  color: #0f172a;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.markerCutoffYear65 span {
+  color: #15803d;
+  font-weight: 850;
+}
+
+.markerCutoffYear65 i {
+  color: #15803d;
+}
+
+.userScorePin {
+  position: absolute;
+  top: -30px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.userPinBubble {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.userPinNeedle {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #0f172a;
+}
+
+.rankAdviceBox {
+  margin-top: 24px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.rankAdviceBox p {
+  margin: 0;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .benchmarkPartsGrid {
+    grid-template-columns: 1fr;
+  }
+  .rankHighlightRow {
+    grid-template-columns: 1fr;
+  }
+  .rankCutoffSummary {
+    border-left: none;
+    padding-left: 0;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .benchmarkScaleWrap {
+    margin-bottom: 30px;
+  }
+}
+
