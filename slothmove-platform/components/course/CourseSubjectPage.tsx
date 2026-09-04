@@ -5,6 +5,7 @@ import type { CatalogExamSet } from '@/lib/exam-data';
 import { CourseKnowledgeContent } from './CourseKnowledgeContent';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
 import { CoffeePdfButton } from '@/components/commerce/CoffeePdfButton';
+import { SubjectIcon, PoliceCapIcon } from '@/components/icons/SubjectIcons';
 
 export function CourseSubjectPage({
   course,
@@ -76,7 +77,7 @@ export function CourseSubjectPage({
           <span className="course-subject-deco-symbol">×</span>
         </div>
         <div className="container course-subject-header-inner">
-          <div className="course-subject-icon">{subject.icon ?? '📘'}</div>
+          <div className="course-subject-icon"><SubjectIcon subjectId={subject.id} size={28} /></div>
           <div className="course-subject-heading">
             {hasRichLanding ? <div className="course-subject-chip">บทเรียน {course.id.toUpperCase()}</div> : null}
             <h1>{subject.title}</h1>
@@ -84,7 +85,7 @@ export function CourseSubjectPage({
           </div>
           <div className="course-subject-mascot" aria-hidden="true">
             <div className="course-subject-mascot-glow" />
-            <img src={subject.mascot || '/pic/slothmove_mascot.png'} alt="" />
+            <img src={subject.mascot || '/pic/course-mascot/police-hero.png'} alt="" />
           </div>
         </div>
       </header>
@@ -191,10 +192,10 @@ const POLICE_SUBJECT_DETAILS: Record<string, {
     hasSummary: true
   },
   law: {
-    eyebrow: 'กฎหมายสำหรับงานตำรวจ',
-    summary: 'ทบทวนหลักกฎหมายสำคัญผ่านสถานการณ์และคำถามที่เน้นการประยุกต์ใช้',
-    highlight: 'อาญา · แพ่ง · วิธีพิจารณาความอาญา',
-    hasSummary: false
+    eyebrow: 'กฎหมายและระเบียบงานสารบรรณ',
+    summary: 'ทบทวน 6 Clusters เข้มข้น: รัฐธรรมนูญ แพ่ง อาญา กฎหมายพิเศษ และระเบียบงานสารบรรณ 6 ชนิด',
+    highlight: 'รัฐธรรมนูญ · แพ่งและพาณิชย์ · อาญา · ระเบียบสารบรรณ',
+    hasSummary: true
   },
   english: {
     eyebrow: 'English for Examination',
@@ -242,8 +243,8 @@ function PoliceSubjectLandingPage({
           <div className="police-subject-hero-left">
             <span className="police-subject-eyebrow">{details.eyebrow}</span>
             <div className="police-subject-hero-title-row">
-              <span className="police-subject-hero-icon police-subject-hero-icon--emoji" aria-hidden="true">
-                {subject.icon ?? '📘'}
+              <span className="police-subject-hero-icon" aria-hidden="true">
+                <SubjectIcon subjectId={subject.id} size={26} />
               </span>
               <h1 className="police-subject-hero-title">{subject.title}</h1>
             </div>
@@ -469,7 +470,7 @@ function PoliceMathSubjectPage({
             <div className="police-subject-hero-badge-wrap">
               <img src="/pic/logo_police.png" alt="Official Police Logo" />
               <div className="police-subject-hero-badge-cap">
-                <img src="/pic/course-mascot/police-hero.png" alt="Police Cap" style={{ filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.15))' }} />
+                <PoliceCapIcon size={72} />
               </div>
             </div>
           </div>

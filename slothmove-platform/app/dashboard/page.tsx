@@ -8,6 +8,7 @@ import { Navbar } from '@/components/Navbar';
 import { readPendingAttempts, removePendingAttempts } from '@/lib/pending-attempts';
 import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
+import { SubjectIcon } from '@/components/icons/SubjectIcons';
 import '../dashboard.css';
 
 type DashboardView = 'overview' | 'history' | 'analysis' | 'review';
@@ -166,8 +167,123 @@ function getLatestWrongAnswers(attempts: AttemptRow[]) {
   return wrongAnswers;
 }
 
+function OverviewNavIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="7" height="9" x="3" y="3" rx="1.5" />
+      <rect width="7" height="5" x="14" y="3" rx="1.5" />
+      <rect width="7" height="9" x="14" y="12" rx="1.5" />
+      <rect width="7" height="5" x="3" y="16" rx="1.5" />
+    </svg>
+  );
+}
+
+function HistoryNavIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+function AnalysisNavIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 3v18h18" />
+      <path d="m19 9-5 5-4-4-3 3" />
+    </svg>
+  );
+}
+
+function ReviewNavIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+      <path d="M9 10h6" />
+      <path d="M12 7v6" />
+    </svg>
+  );
+}
+
+function AttemptsStatIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+      <path d="m9 14 2 2 4-4" />
+    </svg>
+  );
+}
+
+function QuestionsStatIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  );
+}
+
+function ScoreStatIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </svg>
+  );
+}
+
+function DurationStatIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 15 15" />
+    </svg>
+  );
+}
+
+function CheckMarkIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function ArrowUpRightIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="7" y1="17" x2="17" y2="7" />
+      <polyline points="7 7 17 7 17 17" />
+    </svg>
+  );
+}
+
+function ChevronDownIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
 function EmptyState({ title, children }: { title: string; children: string }) {
-  return <div className="dashboard-empty-state"><span aria-hidden="true">○</span><strong>{title}</strong><p>{children}</p><Link href="/courses/police_admin">เลือกชุดข้อสอบ</Link></div>;
+  return (
+    <div className="dashboard-empty-state">
+      <span aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7db298" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+        </svg>
+      </span>
+      <strong>{title}</strong>
+      <p>{children}</p>
+      <Link href="/courses/police_admin">เลือกชุดข้อสอบ</Link>
+    </div>
+  );
 }
 
 async function syncPendingAttempts(userId: string) {
@@ -203,10 +319,12 @@ function AttemptItem({ attempt, title, expanded, onToggle }: { attempt: AttemptR
   return (
     <article className={`dashboard-attempt${expanded ? ' is-expanded' : ''}`}>
       <button type="button" className="dashboard-attempt-summary" onClick={onToggle} aria-expanded={expanded}>
-        <span className={`activity-icon-wrap is-${percentage >= 70 ? 'good' : 'review'}`} aria-hidden="true">{percentage >= 70 ? '✓' : '↗'}</span>
+        <span className={`activity-icon-wrap is-${percentage >= 70 ? 'good' : 'review'}`} aria-hidden="true">
+          {percentage >= 70 ? <CheckMarkIcon size={16} /> : <ArrowUpRightIcon size={16} />}
+        </span>
         <span className="activity-info"><strong>{title}</strong><small>{formatDate(attempt.created_at, true)} · {attempt.total_questions} ข้อ · {formatDuration(attempt.duration_seconds ?? 0)} นาที</small></span>
         <span className={`activity-score-badge ${percentage >= 70 ? 'green' : 'orange'}`}>{percentage}%</span>
-        <span className="dashboard-attempt-chevron" aria-hidden="true">⌄</span>
+        <span className="dashboard-attempt-chevron" aria-hidden="true"><ChevronDownIcon size={18} /></span>
       </button>
       {expanded ? (
         <div className="dashboard-attempt-detail">
@@ -418,10 +536,10 @@ export default function DashboardPage() {
       <div className="dashboard-container">
         <aside className="dashboard-sidebar" aria-label="เมนู Dashboard">
           <div className="dashboard-menu">
-            <button type="button" className={`dashboard-menu-item${view === 'overview' ? ' active' : ''}`} onClick={() => selectView('overview')}><span>▦</span><span>ภาพรวม</span></button>
-            <button type="button" className={`dashboard-menu-item${view === 'history' ? ' active' : ''}`} onClick={() => selectView('history')}><span>◷</span><span>ประวัติการฝึก</span><b>{attempts.length}</b></button>
-            <button type="button" className={`dashboard-menu-item${view === 'analysis' ? ' active' : ''}`} onClick={() => selectView('analysis')}><span>◎</span><span>วิเคราะห์จุดอ่อน</span></button>
-            <button type="button" className={`dashboard-menu-item${view === 'review' ? ' active' : ''}`} onClick={() => selectView('review')}><span>▣</span><span>สมุดข้อผิด</span><b>{wrongAnswers.length}</b></button>
+            <button type="button" className={`dashboard-menu-item${view === 'overview' ? ' active' : ''}`} onClick={() => selectView('overview')}><span><OverviewNavIcon /></span><span>ภาพรวม</span></button>
+            <button type="button" className={`dashboard-menu-item${view === 'history' ? ' active' : ''}`} onClick={() => selectView('history')}><span><HistoryNavIcon /></span><span>ประวัติการฝึก</span><b>{attempts.length}</b></button>
+            <button type="button" className={`dashboard-menu-item${view === 'analysis' ? ' active' : ''}`} onClick={() => selectView('analysis')}><span><AnalysisNavIcon /></span><span>วิเคราะห์จุดอ่อน</span></button>
+            <button type="button" className={`dashboard-menu-item${view === 'review' ? ' active' : ''}`} onClick={() => selectView('review')}><span><ReviewNavIcon /></span><span>สมุดข้อผิด</span><b>{wrongAnswers.length}</b></button>
           </div>
           <div className="sidebar-exam-card">
             <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src="/pic/logo_police.png" alt="นายสิบตำรวจ" className="sidebar-exam-logo" />
@@ -434,7 +552,7 @@ export default function DashboardPage() {
           <header className="dashboard-page-header">
             <div className="dashboard-account-heading">
               <div className="dashboard-account-copy"><Link href="/" className="dashboard-home-breadcrumb">← กลับหน้าแรก</Link><span className="dashboard-view-eyebrow">{view === 'overview' ? 'ภาพรวมบัญชี' : view === 'history' ? 'ประวัติทั้งหมด' : view === 'analysis' ? 'วิเคราะห์ผลการฝึก' : 'ทบทวนเฉพาะข้อที่ยังพลาด'}</span><h1>{view === 'overview' ? `สวัสดี, ${username}` : view === 'history' ? 'ประวัติการฝึกของฉัน' : view === 'analysis' ? 'จุดที่ควรฝึกต่อ' : 'สมุดข้อผิดของฉัน'}</h1><p>{view === 'overview' ? 'ติดตามคะแนน เวลา และความก้าวหน้าจากข้อมูลจริงของคุณ' : view === 'history' ? 'เปิดดูผลรายหมวดและกลับไปฝึกชุดเดิมได้ทุกเมื่อ' : view === 'analysis' ? 'เรียงจากหมวดที่คะแนนต่ำ เพื่อช่วยเลือกสิ่งที่ควรทบทวนก่อน' : 'ข้อที่ตอบถูกในภายหลังจะถูกนำออก เพื่อให้เหลือเฉพาะจุดที่ควรทบทวน'}</p></div>
-              <div className="dashboard-account-actions"><Link href="/courses/police_admin" className="dashboard-primary-action">ทำข้อสอบต่อ <span aria-hidden="true">→</span></Link><button type="button" className="dashboard-refresh-button" onClick={() => setReloadToken((value) => value + 1)}>↻ อัปเดตข้อมูล</button><span className={`account-role-badge is-${profile?.role ?? 'user'}`}>{profile?.role === 'admin' ? 'ADMIN' : 'USER'}</span>{profile?.role === 'admin' ? <Link href="/admin">ระบบจัดการ →</Link> : null}</div>
+              <div className="dashboard-account-actions"><Link href="/courses/police_admin" className="dashboard-primary-action">ทำข้อสอบต่อ <span aria-hidden="true">→</span></Link><button type="button" className="dashboard-refresh-button" onClick={() => setReloadToken((value) => value + 1)}>↻ อัปเดตข้อมูล</button><span className={`account-role-badge is-${profile?.role ?? 'user'}`}>{profile?.role === 'admin' ? 'ADMIN' : 'สมาชิก'}</span>{profile?.role === 'admin' ? <Link href="/admin">ระบบจัดการ →</Link> : null}</div>
             </div>
           </header>
           {syncMessage ? <div className="dashboard-sync-message" role="status">✓ {syncMessage}</div> : null}
@@ -463,20 +581,20 @@ export default function DashboardPage() {
               </section>
 
               <section className={`dashboard-daily-practice is-${dailyPractice.mode}`} aria-label="ภารกิจประจำวัน">
-                <div className="dashboard-daily-practice-mark" aria-hidden="true">{dailyPractice.mode === 'complete' ? '✓' : '10'}</div>
+                <div className="dashboard-daily-practice-mark" aria-hidden="true">{dailyPractice.mode === 'complete' ? <CheckMarkIcon size={20} /> : '10'}</div>
                 <div className="dashboard-daily-practice-copy"><span>{dailyPractice.eyebrow}</span><h2>{dailyPractice.title}</h2><p>{dailyPractice.detail}</p><small className="dashboard-daily-streak">{practicedToday ? `ทำต่อเนื่อง ${dailyStreak} วัน` : dailyStreak > 0 ? `กลับมาทำวันนี้เพื่อเริ่ม streak ใหม่` : 'เริ่ม streak ของคุณด้วยควิซวันนี้'}</small></div>
                 <Link href={dailyPractice.href} onClick={() => trackAnalyticsEvent('daily_practice_start_click', { subject_id: suggestedSubject, state: dailyPractice.mode, streak: dailyStreak })}>{dailyPractice.action} <span aria-hidden="true">→</span></Link>
               </section>
-              {wrongAnswers.length > 0 ? <button type="button" className="dashboard-review-summary" onClick={() => selectView('review')}><span className="dashboard-review-summary-icon" aria-hidden="true">▣</span><span><strong>มีข้อที่ควรทบทวน {wrongAnswers.length} ข้อ</strong><small>เปิดสมุดข้อผิดเพื่ออ่านเฉลย แล้วกลับไปฝึกวิชานั้นได้ทันที</small></span><i aria-hidden="true">→</i></button> : null}
+              {wrongAnswers.length > 0 ? <button type="button" className="dashboard-review-summary" onClick={() => selectView('review')}><span className="dashboard-review-summary-icon" aria-hidden="true"><ReviewNavIcon /></span><span><strong>มีข้อที่ควรทบทวน {wrongAnswers.length} ข้อ</strong><small>เปิดสมุดข้อผิดเพื่ออ่านเฉลย แล้วกลับไปฝึกวิชานั้นได้ทันที</small></span><i aria-hidden="true">→</i></button> : null}
             </>
           ) : null}
 
           {view === 'overview' ? <>
             <section className="stats-section" aria-labelledby="stats-title"><div className="dashboard-section-heading"><h2 id="stats-title">ภาพรวม</h2><span>อัปเดตจาก {attempts.length} ครั้ง</span></div><div className="stats-grid">
-              <button type="button" className="stat-card" onClick={() => selectView('history')}><span className="stat-icon green">▤</span><span><strong className="stat-value">{attempts.length}<small>ครั้ง</small></strong><span className="stat-label">การทำข้อสอบทั้งหมด</span></span></button>
-              <button type="button" className="stat-card" onClick={() => selectView('history')}><span className="stat-icon blue">◎</span><span><strong className="stat-value">{totalQuestions.toLocaleString('th-TH')}<small>ข้อ</small></strong><span className="stat-label">ข้อที่ทำทั้งหมด</span></span></button>
-              <button type="button" className="stat-card" onClick={() => selectView('analysis')}><span className="stat-icon orange">↗</span><span><strong className="stat-value">{averageScore}%</strong><span className="stat-label">คะแนนเฉลี่ยรวม</span></span></button>
-              <div className="stat-card"><span className="stat-icon purple">◷</span><span><strong className="stat-value">{formatDuration(averageDuration)}<small>นาที</small></strong><span className="stat-label">เวลาเฉลี่ยต่อชุด</span></span></div>
+              <button type="button" className="stat-card" onClick={() => selectView('history')}><span className="stat-icon crimson"><AttemptsStatIcon /></span><span><strong className="stat-value">{attempts.length}<small>ครั้ง</small></strong><span className="stat-label">การทำข้อสอบทั้งหมด</span></span></button>
+              <button type="button" className="stat-card" onClick={() => selectView('history')}><span className="stat-icon blue"><QuestionsStatIcon /></span><span><strong className="stat-value">{totalQuestions.toLocaleString('th-TH')}<small>ข้อ</small></strong><span className="stat-label">ข้อที่ทำทั้งหมด</span></span></button>
+              <button type="button" className="stat-card" onClick={() => selectView('analysis')}><span className="stat-icon orange"><ScoreStatIcon /></span><span><strong className="stat-value">{averageScore}%</strong><span className="stat-label">คะแนนเฉลี่ยรวม</span></span></button>
+              <div className="stat-card"><span className="stat-icon purple"><DurationStatIcon /></span><span><strong className="stat-value">{formatDuration(averageDuration)}<small>นาที</small></strong><span className="stat-label">เวลาเฉลี่ยต่อชุด</span></span></div>
             </div></section>
 
             <section className="dashboard-practice-spaces" aria-labelledby="practice-spaces-title">
@@ -513,7 +631,7 @@ export default function DashboardPage() {
 
             <div className="bottom-sections-grid">
               <section className="chart-card"><div className="chart-header"><div><h2 className="chart-title">การฝึกล่าสุด</h2><p className="chart-subtitle">กดรายการเพื่อดูผลแยกหมวด</p></div><button type="button" className="chart-btn-detail" onClick={() => selectView('history')}>ดูทั้งหมด</button></div>{recentAttempts.length > 0 ? <div className="dashboard-attempt-list">{recentAttempts.slice(0, 3).map((attempt) => <AttemptItem key={attempt.id} attempt={attempt} title={getAttemptTitle(attempt)} expanded={expandedAttemptId === attempt.id} onToggle={() => setExpandedAttemptId((current) => current === attempt.id ? null : attempt.id)} />)}</div> : <EmptyState title="ยังไม่มีประวัติ">เริ่มทำข้อสอบเพื่อดูคะแนนและรายละเอียดที่นี่</EmptyState>}</section>
-              <section className="chart-card"><div className="chart-header"><div><h2 className="chart-title">ควรฝึกอะไรต่อ</h2><p className="chart-subtitle">อ้างอิงจากหมวดที่คะแนนต่ำที่สุด</p></div><button type="button" className="chart-btn-detail" onClick={() => selectView('analysis')}>ดูทั้งหมด</button></div>{weaknesses.length > 0 ? <div className="weakness-list">{weaknesses.slice(0, 3).map((item, index) => <div className="weakness-row" key={item.id}><div className="weakness-subject"><span className="weakness-number">{index + 1}</span><span className="weakness-name">{item.title}<small>{SUBJECT_TITLES[item.subjectId] ?? item.subjectId}</small></span></div><div className="weakness-stats"><div className="weakness-score">{item.percentage}%<span>{item.score}/{item.total} ข้อ</span></div><Link href={getPracticeHref(item.subjectId)} className="weakness-btn-action">ฝึกต่อ</Link></div></div>)}</div> : <EmptyState title="ข้อมูลยังไม่พอ">ส่งข้อสอบอย่างน้อยหนึ่งครั้งเพื่อวิเคราะห์จุดอ่อน</EmptyState>}</section>
+              <section className="chart-card"><div className="chart-header"><div><h2 className="chart-title">ควรฝึกอะไรต่อ</h2><p className="chart-subtitle">อ้างอิงจากหมวดที่คะแนนต่ำที่สุด</p></div><button type="button" className="chart-btn-detail" onClick={() => selectView('analysis')}>ดูทั้งหมด</button></div>{weaknesses.length > 0 ? <div className="weakness-list">{weaknesses.slice(0, 3).map((item) => <div className="weakness-row" key={item.id}><div className="weakness-subject"><span className="weakness-number"><SubjectIcon subjectId={item.subjectId} size={16} /></span><span className="weakness-name">{item.title}<small>{SUBJECT_TITLES[item.subjectId] ?? item.subjectId}</small></span></div><div className="weakness-stats"><div className="weakness-score">{item.percentage}%<span>{item.score}/{item.total} ข้อ</span></div><Link href={getPracticeHref(item.subjectId)} className="weakness-btn-action">ฝึกต่อ</Link></div></div>)}</div> : <EmptyState title="ข้อมูลยังไม่พอ">ส่งข้อสอบอย่างน้อยหนึ่งครั้งเพื่อวิเคราะห์จุดอ่อน</EmptyState>}</section>
             </div>
           </> : null}
 
@@ -537,10 +655,25 @@ export default function DashboardPage() {
                     {visibleSubjectAnalysis.map((subject) => (
                       <article className="subject-analysis-card" key={subject.subjectId}>
                         <header className="subject-analysis-head">
-                          <div>
-                            <span>วิชา</span>
-                            <h3>{subject.title}</h3>
-                            <p>ฝึกแล้ว {subject.attemptCount} ครั้ง · ตอบถูก {subject.score} จาก {subject.total} ข้อ</p>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <div style={{
+                              width: 38,
+                              height: 38,
+                              borderRadius: 8,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              background: '#fdebed',
+                              color: '#7a1822',
+                              flexShrink: 0
+                            }}>
+                              <SubjectIcon subjectId={subject.subjectId} size={20} />
+                            </div>
+                            <div>
+                              <span>วิชา</span>
+                              <h3>{subject.title}</h3>
+                              <p>ฝึกแล้ว {subject.attemptCount} ครั้ง · ตอบถูก {subject.score} จาก {subject.total} ข้อ</p>
+                            </div>
                           </div>
                           <div className={`subject-analysis-score is-${subject.percentage < 50 ? 'weak' : subject.percentage < 70 ? 'developing' : 'good'}`}>
                             <strong>{subject.percentage}%</strong>
@@ -591,7 +724,7 @@ export default function DashboardPage() {
             </section>
           ) : null}
 
-          <div className="footer-banner-cta"><div className="footer-banner-left"><div className="footer-banner-icon">✓</div><div className="footer-banner-info"><h2>{attempts.length > 0 ? 'พร้อมพัฒนาคะแนนต่อหรือยัง?' : 'เริ่มเก็บผลการฝึกครั้งแรก'}</h2><p>ทุกครั้งที่ส่งข้อสอบ ระบบจะอัปเดต Dashboard ให้อัตโนมัติ</p></div></div><Link href="/courses/police_admin" className="footer-banner-btn">เลือกชุดข้อสอบ <span aria-hidden="true">→</span></Link></div>
+          <div className="footer-banner-cta"><div className="footer-banner-left"><div className="footer-banner-icon"><CheckMarkIcon size={22} /></div><div className="footer-banner-info"><h2>{attempts.length > 0 ? 'พร้อมพัฒนาคะแนนต่อหรือยัง?' : 'เริ่มเก็บผลการฝึกครั้งแรก'}</h2><p>ทุกครั้งที่ส่งข้อสอบ ระบบจะอัปเดต Dashboard ให้อัตโนมัติ</p></div></div><Link href="/courses/police_admin" className="footer-banner-btn">เลือกชุดข้อสอบ <span aria-hidden="true">→</span></Link></div>
         </main>
       </div>
     </div>

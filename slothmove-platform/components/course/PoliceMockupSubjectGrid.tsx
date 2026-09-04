@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { CourseConfig } from '@/lib/course-types';
+import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
 type SubjectCard = {
   id: string;
@@ -30,7 +31,7 @@ export function PoliceMockupSubjectGrid({
                 <p className="police-v2-subject-desc">{subject.desc}</p>
               </div>
               <div className="police-v2-subject-icon-box" style={{ flexShrink: 0, marginLeft: '12px' }}>
-                {subject.id === 'math' ? '▦' : subject.id === 'computer' ? '▣' : subject.iconText ? subject.iconText : subject.iconCustom}
+                {subject.iconCustom ?? <SubjectIcon subjectId={subject.id} size={22} />}
               </div>
             </div>
             <span className={`police-v2-action-button ${subject.active ? 'is-active' : 'is-disabled'}`} style={{ marginTop: 'auto' }}>

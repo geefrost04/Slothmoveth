@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { CourseConfig, GameMeta, SubjectMeta } from '@/lib/course-types';
+import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
 type PracticeEntry = {
   id: string;
@@ -413,7 +414,7 @@ export function CoursePracticeHubPage({
           <span className="course-subject-deco-symbol">×</span>
         </div>
         <div className="container course-subject-header-inner">
-          <div className="course-subject-icon">{subject.icon ?? '📘'}</div>
+          <div className="course-subject-icon"><SubjectIcon subjectId={subject.id} size={28} /></div>
           <div className="course-subject-heading">
             <div className="course-subject-chip">ลานฝึกซ้อม · {subject.title}</div>
             <h1>ลานฝึก {subject.title}</h1>
@@ -421,7 +422,7 @@ export function CoursePracticeHubPage({
           </div>
           <div className="course-subject-mascot" aria-hidden="true">
             <div className="course-subject-mascot-glow" />
-            <img src={subject.mascot || '/pic/slothmove_mascot.png'} alt="" />
+            <img src={subject.mascot || '/pic/course-mascot/police-hero.png'} alt="" />
           </div>
         </div>
       </header>

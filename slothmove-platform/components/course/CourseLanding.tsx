@@ -7,6 +7,15 @@ import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
+import {
+  SubjectIcon,
+  MathIcon,
+  ThaiIcon,
+  EnglishIcon,
+  LawIcon,
+  ComputerIcon,
+  SarabanIcon
+} from '@/components/icons/SubjectIcons';
 
 function findSubjects(course: CourseConfig, ids: string[]) {
   return ids
@@ -53,7 +62,7 @@ function SubjectPanel({
         {isPoliceAdmin ? (
           <>
             <div className="pab-subject-card-header-police">
-              <span aria-hidden="true" className="pab-subject-card-icon-police">{subject.icon ?? '📘'}</span>
+              <span aria-hidden="true" className="pab-subject-card-icon-police"><SubjectIcon subjectId={subject.id} size={20} /></span>
               <div className="pab-subject-card-header-info-police">
                 <h3 className="pab-subject-card-title-police">{subject.title}</h3>
                 <span className="pab-subject-card-cat-police">{categoryLabel}</span>
@@ -72,7 +81,7 @@ function SubjectPanel({
               <span className="pab-subject-card-cat">{categoryLabel}</span>
             </div>
             <h3 className="pab-subject-card-title">
-              <span aria-hidden="true">{subject.icon ?? '📘'}</span> {subject.title}
+              <span aria-hidden="true"><SubjectIcon subjectId={subject.id} size={20} /></span> {subject.title}
             </h3>
             {topicsSummary ? (
               <>
@@ -385,7 +394,7 @@ function PoliceAdminV3Landing({ course }: { course: CourseConfig }) {
                       className={`police-v3-subject-card is-${subject.id}`}
                     >
                       <div className="police-v3-subject-header">
-                        <div className="police-v3-subject-icon">{subject.icon ?? '📘'}</div>
+                        <div className="police-v3-subject-icon"><SubjectIcon subjectId={subject.id} size={22} /></div>
                         <div className="police-v3-subject-header-info">
                           <h4>{subject.title}</h4>
                           <span className="police-v3-subject-chip">{section.categoryLabel}</span>
@@ -399,7 +408,7 @@ function PoliceAdminV3Landing({ course }: { course: CourseConfig }) {
                   ) : (
                     <div key={subject.id} className={`police-v3-subject-card is-disabled is-${subject.id}`}>
                       <div className="police-v3-subject-header">
-                        <div className="police-v3-subject-icon">{subject.icon ?? '📘'}</div>
+                        <div className="police-v3-subject-icon"><SubjectIcon subjectId={subject.id} size={22} /></div>
                         <div className="police-v3-subject-header-info">
                           <h4>{subject.title}</h4>
                           <span className="police-v3-subject-chip">{section.categoryLabel}</span>
@@ -468,7 +477,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
     {
       id: 'math',
       title: 'ความรู้ทั่วไป',
-      iconText: '123',
+      iconCustom: <MathIcon size={22} />,
       desc: 'คิดวิเคราะห์, คิดเชิงเหตุผล, คณิตศาสตร์พื้นฐาน, อนุกรม, ความน่าจะเป็น, สถิติพื้นฐาน',
       active: true,
       quizzes: [
@@ -478,28 +487,28 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
     {
       id: 'thai',
       title: 'ภาษาไทย',
-      iconText: 'ก',
+      iconCustom: <ThaiIcon size={22} />,
       desc: 'การอ่านจับใจความ, การเขียน, หลักภาษา, การใช้คำ, การสรุปความและตีความ',
       active: true,
     },
     {
       id: 'english',
       title: 'ภาษาอังกฤษ',
-      iconText: 'EN',
+      iconCustom: <EnglishIcon size={22} />,
       desc: 'Reading Ability, Grammar & Structure, Vocabulary, Conversation',
       active: true,
     },
     {
       id: 'law',
       title: 'กฎหมาย',
-      iconCustom: <ScalesIcon />,
+      iconCustom: <LawIcon size={22} />,
       desc: 'กฎหมายที่ประชาชนควรรู้, กฎหมายอาญา, กฎหมายแพ่ง, กฎหมายในชีวิตประจำวัน',
       active: true,
     },
     {
       id: 'computer',
       title: 'คอมพิวเตอร์',
-      iconCustom: <LaptopIcon />,
+      iconCustom: <ComputerIcon size={22} />,
       desc: 'เทคโนโลยีสารสนเทศ, เครือข่ายคอมพิวเตอร์เบื้องต้น, MS Word, Excel, PowerPoint',
       active: true,
       quizzes: [
@@ -509,7 +518,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
     {
       id: 'saraban',
       title: 'งานสารบรรณ',
-      iconCustom: <FolderIcon />,
+      iconCustom: <SarabanIcon size={22} />,
       desc: 'ระเบียบงานสารบรรณ พ.ศ. 2526 และประมวลระเบียบการตำรวจ ลักษณะที่ 54',
       active: true,
     }
@@ -610,11 +619,23 @@ export async function CourseLanding({ course }: { course: CourseConfig }) {
   const firstSectionHref = `#${firstSectionId}`;
 
   if (course.id === 'police_admin') {
-    const examSets = await getPublishedExamCatalog(course.id, 'math');
+    let examSets: any[] = [];
+    try {
+      examSets = await getPublishedExamCatalog(course.id, 'math');
+    } catch (e) {
+      console.warn('Unable to load math exam catalog', e);
+    }
     const freeExamSet = examSets.find((examSet) => examSet.access_type === 'free');
-    const bundle = freeExamSet ? await getPublishedExamBundle(freeExamSet.id) : null;
+    let bundle: any = null;
+    if (freeExamSet) {
+      try {
+        bundle = await getPublishedExamBundle(freeExamSet.id);
+      } catch (e) {
+        console.warn('Unable to load exam bundle', e);
+      }
+    }
     const dailyKey = getBangkokDateKey();
-    const dailyQuestion = bundle?.questions.length
+    const dailyQuestion = bundle?.questions?.length
       ? bundle.questions[getDailyQuestionIndex(`${course.id}-${freeExamSet?.id}-${dailyKey}`, bundle.questions.length)]
       : null;
     const sampleQuestion = dailyQuestion
