@@ -466,117 +466,130 @@ function PoliceMathSubjectPage({
               </div>
             </div>
           </div>
-          <div className="police-subject-hero-right">
-            <div className="police-subject-hero-badge-wrap">
-              <img src="/pic/logo_police.png" alt="Official Police Logo" />
-            </div>
+          <div className="police-subject-hero-right police-subject-hero-visual" aria-hidden="true">
+            <span className="police-subject-hero-watermark">SLOTHMOVE</span>
+            <img className="police-subject-hero-mascot" src={subject.mascot || '/pic/police-mascot/math.png'} alt="" />
+            <img className="police-subject-hero-seal" src="/pic/logo_police.png" alt="" />
           </div>
         </section>
 
-        <section className="police-subject-study-path" aria-labelledby="study-path-title">
-          <div className="police-subject-study-path-copy">
-            <p className="police-subject-study-path-kicker">FREE PRACTICE SET</p>
-            <h2 id="study-path-title">Set 1: ข้อสอบแยกหมวด</h2>
-            <p>รวม 140 ข้อ แบ่งตามหัวข้อเพื่อเลือกฝึกเรื่องที่ต้องการ พร้อมเฉลยทุกข้อ เปิดให้ทำฟรีทั้งหมด</p>
-            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-free">
-              เข้า Set 1 <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="police-subject-study-path-offer">
-            <span className="police-subject-study-path-step">SET 1</span>
-            <strong>6 หมวดฝึก (140 ข้อ)</strong>
-            <p>เลือกทำเฉพาะหัวข้อที่อยากฝึกได้ ไม่จำเป็นต้องทำเรียงลำดับ</p>
-            <small style={{ color: '#16a34a', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4, marginTop: 'auto' }}>
-              ✓ ฟรีทุกหมวด พร้อมเฉลยละเอียด
-            </small>
-          </div>
-        </section>
-
-        <section className="police-subject-upcoming-sets" aria-labelledby="upcoming-sets-title" style={{ marginBottom: 32 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+        <section className="police-subject-exam-section" aria-labelledby="math-exam-catalog-title">
+          <div className="police-subject-section-heading">
             <div>
-              <span style={{ color: '#8c1c29', fontSize: 11, fontWeight: 850, letterSpacing: '0.1em', textTransform: 'uppercase' }}>UPCOMING SETS</span>
-              <h2 id="upcoming-sets-title" style={{ fontSize: 20, fontWeight: 800, color: '#0f172a', margin: '4px 0 0' }}>ชุดข้อสอบถัดไป</h2>
+              <span>ฝึกทำอย่างเป็นระบบ</span>
+              <h2 id="math-exam-catalog-title">ชุดข้อสอบ{subject.title}</h2>
             </div>
-            <span style={{ fontSize: 13, color: '#64748b' }}>เตรียมพบกับชุดข้อสอบ Set 2 - Set 5 เร็ว ๆ นี้</span>
+            <span style={{
+              padding: '4px 12px',
+              borderRadius: '999px',
+              color: '#7a1822',
+              border: '1px solid #edd5d8',
+              background: '#fff5f5',
+              fontSize: '12px',
+              fontWeight: 800
+            }}>
+              5 ชุดข้อสอบ (เปิดแล้ว 1 ชุด)
+            </span>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: 14
-          }}>
+          <div className="police-math-sets-list">
+            {/* Set 1 - Active */}
+            <div className="police-math-set-card is-active">
+              <div className="police-math-set-badge is-active">
+                <small>SET</small>
+                <span>01</span>
+              </div>
+              <div className="police-math-set-info">
+                <div className="police-math-set-title-row">
+                  <h3 className="police-math-set-title">Set 1 : ข้อสอบแยกหมวด</h3>
+                  <span style={{ padding: '2px 8px', borderRadius: '6px', color: '#16a34a', background: '#f0fdf4', border: '1px solid #bbf7d0', fontSize: '11px', fontWeight: 800 }}>
+                    เปิดให้ทำแล้ว
+                  </span>
+                  <span style={{ padding: '2px 8px', borderRadius: '6px', color: '#7a1822', background: '#fde7ea', fontSize: '11px', fontWeight: 800 }}>
+                    ฟรี
+                  </span>
+                  <span style={{ padding: '2px 8px', borderRadius: '6px', color: '#475569', background: '#f1f5f9', fontSize: '11px', fontWeight: 700 }}>
+                    140 ข้อ
+                  </span>
+                  <span style={{ padding: '2px 8px', borderRadius: '6px', color: '#475569', background: '#f1f5f9', fontSize: '11px', fontWeight: 700 }}>
+                    6 หมวดฝึก
+                  </span>
+                </div>
+                <p className="police-math-set-desc">
+                  อนุกรม · มิติสัมพันธ์ · โอเปอเรชัน · ตรรกศาสตร์ · เงื่อนไขสัญลักษณ์ · โจทย์ปัญหา
+                </p>
+                <small className="police-math-set-meta-note">
+                  ✓ ทำฟรีทุกหมวด พร้อมเฉลยละเอียดและวิธีคิดทุกข้อ
+                </small>
+              </div>
+              <div className="police-math-set-action">
+                <Link href="/courses/police_admin/math/set-1" className="police-math-set-action-btn">
+                  เข้าทำข้อสอบ Set 1 <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Sets 2-5 - Upcoming */}
             {[
-              { set: 'Set 2', title: 'รวมแนวข้อสอบเก็งใหม่', desc: 'คัดแนวข้อสอบล่าสุด เน้นโจทย์ประยุกต์และข้อสอบที่ออกบ่อย' },
-              { set: 'Set 3', title: 'แนวข้อสอบจริงย้อนหลัง', desc: 'รวบรวมแนวข้อสอบนายสิบตำรวจรอบจริง พร้อมเทคนิคตัดชอยส์' },
-              { set: 'Set 4', title: 'ชุดฝึกจับเวลา Speed Test', desc: 'ฝึกทำข้อสอบเสมือนจริง 100 ข้อ จับเวลาจริงเพื่อคุมสปีดสอบ' },
-              { set: 'Set 5', title: 'ชุดเก็งโค้งสุดท้ายก่อนสอบ', desc: 'รวมข้อสอบไฮไลต์ระดับยาก-ปานกลาง เสริมความมั่นใจรอบสุดท้าย' },
+              {
+                num: '02',
+                title: 'Set 2 : รวมแนวข้อสอบเก็งใหม่',
+                desc: 'คัดแนวข้อสอบล่าสุด เน้นโจทย์ประยุกต์และข้อสอบที่ออกบ่อยในสนามสอบจริง',
+                tags: ['เร็ว ๆ นี้', 'แนวข้อสอบล่าสุด', 'โจทย์ประยุกต์']
+              },
+              {
+                num: '03',
+                title: 'Set 3 : แนวข้อสอบจริงย้อนหลัง',
+                desc: 'รวบรวมแนวข้อสอบนายสิบตำรวจรอบจริง พร้อมเทคนิคตัดชอยส์และวิธีคิดเร็ว',
+                tags: ['เร็ว ๆ นี้', 'ข้อสอบจริงย้อนหลัง', 'เทคนิคคิดลัด']
+              },
+              {
+                num: '04',
+                title: 'Set 4 : ชุดฝึกจับเวลา Speed Test',
+                desc: 'ฝึกทำข้อสอบเสมือนจริง 100 ข้อ จับเวลาจริงเพื่อคุมสปีดและบริหารเวลาในสนามสอบ',
+                tags: ['เร็ว ๆ นี้', 'โหมดจับเวลาจริง', '100 ข้อ']
+              },
+              {
+                num: '05',
+                title: 'Set 5 : ชุดเก็งโค้งสุดท้ายก่อนสอบ',
+                desc: 'รวมข้อสอบไฮไลต์ระดับยาก-ปานกลาง และจุดหลอกที่พบบ่อย เสริมความมั่นใจรอบสุดท้าย',
+                tags: ['เร็ว ๆ นี้', 'เก็งโค้งสุดท้าย', 'ดักจุดหลอก']
+              }
             ].map((item) => (
-              <div
-                key={item.set}
-                style={{
-                  padding: '18px 20px',
-                  borderRadius: 12,
-                  border: '1px solid #e2e8f0',
-                  background: '#ffffff',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  gap: 12
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <span style={{
-                      display: 'inline-block',
-                      padding: '3px 8px',
-                      borderRadius: 6,
-                      background: '#f1f5f9',
-                      color: '#475569',
-                      fontSize: 11,
-                      fontWeight: 800,
-                      letterSpacing: '0.05em'
-                    }}>
-                      {item.set}
-                    </span>
-                    <span style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: '#94a3b8',
-                      background: '#f8fafc',
-                      border: '1px solid #e2e8f0',
-                      padding: '2px 8px',
-                      borderRadius: 999
-                    }}>
+              <div key={item.num} className="police-math-set-card is-upcoming">
+                <div className="police-math-set-badge is-locked">
+                  <small>SET</small>
+                  <span>{item.num}</span>
+                </div>
+                <div className="police-math-set-info">
+                  <div className="police-math-set-title-row">
+                    <h3 className="police-math-set-title">{item.title}</h3>
+                    <span style={{ padding: '2px 8px', borderRadius: '6px', color: '#64748b', background: '#f1f5f9', fontSize: '11px', fontWeight: 700 }}>
                       เร็ว ๆ นี้
                     </span>
+                    {item.tags.slice(1).map((tag) => (
+                      <span
+                        key={tag}
+                        style={{
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          color: '#94a3b8',
+                          background: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          fontSize: '11px',
+                          fontWeight: 600
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <h3 style={{ fontSize: 15, fontWeight: 750, color: '#1e293b', margin: '0 0 6px' }}>{item.title}</h3>
-                  <p style={{ fontSize: 12.5, color: '#64748b', lineHeight: 1.55, margin: 0 }}>{item.desc}</p>
+                  <p className="police-math-set-desc">{item.desc}</p>
                 </div>
-                <div style={{ marginTop: 'auto', paddingTop: 8 }}>
-                  <button
-                    type="button"
-                    disabled
-                    style={{
-                      width: '100%',
-                      padding: '9px 14px',
-                      borderRadius: 8,
-                      border: '1px dashed #cbd5e1',
-                      background: '#f8fafc',
-                      color: '#94a3b8',
-                      fontSize: 12,
-                      fontWeight: 700,
-                      cursor: 'not-allowed',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 6
-                    }}
-                  >
+                <div className="police-math-set-action">
+                  <span className="police-math-set-locked-btn">
                     <span>🔒</span> เร็ว ๆ นี้
-                  </button>
+                  </span>
                 </div>
               </div>
             ))}

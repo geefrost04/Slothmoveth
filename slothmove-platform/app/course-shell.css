@@ -11772,3 +11772,167 @@ a.police-subject-study-path-checkout {
   .police-math-set-one-grid { grid-template-columns: 1fr; }
   .police-math-set-one-card { min-height: 198px; }
 }
+
+/* Math Sets Catalog */
+.police-math-sets-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.police-math-set-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 22px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.025);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.police-math-set-card.is-active {
+  border: 1.5px solid #e3b6bd;
+  background: linear-gradient(105deg, #ffffff 0%, #fffbfc 100%);
+  box-shadow: 0 4px 18px rgba(122, 24, 34, 0.05);
+}
+
+.police-math-set-card.is-active:hover {
+  border-color: #8c1c29;
+  box-shadow: 0 8px 26px rgba(122, 24, 34, 0.12);
+  transform: translateY(-2px);
+}
+
+.police-math-set-card.is-upcoming {
+  opacity: 0.94;
+}
+
+.police-math-set-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.1;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.police-math-set-badge.is-active {
+  background: linear-gradient(145deg, #a32636, #761822);
+  box-shadow: 0 6px 14px rgba(122, 24, 34, 0.22);
+}
+
+.police-math-set-badge.is-locked {
+  background: linear-gradient(145deg, #cbd5e1, #94a3b8);
+}
+
+.police-math-set-badge small {
+  font-size: 10px;
+  opacity: 0.85;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.police-math-set-info {
+  min-width: 0;
+}
+
+.police-math-set-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.police-math-set-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+.police-math-set-card.is-upcoming .police-math-set-title {
+  color: #334155;
+  font-size: 15px;
+}
+
+.police-math-set-desc {
+  margin: 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.police-math-set-meta-note {
+  display: block;
+  margin-top: 4px;
+  color: #16a34a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.police-math-set-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: #7a1822;
+  color: #ffffff !important;
+  font-size: 13.5px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(122, 24, 34, 0.25);
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.police-math-set-action-btn:hover {
+  background: #941e2b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(122, 24, 34, 0.35);
+}
+
+.police-math-set-locked-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  background: #f8fafc;
+  color: #94a3b8;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  user-select: none;
+}
+
+@media (max-width: 680px) {
+  .police-math-set-card {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .police-math-set-action {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+  }
+  .police-math-set-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .police-math-set-locked-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
