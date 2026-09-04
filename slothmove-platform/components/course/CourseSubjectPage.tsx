@@ -5,7 +5,7 @@ import type { CatalogExamSet } from '@/lib/exam-data';
 import { CourseKnowledgeContent } from './CourseKnowledgeContent';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
 import { CoffeePdfButton } from '@/components/commerce/CoffeePdfButton';
-import { SubjectIcon, PoliceCapIcon } from '@/components/icons/SubjectIcons';
+import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
 export function CourseSubjectPage({
   course,
@@ -469,9 +469,6 @@ function PoliceMathSubjectPage({
           <div className="police-subject-hero-right">
             <div className="police-subject-hero-badge-wrap">
               <img src="/pic/logo_police.png" alt="Official Police Logo" />
-              <div className="police-subject-hero-badge-cap">
-                <PoliceCapIcon size={72} />
-              </div>
             </div>
           </div>
         </section>
@@ -481,15 +478,14 @@ function PoliceMathSubjectPage({
             <p className="police-subject-study-path-kicker">FREE PRACTICE SET</p>
             <h2 id="study-path-title">Set 1: ข้อสอบแยกหมวด</h2>
             <p>รวม 140 ข้อ แบ่งตามหัวข้อเพื่อเลือกฝึกเรื่องที่ต้องการ พร้อมเฉลยทุกข้อ เปิดให้ทำฟรีทั้งหมด</p>
-            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-free">
-              เข้า Set 1 <span aria-hidden="true">→</span>
-            </Link>
           </div>
           <div className="police-subject-study-path-offer">
             <span className="police-subject-study-path-step">SET 1</span>
             <strong>6 หมวดฝึก</strong>
             <p>เลือกทำเฉพาะหัวข้อที่อยากฝึกได้ ไม่จำเป็นต้องทำเรียงลำดับ</p>
-            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-checkout">เลือกหมวดข้อสอบ</Link>
+            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-checkout">
+              เข้าทำข้อสอบ Set 1 <span aria-hidden="true">→</span>
+            </Link>
             <small>ฟรีทุกหมวด พร้อมเฉลย</small>
           </div>
         </section>
