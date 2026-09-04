@@ -478,15 +478,108 @@ function PoliceMathSubjectPage({
             <p className="police-subject-study-path-kicker">FREE PRACTICE SET</p>
             <h2 id="study-path-title">Set 1: ข้อสอบแยกหมวด</h2>
             <p>รวม 140 ข้อ แบ่งตามหัวข้อเพื่อเลือกฝึกเรื่องที่ต้องการ พร้อมเฉลยทุกข้อ เปิดให้ทำฟรีทั้งหมด</p>
+            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-free">
+              เข้า Set 1 <span aria-hidden="true">→</span>
+            </Link>
           </div>
           <div className="police-subject-study-path-offer">
             <span className="police-subject-study-path-step">SET 1</span>
-            <strong>6 หมวดฝึก</strong>
+            <strong>6 หมวดฝึก (140 ข้อ)</strong>
             <p>เลือกทำเฉพาะหัวข้อที่อยากฝึกได้ ไม่จำเป็นต้องทำเรียงลำดับ</p>
-            <Link href="/courses/police_admin/math/set-1" className="police-subject-study-path-checkout">
-              เข้าทำข้อสอบ Set 1 <span aria-hidden="true">→</span>
-            </Link>
-            <small>ฟรีทุกหมวด พร้อมเฉลย</small>
+            <small style={{ color: '#16a34a', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4, marginTop: 'auto' }}>
+              ✓ ฟรีทุกหมวด พร้อมเฉลยละเอียด
+            </small>
+          </div>
+        </section>
+
+        <section className="police-subject-upcoming-sets" aria-labelledby="upcoming-sets-title" style={{ marginBottom: 32 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+            <div>
+              <span style={{ color: '#8c1c29', fontSize: 11, fontWeight: 850, letterSpacing: '0.1em', textTransform: 'uppercase' }}>UPCOMING SETS</span>
+              <h2 id="upcoming-sets-title" style={{ fontSize: 20, fontWeight: 800, color: '#0f172a', margin: '4px 0 0' }}>ชุดข้อสอบถัดไป</h2>
+            </div>
+            <span style={{ fontSize: 13, color: '#64748b' }}>เตรียมพบกับชุดข้อสอบ Set 2 - Set 5 เร็ว ๆ นี้</span>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 14
+          }}>
+            {[
+              { set: 'Set 2', title: 'รวมแนวข้อสอบเก็งใหม่', desc: 'คัดแนวข้อสอบล่าสุด เน้นโจทย์ประยุกต์และข้อสอบที่ออกบ่อย' },
+              { set: 'Set 3', title: 'แนวข้อสอบจริงย้อนหลัง', desc: 'รวบรวมแนวข้อสอบนายสิบตำรวจรอบจริง พร้อมเทคนิคตัดชอยส์' },
+              { set: 'Set 4', title: 'ชุดฝึกจับเวลา Speed Test', desc: 'ฝึกทำข้อสอบเสมือนจริง 100 ข้อ จับเวลาจริงเพื่อคุมสปีดสอบ' },
+              { set: 'Set 5', title: 'ชุดเก็งโค้งสุดท้ายก่อนสอบ', desc: 'รวมข้อสอบไฮไลต์ระดับยาก-ปานกลาง เสริมความมั่นใจรอบสุดท้าย' },
+            ].map((item) => (
+              <div
+                key={item.set}
+                style={{
+                  padding: '18px 20px',
+                  borderRadius: 12,
+                  border: '1px solid #e2e8f0',
+                  background: '#ffffff',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: 12
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <span style={{
+                      display: 'inline-block',
+                      padding: '3px 8px',
+                      borderRadius: 6,
+                      background: '#f1f5f9',
+                      color: '#475569',
+                      fontSize: 11,
+                      fontWeight: 800,
+                      letterSpacing: '0.05em'
+                    }}>
+                      {item.set}
+                    </span>
+                    <span style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: '#94a3b8',
+                      background: '#f8fafc',
+                      border: '1px solid #e2e8f0',
+                      padding: '2px 8px',
+                      borderRadius: 999
+                    }}>
+                      เร็ว ๆ นี้
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: 15, fontWeight: 750, color: '#1e293b', margin: '0 0 6px' }}>{item.title}</h3>
+                  <p style={{ fontSize: 12.5, color: '#64748b', lineHeight: 1.55, margin: 0 }}>{item.desc}</p>
+                </div>
+                <div style={{ marginTop: 'auto', paddingTop: 8 }}>
+                  <button
+                    type="button"
+                    disabled
+                    style={{
+                      width: '100%',
+                      padding: '9px 14px',
+                      borderRadius: 8,
+                      border: '1px dashed #cbd5e1',
+                      background: '#f8fafc',
+                      color: '#94a3b8',
+                      fontSize: 12,
+                      fontWeight: 700,
+                      cursor: 'not-allowed',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 6
+                    }}
+                  >
+                    <span>🔒</span> เร็ว ๆ นี้
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
