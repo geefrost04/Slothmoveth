@@ -25,6 +25,7 @@ export function PoliceMockupSubjectGrid({
           <>
             <div className="police-v2-subject-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexGrow: 1, marginBottom: '20px' }}>
               <div className="police-v2-subject-info" style={{ flexGrow: 1 }}>
+                <span className="police-v2-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
                 <div className="police-v2-subject-title-row">
                   <h3>{subject.title}</h3>
                 </div>

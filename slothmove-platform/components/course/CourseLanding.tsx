@@ -64,6 +64,7 @@ function SubjectPanel({
             <div className="pab-subject-card-header-police">
               <span aria-hidden="true" className="pab-subject-card-icon-police"><SubjectIcon subjectId={subject.id} size={20} /></span>
               <div className="pab-subject-card-header-info-police">
+                <span className="pab-subject-card-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
                 <h3 className="pab-subject-card-title-police">{subject.title}</h3>
                 <span className="pab-subject-card-cat-police">{categoryLabel}</span>
               </div>
@@ -136,7 +137,7 @@ function PoliceWireLanding({ course }: { course: CourseConfig }) {
         <nav className="police-wire-breadcrumb" aria-label="breadcrumb">
           <Link href="/">หน้าแรก</Link>
           <span aria-hidden="true">›</span>
-          <span>นายสิบตำรวจ</span>
+          <span>นายสิบตำรวจ สายอำนวยการ</span>
         </nav>
 
         <section className="police-wire-hero" aria-labelledby="police-wire-title">
@@ -144,7 +145,7 @@ function PoliceWireLanding({ course }: { course: CourseConfig }) {
             <img src={course.theme.logo} alt="" />
           </div>
           <div className="police-wire-copy">
-            <h1 id="police-wire-title">นายสิบตำรวจ</h1>
+            <h1 id="police-wire-title">นายสิบตำรวจ สายอำนวยการ</h1>
             <p>สรุปแบบ Visual และชุดข้อสอบใหม่ แยกเป็นรายวิชาเพื่อเลือกเรียนและเลือกซื้อได้ชัดเจน</p>
           </div>
           <div className="police-wire-progress">
@@ -164,6 +165,7 @@ function PoliceWireLanding({ course }: { course: CourseConfig }) {
               const content = (
                 <>
                   <div className="police-wire-subject-icon" aria-hidden="true">{card.icon}</div>
+                  <span className="police-wire-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
                   <h3>{card.title}</h3>
                   <p>{card.sets}</p>
                   <span>สรุป Visual และชุดข้อสอบใหม่</span>
@@ -532,7 +534,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
           <span className="police-v2-breadcrumb-separator">&gt;</span>
           <span className="police-v2-breadcrumb-current">สนามสอบ</span>
           <span className="police-v2-breadcrumb-separator">&gt;</span>
-          <span className="police-v2-breadcrumb-current">นายสิบตำรวจ</span>
+          <span className="police-v2-breadcrumb-current">นายสิบตำรวจ สายอำนวยการ</span>
         </nav>
 
         <section className="police-v2-hero">
@@ -544,7 +546,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
                   <path d="m9 11 2 2 4-4" />
                 </svg>
               </span>
-              <h1 className="police-v2-hero-title">นายสิบตำรวจ</h1>
+              <h1 className="police-v2-hero-title">นายสิบตำรวจ สายอำนวยการ</h1>
             </div>
             <h2 className="police-v2-hero-subtitle">เลือกวิชาที่ต้องการฝึก</h2>
             <p className="police-v2-hero-desc">

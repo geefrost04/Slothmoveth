@@ -19,65 +19,70 @@ export function SlothMoveIcon({ size = 28, className, style }: { size?: number; 
       aria-hidden="true"
     >
       <defs>
+        {/* Rich Emerald Gradient */}
         <linearGradient id="smGradBg" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#10b981" />
-          <stop offset="50%" stopColor="#059669" />
+          <stop offset="55%" stopColor="#059669" />
           <stop offset="100%" stopColor="#047857" />
         </linearGradient>
-        <linearGradient id="smEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#0f172a" />
-          <stop offset="100%" stopColor="#1e293b" />
-        </linearGradient>
-        <linearGradient id="smHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.3" />
+
+        {/* Top Highlight Sheen */}
+        <linearGradient id="smSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.22" />
           <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
+
+        {/* Lower Ribbon Gradient */}
+        <linearGradient id="smLowerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="#e6fffa" />
+        </linearGradient>
+
+        {/* Upper Ribbon Gradient */}
+        <linearGradient id="smUpperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="#ccfbf1" />
+        </linearGradient>
+
+        {/* Golden Spark / Beacon */}
+        <linearGradient id="smSparkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fef08a" />
+          <stop offset="60%" stopColor="#f59e0b" />
+          <stop offset="100%" stopColor="#d97706" />
+        </linearGradient>
+
+        {/* Ribbon Intersect Drop Shadow */}
+        <filter id="smRibbonShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3.5" floodColor="#044e38" floodOpacity="0.4" />
+        </filter>
       </defs>
 
-      {/* Squircle Badge */}
+      {/* Squircle Base with Precision Border */}
       <rect x="4" y="4" width="112" height="112" rx="34" fill="url(#smGradBg)" />
-      <rect x="4" y="4" width="112" height="112" rx="34" fill="url(#smHighlight)" />
-      <rect x="4" y="4" width="112" height="112" rx="34" fill="none" stroke="#ffffff" strokeWidth="2" strokeOpacity="0.25" />
+      <rect x="4" y="4" width="112" height="112" rx="34" fill="url(#smSheen)" />
+      <rect x="4" y="4" width="112" height="112" rx="34" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.25" />
 
-      {/* Ears */}
-      <circle cx="28" cy="38" r="13" fill="url(#smEarGrad)" />
-      <circle cx="28" cy="38" r="7" fill="#334155" />
-      <circle cx="92" cy="38" r="13" fill="url(#smEarGrad)" />
-      <circle cx="92" cy="38" r="7" fill="#334155" />
+      {/* Lower S-Loop (Grounded deliberate foundation) */}
+      <path
+        d="M 48 59 C 64 65 88 71 88 87 C 88 99 76 107 58 107 C 42 107 32 99 30 87"
+        fill="none"
+        stroke="url(#smLowerGrad)"
+        strokeWidth="14"
+        strokeLinecap="round"
+      />
 
-      {/* Sloth Head Base */}
-      <ellipse cx="60" cy="62" rx="42" ry="38" fill="#1e293b" />
+      {/* Upper S-Loop & Overlapping Diagonal (Kinetic leap forward) */}
+      <path
+        d="M 80 29 C 78 19 68 15 56 15 C 42 15 34 23 34 35 C 34 49 46 55 66 61 L 72 63"
+        fill="none"
+        stroke="url(#smUpperGrad)"
+        strokeWidth="14"
+        strokeLinecap="round"
+        filter="url(#smRibbonShadow)"
+      />
 
-      {/* Face Mask */}
-      <path d="M 32 64 C 32 46 44 38 60 38 C 76 38 88 46 88 64 C 88 80 76 88 60 88 C 44 88 32 80 32 64 Z" fill="#ffffff" />
-
-      {/* Eye Patches */}
-      <path d="M 36 60 C 34 50 43 45 49 53 C 54 59 47 73 39 71 C 35 70 37 65 36 60 Z" fill="#0f172a" />
-      <path d="M 84 60 C 86 50 77 45 71 53 C 66 59 73 73 81 71 C 85 70 83 65 84 60 Z" fill="#0f172a" />
-
-      {/* Focused, Friendly Eyes */}
-      <circle cx="43" cy="59" r="4.5" fill="#ffffff" />
-      <circle cx="43" cy="59" r="2.8" fill="#0f172a" />
-      <circle cx="44.5" cy="57.5" r="1.3" fill="#ffffff" />
-
-      <circle cx="77" cy="59" r="4.5" fill="#ffffff" />
-      <circle cx="77" cy="59" r="2.8" fill="#0f172a" />
-      <circle cx="78.5" cy="57.5" r="1.3" fill="#ffffff" />
-
-      {/* Snout / Nose */}
-      <ellipse cx="60" cy="69" rx="7.5" ry="5" fill="#0f172a" />
-      <ellipse cx="60" cy="68" rx="2.5" ry="1.2" fill="#334155" opacity="0.6" />
-
-      {/* Smile */}
-      <path d="M 53 76 Q 60 82 67 76" fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round" />
-
-      {/* Cheeks */}
-      <circle cx="36" cy="74" r="3.5" fill="#f43f5e" opacity="0.25" />
-      <circle cx="84" cy="74" r="3.5" fill="#f43f5e" opacity="0.25" />
-
-      {/* Growth Sprout / Forward Momentum Accent */}
-      <path d="M 60 22 C 58 14 67 11 69 18 C 70 23 64 26 60 22 Z" fill="#fbbf24" />
-      <path d="M 60 22 C 54 16 51 22 55 26 C 58 28 61 25 60 22 Z" fill="#34d399" />
+      {/* Golden Ascent Arrow / Beacon (Continuous Forward Move) */}
+      <polygon points="84,13 99,13 99,28 91,20" fill="url(#smSparkGrad)" filter="url(#smRibbonShadow)" />
     </svg>
   );
 }

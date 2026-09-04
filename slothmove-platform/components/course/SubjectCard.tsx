@@ -22,6 +22,9 @@ export function SubjectCard({
     return (
       <div className={className} aria-disabled="true">
         {subject.icon && <div className="subject-card-icon">{subject.icon}</div>}
+        {courseId === 'police_admin' && (
+          <span className="police-v2-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
+        )}
         <h3 className="subject-card-title">{subject.title}</h3>
         <p className="subject-card-desc">{subject.desc}</p>
         {!hideCount ? <span className="subject-card-count">{subject.count} ข้อ</span> : null}
@@ -33,6 +36,9 @@ export function SubjectCard({
   return (
     <Link href={href} className={className}>
       {subject.icon && <div className="subject-card-icon">{subject.icon}</div>}
+      {courseId === 'police_admin' && (
+        <span className="police-v2-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
+      )}
       <h3 className="subject-card-title">{subject.title}</h3>
       <p className="subject-card-desc">{subject.desc}</p>
       {!hideCount ? <span className="subject-card-count">{subject.count} ข้อ</span> : null}

@@ -79,7 +79,7 @@ export function CourseSubjectPage({
         <div className="container course-subject-header-inner">
           <div className="course-subject-icon"><SubjectIcon subjectId={subject.id} size={28} /></div>
           <div className="course-subject-heading">
-            {hasRichLanding ? <div className="course-subject-chip">บทเรียน {course.id.toUpperCase()}</div> : null}
+            <div className="course-subject-chip">นายสิบตำรวจ · สายอำนวยการ</div>
             <h1>{subject.title}</h1>
             <p>{subject.desc}</p>
           </div>
@@ -236,12 +236,17 @@ function PoliceSubjectLandingPage({
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
+          <Link href={`/courses/${course.id}`}>นายสิบตำรวจ สายอำนวยการ</Link>
+          <span className="police-subject-breadcrumb-separator">&gt;</span>
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>
 
         <section className="police-subject-hero police-subject-hero--catalog">
           <div className="police-subject-hero-left">
-            <span className="police-subject-eyebrow">{details.eyebrow}</span>
+            <div className="police-subject-header-meta">
+              <span className="police-subject-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
+              <span className="police-subject-eyebrow">{details.eyebrow}</span>
+            </div>
             <div className="police-subject-hero-title-row">
               <span className="police-subject-hero-icon" aria-hidden="true">
                 <SubjectIcon subjectId={subject.id} size={26} />
@@ -426,13 +431,14 @@ function PoliceMathSubjectPage({
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
-          <Link href={`/courses/${course.id}`}>นายสิบตำรวจ</Link>
+          <Link href={`/courses/${course.id}`}>นายสิบตำรวจ สายอำนวยการ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>
 
         <section className="police-subject-hero">
           <div className="police-subject-hero-left">
+            <span className="police-subject-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
             <div className="police-subject-hero-title-row">
               <span className="police-subject-hero-icon">
                 <CalculatorIcon />
@@ -440,7 +446,7 @@ function PoliceMathSubjectPage({
               <h1 className="police-subject-hero-title">{subject.title}</h1>
             </div>
             <p className="police-subject-hero-subtitle">
-              เลือกอ่านชีทสรุปความรู้ทั่วไป หรือทำชุดข้อสอบสำหรับนายสิบตำรวจ
+              เลือกอ่านชีทสรุปความรู้ทั่วไป หรือทำชุดข้อสอบสำหรับนายสิบตำรวจ สายอำนวยการ
             </p>
             <div className="police-subject-hero-stats">
               <div className="police-subject-hero-stat-card">
