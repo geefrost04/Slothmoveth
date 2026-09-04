@@ -153,7 +153,7 @@ export default function RegisterPage() {
           </div>
         ) : (
           <>
-            <div className={styles.brandMark} aria-hidden="true"><img src="/pic/slothmove_mascot.png" alt="" /></div>
+            <div className={styles.brandMark} aria-hidden="true"><img src="/pic/slothmove_mascot.svg" alt="SlothMove" /></div>
             <span className={styles.eyebrow}>CREATE ACCOUNT</span>
             <h1 id="register-title">สมัครสมาชิก</h1>
             <p className={styles.subtitle}>สร้างบัญชีเพื่อบันทึกผลสอบ วิเคราะห์จุดอ่อน และใช้งานต่อได้ทุกอุปกรณ์</p>

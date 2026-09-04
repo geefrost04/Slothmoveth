@@ -7,6 +7,7 @@ import type { Session } from '@supabase/supabase-js';
 import type { CourseConfig } from '@/lib/course-types';
 import { getSupabase } from '@/lib/supabase';
 import { NavControlIcon } from '@/components/nav/NavControlIcons';
+import { SlothMoveLogo } from '@/components/brand/SlothMoveLogo';
 
 function HomeIcon() {
   return (
@@ -196,17 +197,8 @@ export function PoliceAdminNav({ course }: { course: CourseConfig }) {
       <div className="container course-nav-inner">
         {/* Unified Master Brand Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Link href="/" className="course-nav-brand" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <img
-              src="/pic/slothmove_mascot.png"
-              alt="SlothMove"
-              width={26}
-              height={26}
-              style={{ objectFit: 'contain' }}
-            />
-            <span className="course-nav-wordmark" style={{ display: 'inline-flex', alignItems: 'center', fontSize: '20px', fontWeight: 900, letterSpacing: '-0.02em', color: '#0f172a' }}>
-              Sloth<span style={{ color: '#16a34a' }}>Move</span>
-            </span>
+          <Link href="/" className="course-nav-brand" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }} aria-label="กลับหน้าแรก SlothMove">
+            <SlothMoveLogo size={28} />
           </Link>
 
           {/* Elegant Course Context Badge */}

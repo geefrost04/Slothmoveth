@@ -107,7 +107,7 @@ export default function LoginPage() {
 
       <section className={styles.card} aria-labelledby="login-title">
         <div className={styles.brandMark} aria-hidden="true">
-          <img src="/pic/slothmove_mascot.png" alt="" />
+          <img src="/pic/slothmove_mascot.svg" alt="SlothMove" />
         </div>
         <span className={styles.eyebrow}>MEMBER ACCESS</span>
         <h1 id="login-title">เข้าสู่ระบบ</h1>

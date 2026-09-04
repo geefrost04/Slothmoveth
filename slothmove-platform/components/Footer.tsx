@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { SlothMoveLogo } from '@/components/brand/SlothMoveLogo';
 
 function FacebookIcon() {
   return (
@@ -34,14 +35,7 @@ export function Footer() {
         <div className={styles.footerTopBar}>
           <div className={styles.brandCol}>
             <Link href="/" className={styles.brandLogo} aria-label="กลับหน้าแรก SlothMove">
-              <img
-                src="/pic/slothmove_mascot.png"
-                alt="SlothMove Mascot"
-                width={32}
-                height={32}
-                style={{ objectFit: 'contain' }}
-              />
-              <strong>Sloth<span>Move</span></strong>
+              <SlothMoveLogo size={32} />
             </Link>
             <p className={styles.brandTagline}>
               แพลตฟอร์มเตรียมสอบราชการและนายสิบตำรวจยุคใหม่ ฝึกตรงจุด วัดผลจริง รู้จุดอ่อนทันที

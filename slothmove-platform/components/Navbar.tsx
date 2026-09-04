@@ -7,6 +7,7 @@ import type { Session } from '@supabase/supabase-js';
 import { getSupabase } from '@/lib/supabase';
 import { NavControlIcon } from '@/components/nav/NavControlIcons';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
+import { SlothMoveLogo } from '@/components/brand/SlothMoveLogo';
 
 type NavbarProps = {
   backHref?: string;
@@ -83,15 +84,8 @@ export function Navbar({ backHref, backLabel = 'กลับหน้าหล�
     <header className={`nav-wrapper${scrolled ? ' scrolled' : ''}`} id="navbar">
       <div className="container">
         <nav className="nav-inner" aria-label="เมนูหลัก">
-          <Link href="/" className="nav-logo" aria-label="SlothMove" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <img
-              src="/pic/slothmove_mascot.png"
-              alt="SlothMove"
-              width={26}
-              height={26}
-              style={{ objectFit: 'contain' }}
-            />
-            <span>Sloth<span className="logo-accent">Move</span></span>
+          <Link href="/" className="nav-logo" aria-label="SlothMove">
+            <SlothMoveLogo size={28} />
           </Link>
 
           <div className="nav-actions" aria-label="เครื่องมือ">
