@@ -31,16 +31,29 @@ export function PoliceMiniMockCallout() {
           <span><strong>35</strong> นาที</span>
           <span><strong>6</strong> วิชา</span>
         </div>
-        <Link
-          href="/courses/police_admin/mini-mock/police-mini_mock-set-01"
-          className="police-v2-mini-mock-button"
-          onClick={() => trackAnalyticsEvent('mini_mock_start_click', {
-            exam_set_id: 'police-mini_mock-set-01',
-            source: 'course_landing'
-          })}
-        >
-          เริ่ม Mini Mock ฟรี <span aria-hidden="true">›</span>
-        </Link>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <Link
+            href="/courses/police_admin/mini-mock/police-mini_mock-set-01"
+            className="police-v2-mini-mock-button"
+            onClick={() => trackAnalyticsEvent('mini_mock_start_click', {
+              exam_set_id: 'police-mini_mock-set-01',
+              source: 'course_landing'
+            })}
+          >
+            ชุดที่ 1 <span aria-hidden="true">›</span>
+          </Link>
+          <Link
+            href="/courses/police_admin/mini-mock/police-mini_mock-set-02"
+            className="police-v2-mini-mock-button"
+            title="Mini Mock ชุดนี้เป็นตัวอย่าง 30 ข้อจาก Mock Test ชุด 4"
+            onClick={() => trackAnalyticsEvent('mini_mock_start_click', {
+              exam_set_id: 'police-mini_mock-set-02',
+              source: 'course_landing'
+            })}
+          >
+            ชุดที่ 2 (ตัวอย่างชุด 4) <span aria-hidden="true">›</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

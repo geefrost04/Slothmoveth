@@ -12,13 +12,13 @@ export function CourseSubjectPage({
   subject,
   knowledge,
   examSets = [],
-  ownedProductIds = []
+  ownedExamSetIds = []
 }: {
   course: CourseConfig;
   subject: SubjectMeta;
   knowledge: CourseKnowledgeData | null;
   examSets?: CatalogExamSet[];
-  ownedProductIds?: string[];
+  ownedExamSetIds?: string[];
 }) {
   const courseHasData = course.meta.migrated === true;
   const subjectHasData = subject.count > 0;
@@ -54,7 +54,7 @@ export function CourseSubjectPage({
         subject={subject}
         practiceHref={practiceHref}
         examSets={examSets}
-        ownedProductIds={ownedProductIds}
+        ownedExamSetIds={ownedExamSetIds}
       />
     );
   }
@@ -119,7 +119,7 @@ export function CourseSubjectPage({
               courseId={course.id}
               subjectId={subject.id}
               examSets={examSets}
-              ownedProductIds={ownedProductIds}
+              ownedExamSetIds={ownedExamSetIds}
             />
           </section>
         ) : null}
@@ -210,13 +210,13 @@ function PoliceSubjectLandingPage({
   subject,
   practiceHref,
   examSets,
-  ownedProductIds
+  ownedExamSetIds
 }: {
   course: CourseConfig;
   subject: SubjectMeta;
   practiceHref: string;
   examSets: CatalogExamSet[];
-  ownedProductIds: string[];
+  ownedExamSetIds: string[];
 }) {
   const details = POLICE_SUBJECT_DETAILS[subject.id] ?? {
     eyebrow: 'เตรียมสอบนายสิบตำรวจ',
@@ -315,7 +315,7 @@ function PoliceSubjectLandingPage({
             courseId={course.id}
             subjectId={subject.id}
             examSets={examSets}
-            ownedProductIds={ownedProductIds}
+            ownedExamSetIds={ownedExamSetIds}
           />
         </section>
 

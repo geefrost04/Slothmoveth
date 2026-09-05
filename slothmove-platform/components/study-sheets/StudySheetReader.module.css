@@ -171,8 +171,8 @@
 
 .computerPartGrid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
 }
 
 .computerPartCard,
@@ -952,6 +952,116 @@
   color: inherit;
 }
 
+.computerRecallRail {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid #f0d7d7;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.computerRecallRail > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.computerRecallRail > div:first-child span,
+.computerRecallTiles span {
+  color: #8b1e1e;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.computerRecallRail > div:first-child strong {
+  color: #152033;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.computerRecallTiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.computerRecallTiles > div {
+  display: grid;
+  gap: 5px;
+  padding: 10px 12px;
+  border-left: 3px solid #8b1e1e;
+  background: #fff8f8;
+}
+
+.computerRecallTiles strong {
+  color: #334155;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.computerRecallBlock {
+  overflow: hidden;
+  border: 1px solid #ecd8cf;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.computerRecallBlock > summary {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 22px;
+  gap: 12px;
+  align-items: center;
+  min-height: 76px;
+  padding: 13px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.computerRecallBlock > summary::-webkit-details-marker { display: none; }
+
+.computerRecallBlock > summary::after {
+  content: '+';
+  color: #8b1e1e;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.computerRecallBlock[open] > summary {
+  border-bottom: 1px solid #f1dede;
+  background: #fff8f8;
+}
+
+.computerRecallBlock[open] > summary::after { content: '−'; }
+
+.computerRecallBlock > summary > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #8b1e1e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.computerRecallBlock summary > div {
+  display: grid;
+  gap: 3px;
+}
+
+.computerRecallBlock summary strong { color: #152033; font-size: 16px; }
+.computerRecallBlock summary small { color: #66748a; font-size: 12px; line-height: 1.45; }
+
+.computerRecallContent { padding: 22px; }
+.computerRecallContent .lessonSection { gap: 18px; }
+.computerRecallContent .lessonSectionHeader { display: none; }
+
 @media (max-width: 900px) {
   .readerLayout { display: block; }
   .desktopToc { display: none; }
@@ -972,6 +1082,8 @@
   .lessonSteps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .answerPanel { grid-template-columns: 1fr; }
   .workedFlow, .formulaStrip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .computerRecallRail { grid-template-columns: 1fr; }
+  .computerRecallTiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {
@@ -1000,6 +1112,13 @@
   .lessonAsset figcaption { font-size: 12px; }
   .practiceCard summary { grid-template-columns: 54px minmax(0, 1fr); }
   .practiceCard p { padding-left: 15px; }
+  .computerRecallRail { padding: 15px; gap: 12px; }
+  .computerRecallTiles { grid-template-columns: 1fr; gap: 8px; }
+  .computerRecallBlock > summary { grid-template-columns: 36px minmax(0, 1fr) 18px; min-height: 68px; padding: 12px 14px; gap: 10px; }
+  .computerRecallBlock > summary > span { width: 34px; height: 34px; }
+  .computerRecallBlock summary strong { font-size: 14px; }
+  .computerRecallBlock summary small { font-size: 11px; }
+  .computerRecallContent { padding: 14px; }
 }
 
 .backToTop {

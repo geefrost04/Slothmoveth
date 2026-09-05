@@ -4,6 +4,7 @@ import { getStudySheetAssetUrl } from '@/lib/study-sheets';
 import { SafeMarkdown } from './SafeMarkdown';
 import { PrintStudySheetButton } from './PrintStudySheetButton';
 import { BackToTopButton } from './BackToTopButton';
+import { ComputerPart1Lesson, ComputerPart2Lesson, ComputerPart3Lesson } from './ComputerStudyLessons';
 import styles from './StudySheetReader.module.css';
 
 function sectionHref(sheet: StudySheetBundle['sheet'], section: StudySheetSection) {
@@ -83,7 +84,7 @@ function getSectionHeadings(content: string) {
     .slice(0, 8);
 }
 
-function ComputerSheetMap({
+function SubjectSheetMap({
   sheet,
   sections,
   current
@@ -95,11 +96,11 @@ function ComputerSheetMap({
   const headings = getSectionHeadings(current.content_md);
 
   return (
-    <section className={styles.computerGuide} aria-label="สารบัญชีทคอมพิวเตอร์">
+    <section className={styles.computerGuide} aria-label="สารบัญชีทสรุป">
       <div className={styles.computerGuideHeader}>
         <span>Study Map</span>
-        <h2>สารบัญชีทคอมพิวเตอร์ 5 Part</h2>
-        <p>อ่านเรียงจาก Part 1 ถึง Part 5 เพื่อให้เนื้อหาต่อจากพื้นฐานเครื่อง ไปซอฟต์แวร์ เครือข่าย ความปลอดภัย และเทคโนโลยีใหม่</p>
+        <h2>สารบัญชีทสรุป {sections.length} Part</h2>
+        <p>{sheet.description}</p>
       </div>
 
       <nav className={styles.computerPartGrid}>
@@ -690,9 +691,11 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const courseLabel = COURSE_LABELS[sheet.course_id] ?? sheet.course_id;
   const subjectLabel = SUBJECT_LABELS[sheet.subject_id] ?? sheet.subject_id;
   const isComputerSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'computer';
+  const isLawSheet = sheet.course_id === 'police_admin' && (sheet.subject_id === 'law' || sheet.subject_id === 'police_law');
+  const isCustomSheet = isComputerSheet || isLawSheet;
 
   return (
-    <div className={`${styles.readerShell} ${isComputerSheet ? styles.computerReader : ''} study-sheet-print-root`}>
+    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} study-sheet-print-root`}>
       <BackToTopButton />
       <div className={styles.readerTopbar}>
         <div className="container">
@@ -722,10 +725,10 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
             <nav>{sections.map((section) => <SectionLink key={section.id} sheet={sheet} section={section} current={section.id === current.id} />)}</nav>
           </details>
 
-          <article className={`${styles.chapter} ${(current.slug === 'chapter-01' || isComputerSheet) ? styles.chapterWide : ''}`}>
+          <article className={`${styles.chapter} ${(current.slug === 'chapter-01' || isCustomSheet) ? styles.chapterWide : ''}`}>
             <header className={styles.chapterHeader}>
               <div className={styles.chapterIcon} aria-hidden="true">
-                {isComputerSheet ? '💻' : current.section_type === 'quick_review' ? '★' : '▤'}
+                {isComputerSheet ? '💻' : isLawSheet ? '⚖️' : current.section_type === 'quick_review' ? '★' : '▤'}
               </div>
               <div>
                 <span className={styles.eyebrow}>{chapterLabel}</span>
@@ -739,7 +742,7 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
               <PrintStudySheetButton />
             </div>
 
-            {isComputerSheet ? <ComputerSheetMap sheet={sheet} sections={sections} current={current} /> : null}
+            {isCustomSheet && current.slug !== 'part-01' ? <SubjectSheetMap sheet={sheet} sections={sections} current={current} /> : null}
 
             {currentIndex === 0 ? (
               <details className={styles.introPanel}>
@@ -748,9 +751,15 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
               </details>
             ) : null}
 
-            {current.slug === 'chapter-01' ? <SeriesLesson assets={assets} /> : null}
-            {current.slug === 'chapter-02' ? <AnalogyLesson assets={assets} /> : null}
-            {current.slug !== 'chapter-01' && current.slug !== 'chapter-02' ? <SafeMarkdown content={current.content_md} assets={assets} id={current.slug} /> : null}
+            {isComputerSheet && current.slug === 'part-01' ? <ComputerPart1Lesson assets={assets} /> : null}
+            {isComputerSheet && current.slug === 'part-02' ? <ComputerPart2Lesson assets={assets} /> : null}
+            {isComputerSheet && current.slug === 'part-03' ? <ComputerPart3Lesson assets={assets} /> : null}
+            {!isComputerSheet && current.slug === 'chapter-01' ? <SeriesLesson assets={assets} /> : null}
+            {!isComputerSheet && current.slug === 'chapter-02' ? <AnalogyLesson assets={assets} /> : null}
+            {(!isComputerSheet && current.slug !== 'chapter-01' && current.slug !== 'chapter-02') ||
+            (isComputerSheet && current.slug !== 'part-01' && current.slug !== 'part-02' && current.slug !== 'part-03') ? (
+              <SafeMarkdown content={current.content_md} assets={assets} id={current.slug} />
+            ) : null}
 
             {current.section_type === 'quick_review' ? (
               <section className={styles.references} aria-label="ข้อมูลอ้างอิง">

@@ -9,6 +9,7 @@ import { buildMetadata } from '@/lib/seo';
 import { absoluteUrl, serializeJsonLd, siteConfig } from '@/lib/seo';
 import { getPublishedExamCatalog, type CatalogExamSet } from '@/lib/exam-data';
 import { getSupabaseServer } from '@/lib/supabase-server';
+import { getOwnedExamSetIds } from '@/lib/catalog-access';
 
 export default async function SubjectPage({
   params
@@ -37,21 +38,14 @@ export default async function SubjectPage({
       console.warn(`Unable to load the ${subject.id} exam catalog`, error);
     }
   }
-  let ownedProductIds: string[] = [];
+  let ownedExamSetIds: string[] = [];
 
   if (examSets.length > 0) {
     try {
       const supabase = await getSupabaseServer();
       const { data: { user } } = await supabase.auth.getUser();
-      const productIds = examSets.flatMap((examSet) => examSet.product_id ? [examSet.product_id] : []);
-
-      if (user && productIds.length > 0) {
-        const { data: entitlements } = await supabase
-          .from('entitlements')
-          .select('product_id')
-          .eq('user_id', user.id)
-          .in('product_id', productIds);
-        ownedProductIds = (entitlements ?? []).map((entitlement) => entitlement.product_id);
+      if (user) {
+        ownedExamSetIds = await getOwnedExamSetIds(supabase, user.id, subject.id, examSets);
       }
     } catch (error) {
       console.warn('Unable to load subject entitlements', error);
@@ -90,7 +84,7 @@ export default async function SubjectPage({
         subject={subject}
         knowledge={knowledge}
         examSets={examSets}
-        ownedProductIds={ownedProductIds}
+        ownedExamSetIds={ownedExamSetIds}
       />
     </CourseLayout>
   );

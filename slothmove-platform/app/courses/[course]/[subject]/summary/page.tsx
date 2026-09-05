@@ -34,6 +34,13 @@ export default async function StudySheetIndex({ params }: { params: Promise<{ co
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && (normalizedSubjectId === 'law' || normalizedSubjectId === 'police_law')) {
+    const localData = require('@/content/study-sheets/police-law-summary.json');
+    bundle = {
+      sheet: localData.sheet,
+      sections: localData.sections,
+      assets: localData.assets
+    } as StudySheetBundle;
   } else {
     bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
   }

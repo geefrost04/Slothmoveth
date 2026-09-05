@@ -7,7 +7,16 @@ import { getPublishedStudySheet } from '@/lib/study-sheets';
 import { buildMetadata } from '@/lib/seo';
 import type { StudySheetBundle } from '@/lib/study-sheet-types';
 
-export const revalidate = 300;
+import fs from 'fs';
+import path from 'path';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+function readLocalStudySheet(filename: string) {
+  const filePath = path.join(process.cwd(), 'content', 'study-sheets', filename);
+  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+}
 
 export default async function StudySheetSectionPage({ params }: { params: Promise<{ course: string; subject: string; section: string }> }) {
   const { course: courseId, subject: subjectId, section: sectionSlug } = await params;
@@ -19,25 +28,32 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
   const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
 
   if (courseId === 'police_admin' && normalizedSubjectId === 'math') {
-    const localData = require('@/content/study-sheets/police-general-ability-summary.json');
+    const localData = readLocalStudySheet('police-general-ability-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-section-${idx}` })),
       assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-asset-${idx}` }))
     } as StudySheetBundle;
   } else if (courseId === 'police_admin' && normalizedSubjectId === 'computer') {
-    const localData = require('@/content/study-sheets/police-computer-summary.json');
+    const localData = readLocalStudySheet('police-computer-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-computer-section-${idx}` })),
       assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-computer-asset-${idx}` }))
     } as StudySheetBundle;
   } else if (courseId === 'police_admin' && normalizedSubjectId === 'saraban') {
-    const localData = require('@/content/study-sheets/police-saraban-summary.json');
+    const localData = readLocalStudySheet('police-saraban-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-saraban-section-${idx}` })),
       assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-saraban-asset-${idx}` }))
+    } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && (normalizedSubjectId === 'law' || normalizedSubjectId === 'police_law')) {
+    const localData = readLocalStudySheet('police-law-summary.json');
+    bundle = {
+      sheet: localData.sheet,
+      sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-law-section-${idx}` })),
+      assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-law-asset-${idx}` }))
     } as StudySheetBundle;
   } else {
     bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
@@ -56,21 +72,21 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
   const normalizedSubjectId = subjectId === 'sarabum' ? 'saraban' : subjectId;
 
   if (courseId === 'police_admin' && normalizedSubjectId === 'math') {
-    const localData = require('@/content/study-sheets/police-general-ability-summary.json');
+    const localData = readLocalStudySheet('police-general-ability-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
   } else if (courseId === 'police_admin' && normalizedSubjectId === 'computer') {
-    const localData = require('@/content/study-sheets/police-computer-summary.json');
+    const localData = readLocalStudySheet('police-computer-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
   } else if (courseId === 'police_admin' && normalizedSubjectId === 'saraban') {
-    const localData = require('@/content/study-sheets/police-saraban-summary.json');
+    const localData = readLocalStudySheet('police-saraban-summary.json');
     bundle = {
       sheet: localData.sheet,
       sections: localData.sections,
