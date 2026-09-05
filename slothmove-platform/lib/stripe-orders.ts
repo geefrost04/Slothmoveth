@@ -21,11 +21,45 @@ export async function completePaidCheckoutSession(session: Stripe.Checkout.Sessi
     throw new Error('Paid order values do not match the stored order.');
   }
 
-  const { error: entitlementError } = await admin.from('entitlements').upsert(
-    { user_id: userId, product_id: productId, source_order_id: order.id },
-    { onConflict: 'user_id,product_id', ignoreDuplicates: true }
+  const { data: product, error: productError } = await admin
+    .from('products')
+    .select('metadata')
+    .eq('id', productId)
+    .single();
+  if (productError || !product) throw new Error('Purchased product is missing.');
+
+  const accessDurationDays = Number(
+    (product.metadata as { access_duration_days?: unknown } | null)?.access_duration_days ?? 0
   );
-  if (entitlementError) throw entitlementError;
+  const expiresAt = Number.isInteger(accessDurationDays) && accessDurationDays > 0
+    ? new Date(Date.now() + accessDurationDays * 24 * 60 * 60 * 1000).toISOString()
+    : null;
+
+  const { data: existingEntitlement, error: existingEntitlementError } = await admin
+    .from('entitlements')
+    .select('id,source_order_id,expires_at')
+    .eq('user_id', userId)
+    .eq('product_id', productId)
+    .maybeSingle();
+  if (existingEntitlementError) throw existingEntitlementError;
+
+  // Webhook deliveries are retried. Do not extend access a second time for
+  // the same order, but let a fresh purchase renew an expired entitlement.
+  if (!existingEntitlement) {
+    const { error: entitlementError } = await admin.from('entitlements').insert({
+      user_id: userId,
+      product_id: productId,
+      source_order_id: order.id,
+      expires_at: expiresAt
+    });
+    if (entitlementError) throw entitlementError;
+  } else if (existingEntitlement.source_order_id !== order.id) {
+    const { error: entitlementError } = await admin
+      .from('entitlements')
+      .update({ source_order_id: order.id, expires_at: expiresAt })
+      .eq('id', existingEntitlement.id);
+    if (entitlementError) throw entitlementError;
+  }
 
   const { error: orderUpdateError } = await admin
     .from('orders')

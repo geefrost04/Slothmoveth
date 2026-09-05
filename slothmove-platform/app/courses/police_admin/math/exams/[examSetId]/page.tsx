@@ -68,5 +68,14 @@ export default async function PoliceMathExamPage({
   const initialData = await getPublishedExamBundle(databaseExamSetId);
   if (!initialData) notFound();
 
-  return <ExamRunner examSetId={databaseExamSetId} initialData={initialData} />;
+  return (
+    <ExamRunner
+      examSetId={databaseExamSetId}
+      initialData={initialData}
+      freeCompletionOffer={access.access_type === 'free' ? {
+        catalogHref: '/courses/police_admin/math',
+        catalogLabel: 'เลือกชุดความรู้ทั่วไปเป็นรายชุด'
+      } : undefined}
+    />
+  );
 }

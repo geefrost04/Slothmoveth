@@ -5,6 +5,7 @@ import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
 import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
+import { PoliceAdminAllInOffer } from './PoliceAdminAllInOffer';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
 import {
@@ -559,6 +560,8 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
         </section>
 
         <PoliceMiniMockCallout />
+
+        <PoliceAdminAllInOffer />
 
         <section className="police-v2-mock-hero" aria-labelledby="police-mock-hero-title">
           <div className="police-v2-mock-copy">

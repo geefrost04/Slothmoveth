@@ -64,5 +64,14 @@ export default async function PoliceSubjectExamPage({
   const initialData = await getPublishedExamBundle(databaseExamSetId);
   if (!initialData) notFound();
 
-  return <ExamRunner examSetId={databaseExamSetId} initialData={initialData} />;
+  return (
+    <ExamRunner
+      examSetId={databaseExamSetId}
+      initialData={initialData}
+      freeCompletionOffer={access.access_type === 'free' ? {
+        catalogHref: `/courses/police_admin/${subject}`,
+        catalogLabel: `เลือกชุด${SUBJECTS[subject].title}เป็นรายชุด`
+      } : undefined}
+    />
+  );
 }

@@ -14,6 +14,9 @@
     "content:validate:study-sheet": "node scripts/import-study-sheet.mjs --validate-only",
     "content:seed:study-sheet": "node scripts/generate-study-sheet-seed.mjs",
     "content:create:police-mini-mock": "node scripts/create-police-mini-mock-set.mjs",
+    "commerce:police-subject-packs": "node scripts/publish-police-subject-packs.mjs",
+    "commerce:police-mock-price": "node scripts/update-police-mock-test-pricing.mjs",
+    "commerce:police-all-in": "node scripts/publish-police-admin-all-in.mjs",
     "verify:mock-route": "node scripts/verify-mock-test-route.mjs",
     "commerce:audit": "node scripts/migrate-stripe-live-products.mjs --dry-run",
     "commerce:migrate:live": "node scripts/migrate-stripe-live-products.mjs"

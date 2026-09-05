@@ -162,6 +162,7 @@ create table if not exists public.entitlements (
   user_id uuid references auth.users on delete cascade not null,
   product_id text references public.products(id) not null,
   source_order_id uuid references public.orders(id) on delete set null,
+  expires_at timestamp with time zone,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   unique (user_id, product_id)
 );
@@ -192,8 +193,14 @@ as $$
         or exists (
           select 1
           from public.entitlements entitlement
+          left join public.product_items item
+            on item.product_id = entitlement.product_id
           where entitlement.user_id = auth.uid()
-            and entitlement.product_id = exam_set.product_id
+            and (entitlement.expires_at is null or entitlement.expires_at > now())
+            and (
+              entitlement.product_id = exam_set.product_id
+              or (item.subject_id = exam_set.subject_id and item.item_id = exam_set.id)
+            )
         )
       )
   );

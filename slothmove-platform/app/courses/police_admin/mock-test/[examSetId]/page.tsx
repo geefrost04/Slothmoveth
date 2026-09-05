@@ -60,6 +60,10 @@ export default async function PoliceMockTestExamPage({
         productId: nextPaidMock.product_id,
         price: nextPaidMock.price
       } : undefined}
+      freeCompletionOffer={access.access_type === 'free' ? {
+        catalogHref: '/courses/police_admin/mock-test',
+        catalogLabel: 'เลือก Mock Test เป็นรายชุด'
+      } : undefined}
     />
   );
 }

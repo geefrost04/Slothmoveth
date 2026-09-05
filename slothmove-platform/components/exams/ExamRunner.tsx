@@ -45,6 +45,11 @@ type NextMockOffer = {
   price: number;
 };
 
+type FreeCompletionOffer = {
+  catalogHref: string;
+  catalogLabel: string;
+};
+
 const CHOICE_KEYS = ['A', 'B', 'C', 'D', 'E'];
 const SECONDS_PER_QUESTION = 90;
 const SUBJECT_LABELS: Record<string, string> = {
@@ -142,11 +147,13 @@ function DocumentIcon() {
 export function ExamRunner({
   examSetId,
   initialData,
-  nextMockOffer
+  nextMockOffer,
+  freeCompletionOffer
 }: {
   examSetId: string;
   initialData?: ExamBundle;
   nextMockOffer?: NextMockOffer;
+  freeCompletionOffer?: FreeCompletionOffer;
 }) {
   const subjectId = examSetId.match(/^police-([a-z_]+)-set-/)?.[1] ?? 'math';
   const subjectTitle = SUBJECT_LABELS[subjectId] ?? 'รายวิชา';
@@ -170,6 +177,7 @@ export function ExamRunner({
   const [showAllCategoryResults, setShowAllCategoryResults] = useState(false);
   const [progressSaveState, setProgressSaveState] = useState<'idle' | 'account' | 'guest' | 'error'>('idle');
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [showCompletionOffer, setShowCompletionOffer] = useState(false);
   const hasTrackedPracticeStart = useRef(false);
   const lastProgressMilestone = useRef(0);
   const [loading, setLoading] = useState(!initialData);
@@ -385,12 +393,13 @@ export function ExamRunner({
   }, [questions.length, result, secondsLeft, sessionReady]);
 
   useEffect(() => {
-    if (!showLoginPrompt && !showSubmitConfirm) return;
+    if (!showLoginPrompt && !showSubmitConfirm && !showCompletionOffer) return;
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setShowLoginPrompt(false);
       setShowSubmitConfirm(false);
+      setShowCompletionOffer(false);
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
@@ -438,6 +447,15 @@ export function ExamRunner({
         total_questions: completedResult.total,
         price: nextMockOffer.price / 100
       });
+    }
+    if (freeCompletionOffer) {
+      trackAnalyticsEvent('free_completion_purchase_offer_impression', {
+        exam_set_id: examSetId,
+        subject_id: subjectId,
+        score: completedResult.score,
+        total_questions: completedResult.total
+      });
+      setShowCompletionOffer(true);
     }
     void saveProgress(completedResult);
     try {
@@ -491,8 +509,10 @@ export function ExamRunner({
     if (!supabase) {
       queuePendingAttempt(pendingAttempt);
       setProgressSaveState('guest');
-      setShowLoginPrompt(true);
-      trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'missing_supabase_session' });
+      if (!freeCompletionOffer) {
+        setShowLoginPrompt(true);
+        trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'missing_supabase_session' });
+      }
       return;
     }
 
@@ -500,8 +520,10 @@ export function ExamRunner({
     if (!authData.user) {
       queuePendingAttempt(pendingAttempt);
       setProgressSaveState('guest');
-      setShowLoginPrompt(true);
-      trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'guest_session' });
+      if (!freeCompletionOffer) {
+        setShowLoginPrompt(true);
+        trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'guest_session' });
+      }
       return;
     }
 
@@ -1024,6 +1046,72 @@ export function ExamRunner({
                 <button type="button" onClick={() => setShowLoginPrompt(false)}>ไว้ทีหลัง</button>
               </div>
               <small>ไม่บังคับสมัครสมาชิก คุณยังดูเฉลยและใช้งานต่อได้ตามปกติ</small>
+            </section>
+          </div>
+        ) : null}
+        {showCompletionOffer && freeCompletionOffer ? (
+          <div
+            className={styles.completionOfferBackdrop}
+            role="presentation"
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) setShowCompletionOffer(false);
+            }}
+          >
+            <section
+              className={styles.completionOffer}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="completion-offer-title"
+              aria-describedby="completion-offer-description"
+            >
+              <button
+                type="button"
+                className={styles.completionOfferClose}
+                onClick={() => setShowCompletionOffer(false)}
+                aria-label="ปิดหน้าต่าง"
+              >
+                ×
+              </button>
+              <span className={styles.completionOfferEyebrow}>FREE PRACTICE COMPLETED</span>
+              <h2 id="completion-offer-title">ทำชุดฟรีจบแล้ว</h2>
+              <p id="completion-offer-description">
+                เลือกฝึกต่อแบบค่อยเป็นค่อยไป หรือปลดล็อกทุกชุดที่อยู่ในแพ็กเกจในครั้งเดียว
+              </p>
+              <div className={styles.completionOfferChoices}>
+                <Link
+                  href={freeCompletionOffer.catalogHref}
+                  className={styles.completionOfferIndividual}
+                  onClick={() => trackAnalyticsEvent('free_completion_individual_catalog_click', {
+                    exam_set_id: examSetId,
+                    subject_id: subjectId,
+                    destination: freeCompletionOffer.catalogHref
+                  })}
+                >
+                  <span>ซื้อแยกเป็นชุด</span>
+                  <strong>{freeCompletionOffer.catalogLabel}</strong>
+                  <small>เลือกเฉพาะชุดที่อยากฝึกต่อ</small>
+                </Link>
+                <div className={styles.completionOfferAllIn}>
+                  <span>คุ้มที่สุด</span>
+                  <strong>All-in นายสิบตำรวจ</strong>
+                  <small>12 ชุด · 720 ข้อ · ใช้ได้ 1 ปี</small>
+                  <CheckoutButton
+                    productId="police_admin_all_in_2026"
+                    className={styles.completionOfferCheckout}
+                    analyticsEventName="bundle_unlock_click"
+                    analyticsParameters={{
+                      source: 'free_completion_modal',
+                      exam_set_id: examSetId,
+                      price: 299
+                    }}
+                  >
+                    ปลดล็อกทั้งหมด ฿299
+                  </CheckoutButton>
+                </div>
+              </div>
+              <button type="button" className={styles.completionOfferLater} onClick={() => setShowCompletionOffer(false)}>
+                ดูเฉลยต่อก่อน
+              </button>
             </section>
           </div>
         ) : null}

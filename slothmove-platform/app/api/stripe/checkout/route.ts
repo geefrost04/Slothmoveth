@@ -29,11 +29,13 @@ export async function POST(request: Request) {
     const admin = getSupabaseAdmin();
     const { data: owned } = await admin
       .from('entitlements')
-      .select('id')
+      .select('id,expires_at')
       .eq('user_id', user.id)
       .eq('product_id', product.id)
       .maybeSingle();
-    if (owned) return NextResponse.json({ error: 'บัญชีนี้ปลดล็อกเนื้อหาแล้ว' }, { status: 409 });
+    if (owned && (!owned.expires_at || Date.parse(owned.expires_at) > Date.now())) {
+      return NextResponse.json({ error: 'บัญชีนี้ปลดล็อกเนื้อหาแล้ว' }, { status: 409 });
+    }
 
     const { data: order, error: orderError } = await admin
       .from('orders')

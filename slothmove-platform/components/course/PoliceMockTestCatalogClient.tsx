@@ -10,15 +10,15 @@ import styles from './PoliceMockTestCatalog.module.css';
 export function PoliceMockTestCatalogClient({
   courseId,
   examSets,
-  ownedProductIds,
+  ownedExamSetIds,
   compact
 }: {
   courseId: string;
   examSets: CatalogExamSet[];
-  ownedProductIds: string[];
+  ownedExamSetIds: string[];
   compact: boolean;
 }) {
-  const ownedProducts = new Set(ownedProductIds);
+  const ownedExamSets = new Set(ownedExamSetIds);
   const trackedView = useRef(false);
   const placement = compact ? 'course_landing' : 'mock_catalog';
 
@@ -57,7 +57,7 @@ export function PoliceMockTestCatalogClient({
       <div className={styles.list}>
         {examSets.map((examSet, index) => {
           const unlocked = examSet.access_type === 'free' || Boolean(
-            examSet.product_id && ownedProducts.has(examSet.product_id)
+            ownedExamSets.has(examSet.id)
           );
           const priceLabel = examSet.access_type === 'free'
             ? 'ฟรี'

@@ -1,5 +1,6 @@
 import { getPublishedExamCatalog } from '@/lib/exam-data';
 import { getSupabaseServer } from '@/lib/supabase-server';
+import { getOwnedExamSetIds } from '@/lib/catalog-access';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
 
 export async function PoliceExamCatalog({
@@ -12,16 +13,10 @@ export async function PoliceExamCatalog({
   const examSets = await getPublishedExamCatalog(courseId, subjectId);
   const supabase = await getSupabaseServer();
   const { data: { user } } = await supabase.auth.getUser();
-  const productIds = examSets.flatMap((examSet) => examSet.product_id ? [examSet.product_id] : []);
-  let ownedProductIds: string[] = [];
+  let ownedExamSetIds: string[] = [];
 
-  if (user && productIds.length > 0) {
-    const { data: entitlements } = await supabase
-      .from('entitlements')
-      .select('product_id')
-      .eq('user_id', user.id)
-      .in('product_id', productIds);
-    ownedProductIds = (entitlements ?? []).map((entitlement) => entitlement.product_id);
+  if (user) {
+    ownedExamSetIds = await getOwnedExamSetIds(supabase, user.id, subjectId, examSets);
   }
 
   return (
@@ -29,7 +24,7 @@ export async function PoliceExamCatalog({
       courseId={courseId}
       subjectId={subjectId}
       examSets={examSets}
-      ownedProductIds={ownedProductIds}
+      ownedExamSetIds={ownedExamSetIds}
     />
   );
 }
