@@ -79,12 +79,12 @@ function splitExplanation(explanation: string) {
     .filter(Boolean);
 }
 
-function MathText({ text }: { text: string }) {
+function MathText({ text, linkUrls = false }: { text: string; linkUrls?: boolean }) {
   const parts = text.split(RICH_TEXT_PATTERN).filter(Boolean);
   return (
     <span className={styles.mathText}>
       {parts.map((part, index) => {
-        if (part.startsWith('http://') || part.startsWith('https://')) {
+        if (linkUrls && (part.startsWith('http://') || part.startsWith('https://'))) {
           return (
             <a key={`${part}-${index}`} href={part} target="_blank" rel="noreferrer">
               ดูวิดีโอประกอบ
@@ -153,6 +153,7 @@ export function ExamRunner({
   const subjectHref = subjectId === 'mock_test' || subjectId === 'mini_mock'
     ? '/courses/police_admin'
     : `/courses/police_admin/${subjectId}`;
+  const isMiniMock02 = examSetId === 'police-mini_mock-set-02';
   const [examSet, setExamSet] = useState<ExamSet | null>(initialData?.examSet ?? null);
   const [questions, setQuestions] = useState<ExamQuestion[]>(initialData?.questions ?? []);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -725,13 +726,13 @@ export function ExamRunner({
                           <strong>วิธีคิดทีละขั้น</strong>
                           <div className={styles.explanationText}>
                             {splitExplanation(question.explanation).map((paragraph, paragraphIndex) => (
-                              <p key={`${question.id}-explanation-${paragraphIndex}`}><MathText text={paragraph} /></p>
+                              <p key={`${question.id}-explanation-${paragraphIndex}`}><MathText text={paragraph} linkUrls /></p>
                             ))}
                           </div>
                           {question.tip ? (
                             <div className={styles.tipCallout}>
                               <span>เทคนิคจำ</span>
-                              <p><MathText text={question.tip} /></p>
+                              <p><MathText text={question.tip} linkUrls /></p>
                             </div>
                           ) : null}
                         </div>
@@ -944,9 +945,19 @@ export function ExamRunner({
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
               {nextMockOffer ? (
                 <section className={styles.mockOffer} aria-label="Mock Test ชุดถัดไป">
+                  {isMiniMock02 ? (
+                    <div className={styles.sampleDisclosureNote} role="note">
+                      <span>ข้อสังเกต</span>
+                      <p>Mini Mock ชุดนี้เป็นตัวอย่าง 30 ข้อจาก Mock Test ชุด 4</p>
+                    </div>
+                  ) : null}
                   <span>ฝึกต่อให้เหมือนสนามจริง</span>
                   <strong>{nextMockOffer.title}</strong>
-                  <p>150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียดและวิเคราะห์จุดอ่อนรายวิชา</p>
+                  <p>
+                    {isMiniMock02
+                      ? 'ปลดล็อกเพื่อทำข้อสอบที่เหลืออีก 120 ข้อใหม่ (ครบ 6 วิชา 150 ข้อ พร้อมเฉลยละเอียดและวิเคราะห์จุดอ่อน)'
+                      : '150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียดและวิเคราะห์จุดอ่อนรายวิชา'}
+                  </p>
                   <CheckoutButton
                     productId={nextMockOffer.productId}
                     className={styles.mockOfferCheckout}
@@ -1051,6 +1062,13 @@ export function ExamRunner({
               {isFlagged ? 'ยกเลิกปักหมุด' : 'ปักหมุดข้อนี้'}
             </button>
           </div>
+
+          {isMiniMock02 ? (
+            <aside className={styles.sampleDisclosureBanner} role="note" aria-label="แจ้งความสัมพันธ์ของชุดข้อสอบ">
+              <span className={styles.sampleDisclosureBadge}>ตัวอย่างข้อสอบ</span>
+              <p>Mini Mock ชุดนี้เป็นตัวอย่าง 30 ข้อจาก Mock Test ชุด 4</p>
+            </aside>
+          ) : null}
 
           <article className={styles.questionCard} key={currentQuestion.id}>
             <div className={styles.questionMeta}>
