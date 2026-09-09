@@ -11,6 +11,7 @@ export type ExamSetData = {
 export type ExamQuestionData = {
   id: string;
   position: number;
+  subjectId: string;
   category: string;
   prompt: string;
   choices: string[];
@@ -125,7 +126,7 @@ export async function getPublishedExamBundle(examSetId: string): Promise<ExamBun
   const [questionResponse, solutionResponse] = await Promise.all([
     supabase
       .from('questions')
-      .select('id,category,prompt,choices,media')
+      .select('id,category,prompt,choices,media,metadata')
       .in('id', questionIds),
     supabase
       .from('question_solutions')
@@ -143,9 +144,11 @@ export async function getPublishedExamBundle(examSetId: string): Promise<ExamBun
     const solution = solutionById.get(mapping.question_id);
     if (!question || !solution || !Array.isArray(question.choices)) return [];
 
+    const metadata = question.metadata as { source_subject_id?: unknown } | null;
     return [{
       id: question.id,
       position: mapping.position,
+      subjectId: typeof metadata?.source_subject_id === 'string' ? metadata.source_subject_id : 'mock_test',
       category: question.category,
       prompt: question.prompt,
       choices: question.choices.map(String),

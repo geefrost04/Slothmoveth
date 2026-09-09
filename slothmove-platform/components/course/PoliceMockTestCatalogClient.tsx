@@ -61,9 +61,7 @@ export function PoliceMockTestCatalogClient({
           );
           const priceLabel = examSet.access_type === 'free'
             ? 'ฟรี'
-            : new Intl.NumberFormat('th-TH', {
-              style: 'currency', currency: 'THB', maximumFractionDigits: 0
-            }).format(examSet.price / 100);
+            : `${new Intl.NumberFormat('th-TH', { maximumFractionDigits: 0 }).format(examSet.price / 100)} บาท`;
           const priceDetail = examSet.access_type === 'free'
             ? 'ฟรี'
             : unlocked
@@ -71,7 +69,7 @@ export function PoliceMockTestCatalogClient({
               : 'เฉลย + วิเคราะห์';
           const actionLabel = unlocked
             ? 'เริ่มทำ Mock Test'
-            : `ปลดล็อก ${priceLabel}`;
+            : `ซื้อชุดนี้ · ${priceLabel}`;
           const href = `/courses/${courseId}/mock-test/${examSet.id}`;
           const itemClassName = examSet.access_type === 'free'
             ? `${styles.item} ${styles.freeItem}`

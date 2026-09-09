@@ -14,10 +14,14 @@ export function Hero() {
         </p>
         <div className={styles.ctaRow}>
           <TrackedLink
-            href="/courses/police_admin"
+            href="/courses/police_admin/mini-mock/police-mini_mock-set-01"
             className={styles.btn}
-            eventName="start_free_practice_click"
-            parameters={{ location: 'home_hero' }}
+            eventName="homepage_mini_mock_click"
+            parameters={{
+              location: 'home_hero',
+              exam_set_id: 'police-mini_mock-set-01',
+              question_count: 30
+            }}
           >
             เริ่มทดลองทำข้อสอบฟรี <span className={styles.btnArrow} aria-hidden="true">→</span>
           </TrackedLink>

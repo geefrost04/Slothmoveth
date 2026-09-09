@@ -160,6 +160,10 @@ export function ExamRunner({
   const subjectHref = subjectId === 'mock_test' || subjectId === 'mini_mock'
     ? '/courses/police_admin'
     : `/courses/police_admin/${subjectId}`;
+  const dailyPracticeSubjectId = subjectId === 'mock_test' || subjectId === 'mini_mock'
+    ? 'math'
+    : subjectId;
+  const dailyPracticeHref = `/daily-practice/${dailyPracticeSubjectId}`;
   const isMiniMock02 = examSetId === 'police-mini_mock-set-02';
   const [examSet, setExamSet] = useState<ExamSet | null>(initialData?.examSet ?? null);
   const [questions, setQuestions] = useState<ExamQuestion[]>(initialData?.questions ?? []);
@@ -179,6 +183,7 @@ export function ExamRunner({
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [showCompletionOffer, setShowCompletionOffer] = useState(false);
   const hasTrackedPracticeStart = useRef(false);
+  const hasTrackedFirstAnswer = useRef(false);
   const lastProgressMilestone = useRef(0);
   const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState('');
@@ -235,7 +240,7 @@ export function ExamRunner({
       const [questionResponse, solutionResponse] = await Promise.all([
         supabase
           .from('questions')
-          .select('id,category,prompt,choices,media')
+          .select('id,category,prompt,choices,media,metadata')
           .in('id', questionIds),
         supabase
           .from('question_solutions')
@@ -258,9 +263,11 @@ export function ExamRunner({
         const solution = solutionById.get(mapping.question_id);
         if (!question || !solution || !Array.isArray(question.choices)) return [];
 
+        const metadata = question.metadata as { source_subject_id?: unknown } | null;
         return [{
           id: question.id,
           position: mapping.position,
+          subjectId: typeof metadata?.source_subject_id === 'string' ? metadata.source_subject_id : 'mock_test',
           category: question.category,
           prompt: question.prompt,
           choices: question.choices.map(String),
@@ -316,6 +323,7 @@ export function ExamRunner({
 
     setAnswers(restoredAnswers);
     setFlaggedIds(new Set(restoredFlags));
+    hasTrackedFirstAnswer.current = Object.keys(restoredAnswers).length > 0;
     setStartedAt(sessionStartedAt);
     setSecondsLeft(Math.max(0, durationSeconds - Math.floor((Date.now() - sessionStartedAt) / 1000)));
     setSessionReady(true);
@@ -403,7 +411,7 @@ export function ExamRunner({
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [showLoginPrompt, showSubmitConfirm]);
+  }, [showCompletionOffer, showLoginPrompt, showSubmitConfirm]);
 
   function finishExam(reason: ExamResult['reason']) {
     const score = questions.reduce(
@@ -537,6 +545,19 @@ export function ExamRunner({
     setProgressSaveState(saveError ? 'error' : 'account');
   }
 
+  function openCompletionSavePrompt() {
+    setShowCompletionOffer(false);
+    setShowLoginPrompt(true);
+    trackAnalyticsEvent('exam_save_prompt_shown', {
+      exam_set_id: examSetId,
+      source: 'free_completion_modal'
+    });
+    trackAnalyticsEvent('free_completion_save_progress_click', {
+      exam_set_id: examSetId,
+      subject_id: subjectId
+    });
+  }
+
   function submitExam() {
     const unanswered = questions.length - Object.keys(answers).length;
     if (unanswered > 0) {
@@ -567,8 +588,25 @@ export function ExamRunner({
     setProgressSaveState('idle');
     setShowLoginPrompt(false);
     hasTrackedPracticeStart.current = true;
+    hasTrackedFirstAnswer.current = false;
     lastProgressMilestone.current = 0;
     trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId, restarted: true });
+  }
+
+  function selectAnswer(choiceIndex: number) {
+    const isFirstAnswer = Object.keys(answers).length === 0;
+    setAnswers((current) => ({ ...current, [currentQuestion.id]: choiceIndex }));
+
+    if (isFirstAnswer && !hasTrackedFirstAnswer.current) {
+      hasTrackedFirstAnswer.current = true;
+      trackAnalyticsEvent('practice_first_answer', {
+        practice_type: 'exam_set',
+        exam_set_id: examSetId,
+        subject_id: subjectId,
+        question_count: questions.length,
+        question_position: currentIndex + 1
+      });
+    }
   }
 
   function openReview() {
@@ -624,6 +662,18 @@ export function ExamRunner({
   if (result) {
     const percent = Math.round((result.score / result.total) * 100);
     const benchmark = evaluatePoliceBenchmark(result.score, result.total, result.categoryResults);
+    const subjectPerformance = Array.from(
+      questions.reduce((bySubject, question) => {
+        const current = bySubject.get(question.subjectId) ?? { subjectId: question.subjectId, total: 0, correct: 0 };
+        current.total += 1;
+        if (answers[question.id] === question.correctChoiceIndex) current.correct += 1;
+        bySubject.set(question.subjectId, current);
+        return bySubject;
+      }, new Map<string, { subjectId: string; total: number; correct: number }>()).values()
+    )
+      .map((item) => ({ ...item, percentage: Math.round((item.correct / item.total) * 100) }))
+      .sort((left, right) => left.percentage - right.percentage || left.correct - right.correct);
+    const nextSubjects = subjectPerformance.slice(0, 3);
 
     if (showReview) {
       const reviewItems = questions
@@ -949,6 +999,46 @@ export function ExamRunner({
                 </button>
               ) : null}
             </div>
+            {subjectId === 'mock_test' && nextSubjects.length > 0 ? (
+              <section className={styles.nextStudyPlan} aria-labelledby="next-study-plan-title">
+                <div className={styles.nextStudyPlanHead}>
+                  <div>
+                    <span>YOUR NEXT STUDY PLAN</span>
+                    <h2 id="next-study-plan-title">เริ่มฝึกต่อจากวิชาที่พลาดมากสุด</h2>
+                  </div>
+                  <small>เรียงจากผลชุดนี้</small>
+                </div>
+                <div className={styles.nextStudyPlanList}>
+                  {nextSubjects.map((item, index) => {
+                    const title = SUBJECT_LABELS[item.subjectId] ?? item.subjectId;
+                    const targetText = item.percentage >= 60
+                      ? `เกินเกณฑ์ 60% แล้ว ${item.percentage - 60}%`
+                      : `ขาดอีก ${60 - item.percentage}% ถึงเกณฑ์ 60%`;
+                    return (
+                      <Link
+                        href={`/courses/police_admin/${item.subjectId}`}
+                        className={styles.nextStudyPlanItem}
+                        key={item.subjectId}
+                        onClick={() => trackAnalyticsEvent('result_subject_practice_click', {
+                          exam_set_id: examSetId,
+                          subject_id: item.subjectId,
+                          rank: index + 1,
+                          percentage: item.percentage
+                        })}
+                      >
+                        <span className={styles.nextStudyPlanRank}>{index + 1}</span>
+                        <span className={styles.nextStudyPlanCopy}>
+                          <strong>{title}</strong>
+                          <small>ทำถูก {item.correct}/{item.total} ข้อ · {targetText}</small>
+                        </span>
+                        <span className={styles.nextStudyPlanScore}>{item.percentage}%</span>
+                        <span className={styles.nextStudyPlanAction}>เริ่มฝึก <span aria-hidden="true">→</span></span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            ) : null}
             <p className={styles.progressSaveMessage}>
               {progressSaveState === 'account' && 'บันทึกผลและความก้าวหน้ารายหมวดในบัญชีแล้ว'}
               {progressSaveState === 'guest' && 'บันทึกผลรายหมวดไว้ในอุปกรณ์นี้แล้ว · เข้าสู่ระบบเพื่อซิงก์ข้ามอุปกรณ์'}
@@ -1075,8 +1165,50 @@ export function ExamRunner({
               <span className={styles.completionOfferEyebrow}>FREE PRACTICE COMPLETED</span>
               <h2 id="completion-offer-title">ทำชุดฟรีจบแล้ว</h2>
               <p id="completion-offer-description">
-                เลือกฝึกต่อแบบค่อยเป็นค่อยไป หรือปลดล็อกทุกชุดที่อยู่ในแพ็กเกจในครั้งเดียว
+                เริ่มจากดูข้อที่พลาดและวิธีคิดก่อน แล้วเลือกชุดฝึกต่อเมื่อพร้อม
               </p>
+              <button
+                type="button"
+                className={styles.completionOfferReview}
+                onClick={() => {
+                  trackAnalyticsEvent('free_completion_review_click', {
+                    exam_set_id: examSetId,
+                    subject_id: subjectId
+                  });
+                  setShowCompletionOffer(false);
+                }}
+              >
+                <span>ดูเฉลยและวิเคราะห์ผล</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              {progressSaveState === 'guest' || progressSaveState === 'error' ? (
+                <button
+                  type="button"
+                  className={styles.completionOfferSave}
+                  onClick={openCompletionSavePrompt}
+                >
+                  <span>
+                    <strong>บันทึกคะแนนและจุดอ่อนฟรี</strong>
+                    <small>เปิดดูต่อใน Dashboard และกลับมาฝึกจากเครื่องไหนก็ได้</small>
+                  </span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              ) : null}
+              <Link
+                href={dailyPracticeHref}
+                className={styles.completionOfferFreeNext}
+                onClick={() => trackAnalyticsEvent('free_completion_next_free_click', {
+                  exam_set_id: examSetId,
+                  subject_id: subjectId,
+                  destination: dailyPracticeHref
+                })}
+              >
+                <span>ฝึกต่อฟรี</span>
+                <strong>ควิซวันนี้ 10 ข้อ</strong>
+                <small>ใช้เวลาประมาณ 10 นาที กลับมาทำวันละนิดเพื่อรักษาจังหวะ</small>
+                <b>เริ่มต่อฟรี <span aria-hidden="true">→</span></b>
+              </Link>
+              <p className={styles.completionOfferTransition}>พร้อมทำชุดฝึกเต็มเมื่อไร ค่อยเลือกได้</p>
               <div className={styles.completionOfferChoices}>
                 <Link
                   href={freeCompletionOffer.catalogHref}
@@ -1087,12 +1219,12 @@ export function ExamRunner({
                     destination: freeCompletionOffer.catalogHref
                   })}
                 >
-                  <span>ซื้อแยกเป็นชุด</span>
+                  <span>ฝึกต่อแบบรายชุด</span>
                   <strong>{freeCompletionOffer.catalogLabel}</strong>
                   <small>เลือกเฉพาะชุดที่อยากฝึกต่อ</small>
                 </Link>
                 <div className={styles.completionOfferAllIn}>
-                  <span>คุ้มที่สุด</span>
+                  <span>แพ็กเกจคุ้มสุด</span>
                   <strong>All-in นายสิบตำรวจ</strong>
                   <small>12 ชุด · 720 ข้อ · ใช้ได้ 1 ปี</small>
                   <CheckoutButton
@@ -1110,7 +1242,7 @@ export function ExamRunner({
                 </div>
               </div>
               <button type="button" className={styles.completionOfferLater} onClick={() => setShowCompletionOffer(false)}>
-                ดูเฉลยต่อก่อน
+                ปิดหน้าต่างนี้ก่อน
               </button>
             </section>
           </div>
@@ -1185,7 +1317,7 @@ export function ExamRunner({
                     aria-checked={selected}
                     className={`${styles.choiceButton} ${selected ? styles.selectedChoice : ''}`}
                     key={`${currentQuestion.id}-${choiceIndex}`}
-                    onClick={() => setAnswers((current) => ({ ...current, [currentQuestion.id]: choiceIndex }))}
+                    onClick={() => selectAnswer(choiceIndex)}
                   >
                     <span className={styles.radioMark}><i /></span>
                     <span className={styles.choiceKey}>{CHOICE_KEYS[choiceIndex] ?? choiceIndex + 1}</span>

@@ -37,21 +37,21 @@ export function PoliceMiniMockCallout() {
             className="police-v2-mini-mock-button"
             onClick={() => trackAnalyticsEvent('mini_mock_start_click', {
               exam_set_id: 'police-mini_mock-set-01',
-              source: 'course_landing'
+              source: 'course_landing_primary'
             })}
           >
-            ชุดที่ 1 <span aria-hidden="true">›</span>
+            เริ่ม Mini Mock ฟรี <span aria-hidden="true">›</span>
           </Link>
           <Link
             href="/courses/police_admin/mini-mock/police-mini_mock-set-02"
-            className="police-v2-mini-mock-button"
+            className="police-v2-mini-mock-button police-v2-mini-mock-button-secondary"
             title="Mini Mock ชุดนี้เป็นตัวอย่าง 30 ข้อจาก Mock Test ชุด 4"
             onClick={() => trackAnalyticsEvent('mini_mock_start_click', {
               exam_set_id: 'police-mini_mock-set-02',
-              source: 'course_landing'
+              source: 'course_landing_secondary'
             })}
           >
-            ชุดที่ 2 (ตัวอย่างชุด 4) <span aria-hidden="true">›</span>
+            ทำชุดที่ 2 ต่อ <span aria-hidden="true">›</span>
           </Link>
         </div>
       </div>

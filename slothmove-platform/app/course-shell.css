@@ -9201,6 +9201,17 @@
   background: #a51f2f;
 }
 
+.police-v2-mini-mock-button-secondary {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #ffe9ec;
+  background: transparent;
+}
+
+.police-v2-mini-mock-button-secondary:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .police-v2-mini-mock-button span { font-size: 19px; line-height: 1; }
 
 /* Mock Test hero product */
@@ -11968,4 +11979,3 @@ a.police-subject-study-path-checkout {
     justify-content: center;
   }
 }
-

@@ -66,7 +66,6 @@ export default function PoliceMockTestCatalogPage() {
             </div>
           </header>
           <main className={styles.pageBody}>
-            <PoliceAdminAllInOffer />
             <section className={styles.guide}>
               <span>รูปแบบการสอบ</span>
               <h2>150 ข้อ ครบ 6 วิชา</h2>
@@ -77,6 +76,7 @@ export default function PoliceMockTestCatalogPage() {
               </ul>
             </section>
             <PoliceMockTestCatalog courseId="police_admin" />
+            <PoliceAdminAllInOffer />
           </main>
         </div>
       </div>

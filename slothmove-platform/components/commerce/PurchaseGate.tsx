@@ -35,14 +35,14 @@ export function PurchaseGate({
         <p className="purchase-gate-kicker">เนื้อหาสำหรับสมาชิก</p>
         <h1>{title}</h1>
         <p>{description || 'ซื้อครั้งเดียวเพื่อปลดล็อกชุดข้อสอบและเฉลยแบบละเอียด'}</p>
-        <strong>{formatPrice(price)}</strong>
+        <strong>ราคา {formatPrice(price)}</strong>
         <CheckoutButton
           productId={productId}
           className="purchase-gate-checkout"
           analyticsEventName={analyticsEventName}
           analyticsParameters={analyticsParameters}
         >
-          ซื้อและปลดล็อก
+          ซื้อชุดนี้และปลดล็อก
         </CheckoutButton>
         <Link href={backHref}>{backLabel}</Link>
         <small>ชำระเงินอย่างปลอดภัยผ่าน Stripe · สิทธิ์ผูกกับบัญชีที่เข้าสู่ระบบ</small>

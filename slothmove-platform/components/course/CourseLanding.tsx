@@ -561,8 +561,6 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
 
         <PoliceMiniMockCallout />
 
-        <PoliceAdminAllInOffer />
-
         <section className="police-v2-mock-hero" aria-labelledby="police-mock-hero-title">
           <div className="police-v2-mock-copy">
             <span className="police-v2-mock-eyebrow"><i aria-hidden="true" /> FULL MOCK EXPERIENCE</span>
@@ -576,6 +574,8 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
           </div>
           <PoliceMockTestCatalog courseId={course.id} compact />
         </section>
+
+        <PoliceAdminAllInOffer />
 
         <h2 className="police-v2-section-heading">เลือกวิชา</h2>
 
