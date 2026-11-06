@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CourseLayout } from '@/components/course/CourseLayout';
 import { PoliceMockTestCatalog } from '@/components/course/PoliceMockTestCatalog';
-import { PoliceAdminAllInOffer } from '@/components/course/PoliceAdminAllInOffer';
 import { getCourse } from '@/courses/registry';
 import { buildMetadata } from '@/lib/seo';
 import { StructuredData } from '@/components/StructuredData';
@@ -56,8 +55,8 @@ export default function PoliceMockTestCatalogPage() {
             <div>
               <span>FULL EXAM SIMULATION</span>
               <h1>Mock Test จำลองสนามจริง</h1>
-              <p>เลือกฝึกชุดฟรีก่อน แล้วเลือกซื้อแยกเป็นรายชุดหรือปลดล็อก All-in ตามรูปแบบการเตรียมตัวของคุณ ทุกชุดมีเฉลยและผลวิเคราะห์แยกรายวิชา</p>
-              <p className={styles.heroPurchaseNote}>เริ่มจากชุดฟรีเพื่อดูข้อสอบ เฉลย และผลวิเคราะห์จริงก่อนตัดสินใจ</p>
+              <p>ทำได้ฟรีทุกชุด ทุกชุดมีเฉลยและผลวิเคราะห์แยกรายวิชา</p>
+              <p className={styles.heroPurchaseNote}>เลือกชุดไหนก่อนก็ได้ ทำซ้ำได้ไม่จำกัด</p>
             </div>
             <div className={styles.pageStats}>
               <span><strong>150</strong>ข้อ</span>
@@ -76,7 +75,6 @@ export default function PoliceMockTestCatalogPage() {
               </ul>
             </section>
             <PoliceMockTestCatalog courseId="police_admin" />
-            <PoliceAdminAllInOffer />
           </main>
         </div>
       </div>

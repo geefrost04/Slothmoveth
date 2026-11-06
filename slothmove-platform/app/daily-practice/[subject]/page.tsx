@@ -51,7 +51,7 @@ export default async function DailyPracticePage({
       isDailyPractice
       introChip="FREE DAILY PRACTICE"
       introTitle="ควิซฟรี 10 ข้อ"
-      introDescription="สุ่มเฉพาะจากชุดข้อสอบฟรี ไม่รวมข้อจากชุดที่ต้องซื้อ"
+      introDescription="สุ่มจากคลังข้อสอบฟรี พร้อมเฉลยหลังทำ"
       introStats={['10 ข้อต่อรอบ', 'เฉพาะชุดข้อสอบฟรี', 'พร้อมเฉลยหลังทำ']}
       modeOptions={[{ count: 10, label: 'เริ่มควิซฟรี 10 ข้อ', desc: 'สุ่มจากชุดข้อสอบฟรีที่เปิดให้ฝึกได้ทันที', badge: 'ฟรี', primaryIcon: 'quiz' }]}
     />

@@ -5,7 +5,6 @@ import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
 import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
-import { PoliceAdminAllInOffer } from './PoliceAdminAllInOffer';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
 import {
@@ -147,7 +146,7 @@ function PoliceWireLanding({ course }: { course: CourseConfig }) {
           </div>
           <div className="police-wire-copy">
             <h1 id="police-wire-title">นายสิบตำรวจ สายอำนวยการ</h1>
-            <p>สรุปแบบ Visual และชุดข้อสอบใหม่ แยกเป็นรายวิชาเพื่อเลือกเรียนและเลือกซื้อได้ชัดเจน</p>
+            <p>สรุปแบบ Visual และชุดข้อสอบใหม่ แยกเป็นรายวิชา ฝึกได้ฟรีทุกชุด</p>
           </div>
           <div className="police-wire-progress">
             <strong>กำลังปรับโครงสร้างใหม่</strong>
@@ -574,8 +573,6 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
           </div>
           <PoliceMockTestCatalog courseId={course.id} compact />
         </section>
-
-        <PoliceAdminAllInOffer />
 
         <h2 className="police-v2-section-heading">เลือกวิชา</h2>
 

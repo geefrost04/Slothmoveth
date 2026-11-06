@@ -1235,7 +1235,7 @@ export function ExamRunner({
                   <b>เริ่มต่อฟรี <span aria-hidden="true">→</span></b>
                 </Link>
               )}
-              <p className={styles.completionOfferTransition}>พร้อมทำชุดฝึกเต็มเมื่อไร ค่อยเลือกได้</p>
+              <p className={styles.completionOfferTransition}>ทุกชุดฝึกได้ฟรี เลือกชุดต่อไปได้เลย</p>
               <div className={styles.completionOfferChoices}>
                 <Link
                   href={freeCompletionOffer.catalogHref}
@@ -1250,23 +1250,6 @@ export function ExamRunner({
                   <strong>{freeCompletionOffer.catalogLabel}</strong>
                   <small>เลือกเฉพาะชุดที่อยากฝึกต่อ</small>
                 </Link>
-                <div className={styles.completionOfferAllIn}>
-                  <span>แพ็กเกจคุ้มสุด</span>
-                  <strong>All-in นายสิบตำรวจ</strong>
-                  <small>12 ชุด · 720 ข้อ · ใช้ได้ 1 ปี</small>
-                  <CheckoutButton
-                    productId="police_admin_all_in_2026"
-                    className={styles.completionOfferCheckout}
-                    analyticsEventName="bundle_unlock_click"
-                    analyticsParameters={{
-                      source: 'free_completion_modal',
-                      exam_set_id: examSetId,
-                      price: 299
-                    }}
-                  >
-                    ปลดล็อกทั้งหมด ฿299
-                  </CheckoutButton>
-                </div>
               </div>
               <button type="button" className={styles.completionOfferLater} onClick={() => setShowCompletionOffer(false)}>
                 ปิดหน้าต่างนี้ก่อน

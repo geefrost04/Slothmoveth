@@ -264,7 +264,8 @@ export function QuizGame({
   const [timeLeft, setTimeLeft] = useState<number>(defaultSpeedSeconds);
   const [didTimeout, setDidTimeout] = useState(false);
   const [bestStreak, setBestStreak] = useState(0);
-  const [isPremium, setIsPremium] = useState(false);
+  // All game modes are free; premium unlock is no longer sold.
+  const [isPremium, setIsPremium] = useState(true);
   const [wrongAnswers, setWrongAnswers] = useState<{ item: QuizItem; picked: number | null; questionIndex: number }[]>([]);
   const [showReview, setShowReview] = useState(false);
   const [answerSelections, setAnswerSelections] = useState<Record<string, number | null>>({});
@@ -289,12 +290,6 @@ export function QuizGame({
       setSavedResults([]);
     }
 
-    try {
-      const premiumStatus = window.localStorage.getItem('slothmove:premium') === 'true';
-      setIsPremium(premiumStatus);
-    } catch {
-      setIsPremium(false);
-    }
 
     if (!isSurvival) return;
 

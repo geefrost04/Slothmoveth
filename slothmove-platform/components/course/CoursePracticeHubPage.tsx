@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import type { CourseConfig, GameMeta, SubjectMeta } from '@/lib/course-types';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
@@ -106,15 +105,8 @@ export function CoursePracticeHubPage({
   course: CourseConfig;
   subject: SubjectMeta;
 }) {
-  const [isPremium, setIsPremium] = useState(false);
-
-  useEffect(() => {
-    try {
-      setIsPremium(window.localStorage.getItem('slothmove:premium') === 'true');
-    } catch {
-      setIsPremium(false);
-    }
-  }, []);
+  // All game modes are free; premium unlock is no longer sold.
+  const isPremium = true;
 
   const subjectGames = subject.games?.length
     ? course.games.filter((game) => subject.games?.includes(game.id))
