@@ -9,7 +9,9 @@ export const dynamic = 'force-dynamic';
 
 async function getFreeExamSet(subjectId: string) {
   const catalog = await getPublishedExamCatalog('police_admin', subjectId);
-  return catalog.find((examSet) => examSet.access_type === 'free') ?? null;
+  // Prefer a full free set over short quick-review sets so the daily quiz has a bigger pool.
+  const freeSets = catalog.filter((examSet) => examSet.access_type === 'free');
+  return freeSets.find((examSet) => !examSet.id.includes('-quick-')) ?? freeSets[0] ?? null;
 }
 
 export default async function DailyPracticePage({

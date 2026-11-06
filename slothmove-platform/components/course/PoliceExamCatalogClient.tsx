@@ -81,6 +81,10 @@ export function PoliceExamCatalogClient({
   const previewEntries = catalogEntries.slice(0, 3);
   const compactEntries = showAllSets ? catalogEntries : previewEntries;
   const freeCount = examSets.filter((examSet) => examSet.access_type === 'free').length;
+  const quickSets = examSets.filter((examSet) => examSet.id.includes('-quick-'));
+  const durationLabel = quickSets.length > 0
+    ? `ชุดสั้น ${quickSets[0].total_questions} ข้อ · ${quickSets[0].duration_minutes ?? quickSets[0].total_questions} นาที`
+    : 'ประมาณ 45 นาที/ชุด';
   const subjectCopy: Record<string, { title: string; source: string }> = {
     math: { title: 'คลังข้อสอบความรู้ทั่วไป', source: 'ฝึกคิดวิเคราะห์และคำนวณภายใต้เวลาจำกัด พร้อมเฉลยทบทวนหลังทำ' },
     computer: { title: 'คลังข้อสอบคอมพิวเตอร์', source: 'ครอบคลุมพื้นฐานคอมพิวเตอร์ โปรแกรมสำนักงาน เครือข่าย และความปลอดภัยดิจิทัล' },
@@ -109,7 +113,7 @@ export function PoliceExamCatalogClient({
         </div>
         <div className={styles.overviewStats}>
           <span>{freeCount} ชุดฟรี</span>
-          <span>ประมาณ 45 นาที/ชุด</span>
+          <span>{durationLabel}</span>
         </div>
       </div>
       {compactEntries.map((entry) => {

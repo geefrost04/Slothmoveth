@@ -48,6 +48,12 @@ type NextMockOffer = {
 type FreeCompletionOffer = {
   catalogHref: string;
   catalogLabel: string;
+  nextSet?: {
+    href: string;
+    title: string;
+    totalQuestions: number;
+    durationMinutes: number | null;
+  };
 };
 
 const CHOICE_KEYS = ['A', 'B', 'C', 'D', 'E'];
@@ -1194,20 +1200,41 @@ export function ExamRunner({
                   <span aria-hidden="true">→</span>
                 </button>
               ) : null}
-              <Link
-                href={dailyPracticeHref}
-                className={styles.completionOfferFreeNext}
-                onClick={() => trackAnalyticsEvent('free_completion_next_free_click', {
-                  exam_set_id: examSetId,
-                  subject_id: subjectId,
-                  destination: dailyPracticeHref
-                })}
-              >
-                <span>ฝึกต่อฟรี</span>
-                <strong>ควิซวันนี้ 10 ข้อ</strong>
-                <small>ใช้เวลาประมาณ 10 นาที กลับมาทำวันละนิดเพื่อรักษาจังหวะ</small>
-                <b>เริ่มต่อฟรี <span aria-hidden="true">→</span></b>
-              </Link>
+              {freeCompletionOffer.nextSet ? (
+                <a
+                  href={freeCompletionOffer.nextSet.href}
+                  className={styles.completionOfferFreeNext}
+                  onClick={() => trackAnalyticsEvent('free_completion_next_set_click', {
+                    exam_set_id: examSetId,
+                    subject_id: subjectId,
+                    destination: freeCompletionOffer.nextSet?.href ?? ''
+                  })}
+                >
+                  <span>ทำชุดถัดไปฟรี</span>
+                  <strong>{freeCompletionOffer.nextSet.title}</strong>
+                  <small>
+                    {freeCompletionOffer.nextSet.totalQuestions} ข้อ
+                    {freeCompletionOffer.nextSet.durationMinutes ? ` · ประมาณ ${freeCompletionOffer.nextSet.durationMinutes} นาที` : ''}
+                    {' '}คละหัวข้อใหม่ ไม่ซ้ำกับชุดนี้
+                  </small>
+                  <b>เริ่มชุดถัดไป <span aria-hidden="true">→</span></b>
+                </a>
+              ) : (
+                <Link
+                  href={dailyPracticeHref}
+                  className={styles.completionOfferFreeNext}
+                  onClick={() => trackAnalyticsEvent('free_completion_next_free_click', {
+                    exam_set_id: examSetId,
+                    subject_id: subjectId,
+                    destination: dailyPracticeHref
+                  })}
+                >
+                  <span>ฝึกต่อฟรี</span>
+                  <strong>ควิซวันนี้ 10 ข้อ</strong>
+                  <small>ใช้เวลาประมาณ 10 นาที กลับมาทำวันละนิดเพื่อรักษาจังหวะ</small>
+                  <b>เริ่มต่อฟรี <span aria-hidden="true">→</span></b>
+                </Link>
+              )}
               <p className={styles.completionOfferTransition}>พร้อมทำชุดฝึกเต็มเมื่อไร ค่อยเลือกได้</p>
               <div className={styles.completionOfferChoices}>
                 <Link
