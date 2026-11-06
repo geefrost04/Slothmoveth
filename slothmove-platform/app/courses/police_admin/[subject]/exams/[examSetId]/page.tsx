@@ -8,7 +8,7 @@ import { buildMetadata } from '@/lib/seo';
 const SUBJECTS: Record<string, { title: string; pattern: RegExp }> = {
   thai: { title: 'ภาษาไทย', pattern: /^police-thai-set-\d{2}$/ },
   law: { title: 'กฎหมาย', pattern: /^police-law-set-\d{2}$/ },
-  saraban: { title: 'งานสารบรรณ', pattern: /^police-saraban-(set|quick)-\d{2}$/ },
+  saraban: { title: 'งานสารบรรณ', pattern: /^police-saraban-(set|quick|p54)-\d{2}$/ },
   english: { title: 'ภาษาอังกฤษ', pattern: /^police-english-set-\d{2}$/ }
 };
 
@@ -67,7 +67,7 @@ export default async function PoliceSubjectExamPage({
 
   // Quick-review sets chain into the next one so a short session can keep going.
   let nextSet: { href: string; title: string; totalQuestions: number; durationMinutes: number | null } | undefined;
-  const quickMatch = databaseExamSetId.match(/^(police-[a-z_]+-quick-)(\d{2})$/);
+  const quickMatch = databaseExamSetId.match(/^(police-[a-z_]+-(?:quick|p54)-)(\d{2})$/);
   if (quickMatch) {
     const catalog = await getPublishedExamCatalog('police_admin', subject).catch(() => []);
     const quickSets = catalog.filter((examSet) => examSet.id.startsWith(quickMatch[1]) && examSet.access_type === 'free');

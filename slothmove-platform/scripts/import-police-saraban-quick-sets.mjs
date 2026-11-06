@@ -2,7 +2,7 @@
 // Imports the free saraban quick-review sets (police-saraban-quick-01..07) into Supabase.
 // Dry-run by default; pass --apply to write.
 //
-// Usage: node scripts/import-police-saraban-quick-sets.mjs [--apply]
+// Usage: node scripts/import-police-saraban-quick-sets.mjs [--apply] [--sets=id1,id2]
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,7 +11,10 @@ import { createClient } from '@supabase/supabase-js';
 
 const ROOT = process.cwd();
 const APPLY = process.argv.includes('--apply');
-const SET_IDS = Array.from({ length: 7 }, (_, index) => `police-saraban-quick-${String(index + 1).padStart(2, '0')}`);
+const DEFAULT_SET_IDS = Array.from({ length: 7 }, (_, index) => `police-saraban-quick-${String(index + 1).padStart(2, '0')}`);
+// --sets=id1,id2 imports other free saraban sets (e.g. police-saraban-p54-01,police-saraban-p54-02)
+const setsArg = process.argv.find((arg) => arg.startsWith('--sets='));
+const SET_IDS = setsArg ? setsArg.slice('--sets='.length).split(',').filter(Boolean) : DEFAULT_SET_IDS;
 
 function loadEnv(file) {
   if (!fs.existsSync(file)) return;
@@ -65,7 +68,7 @@ for (const { examSet: set, questions, qualityNotes } of payloads) {
     description: set.description,
     price: 0,
     type: 'exam_set',
-    metadata: { course_id: 'police_admin', subject_id: 'saraban', access_type: 'free', catalog: 'saraban_quick_review' },
+    metadata: { course_id: 'police_admin', subject_id: 'saraban', access_type: 'free', catalog: set.id.includes('-p54-') ? 'saraban_p54' : 'saraban_quick_review' },
     is_published: true
   }, { onConflict: 'id' }), `product ${set.id}`);
   await run(db.from('exam_sets').upsert({
@@ -75,12 +78,12 @@ for (const { examSet: set, questions, qualityNotes } of payloads) {
     product_id: productId,
     title: set.title,
     description: set.description,
-    source_label: 'SlothMove saraban quick review (re-split of sets 1-3)',
+    source_label: set.id.includes('-p54-') ? 'SlothMove: ลักษณะที่ 54 (ฉบับที่ 21/2569)' : 'SlothMove saraban quick review (re-split of sets 1-3)',
     access_type: 'free',
     duration_minutes: set.durationMinutes,
     total_questions: questions.length,
     metadata: {
-      catalog: 'saraban_quick_review',
+      catalog: set.id.includes('-p54-') ? 'saraban_p54' : 'saraban_quick_review',
       catalog_order: set.catalogOrder,
       content_source: `${set.id}.json`,
       generated_by: qualityNotes?.generatedBy
