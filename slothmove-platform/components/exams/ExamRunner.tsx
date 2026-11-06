@@ -56,7 +56,7 @@ type FreeCompletionOffer = {
   };
 };
 
-const CHOICE_KEYS = ['A', 'B', 'C', 'D', 'E'];
+const CHOICE_KEYS = ['ก', 'ข', 'ค', 'ง', 'จ'];
 const SECONDS_PER_QUESTION = 90;
 const SUBJECT_LABELS: Record<string, string> = {
   math: 'ความรู้ทั่วไป',
@@ -161,7 +161,7 @@ export function ExamRunner({
   nextMockOffer?: NextMockOffer;
   freeCompletionOffer?: FreeCompletionOffer;
 }) {
-  const subjectId = examSetId.match(/^police-([a-z_]+)-set-/)?.[1] ?? 'math';
+  const subjectId = examSetId.match(/^police-([a-z_]+)-(?:set|quick|p54)-/)?.[1] ?? 'math';
   const subjectTitle = SUBJECT_LABELS[subjectId] ?? 'รายวิชา';
   const subjectHref = subjectId === 'mock_test' || subjectId === 'mini_mock'
     ? '/courses/police_admin'
@@ -179,6 +179,8 @@ export function ExamRunner({
   const [startedAt, setStartedAt] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [sessionReady, setSessionReady] = useState(false);
+  // New attempts wait on a start screen so the clock never runs before the candidate is ready.
+  const [awaitingStart, setAwaitingStart] = useState(false);
   const [result, setResult] = useState<ExamResult | null>(null);
   const [showReview, setShowReview] = useState(false);
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>('wrong');
@@ -322,10 +324,22 @@ export function ExamRunner({
     const restoredAnswers = Object.fromEntries(
       Object.entries(stored?.answers ?? {}).filter(([questionId]) => validQuestionIds.has(questionId))
     );
+    const storedExpired = Boolean(stored?.startedAt) && Date.now() - (stored?.startedAt ?? 0) >= durationSeconds * 1000;
+    if (stored && storedExpired && Object.keys(restoredAnswers).length === 0) {
+      // A session left open until time ran out without any answer is not a real attempt.
+      stored = null;
+      try {
+        window.localStorage.removeItem(storageKey);
+      } catch {
+        // Best-effort cleanup.
+      }
+    }
+    if (!stored?.startedAt) {
+      setAwaitingStart(true);
+      return;
+    }
     const restoredFlags = (stored?.flaggedIds ?? []).filter((questionId) => validQuestionIds.has(questionId));
-    const sessionStartedAt = stored?.startedAt && Number.isFinite(stored.startedAt)
-      ? stored.startedAt
-      : Date.now();
+    const sessionStartedAt = Number.isFinite(stored.startedAt) ? stored.startedAt : Date.now();
 
     setAnswers(restoredAnswers);
     setFlaggedIds(new Set(restoredFlags));
@@ -333,11 +347,21 @@ export function ExamRunner({
     setStartedAt(sessionStartedAt);
     setSecondsLeft(Math.max(0, durationSeconds - Math.floor((Date.now() - sessionStartedAt) / 1000)));
     setSessionReady(true);
-    if (!stored?.startedAt && !hasTrackedPracticeStart.current) {
+  }, [durationSeconds, examSet, questions, sessionReady, storageKey]);
+
+  function startExam() {
+    setAnswers({});
+    setFlaggedIds(new Set());
+    setCurrentIndex(0);
+    setStartedAt(Date.now());
+    setSecondsLeft(durationSeconds);
+    setAwaitingStart(false);
+    setSessionReady(true);
+    if (!hasTrackedPracticeStart.current) {
       hasTrackedPracticeStart.current = true;
       trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId });
     }
-  }, [durationSeconds, examSet, questions, sessionReady, storageKey]);
+  }
 
   useEffect(() => {
     if (!sessionReady || result) return;
@@ -668,6 +692,8 @@ export function ExamRunner({
   if (result) {
     const percent = Math.round((result.score / result.total) * 100);
     const benchmark = evaluatePoliceBenchmark(result.score, result.total, result.categoryResults);
+    // Admission estimates only make sense for full / mini mock exams that mix all six subjects.
+    const showBenchmark = subjectId === 'mock_test' || subjectId === 'mini_mock';
     const subjectPerformance = Array.from(
       questions.reduce((bySubject, question) => {
         const current = bySubject.get(question.subjectId) ?? { subjectId: question.subjectId, total: 0, correct: 0 };
@@ -857,7 +883,7 @@ export function ExamRunner({
               <div><span>ปักหมุด</span><strong>{flaggedIds.size}</strong></div>
             </div>
 
-            {benchmark.isDualPart ? (
+            {showBenchmark && benchmark.isDualPart ? (
               <div className={styles.benchmarkCutoffSection}>
                 <div className={styles.benchmarkSectionHead}>
                   <div>
@@ -921,6 +947,7 @@ export function ExamRunner({
               </div>
             ) : null}
 
+            {showBenchmark ? (
             <div className={`${styles.historicalRankSection} ${styles[`rankZone_${benchmark.zone}`]}`}>
               <div className={styles.historicalRankHead}>
                 <div>
@@ -976,6 +1003,7 @@ export function ExamRunner({
                 <p>💡 <strong>บทวิเคราะห์:</strong> {benchmark.advice}</p>
               </div>
             </div>
+            ) : null}
             <div className={styles.categoryResults}>
               <div className={styles.categoryResultsHead}>
                 <h2>จุดที่ควรฝึกก่อน</h2>
@@ -1261,6 +1289,36 @@ export function ExamRunner({
     );
   }
 
+  if (awaitingStart && !sessionReady) {
+    const categories = Array.from(new Set(questions.map((question) => question.category))).slice(0, 6);
+    return (
+      <div className={styles.examPage}>
+        <ExamHeader secondsLeft={durationSeconds} exitHref={subjectHref} />
+        <main className={styles.startPage}>
+          <section className={styles.startCard}>
+            <span className={styles.freeBadge}>จับเวลาจริง · พร้อมเฉลย</span>
+            <h1>{examSet.title}</h1>
+            {examSet.description ? <p>{examSet.description}</p> : null}
+            <div className={styles.startStats}>
+              <div><strong>{questions.length}</strong><span>ข้อ</span></div>
+              <div><strong>{Math.round(durationSeconds / 60)}</strong><span>นาที</span></div>
+              <div><strong>4</strong><span>ตัวเลือก</span></div>
+            </div>
+            {categories.length ? <p className={styles.startTopics}>หัวข้อ: {categories.join(' · ')}{questions.length > categories.length ? ' ฯลฯ' : ''}</p> : null}
+            <ul className={styles.startRules}>
+              <li>เวลาเริ่มนับเมื่อกดปุ่มด้านล่าง</li>
+              <li>ปักหมุดข้อที่ไม่แน่ใจ แล้วกลับมาตอบทีหลังได้</li>
+              <li>ออกกลางคันได้ ระบบจำคำตอบไว้ให้ทำต่อ</li>
+            </ul>
+            <button type="button" className={styles.primaryButton} onClick={startExam}>
+              เริ่มทำข้อสอบ <span aria-hidden="true">→</span>
+            </button>
+          </section>
+        </main>
+      </div>
+    );
+  }
+
   const currentQuestion = questions[currentIndex];
   const answeredCount = Object.keys(answers).length;
   const progress = Math.round((answeredCount / questions.length) * 100);
@@ -1303,7 +1361,6 @@ export function ExamRunner({
           <article className={styles.questionCard} key={currentQuestion.id}>
             <div className={styles.questionMeta}>
               <strong>ข้อ {currentIndex + 1}</strong>
-              <span>{currentQuestion.category}</span>
             </div>
             <h2><MathText text={currentQuestion.prompt} /></h2>
             {currentQuestion.media?.src ? (

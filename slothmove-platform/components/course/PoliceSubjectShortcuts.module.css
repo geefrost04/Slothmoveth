@@ -1,0 +1,13 @@
+.shortcuts { display: grid; gap: 8px; margin-top: 14px; }
+.shortcuts > span { color: #7a6a6f; font-size: 12px; font-weight: 800; }
+.shortcuts > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.shortcuts a {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid #ecd3d9; background: #fff; color: #800020; font-size: 14px; font-weight: 700; text-decoration: none;
+  transition: background .15s ease, border-color .15s ease;
+}
+.shortcuts a:hover { background: #fff3f5; border-color: #800020; }
+@media (max-width: 600px) {
+  .shortcuts > div { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .shortcuts a { flex: 0 0 auto; }
+}

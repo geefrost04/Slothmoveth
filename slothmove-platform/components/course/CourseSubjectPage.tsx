@@ -224,7 +224,10 @@ function PoliceSubjectLandingPage({
     highlight: 'ทบทวน · ฝึกทำ · วิเคราะห์ผล',
     hasSummary: false
   };
-  const totalQuestions = examSets.reduce((total, examSet) => total + examSet.total_questions, 0);
+  // Quick-review sets reuse questions from the full sets, so leave them out of the unique count.
+  const totalQuestions = examSets
+    .filter((examSet) => !examSet.id.includes('-quick-'))
+    .reduce((total, examSet) => total + examSet.total_questions, 0);
   const freeSets = examSets.filter((examSet) => examSet.access_type === 'free').length;
   const summaryHref = `/courses/${course.id}/${subject.id}/summary`;
 
@@ -266,7 +269,7 @@ function PoliceSubjectLandingPage({
                 <span className="police-subject-hero-stat-icon"><CheckIcon /></span>
                 <div className="police-subject-hero-stat-info">
                   <strong>เริ่มฝึกได้ทันที</strong>
-                  <span>{freeSets > 0 ? `${freeSets} ชุดทดลองฟรี` : 'เลือกชุดที่ต้องการ'}</span>
+                  <span>{freeSets > 0 ? `ฟรีทุกชุด · ${freeSets} ชุด` : 'เลือกชุดที่ต้องการ'}</span>
                 </div>
               </div>
               <div className="police-subject-hero-stat-card">
@@ -289,10 +292,12 @@ function PoliceSubjectLandingPage({
           <div className="police-subject-summary-icon" aria-hidden="true"><BookOpenIcon /></div>
           <div className="police-subject-summary-copy">
             <span>{details.hasSummary ? 'ชีทสรุปพร้อมอ่าน' : 'พื้นที่ทบทวนเนื้อหา'}</span>
-            <h2>{details.hasSummary ? `สรุป${subject.title}แบบอ่านง่าย` : `สรุป${subject.title}กำลังจัดทำ`}</h2>
+            <h2>{details.hasSummary ? (subject.id === 'saraban' ? 'โน้ตสรุปสารบรรณ 2 ภาค' : `สรุป${subject.title}แบบอ่านง่าย`) : `สรุป${subject.title}กำลังจัดทำ`}</h2>
             <p>
               {details.hasSummary
-                ? 'เรียงประเด็นสำคัญเป็นลำดับ พร้อมตัวอย่างและจุดที่ควรจำก่อนลงสนามสอบ'
+                ? subject.id === 'saraban'
+                  ? 'ภาค 1 ระเบียบสำนักนายกฯ 8 บท · ภาค 2 ลักษณะที่ 54 สารบรรณตำรวจ 6 บท มีแผนผัง จุดหลอก และแบบฝึกท้ายบท'
+                  : 'เรียงประเด็นสำคัญเป็นลำดับ พร้อมตัวอย่างและจุดที่ควรจำก่อนลงสนามสอบ'
                 : 'ทีมงานกำลังเรียบเรียงสรุปแบบ Visual ให้กระชับ สวยงาม และเหมาะกับการทบทวนบนทุกหน้าจอ'}
             </p>
           </div>

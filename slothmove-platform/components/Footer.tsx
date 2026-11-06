@@ -123,8 +123,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/courses/police_admin/saraban/summary">
+                  โน้ตสรุปสารบรรณ + ลักษณะที่ 54
+                </Link>
+              </li>
+              <li>
                 <Link href="/courses/police_admin/computer/summary">
-                  ชีทสรุป &amp; เทคนิคจำ
+                  ชีทสรุปคอมพิวเตอร์
                 </Link>
               </li>
             </ul>
@@ -136,22 +141,12 @@ export function Footer() {
             <ul className={styles.linkList}>
               <li>
                 <Link href="/dashboard">
-                  ภาพรวมสถิติของฉัน
+                  สถิติ ประวัติคะแนน และข้อที่ตอบผิด
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard">
-                  ประวัติการฝึก &amp; คะแนน
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard">
-                  สมุดทบทวนข้อผิด
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard">
-                  จำลองเกณฑ์ตัดผ่าน 60%
+                <Link href="/register">
+                  สมัครฟรีเพื่อบันทึกคะแนน
                 </Link>
               </li>
             </ul>

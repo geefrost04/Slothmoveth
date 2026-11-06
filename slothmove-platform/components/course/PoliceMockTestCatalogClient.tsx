@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CatalogExamSet } from '@/lib/exam-data';
 import { CheckoutButton } from '@/components/commerce/CheckoutButton';
 import { trackAnalyticsEvent } from '@/lib/analytics';
@@ -21,6 +21,22 @@ export function PoliceMockTestCatalogClient({
   const ownedExamSets = new Set(ownedExamSetIds);
   const trackedView = useRef(false);
   const placement = compact ? 'course_landing' : 'mock_catalog';
+  const [latestScores, setLatestScores] = useState<Record<string, number>>({});
+
+  // Show each set's latest score from this device so candidates see where they left off.
+  useEffect(() => {
+    const scores: Record<string, number> = {};
+    for (const examSet of examSets) {
+      try {
+        const raw = window.localStorage.getItem(`slothmove:exam-history:${examSet.id}`);
+        const attempts = raw ? JSON.parse(raw) as Array<{ score: number; total: number }> : [];
+        if (Array.isArray(attempts) && attempts[0]?.total) scores[examSet.id] = Math.round((attempts[0].score / attempts[0].total) * 100);
+      } catch {
+        // Progress hints are optional.
+      }
+    }
+    setLatestScores(scores);
+  }, [examSets]);
 
   useEffect(() => {
     if (trackedView.current || examSets.length === 0) return;
@@ -49,7 +65,7 @@ export function PoliceMockTestCatalogClient({
       <header className={styles.header}>
         <div>
           <span>MOCK TEST SERIES</span>
-          <strong>เริ่มจากชุดฟรี แล้วฝึกต่อเมื่อพร้อม</strong>
+          <strong>ทำได้ฟรีทุกชุด เลือกชุดไหนก่อนก็ได้</strong>
         </div>
         <em>{examSets.length} ชุดพร้อมสอบ</em>
       </header>
@@ -84,9 +100,9 @@ export function PoliceMockTestCatalogClient({
                 <strong>{examSet.title}</strong>
                 <small>{examSet.total_questions} ข้อ · {examSet.duration_minutes ?? 180} นาที · 6 วิชา</small>
                 <small className={styles.benefit}>
-                  {examSet.access_type === 'free'
-                    ? 'ลองดูข้อสอบ เฉลย และผลวิเคราะห์จริง'
-                    : 'เฉลยละเอียด + วิเคราะห์จุดอ่อนแยกรายวิชา'}
+                  {latestScores[examSet.id] !== undefined
+                    ? `คะแนนล่าสุด ${latestScores[examSet.id]}%`
+                    : 'ยังไม่เคยทำ · เฉลยละเอียด + วิเคราะห์แยกรายวิชา'}
                 </small>
               </span>
               <span className={styles.price}>

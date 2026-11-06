@@ -142,9 +142,9 @@ export const policeAdminConfig: CourseConfig = {
     totalQuestions: 0,
     hideQuestionCounts: true,
     migrated: false,
-    migrationNote: 'กำลังออกแบบสรุปแบบ Visual และชุดข้อสอบใหม่สำหรับจำหน่ายแยกเป็นชุด',
+    migrationNote: 'กำลังออกแบบสรุปแบบ Visual และชุดข้อสอบใหม่แยกเป็นรายวิชา',
     landing: {
-      heroBadge: 'คอร์สเตรียมสอบ · นายสิบตำรวจ สายอำนวยการ · มีชุดทดลองฟรี',
+      heroBadge: 'คอร์สเตรียมสอบ · นายสิบตำรวจ สายอำนวยการ · ฝึกฟรีทุกชุด',
       heroTitleLead: 'เตรียมสอบนายสิบตำรวจ',
       heroTitleLines: ['นายสิบตำรวจ', 'สายอำนวยการ'],
       heroTitleAccent: 'SlothMove',

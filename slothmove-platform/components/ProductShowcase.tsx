@@ -6,12 +6,12 @@ const examFields = [
     description: 'ข้อสอบรายวิชา + Mock Test',
     href: '/courses/police_admin',
     image: '/pic/logo_police.png',
-    cta: 'ดูคอร์สและเริ่มทดลอง',
+    cta: 'ดูคอร์สและเริ่มฝึกฟรี',
     active: true,
   },
   {
     title: 'ก.พ.',
-    description: 'เร็ว ๆ นี้',
+    description: 'กำลังเตรียมเนื้อหา',
     href: '/courses/ocsc',
     image: '/pic/logo_ocsc.png',
     cta: 'เร็ว ๆ นี้',
@@ -19,7 +19,7 @@ const examFields = [
   },
   {
     title: 'ราชการอื่น ๆ',
-    description: 'เร็ว ๆ นี้',
+    description: 'ครูผู้ช่วย และสนามอื่น',
     href: '/courses/police_admin',
     image: 'lock',
     cta: 'เร็ว ๆ นี้',

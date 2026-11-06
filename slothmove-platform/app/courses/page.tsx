@@ -7,7 +7,7 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   title: 'คอร์สเตรียมสอบราชการและนายสิบตำรวจ',
-  description: 'รวมคอร์สเตรียมสอบราชการ เริ่มจากนายสิบตำรวจครบ 6 วิชา พร้อมชีทสรุป ชุดทดลองฟรี ข้อสอบพร้อมเฉลย และ Mock Test',
+  description: 'รวมคอร์สเตรียมสอบราชการ เริ่มจากนายสิบตำรวจครบ 6 วิชา พร้อมชีทสรุป ข้อสอบฟรีพร้อมเฉลย และ Mock Test',
   path: '/courses',
 });
 

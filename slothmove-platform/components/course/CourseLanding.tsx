@@ -5,6 +5,7 @@ import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
 import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
+import { PoliceSubjectShortcuts } from './PoliceSubjectShortcuts';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
 import {
@@ -552,6 +553,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
             <p className="police-v2-hero-desc">
               ฝึกข้อสอบตามวิชาที่ต้องการ หรือดูสรุปเนื้อหาเพื่อเพิ่มความเข้าใจก่อนทำข้อสอบ
             </p>
+            <PoliceSubjectShortcuts courseId={course.id} subjects={subjects} />
           </div>
           <div className="police-v2-hero-image">
             <img src="/pic/logo_police.png" alt="ตราสำนักงานตำรวจแห่งชาติ" />
@@ -592,7 +594,7 @@ function PoliceMockupLanding({ course }: { course: CourseConfig }) {
             </span>
             <div className="police-v2-guide-text">
               <h3>ยังไม่รู้จะเริ่มตรงไหน?</h3>
-              <p>ระหว่างรอชุดข้อสอบใหม่ สามารถดูโครงสร้างวิชาและสรุปเนื้อหาที่มีอยู่ได้</p>
+              <p>เริ่มจาก Mini Mock 30 ข้อเพื่อดูว่าวิชาไหนยังอ่อน แล้วไปฝึกวิชานั้นต่อ หรืออ่านชีทสรุปก่อนก็ได้</p>
             </div>
           </div>
           <Link href={`/courses/${course.id}/math`} className="police-v2-guide-button">
