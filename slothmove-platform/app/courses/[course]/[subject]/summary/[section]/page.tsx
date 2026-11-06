@@ -92,6 +92,13 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && (normalizedSubjectId === 'law' || normalizedSubjectId === 'police_law')) {
+    const localData = readLocalStudySheet('police-law-summary.json');
+    bundle = {
+      sheet: localData.sheet,
+      sections: localData.sections,
+      assets: localData.assets
+    } as StudySheetBundle;
   } else {
     bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
   }

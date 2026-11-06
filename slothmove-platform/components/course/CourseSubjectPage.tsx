@@ -314,7 +314,7 @@ function PoliceSubjectLandingPage({
               <span>ฝึกทำอย่างเป็นระบบ</span>
               <h2>ชุดข้อสอบ{subject.title}</h2>
             </div>
-            <Link href={practiceHref}>เปิดลานฝึก <span>›</span></Link>
+            {/* Practice hub (games) is hidden until it is ready: {practiceHref} */}
           </div>
           <PoliceExamCatalogClient
             courseId={course.id}

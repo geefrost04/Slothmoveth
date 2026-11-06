@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import type { CatalogExamSet } from '@/lib/exam-data';
 import { CheckoutButton } from '@/components/commerce/CheckoutButton';
 import styles from './PoliceExamCatalog.module.css';
+import { PoliceExamGroups, hasMultipleGroups } from './PoliceExamGroups';
 
 type LocalAttempt = {
   score: number;
@@ -78,6 +79,8 @@ export function PoliceExamCatalogClient({
   }
 
   const catalogEntries = getCatalogEntries(examSets);
+  // Subjects with several kinds of sets (quick review, Part 54, full sets) show grouped tiles instead of one long list.
+  const grouped = hasMultipleGroups(examSets);
   const previewEntries = catalogEntries.slice(0, 3);
   const compactEntries = showAllSets ? catalogEntries : previewEntries;
   const freeCount = examSets.filter((examSet) => examSet.access_type === 'free').length;
@@ -112,11 +115,20 @@ export function PoliceExamCatalogClient({
           <span>{overview.source}</span>
         </div>
         <div className={styles.overviewStats}>
-          <span>{freeCount} ชุดฟรี</span>
-          <span>{durationLabel}</span>
+          <span>{freeCount === examSets.length ? 'ฟรีทุกชุด' : `${freeCount} ชุดฟรี`}</span>
+          {grouped ? null : <span>{durationLabel}</span>}
         </div>
       </div>
-      {compactEntries.map((entry) => {
+      {grouped ? (
+        <PoliceExamGroups
+          courseId={courseId}
+          subjectId={subjectId}
+          examSets={examSets}
+          ownedExamSetIds={ownedExamSetIds}
+          latestScores={latestScores}
+        />
+      ) : null}
+      {!grouped && compactEntries.map((entry) => {
         if (entry.kind === 'pack') {
           const totalQuestions = entry.examSets.reduce((total, examSet) => total + examSet.total_questions, 0);
           const durationMinutes = entry.examSets.reduce(
@@ -229,7 +241,7 @@ export function PoliceExamCatalogClient({
           </Link>
         );
       })}
-      {catalogEntries.length > 3 ? (
+      {!grouped && catalogEntries.length > 3 ? (
         <button
           type="button"
           className={styles.toggleButton}
