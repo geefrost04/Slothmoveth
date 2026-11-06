@@ -1,0 +1,128 @@
+/* Subject header: editorial intro on the page background + a notebook-style study-sheet card. */
+.hero {
+  --ink: #1d1a1b;
+  --muted: #6f6467;
+  --line: #e6dcdd;
+  --accent: #7a1822;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 28px 4px 36px;
+}
+
+.intro { min-width: 0; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+.eyebrow::before { content: ''; width: 28px; height: 3px; border-radius: 2px; background: var(--accent); }
+.intro h1 {
+  margin: 14px 0 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.6vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+}
+.summary { max-width: 34em; margin: 14px 0 0; color: var(--muted); font-size: 17px; line-height: 1.65; }
+
+.facts { display: flex; flex-wrap: wrap; margin: 26px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 15px; }
+.facts li { display: inline-flex; align-items: baseline; gap: 6px; }
+.facts li + li::before { content: ''; align-self: center; width: 1px; height: 18px; margin: 0 18px; background: var(--line); }
+.facts strong { color: var(--ink); font-family: var(--font-display); font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.topics { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+.topics span { color: var(--ink); font-weight: 700; }
+
+/* Notebook card */
+.notebook {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  padding: 26px 26px 24px 46px;
+  border-radius: 6px 14px 14px 6px;
+  background-color: #fffdf8;
+  background-image: repeating-linear-gradient(transparent 0 31px, #efe6db 31px 32px);
+  background-position: 0 14px;
+  box-shadow: 0 1px 0 #e9dfd3, 0 18px 40px -26px rgba(60, 24, 30, .45), inset 0 0 0 1px #efe4d8;
+  transform: rotate(.6deg);
+}
+.notebook::before {
+  /* binding margin line */
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 2px;
+  background: rgba(122, 24, 34, .28);
+}
+.notebook::after {
+  /* spine */
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  border-radius: 6px 0 0 6px;
+  background: var(--accent);
+}
+.notebookHead span { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .06em; }
+.notebookHead h2 { margin: 4px 0 0; color: var(--ink); font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.25; }
+
+.outline { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.outline li {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: baseline;
+  min-height: 32px;
+  color: var(--ink);
+  font-size: 15px;
+}
+.rowLabel { color: var(--accent); font-size: 13px; font-weight: 800; }
+.rowTitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rowMeta { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+
+.notebookText { margin: 0; color: var(--muted); font-size: 15px; line-height: 32px; }
+
+.read {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.read b { transition: transform .15s ease; }
+.read:hover { color: #fff; background: var(--accent); }
+.read:hover b { transform: translateX(3px); }
+.soon { color: var(--muted); font-size: 14px; font-weight: 700; }
+.notebookPending { transform: none; opacity: .85; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; padding: 18px 2px 28px; }
+  .notebook { transform: none; }
+}
+@media (max-width: 480px) {
+  .summary { font-size: 15px; }
+  .facts li + li::before { margin: 0 12px; }
+  .facts strong { font-size: 22px; }
+  .notebook { padding: 22px 18px 20px 38px; }
+  .notebook::before { left: 24px; }
+  .outline li { grid-template-columns: 40px minmax(0, 1fr) auto; font-size: 14px; }
+  .rowTitle { white-space: normal; }
+}

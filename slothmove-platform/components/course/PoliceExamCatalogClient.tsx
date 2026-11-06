@@ -79,8 +79,8 @@ export function PoliceExamCatalogClient({
   }
 
   const catalogEntries = getCatalogEntries(examSets);
-  // Subjects with several kinds of sets (quick review, Part 54, full sets) show grouped tiles instead of one long list.
-  const grouped = hasMultipleGroups(examSets);
+  // Every subject uses the answer-sheet layout; paid packs (none at the moment) fall back to the older card list.
+  const grouped = examSets.every((examSet) => examSet.access_type === 'free') || hasMultipleGroups(examSets);
   const previewEntries = catalogEntries.slice(0, 3);
   const compactEntries = showAllSets ? catalogEntries : previewEntries;
   const freeCount = examSets.filter((examSet) => examSet.access_type === 'free').length;
@@ -100,6 +100,8 @@ export function PoliceExamCatalogClient({
 
   return (
     <div className={styles.catalog}>
+      {!grouped ? (
+        <>
       <div className={styles.heading}>
         <strong>
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -119,6 +121,8 @@ export function PoliceExamCatalogClient({
           {grouped ? null : <span>{durationLabel}</span>}
         </div>
       </div>
+        </>
+      ) : null}
       {grouped ? (
         <PoliceExamGroups
           courseId={courseId}

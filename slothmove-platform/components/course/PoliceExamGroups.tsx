@@ -7,12 +7,13 @@ import styles from './PoliceExamGroups.module.css';
 
 type GroupKey = 'quick' | 'p54' | 'full' | 'other';
 
-const GROUPS: Record<GroupKey, { title: string; desc: string; icon: string }> = {
-  quick: { title: 'ทบทวนเร็ว', desc: 'คละทุกหัวข้อ เหมาะกับวันที่มีเวลาน้อย ทำจบแล้วไปชุดถัดไปได้ทันที', icon: '⚡' },
-  p54: { title: 'ลักษณะที่ 54 · สารบรรณตำรวจ', desc: 'ระเบียบงานสารบรรณของ ตร. ฉบับแก้ไขถึงฉบับที่ 21 พ.ศ. 2569', icon: '👮' },
-  full: { title: 'ชุดเต็ม', desc: 'ข้อเยอะ จับเวลาเหมือนสนามจริง ใช้วัดความพร้อมก่อนสอบ', icon: '📝' },
-  other: { title: 'ชุดอื่น ๆ', desc: 'ชุดฝึกเพิ่มเติมของวิชานี้', icon: '📚' }
+const GROUPS: Record<GroupKey, { title: string; desc: string }> = {
+  quick: { title: 'ทบทวนเร็ว', desc: 'คละทุกหัวข้อ ทำจบไว แล้วไปชุดถัดไปได้เลย' },
+  p54: { title: 'ลักษณะที่ 54', desc: 'สารบรรณตำรวจ ฉบับแก้ไขถึงฉบับที่ 21/2569' },
+  full: { title: 'ชุดเต็ม', desc: 'จับเวลาเหมือนสนามจริง ใช้วัดความพร้อม' },
+  other: { title: 'ชุดอื่น ๆ', desc: 'ชุดฝึกเพิ่มเติมของวิชานี้' }
 };
+const ORDER: GroupKey[] = ['quick', 'p54', 'full', 'other'];
 
 export function groupKeyOf(examSet: CatalogExamSet): GroupKey {
   if (examSet.id.includes('-quick-')) return 'quick';
@@ -25,9 +26,8 @@ export function hasMultipleGroups(examSets: CatalogExamSet[]) {
   return new Set(examSets.map(groupKeyOf)).size > 1;
 }
 
-function setLabel(examSet: CatalogExamSet) {
-  const number = examSet.title.match(/ชุดที่\s*(\d+)/)?.[1];
-  return number ? `ชุดที่ ${number}` : examSet.title;
+function setNumber(examSet: CatalogExamSet, fallback: number) {
+  return examSet.title.match(/ชุดที่\s*(\d+)/)?.[1] ?? String(fallback);
 }
 
 export function PoliceExamGroups({
@@ -44,72 +44,81 @@ export function PoliceExamGroups({
   latestScores: Record<string, number>;
 }) {
   const owned = new Set(ownedExamSetIds);
-  const order: GroupKey[] = ['quick', 'p54', 'full', 'other'];
-  const grouped = order
+  const grouped = ORDER
     .map((key) => ({ key, sets: examSets.filter((examSet) => groupKeyOf(examSet) === key) }))
     .filter((group) => group.sets.length > 0);
-  // Suggest the first set the candidate has not tried yet, so the page answers "where do I start?".
-  const suggestedId = grouped.flatMap((group) => group.sets).find((examSet) => latestScores[examSet.id] === undefined)?.id;
+  const hrefOf = (examSet: CatalogExamSet) => `/courses/${courseId}/${subjectId}/exams/${examSet.id}`;
+  const doneTotal = examSets.filter((examSet) => latestScores[examSet.id] !== undefined).length;
+  // With a single kind of set, a group name like "ชุดเต็ม" adds nothing.
+  const single = grouped.length === 1;
+  const titleOf = (key: GroupKey) => (single ? 'ชุดข้อสอบ' : GROUPS[key].title);
+
+  // One clear next step: the first set not tried yet (in group order).
+  const nextGroup = grouped.find((group) => group.sets.some((examSet) => latestScores[examSet.id] === undefined));
+  const nextSet = nextGroup?.sets.find((examSet) => latestScores[examSet.id] === undefined);
 
   return (
-    <div className={styles.groups}>
+    <div className={styles.wrap}>
+      <div className={styles.summary}>
+        <p>
+          <strong>{examSets.length} ชุด</strong> ฟรีทั้งหมด
+          {doneTotal > 0 ? <> · ทำแล้ว <strong>{doneTotal}</strong> ชุด</> : null}
+        </p>
+        {nextSet && nextGroup ? (
+          <Link href={hrefOf(nextSet)} className={styles.next}>
+            <span>{doneTotal > 0 ? 'ทำต่อ' : 'เริ่มที่'}</span>
+            {single ? '' : `${GROUPS[nextGroup.key].title} `}ชุดที่ {setNumber(nextSet, 1)}
+            <b aria-hidden="true">→</b>
+          </Link>
+        ) : null}
+      </div>
+
       {grouped.map(({ key, sets }) => {
         const meta = GROUPS[key];
         const first = sets[0];
-        const doneCount = sets.filter((examSet) => latestScores[examSet.id] !== undefined).length;
+        const minutes = first.duration_minutes ?? Math.ceil(first.total_questions * 1.5);
         return (
           <section className={styles.group} key={key} aria-labelledby={`exam-group-${key}`}>
-            <header className={styles.groupHead}>
-              <span className={styles.groupIcon} aria-hidden="true">{meta.icon}</span>
-              <div>
-                <h3 id={`exam-group-${key}`}>{meta.title}</h3>
-                <p>{meta.desc}</p>
-              </div>
-              <div className={styles.groupBadges}>
-                <span>{sets.length} ชุด</span>
-                <span>{first.total_questions} ข้อ · {first.duration_minutes ?? Math.ceil(first.total_questions * 1.5)} นาที</span>
-                {doneCount > 0 ? <span className={styles.doneBadge}>ทำแล้ว {doneCount}/{sets.length}</span> : null}
-              </div>
-            </header>
-            <div className={styles.tiles}>
-              {sets.map((examSet) => {
+            <div className={styles.groupInfo}>
+              <h3 id={`exam-group-${key}`}>{titleOf(key)}</h3>
+              <p>{meta.desc}</p>
+              <small>{sets.length} ชุด · ชุดละ {first.total_questions} ข้อ · {minutes} นาที</small>
+            </div>
+            <ol className={styles.sheet}>
+              {sets.map((examSet, index) => {
                 const score = latestScores[examSet.id];
                 const unlocked = examSet.access_type === 'free' || owned.has(examSet.id);
-                const suggested = examSet.id === suggestedId;
                 const tone = score === undefined ? '' : score >= 80 ? styles.good : score >= 60 ? styles.ok : styles.low;
+                const isNext = nextSet?.id === examSet.id;
+                const label = `${meta.title} ชุดที่ ${setNumber(examSet, index + 1)}${score !== undefined ? ` คะแนนล่าสุด ${score}%` : ' ยังไม่ได้ทำ'}`;
                 const content = (
                   <>
-                    {suggested ? <span className={styles.suggest}>เริ่มตรงนี้</span> : null}
-                    <strong className={styles.tileTitle}>{setLabel(examSet)}</strong>
-                    {score === undefined ? (
-                      <span className={styles.tileStatus}>{unlocked ? 'ยังไม่ได้ทำ' : 'ต้องปลดล็อก'}</span>
-                    ) : (
-                      <span className={`${styles.tileStatus} ${tone}`}>
-                        คะแนนล่าสุด {score}%
-                        <i className={styles.scoreBar}><b style={{ width: `${score}%` }} /></i>
-                      </span>
-                    )}
-                    <span className={styles.tileGo} aria-hidden="true">{score === undefined ? 'เริ่ม →' : 'ทำอีกครั้ง →'}</span>
+                    <span className={styles.num}>{setNumber(examSet, index + 1)}</span>
+                    <span className={styles.state}>{score !== undefined ? `${score}%` : isNext ? 'เริ่ม' : unlocked ? '—' : 'ล็อก'}</span>
                   </>
                 );
-                const className = `${styles.tile} ${suggested ? styles.tileSuggested : ''} ${score !== undefined ? styles.tileDone : ''}`;
-                if (!unlocked && examSet.product_id) {
-                  return (
-                    <CheckoutButton productId={examSet.product_id} className={className} key={examSet.id}>
-                      {content}
-                    </CheckoutButton>
-                  );
-                }
+                const className = `${styles.cell} ${tone} ${isNext ? styles.isNext : ''}`;
                 return (
-                  <Link href={`/courses/${courseId}/${subjectId}/exams/${examSet.id}`} className={className} key={examSet.id} aria-label={`${examSet.title}${score !== undefined ? ` คะแนนล่าสุด ${score}%` : ''}`}>
-                    {content}
-                  </Link>
+                  <li key={examSet.id}>
+                    {!unlocked && examSet.product_id ? (
+                      <CheckoutButton productId={examSet.product_id} className={className}>{content}</CheckoutButton>
+                    ) : (
+                      <Link href={hrefOf(examSet)} className={className} aria-label={label} title={label}>{content}</Link>
+                    )}
+                  </li>
                 );
               })}
-            </div>
+            </ol>
           </section>
         );
       })}
+
+      <p className={styles.legend}>
+        <span><i className={styles.good} />80% ขึ้นไป</span>
+        <span><i className={styles.ok} />60–79%</span>
+        <span><i className={styles.low} />ต่ำกว่า 60%</span>
+        <span>ตัวเลขคือคะแนนล่าสุดบนเครื่องนี้</span>
+      </p>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import type { CourseKnowledgeData } from '@/lib/knowledge-types';
 import type { CatalogExamSet } from '@/lib/exam-data';
 import { CourseKnowledgeContent } from './CourseKnowledgeContent';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
+import { PoliceSubjectHero } from './PoliceSubjectHero';
 import { CoffeePdfButton } from '@/components/commerce/CoffeePdfButton';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
@@ -244,75 +245,25 @@ function PoliceSubjectLandingPage({
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>
 
-        <section className="police-subject-hero police-subject-hero--catalog">
-          <div className="police-subject-hero-left">
-            <div className="police-subject-header-meta">
-              <span className="police-subject-track-badge">นายสิบตำรวจ · สายอำนวยการ</span>
-              <span className="police-subject-eyebrow">{details.eyebrow}</span>
-            </div>
-            <div className="police-subject-hero-title-row">
-              <span className="police-subject-hero-icon" aria-hidden="true">
-                <SubjectIcon subjectId={subject.id} size={26} />
-              </span>
-              <h1 className="police-subject-hero-title">{subject.title}</h1>
-            </div>
-            <p className="police-subject-hero-subtitle">{details.summary}</p>
-            <div className="police-subject-hero-stats">
-              <div className="police-subject-hero-stat-card">
-                <span className="police-subject-hero-stat-icon"><SheetIcon /></span>
-                <div className="police-subject-hero-stat-info">
-                  <strong>คลังข้อสอบ</strong>
-                  <span>{examSets.length} ชุด · {totalQuestions.toLocaleString('th-TH')} ข้อ</span>
-                </div>
-              </div>
-              <div className="police-subject-hero-stat-card">
-                <span className="police-subject-hero-stat-icon"><CheckIcon /></span>
-                <div className="police-subject-hero-stat-info">
-                  <strong>เริ่มฝึกได้ทันที</strong>
-                  <span>{freeSets > 0 ? `ฟรีทุกชุด · ${freeSets} ชุด` : 'เลือกชุดที่ต้องการ'}</span>
-                </div>
-              </div>
-              <div className="police-subject-hero-stat-card">
-                <span className="police-subject-hero-stat-icon"><BookOpenIcon /></span>
-                <div className="police-subject-hero-stat-info">
-                  <strong>หัวข้อสำคัญ</strong>
-                  <span>{details.highlight}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="police-subject-hero-right police-subject-hero-visual" aria-hidden="true">
-            <span className="police-subject-hero-watermark">SLOTHMOVE</span>
-            <img className="police-subject-hero-mascot" src={subject.mascot || '/pic/course-mascot/police-hero.png'} alt="" />
-            <img className="police-subject-hero-seal" src="/pic/logo_police.png" alt="" />
-          </div>
-        </section>
-
-        <section className="police-subject-summary-panel">
-          <div className="police-subject-summary-icon" aria-hidden="true"><BookOpenIcon /></div>
-          <div className="police-subject-summary-copy">
-            <span>{details.hasSummary ? 'ชีทสรุปพร้อมอ่าน' : 'พื้นที่ทบทวนเนื้อหา'}</span>
-            <h2>{details.hasSummary ? (subject.id === 'saraban' ? 'โน้ตสรุปสารบรรณ 2 ภาค' : `สรุป${subject.title}แบบอ่านง่าย`) : `สรุป${subject.title}กำลังจัดทำ`}</h2>
-            <p>
-              {details.hasSummary
-                ? subject.id === 'saraban'
-                  ? 'ภาค 1 ระเบียบสำนักนายกฯ 8 บท · ภาค 2 ลักษณะที่ 54 สารบรรณตำรวจ 6 บท มีแผนผัง จุดหลอก และแบบฝึกท้ายบท'
-                  : 'เรียงประเด็นสำคัญเป็นลำดับ พร้อมตัวอย่างและจุดที่ควรจำก่อนลงสนามสอบ'
-                : 'ทีมงานกำลังเรียบเรียงสรุปแบบ Visual ให้กระชับ สวยงาม และเหมาะกับการทบทวนบนทุกหน้าจอ'}
-            </p>
-          </div>
-          {details.hasSummary ? (
-            <Link className="police-subject-summary-action" href={summaryHref}>เปิดชีทสรุป <span>›</span></Link>
-          ) : (
-            <span className="police-subject-summary-status">เร็ว ๆ นี้</span>
-          )}
-        </section>
+        <PoliceSubjectHero
+          subjectId={subject.id}
+          title={subject.title}
+          eyebrow={details.eyebrow}
+          summary={details.summary}
+          highlight={details.highlight}
+          hasSummary={details.hasSummary}
+          summaryHref={summaryHref}
+          setCount={examSets.length}
+          questionCount={totalQuestions}
+          allFree={examSets.length > 0 && freeSets === examSets.length}
+          freeSets={freeSets}
+        />
 
         <section className="police-subject-exam-section">
           <div className="police-subject-section-heading">
             <div>
-              <span>ฝึกทำอย่างเป็นระบบ</span>
-              <h2>ชุดข้อสอบ{subject.title}</h2>
+              <span>คลังข้อสอบ</span>
+              <h2>เลือกชุดที่จะทำ</h2>
             </div>
             {/* Practice hub (games) is hidden until it is ready: {practiceHref} */}
           </div>
