@@ -1403,7 +1403,10 @@
   .questionActions .primaryButton { grid-row: 1; }
   .questionGrid { gap: 8px; }
   .navigatorPanel { padding: 20px 16px; }
-  .resultStats, .resultActions { grid-template-columns: 1fr; }
+  .resultActions { grid-template-columns: 1fr; }
+  .resultStats { gap: 8px; margin: 22px 0; }
+  .resultStats div { padding: 12px 6px; }
+  .resultStats strong { font-size: 21px; }
   .nextStudyPlan { padding: 16px; }
   .nextStudyPlanHead { align-items: start; flex-direction: column; gap: 4px; }
   .nextStudyPlanItem { grid-template-columns: 30px minmax(0, 1fr) 44px; }
@@ -2009,3 +2012,36 @@
   .questionActions .primaryButton,
   .questionActions .secondaryButton { min-height: 48px; padding: 0 10px; font-size: 14px; }
 }
+
+/* Next set on the result page (replaces the old completion popup) */
+.nextSetCta {
+  position: relative;
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 3px;
+  padding: 16px 52px 16px 18px;
+  border: 1px solid #e5c6cb;
+  border-radius: 14px;
+  background: #fff7f8;
+  color: #202532;
+  text-align: left;
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+.nextSetCta:hover { border-color: var(--exam-red); transform: translateY(-1px); color: #202532; }
+.nextSetCta > span { color: var(--exam-red); font-size: 12px; font-weight: 850; }
+.nextSetCta > strong { font-size: 16px; line-height: 1.4; }
+.nextSetCta > small { color: #697180; font-size: 12px; font-weight: 600; }
+.nextSetCta > b { position: absolute; top: 50%; right: 18px; transform: translateY(-50%); color: var(--exam-red); font-size: 22px; transition: transform 160ms ease; }
+.nextSetCta:hover > b { transform: translate(4px, -50%); }
+
+/* Topics answered wrong, for short mixed sets */
+.missedTopics { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+.missedTopics li { padding: 6px 12px; border: 1px solid #efd3d7; border-radius: 999px; background: #fff7f8; color: #5a2a33; font-size: 13px; font-weight: 700; }
+
+.inlineLink { padding: 0; border: 0; background: none; color: var(--exam-red); font: inherit; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+.keyHint { margin: 12px 0 0; color: #8a909b; font-size: 11.5px; text-align: center; }
+.keyHint kbd { display: inline-block; min-width: 20px; padding: 1px 5px; border: 1px solid #dfe2e7; border-bottom-width: 2px; border-radius: 5px; background: #fff; color: #4a505c; font: inherit; font-size: 11px; font-weight: 800; }
+@media (hover: none) { .keyHint { display: none; } }
+.missedPanel { max-height: none; overflow: visible; }

@@ -6,7 +6,6 @@ import { queuePendingAttempt, type PendingAttempt } from '@/lib/pending-attempts
 import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
 import type { ExamBundle, ExamQuestionData, ExamSetData } from '@/lib/exam-data';
-import { CheckoutButton } from '@/components/commerce/CheckoutButton';
 import { evaluatePoliceBenchmark } from '@/lib/police-exam-benchmark';
 import styles from './ExamRunner.module.css';
 
@@ -189,7 +188,6 @@ export function ExamRunner({
   const [showAllCategoryResults, setShowAllCategoryResults] = useState(false);
   const [progressSaveState, setProgressSaveState] = useState<'idle' | 'account' | 'guest' | 'error'>('idle');
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const [showCompletionOffer, setShowCompletionOffer] = useState(false);
   const hasTrackedPracticeStart = useRef(false);
   const hasTrackedFirstAnswer = useRef(false);
   const lastProgressMilestone = useRef(0);
@@ -431,17 +429,40 @@ export function ExamRunner({
   }, [questions.length, result, secondsLeft, sessionReady]);
 
   useEffect(() => {
-    if (!showLoginPrompt && !showSubmitConfirm && !showCompletionOffer) return;
+    if (!showLoginPrompt && !showSubmitConfirm) return;
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setShowLoginPrompt(false);
       setShowSubmitConfirm(false);
-      setShowCompletionOffer(false);
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [showCompletionOffer, showLoginPrompt, showSubmitConfirm]);
+  }, [showLoginPrompt, showSubmitConfirm]);
+
+  // Keyboard: 1–4 or ก–ง picks a choice, ← → moves between questions.
+  useEffect(() => {
+    if (!sessionReady || result || showSubmitConfirm || showLoginPrompt || questions.length === 0) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      const target = event.target as HTMLElement | null;
+      if (target && (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName))) return;
+      const choice = ['1', '2', '3', '4'].indexOf(event.key) >= 0 ? Number(event.key) - 1 : ['ก', 'ข', 'ค', 'ง'].indexOf(event.key);
+      const question = questions[currentIndex];
+      if (choice >= 0 && question && choice < question.choices.length) {
+        event.preventDefault();
+        selectAnswer(choice);
+      } else if (event.key === 'ArrowRight') {
+        setCurrentIndex((index) => Math.min(questions.length - 1, index + 1));
+      } else if (event.key === 'ArrowLeft') {
+        setCurrentIndex((index) => Math.max(0, index - 1));
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // selectAnswer reads the latest state through the deps below.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answers, currentIndex, questions, result, sessionReady, showLoginPrompt, showSubmitConfirm]);
 
   function finishExam(reason: ExamResult['reason']) {
     const score = questions.reduce(
@@ -476,25 +497,6 @@ export function ExamRunner({
       practice_type: 'exam_set', subject_id: subjectId, question_count: completedResult.total,
       score: completedResult.score, completion_reason: reason, exam_set_id: examSetId
     });
-    if (nextMockOffer) {
-      trackAnalyticsEvent('mock_paid_offer_impression', {
-        source: 'free_mock_completion',
-        free_exam_set_id: examSetId,
-        paid_exam_set_id: nextMockOffer.examSetId,
-        score: completedResult.score,
-        total_questions: completedResult.total,
-        price: nextMockOffer.price / 100
-      });
-    }
-    if (freeCompletionOffer) {
-      trackAnalyticsEvent('free_completion_purchase_offer_impression', {
-        exam_set_id: examSetId,
-        subject_id: subjectId,
-        score: completedResult.score,
-        total_questions: completedResult.total
-      });
-      setShowCompletionOffer(true);
-    }
     void saveProgress(completedResult);
     try {
       window.localStorage.removeItem(storageKey);
@@ -547,10 +549,6 @@ export function ExamRunner({
     if (!supabase) {
       queuePendingAttempt(pendingAttempt);
       setProgressSaveState('guest');
-      if (!freeCompletionOffer) {
-        setShowLoginPrompt(true);
-        trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'missing_supabase_session' });
-      }
       return;
     }
 
@@ -558,10 +556,6 @@ export function ExamRunner({
     if (!authData.user) {
       queuePendingAttempt(pendingAttempt);
       setProgressSaveState('guest');
-      if (!freeCompletionOffer) {
-        setShowLoginPrompt(true);
-        trackAnalyticsEvent('exam_save_prompt_shown', { exam_set_id: examSetId, source: 'guest_session' });
-      }
       return;
     }
 
@@ -573,19 +567,6 @@ export function ExamRunner({
 
     if (saveError) queuePendingAttempt(pendingAttempt);
     setProgressSaveState(saveError ? 'error' : 'account');
-  }
-
-  function openCompletionSavePrompt() {
-    setShowCompletionOffer(false);
-    setShowLoginPrompt(true);
-    trackAnalyticsEvent('exam_save_prompt_shown', {
-      exam_set_id: examSetId,
-      source: 'free_completion_modal'
-    });
-    trackAnalyticsEvent('free_completion_save_progress_click', {
-      exam_set_id: examSetId,
-      subject_id: subjectId
-    });
   }
 
   function submitExam() {
@@ -692,6 +673,7 @@ export function ExamRunner({
   if (result) {
     const percent = Math.round((result.score / result.total) * 100);
     const benchmark = evaluatePoliceBenchmark(result.score, result.total, result.categoryResults);
+    const missedCategories = result.categoryResults.filter((item) => item.correct < item.total).map((item) => item.category);
     // Admission estimates only make sense for full / mini mock exams that mix all six subjects.
     const showBenchmark = subjectId === 'mock_test' || subjectId === 'mini_mock';
     const subjectPerformance = Array.from(
@@ -1004,35 +986,50 @@ export function ExamRunner({
               </div>
             </div>
             ) : null}
-            <div className={styles.categoryResults}>
-              <div className={styles.categoryResultsHead}>
-                <h2>จุดที่ควรฝึกก่อน</h2>
-                <span>{result.categoryResults.length} หมวด</span>
+            {result.total / Math.max(1, result.categoryResults.length) < 2 ? (
+              // Mixed short sets have ~1 question per topic, so bars would all read 0% or 100%. List missed topics instead.
+              <div className={`${styles.categoryResults} ${styles.missedPanel}`}>
+                <div className={styles.categoryResultsHead}>
+                  <h2>{missedCategories.length ? 'หัวข้อที่ตอบผิด' : 'ตอบถูกทุกหัวข้อ'}</h2>
+                  <span>{missedCategories.length ? `${missedCategories.length} หัวข้อ` : 'เยี่ยมมาก'}</span>
+                </div>
+                {missedCategories.length ? (
+                  <ul className={styles.missedTopics}>
+                    {missedCategories.map((category) => <li key={category}>{category}</li>)}
+                  </ul>
+                ) : null}
               </div>
-              {[...result.categoryResults]
-                .sort((a, b) => (a.correct / a.total) - (b.correct / b.total))
-                .slice(0, showAllCategoryResults ? undefined : 6)
-                .map((categoryResult) => {
-                const categoryPercent = Math.round((categoryResult.correct / categoryResult.total) * 100);
-                return (
-                  <div className={styles.categoryResultRow} key={categoryResult.category}>
-                    <div><strong>{categoryResult.category}</strong><span>{categoryResult.correct}/{categoryResult.total} ข้อ</span></div>
-                    <i><span style={{ width: `${categoryPercent}%` }} /></i>
-                    <em>{categoryPercent}%</em>
-                  </div>
-                );
-              })}
-              {result.categoryResults.length > 6 ? (
-                <button
-                  type="button"
-                  className={styles.categoryToggleButton}
-                  onClick={() => setShowAllCategoryResults((current) => !current)}
-                >
-                  {showAllCategoryResults ? 'แสดงเฉพาะจุดที่ควรฝึก' : `ดูครบทั้ง ${result.categoryResults.length} หมวด`}
-                  <span aria-hidden="true">{showAllCategoryResults ? '↑' : '↓'}</span>
-                </button>
-              ) : null}
-            </div>
+            ) : (
+            <div className={styles.categoryResults}>
+                <div className={styles.categoryResultsHead}>
+                  <h2>จุดที่ควรฝึกก่อน</h2>
+                  <span>{result.categoryResults.length} หมวด</span>
+                </div>
+                {[...result.categoryResults]
+                  .sort((a, b) => (a.correct / a.total) - (b.correct / b.total))
+                  .slice(0, showAllCategoryResults ? undefined : 6)
+                  .map((categoryResult) => {
+                  const categoryPercent = Math.round((categoryResult.correct / categoryResult.total) * 100);
+                  return (
+                    <div className={styles.categoryResultRow} key={categoryResult.category}>
+                      <div><strong>{categoryResult.category}</strong><span>{categoryResult.correct}/{categoryResult.total} ข้อ</span></div>
+                      <i><span style={{ width: `${categoryPercent}%` }} /></i>
+                      <em>{categoryPercent}%</em>
+                    </div>
+                  );
+                })}
+                {result.categoryResults.length > 6 ? (
+                  <button
+                    type="button"
+                    className={styles.categoryToggleButton}
+                    onClick={() => setShowAllCategoryResults((current) => !current)}
+                  >
+                    {showAllCategoryResults ? 'แสดงเฉพาะจุดที่ควรฝึก' : `ดูครบทั้ง ${result.categoryResults.length} หมวด`}
+                    <span aria-hidden="true">{showAllCategoryResults ? '↑' : '↓'}</span>
+                  </button>
+                ) : null}
+              </div>
+            )}
             {subjectId === 'mock_test' && nextSubjects.length > 0 ? (
               <section className={styles.nextStudyPlan} aria-labelledby="next-study-plan-title">
                 <div className={styles.nextStudyPlanHead}>
@@ -1075,7 +1072,9 @@ export function ExamRunner({
             ) : null}
             <p className={styles.progressSaveMessage}>
               {progressSaveState === 'account' && 'บันทึกผลและความก้าวหน้ารายหมวดในบัญชีแล้ว'}
-              {progressSaveState === 'guest' && 'บันทึกผลรายหมวดไว้ในอุปกรณ์นี้แล้ว · เข้าสู่ระบบเพื่อซิงก์ข้ามอุปกรณ์'}
+              {progressSaveState === 'guest' ? (
+                <>บันทึกผลไว้ในเครื่องนี้แล้ว · <button type="button" className={styles.inlineLink} onClick={() => setShowLoginPrompt(true)}>สมัครฟรีเพื่อเก็บผลข้ามเครื่อง</button></>
+              ) : null}
               {progressSaveState === 'error' && 'บันทึกในอุปกรณ์แล้ว แต่ซิงก์บัญชีไม่สำเร็จ'}
               {progressSaveState === 'idle' && 'กำลังบันทึกความก้าวหน้า...'}
             </p>
@@ -1088,40 +1087,36 @@ export function ExamRunner({
                 </span>
                 <span className={styles.reviewCtaArrow} aria-hidden="true">→</span>
               </button>
-              <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
-              {nextMockOffer ? (
-                <section className={styles.mockOffer} aria-label="Mock Test ชุดถัดไป">
-                  {isMiniMock02 ? (
-                    <div className={styles.sampleDisclosureNote} role="note">
-                      <span>ข้อสังเกต</span>
-                      <p>Mini Mock ชุดนี้เป็นตัวอย่าง 30 ข้อจาก Mock Test ชุด 4</p>
-                    </div>
-                  ) : null}
-                  <span>ฝึกต่อให้เหมือนสนามจริง</span>
+              {freeCompletionOffer?.nextSet ? (
+                <Link
+                  href={freeCompletionOffer.nextSet.href}
+                  className={styles.nextSetCta}
+                  onClick={() => trackAnalyticsEvent('free_completion_next_set_click', {
+                    exam_set_id: examSetId,
+                    subject_id: subjectId,
+                    destination: freeCompletionOffer.nextSet?.href ?? ''
+                  })}
+                >
+                  <span>ทำชุดถัดไป</span>
+                  <strong>{freeCompletionOffer.nextSet.title}</strong>
+                  <small>{freeCompletionOffer.nextSet.totalQuestions} ข้อ{freeCompletionOffer.nextSet.durationMinutes ? ` · ${freeCompletionOffer.nextSet.durationMinutes} นาที` : ''} · คละหัวข้อใหม่</small>
+                  <b aria-hidden="true">→</b>
+                </Link>
+              ) : nextMockOffer ? (
+                <Link
+                  href={`/courses/police_admin/mock-test/${nextMockOffer.examSetId}`}
+                  className={styles.nextSetCta}
+                  onClick={() => trackAnalyticsEvent('mock_next_click', { source: 'free_mock_completion', exam_set_id: nextMockOffer.examSetId })}
+                >
+                  <span>{isMiniMock02 ? 'ทำต่อให้ครบ 150 ข้อ' : 'ฝึกต่อให้เหมือนสนามจริง'}</span>
                   <strong>{nextMockOffer.title}</strong>
-                  <p>
-                    {isMiniMock02
-                      ? 'ปลดล็อกเพื่อทำข้อสอบที่เหลืออีก 120 ข้อใหม่ (ครบ 6 วิชา 150 ข้อ พร้อมเฉลยละเอียดและวิเคราะห์จุดอ่อน)'
-                      : '150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียดและวิเคราะห์จุดอ่อนรายวิชา'}
-                  </p>
-                  <CheckoutButton
-                    productId={nextMockOffer.productId}
-                    className={styles.mockOfferCheckout}
-                    analyticsEventName="mock_unlock_click"
-                    analyticsParameters={{
-                      exam_set_id: nextMockOffer.examSetId,
-                      source: 'free_mock_completion',
-                      price: nextMockOffer.price / 100,
-                      free_exam_set_id: examSetId
-                    }}
-                  >
-                    ปลดล็อก ฿{Math.round(nextMockOffer.price / 100)}
-                  </CheckoutButton>
-                  <Link href="/courses/police_admin/mock-test" onClick={() => trackAnalyticsEvent('mock_catalog_open_click', { source: 'free_mock_completion' })}>ดู Mock Test ทุกชุด</Link>
-                </section>
+                  <small>150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียด · ฟรี</small>
+                  <b aria-hidden="true">→</b>
+                </Link>
               ) : subjectId === 'mock_test' ? (
                 <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link>
               ) : null}
+              <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
               <Link href={subjectHref} className={styles.secondaryButton}>กลับหน้าวิชา{subjectTitle}</Link>
             </div>
           </section>
@@ -1170,118 +1165,6 @@ export function ExamRunner({
                 <button type="button" onClick={() => setShowLoginPrompt(false)}>ไว้ทีหลัง</button>
               </div>
               <small>ไม่บังคับสมัครสมาชิก คุณยังดูเฉลยและใช้งานต่อได้ตามปกติ</small>
-            </section>
-          </div>
-        ) : null}
-        {showCompletionOffer && freeCompletionOffer ? (
-          <div
-            className={styles.completionOfferBackdrop}
-            role="presentation"
-            onMouseDown={(event) => {
-              if (event.target === event.currentTarget) setShowCompletionOffer(false);
-            }}
-          >
-            <section
-              className={styles.completionOffer}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="completion-offer-title"
-              aria-describedby="completion-offer-description"
-            >
-              <button
-                type="button"
-                className={styles.completionOfferClose}
-                onClick={() => setShowCompletionOffer(false)}
-                aria-label="ปิดหน้าต่าง"
-              >
-                ×
-              </button>
-              <span className={styles.completionOfferEyebrow}>FREE PRACTICE COMPLETED</span>
-              <h2 id="completion-offer-title">ทำชุดฟรีจบแล้ว</h2>
-              <p id="completion-offer-description">
-                เริ่มจากดูข้อที่พลาดและวิธีคิดก่อน แล้วเลือกชุดฝึกต่อเมื่อพร้อม
-              </p>
-              <button
-                type="button"
-                className={styles.completionOfferReview}
-                onClick={() => {
-                  trackAnalyticsEvent('free_completion_review_click', {
-                    exam_set_id: examSetId,
-                    subject_id: subjectId
-                  });
-                  setShowCompletionOffer(false);
-                }}
-              >
-                <span>ดูเฉลยและวิเคราะห์ผล</span>
-                <span aria-hidden="true">→</span>
-              </button>
-              {progressSaveState === 'guest' || progressSaveState === 'error' ? (
-                <button
-                  type="button"
-                  className={styles.completionOfferSave}
-                  onClick={openCompletionSavePrompt}
-                >
-                  <span>
-                    <strong>บันทึกคะแนนและจุดอ่อนฟรี</strong>
-                    <small>เปิดดูต่อใน Dashboard และกลับมาฝึกจากเครื่องไหนก็ได้</small>
-                  </span>
-                  <span aria-hidden="true">→</span>
-                </button>
-              ) : null}
-              {freeCompletionOffer.nextSet ? (
-                <a
-                  href={freeCompletionOffer.nextSet.href}
-                  className={styles.completionOfferFreeNext}
-                  onClick={() => trackAnalyticsEvent('free_completion_next_set_click', {
-                    exam_set_id: examSetId,
-                    subject_id: subjectId,
-                    destination: freeCompletionOffer.nextSet?.href ?? ''
-                  })}
-                >
-                  <span>ทำชุดถัดไปฟรี</span>
-                  <strong>{freeCompletionOffer.nextSet.title}</strong>
-                  <small>
-                    {freeCompletionOffer.nextSet.totalQuestions} ข้อ
-                    {freeCompletionOffer.nextSet.durationMinutes ? ` · ประมาณ ${freeCompletionOffer.nextSet.durationMinutes} นาที` : ''}
-                    {' '}คละหัวข้อใหม่ ไม่ซ้ำกับชุดนี้
-                  </small>
-                  <b>เริ่มชุดถัดไป <span aria-hidden="true">→</span></b>
-                </a>
-              ) : (
-                <Link
-                  href={dailyPracticeHref}
-                  className={styles.completionOfferFreeNext}
-                  onClick={() => trackAnalyticsEvent('free_completion_next_free_click', {
-                    exam_set_id: examSetId,
-                    subject_id: subjectId,
-                    destination: dailyPracticeHref
-                  })}
-                >
-                  <span>ฝึกต่อฟรี</span>
-                  <strong>ควิซวันนี้ 10 ข้อ</strong>
-                  <small>ใช้เวลาประมาณ 10 นาที กลับมาทำวันละนิดเพื่อรักษาจังหวะ</small>
-                  <b>เริ่มต่อฟรี <span aria-hidden="true">→</span></b>
-                </Link>
-              )}
-              <p className={styles.completionOfferTransition}>ทุกชุดฝึกได้ฟรี เลือกชุดต่อไปได้เลย</p>
-              <div className={styles.completionOfferChoices}>
-                <Link
-                  href={freeCompletionOffer.catalogHref}
-                  className={styles.completionOfferIndividual}
-                  onClick={() => trackAnalyticsEvent('free_completion_individual_catalog_click', {
-                    exam_set_id: examSetId,
-                    subject_id: subjectId,
-                    destination: freeCompletionOffer.catalogHref
-                  })}
-                >
-                  <span>ฝึกต่อแบบรายชุด</span>
-                  <strong>{freeCompletionOffer.catalogLabel}</strong>
-                  <small>เลือกเฉพาะชุดที่อยากฝึกต่อ</small>
-                </Link>
-              </div>
-              <button type="button" className={styles.completionOfferLater} onClick={() => setShowCompletionOffer(false)}>
-                ปิดหน้าต่างนี้ก่อน
-              </button>
             </section>
           </div>
         ) : null}
@@ -1455,6 +1338,7 @@ export function ExamRunner({
             <FlagIcon /> {isFlagged ? 'ยกเลิกปักหมุดข้อนี้' : 'ปักหมุดข้อนี้'}
           </button>
           <button type="button" className={styles.submitAsideButton} onClick={submitExam}>ส่งข้อสอบ</button>
+          <p className={styles.keyHint}><kbd>1</kbd>–<kbd>4</kbd> เลือกคำตอบ · <kbd>←</kbd> <kbd>→</kbd> เปลี่ยนข้อ</p>
         </aside>
       </main>
 
