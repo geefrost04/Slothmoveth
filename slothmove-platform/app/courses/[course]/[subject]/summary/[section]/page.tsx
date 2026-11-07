@@ -61,6 +61,8 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
 
   const current = bundle?.sections.find((section) => section.slug === sectionSlug);
   if (!bundle || !current) notFound();
+  // Some local sheet files have no course/subject ids; links are built from them.
+  bundle = { ...bundle, sheet: { ...bundle.sheet, course_id: bundle.sheet.course_id ?? courseId, subject_id: bundle.sheet.subject_id ?? subjectId } };
 
   return <CourseLayout course={course}><StudySheetReader bundle={bundle} current={current} /></CourseLayout>;
 }

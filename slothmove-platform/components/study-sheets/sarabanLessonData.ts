@@ -743,3 +743,20 @@ export const SARABAN_LESSONS: SarabanLesson[] = [...OPM_LESSONS, ...P54_LESSONS]
 export function isSarabanLessonSlug(slug: string) {
   return SARABAN_LESSONS.some((lesson) => lesson.slug === slug);
 }
+
+// Headings in render order, with the anchor ids SarabanLessonView puts on each section.
+export function sarabanLessonOutline(slug: string) {
+  const lesson = SARABAN_LESSONS.find((item) => item.slug === slug);
+  if (!lesson) return [];
+  const items = lesson.blocks
+    .filter((block) => block.type !== 'callout')
+    .map((block, index) => ({ id: `h-${index + 1}`, title: block.title }));
+  if (lesson.traps.length) items.push({ id: 'h-traps', title: 'จุดที่ข้อสอบชอบหลอก' });
+  if (lesson.quiz.length) items.push({ id: 'h-quiz', title: 'ลองตอบท้ายบท' });
+  items.push({ id: 'h-summary', title: 'สรุปบทนี้' });
+  return items;
+}
+
+export function getSarabanLesson(slug: string) {
+  return SARABAN_LESSONS.find((item) => item.slug === slug);
+}

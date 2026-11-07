@@ -1,34 +1,105 @@
 import Link from 'next/link';
 import type { StudySheetAsset, StudySheetBundle, StudySheetSection } from '@/lib/study-sheet-types';
 import { getStudySheetAssetUrl } from '@/lib/study-sheets';
-import { SafeMarkdown } from './SafeMarkdown';
+import { SafeMarkdown, markdownOutline } from './SafeMarkdown';
 import { PrintStudySheetButton } from './PrintStudySheetButton';
 import { BackToTopButton } from './BackToTopButton';
 import { ComputerPart1Lesson, ComputerPart2Lesson, ComputerPart3Lesson } from './ComputerStudyLessons';
 import { SarabanLessonView } from './SarabanStudyLessons';
-import { isSarabanLessonSlug } from './sarabanLessonData';
+import { getSarabanLesson, isSarabanLessonSlug, sarabanLessonOutline } from './sarabanLessonData';
+import { OnThisPage } from './OnThisPage';
+import { Rich } from './RichText';
 import styles from './StudySheetReader.module.css';
+import frame from './StudyReaderFrame.module.css';
 
-function sectionHref(sheet: StudySheetBundle['sheet'], section: StudySheetSection) {
+type Sheet = StudySheetBundle['sheet'];
+type Group = { label?: string; sections: StudySheetSection[] };
+
+function sectionHref(sheet: Sheet, section: StudySheetSection) {
   return `/courses/${sheet.course_id}/${sheet.subject_id}/summary/${section.slug}`;
 }
 
-function SectionLink({ sheet, section, current }: { sheet: StudySheetBundle['sheet']; section: StudySheetSection; current: boolean }) {
+// Saraban has two parts; other sheets are one list.
+function groupSections(sheet: Sheet, sections: StudySheetSection[]): Group[] {
+  if (sheet.subject_id === 'saraban') {
+    return [
+      { label: 'ภาค 1 · ระเบียบสำนักนายกฯ', sections: sections.filter((section) => !section.slug.startsWith('p54-')) },
+      { label: 'ภาค 2 · ลักษณะที่ 54', sections: sections.filter((section) => section.slug.startsWith('p54-')) }
+    ].filter((group) => group.sections.length);
+  }
+  return [{ sections }];
+}
+
+// Drops the part prefix ("ลักษณะ 54 · ") and moves an English "(…)" tail into a subtitle.
+function displayTitle(title: string) {
+  const main = title.replace(/^(ลักษณะ 54|ระเบียบสำนักนายกฯ) · /, '');
+  const english = main.match(/^(.*?)\s*\(([A-Za-z][^)]*)\)\s*$/);
+  return english ? { main: english[1], english: english[2] } : { main, english: '' };
+}
+
+function sectionNumber(group: Group, section: StudySheetSection) {
+  if (section.section_type === 'quick_review') return '★';
+  const chapters = group.sections.filter((item) => item.section_type !== 'quick_review');
+  return String(chapters.findIndex((item) => item.id === section.id) + 1);
+}
+
+function TocLink({ sheet, group, section, current }: { sheet: Sheet; group: Group; section: StudySheetSection; current: boolean }) {
   return (
-    <Link href={sectionHref(sheet, section)} className={current ? styles.tocLinkActive : styles.tocLink} aria-current={current ? 'page' : undefined}>
-      <span className={styles.tocNumber}>{section.section_type === 'quick_review' ? '★' : String(section.chapter_no).padStart(2, '0')}</span>
-      <span>{section.title}</span>
+    <Link href={sectionHref(sheet, section)} className={current ? frame.tocActive : frame.tocLink} aria-current={current ? 'page' : undefined}>
+      <span className={frame.tocNo}>{sectionNumber(group, section)}</span>
+      <span>{displayTitle(section.title).main}</span>
     </Link>
   );
 }
 
-function Pager({ sheet, previous, next }: { sheet: StudySheetBundle['sheet']; previous?: StudySheetSection; next?: StudySheetSection }) {
+function TocGroups({ sheet, groups, current }: { sheet: Sheet; groups: Group[]; current: StudySheetSection }) {
   return (
-    <nav className={styles.pager} aria-label="เปลี่ยนบท">
-      {previous ? <Link href={sectionHref(sheet, previous)} className={styles.prevBtn}>‹ <span>ก่อนหน้า</span></Link> : <span />}
-      {next ? <Link href={sectionHref(sheet, next)} className={styles.nextBtn}><span>ถัดไป</span> ›</Link> : <span />}
+    <>
+      {groups.map((group) => (
+        <div className={frame.tocGroup} key={group.label ?? 'all'}>
+          {group.label ? <p className={frame.tocGroupLabel}>{group.label}</p> : null}
+          <nav className={frame.tocList}>
+            {group.sections.map((section) => <TocLink key={section.id} sheet={sheet} group={group} section={section} current={section.id === current.id} />)}
+          </nav>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function PagerCards({ sheet, previous, next }: { sheet: Sheet; previous?: StudySheetSection; next?: StudySheetSection }) {
+  return (
+    <nav className={frame.pager} aria-label="เปลี่ยนบท">
+      {previous ? (
+        <Link href={sectionHref(sheet, previous)} className={frame.pagerPrev}>
+          <span>‹ บทก่อนหน้า</span>
+          <strong>{displayTitle(previous.title).main}</strong>
+        </Link>
+      ) : <span />}
+      {next ? (
+        <Link href={sectionHref(sheet, next)} className={frame.pagerNext}>
+          <span>บทถัดไป ›</span>
+          <strong>{displayTitle(next.title).main}</strong>
+        </Link>
+      ) : (
+        <Link href={`/courses/${sheet.course_id}/${sheet.subject_id}`} className={frame.pagerNext}>
+          <span>อ่านครบแล้ว ›</span>
+          <strong>ไปทำข้อสอบวิชานี้</strong>
+        </Link>
+      )}
     </nav>
   );
+}
+
+// "บทที่ 2 · ออกสอบมากที่สุด" → "ออกสอบมากที่สุด"; P54 "ลักษณะที่ 54 · บทที่ 5–6" points at the regulation's own chapters.
+function lessonTag(kicker?: string) {
+  const [head, tail] = (kicker ?? '').split(' · ');
+  if (!tail || head.startsWith('Quick Review')) return '';
+  return tail.startsWith('บทที่') ? `ตรงกับ${tail} ในระเบียบ` : tail;
+}
+
+function readingMinutes(characters: number, perMinute: number) {
+  return Math.max(2, Math.round(characters / perMinute));
 }
 
 function LessonAsset({ assets, assetKey }: { assets: StudySheetAsset[]; assetKey: string }) {
@@ -77,62 +148,6 @@ const SUBJECT_LABELS: Record<string, string> = {
   law: 'กฎหมายที่ประชาชนควรรู้',
   english: 'ภาษาอังกฤษ'
 };
-
-function getSectionHeadings(content: string) {
-  return content
-    .split(/\r?\n/)
-    .map((line) => line.match(/^##\s+(.+)$/)?.[1]?.trim())
-    .filter((title): title is string => Boolean(title))
-    .slice(0, 8);
-}
-
-function SubjectSheetMap({
-  sheet,
-  sections,
-  current
-}: {
-  sheet: StudySheetBundle['sheet'];
-  sections: StudySheetSection[];
-  current: StudySheetSection;
-}) {
-  const headings = getSectionHeadings(current.content_md);
-
-  return (
-    <section className={styles.computerGuide} aria-label="สารบัญชีทสรุป">
-      <div className={styles.computerGuideHeader}>
-        <span>Study Map</span>
-        <h2>สารบัญชีทสรุป {sections.length} Part</h2>
-        <p>{sheet.description}</p>
-      </div>
-
-      <nav className={styles.computerPartGrid}>
-        {sections.map((section) => (
-          <Link
-            key={section.id}
-            href={sectionHref(sheet, section)}
-            className={section.id === current.id ? styles.computerPartActive : styles.computerPartCard}
-            aria-current={section.id === current.id ? 'page' : undefined}
-          >
-            <span>Part {section.chapter_no}</span>
-            <strong>{section.title}</strong>
-          </Link>
-        ))}
-      </nav>
-
-      {headings.length ? (
-        <div className={styles.computerChapterMap}>
-          <div>
-            <span>กำลังอ่าน</span>
-            <strong>Part {current.chapter_no}: {current.title}</strong>
-          </div>
-          <ul>
-            {headings.map((heading) => <li key={heading}>{heading}</li>)}
-          </ul>
-        </div>
-      ) : null}
-    </section>
-  );
-}
 
 function SeriesLesson({ assets }: { assets: StudySheetAsset[] }) {
   const observationTips = [
@@ -689,7 +704,6 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const currentIndex = sections.findIndex((section) => section.id === current.id);
   const previous = sections[currentIndex - 1];
   const next = sections[currentIndex + 1];
-  const chapterLabel = current.section_type === 'quick_review' ? 'Quick Review' : `บทที่ ${current.chapter_no}`;
   const courseLabel = COURSE_LABELS[sheet.course_id] ?? sheet.course_id;
   const subjectLabel = SUBJECT_LABELS[sheet.subject_id] ?? sheet.subject_id;
   const isComputerSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'computer';
@@ -698,56 +712,86 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const isSarabanLesson = isSarabanSheet && isSarabanLessonSlug(current.slug);
   const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet;
 
-  return (
-    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} study-sheet-print-root`}>
-      <BackToTopButton />
-      <div className={styles.readerTopbar}>
-        <div className="container">
-          <nav className={styles.breadcrumb} aria-label="breadcrumb">
-            <Link href="/">หน้าแรก</Link><span>›</span>
-            <Link href={`/courses/${sheet.course_id}`}>{courseLabel}</Link><span>›</span>
-            <Link href={`/courses/${sheet.course_id}/${sheet.subject_id}`}>{subjectLabel}</Link><span>›</span>
-            <span aria-current="page">{current.title}</span>
-          </nav>
-        </div>
-      </div>
+  const computerLesson = isComputerSheet && ['part-01', 'part-02', 'part-03'].includes(current.slug);
+  const mathLesson = !isComputerSheet && !isSarabanLesson && ['chapter-01', 'chapter-02'].includes(current.slug);
+  const usesMarkdown = !isSarabanLesson && !computerLesson && !mathLesson;
 
-      <div className={styles.readerLayout}>
-        <aside className={styles.desktopToc} aria-label="สารบัญชีทสรุป">
-          <div className={styles.tocHeading}>
-            <span>{sheet.title}</span>
-            <strong>{courseLabel}</strong>
+  const lesson = isSarabanLesson ? getSarabanLesson(current.slug) : undefined;
+  const outline = lesson ? sarabanLessonOutline(current.slug) : usesMarkdown ? markdownOutline(current.content_md) : [];
+  const minutes = lesson
+    ? readingMinutes(JSON.stringify(lesson).length, 900)
+    : readingMinutes(current.content_md.length, 700);
+
+  const groups = groupSections(sheet, sections);
+  const group = groups.find((item) => item.sections.some((section) => section.id === current.id)) ?? groups[0];
+  const chapterCount = group.sections.filter((section) => section.section_type !== 'quick_review').length;
+  const position = current.section_type === 'quick_review' ? 'ทบทวนก่อนสอบ' : `บทที่ ${sectionNumber(group, current)} จาก ${chapterCount}`;
+  const tag = lessonTag(lesson?.kicker);
+  const title = displayTitle(current.title);
+  const dek = lesson ? lesson.lead : currentIndex === 0 ? sheet.description : '';
+
+  return (
+    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} ${frame.frame} study-sheet-print-root`}>
+      <BackToTopButton />
+      <div className={`${frame.layout} ${outline.length ? '' : frame.noRail}`}>
+        <aside className={frame.nav} aria-label="สารบัญชีทสรุป">
+          <Link href={`/courses/${sheet.course_id}/${sheet.subject_id}`} className={frame.navBack}>‹ {subjectLabel}</Link>
+          <p className={frame.navTitle}>ชีทสรุป · {sections.length} บท</p>
+          <div className={frame.navProgress} aria-label={`บทที่ ${currentIndex + 1} จาก ${sections.length}`}>
+            <span style={{ width: `${((currentIndex + 1) / sections.length) * 100}%` }} />
           </div>
-          <div className={styles.progressLabel}><span>ความคืบหน้า</span><strong>{currentIndex + 1} / {sections.length} บท</strong></div>
-          <div className={styles.progressTrack}><span style={{ width: `${((currentIndex + 1) / sections.length) * 100}%` }} /></div>
-          <nav className={styles.tocList}>{sections.map((section) => <SectionLink key={section.id} sheet={sheet} section={section} current={section.id === current.id} />)}</nav>
+          <TocGroups sheet={sheet} groups={groups} current={current} />
         </aside>
 
-        <main className={styles.content}>
-          <details className={styles.mobileToc}>
-            <summary><span>สารบัญ {sections.length} บท</span><strong>{chapterLabel} · {current.title}</strong></summary>
-            <nav>{sections.map((section) => <SectionLink key={section.id} sheet={sheet} section={section} current={section.id === current.id} />)}</nav>
+        <main className={`${frame.main} ${usesMarkdown ? frame.mainProse : ''}`}>
+          <nav className={frame.crumbs} aria-label="breadcrumb">
+            <Link href={`/courses/${sheet.course_id}`}>{courseLabel}</Link><span>/</span>
+            <Link href={`/courses/${sheet.course_id}/${sheet.subject_id}`}>{subjectLabel}</Link><span>/</span>
+            <span aria-current="page">ชีทสรุป</span>
+          </nav>
+
+          <details className={frame.mobileToc}>
+            <summary><span>สารบัญ {sections.length} บท</span><strong>{position}</strong></summary>
+            <TocGroups sheet={sheet} groups={groups} current={current} />
           </details>
 
-          <article className={`${styles.chapter} ${(current.slug === 'chapter-01' || isCustomSheet) ? styles.chapterWide : ''}`}>
-            <header className={styles.chapterHeader}>
-              <div className={styles.chapterIcon} aria-hidden="true">
-                {isComputerSheet ? '💻' : isLawSheet ? '⚖️' : isSarabanSheet ? '📜' : current.section_type === 'quick_review' ? '★' : '▤'}
+          <header className={`${frame.hero} ${lesson ? frame.heroWithCard : ''}`}>
+            <div className={frame.heroText}>
+              <p className={frame.kicker}>
+                {group.label ? <span>{group.label}</span> : null}
+                <span>{position}</span>
+                {tag ? <em>{tag}</em> : null}
+              </p>
+              <h1>{title.main}</h1>
+              {title.english ? <p className={frame.english}>{title.english}</p> : null}
+              {dek ? <p className={frame.dek}><Rich text={dek} /></p> : null}
+              <div className={frame.meta}>
+                <span>อ่านราว {minutes} นาที</span>
+                {outline.length ? <span>{outline.length} หัวข้อ</span> : null}
+                <PrintStudySheetButton />
               </div>
-              <div>
-                <span className={styles.eyebrow}>{chapterLabel}</span>
-                <h1>{current.title}</h1>
-                <p>{sheet.description}</p>
-              </div>
-            </header>
-
-            <div className={styles.chapterTools}>
-              <Pager sheet={sheet} previous={previous} next={next} />
-              <PrintStudySheetButton />
             </div>
+            {lesson ? (
+              <div className={frame.formula} aria-label="สูตรจำ">
+                <span>{lesson.formula.label}</span>
+                <strong>{lesson.formula.value}</strong>
+                <small>{lesson.formula.note}</small>
+              </div>
+            ) : null}
+            <ol className={frame.track} aria-label="บทในภาคนี้">
+              {group.sections.map((section) => {
+                const index = sections.findIndex((item) => item.id === section.id);
+                const state = section.id === current.id ? frame.trackNow : index < currentIndex ? frame.trackDone : '';
+                return (
+                  <li key={section.id} className={state}>
+                    <Link href={sectionHref(sheet, section)} title={displayTitle(section.title).main} aria-label={displayTitle(section.title).main} />
+                  </li>
+                );
+              })}
+            </ol>
+          </header>
 
-            {isCustomSheet && !isSarabanSheet && current.slug !== 'part-01' ? <SubjectSheetMap sheet={sheet} sections={sections} current={current} /> : null}
-
+          <article className={`${styles.chapter} ${frame.body}`}>
             {currentIndex === 0 ? (
               <details className={styles.introPanel}>
                 <summary>เกี่ยวกับชีทและวิธีใช้งาน</summary>
@@ -758,23 +802,22 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
             {isComputerSheet && current.slug === 'part-01' ? <ComputerPart1Lesson assets={assets} /> : null}
             {isComputerSheet && current.slug === 'part-02' ? <ComputerPart2Lesson assets={assets} /> : null}
             {isComputerSheet && current.slug === 'part-03' ? <ComputerPart3Lesson assets={assets} /> : null}
-            {isSarabanLesson ? <SarabanLessonView slug={current.slug} /> : null}
-            {!isComputerSheet && current.slug === 'chapter-01' ? <SeriesLesson assets={assets} /> : null}
-            {!isComputerSheet && current.slug === 'chapter-02' ? <AnalogyLesson assets={assets} /> : null}
-            {(!isSarabanLesson && !isComputerSheet && current.slug !== 'chapter-01' && current.slug !== 'chapter-02') ||
-            (isComputerSheet && current.slug !== 'part-01' && current.slug !== 'part-02' && current.slug !== 'part-03') ? (
-              <SafeMarkdown content={current.content_md} assets={assets} id={current.slug} />
-            ) : null}
+            {isSarabanLesson ? <SarabanLessonView slug={current.slug} inReader /> : null}
+            {mathLesson && current.slug === 'chapter-01' ? <SeriesLesson assets={assets} /> : null}
+            {mathLesson && current.slug === 'chapter-02' ? <AnalogyLesson assets={assets} /> : null}
+            {usesMarkdown ? <SafeMarkdown content={current.content_md} assets={assets} id={current.slug} anchors /> : null}
 
             {current.section_type === 'quick_review' ? (
               <section className={styles.references} aria-label="ข้อมูลอ้างอิง">
                 <SafeMarkdown content={sheet.references_md} assets={assets} id="sheet-references" />
               </section>
             ) : null}
-
-            <Pager sheet={sheet} previous={previous} next={next} />
           </article>
+
+          <PagerCards sheet={sheet} previous={previous} next={next} />
         </main>
+
+        {outline.length ? <OnThisPage items={outline} /> : null}
       </div>
 
       <article className={styles.printDocument} aria-hidden="true">

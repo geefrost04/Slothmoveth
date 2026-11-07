@@ -89,10 +89,11 @@ function PendingAwareAsset({ assetKey, assets }: { assetKey: string; assets: Map
   );
 }
 
-function MarkdownBlocks({ source, assets, keyPrefix }: { source: string; assets: Map<string, StudySheetAsset>; keyPrefix: string }) {
+function MarkdownBlocks({ source, assets, keyPrefix, anchors = false }: { source: string; assets: Map<string, StudySheetAsset>; keyPrefix: string; anchors?: boolean }) {
   const lines = source.replace(/\r\n?/g, '\n').split('\n');
   const blocks: ReactNode[] = [];
   let index = 0;
+  let topicCount = 0;
 
   while (index < lines.length) {
     const line = lines[index];
@@ -124,7 +125,9 @@ function MarkdownBlocks({ source, assets, keyPrefix }: { source: string; assets:
     if (heading) {
       const level = Math.min(6, heading[1].length + 1);
       const Tag = `h${level}` as keyof React.JSX.IntrinsicElements;
-      blocks.push(<Tag key={`${keyPrefix}-heading-${index}`}>{renderInline(heading[2], `${keyPrefix}-heading-${index}`)}</Tag>);
+      // "##" topics get ids that match markdownOutline(), for the "ในบทนี้" list.
+      const anchorId = anchors && heading[1].length === 2 ? `h-${++topicCount}` : undefined;
+      blocks.push(<Tag key={`${keyPrefix}-heading-${index}`} id={anchorId}>{renderInline(heading[2], `${keyPrefix}-heading-${index}`)}</Tag>);
       index += 1;
       continue;
     }
@@ -190,7 +193,22 @@ function MarkdownBlocks({ source, assets, keyPrefix }: { source: string; assets:
   return <>{blocks}</>;
 }
 
-export function SafeMarkdown({ content, assets, id }: { content: string; assets: StudySheetAsset[]; id: string }) {
+export function SafeMarkdown({ content, assets, id, anchors = false }: { content: string; assets: StudySheetAsset[]; id: string; anchors?: boolean }) {
   const assetMap = new Map(assets.map((asset) => [asset.asset_key, asset]));
-  return <div className="study-markdown"><MarkdownBlocks source={content} assets={assetMap} keyPrefix={id} /></div>;
+  return <div className="study-markdown"><MarkdownBlocks source={content} assets={assetMap} keyPrefix={id} anchors={anchors} /></div>;
+}
+
+// "##" headings outside code fences, cleaned of leading emoji, in the same order SafeMarkdown numbers them.
+export function markdownOutline(content: string) {
+  const items: { id: string; title: string }[] = [];
+  let inFence = false;
+  for (const line of content.replace(/\r\n?/g, '\n').split('\n')) {
+    if (/^(```|~~~)/.test(line)) inFence = !inFence;
+    if (inFence) continue;
+    const match = line.match(/^##\s+(.+)$/);
+    if (!match) continue;
+    const title = match[1].replace(/\*\*/g, '').replace(/^[^\p{L}\p{N}]+/u, '').trim();
+    items.push({ id: `h-${items.length + 1}`, title });
+  }
+  return items;
 }

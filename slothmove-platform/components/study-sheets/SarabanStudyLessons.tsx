@@ -1,23 +1,10 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
+import { Rich } from './RichText';
 import shared from './StudySheetReader.module.css';
 import styles from './SarabanLesson.module.css';
 import { SARABAN_LESSONS, type LessonBlock, type SarabanLesson } from './sarabanLessonData';
-
-// Renders "**bold**" segments inside lesson strings.
-function Rich({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return (
-    <>
-      {parts.map((part, index) => (
-        part.startsWith('**') && part.endsWith('**')
-          ? <strong key={index} className={styles.hl}>{part.slice(2, -2)}</strong>
-          : <Fragment key={index}>{part}</Fragment>
-      ))}
-    </>
-  );
-}
 
 function SectionHeader({ index, eyebrow, title, intro }: { index: number; eyebrow?: string; title: string; intro?: string }) {
   return (
@@ -224,14 +211,15 @@ function QuizCard({ item, number }: { item: SarabanLesson['quiz'][number]; numbe
   );
 }
 
-export function SarabanLessonView({ slug }: { slug: string }) {
+// inReader: the page header already shows the title and key formula, so the lesson skips its own hero.
+export function SarabanLessonView({ slug, inReader = false }: { slug: string; inReader?: boolean }) {
   const lesson = SARABAN_LESSONS.find((item) => item.slug === slug);
   if (!lesson) return null;
   let sectionIndex = 0;
 
   return (
     <div className={`${shared.seriesLesson} ${styles.lesson}`}>
-      <section className={`${shared.lessonHero} ${styles.hero}`}>
+      {inReader ? null : <section className={`${shared.lessonHero} ${styles.hero}`}>
         <div>
           <span className={shared.lessonKicker}>{lesson.kicker}</span>
           <h2>{lesson.heroTitle}</h2>
@@ -242,7 +230,7 @@ export function SarabanLessonView({ slug }: { slug: string }) {
           <strong>{lesson.formula.value}</strong>
           <small>{lesson.formula.note}</small>
         </div>
-      </section>
+      </section>}
 
       <section className={styles.recall} aria-label="จำให้ได้ก่อน">
         <div className={styles.recallHead}>
@@ -260,12 +248,13 @@ export function SarabanLessonView({ slug }: { slug: string }) {
       </section>
 
       {lesson.blocks.map((block, index) => {
-        if (block.type !== 'callout') sectionIndex += 1;
-        return <Block block={block} index={sectionIndex} key={`${block.type}-${index}`} />;
+        if (block.type === 'callout') return <Block block={block} index={sectionIndex} key={`${block.type}-${index}`} />;
+        sectionIndex += 1;
+        return <div id={`h-${sectionIndex}`} className={styles.anchor} key={`${block.type}-${index}`}><Block block={block} index={sectionIndex} /></div>;
       })}
 
       {lesson.traps.length ? (
-        <section className={styles.section}>
+        <section className={styles.section} id="h-traps">
           <SectionHeader index={sectionIndex + 1} eyebrow="Exam Traps" title="จุดที่ข้อสอบชอบหลอก" intro="อ่านก่อนทำโจทย์ ช่วยกันจำสลับ" />
           <div className={styles.trapGrid}>
             {lesson.traps.map((trap) => (
@@ -279,7 +268,7 @@ export function SarabanLessonView({ slug }: { slug: string }) {
       ) : null}
 
       {lesson.quiz.length ? (
-        <section className={styles.section}>
+        <section className={styles.section} id="h-quiz">
           <SectionHeader index={sectionIndex + 2} eyebrow="Check yourself" title="ลองตอบ ก่อนไปบทถัดไป" intro="กดเลือกคำตอบเพื่อดูเฉลยทันที" />
           <div className={styles.quizGrid}>
             {lesson.quiz.map((item, index) => <QuizCard item={item} number={index + 1} key={item.q} />)}
@@ -287,7 +276,7 @@ export function SarabanLessonView({ slug }: { slug: string }) {
         </section>
       ) : null}
 
-      <section className={shared.lessonSummary}>
+      <section className={shared.lessonSummary} id="h-summary">
         <h2>สรุปบทนี้ในประโยคเดียว</h2>
         <p><Rich text={lesson.summary} /></p>
       </section>
