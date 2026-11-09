@@ -178,7 +178,7 @@ export function ExamRunner({
     : subjectId === 'mock_test' || subjectId === 'mini_mock'
       ? '/courses/police_admin'
       : `/courses/police_admin/${subjectId}`;
-  const backLabel = ['mini_mock', 'mini_drill', 'mock_test'].includes(subjectId) ? 'กลับหน้าคอร์ส' : `กลับหน้าวิชา${subjectTitle}`;
+  const backLabel = ['mini_mock', 'mini_drill', 'mock_test'].includes(subjectId) ? 'กลับหน้าคอร์ส' : course ? 'กลับหน้าหัวข้อ' : `กลับหน้าวิชา${subjectTitle}`;
   const dailyPracticeSubjectId = subjectId === 'mock_test' || subjectId === 'mini_mock'
     ? 'math'
     : subjectId;
