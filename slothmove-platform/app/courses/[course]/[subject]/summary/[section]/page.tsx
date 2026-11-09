@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { getCourse, getSubject } from '@/courses/registry';
 import { CourseLayout } from '@/components/course/CourseLayout';
 import { StudySheetReader } from '@/components/study-sheets/StudySheetReader';
@@ -57,6 +57,12 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
     } as StudySheetBundle;
   } else {
     bundle = await getPublishedStudySheet(courseId, normalizedSubjectId);
+  }
+
+  // The computer sheet moved from 3 "part" pages to syllabus-ordered lessons (Nov 2569).
+  const OLD_COMPUTER_SLUGS: Record<string, string> = { 'part-01': 'history', 'part-02': 'lesson-02', 'part-03': 'lesson-03' };
+  if (normalizedSubjectId === 'computer' && OLD_COMPUTER_SLUGS[sectionSlug]) {
+    permanentRedirect(`/courses/${courseId}/computer/summary/${OLD_COMPUTER_SLUGS[sectionSlug]}`);
   }
 
   const current = bundle?.sections.find((section) => section.slug === sectionSlug);

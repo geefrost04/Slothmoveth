@@ -44,7 +44,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const summarySections = [
     ...Array.from({ length: 20 }, (_, index) => `/courses/police_admin/math/summary/chapter-${String(index + 1).padStart(2, '0')}`),
     '/courses/police_admin/math/summary/quick-review',
-    ...Array.from({ length: 5 }, (_, index) => `/courses/police_admin/computer/summary/part-${String(index + 1).padStart(2, '0')}`),
+    ...Array.from({ length: 7 }, (_, index) => `/courses/police_admin/computer/summary/lesson-${String(index + 1).padStart(2, '0')}`),
+    '/courses/police_admin/computer/summary/history',
+    '/courses/police_admin/computer/summary/quick-review',
   ].map((path) => ({
     url: absoluteUrl(path),
     lastModified: now,

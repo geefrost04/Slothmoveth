@@ -81,7 +81,7 @@ function Block({ block, index }: { block: LessonBlock; index: number }) {
           <div className={styles.tableWrap}>
             <table className={styles.table}>
               <thead>
-                <tr>{block.columns.map((column) => <th key={column}>{column}</th>)}</tr>
+                <tr>{block.columns.map((column, columnIndex) => <th key={`${columnIndex}-${column}`}>{column}</th>)}</tr>
               </thead>
               <tbody>
                 {block.rows.map((row, rowIndex) => (
@@ -211,10 +211,14 @@ function QuizCard({ item, number }: { item: SarabanLesson['quiz'][number]; numbe
   );
 }
 
-// inReader: the page header already shows the title and key formula, so the lesson skips its own hero.
 export function SarabanLessonView({ slug, inReader = false }: { slug: string; inReader?: boolean }) {
   const lesson = SARABAN_LESSONS.find((item) => item.slug === slug);
-  if (!lesson) return null;
+  return lesson ? <LessonView lesson={lesson} inReader={inReader} /> : null;
+}
+
+// Note-style lesson for any subject (saraban, computer).
+// inReader: the page header already shows the title and key formula, so the lesson skips its own hero.
+export function LessonView({ lesson, inReader = false }: { lesson: SarabanLesson; inReader?: boolean }) {
   let sectionIndex = 0;
 
   return (
@@ -259,8 +263,8 @@ export function SarabanLessonView({ slug, inReader = false }: { slug: string; in
           <div className={styles.trapGrid}>
             {lesson.traps.map((trap) => (
               <div className={styles.trap} key={trap.wrong}>
-                <p className={styles.trapWrong}><span>✕</span><Rich text={trap.wrong} /></p>
-                <p className={styles.trapRight}><span>✓</span><Rich text={trap.right} /></p>
+                <p className={styles.trapWrong}><span>✕</span><span><Rich text={trap.wrong} /></span></p>
+                <p className={styles.trapRight}><span>✓</span><span><Rich text={trap.right} /></span></p>
               </div>
             ))}
           </div>

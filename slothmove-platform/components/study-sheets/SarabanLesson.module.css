@@ -140,11 +140,11 @@
 .trapGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
 .trap { display: grid; gap: 6px; padding: 14px 16px; border-radius: 12px; background: #fff; border: 1px solid #f1ddd5; }
 .trap p { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; margin: 0; font-size: 14px; line-height: 1.6; }
-.trap p > span { font-weight: 900; }
+.trap p > span:first-child { font-weight: 900; }
 .trapWrong { color: #8a5a63; text-decoration: line-through; text-decoration-color: rgba(180, 35, 24, .45); }
-.trapWrong span { color: var(--sl-red); }
+.trapWrong > span:first-child { color: var(--sl-red); }
 .trapRight { color: var(--sl-ink); font-weight: 700; }
-.trapRight span { color: var(--sl-green); }
+.trapRight > span:first-child { color: var(--sl-green); }
 
 /* Quiz */
 .quizGrid { display: grid; gap: 14px; }

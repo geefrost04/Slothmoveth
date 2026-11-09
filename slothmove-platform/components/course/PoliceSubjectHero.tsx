@@ -9,8 +9,16 @@ const SHEET_OUTLINES: Record<string, Outline> = {
     { label: 'ภาค 1', title: 'ระเบียบสำนักนายกฯ ว่าด้วยงานสารบรรณ', meta: '8 บท' },
     { label: 'ภาค 2', title: 'ลักษณะที่ 54 สารบรรณตำรวจ', meta: '6 บท' },
     { label: '★', title: 'โน้ตทบทวนก่อนสอบ', meta: '2 หน้า' }
+  ],
+  computer: [
+    { label: 'บท 1', title: 'ประวัติคอมพิวเตอร์และบุคคลสำคัญ', meta: '1 บท' },
+    { label: 'บท 2–4', title: 'พื้นฐาน IT · การทำงานของเครื่อง · เครือข่าย', meta: '3 บท' },
+    { label: 'บท 5', title: 'Word · Excel · PowerPoint', meta: '1 บท' },
+    { label: 'บท 6–8', title: 'อินเทอร์เน็ต · ความปลอดภัย · เทคโนโลยีใหม่', meta: '3 บท' },
+    { label: '★', title: 'โน้ตทบทวนก่อนสอบ', meta: '1 หน้า' }
   ]
 };
+const SHEET_TITLES: Record<string, string> = { saraban: 'โน้ตสรุป 2 ภาค', computer: 'โน้ตสรุป 8 บท' };
 
 export function PoliceSubjectHero({
   subjectId,
@@ -56,7 +64,7 @@ export function PoliceSubjectHero({
       <aside className={`${styles.notebook} ${hasSummary ? '' : styles.notebookPending}`} aria-label="ชีทสรุป">
         <div className={styles.notebookHead}>
           <span>{hasSummary ? 'ชีทสรุป' : 'ชีทสรุป · กำลังจัดทำ'}</span>
-          <h2>{hasSummary ? (outline ? 'โน้ตสรุป 2 ภาค' : `สรุป${title}`) : `สรุป${title}`}</h2>
+          <h2>{hasSummary ? (SHEET_TITLES[subjectId] ?? `สรุป${title}`) : `สรุป${title}`}</h2>
         </div>
         {hasSummary && outline ? (
           <ol className={styles.outline}>

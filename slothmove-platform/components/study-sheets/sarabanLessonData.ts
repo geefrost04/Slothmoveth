@@ -747,7 +747,10 @@ export function isSarabanLessonSlug(slug: string) {
 // Headings in render order, with the anchor ids SarabanLessonView puts on each section.
 export function sarabanLessonOutline(slug: string) {
   const lesson = SARABAN_LESSONS.find((item) => item.slug === slug);
-  if (!lesson) return [];
+  return lesson ? lessonOutline(lesson) : [];
+}
+
+export function lessonOutline(lesson: SarabanLesson) {
   const items = lesson.blocks
     .filter((block) => block.type !== 'callout')
     .map((block, index) => ({ id: `h-${index + 1}`, title: block.title }));

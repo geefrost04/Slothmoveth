@@ -4,9 +4,9 @@ import { getStudySheetAssetUrl } from '@/lib/study-sheets';
 import { SafeMarkdown, markdownOutline } from './SafeMarkdown';
 import { PrintStudySheetButton } from './PrintStudySheetButton';
 import { BackToTopButton } from './BackToTopButton';
-import { ComputerPart1Lesson, ComputerPart2Lesson, ComputerPart3Lesson } from './ComputerStudyLessons';
-import { SarabanLessonView } from './SarabanStudyLessons';
-import { getSarabanLesson, isSarabanLessonSlug, sarabanLessonOutline } from './sarabanLessonData';
+import { LessonView } from './SarabanStudyLessons';
+import { getSarabanLesson, lessonOutline } from './sarabanLessonData';
+import { getComputerLesson } from './computerLessonData';
 import { OnThisPage } from './OnThisPage';
 import { Rich } from './RichText';
 import styles from './StudySheetReader.module.css';
@@ -709,15 +709,14 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const isComputerSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'computer';
   const isLawSheet = sheet.course_id === 'police_admin' && (sheet.subject_id === 'law' || sheet.subject_id === 'police_law');
   const isSarabanSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'saraban';
-  const isSarabanLesson = isSarabanSheet && isSarabanLessonSlug(current.slug);
   const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet;
 
-  const computerLesson = isComputerSheet && ['part-01', 'part-02', 'part-03'].includes(current.slug);
-  const mathLesson = !isComputerSheet && !isSarabanLesson && ['chapter-01', 'chapter-02'].includes(current.slug);
-  const usesMarkdown = !isSarabanLesson && !computerLesson && !mathLesson;
-
-  const lesson = isSarabanLesson ? getSarabanLesson(current.slug) : undefined;
-  const outline = lesson ? sarabanLessonOutline(current.slug) : usesMarkdown ? markdownOutline(current.content_md) : [];
+  // Saraban and computer sheets are note-style lessons; other sheets are markdown.
+  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : undefined);
+  const lesson = lessonFor(current.slug);
+  const mathLesson = !lesson && ['chapter-01', 'chapter-02'].includes(current.slug);
+  const usesMarkdown = !lesson && !mathLesson;
+  const outline = lesson ? lessonOutline(lesson) : usesMarkdown ? markdownOutline(current.content_md) : [];
   const minutes = lesson
     ? readingMinutes(JSON.stringify(lesson).length, 900)
     : readingMinutes(current.content_md.length, 700);
@@ -799,10 +798,7 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
               </details>
             ) : null}
 
-            {isComputerSheet && current.slug === 'part-01' ? <ComputerPart1Lesson assets={assets} /> : null}
-            {isComputerSheet && current.slug === 'part-02' ? <ComputerPart2Lesson assets={assets} /> : null}
-            {isComputerSheet && current.slug === 'part-03' ? <ComputerPart3Lesson assets={assets} /> : null}
-            {isSarabanLesson ? <SarabanLessonView slug={current.slug} inReader /> : null}
+            {lesson ? <LessonView lesson={lesson} inReader /> : null}
             {mathLesson && current.slug === 'chapter-01' ? <SeriesLesson assets={assets} /> : null}
             {mathLesson && current.slug === 'chapter-02' ? <AnalogyLesson assets={assets} /> : null}
             {usesMarkdown ? <SafeMarkdown content={current.content_md} assets={assets} id={current.slug} anchors /> : null}
@@ -824,9 +820,12 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
         <SafeMarkdown content={sheet.intro_md} assets={assets} id="print-intro" />
         {sections.map((section) => (
           <section key={section.id} className={styles.printSection}>
-            {isSarabanSheet && isSarabanLessonSlug(section.slug)
-              ? <SarabanLessonView slug={section.slug} />
-              : <SafeMarkdown content={section.content_md} assets={assets} id={`print-${section.slug}`} />}
+            {(() => {
+              const printLesson = lessonFor(section.slug);
+              return printLesson
+                ? <LessonView lesson={printLesson} />
+                : <SafeMarkdown content={section.content_md} assets={assets} id={`print-${section.slug}`} />;
+            })()}
           </section>
         ))}
         <SafeMarkdown content={sheet.references_md} assets={assets} id="print-references" />
