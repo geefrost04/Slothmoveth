@@ -3,6 +3,7 @@ import { ONWR_GENERAL_LESSONS } from './onwrGeneralLessons';
 import { ONWR_WATER_LESSONS } from './onwrWaterLessons';
 import { ONWR_PLANNING_LESSONS } from './onwrPlanningLessons';
 import TOPICS from './onwrTopics.json';
+import { thaiWrapDeep } from '@/lib/thaiText';
 
 // สทนช. นักวิเคราะห์นโยบายและแผน. Lessons are written in three source files (general / water / planning)
 // and regrouped into the 9 announcement topics (plus a pre-exam review sheet) by onwrTopics.json.
@@ -37,7 +38,7 @@ function buildTopic(refs: string[][]): NoteLesson[] {
 }
 
 export const ONWR_LESSONS: Record<string, NoteLesson[]> = Object.fromEntries(
-  Object.entries(TOPICS).map(([topic, meta]) => [topic, buildTopic(meta.lessons)])
+  Object.entries(TOPICS).map(([topic, meta]) => [topic, thaiWrapDeep(buildTopic(meta.lessons))])
 );
 
 export function getOnwrLesson(subjectId: string, slug: string) {

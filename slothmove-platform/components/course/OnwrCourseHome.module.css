@@ -1,64 +1,28 @@
-/* ONWR landing: reuses PoliceCourseHome styles with a water-blue accent. */
+/* ONWR landing: the police course template (PoliceCourseHome.module.css) in water blue. */
 .page {
+  --ink: #14232b;
+  --muted: #5d6e77;
+  --line: #dde8ed;
+  --line-strong: #c9dae2;
+  --arrow: #9fb6c1;
   --accent: #0b5f86;
   --accent-soft: #e3f3fa;
+  --page-bg: #f6fafb;
+  --shadow-tint: rgb(12, 52, 72);
 }
 
-.dates { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-.dates li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
-.dates li:last-child { border-bottom: 0; }
+.dateCard { display: grid; gap: 14px; padding: 18px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.dates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.dates li { display: grid; gap: 4px; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); font-size: 14px; line-height: 1.5; }
 .dates b { color: var(--accent); font-weight: 800; }
 .dates span { color: var(--ink); }
-.rule { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
+.rule { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.reviewCard { margin-top: 14px; background: var(--accent-soft); }
 
-.subjects { display: grid; gap: 14px; }
-.subject {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px 28px;
-  align-items: center;
-  padding: 20px 22px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
+@media (max-width: 860px) {
+  .dates { grid-template-columns: 1fr 1fr; }
 }
-.subjectHead { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 16px; align-items: start; }
-.subjectNo { color: var(--accent); font-size: 12.5px; font-weight: 800; }
-.subjectHead h3 { margin: 2px 0 0; font-family: var(--font-display); font-size: 21px; line-height: 1.3; }
-.subjectHead h3 a { color: var(--ink); text-decoration: none; }
-.subjectHead h3 a:hover { color: var(--accent); }
-.subjectHead p { margin: 4px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-.subjectActions { display: grid; justify-items: end; gap: 10px; }
-.read {
-  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px;
-  background: var(--accent); color: #fff; font-size: 14.5px; font-weight: 800; text-decoration: none;
+@media (max-width: 560px) {
+  .dateCard { padding: 14px; }
+  .dates { grid-template-columns: 1fr; gap: 8px; }
 }
-.read:hover { background: #07425e; color: #fff; }
-.cells { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
-.soon { color: var(--muted); font-size: 13.5px; font-weight: 700; }
-
-@media (max-width: 760px) {
-  .subject { grid-template-columns: 1fr; padding: 18px 16px; }
-  .subjectActions { justify-items: stretch; }
-  .read { justify-content: center; }
-  .cells { justify-content: flex-start; }
-  .dates li { grid-template-columns: 104px minmax(0, 1fr); }
-}
-
-.review {
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: center;
-  padding: 18px 22px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--accent-soft);
-  color: var(--ink);
-  text-decoration: none;
-}
-.review:hover { border-color: var(--accent); }
-.review strong { display: block; font-family: var(--font-display); font-size: 19px; }
-.review small { color: var(--muted); font-size: 13.5px; }
-.review > b { color: var(--accent); font-size: 20px; }
-.reviewIcon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: #fff; font-size: 22px; }

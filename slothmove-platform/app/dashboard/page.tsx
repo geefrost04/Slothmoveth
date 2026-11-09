@@ -51,8 +51,17 @@ type AttemptGroup = 'subject' | 'mock' | 'other';
 const SUBJECT_TITLES: Record<string, string> = {
   math: 'ความรู้ทั่วไป', thai: 'ภาษาไทย', english: 'ภาษาอังกฤษ', law: 'กฎหมาย',
   computer: 'คอมพิวเตอร์', social: 'สังคมศึกษา', saraban: 'งานสารบรรณ',
-  analytical_thinking: 'ความสามารถในการคิดวิเคราะห์', mock_test: 'Mock Test', mini_mock: 'Mini Mock'
+  analytical_thinking: 'ความสามารถในการคิดวิเคราะห์', mock_test: 'Mock Test', mini_mock: 'Mini Mock',
+  // สทนช. (ONWR) topics
+  org: 'ความรู้เกี่ยวกับ สทนช.', admin: 'การบริหารจัดการองค์กรภาครัฐ', rules: 'ระเบียบพนักงานราชการ',
+  policy: 'การจัดทำนโยบายและแผน', masterplan: 'นโยบายและแผนแม่บทน้ำ', monitoring: 'การติดตามและประเมินผล',
+  project: 'การวิเคราะห์แผนงานโครงการ', meeting: 'การประชุมและการมีส่วนร่วม', wateract: 'พ.ร.บ.ทรัพยากรน้ำ 2561',
+  onwr_mini_mock: 'Mini Mock สทนช.', onwr_mini_drill: 'Mini Drill สทนช.'
 };
+const ONWR_TOPIC_IDS = new Set(['org', 'admin', 'rules', 'policy', 'masterplan', 'monitoring', 'project', 'meeting', 'wateract']);
+function isOnwrSubject(subjectId: string) {
+  return ONWR_TOPIC_IDS.has(subjectId) || subjectId.startsWith('onwr_');
+}
 
 const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
   'ความรู้ทั่วไป': 'math',
@@ -63,10 +72,10 @@ const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
   'ภาษาอังกฤษ': 'english'
 };
 
-const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => subjectId !== 'mock_test' && subjectId !== 'mini_mock'));
+const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => !isMockAttempt(subjectId)));
 
 function isMockAttempt(subjectId: string) {
-  return subjectId === 'mock_test' || subjectId === 'mini_mock';
+  return subjectId === 'mock_test' || subjectId === 'mini_mock' || subjectId === 'onwr_mini_mock';
 }
 
 function getAttemptGroup(subjectId: string): AttemptGroup {
@@ -79,6 +88,9 @@ function normalizeAttemptSubject(attempt: Pick<AttemptRow, 'subject_id' | 'quiz_
   // Older Mock Test rows were written with the legacy math subject id.
   if (attempt.quiz_id.startsWith('police-mock_test-')) return 'mock_test';
   if (attempt.quiz_id.startsWith('police-mini_mock-')) return 'mini_mock';
+  // ONWR saves its Mini Mock / Mini Drill under generic subject ids; keep them apart from police.
+  if (attempt.quiz_id.startsWith('onwr-mini_mock-')) return 'onwr_mini_mock';
+  if (attempt.quiz_id.startsWith('onwr-mini_drill-')) return 'onwr_mini_drill';
   return attempt.subject_id;
 }
 
@@ -89,6 +101,13 @@ function summarizeAttempts(groupAttempts: AttemptRow[]) {
 }
 
 function getPracticeHref(subjectId: string, examSetId?: string | null) {
+  if (examSetId?.startsWith('onwr-mini_mock-')) return `/courses/onwr/mini-mock/${examSetId}`;
+  if (examSetId?.startsWith('onwr-mini_drill-')) return `/courses/onwr/mini-drill/${examSetId}`;
+  const onwrSet = examSetId?.match(/^onwr-([a-z]+)-set-\d{2}$/);
+  if (onwrSet) return `/courses/onwr/${onwrSet[1]}/exams/${examSetId}`;
+  if (subjectId === 'onwr_mini_mock') return '/courses/onwr#mini';
+  if (subjectId === 'onwr_mini_drill') return '/courses/onwr#drill';
+  if (ONWR_TOPIC_IDS.has(subjectId)) return `/courses/onwr/${subjectId}`;
   if (subjectId === 'mock_test') {
     return examSetId
       ? `/courses/police_admin/mock-test/${examSetId}`
@@ -104,6 +123,7 @@ function getPracticeHref(subjectId: string, examSetId?: string | null) {
 }
 
 function getFreePracticeHref(subjectId: string) {
+  if (isOnwrSubject(subjectId)) return getPracticeHref(subjectId);
   return `/daily-practice/${subjectId === 'mock_test' ? 'math' : subjectId}`;
 }
 
@@ -524,6 +544,12 @@ export default function DashboardPage() {
       : attempts.filter((attempt) => attempt.subject_id === historyFilter);
   const getAttemptTitle = (attempt: AttemptRow) => (attempt.exam_set_id && examSetTitles[attempt.exam_set_id]) || SUBJECT_TITLES[attempt.subject_id] || attempt.quiz_id;
   const wrongAnswers = getLatestWrongAnswers(attempts);
+  // Shortcuts follow the course the user practised last.
+  const lastAttempt = attempts[0];
+  const continueHref = lastAttempt ? getPracticeHref(lastAttempt.subject_id, lastAttempt.exam_set_id) : '/courses';
+  const activeCourse = lastAttempt && isOnwrSubject(lastAttempt.subject_id)
+    ? { name: 'สทนช. นักวิเคราะห์นโยบายและแผน', href: '/courses/onwr', logo: '/pic/slothmove_mascot.svg' }
+    : { name: 'นายสิบตำรวจ สายอำนวยการ', href: '/courses/police_admin', logo: '/pic/logo_police.png' };
   const practicedToday = attempts.some((attempt) => getBangkokStudyDate(attempt.created_at) === getBangkokStudyDate(new Date().toISOString()));
   const dailyStreak = getDailyStreak(attempts);
   const suggestedSubject = weaknesses[0]?.subjectId ?? 'math';
@@ -548,8 +574,8 @@ export default function DashboardPage() {
             <button type="button" className={`dashboard-menu-item${view === 'review' ? ' active' : ''}`} onClick={() => selectView('review')}><span><ReviewNavIcon /></span><span>สมุดข้อผิด</span><b>{wrongAnswers.length}</b></button>
           </div>
           <div className="sidebar-exam-card">
-            <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src="/pic/logo_police.png" alt="นายสิบตำรวจ สายอำนวยการ" className="sidebar-exam-logo" />
-            <div className="sidebar-exam-title is-course-name">นายสิบตำรวจ สายอำนวยการ</div><Link href="/courses/police_admin" className="sidebar-exam-btn">ไปหน้าคอร์ส</Link><Link href="/#exam-selection" className="sidebar-change-link">เปลี่ยนสนามสอบ</Link>
+            <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src={activeCourse.logo} alt={activeCourse.name} className="sidebar-exam-logo" />
+            <div className="sidebar-exam-title is-course-name">{activeCourse.name}</div><Link href={activeCourse.href} className="sidebar-exam-btn">ไปหน้าคอร์ส</Link><Link href="/#exam-selection" className="sidebar-change-link">เปลี่ยนสนามสอบ</Link>
           </div>
           <a href="https://www.facebook.com/profile.php?id=61589670089745" target="_blank" rel="noopener noreferrer" className="sidebar-help-box"><span>มีคำถามหรือปัญหา?</span><span>ติดต่อทีมงาน ›</span></a>
         </aside>
@@ -558,7 +584,7 @@ export default function DashboardPage() {
           <header className="dashboard-page-header">
             <div className="dashboard-account-heading">
               <div className="dashboard-account-copy"><Link href="/" className="dashboard-home-breadcrumb">← กลับหน้าแรก</Link><span className="dashboard-view-eyebrow">{view === 'overview' ? 'ภาพรวมบัญชี' : view === 'history' ? 'ประวัติทั้งหมด' : view === 'analysis' ? 'วิเคราะห์ผลการฝึก' : 'ทบทวนเฉพาะข้อที่ยังพลาด'}</span><h1>{view === 'overview' ? `สวัสดี, ${username}` : view === 'history' ? 'ประวัติการฝึกของฉัน' : view === 'analysis' ? 'จุดที่ควรฝึกต่อ' : 'สมุดข้อผิดของฉัน'}</h1><p>{view === 'overview' ? 'ติดตามคะแนน เวลา และความก้าวหน้าจากข้อมูลจริงของคุณ' : view === 'history' ? 'เปิดดูผลรายหมวดและกลับไปฝึกชุดเดิมได้ทุกเมื่อ' : view === 'analysis' ? 'เรียงจากหมวดที่คะแนนต่ำ เพื่อช่วยเลือกสิ่งที่ควรทบทวนก่อน' : 'ข้อที่ตอบถูกในภายหลังจะถูกนำออก เพื่อให้เหลือเฉพาะจุดที่ควรทบทวน'}</p></div>
-              <div className="dashboard-account-actions"><Link href="/courses/police_admin" className="dashboard-primary-action">ทำข้อสอบต่อ <span aria-hidden="true">→</span></Link><button type="button" className="dashboard-refresh-button" onClick={() => setReloadToken((value) => value + 1)}>↻ อัปเดตข้อมูล</button><span className={`account-role-badge is-${profile?.role ?? 'user'}`}>{profile?.role === 'admin' ? 'ADMIN' : 'สมาชิก'}</span>{profile?.role === 'admin' ? <Link href="/admin">ระบบจัดการ →</Link> : null}</div>
+              <div className="dashboard-account-actions"><Link href={continueHref} className="dashboard-primary-action">{lastAttempt ? 'ทำข้อสอบต่อ' : 'เลือกสนามสอบ'} <span aria-hidden="true">→</span></Link><button type="button" className="dashboard-refresh-button" onClick={() => setReloadToken((value) => value + 1)}>↻ อัปเดตข้อมูล</button><span className={`account-role-badge is-${profile?.role ?? 'user'}`}>{profile?.role === 'admin' ? 'ADMIN' : 'สมาชิก'}</span>{profile?.role === 'admin' ? <Link href="/admin">ระบบจัดการ →</Link> : null}</div>
             </div>
           </header>
           {syncMessage ? <div className="dashboard-sync-message" role="status">✓ {syncMessage}</div> : null}
@@ -566,6 +592,33 @@ export default function DashboardPage() {
 
           {view === 'overview' ? (
             <>
+              <nav className="dashboard-shortcuts" aria-label="ทางลัด">
+                <Link href={continueHref} className="dashboard-shortcut is-primary">
+                  <span aria-hidden="true">▶</span>
+                  <strong>{lastAttempt ? 'ทำต่อจากล่าสุด' : 'เริ่มทำข้อสอบ'}</strong>
+                  <small>{lastAttempt ? getAttemptTitle(lastAttempt) : 'เลือกสนามสอบที่เตรียมอยู่'}</small>
+                </Link>
+                <button type="button" className="dashboard-shortcut" onClick={() => selectView('review')}>
+                  <span aria-hidden="true">✎</span>
+                  <strong>สมุดข้อผิด</strong>
+                  <small>{wrongAnswers.length ? `${wrongAnswers.length} ข้อรอทบทวน` : 'ยังไม่มีข้อที่พลาด'}</small>
+                </button>
+                <button type="button" className="dashboard-shortcut" onClick={() => selectView('analysis')}>
+                  <span aria-hidden="true">◎</span>
+                  <strong>จุดที่ควรฝึกต่อ</strong>
+                  <small>{weaknesses[0] ? weaknesses[0].title : 'ทำข้อสอบเพื่อเริ่มวิเคราะห์'}</small>
+                </button>
+                <Link href="/courses/police_admin" className="dashboard-shortcut">
+                  <img src="/pic/logo_police.png" alt="" aria-hidden="true" />
+                  <strong>นายสิบตำรวจ</strong>
+                  <small>Mock Test · Mini Mock · ชีทสรุป</small>
+                </Link>
+                <Link href="/courses/onwr" className="dashboard-shortcut is-onwr">
+                  <span aria-hidden="true">💧</span>
+                  <strong>สทนช.</strong>
+                  <small>9 หัวข้อ · โน้ตสรุป · ข้อสอบ</small>
+                </Link>
+              </nav>
               {showWelcome ? <section className="dashboard-welcome-plan" aria-label="เริ่มฝึกครั้งแรก">
                 <div><span>เริ่มต้นวันนี้</span><h2>เริ่มจากควิซฟรีสั้น ๆ แล้วให้ผลสอบบอกว่าควรฝึกอะไรต่อ</h2><p>ทำ 10 ข้อแรกจากชุดข้อสอบฟรีเพื่อสร้างแผนฝึกที่เหมาะกับคุณ</p></div>
                 <div className="dashboard-welcome-actions"><Link href="/daily-practice/math" onClick={() => trackAnalyticsEvent('onboarding_start_click', { destination: 'free_daily_practice' })}>เริ่มควิซฟรี 10 ข้อ <span aria-hidden="true">→</span></Link><button type="button" onClick={() => { trackAnalyticsEvent('onboarding_dismissed'); setShowWelcome(false); router.replace('/dashboard'); }}>ไว้ทีหลัง</button></div>

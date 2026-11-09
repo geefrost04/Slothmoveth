@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { thaiWrap } from '@/lib/thaiText';
 import { useEffect, useRef, useState } from 'react';
 import { queuePendingAttempt, type PendingAttempt } from '@/lib/pending-attempts';
 import { getSupabase } from '@/lib/supabase';
@@ -104,7 +105,7 @@ function MathText({ text, linkUrls = false }: { text: string; linkUrls?: boolean
 
         const isCaretExponent = part.startsWith('^');
         const isUnicodeExponent = [...part].every((character) => character in SUPERSCRIPT_CHARACTERS);
-        if (!isCaretExponent && !isUnicodeExponent) return part;
+        if (!isCaretExponent && !isUnicodeExponent) return thaiWrap(part);
 
         const exponent = isCaretExponent
           ? part.slice(1).replace(/^\{(.+)\}$/, '$1')

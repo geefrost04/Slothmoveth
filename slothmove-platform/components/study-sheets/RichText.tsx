@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
 import styles from './SarabanLesson.module.css';
+import { thaiWrap } from '@/lib/thaiText';
 
 // Renders "**bold**" segments as highlighted text. Safe on server and client.
 export function Rich({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = thaiWrap(text).split(/(\*\*[^*]+\*\*)/g);
   return (
     <>
       {parts.map((part, index) => (

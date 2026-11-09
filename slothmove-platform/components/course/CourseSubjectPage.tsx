@@ -267,7 +267,7 @@ function PoliceSubjectLandingPage({
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
-          <Link href={`/courses/${course.id}`}>{course.tagline}</Link>
+          <Link href={`/courses/${course.id}`}>{course.id === 'onwr' ? 'สทนช.' : course.tagline}</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>
@@ -416,7 +416,7 @@ function PoliceMathSubjectPage({
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
-          <Link href={`/courses/${course.id}`}>{course.tagline}</Link>
+          <Link href={`/courses/${course.id}`}>{course.id === 'onwr' ? 'สทนช.' : course.tagline}</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>

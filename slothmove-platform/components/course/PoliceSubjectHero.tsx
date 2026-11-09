@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './PoliceSubjectHero.module.css';
+import { thaiWrap } from '@/lib/thaiText';
 
 export type Outline = { label: string; title: string; meta: string }[];
 
@@ -62,14 +63,14 @@ export function PoliceSubjectHero({
     <section className={styles.hero}>
       <div className={styles.intro}>
         <span className={styles.eyebrow}>{eyebrow}</span>
-        <h1>{title}</h1>
-        <p className={styles.summary}>{summary}</p>
+        <h1>{thaiWrap(title)}</h1>
+        <p className={styles.summary}>{thaiWrap(summary)}</p>
         <ul className={styles.facts}>
           <li><strong>{setCount}</strong> ชุด</li>
           <li><strong>{questionCount.toLocaleString('th-TH')}</strong> ข้อ</li>
           <li>{allFree ? 'ฟรีทั้งหมด' : `ฟรี ${freeSets} ชุด`}</li>
         </ul>
-        <p className={styles.topics}><span>หัวข้อหลัก</span>{highlight}</p>
+        <p className={styles.topics}><span>หัวข้อหลัก</span>{thaiWrap(highlight)}</p>
       </div>
 
       <aside className={`${styles.notebook} ${hasSummary ? '' : styles.notebookPending}`} aria-label="ชีทสรุป">
@@ -82,7 +83,7 @@ export function PoliceSubjectHero({
             {outline.map((row) => (
               <li key={row.title}>
                 <span className={styles.rowLabel}>{row.label}</span>
-                <span className={styles.rowTitle}>{row.title}</span>
+                <span className={styles.rowTitle}>{thaiWrap(row.title)}</span>
                 <span className={styles.rowMeta}>{row.meta}</span>
               </li>
             ))}

@@ -9,7 +9,7 @@
   --ok: #b45309;
   --low: #b42318;
   padding: 22px 0 88px;
-  background: #fbf8f6;
+  background: var(--page-bg, #fbf8f6);
   color: var(--ink);
 }
 
@@ -39,7 +39,7 @@
 .lead { max-width: 30em; margin: 18px 0 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
 .facts { display: flex; flex-wrap: wrap; margin: 28px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 15px; }
 .facts li { display: inline-flex; align-items: baseline; gap: 6px; }
-.facts li + li::before { content: ''; align-self: center; width: 1px; height: 18px; margin: 0 18px; background: #ddd0d2; }
+.facts li + li::before { content: ''; align-self: center; width: 1px; height: 18px; margin: 0 18px; background: var(--line-strong, #ddd0d2); }
 .facts strong { color: var(--ink); font-family: var(--font-display); font-size: 26px; font-variant-numeric: tabular-nums; }
 
 /* Suggested path card */
@@ -50,14 +50,14 @@
   border: 1px solid var(--line);
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 22px 44px -32px rgba(60, 24, 30, .45);
+  box-shadow: 0 22px 44px -32px color-mix(in srgb, var(--shadow-tint, rgb(60, 24, 30)) 45%, transparent);
 }
 .pathTitle { margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; }
 .path ol { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
 .path li { position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; padding: 10px 0; }
 .path li + li::before { content: ''; position: absolute; top: -12px; left: 16px; width: 2px; height: 24px; background: var(--line); }
 .stepNo {
-  display: grid; place-items: center; width: 34px; height: 34px; border: 2px solid #dccfd1; border-radius: 50%;
+  display: grid; place-items: center; width: 34px; height: 34px; border: 2px solid var(--line-strong, #dccfd1); border-radius: 50%;
   color: var(--muted); font-size: 14px; font-weight: 800; background: #fff; position: relative; z-index: 1;
 }
 .stepText { font-size: 15px; line-height: 1.45; color: var(--ink); }
@@ -78,7 +78,7 @@
 .jump {
   position: sticky; top: 72px; z-index: 5;
   display: flex; gap: 6px; overflow-x: auto; margin: 0 -4px; padding: 10px 4px;
-  background: color-mix(in srgb, #fbf8f6 92%, transparent);
+  background: color-mix(in srgb, var(--page-bg, #fbf8f6) 92%, transparent);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
   scrollbar-width: none;
@@ -110,7 +110,7 @@
   display: grid; gap: 4px; padding: 20px 20px 18px; border: 1px solid var(--line); border-radius: 14px; background: #fff;
   color: var(--ink); text-decoration: none; transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
 }
-.mockCard:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 16px 30px -24px rgba(60, 24, 30, .5); color: var(--ink); }
+.mockCard:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 16px 30px -24px color-mix(in srgb, var(--shadow-tint, rgb(60, 24, 30)) 50%, transparent); color: var(--ink); }
 .mockNo { font-family: var(--font-display); font-size: 42px; font-weight: 700; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
 .mockLabel { margin-top: 10px; font-size: 16px; font-weight: 800; }
 .mockState { color: var(--muted); font-size: 13px; font-weight: 600; }
@@ -138,7 +138,7 @@
 .drillName { font-size: 15.5px; }
 .drillCells { display: flex; gap: 8px; }
 .cell {
-  display: grid; justify-items: center; gap: 1px; min-width: 64px; padding: 7px 8px; border: 1px solid #dccfd1; border-radius: 10px;
+  display: grid; justify-items: center; gap: 1px; min-width: 64px; padding: 7px 8px; border: 1px solid var(--line-strong, #dccfd1); border-radius: 10px;
   background: #fff; color: var(--ink); text-decoration: none; transition: border-color .15s ease, transform .15s ease;
 }
 .cell b { font-size: 13.5px; }
@@ -159,7 +159,7 @@
 .subjectText strong { display: block; font-size: 17px; }
 .subjectText small { display: block; margin-top: 2px; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
 .subjectText em { display: block; margin-top: 6px; color: var(--accent); font-size: 12.5px; font-style: normal; font-weight: 800; }
-.subjectArrow { color: #b9a9ac; font-size: 18px; transition: transform .15s ease, color .15s ease; }
+.subjectArrow { color: var(--arrow, #b9a9ac); font-size: 18px; transition: transform .15s ease, color .15s ease; }
 .subject:hover .subjectArrow { color: var(--accent); transform: translateX(3px); }
 
 @media (max-width: 1080px) {

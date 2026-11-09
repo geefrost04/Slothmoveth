@@ -2049,3 +2049,61 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
 }
 
 
+
+/* Shortcuts: one-tap access to the key places, shown first in the overview. */
+.dashboard-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.dashboard-shortcut {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  min-height: 74px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  color: #1f2937;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.dashboard-shortcut:hover { border-color: #33765a; transform: translateY(-1px); box-shadow: 0 10px 22px -18px rgba(30, 20, 20, .45); }
+.dashboard-shortcut:focus-visible { outline: 2px solid #33765a; outline-offset: 2px; }
+.dashboard-shortcut > span,
+.dashboard-shortcut > img {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #e6f4ea;
+  color: #216247;
+  font-size: 16px;
+  object-fit: contain;
+}
+.dashboard-shortcut strong { font-size: 14.5px; line-height: 1.35; }
+.dashboard-shortcut small { overflow: hidden; color: #64748b; font-size: 12.5px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
+.dashboard-shortcut.is-primary { border-color: #2d6f54; background: #2d6f54; color: #fff; }
+.dashboard-shortcut > img { padding: 4px; background: #f6e9ea; }
+.dashboard-shortcut.is-primary > span { background: rgba(255, 255, 255, .16); color: #fff; }
+.dashboard-shortcut.is-primary small { color: rgba(255, 255, 255, .8); }
+.dashboard-shortcut.is-onwr > span { background: #e3f3fa; color: #0b5f86; }
+.dashboard-shortcut.is-onwr:hover { border-color: #0b5f86; }
+
+@media (max-width: 1180px) {
+  .dashboard-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .dashboard-shortcuts { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .dashboard-shortcut.is-primary { grid-column: 1 / -1; }
+  .dashboard-shortcut { min-height: 64px; padding: 12px; }
+}
