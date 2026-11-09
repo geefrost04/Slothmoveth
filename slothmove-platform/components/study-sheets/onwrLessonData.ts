@@ -2,6 +2,12 @@ import type { SarabanLesson as NoteLesson } from './sarabanLessonData';
 import { ONWR_GENERAL_LESSONS } from './onwrGeneralLessons';
 import { ONWR_WATER_LESSONS } from './onwrWaterLessons';
 import { ONWR_PLANNING_LESSONS } from './onwrPlanningLessons';
+import { LESSON as EXTRA_ORG } from './onwrExtra/org';
+import { LESSON as EXTRA_MASTERPLAN } from './onwrExtra/masterplan';
+import { LESSON as EXTRA_MONITORING } from './onwrExtra/monitoring';
+import { LESSON as EXTRA_PROJECT } from './onwrExtra/project';
+import { LESSON as EXTRA_MEETING } from './onwrExtra/meeting';
+import { LESSON as EXTRA_RULES } from './onwrExtra/rules';
 import TOPICS from './onwrTopics.json';
 import { thaiWrapDeep } from '@/lib/thaiText';
 
@@ -10,7 +16,9 @@ import { thaiWrapDeep } from '@/lib/thaiText';
 const SOURCES: Record<string, NoteLesson[]> = {
   general: ONWR_GENERAL_LESSONS,
   water: ONWR_WATER_LESSONS,
-  planning: ONWR_PLANNING_LESSONS
+  planning: ONWR_PLANNING_LESSONS,
+  // Extra chapters for thin topics (components/study-sheets/onwrExtra/<topic>.ts).
+  extra: [EXTRA_ORG, EXTRA_MASTERPLAN, EXTRA_MONITORING, EXTRA_PROJECT, EXTRA_MEETING, EXTRA_RULES]
 };
 
 const REVIEW_TITLES: Record<string, string> = {

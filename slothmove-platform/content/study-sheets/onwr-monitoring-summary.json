@@ -10,13 +10,13 @@
     "content_format": "lesson",
     "version": 1,
     "status": "published",
-    "section_count": 1,
-    "chapter_count": 1,
+    "section_count": 2,
+    "chapter_count": 2,
     "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สทนช. ลงวันที่ 22 ต.ค. 2569: ความรู้เกี่ยวกับการติดตามและการประเมินผลงานโครงการ\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
     "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานทรัพยากรน้ำแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 22 ตุลาคม 2569",
     "recommended_renderer": "lesson",
     "metadata": {},
-    "updated_at": "2026-11-09T03:39:24.513Z"
+    "updated_at": "2026-11-09T05:14:58.570Z"
   },
   "sections": [
     {
@@ -29,6 +29,17 @@
       "sort_order": 1,
       "visual_placeholders": [],
       "content_md": "# การติดตามและประเมินผลแผนงานโครงการ\n\n**ติดตาม = ระหว่างทาง ตามแผนไหม · ประเมิน = ตัดสินคุณค่า** · Formative ระหว่างทำ · Summative เมื่อจบ · **CIPP (Stufflebeam)** · **Kirkpatrick 4 ระดับ** · ประสิทธิภาพ ≠ ประสิทธิผล"
+    },
+    {
+      "id": "onwr-monitoring-summary-lesson-02",
+      "sheet_id": "onwr-monitoring-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "เจาะโจทย์ติดตามประเมินผล: CIPP ตัวชี้วัด และการคำนวณ",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# เจาะโจทย์ติดตามประเมินผล: CIPP ตัวชี้วัด และการคำนวณ\n\n**CIPP: วางแผน-โครงสร้าง-ดำเนินการ-ทบทวน** · Kirkpatrick 1 พอใจ 2 Pre-Post 3 ใช้ในงาน 4 ผลองค์กร · **Coherence เพิ่มปี 2019** · Economy = ซื้อถูกคุณภาพได้ · **% บรรลุเป้า = (จริง − ฐาน) ÷ (เป้า − ฐาน)** · ประสิทธิภาพเทียบต้นทุนต่อหน่วย · ม.45 คณะผู้ประเมินอิสระ · eMENSCR ของ สศช."
     }
   ],
   "assets": []

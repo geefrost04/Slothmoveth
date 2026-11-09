@@ -4,12 +4,18 @@
 import fs from 'node:fs';
 
 const TOPICS = JSON.parse(fs.readFileSync('components/study-sheets/onwrTopics.json', 'utf8'));
-const FILES = { general: 'onwrGeneralLessons.ts', water: 'onwrWaterLessons.ts', planning: 'onwrPlanningLessons.ts' };
+const FILES = {
+  general: ['onwrGeneralLessons.ts'],
+  water: ['onwrWaterLessons.ts'],
+  planning: ['onwrPlanningLessons.ts'],
+  // One extra chapter per thin topic, one file each.
+  extra: fs.readdirSync('components/study-sheets/onwrExtra').filter((f) => f.endsWith('.ts')).map((f) => `onwrExtra/${f}`)
+};
 const REVIEW_TITLES = { general: 'ทบทวนความรู้ทั่วไป', water: 'ทบทวน พ.ร.บ.น้ำและแผนแม่บทน้ำ', planning: 'ทบทวนนโยบาย แผน และการประเมินผล' };
 
 // slug → { title, type, summary } per source file
-const SOURCES = Object.fromEntries(Object.entries(FILES).map(([source, file]) => {
-  const src = fs.readFileSync(`components/study-sheets/${file}`, 'utf8');
+const SOURCES = Object.fromEntries(Object.entries(FILES).map(([source, files]) => {
+  const src = files.map((file) => fs.readFileSync(`components/study-sheets/${file}`, 'utf8')).join('\n');
   const lessons = [...src.matchAll(/slug: '([^']+)',\s*chapterNo: (\d+),\s*sectionType: '([^']+)',\s*title: '([^']+)'/g)];
   const summaries = [...src.matchAll(/summary: '([^']+)'/g)].map((m) => m[1]);
   return [source, Object.fromEntries(lessons.map((m, i) => [m[1], { title: m[4], type: m[3], summary: summaries[i] ?? '' }]))];
