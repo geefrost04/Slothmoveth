@@ -1,4 +1,5 @@
-/* Per-course recolor of shared police subject-page styles (app/course-shell.css). */
-.onwr :global(.police-subject-breadcrumb-current),
-.onwr :global(.police-subject-section-heading > div > span) { color: #0b5f86; }
-.onwr :global(.police-subject-breadcrumb a:hover) { color: #0b5f86; }
+/* Per-course recolor of shared police subject-page styles (app/course-shell.css).
+   Local-content courses (ONWR, NESDC) set --course-accent on the page root. */
+.local :global(.police-subject-breadcrumb-current),
+.local :global(.police-subject-section-heading > div > span) { color: var(--course-accent); }
+.local :global(.police-subject-breadcrumb a:hover) { color: var(--course-accent); }

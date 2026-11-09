@@ -1,0 +1,123 @@
+{
+  "sheet": {
+    "id": "nesdc-saraban-summary",
+    "slug": "nesdc-saraban-summary",
+    "course_id": "nesdc",
+    "subject_id": "saraban",
+    "title": "โน้ตสรุป: งานสารบรรณ",
+    "description": "โน้ตสรุป: งานสารบรรณ สำหรับสอบพนักงานราชการ สศช. งานวิเคราะห์นโยบายและแผน: ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ พ.ศ. 2526 และที่แก้ไขเพิ่มเติม",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 9,
+    "chapter_count": 8,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สศช. ลงวันที่ 9 พ.ย. 2569: ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ พ.ศ. 2526 และที่แก้ไขเพิ่มเติม\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 9 พฤศจิกายน 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-09T12:41:59.832Z"
+  },
+  "sections": [
+    {
+      "id": "nesdc-saraban-summary-lesson-01",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "ภาพรวมงานสารบรรณ",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# ภาพรวมงานสารบรรณ\n\nสารบรรณ = **จัดทำ → ทำลาย** · รักษาการโดย **ปลัดสำนักนายกฯ** · หลัก **2526** ล่าสุด **2564**"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-02",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "หนังสือราชการ 6 ชนิด",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# หนังสือราชการ 6 ชนิด\n\n**ภายนอก** ตราครุฑ · **ภายใน** บันทึกข้อความ · **ประทับตรา** เรื่องไม่สำคัญ กองลงชื่อย่อ · สั่งการ 3 · ประชาฯ 3 · หลักฐาน 4"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-03",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 3,
+      "slug": "lesson-03",
+      "title": "รูปแบบหนังสือ + คำขึ้นต้น-ลงท้าย",
+      "sort_order": 3,
+      "visual_placeholders": [],
+      "content_md": "# รูปแบบหนังสือ + คำขึ้นต้น-ลงท้าย\n\n**ที่ซ้าย ครุฑกลาง ส่วนราชการขวา** · อ้างถึงฉบับล่าสุด \"ลงวันที่\" · กราบเรียน ↔ **อย่างยิ่ง**"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-04",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 4,
+      "slug": "lesson-04",
+      "title": "ชั้นความเร็ว · ความลับ · เวียน · สำเนา",
+      "sort_order": 4,
+      "visual_placeholders": [],
+      "content_md": "# ชั้นความเร็ว · ความลับ · เวียน · สำเนา\n\nด่วน 3 (**ทันที / โดยเร็ว / เร็วกว่าปกติ**) ตัวแดง 32 พอยท์ · ลับ **3** ชั้น · เวียน **\"ว\"** · \"สำเนาถูกต้อง\" + วันที่"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-05",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 5,
+      "slug": "lesson-05",
+      "title": "การรับ และการส่งหนังสือ",
+      "sort_order": 5,
+      "visual_placeholders": [],
+      "content_md": "# การรับ และการส่งหนังสือ\n\nรับ: **ตรวจ → ตรารับขวาบน → ทะเบียน → ส่งต่อ** · ส่ง: ตรวจ → ทะเบียนส่ง → ซอง (**พับ 3 = ดีแอล**)"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-06",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 6,
+      "slug": "lesson-06",
+      "title": "เก็บรักษา · ยืม · ทำลาย",
+      "sort_order": 6,
+      "visual_placeholders": [],
+      "content_md": "# เก็บรักษา · ยืม · ทำลาย\n\nเก็บ **10 / 5 / 1 ปี** · อิเล็กทรอนิกส์ไม่มีอายุ · ครบ **20 ปี** ส่งหอจดหมายเหตุ · ยืม **กอง / แผนก** คนนอกยืมไม่ได้ · ทำลาย สำรวจใน **60 วัน** → กากบาท (X)"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-07",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 7,
+      "slug": "lesson-07",
+      "title": "สารบรรณอิเล็กทรอนิกส์ (2564)",
+      "sort_order": 7,
+      "visual_placeholders": [],
+      "content_md": "# สารบรรณอิเล็กทรอนิกส์ (2564)\n\n**saraban@** · เช็ก **2 ครั้ง/วัน** · ตอบในวัน (หลัง 16.30 → ก่อน 10.00) · **PDF 300 dpi** · ชื่อไฟล์ **ปี_รหัส_เลขส่ง.pdf** · ลับที่สุดห้ามส่ง"
+    },
+    {
+      "id": "nesdc-saraban-summary-lesson-08",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "chapter",
+      "chapter_no": 8,
+      "slug": "lesson-08",
+      "title": "ตรา · กระดาษ · แบบพิมพ์",
+      "sort_order": 8,
+      "visual_placeholders": [],
+      "content_md": "# ตรา · กระดาษ · แบบพิมพ์\n\nครุฑ **3 / 1.5** · ตราส่วนราชการ **4.5 / 3.5** · ตรารับ **2.5 × 5** · เก็บ **24** พอยท์ · ด่วน **32** พอยท์ · A8 = ใบรับ"
+    },
+    {
+      "id": "nesdc-saraban-summary-review",
+      "sheet_id": "nesdc-saraban-summary",
+      "section_type": "quick_review",
+      "chapter_no": 9,
+      "slug": "review",
+      "title": "ระเบียบสำนักนายกฯ · โน้ตทบทวนก่อนสอบ",
+      "sort_order": 9,
+      "visual_placeholders": [],
+      "content_md": "# ระเบียบสำนักนายกฯ · โน้ตทบทวนก่อนสอบ\n\n**6 ชนิด · ตรา 6 กรณี · ด่วน 3 · ลับ 3 · เก็บ 10/5/1 ปี · 20 ปีส่งหอจดหมายเหตุ · ทำลายสำรวจใน 60 วัน**"
+    }
+  ],
+  "assets": []
+}

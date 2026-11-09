@@ -57,11 +57,18 @@ const SUBJECT_TITLES: Record<string, string> = {
   org: 'ความรู้เกี่ยวกับ สทนช.', admin: 'การบริหารจัดการองค์กรภาครัฐ', rules: 'ระเบียบพนักงานราชการ',
   policy: 'การจัดทำนโยบายและแผน', masterplan: 'นโยบายและแผนแม่บทน้ำ', monitoring: 'การติดตามและประเมินผล',
   project: 'การวิเคราะห์แผนงานโครงการ', meeting: 'การประชุมและการมีส่วนร่วม', wateract: 'พ.ร.บ.ทรัพยากรน้ำ 2561',
-  onwr_mini_mock: 'Mini Mock สทนช.', onwr_mini_drill: 'Mini Drill สทนช.'
+  onwr_mini_mock: 'Mini Mock สทนช.', onwr_mini_drill: 'Mini Drill สทนช.',
+  // สศช. (NESDC) topics: saved as nesdc_<topic> so they don't mix with police/ONWR ids
+  nesdc_general: 'ความรู้ความสามารถทั่วไป (สศช.)', nesdc_saraban: 'งานสารบรรณ (สศช.)', nesdc_english: 'ภาษาอังกฤษ (สศช.)',
+  nesdc_computer: 'คอมพิวเตอร์ (สศช.)', nesdc_org: 'ความรู้เกี่ยวกับ สศช.', nesdc_national: 'ยุทธศาสตร์ชาติและแผนพัฒนาฯ',
+  nesdc_analysis: 'การสรุปและวิเคราะห์งาน', nesdc_mini_mock: 'Mini Mock สศช.'
 };
 const ONWR_TOPIC_IDS = new Set(['org', 'admin', 'rules', 'policy', 'masterplan', 'monitoring', 'project', 'meeting', 'wateract']);
 function isOnwrSubject(subjectId: string) {
   return ONWR_TOPIC_IDS.has(subjectId) || subjectId.startsWith('onwr_');
+}
+function isNesdcSubject(subjectId: string) {
+  return subjectId.startsWith('nesdc_');
 }
 
 const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
@@ -76,7 +83,7 @@ const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
 const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => !isMockAttempt(subjectId)));
 
 function isMockAttempt(subjectId: string) {
-  return subjectId === 'mock_test' || subjectId === 'mini_mock' || subjectId === 'onwr_mini_mock';
+  return subjectId === 'mock_test' || subjectId === 'mini_mock' || subjectId === 'onwr_mini_mock' || subjectId === 'nesdc_mini_mock';
 }
 
 function getAttemptGroup(subjectId: string): AttemptGroup {
@@ -92,6 +99,10 @@ function normalizeAttemptSubject(attempt: Pick<AttemptRow, 'subject_id' | 'quiz_
   // ONWR saves its Mini Mock / Mini Drill under generic subject ids; keep them apart from police.
   if (attempt.quiz_id.startsWith('onwr-mini_mock-')) return 'onwr_mini_mock';
   if (attempt.quiz_id.startsWith('onwr-mini_drill-')) return 'onwr_mini_drill';
+  // NESDC topic ids (general, saraban, english, computer, org) overlap police/ONWR ones.
+  if (attempt.quiz_id.startsWith('nesdc-mini_mock-')) return 'nesdc_mini_mock';
+  const nesdcSet = attempt.quiz_id.match(/^nesdc-([a-z]+)-set-\d{2}$/);
+  if (nesdcSet) return `nesdc_${nesdcSet[1]}`;
   return attempt.subject_id;
 }
 
@@ -102,6 +113,11 @@ function summarizeAttempts(groupAttempts: AttemptRow[]) {
 }
 
 function getPracticeHref(subjectId: string, examSetId?: string | null) {
+  if (examSetId?.startsWith('nesdc-mini_mock-')) return `/courses/nesdc/mini-mock/${examSetId}`;
+  const nesdcSet = examSetId?.match(/^nesdc-([a-z]+)-set-\d{2}$/);
+  if (nesdcSet) return `/courses/nesdc/${nesdcSet[1]}/exams/${examSetId}`;
+  if (subjectId === 'nesdc_mini_mock') return '/courses/nesdc#mini';
+  if (isNesdcSubject(subjectId)) return `/courses/nesdc/${subjectId.slice('nesdc_'.length)}`;
   if (examSetId?.startsWith('onwr-mini_mock-')) return `/courses/onwr/mini-mock/${examSetId}`;
   if (examSetId?.startsWith('onwr-mini_drill-')) return `/courses/onwr/mini-drill/${examSetId}`;
   const onwrSet = examSetId?.match(/^onwr-([a-z]+)-set-\d{2}$/);
@@ -124,7 +140,7 @@ function getPracticeHref(subjectId: string, examSetId?: string | null) {
 }
 
 function getFreePracticeHref(subjectId: string) {
-  if (isOnwrSubject(subjectId)) return getPracticeHref(subjectId);
+  if (isOnwrSubject(subjectId) || isNesdcSubject(subjectId)) return getPracticeHref(subjectId);
   return `/daily-practice/${subjectId === 'mock_test' ? 'math' : subjectId}`;
 }
 
@@ -548,7 +564,9 @@ export default function DashboardPage() {
   // Shortcuts follow the course the user practised last.
   const lastAttempt = attempts[0];
   const continueHref = lastAttempt ? getPracticeHref(lastAttempt.subject_id, lastAttempt.exam_set_id) : '/courses';
-  const activeCourse = lastAttempt && isOnwrSubject(lastAttempt.subject_id)
+  const activeCourse = lastAttempt && isNesdcSubject(lastAttempt.subject_id)
+    ? { name: 'สศช. งานวิเคราะห์นโยบายและแผน', href: '/courses/nesdc', logo: '/pic/slothmove_mascot.svg' }
+    : lastAttempt && isOnwrSubject(lastAttempt.subject_id)
     ? { name: 'สทนช. นักวิเคราะห์นโยบายและแผน', href: '/courses/onwr', logo: '/pic/slothmove_mascot.svg' }
     : { name: 'นายสิบตำรวจ สายอำนวยการ', href: '/courses/police_admin', logo: '/pic/logo_police.png' };
   const practicedToday = attempts.some((attempt) => getBangkokStudyDate(attempt.created_at) === getBangkokStudyDate(new Date().toISOString()));
@@ -619,6 +637,11 @@ export default function DashboardPage() {
                   <span aria-hidden="true">💧</span>
                   <strong>สทนช.</strong>
                   <small>9 หัวข้อ · โน้ตสรุป · ข้อสอบ</small>
+                </Link>
+                <Link href="/courses/nesdc" className="dashboard-shortcut is-nesdc">
+                  <span aria-hidden="true">📊</span>
+                  <strong>สศช.</strong>
+                  <small>7 หัวข้อ · โน้ตสรุป · ข้อสอบ</small>
                 </Link>
               </nav>
               {showWelcome ? <section className="dashboard-welcome-plan" aria-label="เริ่มฝึกครั้งแรก">

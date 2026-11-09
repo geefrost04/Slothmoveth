@@ -1,0 +1,90 @@
+{
+  "sheet": {
+    "id": "nesdc-analysis-summary",
+    "slug": "nesdc-analysis-summary",
+    "course_id": "nesdc",
+    "subject_id": "analysis",
+    "title": "โน้ตสรุป: การสรุปและวิเคราะห์งาน",
+    "description": "โน้ตสรุป: การสรุปและวิเคราะห์งาน สำหรับสอบพนักงานราชการ สศช. งานวิเคราะห์นโยบายและแผน: อ่านตารางและกราฟ ตัวชี้วัดเศรษฐกิจสังคม สรุปความ เขียนรายงาน และวิเคราะห์นโยบาย",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 6,
+    "chapter_count": 6,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สศช. ลงวันที่ 9 พ.ย. 2569: อ่านตารางและกราฟ ตัวชี้วัดเศรษฐกิจสังคม สรุปความ เขียนรายงาน และวิเคราะห์นโยบาย\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 9 พฤศจิกายน 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-09T12:41:59.833Z"
+  },
+  "sections": [
+    {
+      "id": "nesdc-analysis-summary-lesson-01",
+      "sheet_id": "nesdc-analysis-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "อ่านตาราง/กราฟ และคำนวณตัวเลขพื้นฐาน",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# อ่านตาราง/กราฟ และคำนวณตัวเลขพื้นฐาน\n\n**ฐาน = ค่าเก่า** · อัตรา 2 ตัวลบกัน = **จุดร้อยละ** · อัตรารวม = **รวมก่อนแล้วหาร** · เปลี่ยนต่อเนื่อง = **คูณ** · CAGR = **ราก n** · ชะลอตัว ≠ หดตัว · สรุปเท่าที่ข้อมูลบอก"
+    },
+    {
+      "id": "nesdc-analysis-summary-lesson-02",
+      "sheet_id": "nesdc-analysis-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "ตัวชี้วัดเศรษฐกิจและสังคมที่ สศช. รายงาน",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# ตัวชี้วัดเศรษฐกิจและสังคมที่ สศช. รายงาน\n\nGDP **YoY = ปีก่อนช่วงเดียวกัน · QoQ = ไตรมาสก่อน (SA)** · ถดถอยทางเทคนิค = QoQ ติดลบ 2 ไตรมาส · เงินเฟ้อพื้นฐานตัด**อาหารสด+พลังงาน** · ว่างงานหาร**กำลังแรงงาน** · หนี้ครัวเรือน/GDP · **HAI 8 ด้าน ค่า 0–1**"
+    },
+    {
+      "id": "nesdc-analysis-summary-lesson-03",
+      "sheet_id": "nesdc-analysis-summary",
+      "section_type": "chapter",
+      "chapter_no": 3,
+      "slug": "lesson-03",
+      "title": "จับใจความ สรุปความ และเขียนบันทึกเสนอ",
+      "sort_order": 3,
+      "visual_placeholders": [],
+      "content_md": "# จับใจความ สรุปความ และเขียนบันทึกเสนอ\n\nใจความ = ประโยค**ครอบคลุม** (ต้น/ท้ายย่อหน้า) · ย่อความ = **บุรุษที่ 3 ไม่ใส่ความเห็น** · บันทึก: **ความเป็นมา → ข้อเท็จจริง → (ระเบียบ) → ข้อพิจารณา → ข้อเสนอ** · ข้อเท็จจริงไม่มีคำว่า \"ควร/น่าจะ\""
+    },
+    {
+      "id": "nesdc-analysis-summary-lesson-04",
+      "sheet_id": "nesdc-analysis-summary",
+      "section_type": "chapter",
+      "chapter_no": 4,
+      "slug": "lesson-04",
+      "title": "เครื่องมือวิเคราะห์ปัญหาและตัวชี้วัด",
+      "sort_order": 4,
+      "visual_placeholders": [],
+      "content_md": "# เครื่องมือวิเคราะห์ปัญหาและตัวชี้วัด\n\n**I → A → Output (ส่งมอบ นับได้ทันที) → Outcome (กลุ่มเป้าหมายเปลี่ยน) → Impact (ระยะยาว)** · Fishbone = Ishikawa หัวปลาคือปัญหา · 5 Whys = Toyota ไล่หาราก · Problem Tree ราก=เหตุ กิ่ง=ผล · SWOT ใน/นอก · OKR = O + KR ท้าทาย"
+    },
+    {
+      "id": "nesdc-analysis-summary-lesson-05",
+      "sheet_id": "nesdc-analysis-summary",
+      "section_type": "chapter",
+      "chapter_no": 5,
+      "slug": "lesson-05",
+      "title": "นโยบายสาธารณะและวงจรนโยบาย",
+      "sort_order": 5,
+      "visual_placeholders": [],
+      "content_md": "# นโยบายสาธารณะและวงจรนโยบาย\n\nวงจร **ก่อตัว → ก่อรูป → อนุมัติ → ปฏิบัติ → ประเมิน** · Dye: **เลือกทำหรือไม่ทำ** · Easton ระบบ · **Lindblom ค่อยเป็นค่อยไป** · Etzioni ผสมผสาน"
+    },
+    {
+      "id": "nesdc-analysis-summary-lesson-06",
+      "sheet_id": "nesdc-analysis-summary",
+      "section_type": "chapter",
+      "chapter_no": 6,
+      "slug": "lesson-06",
+      "title": "การติดตามและประเมินผลแผนงานโครงการ",
+      "sort_order": 6,
+      "visual_placeholders": [],
+      "content_md": "# การติดตามและประเมินผลแผนงานโครงการ\n\n**ติดตาม = ระหว่างทาง ตามแผนไหม · ประเมิน = ตัดสินคุณค่า** · Formative ระหว่างทำ · Summative เมื่อจบ · **CIPP (Stufflebeam)** · **Kirkpatrick 4 ระดับ** · ประสิทธิภาพ ≠ ประสิทธิผล"
+    }
+  ],
+  "assets": []
+}

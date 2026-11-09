@@ -1,0 +1,123 @@
+{
+  "sheet": {
+    "id": "nesdc-computer-summary",
+    "slug": "nesdc-computer-summary",
+    "course_id": "nesdc",
+    "subject_id": "computer",
+    "title": "โน้ตสรุป: คอมพิวเตอร์",
+    "description": "โน้ตสรุป: คอมพิวเตอร์ สำหรับสอบพนักงานราชการ สศช. งานวิเคราะห์นโยบายและแผน: พื้นฐานคอมพิวเตอร์ เครือข่าย โปรแกรมสำนักงาน ความปลอดภัยไซเบอร์ และกฎหมายดิจิทัล",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 9,
+    "chapter_count": 8,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สศช. ลงวันที่ 9 พ.ย. 2569: พื้นฐานคอมพิวเตอร์ เครือข่าย โปรแกรมสำนักงาน ความปลอดภัยไซเบอร์ และกฎหมายดิจิทัล\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 9 พฤศจิกายน 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-09T12:41:59.833Z"
+  },
+  "sections": [
+    {
+      "id": "nesdc-computer-summary-lesson-01",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "ประวัติคอมพิวเตอร์และบุคคลสำคัญ",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# ประวัติคอมพิวเตอร์และบุคคลสำคัญ\n\n**ลูกคิด → เนเปียร์ → ปาสกาล (บวกลบ) → ไลบ์นิซ (ครบ 4) → แจ็กการ์ด (บัตรเจาะรู) → แบบเบจ (บิดา)** · เอดา โปรแกรมเมอร์คนแรก · ยุค **หลอด → ทราน → IC → ไมโคร → AI**"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-02",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "พื้นฐานเทคโนโลยีสารสนเทศ",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# พื้นฐานเทคโนโลยีสารสนเทศ\n\nข้อมูล**ดิบ** → ประมวลผล → **สารสนเทศ** · IT มี **5 องค์ประกอบ** (คนสำคัญสุด) · **8 บิต = 1 ไบต์** · หน่วยละ **1,024**"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-03",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 3,
+      "slug": "lesson-03",
+      "title": "การทำงานของระบบคอมพิวเตอร์",
+      "sort_order": 3,
+      "visual_placeholders": [],
+      "content_md": "# การทำงานของระบบคอมพิวเตอร์\n\n**Input → CPU (CU+ALU) → Output + Storage** · **RAM หาย ROM อยู่** · SSD เร็วกว่า HDD · OS คือตัวกลางผู้ใช้–ฮาร์ดแวร์"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-04",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 4,
+      "slug": "lesson-04",
+      "title": "การสื่อสารข้อมูลและเครือข่าย",
+      "sort_order": 4,
+      "visual_placeholders": [],
+      "content_md": "# การสื่อสารข้อมูลและเครือข่าย\n\nสื่อสาร **5 องค์ประกอบ** (มีโปรโตคอล) · **P-L-M-W** · Star ใช้มาก Mesh ทนสุด · **Switch ในวง Router ข้ามวง** · IPv4 32 / IPv6 128 บิต"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-05",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 5,
+      "slug": "lesson-05",
+      "title": "Word · Excel · PowerPoint",
+      "sort_order": 5,
+      "visual_placeholders": [],
+      "content_md": "# Word · Excel · PowerPoint\n\nWord: **Mail Merge · Track Changes · Styles→สารบัญ** · Excel: **= · $A$1 · SUMIF/COUNTIF/VLOOKUP · #DIV/0!** · PPT: **Slide Master · F5 / Shift+F5**"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-06",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 6,
+      "slug": "lesson-06",
+      "title": "อินเทอร์เน็ตและ Social Media",
+      "sort_order": 6,
+      "visual_placeholders": [],
+      "content_md": "# อินเทอร์เน็ตและ Social Media\n\nอินเทอร์เน็ต = เครือข่ายของเครือข่าย · WWW = บริการหนึ่ง · **เบราว์เซอร์ ≠ เสิร์ชเอนจิน** · HTTPS เข้ารหัส · **.go.th** ราชการ · ตรวจแหล่งที่มาก่อนแชร์"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-07",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 7,
+      "slug": "lesson-07",
+      "title": "ความปลอดภัยไซเบอร์ + กฎหมายดิจิทัล",
+      "sort_order": 7,
+      "visual_placeholders": [],
+      "content_md": "# ความปลอดภัยไซเบอร์ + กฎหมายดิจิทัล\n\n**ไวรัสแฝงไฟล์ · เวิร์มแพร่เอง · โทรจันปลอมตัว · แรนซัมแวร์เรียกค่าไถ่** · Firewall กรอง · VPN อุโมงค์เข้ารหัส · **พ.ร.บ.คอมฯ 2550/2560** · **PDPA 2562**"
+    },
+    {
+      "id": "nesdc-computer-summary-lesson-08",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "chapter",
+      "chapter_no": 8,
+      "slug": "lesson-08",
+      "title": "เทคโนโลยีสารสนเทศสมัยใหม่",
+      "sort_order": 8,
+      "visual_placeholders": [],
+      "content_md": "# เทคโนโลยีสารสนเทศสมัยใหม่\n\nAI เรียนรู้จากข้อมูล (ตรวจคำตอบเสมอ) · Cloud **SaaS/PaaS/IaaS** · **IoT** อุปกรณ์ต่อเน็ต · Blockchain กระจายศูนย์ · **AR ซ้อนโลกจริง VR โลกเสมือน** · B2B B2C C2C B2G G2C"
+    },
+    {
+      "id": "nesdc-computer-summary-review",
+      "sheet_id": "nesdc-computer-summary",
+      "section_type": "quick_review",
+      "chapter_no": 9,
+      "slug": "review",
+      "title": "โน้ตทบทวนก่อนสอบ",
+      "sort_order": 9,
+      "visual_placeholders": [],
+      "content_md": "# โน้ตทบทวนก่อนสอบ\n\nคอมพิวเตอร์ออก **40 ข้อ** มากที่สุด · เน้น **Office · เครือข่าย · ความปลอดภัย** · จำคู่ที่ชอบสลับให้แม่น"
+    }
+  ],
+  "assets": []
+}

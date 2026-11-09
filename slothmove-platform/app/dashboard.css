@@ -2053,7 +2053,7 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
 /* Shortcuts: one-tap access to the key places, shown first in the overview. */
 .dashboard-shortcuts {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 22px;
 }
@@ -2098,6 +2098,8 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
 .dashboard-shortcut.is-primary small { color: rgba(255, 255, 255, .8); }
 .dashboard-shortcut.is-onwr > span { background: #e3f3fa; color: #0b5f86; }
 .dashboard-shortcut.is-onwr:hover { border-color: #0b5f86; }
+.dashboard-shortcut.is-nesdc > span { background: #f1ecfb; color: #5b3fa6; }
+.dashboard-shortcut.is-nesdc:hover { border-color: #5b3fa6; }
 
 @media (max-width: 1180px) {
   .dashboard-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); }

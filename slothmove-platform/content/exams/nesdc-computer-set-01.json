@@ -1,0 +1,379 @@
+{
+  "examSet": {
+    "id": "nesdc-computer-set-01",
+    "title": "คอมพิวเตอร์ ชุดที่ 1",
+    "description": "คอมพิวเตอร์ 21 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สศช. ตำแหน่งพนักงานบริหารงานทั่วไป (งานวิเคราะห์นโยบายและแผน)",
+    "accessType": "free",
+    "durationMinutes": 26,
+    "totalQuestions": 21,
+    "catalogOrder": 1
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/nesdc/build-sets.mjs",
+    "answerDistribution": [
+      6,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "พื้นฐาน IT",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ข้อใดเป็น \"สารสนเทศ\" (Information) ไม่ใช่ \"ข้อมูล\" (Data)",
+      "choices": [
+        "ชื่อโครงการแต่ละโครงการที่ส่งเข้ามา",
+        "ร้อยละของโครงการที่ดำเนินการแล้วเสร็จตามแผนในปีงบประมาณ",
+        "วันที่เริ่มโครงการแต่ละรายการ",
+        "งบประมาณที่แต่ละหน่วยงานกรอกในแบบฟอร์ม"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ข้อมูล = ข้อเท็จจริงดิบยังไม่ประมวลผล · สารสนเทศ = ข้อมูลที่ผ่านการประมวลผลแล้ว มีความหมาย ใช้ตัดสินใจได้ เช่น ร้อยละ ค่าเฉลี่ย",
+      "tip": "ประมวลผลแล้ว = สารสนเทศ",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "ฮาร์ดแวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ส่วนใดของ CPU ทำหน้าที่คำนวณทางคณิตศาสตร์และเปรียบเทียบทางตรรกะ",
+      "choices": [
+        "Register",
+        "CU",
+        "ALU",
+        "Cache"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ALU (Arithmetic Logic Unit) คำนวณและเปรียบเทียบเชิงตรรกะ · CU ควบคุมการทำงานทุกส่วน",
+      "tip": "ALU = คำนวณ · CU = ควบคุม",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "ฮาร์ดแวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "hard",
+      "prompt": "ข้อใดเรียงความเร็วในการเข้าถึงข้อมูลจากเร็วที่สุดไปช้าที่สุดได้ถูกต้อง",
+      "choices": [
+        "Register → RAM → Cache → HDD → SSD",
+        "RAM → Register → Cache → SSD → HDD",
+        "Register → Cache → RAM → SSD → HDD",
+        "Cache → Register → RAM → HDD → SSD"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Register อยู่ใน CPU เร็วที่สุด ตามด้วย Cache, RAM, SSD (ไม่มีชิ้นส่วนเคลื่อนไหว) และ HDD (จานหมุน)",
+      "tip": "R-C-R-S-H",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "ซอฟต์แวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ข้อใดจัดเป็นซอฟต์แวร์ระบบ (System Software)",
+      "choices": [
+        "Windows",
+        "LINE",
+        "Google Chrome",
+        "Microsoft Excel"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ซอฟต์แวร์ระบบ ได้แก่ ระบบปฏิบัติการ โปรแกรมอรรถประโยชน์ ตัวแปลภาษา · Excel, Chrome, LINE เป็นซอฟต์แวร์ประยุกต์",
+      "tip": "OS = ซอฟต์แวร์ระบบ",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "ซอฟต์แวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ตัวแปลภาษาที่แปลโปรแกรมทีละบรรทัดแล้วทำงานทันที เมื่อพบข้อผิดพลาดจะหยุดที่บรรทัดนั้น คือข้อใด",
+      "choices": [
+        "Compiler",
+        "Assembler",
+        "Interpreter",
+        "Linker"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Interpreter แปลทีละบรรทัด (เช่น Python) · Compiler แปลทั้งโปรแกรมก่อนรัน ได้ไฟล์ที่รันได้ (เช่น C)",
+      "tip": "ทีละบรรทัด = Interpreter",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "สำนักงานเชื่อมคอมพิวเตอร์และเครื่องพิมพ์ภายในอาคารเดียวกันเข้าด้วยกัน จัดเป็นเครือข่ายประเภทใด",
+      "choices": [
+        "LAN",
+        "MAN",
+        "WAN",
+        "PAN"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "PAN รอบตัวบุคคล · LAN ในอาคาร/สำนักงาน · MAN ระดับเมือง · WAN ข้ามจังหวัด/ประเทศ",
+      "tip": "P L M W เล็ก → ใหญ่",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "โทโพโลยีแบบใดมีความทนทานสูงที่สุด เพราะแต่ละเครื่องเชื่อมถึงกันได้หลายเส้นทาง",
+      "choices": [
+        "แบบตาข่าย (Mesh)",
+        "แบบดาว (Star)",
+        "แบบวงแหวน (Ring)",
+        "แบบบัส (Bus)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Mesh มีหลายเส้นทาง สายเส้นหนึ่งขาดยังส่งทางอื่นได้ แต่ใช้สายมากและราคาแพง",
+      "tip": "ทนสุด = Mesh",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "บริการใดแจกจ่ายหมายเลข IP ให้เครื่องคอมพิวเตอร์ในเครือข่ายโดยอัตโนมัติ",
+      "choices": [
+        "VPN",
+        "DNS",
+        "HTTP",
+        "DHCP"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "DHCP (Dynamic Host Configuration Protocol) กำหนด IP address ให้อุปกรณ์ที่เชื่อมเครือข่ายโดยอัตโนมัติ",
+      "tip": "แจก IP = DHCP",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Microsoft Word",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ต้องการขึ้นหน้าใหม่ทันทีใน Word โดยไม่ต้องกด Enter หลายครั้ง ควรใช้คีย์ลัดใด",
+      "choices": [
+        "Alt + Enter",
+        "Ctrl + Enter",
+        "Shift + Enter",
+        "Ctrl + N"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Ctrl + Enter แทรก Page Break · Ctrl + N สร้างเอกสารใหม่",
+      "tip": "Ctrl + Enter = หน้าใหม่",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Microsoft Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "สูตร =2+3*2^2 ใน Excel ให้ผลลัพธ์เท่าใด",
+      "choices": [
+        "50",
+        "100",
+        "20",
+        "14"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ลำดับการคำนวณ: ( ) → ^ → × ÷ → + − ดังนั้น 2^2 = 4, 3×4 = 12, 2+12 = 14",
+      "tip": "ยกกำลัง → คูณ → บวก",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Microsoft Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ต้องการนับจำนวนโครงการที่มีสถานะ \"แล้วเสร็จ\" ในคอลัมน์ C ควรใช้สูตรใด",
+      "choices": [
+        "=SUMIF(C2:C100,\"แล้วเสร็จ\")",
+        "=COUNTIF(C2:C100,\"แล้วเสร็จ\")",
+        "=IF(C2:C100,\"แล้วเสร็จ\")",
+        "=COUNT(C2:C100,\"แล้วเสร็จ\")"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "COUNTIF นับเซลล์ที่ตรงเงื่อนไขเดียว รูปแบบ =COUNTIF(ช่วง,เงื่อนไข)",
+      "tip": "นับตามเงื่อนไข = COUNTIF",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Microsoft Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ใช้ VLOOKUP ค้นหาเลขบัตรที่ไม่มีอยู่ในตาราง Excel จะแสดงข้อผิดพลาดใด",
+      "choices": [
+        "#REF!",
+        "#N/A",
+        "#DIV/0!",
+        "#VALUE!"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "#N/A = หาค่าไม่พบ มักเกิดกับ VLOOKUP · #VALUE! = ใช้ข้อมูลผิดชนิด",
+      "tip": "หาไม่เจอ = N/A",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Microsoft PowerPoint",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ต้องการให้โลโก้ สศช. และรูปแบบตัวอักษรหัวข้อแสดงเหมือนกันทุกสไลด์อัตโนมัติ ควรแก้ไขที่ใด",
+      "choices": [
+        "Slide Sorter",
+        "Transitions",
+        "Slide Master",
+        "Presenter View"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Slide Master เป็นต้นแบบของทุกสไลด์ แก้ครั้งเดียวมีผลทุกแผ่น",
+      "tip": "ทุกแผ่นเหมือนกัน = Master",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "คีย์ลัด Windows",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ต้องลุกจากโต๊ะทำงานชั่วคราว ควรใช้คีย์ลัดใดล็อกหน้าจอเพื่อความปลอดภัยของข้อมูล",
+      "choices": [
+        "Windows + L",
+        "Ctrl + Shift + Esc",
+        "Alt + Tab",
+        "Windows + D"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Windows + L ล็อกหน้าจอ · Windows + D ไปเดสก์ท็อป · Alt + Tab สลับหน้าต่าง · Ctrl + Shift + Esc เปิด Task Manager",
+      "tip": "L = Lock",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "อินเทอร์เน็ต",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ต้องการส่งอีเมลแจ้งข่าวถึงผู้รับหลายคน โดยไม่ให้ผู้รับแต่ละคนเห็นรายชื่ออีเมลของผู้รับคนอื่น ควรใส่รายชื่อในช่องใด",
+      "choices": [
+        "To",
+        "CC",
+        "BCC",
+        "Subject"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "BCC (Blind Carbon Copy) ซ่อนรายชื่อผู้รับ · CC ผู้รับทุกคนเห็นรายชื่อกัน",
+      "tip": "B = Blind ซ่อน",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "ความปลอดภัยไซเบอร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "มัลแวร์ชนิดใดปลอมตัวเป็นโปรแกรมที่มีประโยชน์ หลอกให้ผู้ใช้ติดตั้งเอง แล้วเปิดช่องให้ผู้ไม่หวังดีเข้าถึงเครื่อง",
+      "choices": [
+        "บอตเน็ต (Botnet)",
+        "ไวรัส (Virus)",
+        "เวิร์ม (Worm)",
+        "ม้าโทรจัน (Trojan)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Trojan ปลอมเป็นโปรแกรมดี · Virus แฝงในไฟล์ต้องรอเปิด · Worm แพร่ตัวเองผ่านเครือข่ายได้เอง",
+      "tip": "ปลอมตัว = โทรจัน",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "ความปลอดภัยไซเบอร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "แนวทางสำรองข้อมูลแบบ 3-2-1 หมายถึงข้อใด",
+      "choices": [
+        "มีข้อมูล 3 ชุด เก็บในสื่อ 2 ชนิด และอย่างน้อย 1 ชุดเก็บนอกสถานที่",
+        "เก็บข้อมูล 3 ปี ในเซิร์ฟเวอร์ 2 เครื่อง และคลาวด์ 1 แห่ง",
+        "สำรอง 3 ครั้งต่อวัน เก็บ 2 สัปดาห์ ลบทุก 1 เดือน",
+        "ใช้รหัสผ่าน 3 ชั้น ยืนยัน 2 ปัจจัย และเปลี่ยนทุก 1 เดือน"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "หลัก 3-2-1: 3 ชุดข้อมูล · 2 สื่อต่างชนิด · 1 ชุดเก็บนอกสถานที่",
+      "tip": "3 ชุด 2 สื่อ 1 นอกที่",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "พ.ร.บ.คอมพิวเตอร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "hard",
+      "prompt": "การส่งอีเมลโฆษณาจำนวนมากโดยปกปิดแหล่งที่มา ก่อความเดือดร้อนรำคาญแก่ผู้รับ (มาตรา 11) มีโทษตามข้อใด",
+      "choices": [
+        "จำคุกไม่เกิน 2 ปี หรือปรับไม่เกิน 40,000 บาท",
+        "จำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000 บาท",
+        "จำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 10,000 บาท",
+        "ปรับไม่เกิน 100,000 บาท โดยไม่มีโทษจำคุก"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ม.11 วรรคหนึ่ง (แก้ไข 2560) มีโทษปรับไม่เกิน 100,000 บาท ไม่มีโทษจำคุก (วรรคสอง ผู้รับบอกเลิกไม่ได้ง่าย ปรับไม่เกิน 200,000 บาท)",
+      "tip": "สแปม = ปรับอย่างเดียว",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "PDPA",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ตาม PDPA เมื่อเกิดเหตุละเมิดข้อมูลส่วนบุคคล ผู้ควบคุมข้อมูลต้องแจ้งสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ภายในเวลาใด",
+      "choices": [
+        "72 ชั่วโมงนับแต่ทราบเหตุ",
+        "30 วันนับแต่ทราบเหตุ",
+        "24 ชั่วโมงนับแต่ทราบเหตุ",
+        "7 วันนับแต่ทราบเหตุ"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "มาตรา 37(4): แจ้งเหตุละเมิดต่อ สคส. โดยไม่ชักช้าภายใน 72 ชั่วโมงนับแต่ทราบเหตุ เว้นแต่ไม่มีความเสี่ยงต่อสิทธิของบุคคล",
+      "tip": "รั่ว → 72 ชม.",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "เทคโนโลยีสมัยใหม่",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "การใช้ Google Docs หรือ Microsoft 365 ทำเอกสารผ่านเว็บเบราว์เซอร์โดยไม่ต้องติดตั้งโปรแกรม เป็นบริการคลาวด์แบบใด",
+      "choices": [
+        "IaaS",
+        "DaaS",
+        "PaaS",
+        "SaaS"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "SaaS = ใช้โปรแกรมสำเร็จรูปผ่านเว็บ · PaaS = แพลตฟอร์มพัฒนาแอป · IaaS = เช่าเซิร์ฟเวอร์/พื้นที่/เครือข่าย",
+      "tip": "ใช้แอปสำเร็จ = SaaS",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "เทคโนโลยีสมัยใหม่",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "เจ้าหน้าที่ต้องการใช้ Generative AI ช่วยสรุปรายงาน ข้อใดเป็นแนวปฏิบัติที่เหมาะสมที่สุด",
+      "choices": [
+        "ใช้ได้เฉพาะงานภาษาอังกฤษเท่านั้น",
+        "ตรวจสอบความถูกต้องของผลลัพธ์ก่อนใช้ และไม่ใส่ข้อมูลลับของราชการลงไป",
+        "ใส่เอกสารชั้นลับทั้งฉบับเพื่อให้ได้สรุปที่ครบถ้วน",
+        "ใช้ผลลัพธ์ได้ทันทีเพราะ AI ประมวลผลจากข้อมูลจำนวนมาก"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Generative AI อาจตอบผิดแต่ดูน่าเชื่อ ต้องตรวจสอบก่อนใช้ และไม่ควรใส่ข้อมูลลับของราชการ",
+      "tip": "AI: ตรวจก่อนใช้ · ห้ามใส่ความลับ",
+      "sourceRef": ""
+    }
+  ]
+}

@@ -71,6 +71,22 @@ export const COURSES: Course[] = [
     status: 'ready'
   },
   {
+    id: 'nesdc',
+    category: 'สำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ',
+    updatedAt: '2026-11-09',
+    priority: 99,
+    title: 'สศช. งานวิเคราะห์นโยบายและแผน',
+    subtitle: 'สำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ',
+    type: 'พนักงานราชการทั่วไป · ป.ตรีทุกสาขา',
+    desc: 'โน้ตสรุปและข้อสอบตามประกาศรับสมัคร 9 พ.ย. 2569 · 10 อัตรา · สมัคร 16–20 พ.ย.',
+    image: '/pic/slothmove_mascot.svg',
+    fullLink: platformCourseUrl('nesdc'),
+    tags: ['สารบรรณ', 'ภาษาอังกฤษ', 'แผนพัฒนาฯ ฉบับที่ 13', 'วิเคราะห์งาน'],
+    subjects: 7,
+    questions: 0,
+    status: 'ready'
+  },
+  {
     id: 'ocsc',
     category: 'ภาค ก. ก.พ.',
     updatedAt: '2026-06-26',

@@ -1,0 +1,379 @@
+{
+  "examSet": {
+    "id": "nesdc-english-set-01",
+    "title": "ภาษาอังกฤษ ชุดที่ 1",
+    "description": "ภาษาอังกฤษ 21 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สศช. ตำแหน่งพนักงานบริหารงานทั่วไป (งานวิเคราะห์นโยบายและแผน)",
+    "accessType": "free",
+    "durationMinutes": 26,
+    "totalQuestions": 21,
+    "catalogOrder": 1
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/nesdc/build-sets.mjs",
+    "answerDistribution": [
+      6,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Tenses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The unemployment rate ___ below 1.5 percent since 2023.",
+      "choices": [
+        "remains",
+        "has remained",
+        "is remaining",
+        "remained"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "มี since + จุดเวลาในอดีตต่อเนื่องถึงปัจจุบัน → Present Perfect (has + V3) · ประธาน The unemployment rate เอกพจน์จึงใช้ has",
+      "tip": "since/for → have + V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "Tenses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "When the director arrived, the meeting ___ already ___.",
+      "choices": [
+        "have / starting",
+        "has / started",
+        "was / start",
+        "had / started"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "เหตุการณ์หนึ่งเกิดก่อนอีกเหตุการณ์ในอดีต (ประชุมเริ่มก่อนผู้อำนวยการมาถึง) → Past Perfect (had + V3)",
+      "tip": "อดีตก่อนอดีต → had V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "Subject-Verb Agreement",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The number of applicants for the position ___ increased this year.",
+      "choices": [
+        "has",
+        "were",
+        "are",
+        "have"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "The number of + นามพหูพจน์ ประธานแท้คือ number (เอกพจน์) → has · ถ้าเป็น A number of จะใช้กริยาพหูพจน์",
+      "tip": "The number = 1 · A number = หลาย",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "Subject-Verb Agreement",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Each of the ministries ___ required to submit a performance report.",
+      "choices": [
+        "were",
+        "is",
+        "are",
+        "have"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Each of + นามพหูพจน์ ประธานแท้คือ Each ซึ่งเป็นเอกพจน์ → is",
+      "tip": "Each/Every = เอกพจน์เสมอ",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "Passive Voice",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The new guidelines ___ to all provincial offices last week.",
+      "choices": [
+        "were sent",
+        "have been sent",
+        "are sending",
+        "sent"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "แนวทางถูกส่ง (passive) และมี last week (อดีต) → were + V3 · ประธาน guidelines พหูพจน์จึงใช้ were",
+      "tip": "อดีต + passive → was/were V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "Conditionals",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "If the budget ___ approved by December, the project will start in January.",
+      "choices": [
+        "would be",
+        "will be",
+        "is",
+        "had been"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ประโยคผลเป็น will + V1 → If แบบที่ 1 · if-clause ใช้ Present Simple (is) ไม่ใช้ will",
+      "tip": "If 1: If + V1, will + V1",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Conditionals",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "hard",
+      "prompt": "___ you have any questions, please do not hesitate to contact us.",
+      "choices": [
+        "Were",
+        "Had",
+        "Should",
+        "Would"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Should + ประธาน + V1 = If + ประธาน + V1 (inversion แบบทางการ) พบบ่อยในหนังสือราชการ: Should you have any questions = If you have any questions",
+      "tip": "Should you ... = If you ...",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "Relative Clauses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The new master plan, ___ was approved last year, focuses on digital transformation.",
+      "choices": [
+        "which",
+        "who",
+        "that",
+        "where"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "เป็น non-defining clause (มี comma คั่น) และคำนามหน้าเป็นสิ่งของ → which · หลัง comma ใช้ that ไม่ได้",
+      "tip": "comma + สิ่งของ → which",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Prepositions",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Ms. Suda is responsible ___ coordinating with external agencies.",
+      "choices": [
+        "with",
+        "for",
+        "of",
+        "to"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "collocation: be responsible for + N/V-ing = รับผิดชอบ",
+      "tip": "responsible for",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "“GDP” stands for ___.",
+      "choices": [
+        "Gross Domestic Profit",
+        "Government Debt Policy",
+        "General Development Plan",
+        "Gross Domestic Product"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "GDP = Gross Domestic Product = ผลิตภัณฑ์มวลรวมในประเทศ (มูลค่าสินค้าและบริการขั้นสุดท้ายที่ผลิตในประเทศ)",
+      "tip": "GDP = Product ไม่ใช่ Profit",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "People or groups who are affected by or have an interest in a project are called ___.",
+      "choices": [
+        "stakeholders",
+        "auditors",
+        "shareholders",
+        "contractors"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "stakeholder = ผู้มีส่วนได้ส่วนเสีย · shareholder = ผู้ถือหุ้น (เจ้าของบริษัท) · contractor = ผู้รับจ้าง · auditor = ผู้ตรวจสอบบัญชี",
+      "tip": "stake = ส่วนได้เสีย",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Government decisions about taxation and public spending are known as ___ policy.",
+      "choices": [
+        "monetary",
+        "foreign",
+        "fiscal",
+        "trade"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "fiscal policy = นโยบายการคลัง (ภาษี รายจ่ายภาครัฐ) · monetary policy = นโยบายการเงิน (อัตราดอกเบี้ย ปริมาณเงิน) ดูแลโดยธนาคารกลาง",
+      "tip": "fiscal = คลัง · monetary = การเงิน",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The meeting has been postponed to next Friday. The word “postponed” means ___.",
+      "choices": [
+        "moved to an earlier time",
+        "cancelled permanently",
+        "delayed to a later time",
+        "held as planned"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "postpone = เลื่อนออกไป (ไปเวลาที่ช้ากว่าเดิม) ยังจัดอยู่ ไม่ได้ยกเลิก",
+      "tip": "postpone = put off",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "Word Form",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Thailand's ___ growth is expected to reach 2.5 percent this year.",
+      "choices": [
+        "economic",
+        "economy",
+        "economical",
+        "economically"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ตำแหน่งหน้านาม growth ต้องการคุณศัพท์ · economic = เกี่ยวกับเศรษฐกิจ ส่วน economical = ประหยัด จึงไม่เข้าความหมาย",
+      "tip": "economic = เศรษฐกิจ · economical = ประหยัด",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "A: Do you mind if I use your computer for a moment?\nB: ___ I'm not using it now.",
+      "choices": [
+        "I'm afraid so.",
+        "Yes, I do.",
+        "Not at all.",
+        "Yes, please."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "mind = รังเกียจ · การอนุญาตต้องตอบปฏิเสธ (Not at all = ไม่รังเกียจเลย) ซึ่งสอดคล้องกับประโยคถัดไปที่บอกว่าไม่ได้ใช้อยู่",
+      "tip": "Do you mind ...? → No / Not at all = ได้",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A: I'm sorry I'm late for the meeting.\nB: ___ We've just started.",
+      "choices": [
+        "You're welcome.",
+        "Yes, you are.",
+        "Congratulations.",
+        "That's all right."
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ตอบรับคำขอโทษ = That's all right. / Never mind. · You're welcome ใช้ตอบคำขอบคุณ",
+      "tip": "Sorry → That's all right",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A: Can you attend the coordination meeting at 2 p.m. today?\nB: ___ I have to meet a delegation from the ministry at that time.",
+      "choices": [
+        "Sure, no problem.",
+        "Yes, of course.",
+        "I'd love to.",
+        "I'm afraid I can't."
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ประโยคต่อมาให้เหตุผลว่าติดภารกิจ จึงต้องปฏิเสธอย่างสุภาพ = I'm afraid I can't.",
+      "tip": "I'm afraid ... = ปฏิเสธสุภาพ",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Thailand's economy expanded by 2.8 percent in the third quarter, supported by a recovery in tourism and private consumption. However, exports slowed due to weaker global demand.”\n\nThe word “However” shows ___.",
+      "choices": [
+        "a result",
+        "a contrast",
+        "an addition",
+        "an example"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "However เป็นคำเชื่อมแสดงความขัดแย้ง ประโยคแรกพูดถึงปัจจัยบวก ประโยคหลังพูดถึงปัจจัยลบ (exports slowed)",
+      "tip": "However = แต่ (ขัดแย้ง)",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“Household debt remains high at around 90 percent of GDP. High debt limits consumers' ability to spend and makes households vulnerable to rising interest rates. Policymakers are therefore encouraging debt restructuring programmes.”\n\nThe word “vulnerable” is closest in meaning to ___.",
+      "choices": [
+        "highly profitable",
+        "fully prepared",
+        "well protected",
+        "easily harmed"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "vulnerable = เปราะบาง ได้รับผลกระทบง่าย = easily harmed · บริบทคือครัวเรือนมีหนี้มากจึงได้รับผลกระทบเมื่อดอกเบี้ยขึ้น",
+      "tip": "vulnerable = เปราะบาง",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "Error Identification",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "hard",
+      "prompt": "Choose the underlined part that is incorrect:\n“The committee (A) has discussed (B) the draft plan (C) at its meeting (D) yesterday.”",
+      "choices": [
+        "(A) has discussed",
+        "(C) at",
+        "(B) the draft plan",
+        "(D) yesterday"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "มี yesterday (อดีตเจาะจง) จึงต้องใช้ Past Simple → discussed ไม่ใช่ has discussed",
+      "tip": "yesterday + have V3 = ผิด",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "Error Identification",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "hard",
+      "prompt": "Choose the underlined part that is incorrect:\n“The agency's main tasks are to plan, (A) to monitor, and (B) evaluating (C) national (D) development projects.”",
+      "choices": [
+        "(A) to monitor",
+        "(B) evaluating",
+        "(D) development",
+        "(C) national"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "โครงสร้างขนาน (parallel structure) ต้องใช้รูปเดียวกัน to plan, to monitor, and to evaluate → evaluating ผิด",
+      "tip": "A, B, and C ต้องรูปเดียวกัน",
+      "sourceRef": ""
+    }
+  ]
+}

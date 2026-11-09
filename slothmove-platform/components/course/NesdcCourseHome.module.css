@@ -1,0 +1,28 @@
+/* NESDC landing: the police course template (PoliceCourseHome.module.css) in violet. */
+.page {
+  --ink: #1f1a2b;
+  --muted: #645d73;
+  --line: #e5e0ef;
+  --line-strong: #d3cbe4;
+  --arrow: #ada3c4;
+  --accent: #5b3fa6;
+  --accent-soft: #f1ecfb;
+  --page-bg: #f9f7fc;
+  --shadow-tint: rgb(45, 30, 84);
+}
+
+.dateCard { display: grid; gap: 14px; padding: 18px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.dates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.dates li { display: grid; gap: 4px; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); font-size: 14px; line-height: 1.5; }
+.dates b { color: var(--accent); font-weight: 800; }
+.dates span { color: var(--ink); }
+.rule { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.reviewCard { margin-top: 14px; background: var(--accent-soft); }
+
+@media (max-width: 860px) {
+  .dates { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .dateCard { padding: 14px; }
+  .dates { grid-template-columns: 1fr; gap: 8px; }
+}

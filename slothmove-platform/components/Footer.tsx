@@ -101,6 +101,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/courses/nesdc">
+                  สศช. งานวิเคราะห์นโยบายและแผน
+                </Link>
+              </li>
+              <li>
                 <Link href="/courses">
                   ภาค ก ก.พ. <span className={styles.badgeComingSoon}>เร็ว ๆ นี้</span>
                 </Link>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { localCourse } from '@/lib/localCourses';
 import { notFound } from 'next/navigation';
 import { getSubject, isCourseOpen } from '@/courses/registry';
 import { getCourseKnowledgeData } from '@/courses/content-registry';
@@ -29,7 +30,7 @@ export default async function SubjectPage({
     );
   }
   const knowledge = getCourseKnowledgeData(course.id, subject.id);
-  const hasExamCatalog = course.id === 'police_admin' || course.id === 'onwr';
+  const hasExamCatalog = course.id === 'police_admin' || Boolean(localCourse(course.id));
   let examSets: CatalogExamSet[] = [];
   if (hasExamCatalog) {
     try {

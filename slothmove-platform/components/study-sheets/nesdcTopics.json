@@ -1,0 +1,37 @@
+{
+  "general": {
+    "sheetTitle": "โน้ตสรุป: ความรู้ความสามารถทั่วไป",
+    "intro": "คณิตศาสตร์ อนุกรม เงื่อนไขสัญลักษณ์และภาษา ภาษาไทย",
+    "lessons": [["nesdc-general", "*"]]
+  },
+  "saraban": {
+    "sheetTitle": "โน้ตสรุป: งานสารบรรณ",
+    "intro": "ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ พ.ศ. 2526 และที่แก้ไขเพิ่มเติม",
+    "lessons": [["saraban", "lesson-01"], ["saraban", "lesson-02"], ["saraban", "lesson-03"], ["saraban", "lesson-04"], ["saraban", "lesson-05"], ["saraban", "lesson-06"], ["saraban", "lesson-07"], ["saraban", "lesson-08"], ["saraban", "quick-review"]]
+  },
+  "english": {
+    "sheetTitle": "โน้ตสรุป: ภาษาอังกฤษ",
+    "intro": "ไวยากรณ์ คำศัพท์ บทสนทนา และการอ่าน",
+    "lessons": [["nesdc-english", "*"]]
+  },
+  "computer": {
+    "sheetTitle": "โน้ตสรุป: คอมพิวเตอร์",
+    "intro": "พื้นฐานคอมพิวเตอร์ เครือข่าย โปรแกรมสำนักงาน ความปลอดภัยไซเบอร์ และกฎหมายดิจิทัล",
+    "lessons": [["computer", "history"], ["computer", "lesson-01"], ["computer", "lesson-02"], ["computer", "lesson-03"], ["computer", "lesson-04"], ["computer", "lesson-05"], ["computer", "lesson-06"], ["computer", "lesson-07"], ["computer", "quick-review"]]
+  },
+  "org": {
+    "sheetTitle": "โน้ตสรุป: ความรู้เกี่ยวกับ สศช.",
+    "intro": "ประวัติ กฎหมาย บทบาท และโครงสร้างของสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ",
+    "lessons": [["nesdc-org", "*"]]
+  },
+  "national": {
+    "sheetTitle": "โน้ตสรุป: ยุทธศาสตร์ชาติและแผนพัฒนาฯ",
+    "intro": "ยุทธศาสตร์ชาติ แผน 3 ระดับ แผนพัฒนาเศรษฐกิจและสังคมแห่งชาติ และ SDGs",
+    "lessons": [["onwr-general", "lesson-02"], ["nesdc-national", "*"]]
+  },
+  "analysis": {
+    "sheetTitle": "โน้ตสรุป: การสรุปและวิเคราะห์งาน",
+    "intro": "อ่านตารางและกราฟ ตัวชี้วัดเศรษฐกิจสังคม สรุปความ เขียนรายงาน และวิเคราะห์นโยบาย",
+    "lessons": [["nesdc-analysis", "*"], ["onwr-planning", "lesson-01"], ["onwr-planning", "lesson-04"]]
+  }
+}

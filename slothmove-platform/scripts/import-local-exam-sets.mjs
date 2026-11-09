@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// Imports the free ONWR exam sets (content/exams/onwr-<subject>-set-NN.json) into Supabase.
-// Dry-run by default; pass --apply to write.
+// Imports the free exam sets of a local-content course (content/exams/<course>-<subject>-set-NN.json)
+// into Supabase. Course defaults to onwr. Dry-run by default; pass --apply to write.
 //
-// Usage: node scripts/import-onwr-exam-sets.mjs [--apply] [--sets=id1,id2]
+// Usage: node scripts/import-local-exam-sets.mjs [--course=onwr|nesdc] [--apply] [--sets=id1,id2]
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,8 +11,14 @@ import { createClient } from '@supabase/supabase-js';
 
 const ROOT = process.cwd();
 const APPLY = process.argv.includes('--apply');
+const COURSE = (process.argv.find((arg) => arg.startsWith('--course='))?.slice('--course='.length)) || 'onwr';
+const SOURCE_LABELS = {
+  onwr: 'SlothMove: สทนช. นักวิเคราะห์นโยบายและแผน (2569)',
+  nesdc: 'SlothMove: สศช. งานวิเคราะห์นโยบายและแผน (2569)'
+};
+if (!SOURCE_LABELS[COURSE]) throw new Error(`Unknown course: ${COURSE}`);
 const DEFAULT_SET_IDS = fs.readdirSync(path.join(ROOT, 'content/exams'))
-  .filter((name) => /^onwr-[a-z_]+-(?:set|drill)-\d{2}\.json$/.test(name))
+  .filter((name) => new RegExp(`^${COURSE}-[a-z_]+-(?:set|drill)-\\d{2}\\.json$`).test(name))
   .map((name) => name.replace(/\.json$/, ''))
   .sort();
 const setsArg = process.argv.find((arg) => arg.startsWith('--sets='));
@@ -50,7 +56,7 @@ if (!APPLY) {
   console.log(JSON.stringify({
     mode: 'dry-run',
     sets: payloads.map(({ examSet, questions }) => ({ id: examSet.id, title: examSet.title, questions: questions.length, catalogOrder: examSet.catalogOrder })),
-    next: 'Run with --apply to write these free sets to Supabase (a full run also unpublishes ONWR sets not listed here).'
+    next: `Run with --apply to write these free sets to Supabase (a full run also unpublishes ${COURSE} sets not listed here).`
   }, null, 2));
   process.exit(0);
 }
@@ -71,22 +77,22 @@ for (const { examSet: set, questions, qualityNotes } of payloads) {
     description: set.description,
     price: 0,
     type: 'exam_set',
-    metadata: { course_id: 'onwr', subject_id: subjectId, access_type: 'free', catalog: `onwr_${subjectId}` },
+    metadata: { course_id: COURSE, subject_id: subjectId, access_type: 'free', catalog: `${COURSE}_${subjectId}` },
     is_published: true
   }, { onConflict: 'id' }), `product ${set.id}`);
   await run(db.from('exam_sets').upsert({
     id: set.id,
-    course_id: 'onwr',
+    course_id: COURSE,
     subject_id: subjectId,
     product_id: productId,
     title: set.title,
     description: set.description,
-    source_label: 'SlothMove: สทนช. นักวิเคราะห์นโยบายและแผน (2569)',
+    source_label: SOURCE_LABELS[COURSE],
     access_type: 'free',
     duration_minutes: set.durationMinutes,
     total_questions: questions.length,
     metadata: {
-      catalog: `onwr_${subjectId}`,
+      catalog: `${COURSE}_${subjectId}`,
       catalog_order: set.catalogOrder,
       content_source: `${set.id}.json`,
       generated_by: qualityNotes?.generatedBy
@@ -121,10 +127,10 @@ for (const { examSet: set, questions, qualityNotes } of payloads) {
   }))), `mappings ${set.id}`);
 }
 
-// Hide ONWR sets that no longer exist locally (e.g. the old 3-subject layout), only on a full import.
+// Hide this course's sets that no longer exist locally (e.g. the old 3-subject layout), only on a full import.
 let unpublished = [];
 if (!setsArg) {
-  const live = await run(db.from('exam_sets').select('id').eq('course_id', 'onwr').eq('is_published', true), 'list live onwr sets');
+  const live = await run(db.from('exam_sets').select('id').eq('course_id', COURSE).eq('is_published', true), `list live ${COURSE} sets`);
   unpublished = live.map((row) => row.id).filter((id) => !SET_IDS.includes(id));
   if (unpublished.length) {
     await run(db.from('exam_sets').update({ is_published: false, updated_at: now }).in('id', unpublished), 'unpublish old sets');

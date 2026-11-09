@@ -171,6 +171,9 @@
   line-height: 1.45;
 }
 
+/* Questions with given conditions or small tables put each line on its own row. */
+.mathText { white-space: pre-line; }
+
 .mathText sup {
   position: static;
   margin-left: 0.06em;

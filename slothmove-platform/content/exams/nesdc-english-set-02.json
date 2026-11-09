@@ -1,0 +1,362 @@
+{
+  "examSet": {
+    "id": "nesdc-english-set-02",
+    "title": "ภาษาอังกฤษ ชุดที่ 2",
+    "description": "ภาษาอังกฤษ 20 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สศช. ตำแหน่งพนักงานบริหารงานทั่วไป (งานวิเคราะห์นโยบายและแผน)",
+    "accessType": "free",
+    "durationMinutes": 24,
+    "totalQuestions": 20,
+    "catalogOrder": 2
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/nesdc/build-sets.mjs",
+    "answerDistribution": [
+      5,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Tenses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The Cabinet ___ the draft budget bill last Tuesday.",
+      "choices": [
+        "approves",
+        "approved",
+        "had been approving",
+        "has approved"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "last Tuesday เป็นเวลาในอดีตที่ระบุชัด → Past Simple (V2) · Present Perfect ใช้กับคำบอกเวลาอดีตเจาะจงไม่ได้",
+      "tip": "last/ago/yesterday → V2",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "Tenses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Please be quiet. The committee ___ the proposal right now.",
+      "choices": [
+        "has discussed",
+        "discusses",
+        "discussed",
+        "is discussing"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "right now = กำลังเกิดขณะพูด → Present Continuous (is + V-ing)",
+      "tip": "now/right now → is V-ing",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "Subject-Verb Agreement",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The report on regional development, together with its annexes, ___ ready for review.",
+      "choices": [
+        "is",
+        "are",
+        "have been",
+        "were"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "together with its annexes เป็นวลีขยาย ไม่นับเป็นประธาน · ประธานแท้คือ The report (เอกพจน์) → is",
+      "tip": "ตัด together with/as well as ทิ้ง",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "Subject-Verb Agreement",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The information in these documents ___ confidential.",
+      "choices": [
+        "have been",
+        "are",
+        "is",
+        "were"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "information เป็นนามนับไม่ได้ ใช้กริยาเอกพจน์ · in these documents เป็นวลีขยาย",
+      "tip": "information/equipment/advice = เอกพจน์",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "Passive Voice",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Choose the passive form of: “The committee has reviewed the proposal.”",
+      "choices": [
+        "The proposal was reviewed by the committee.",
+        "The proposal has been reviewed by the committee.",
+        "The proposal is being reviewed by the committee.",
+        "The proposal has reviewed by the committee."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Present Perfect แปลงเป็น passive = has/have + been + V3 → has been reviewed",
+      "tip": "has V3 → has been V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "Conditionals",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "If we had collected more data, the analysis ___ more accurate.",
+      "choices": [
+        "would have been",
+        "is",
+        "will be",
+        "would be"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "if-clause เป็น had + V3 → If แบบที่ 3 (สมมติตรงข้ามอดีต) → would have + V3",
+      "tip": "had V3 ↔ would have V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Relative Clauses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The analyst ___ prepared this report will present it at the meeting.",
+      "choices": [
+        "whose",
+        "whom",
+        "who",
+        "which"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "คำนามหน้าเป็นคน (analyst) และทำหน้าที่ประธานของ prepared → who",
+      "tip": "คน + กริยา → who",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "Relative Clauses",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "This is the province ___ the pilot project was launched.",
+      "choices": [
+        "whose",
+        "who",
+        "where",
+        "which"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "คำนามหน้าเป็นสถานที่และ clause หลังสมบูรณ์แล้ว (the pilot project was launched) → where (= in which)",
+      "tip": "สถานที่ + ประโยคครบ → where",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Prepositions",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Exports rose ___ 4.2 percent compared with the same period last year.",
+      "choices": [
+        "by",
+        "at",
+        "in",
+        "on"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "บอกปริมาณการเปลี่ยนแปลงใช้ by (rose by 4.2%) · ส่วน an increase in ใช้บอกว่าเพิ่มขึ้นในด้านใด",
+      "tip": "rise by + ตัวเลข",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A general and continuing rise in the prices of goods and services is called ___.",
+      "choices": [
+        "recession",
+        "inflation",
+        "deflation",
+        "surplus"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "inflation = เงินเฟ้อ (ระดับราคาทั่วไปสูงขึ้นต่อเนื่อง) · deflation = เงินฝืด · recession = เศรษฐกิจถดถอย",
+      "tip": "inflate = พองขึ้น → ราคาขึ้น",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The word “implement” in “The ministry will implement the new policy next year.” is closest in meaning to ___.",
+      "choices": [
+        "criticize",
+        "carry out",
+        "propose",
+        "cancel"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "implement = นำไปปฏิบัติ ดำเนินการ = carry out",
+      "tip": "implement = put into action",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "In a government office, a short internal written message from one unit to another is usually called a ___.",
+      "choices": [
+        "résumé",
+        "invoice",
+        "brochure",
+        "memorandum"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "memorandum (memo) = บันทึกข้อความ ใช้ติดต่อภายในหน่วยงาน · invoice = ใบแจ้งหนี้ · brochure = แผ่นพับ · résumé = ประวัติย่อ",
+      "tip": "memo = บันทึกข้อความ",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The government aims to reduce income ___ between urban and rural areas.",
+      "choices": [
+        "equality",
+        "equity",
+        "equation",
+        "inequality"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "บริบท “ลดความเหลื่อมล้ำของรายได้” → reduce income inequality · ลด equality (ความเท่าเทียม) ขัดกับเจตนานโยบาย",
+      "tip": "reduce inequality",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "Word Form",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Rising energy prices may seriously ___ household spending.",
+      "choices": [
+        "affect",
+        "effect",
+        "affection",
+        "effective"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ตำแหน่งหลัง may ต้องการกริยา “ส่งผลกระทบต่อ” = affect · effect ส่วนใหญ่ใช้เป็นคำนาม (have an effect on)",
+      "tip": "Affect = Action (verb) · Effect = End result (noun)",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "(On the phone)\nA: Good morning. May I speak to Mr. Anan, please?\nB: I'm sorry, he's out of the office. ___",
+      "choices": [
+        "He doesn't work here.",
+        "What do you want?",
+        "Please call me back.",
+        "Would you like to leave a message?"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "การรับโทรศัพท์ในสำนักงานเมื่อผู้ที่ถูกขอสายไม่อยู่ ควรเสนอรับฝากข้อความอย่างสุภาพ",
+      "tip": "ไม่อยู่ → leave/take a message",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A: Could you send me the latest budget figures by this afternoon?\nB: ___",
+      "choices": [
+        "It was sent yesterday by you.",
+        "No, I don't know you.",
+        "Certainly. I'll email them to you by 3 p.m.",
+        "Yes, they are figures."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "เป็นคำขอให้ช่วย ตอบรับสุภาพ (Certainly/Sure) พร้อมบอกการดำเนินการ เหมาะกับสถานการณ์ในที่ทำงาน",
+      "tip": "Could you ...? → Certainly / Sure",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Thailand's economy expanded by 2.8 percent in the third quarter, supported by a recovery in tourism and private consumption. However, exports slowed due to weaker global demand.”\n\nWhat supported economic growth in the third quarter?",
+      "choices": [
+        "Agricultural prices",
+        "Tourism and private consumption",
+        "Exports and global demand",
+        "Government investment only"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "บทความระบุว่า “supported by a recovery in tourism and private consumption” · ส่วน exports ชะลอตัว (slowed) จึงไม่ใช่ปัจจัยหนุน",
+      "tip": "ข้อ detail → หาคำตอบตรงในบทความ",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“Household debt remains high at around 90 percent of GDP. High debt limits consumers' ability to spend and makes households vulnerable to rising interest rates. Policymakers are therefore encouraging debt restructuring programmes.”\n\nWhat is the passage mainly about?",
+      "choices": [
+        "Why interest rates are falling",
+        "How to calculate GDP",
+        "The benefits of borrowing money",
+        "The risks of high household debt and the policy response"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ทั้งย่อหน้าพูดถึงหนี้ครัวเรือนสูง ผลเสีย (จำกัดการใช้จ่าย เปราะบางต่อดอกเบี้ยขาขึ้น) และมาตรการปรับโครงสร้างหนี้ → main idea ต้องครอบคลุมทั้งปัญหาและการรับมือ",
+      "tip": "main idea = ครอบคลุมทั้งย่อหน้า",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“The number of elderly people in Thailand is rising rapidly, while the working-age population is shrinking. This trend will increase public spending on health care and pensions.”\n\nWhat can be inferred from the passage?",
+      "choices": [
+        "The government may face greater pressure on its budget.",
+        "Health care spending will decrease.",
+        "The working-age population is growing quickly.",
+        "Thailand's population is getting younger."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "บทความบอกว่าผู้สูงอายุเพิ่ม วัยแรงงานลด และรายจ่ายสาธารณะด้านสุขภาพ/บำนาญจะเพิ่ม → อนุมานได้ว่างบประมาณรัฐจะตึงตัวขึ้น · ตัวเลือกอื่นขัดกับบทความ",
+      "tip": "inference = สรุปต่อจากข้อมูล ไม่ขัดบทความ",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "Error Identification",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Choose the underlined part that is incorrect:\n“If the data (A) will be (B) available next week, we (C) will complete the analysis (D) on time.”",
+      "choices": [
+        "(D) on time",
+        "(C) will complete",
+        "(A) will be",
+        "(B) available"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "If แบบที่ 1 ใน if-clause ใช้ Present Simple → If the data is/are available · ห้ามใช้ will ใน if-clause",
+      "tip": "If + V1 (ไม่มี will)",
+      "sourceRef": ""
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "sheet": {
+    "id": "nesdc-english-summary",
+    "slug": "nesdc-english-summary",
+    "course_id": "nesdc",
+    "subject_id": "english",
+    "title": "โน้ตสรุป: ภาษาอังกฤษ",
+    "description": "โน้ตสรุป: ภาษาอังกฤษ สำหรับสอบพนักงานราชการ สศช. งานวิเคราะห์นโยบายและแผน: ไวยากรณ์ คำศัพท์ บทสนทนา และการอ่าน",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 4,
+    "chapter_count": 4,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สศช. ลงวันที่ 9 พ.ย. 2569: ไวยากรณ์ คำศัพท์ บทสนทนา และการอ่าน\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 9 พฤศจิกายน 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-09T12:41:59.833Z"
+  },
+  "sections": [
+    {
+      "id": "nesdc-english-summary-lesson-01",
+      "sheet_id": "nesdc-english-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "Tenses · Subject-Verb Agreement · Passive Voice",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# Tenses · Subject-Verb Agreement · Passive Voice\n\n**since/for → have+V3** · **ago/last/yesterday → V2** · **by + อนาคต → will have+V3** · ประธานแท้ (ตัด of/as well as) · **Neither...nor ตามตัวหลัง** · **The number of = เอกพจน์** · Passive = **be + V3**"
+    },
+    {
+      "id": "nesdc-english-summary-lesson-02",
+      "sheet_id": "nesdc-english-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "Conditionals · Relative Clauses · Prepositions · Error Identification",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# Conditionals · Relative Clauses · Prepositions · Error Identification\n\n**If 1: V1/will · If 2: V2(were)/would · If 3: had V3/would have V3** · Unless = if not · **who คน · which สิ่ง · whose + N** · หลัง comma ห้าม that · **in ปี/เดือน · on วัน/วันที่ · at เวลา** · discuss/attend ไม่มี preposition"
+    },
+    {
+      "id": "nesdc-english-summary-lesson-03",
+      "sheet_id": "nesdc-english-summary",
+      "section_type": "chapter",
+      "chapter_no": 3,
+      "slug": "lesson-03",
+      "title": "Vocabulary: เศรษฐกิจ นโยบาย และงานสำนักงาน",
+      "sort_order": 3,
+      "visual_placeholders": [],
+      "content_md": "# Vocabulary: เศรษฐกิจ นโยบาย และงานสำนักงาน\n\n**GDP** ผลิตภัณฑ์มวลรวม · **inflation** เฟ้อ / **deflation** ฝืด / **recession** ถดถอย · **fiscal คลัง / monetary การเงิน** · **deficit ขาด / surplus เกิน** · formulate → **implement** → **monitor** → **evaluate** · **memo** บันทึกข้อความ · **agenda** วาระ / **minutes** รายงานการประชุม"
+    },
+    {
+      "id": "nesdc-english-summary-lesson-04",
+      "sheet_id": "nesdc-english-summary",
+      "section_type": "chapter",
+      "chapter_no": 4,
+      "slug": "lesson-04",
+      "title": "Conversation และ Reading Comprehension",
+      "sort_order": 4,
+      "visual_placeholders": [],
+      "content_md": "# Conversation และ Reading Comprehension\n\nThank you → **My pleasure** · Sorry → **That's all right** · **Do you mind if ...? → No, not at all** · โทรศัพท์ → **May I take a message? / Hold on** · อ่าน: **main idea · detail · vocab · inference** · **contract = หดตัว · slow down = ชะลอ · recover = ฟื้น** · despite + N / although + ประโยค"
+    }
+  ],
+  "assets": []
+}

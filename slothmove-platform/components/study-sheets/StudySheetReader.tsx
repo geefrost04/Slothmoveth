@@ -8,7 +8,8 @@ import { LessonView } from './SarabanStudyLessons';
 import { getSarabanLesson, lessonOutline } from './sarabanLessonData';
 import { getComputerLesson } from './computerLessonData';
 import { getLawLesson } from './lawLessonData';
-import { getOnwrLesson } from './onwrLessonData';
+import { getLocalLesson } from './localLessons';
+import { localCourse, type LocalCourseMeta } from '@/lib/localCourses';
 import { CoffeeNudge } from '@/components/CoffeeNudge';
 import { OnThisPage } from './OnThisPage';
 import { Rich } from './RichText';
@@ -106,16 +107,18 @@ function lessonTag(kicker?: string) {
   return tail.startsWith('บทที่') ? `ตรงกับ${tail} ในระเบียบ` : tail;
 }
 
-// Water-blue palette for ONWR sheets (frame + lesson variables).
-const ONWR_THEME = {
-  '--reader-accent': '#0b5f86',
-  '--reader-accent-soft': '#e3f3fa',
-  '--lesson-accent': '#0b5f86',
-  '--lesson-accent-soft': 'rgba(11, 95, 134, .08)',
-  '--lesson-ink': '#0f2733',
-  '--lesson-line': '#cfe5ef',
-  '--lesson-paper': '#f6fbfd'
-} as React.CSSProperties;
+// Course palette for local-content sheets (ONWR water blue, NESDC violet): frame + lesson variables.
+function localTheme(meta: LocalCourseMeta) {
+  return {
+    '--reader-accent': meta.accent,
+    '--reader-accent-soft': meta.soft,
+    '--lesson-accent': meta.accent,
+    '--lesson-accent-soft': `rgba(${meta.accentRgb}, .08)`,
+    '--lesson-ink': meta.ink,
+    '--lesson-line': meta.line,
+    '--lesson-paper': `color-mix(in srgb, ${meta.soft} 45%, #fff)`
+  } as React.CSSProperties;
+}
 
 function readingMinutes(characters: number, perMinute: number) {
   return Math.max(2, Math.round(characters / perMinute));
@@ -157,7 +160,8 @@ function SeriesConceptVisual({ assets, assetKey, label, title, description, asse
 
 const COURSE_LABELS: Record<string, string> = {
   police_admin: 'นายสิบตำรวจ',
-  onwr: 'สทนช. นักวิเคราะห์นโยบายฯ'
+  onwr: 'สทนช. นักวิเคราะห์นโยบายฯ',
+  nesdc: 'สศช. งานวิเคราะห์นโยบายและแผน'
 };
 
 const SUBJECT_LABELS: Record<string, string> = {
@@ -735,15 +739,17 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const previous = sections[currentIndex - 1];
   const next = sections[currentIndex + 1];
   const courseLabel = COURSE_LABELS[sheet.course_id] ?? sheet.course_id;
-  const subjectLabel = SUBJECT_LABELS[sheet.subject_id] ?? sheet.subject_id;
+  const local = localCourse(sheet.course_id);
+  // Local courses name the topic in the sheet title ("โน้ตสรุป: <topic>").
+  const subjectLabel = (local ? sheet.title.replace(/^โน้ตสรุป:\s*/, '') : SUBJECT_LABELS[sheet.subject_id]) ?? sheet.subject_id;
   const isComputerSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'computer';
   const isLawSheet = sheet.course_id === 'police_admin' && (sheet.subject_id === 'law' || sheet.subject_id === 'police_law');
   const isSarabanSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'saraban';
-  const isOnwrSheet = sheet.course_id === 'onwr';
-  const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet || isOnwrSheet;
+  const isLocalSheet = Boolean(local);
+  const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet || isLocalSheet;
 
   // Saraban, computer and law sheets are note-style lessons; other sheets are markdown.
-  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : isOnwrSheet ? getOnwrLesson(sheet.subject_id, slug) : undefined);
+  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : isLocalSheet ? getLocalLesson(sheet.course_id, sheet.subject_id, slug) : undefined);
   const lesson = lessonFor(current.slug);
   const mathLesson = !lesson && ['chapter-01', 'chapter-02'].includes(current.slug);
   const usesMarkdown = !lesson && !mathLesson;
@@ -761,7 +767,7 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const dek = lesson ? lesson.lead : currentIndex === 0 ? sheet.description : '';
 
   return (
-    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} ${frame.frame} study-sheet-print-root`} style={isOnwrSheet ? ONWR_THEME : undefined}>
+    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} ${frame.frame} study-sheet-print-root`} style={local ? localTheme(local) : undefined}>
       <BackToTopButton />
       <div className={`${frame.layout} ${outline.length ? '' : frame.noRail}`}>
         <aside className={frame.nav} aria-label="สารบัญชีทสรุป">

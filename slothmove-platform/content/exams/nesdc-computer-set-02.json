@@ -1,0 +1,379 @@
+{
+  "examSet": {
+    "id": "nesdc-computer-set-02",
+    "title": "คอมพิวเตอร์ ชุดที่ 2",
+    "description": "คอมพิวเตอร์ 21 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สศช. ตำแหน่งพนักงานบริหารงานทั่วไป (งานวิเคราะห์นโยบายและแผน)",
+    "accessType": "free",
+    "durationMinutes": 26,
+    "totalQuestions": 21,
+    "catalogOrder": 2
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/nesdc/build-sets.mjs",
+    "answerDistribution": [
+      6,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "พื้นฐาน IT",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "hard",
+      "prompt": "ลำดับชั้นของข้อมูลข้อใดเรียงจากเล็กไปใหญ่ได้ถูกต้อง",
+      "choices": [
+        "บิต → ไบต์ → เรคคอร์ด → ฟิลด์ → ฐานข้อมูล → ไฟล์",
+        "บิต → ฟิลด์ → ไบต์ → เรคคอร์ด → ไฟล์ → ฐานข้อมูล",
+        "บิต → ไบต์ → ฟิลด์ → เรคคอร์ด → ไฟล์ → ฐานข้อมูล",
+        "ไบต์ → บิต → เรคคอร์ด → ฟิลด์ → ไฟล์ → ฐานข้อมูล"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "บิต (0/1) → ไบต์ (อักขระ) → ฟิลด์ (ข้อมูล 1 เรื่อง) → เรคคอร์ด (หลายฟิลด์ของสิ่งเดียวกัน) → ไฟล์ → ฐานข้อมูล",
+      "tip": "บิต ไบต์ ฟิลด์ เรคคอร์ด ไฟล์ ฐาน",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "ฮาร์ดแวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "BIOS หรือ Firmware ที่ใช้ตอนเปิดเครื่องคอมพิวเตอร์ ถูกเก็บไว้ในหน่วยความจำชนิดใด",
+      "choices": [
+        "Register",
+        "ROM",
+        "Cache",
+        "RAM"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ROM เป็นหน่วยความจำแบบ Non-volatile ส่วนใหญ่อ่านได้อย่างเดียว ผู้ผลิตบันทึก BIOS/Firmware ไว้",
+      "tip": "BIOS อยู่ใน ROM",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "ฮาร์ดแวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ต้องการต่อโน้ตบุ๊กเข้ากับโปรเจกเตอร์ในห้องประชุม ให้ส่งได้ทั้งภาพความละเอียดสูงและเสียงด้วยสายเส้นเดียว ควรใช้พอร์ตใด",
+      "choices": [
+        "Audio 3.5 มม.",
+        "HDMI",
+        "RJ-45",
+        "VGA"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "HDMI ส่งภาพความละเอียดสูงและเสียงในสายเส้นเดียว · VGA เป็นสัญญาณภาพอนาล็อก ไม่มีเสียง",
+      "tip": "HDMI = ภาพ + เสียง",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "ซอฟต์แวร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "โปรแกรมป้องกันไวรัส โปรแกรมบีบอัดไฟล์ และโปรแกรมจัดเรียงดิสก์ จัดอยู่ในกลุ่มใด",
+      "choices": [
+        "โปรแกรมอรรถประโยชน์ (Utility)",
+        "ตัวแปลภาษา (Translator)",
+        "เฟิร์มแวร์ (Firmware)",
+        "ซอฟต์แวร์ประยุกต์ (Application)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Utility เป็นส่วนหนึ่งของซอฟต์แวร์ระบบ ช่วยดูแลและบำรุงรักษาระบบ เช่น แอนตี้ไวรัส บีบอัดไฟล์ จัดเรียงดิสก์",
+      "tip": "ดูแลเครื่อง = Utility",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "การสื่อสารด้วยวิทยุสื่อสารที่ต้องกดพูดทีละฝ่าย เป็นการส่งข้อมูลแบบใด",
+      "choices": [
+        "Simplex",
+        "Half-duplex",
+        "Full-duplex",
+        "Multiplex"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Half-duplex = สองทางแต่สลับกันทีละฝั่ง · Simplex = ทางเดียว (วิทยุ/ทีวี) · Full-duplex = สองทางพร้อมกัน (โทรศัพท์)",
+      "tip": "กดพูดทีละคน = Half",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "โทโพโลยีแบบใดที่ทุกเครื่องต่อเข้ากับอุปกรณ์ศูนย์กลาง หากอุปกรณ์ศูนย์กลางเสีย เครือข่ายจะล่มทั้งหมด",
+      "choices": [
+        "แบบดาว (Star)",
+        "แบบตาข่าย (Mesh)",
+        "แบบบัส (Bus)",
+        "แบบวงแหวน (Ring)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Star ต่อทุกเครื่องเข้า Switch/Hub เครื่องหนึ่งเสียเครื่องอื่นยังใช้ได้ แต่ศูนย์กลางเสียล่มทั้งวง",
+      "tip": "ดาว: ศูนย์กลางพัง = จบ",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "อุปกรณ์ใดทำหน้าที่เลือกเส้นทางส่งข้อมูลระหว่างเครือข่ายที่ต่างกัน โดยพิจารณาจาก IP address",
+      "choices": [
+        "Hub",
+        "Switch",
+        "Repeater",
+        "Router"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Router เลือกเส้นทางระหว่างเครือข่าย ดู IP address · Switch ส่งต่อใน LAN ดู MAC address · Hub กระจายทุกพอร์ต · Repeater ขยายสัญญาณ",
+      "tip": "Router = IP · Switch = MAC",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "เครือข่าย",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "hard",
+      "prompt": "หมายเลข IPv4 และ IPv6 มีความยาวกี่บิตตามลำดับ",
+      "choices": [
+        "32 บิต และ 64 บิต",
+        "64 บิต และ 128 บิต",
+        "16 บิต และ 64 บิต",
+        "32 บิต และ 128 บิต"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "IPv4 ยาว 32 บิต · IPv6 ยาว 128 บิต · ส่วน MAC address ยาว 48 บิต",
+      "tip": "v4 = 32 · v6 = 128",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Microsoft Word",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ต้องการสร้างสารบัญอัตโนมัติในรายงานที่มีหลายบท ควรทำสิ่งใดก่อน",
+      "choices": [
+        "กำหนด Styles (Heading) ให้หัวข้อแต่ละบท",
+        "ใส่ Header / Footer ทุกหน้า",
+        "ใช้ Format Painter คัดลอกรูปแบบ",
+        "แทรก Page Break ท้ายทุกบท"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Word สร้าง Table of Contents จากหัวข้อที่กำหนด Styles (Heading 1, 2, ...) ไว้",
+      "tip": "Styles → สารบัญ",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Microsoft Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ต้องการนับจำนวนเซลล์ในช่วง B2:B50 ที่ไม่ว่าง ทั้งที่เป็นตัวเลขและข้อความ ควรใช้ฟังก์ชันใด",
+      "choices": [
+        "COUNTA",
+        "COUNT",
+        "SUM",
+        "COUNTIF"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "COUNTA นับเซลล์ที่ไม่ว่างทั้งหมด · COUNT นับเฉพาะเซลล์ที่เป็นตัวเลข",
+      "tip": "A = All ที่ไม่ว่าง",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Microsoft Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ต้องการรวมงบประมาณในคอลัมน์ D เฉพาะแถวที่คอลัมน์ B เป็น \"ด้านสังคม\" ควรใช้ฟังก์ชันใด",
+      "choices": [
+        "COUNTIF",
+        "VLOOKUP",
+        "SUM",
+        "SUMIF"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "SUMIF รวมค่าเฉพาะแถวที่ตรงเงื่อนไข เช่น =SUMIF(B2:B100,\"ด้านสังคม\",D2:D100)",
+      "tip": "รวมตามเงื่อนไข = SUMIF",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Microsoft Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "พิมพ์สูตร =AVERGE(A1:A10) แล้ว Excel แสดงข้อผิดพลาดใด",
+      "choices": [
+        "#VALUE!",
+        "#N/A",
+        "#REF!",
+        "#NAME?"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "พิมพ์ชื่อฟังก์ชันผิด (AVERGE แทน AVERAGE) ทำให้เกิด #NAME?",
+      "tip": "ชื่อผิด = NAME",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Microsoft PowerPoint",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ใน PowerPoint คีย์ลัดใดใช้เริ่มนำเสนอจากสไลด์ที่กำลังเปิดอยู่",
+      "choices": [
+        "Alt + F5",
+        "F5",
+        "Shift + F5",
+        "Ctrl + F5"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "F5 = ฉายตั้งแต่สไลด์แรก · Shift + F5 = ฉายจากสไลด์ปัจจุบัน · Esc = ออกจากการฉาย",
+      "tip": "Shift = จากตรงนี้",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "อินเทอร์เน็ต",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "โปรโตคอลใดใช้สำหรับส่งอีเมลออกจากเครื่องผู้ส่ง",
+      "choices": [
+        "FTP",
+        "SMTP",
+        "IMAP",
+        "POP3"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "SMTP = ส่งอีเมล · POP3 = ดึงอีเมลลงเครื่อง · IMAP = อ่านแบบซิงก์หลายอุปกรณ์ · FTP = รับส่งไฟล์",
+      "tip": "S = Send",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "อินเทอร์เน็ต",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "hard",
+      "prompt": "เว็บไซต์ที่ใช้ HTTPS และแสดงรูปแม่กุญแจ หมายความว่าอย่างไร",
+      "choices": [
+        "ข้อมูลที่รับส่งระหว่างผู้ใช้กับเว็บไซต์ถูกเข้ารหัส",
+        "รับประกันว่าเว็บไซต์นั้นไม่ใช่มิจฉาชีพ",
+        "เว็บไซต์นั้นเป็นของหน่วยงานราชการ",
+        "เว็บไซต์นั้นไม่มีการเก็บคุกกี้"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "HTTPS เข้ารหัสการรับส่งด้วย TLS แต่ไม่ได้รับประกันว่าเว็บนั้นน่าเชื่อถือ เว็บฟิชชิงก็ใช้ HTTPS ได้",
+      "tip": "แม่กุญแจ = เข้ารหัส ≠ ปลอดภัยแน่",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "ความปลอดภัยไซเบอร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ได้รับอีเมลแอบอ้างเป็นธนาคาร ขอให้คลิกลิงก์ไปกรอกรหัสผ่านบนเว็บไซต์ที่หน้าตาเหมือนของจริง เป็นภัยคุกคามแบบใด",
+      "choices": [
+        "DDoS",
+        "Botnet",
+        "Phishing",
+        "Ransomware"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Phishing = อีเมล/เว็บปลอมหลอกให้กรอกข้อมูลสำคัญ (ผ่าน SMS = Smishing · ทางโทรศัพท์ = Vishing)",
+      "tip": "ตกปลา = Phishing",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "พ.ร.บ.คอมพิวเตอร์",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "การตัดต่อหรือดัดแปลงภาพของผู้อื่นแล้วเผยแพร่ทางออนไลน์ ทำให้ผู้นั้นเสียชื่อเสียง ถูกดูหมิ่น หรือถูกเกลียดชัง เป็นความผิดตาม พ.ร.บ.ว่าด้วยการกระทำความผิดเกี่ยวกับคอมพิวเตอร์ฯ มาตราใด",
+      "choices": [
+        "มาตรา 5",
+        "มาตรา 16",
+        "มาตรา 14",
+        "มาตรา 11"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ม.16 ตัดต่อภาพผู้อื่น (จำคุกไม่เกิน 3 ปี และปรับไม่เกิน 200,000 บาท) · ม.5 เข้าถึงระบบโดยมิชอบ · ม.11 สแปม · ม.14 นำเข้าข้อมูลเท็จ",
+      "tip": "ตัดต่อภาพ = 16",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "PDPA",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ข้อใดเป็นข้อมูลส่วนบุคคลที่อ่อนไหว (Sensitive Data)",
+      "choices": [
+        "ชื่อและนามสกุล",
+        "ที่อยู่ทางไปรษณีย์",
+        "ข้อมูลชีวภาพ เช่น ลายนิ้วมือ ภาพจำลองใบหน้า",
+        "อีเมลที่ทำงาน"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "มาตรา 26: ข้อมูลอ่อนไหว ได้แก่ เชื้อชาติ ความเห็นทางการเมือง ศาสนา ประวัติอาชญากรรม สุขภาพ พันธุกรรม ข้อมูลชีวภาพ ฯลฯ",
+      "tip": "ลายนิ้วมือ/ใบหน้า = อ่อนไหว",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "PDPA",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ตาม PDPA บุคคลหรือนิติบุคคลที่มีอำนาจตัดสินใจเกี่ยวกับการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล เรียกว่าอะไร",
+      "choices": [
+        "ผู้ประมวลผลข้อมูลส่วนบุคคล (Data Processor)",
+        "เจ้าของข้อมูลส่วนบุคคล (Data Subject)",
+        "เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล (DPO)",
+        "ผู้ควบคุมข้อมูลส่วนบุคคล (Data Controller)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Controller ตัดสินใจเก็บ/ใช้/เปิดเผย · Processor ดำเนินการตามคำสั่งหรือในนามผู้ควบคุม",
+      "tip": "ตัดสินใจ = Controller",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "เทคโนโลยีสมัยใหม่",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "เทคโนโลยีที่เก็บบันทึกข้อมูลแบบกระจายศูนย์บนหลายเครื่องพร้อมกัน ทำให้แก้ไขข้อมูลย้อนหลังได้ยากและโปร่งใส คือข้อใด",
+      "choices": [
+        "Internet of Things",
+        "Cloud Computing",
+        "Blockchain",
+        "Big Data"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Blockchain เป็นบัญชีข้อมูลแบบกระจายศูนย์ แก้ไขย้อนหลังได้ยาก เป็นฐานของคริปโทเคอร์เรนซี",
+      "tip": "กระจายศูนย์ แก้ยาก = Blockchain",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "เทคโนโลยีสมัยใหม่",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ระบบการจัดซื้อจัดจ้างภาครัฐด้วยอิเล็กทรอนิกส์ (e-GP) ที่บริษัทเอกชนเสนอราคาขายสินค้าให้หน่วยงานรัฐ เป็นพาณิชย์อิเล็กทรอนิกส์รูปแบบใด",
+      "choices": [
+        "B2G",
+        "G2C",
+        "B2B",
+        "C2C"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "B2G = ธุรกิจ → รัฐ เช่น e-GP · G2C = รัฐ → ประชาชน · B2B = ธุรกิจ → ธุรกิจ · C2C = ผู้บริโภค → ผู้บริโภค",
+      "tip": "ธุรกิจขายรัฐ = B2G",
+      "sourceRef": ""
+    }
+  ]
+}

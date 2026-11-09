@@ -41,10 +41,10 @@ export default async function StudySheetIndex({ params }: { params: Promise<{ co
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
-  } else if (courseId === 'onwr') {
-    // ONWR sheets are local files: content/study-sheets/onwr-<subject>-summary.json
+  } else if (courseId === 'onwr' || courseId === 'nesdc') {
+    // Local-content courses: content/study-sheets/<course>-<subject>-summary.json
     try {
-      const localData = require(`@/content/study-sheets/onwr-${normalizedSubjectId}-summary.json`);
+      const localData = require(`@/content/study-sheets/${courseId}-${normalizedSubjectId}-summary.json`);
       bundle = { sheet: localData.sheet, sections: localData.sections, assets: localData.assets } as StudySheetBundle;
     } catch {
       bundle = null;

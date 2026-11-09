@@ -1,5 +1,6 @@
 'use client';
 
+import { localCourse } from '@/lib/localCourses';
 import Link from 'next/link';
 import { thaiWrap } from '@/lib/thaiText';
 import { recordExamCompletedAndMaybePrompt } from '@/lib/donate-prompt';
@@ -152,12 +153,13 @@ function DocumentIcon() {
   );
 }
 
-const ONWR_EXAM_THEME = {
-  '--exam-red': '#0b5f86',
-  '--exam-red-dark': '#07425e',
-  '--exam-red-soft': '#e3f3fa',
-  '--exam-accent': '#2a9bc9'
-} as React.CSSProperties;
+// Local-content courses (ONWR, NESDC) recolour the runner with their own palette.
+function localExamTheme(courseId?: string) {
+  const meta = localCourse(courseId);
+  return meta
+    ? ({ '--exam-red': meta.accent, '--exam-red-dark': meta.accentDark, '--exam-red-soft': meta.soft, '--exam-accent': meta.accentLight } as React.CSSProperties)
+    : undefined;
+}
 
 export function ExamRunner({
   examSetId,
@@ -187,7 +189,7 @@ export function ExamRunner({
   const dailyPracticeHref = course ? subjectHref : `/daily-practice/${dailyPracticeSubjectId}`;
   const isMiniMock02 = examSetId === 'police-mini_mock-set-02';
   // ONWR uses its water-blue palette instead of the police maroon.
-  const themeStyle = course?.id === 'onwr' ? ONWR_EXAM_THEME : undefined;
+  const themeStyle = localExamTheme(course?.id);
   const [examSet, setExamSet] = useState<ExamSet | null>(initialData?.examSet ?? null);
   const [questions, setQuestions] = useState<ExamQuestion[]>(initialData?.questions ?? []);
   const [currentIndex, setCurrentIndex] = useState(0);

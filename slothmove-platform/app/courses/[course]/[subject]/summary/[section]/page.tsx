@@ -55,9 +55,9 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
       sections: localData.sections.map((s: any, idx: number) => ({ ...s, id: s.id || `local-law-section-${idx}` })),
       assets: localData.assets.map((a: any, idx: number) => ({ ...a, id: a.id || `local-law-asset-${idx}` }))
     } as StudySheetBundle;
-  } else if (courseId === 'onwr') {
-    // ONWR sheets are local files: content/study-sheets/onwr-<subject>-summary.json
-    const file = path.join(process.cwd(), 'content', 'study-sheets', `onwr-${normalizedSubjectId}-summary.json`);
+  } else if (courseId === 'onwr' || courseId === 'nesdc') {
+    // Local-content courses: content/study-sheets/<course>-<subject>-summary.json
+    const file = path.join(process.cwd(), 'content', 'study-sheets', `${courseId}-${normalizedSubjectId}-summary.json`);
     if (fs.existsSync(file)) {
       const localData = JSON.parse(fs.readFileSync(file, 'utf-8'));
       bundle = { sheet: localData.sheet, sections: localData.sections, assets: localData.assets } as StudySheetBundle;
@@ -119,9 +119,9 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
-  } else if (courseId === 'onwr') {
-    // ONWR sheets are local files: content/study-sheets/onwr-<subject>-summary.json
-    const file = path.join(process.cwd(), 'content', 'study-sheets', `onwr-${normalizedSubjectId}-summary.json`);
+  } else if (courseId === 'onwr' || courseId === 'nesdc') {
+    // Local-content courses: content/study-sheets/<course>-<subject>-summary.json
+    const file = path.join(process.cwd(), 'content', 'study-sheets', `${courseId}-${normalizedSubjectId}-summary.json`);
     if (fs.existsSync(file)) {
       const localData = JSON.parse(fs.readFileSync(file, 'utf-8'));
       bundle = { sheet: localData.sheet, sections: localData.sections, assets: localData.assets } as StudySheetBundle;

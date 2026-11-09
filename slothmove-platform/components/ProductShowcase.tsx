@@ -18,18 +18,18 @@ const examFields = [
     active: true,
   },
   {
+    title: 'สศช. งานวิเคราะห์นโยบายและแผน',
+    description: 'พนักงานราชการ 10 อัตรา · สมัคร 16–20 พ.ย.',
+    href: '/courses/nesdc',
+    image: 'chart',
+    cta: 'โน้ตสรุป + ข้อสอบฟรี',
+    active: true,
+  },
+  {
     title: 'ก.พ.',
     description: 'กำลังเตรียมเนื้อหา',
     href: '/courses/ocsc',
     image: '/pic/logo_ocsc.png',
-    cta: 'เร็ว ๆ นี้',
-    active: false,
-  },
-  {
-    title: 'ราชการอื่น ๆ',
-    description: 'ครูผู้ช่วย และสนามอื่น',
-    href: '/courses/police_admin',
-    image: 'lock',
     cta: 'เร็ว ๆ นี้',
     active: false,
   },
@@ -43,6 +43,11 @@ function FieldCard({ field }: { field: (typeof examFields)[number] }) {
           <svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" style={{ padding: '10%' }}>
             <path d="M24 5C24 5 10 20.5 10 30a14 14 0 0 0 28 0C38 20.5 24 5 24 5Z" fill="#e3f3fa" stroke="#0b5f86" strokeWidth="2.5" strokeLinejoin="round" />
             <path d="M17 31a7 7 0 0 0 7 7" stroke="#2a9bc9" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+        ) : field.image === 'chart' ? (
+          <svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" style={{ padding: '12%' }}>
+            <rect x="6" y="6" width="36" height="36" rx="8" fill="#f1ecfb" stroke="#5b3fa6" strokeWidth="2.5" />
+            <path d="M15 33V25M24 33V17M33 33V21" stroke="#5b3fa6" strokeWidth="3.5" strokeLinecap="round" />
           </svg>
         ) : field.image === 'lock' ? (
           <svg
