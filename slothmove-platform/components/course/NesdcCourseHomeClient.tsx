@@ -56,6 +56,19 @@ function tone(score?: number) {
   return score >= 80 ? styles.good : score >= 60 ? styles.ok : styles.low;
 }
 
+// "Mini Drill งานสารบรรณ: ระยะเวลา…" → group "งานสารบรรณ", theme "ระยะเวลา…"
+function drillParts(title: string) {
+  const [head, ...rest] = title.split(':');
+  return { group: head.replace(/^Mini Drill\s*/, '').trim(), theme: rest.join(':').trim() };
+}
+
+const DRILL_GROUPS: Record<string, { label: string; icon: string }> = {
+  'ความรู้เกี่ยวกับ สศช.': { label: 'สศช.', icon: '🏛️' },
+  'ยุทธศาสตร์ชาติและแผนพัฒนาฯ': { label: 'ยุทธศาสตร์ชาติ/แผนฯ', icon: '🗺️' },
+  'งานสารบรรณ': { label: 'สารบรรณ', icon: '📨' },
+  'คอมพิวเตอร์': { label: 'คอมพิวเตอร์', icon: '💻' }
+};
+
 function SectionHead({ id, kicker, title, meta }: { id: string; kicker: string; title: string; meta: string }) {
   return (
     <header className={styles.sectionHead}>
@@ -90,9 +103,28 @@ function TopicGrid({ subjects }: { subjects: NesdcSubjectCard[] }) {
 }
 
 // NESDC landing on the same template as the police course page, in violet.
-export function NesdcCourseHomeClient({ miniMocks, subjects }: { miniMocks: NesdcSet[]; subjects: NesdcSubjectCard[] }) {
+export function NesdcCourseHomeClient({
+  miniMocks,
+  drills,
+  subjects,
+  reviewHref,
+  reviewCount
+}: {
+  miniMocks: NesdcSet[];
+  drills: NesdcSet[];
+  subjects: NesdcSubjectCard[];
+  reviewHref: string | null;
+  reviewCount: number;
+}) {
   const topicSets = subjects.flatMap((subject) => subject.sets);
-  const scores = useLatestScores([...miniMocks, ...topicSets].map((set) => set.id));
+  const scores = useLatestScores([...miniMocks, ...drills, ...topicSets].map((set) => set.id));
+  const drillGroups = drills.reduce<{ group: string; items: NesdcSet[] }[]>((groups, drill) => {
+    const { group } = drillParts(drill.title);
+    const found = groups.find((item) => item.group === group);
+    if (found) found.items.push(drill);
+    else groups.push({ group, items: [drill] });
+    return groups;
+  }, []);
   const done = (items: NesdcSet[]) => items.some((item) => scores[item.id] !== undefined);
   const firstOpen = (items: NesdcSet[]) => items.find((item) => scores[item.id] === undefined) ?? items[0];
   const notes = subjects.find((subject) => subject.lessonCount > 0);
@@ -120,9 +152,9 @@ export function NesdcCourseHomeClient({ miniMocks, subjects }: { miniMocks: Nesd
             <p className={styles.lead}>{thaiWrap('โน้ตสรุปและข้อสอบพร้อมเฉลย ครบทุกหัวข้อสอบข้อเขียนตามประกาศรับสมัครสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ 9 พ.ย. 2569 ไม่ต้องสมัครก็เริ่มได้')}</p>
             <ul className={styles.facts}>
               <li><strong>{miniMocks.length}</strong> Mini Mock</li>
+              <li><strong>{drills.length}</strong> Mini Drill</li>
               <li><strong>{topicSets.length}</strong> ชุดรายหัวข้อ</li>
               <li><strong>{subjects.length}</strong> หัวข้อ</li>
-              <li><strong>10</strong> อัตรา</li>
             </ul>
           </div>
 
@@ -148,7 +180,9 @@ export function NesdcCourseHomeClient({ miniMocks, subjects }: { miniMocks: Nesd
         <nav className={styles.jump} aria-label="ไปยังส่วน">
           <a href="#dates">วันสำคัญ</a>
           {miniMocks.length ? <a href="#mini">Mini Mock</a> : null}
+          {drills.length ? <a href="#drill">Mini Drill</a> : null}
           <a href="#topics">หัวข้อสอบ</a>
+          {reviewHref ? <a href={reviewHref}>ทบทวนก่อนสอบ</a> : null}
         </nav>
 
         <section className={styles.section} aria-labelledby="dates">
@@ -187,6 +221,40 @@ export function NesdcCourseHomeClient({ miniMocks, subjects }: { miniMocks: Nesd
           </section>
         ) : null}
 
+        {drills.length ? (
+          <section className={styles.section} aria-labelledby="drill">
+            <SectionHead id="drill" kicker="ทวนเร็ว" title="Mini Drill" meta="ชุดละ 10 ข้อ · 12 นาที เน้นตัวเลขและคู่ที่ชอบสลับในหัวข้อที่ต้องจำ" />
+            <div className={styles.drillGrid}>
+              {drillGroups.map(({ group, items }) => {
+                const meta = DRILL_GROUPS[group] ?? { label: group, icon: '📘' };
+                return (
+                  <div className={styles.drillRow} key={group}>
+                    <span className={styles.drillIcon} aria-hidden="true">{meta.icon}</span>
+                    <strong className={styles.drillName}>{meta.label}</strong>
+                    <span className={styles.drillCells}>
+                      {items.map((drill, index) => {
+                        const score = scores[drill.id];
+                        return (
+                          <Link
+                            key={drill.id}
+                            href={drill.href}
+                            className={`${styles.cell} ${tone(score)}`}
+                            title={drillParts(drill.title).theme || drill.title}
+                            aria-label={`${drill.title}${score !== undefined ? ` คะแนนล่าสุด ${score}%` : ''}`}
+                          >
+                            <b>ชุด {index + 1}</b>
+                            <small>{score !== undefined ? `${score}%` : `${drill.questions} ข้อ`}</small>
+                          </Link>
+                        );
+                      })}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        ) : null}
+
         <div id="topics">
           {GROUPS.map((group) => (
             <section className={styles.section} aria-labelledby={`group-${group.id}`} key={group.id}>
@@ -194,6 +262,17 @@ export function NesdcCourseHomeClient({ miniMocks, subjects }: { miniMocks: Nesd
               <TopicGrid subjects={group.ids.map((id) => subjects.find((subject) => subject.id === id)).filter((subject): subject is NesdcSubjectCard => Boolean(subject))} />
             </section>
           ))}
+          {reviewHref ? (
+            <Link href={reviewHref} className={`${styles.subject} ${own.reviewCard}`}>
+              <span className={styles.subjectIcon} aria-hidden="true">⭐</span>
+              <span className={styles.subjectText}>
+                <strong>โน้ตทบทวนก่อนสอบ</strong>
+                <small>{thaiWrap('ตัวเลข สูตร และคู่ที่ชอบสลับของทุกหัวข้อ อ่านคืนก่อนสอบ')}</small>
+                <em>{reviewCount} หน้า</em>
+              </span>
+              <span className={styles.subjectArrow} aria-hidden="true">→</span>
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

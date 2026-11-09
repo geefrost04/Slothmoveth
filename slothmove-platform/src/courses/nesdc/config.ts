@@ -2,7 +2,8 @@
  * NESDC (สำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ) — พนักงานราชการ ตำแหน่งพนักงานบริหารงานทั่วไป 3
  * (งานวิเคราะห์นโยบายและแผน), 10 อัตรา. Written exam scope from the announcement of 9 พ.ย. 2569, 100 คะแนน.
  * Content: note-style lessons (components/study-sheets/nesdcLessonData.ts) + exam sets in Supabase (nesdc-<topic>-set-NN).
- * Subjects = the 6 written-exam areas in announcement order; ความรู้เกี่ยวกับองค์กร is split into org + national.
+ * Subjects = the 6 written-exam areas in announcement order (ความรู้เกี่ยวกับองค์กร split into org + national),
+ * plus a notes-only pre-exam review.
  */
 
 import type { CourseConfig } from '@/lib/course-types';
@@ -83,6 +84,15 @@ export const nesdcConfig: CourseConfig = {
       titleEn: 'Summarising & Analysis',
       icon: '📊',
       desc: 'อ่านตารางและกราฟ ตัวชี้วัดเศรษฐกิจสังคม สรุปความ เขียนรายงาน และวิเคราะห์นโยบาย',
+      count: 0,
+      games: []
+    },
+    {
+      id: 'review',
+      title: 'โน้ตทบทวนก่อนสอบ',
+      titleEn: 'Pre-exam Review',
+      icon: '⭐',
+      desc: 'ตัวเลข สูตร และคู่ที่ชอบสลับของทุกหัวข้อ',
       count: 0,
       games: []
     }

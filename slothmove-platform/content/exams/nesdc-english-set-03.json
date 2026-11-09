@@ -1,0 +1,447 @@
+{
+  "examSet": {
+    "id": "nesdc-english-set-03",
+    "title": "ภาษาอังกฤษ ชุดที่ 3",
+    "description": "ภาษาอังกฤษ 25 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สศช. ตำแหน่งพนักงานบริหารงานทั่วไป (งานวิเคราะห์นโยบายและแผน)",
+    "accessType": "free",
+    "durationMinutes": 30,
+    "totalQuestions": 25,
+    "catalogOrder": 3
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/nesdc/build-sets.mjs",
+    "answerDistribution": [
+      7,
+      6,
+      6,
+      6
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Gerund / Infinitive",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "We look forward to ___ from you regarding the project proposal.",
+      "choices": [
+        "be heard",
+        "hear",
+        "hearing",
+        "have heard"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "look forward to … ในที่นี้ to เป็นบุพบท ไม่ใช่ to-infinitive จึงต้องตามด้วย V-ing → hearing · เป็นสำนวนปิดท้ายอีเมลที่พบบ่อย",
+      "tip": "look forward to + V-ing",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "Gerund / Infinitive",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The team has finished ___ the data from the provincial offices.",
+      "choices": [
+        "collect",
+        "to collect",
+        "collected",
+        "collecting"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "finish ตามด้วย V-ing (finish doing) → collecting",
+      "tip": "finish/avoid/consider/suggest + V-ing",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "Comparatives",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "This year's budget for digital infrastructure is ___ than last year's.",
+      "choices": [
+        "more large",
+        "larger",
+        "largest",
+        "the larger"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "มี than → ขั้นกว่า · large เป็นคำพยางค์เดียว เติม -r → larger (ไม่ใช้ more ซ้อน)",
+      "tip": "พยางค์เดียว + -er than",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "Comparatives",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The ___ the economy grows, the more tax revenue the government collects.",
+      "choices": [
+        "more fast",
+        "faster",
+        "fast",
+        "fastest"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "โครงสร้าง The + ขั้นกว่า …, the + ขั้นกว่า … (ยิ่ง…ยิ่ง…) → The faster …, the more …",
+      "tip": "The -er …, the -er … = ยิ่ง…ยิ่ง",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "Modal Verbs",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "You ___ print the report; an electronic copy is enough.",
+      "choices": [
+        "can't",
+        "don't have to",
+        "mustn't",
+        "shouldn't have"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ประโยคหลังบอกว่าไฟล์อิเล็กทรอนิกส์ก็พอ = ไม่จำเป็นต้องพิมพ์ → don't have to · mustn't = ห้ามทำ ซึ่งความหมายแรงเกินไปและไม่ตรงบริบท",
+      "tip": "don't have to = ไม่จำเป็น · mustn't = ห้าม",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "Reported Speech",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The minister said, “We will review the plan next month.”\n→ The minister said that they ___ the plan the following month.",
+      "choices": [
+        "would review",
+        "have reviewed",
+        "reviewed",
+        "will review"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "คำพูดรายงานเมื่อกริยานำเป็นอดีต (said) ให้ถอย tense: will → would · next month → the following month",
+      "tip": "said → will เป็น would",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Articles",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "It took ___ hour to check all the application documents.",
+      "choices": [
+        "an",
+        "a",
+        "no article",
+        "the"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "hour ออกเสียงขึ้นต้นด้วยสระ (h ไม่ออกเสียง /ˈaʊə/) จึงใช้ an → an hour (= หนึ่งชั่วโมง) · เลือก a/an ตามเสียง ไม่ใช่ตัวสะกด · hour เป็นนามนับได้เอกพจน์ จะไม่มี article ไม่ได้",
+      "tip": "an hour, an honest, an honorary",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "Conjunctions",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The data were incomplete; ___, the analysts could not finish the report on time.",
+      "choices": [
+        "otherwise",
+        "moreover",
+        "however",
+        "therefore"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ประโยคหลังเป็นผลของประโยคแรก (ข้อมูลไม่ครบ → ทำรายงานไม่ทัน) → therefore (ดังนั้น) · however = ขัดแย้ง, moreover = เพิ่มเติม",
+      "tip": "เหตุ → ผล = therefore",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "New irrigation projects are expected to mitigate the impact of drought. The word “mitigate” means ___.",
+      "choices": [
+        "measure",
+        "increase",
+        "ignore",
+        "reduce"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "mitigate = บรรเทา ลดความรุนแรงของผลกระทบ = reduce",
+      "tip": "mitigate = บรรเทา/ลดผลกระทบ",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Before the new policy is introduced nationwide, it will be tested in three provinces as a ___ project.",
+      "choices": [
+        "completed",
+        "permanent",
+        "final",
+        "pilot"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "pilot project = โครงการนำร่อง ทดลองในพื้นที่จำกัดก่อนขยายผลทั่วประเทศ · final/permanent/completed ขัดกับบริบท “tested … before … nationwide”",
+      "tip": "pilot project = โครงการนำร่อง",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Which word is opposite in meaning to “temporary”?",
+      "choices": [
+        "provisional",
+        "permanent",
+        "brief",
+        "short-term"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "temporary = ชั่วคราว ตรงข้ามกับ permanent = ถาวร · brief, short-term, provisional ล้วนมีความหมายใกล้เคียง temporary",
+      "tip": "temporary ↔ permanent",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The project was suspended because of a lack of funding. The word “suspended” is closest in meaning to ___.",
+      "choices": [
+        "temporarily stopped",
+        "successfully finished",
+        "officially launched",
+        "greatly expanded"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "suspend = ระงับ/หยุดไว้ชั่วคราว = temporarily stopped",
+      "tip": "suspend = ระงับชั่วคราว",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The agency must monitor and ___ the outcomes of each project to see whether its objectives were achieved.",
+      "choices": [
+        "cancel",
+        "postpone",
+        "neglect",
+        "evaluate"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "evaluate = ประเมินผล ซึ่งคู่กับ monitor (ติดตาม) เป็นวงจรติดตามและประเมินผล (M&E) เพื่อดูว่าบรรลุวัตถุประสงค์หรือไม่",
+      "tip": "M&E = monitoring and evaluation",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The plan sets out clear targets and ___ to measure progress, such as the poverty rate and life expectancy.",
+      "choices": [
+        "indicators",
+        "invitations",
+        "complaints",
+        "signatures"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "indicators = ตัวชี้วัด ใช้วัดความก้าวหน้าเทียบกับเป้าหมาย เช่น อัตราความยากจน อายุคาดเฉลี่ย",
+      "tip": "indicator = ตัวชี้วัด (KPI)",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "(On the phone)\nA: Hello, this is Somchai from the Planning Division. ___\nB: Of course. Please hold on while I transfer your call.",
+      "choices": [
+        "Could you hang up, please?",
+        "Could you put me through to the Finance Section, please?",
+        "Who are you calling?",
+        "Would you like to leave a message?"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "B ตอบว่าจะโอนสาย (transfer your call) แสดงว่า A ขอให้ต่อสาย = put me through to …",
+      "tip": "put through = ต่อสาย",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "In a formal email, which sentence is the most appropriate way to send a document with the email?",
+      "choices": [
+        "Here is stuff for you.",
+        "Open it now.",
+        "Please find attached the meeting schedule.",
+        "Look at the thing I sent."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "สำนวนมาตรฐานในอีเมลทางการเมื่อแนบไฟล์ คือ Please find attached … (โปรดดูเอกสารแนบ)",
+      "tip": "Please find attached …",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "(In a meeting)\nA: Sorry to interrupt, but ___\nB: Sure. I said the budget will be cut by ten percent.",
+      "choices": [
+        "could you repeat the last point?",
+        "I have nothing to say.",
+        "could you leave the room?",
+        "the meeting is over."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "B ตอบโดยพูดซ้ำสิ่งที่พูดไป แสดงว่า A ขอให้ทวนประเด็น → could you repeat the last point?",
+      "tip": "ขอให้ทวน → Could you repeat …?",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A: Would it be possible to reschedule our meeting to Thursday?\nB: ___ What time suits you?",
+      "choices": [
+        "No, I don't think so.",
+        "It's impossible.",
+        "That should be fine.",
+        "I'm afraid not."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "B ถามต่อว่าเวลาไหนสะดวก แสดงว่ายอมรับการเลื่อนประชุม → That should be fine. · ตัวเลือกอื่นเป็นการปฏิเสธ ขัดกับคำถามต่อท้าย",
+      "tip": "ดูประโยคตามหลังเพื่อเดาว่าตอบรับหรือปฏิเสธ",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Thailand's tourism sector welcomed about 35 million foreign visitors last year, up 25 percent from the previous year. Tourism revenue rose even faster, as visitors stayed longer and spent more per day. However, most of the income was concentrated in Bangkok, Phuket and Chiang Mai. To spread the benefits, the government plans to promote secondary cities through better transport links and local festivals.”\n\nWhy did tourism revenue rise faster than the number of visitors?",
+      "choices": [
+        "More festivals were held in Phuket.",
+        "Visitors stayed longer and spent more per day.",
+        "Hotel prices in Bangkok fell.",
+        "The number of visitors doubled."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "บทความระบุว่า “as visitors stayed longer and spent more per day” เป็นเหตุผลโดยตรง · จำนวนนักท่องเที่ยวเพิ่ม 25% ไม่ใช่เพิ่มเป็นสองเท่า",
+      "tip": "ข้อ detail → as/because = เหตุผล",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Thailand's tourism sector welcomed about 35 million foreign visitors last year, up 25 percent from the previous year. Tourism revenue rose even faster, as visitors stayed longer and spent more per day. However, most of the income was concentrated in Bangkok, Phuket and Chiang Mai. To spread the benefits, the government plans to promote secondary cities through better transport links and local festivals.”\n\nWhat does the government plan to do?",
+      "choices": [
+        "Build new airports in Phuket",
+        "Limit the number of visitors to Bangkok",
+        "Promote secondary cities with better transport and local festivals",
+        "Raise taxes on foreign tourists"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ประโยคสุดท้ายระบุว่ารัฐจะส่งเสริมเมืองรองผ่านการคมนาคมที่ดีขึ้นและเทศกาลท้องถิ่น · ตัวเลือกอื่นไม่มีในบทความ",
+      "tip": "ข้อ detail → หาคำตอบตรงในบทความ",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“A recent labour survey found that nearly half of Thai workers are employed in the informal sector, such as street vending, small-scale farming and app-based delivery. These workers often lack social security, paid leave and stable income. The report recommends simplifying registration for social security and offering flexible contribution rates, so that informal workers can be protected without facing a heavy financial burden.”\n\nAccording to the passage, what problem do informal workers often face?",
+      "choices": [
+        "They lack social security and stable income.",
+        "They pay too much income tax.",
+        "They cannot use mobile applications.",
+        "They work fewer hours than formal workers."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "บทความระบุว่า “often lack social security, paid leave and stable income” · ตัวเลือกอื่นไม่ปรากฏในบทความ",
+      "tip": "According to → ตอบตามบทความเท่านั้น",
+      "sourceRef": ""
+    },
+    {
+      "position": 22,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Air pollution from fine particulate matter (PM2.5) peaks between January and April, mainly due to agricultural burning and traffic. Hospitals in the north report a sharp increase in respiratory illness during this period. Provincial authorities have banned open burning, but enforcement remains weak. Experts argue that farmers need affordable alternatives, such as machinery for turning crop waste into compost, otherwise the ban alone will have limited effect.”\n\nAccording to the passage, what are the main causes of PM2.5?",
+      "choices": [
+        "Hospitals and factories",
+        "Rain and wind",
+        "Agricultural burning and traffic",
+        "Compost and machinery"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "บทความระบุว่า “mainly due to agricultural burning and traffic” · compost/machinery เป็นทางแก้ที่ผู้เชี่ยวชาญเสนอ ไม่ใช่สาเหตุ",
+      "tip": "due to = เนื่องจาก (สาเหตุ)",
+      "sourceRef": ""
+    },
+    {
+      "position": 23,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Air pollution from fine particulate matter (PM2.5) peaks between January and April, mainly due to agricultural burning and traffic. Hospitals in the north report a sharp increase in respiratory illness during this period. Provincial authorities have banned open burning, but enforcement remains weak. Experts argue that farmers need affordable alternatives, such as machinery for turning crop waste into compost, otherwise the ban alone will have limited effect.”\n\nWhat do experts suggest?",
+      "choices": [
+        "Providing farmers with affordable alternatives to burning",
+        "Removing the ban on open burning",
+        "Closing hospitals in the north",
+        "Banning all traffic from January to April"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ผู้เชี่ยวชาญเสนอว่าเกษตรกรต้องมีทางเลือกราคาไม่แพง เช่น เครื่องจักรแปรเศษวัสดุเป็นปุ๋ยหมัก แทนการเผา",
+      "tip": "Experts argue … → ข้อเสนอแนะ",
+      "sourceRef": ""
+    },
+    {
+      "position": 24,
+      "category": "Error Identification",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Choose the underlined part that is incorrect:\n“All staff (A) must (B) to complete (C) the online training (D) by Friday.”",
+      "choices": [
+        "(A) must",
+        "(C) the online training",
+        "(B) to complete",
+        "(D) by"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "modal verb (must, can, should ฯลฯ) ตามด้วย V1 ไม่มี to → must complete",
+      "tip": "modal + V1 (ไม่มี to)",
+      "sourceRef": ""
+    },
+    {
+      "position": 25,
+      "category": "Error Identification",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "hard",
+      "prompt": "Choose the underlined part that is incorrect:\n“The committee (A) suggested (B) to conduct (C) a survey (D) of local businesses.”",
+      "choices": [
+        "(C) a survey",
+        "(D) of",
+        "(A) suggested",
+        "(B) to conduct"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "suggest ตามด้วย V-ing หรือ that-clause ไม่ตามด้วย to-infinitive → suggested conducting a survey",
+      "tip": "suggest + V-ing",
+      "sourceRef": ""
+    }
+  ]
+}

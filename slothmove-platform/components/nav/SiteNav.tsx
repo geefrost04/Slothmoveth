@@ -52,7 +52,7 @@ const COURSE_NAV: Record<string, CourseNavMeta> = {
     soft: '#f1ecfb',
     line: '#dcd0f3',
     hubTitle: 'หน้ารวม 7 หัวข้อ สศช.',
-    hubNote: 'Mini Mock · โน้ตและข้อสอบรายหัวข้อ',
+    hubNote: 'Mini Mock · Mini Drill · โน้ตและข้อสอบรายหัวข้อ',
     topicWord: 'หัวข้อ',
     primary: { label: 'Mini Mock', href: '/courses/nesdc/mini-mock/nesdc-mini_mock-set-01', title: 'Mini Mock 30 ข้อ', note: 'คละครบ 7 หัวข้อ จับเวลา 36 นาที' }
   }

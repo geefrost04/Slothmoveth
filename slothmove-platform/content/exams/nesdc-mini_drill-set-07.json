@@ -1,0 +1,192 @@
+{
+  "examSet": {
+    "id": "nesdc-mini_drill-set-07",
+    "title": "Mini Drill คอมพิวเตอร์: คีย์ลัดและสูตร Excel",
+    "description": "Mini Drill คอมพิวเตอร์: คีย์ลัดและสูตร Excel 10 ข้อ ทวนเร็วพร้อมเฉลย สำหรับสอบพนักงานราชการ สศช. ตำแหน่งพนักงานบริหารงานทั่วไป (งานวิเคราะห์นโยบายและแผน)",
+    "accessType": "free",
+    "durationMinutes": 12,
+    "totalQuestions": 10,
+    "catalogOrder": 7
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/nesdc/build-sets.mjs",
+    "answerDistribution": [
+      3,
+      3,
+      2,
+      2
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "คีย์ลัด",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "คีย์ลัด Ctrl + Y ใช้ทำอะไร",
+      "choices": [
+        "บันทึกไฟล์",
+        "ทำซ้ำ (Redo)",
+        "ย้อนกลับ (Undo)",
+        "เลือกทั้งหมด"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Ctrl + Y = Redo · Ctrl + Z = Undo · Ctrl + A = เลือกทั้งหมด · Ctrl + S = บันทึก",
+      "tip": "Z ย้อน · Y ทำซ้ำ",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "คีย์ลัด",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ใน PowerPoint คีย์ลัดใดใช้เพิ่มสไลด์ใหม่",
+      "choices": [
+        "Shift + F5",
+        "Ctrl + M",
+        "Ctrl + N",
+        "Ctrl + P"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Ctrl + M = เพิ่มสไลด์ · Ctrl + N = สร้างไฟล์ใหม่ · Shift + F5 = ฉายจากแผ่นปัจจุบัน",
+      "tip": "M = More slide",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "คีย์ลัด",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ใน PowerPoint ต้องการเริ่มนำเสนอตั้งแต่สไลด์แผ่นแรก ใช้คีย์ใด",
+      "choices": [
+        "F5",
+        "F7",
+        "Esc",
+        "Shift + F5"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "F5 = ฉายแผ่นแรก · Shift + F5 = แผ่นปัจจุบัน · Esc = ออกจากการฉาย",
+      "tip": "F5 เริ่มต้น · Shift ต่อจากตรงนี้",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "คีย์ลัด",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ใน Word คีย์ใดใช้ตรวจตัวสะกดและไวยากรณ์ (Spelling & Grammar)",
+      "choices": [
+        "F7",
+        "F5",
+        "F4",
+        "F12"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Spelling & Grammar = F7 · F4 = สลับรูปแบบอ้างอิงเซลล์ใน Excel · F5 = ฉายสไลด์",
+      "tip": "F7 ตรวจคำ",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ใน Excel กดปุ่มใดเพื่อสลับรูปแบบการอ้างอิงเซลล์ เช่น A1 → $A$1",
+      "choices": [
+        "F4",
+        "F9",
+        "F7",
+        "F2"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "กด F4 สลับ A1 / $A$1 / A$1 / $A1",
+      "tip": "F4 = ใส่ $",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "คีย์ลัด",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "คีย์ลัดใดใช้เปิด Task Manager ใน Windows โดยตรง",
+      "choices": [
+        "Windows + D",
+        "Windows + L",
+        "Ctrl + Shift + Esc",
+        "Alt + Tab"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Ctrl + Shift + Esc = Task Manager · Alt + Tab = สลับหน้าต่าง · Win + D = เดสก์ท็อป · Win + L = ล็อก",
+      "tip": "Esc + Shift + Ctrl = งานค้าง",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "คีย์ลัด",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "คีย์ลัด Windows + D ใช้ทำอะไร",
+      "choices": [
+        "เปิด Task Manager",
+        "ล็อกหน้าจอ",
+        "ไปหน้าเดสก์ท็อป",
+        "สลับหน้าต่าง"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Windows + D = Desktop · Windows + L = Lock",
+      "tip": "D = Desktop · L = Lock",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "ใน Excel เครื่องหมายใดใช้ต่อข้อความจากหลายเซลล์เข้าด้วยกัน",
+      "choices": [
+        "%",
+        "#",
+        "$",
+        "&"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "& ใช้ต่อข้อความ เช่น =A1&B1 · $ = ล็อกเซลล์ · # = ขึ้นต้นข้อความผิดพลาด",
+      "tip": "& = และ (ต่อกัน)",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "medium",
+      "prompt": "ต้องการนับจำนวนรายการที่ตรงหลายเงื่อนไขพร้อมกัน เช่น ประเภท ก. และเดือน ม.ค. ควรใช้ฟังก์ชันใด",
+      "choices": [
+        "SUMIF",
+        "COUNTA",
+        "COUNTIF",
+        "COUNTIFS"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "COUNTIF = เงื่อนไขเดียว · COUNTIFS = หลายเงื่อนไข · COUNTA = นับเซลล์ไม่ว่าง",
+      "tip": "มี S = หลายเงื่อนไข",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Excel",
+      "topic": "คอมพิวเตอร์",
+      "difficulty": "easy",
+      "prompt": "เซลล์ใน Excel แสดง #REF! มีสาเหตุจากข้อใด",
+      "choices": [
+        "ใช้ข้อมูลผิดชนิด",
+        "อ้างอิงเซลล์ที่ถูกลบไปแล้ว",
+        "คอลัมน์แคบเกินไป",
+        "หารด้วยศูนย์"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "#REF! = อ้างเซลล์ที่ถูกลบ · #DIV/0! = หารศูนย์ · #VALUE! = ผิดชนิด · ##### = คอลัมน์แคบ",
+      "tip": "REF = Reference หาย",
+      "sourceRef": ""
+    }
+  ]
+}

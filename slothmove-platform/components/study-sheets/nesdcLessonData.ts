@@ -7,6 +7,7 @@ import { LESSONS as ENGLISH } from './nesdc/english';
 import { LESSONS as ORG } from './nesdc/org';
 import { LESSONS as NATIONAL } from './nesdc/national';
 import { LESSONS as ANALYSIS } from './nesdc/analysis';
+import { LESSONS as REVIEW } from './nesdc/review';
 import TOPICS from './nesdcTopics.json';
 import { thaiWrapDeep } from '@/lib/thaiText';
 
@@ -22,7 +23,8 @@ const SOURCES: Record<string, NoteLesson[]> = {
   'nesdc-english': ENGLISH,
   'nesdc-org': ORG,
   'nesdc-national': NATIONAL,
-  'nesdc-analysis': ANALYSIS
+  'nesdc-analysis': ANALYSIS,
+  'nesdc-review': REVIEW
 };
 
 function resolve(refs: string[][]): NoteLesson[] {
@@ -36,11 +38,17 @@ function resolve(refs: string[][]): NoteLesson[] {
   });
 }
 
-// Chapters are renumbered lesson-01, lesson-02 …; a quick review becomes "review".
+// Chapters are renumbered lesson-01, lesson-02 …; a quick review becomes "review" (review-1, review-2 … if several).
 function buildTopic(refs: string[][]): NoteLesson[] {
+  const lessons = resolve(refs);
+  const reviews = lessons.filter((lesson) => lesson.sectionType === 'quick_review').length;
   let chapter = 0;
-  return resolve(refs).map((lesson, index) => {
-    if (lesson.sectionType === 'quick_review') return { ...lesson, slug: 'review', chapterNo: index + 1 };
+  let review = 0;
+  return lessons.map((lesson, index) => {
+    if (lesson.sectionType === 'quick_review') {
+      review += 1;
+      return { ...lesson, slug: reviews > 1 ? `review-${review}` : 'review', chapterNo: index + 1 };
+    }
     chapter += 1;
     return {
       ...lesson,

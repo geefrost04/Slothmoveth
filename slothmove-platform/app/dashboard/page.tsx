@@ -61,7 +61,7 @@ const SUBJECT_TITLES: Record<string, string> = {
   // สศช. (NESDC) topics: saved as nesdc_<topic> so they don't mix with police/ONWR ids
   nesdc_general: 'ความรู้ความสามารถทั่วไป (สศช.)', nesdc_saraban: 'งานสารบรรณ (สศช.)', nesdc_english: 'ภาษาอังกฤษ (สศช.)',
   nesdc_computer: 'คอมพิวเตอร์ (สศช.)', nesdc_org: 'ความรู้เกี่ยวกับ สศช.', nesdc_national: 'ยุทธศาสตร์ชาติและแผนพัฒนาฯ',
-  nesdc_analysis: 'การสรุปและวิเคราะห์งาน', nesdc_mini_mock: 'Mini Mock สศช.'
+  nesdc_analysis: 'การสรุปและวิเคราะห์งาน', nesdc_mini_mock: 'Mini Mock สศช.', nesdc_mini_drill: 'Mini Drill สศช.'
 };
 const ONWR_TOPIC_IDS = new Set(['org', 'admin', 'rules', 'policy', 'masterplan', 'monitoring', 'project', 'meeting', 'wateract']);
 function isOnwrSubject(subjectId: string) {
@@ -101,6 +101,7 @@ function normalizeAttemptSubject(attempt: Pick<AttemptRow, 'subject_id' | 'quiz_
   if (attempt.quiz_id.startsWith('onwr-mini_drill-')) return 'onwr_mini_drill';
   // NESDC topic ids (general, saraban, english, computer, org) overlap police/ONWR ones.
   if (attempt.quiz_id.startsWith('nesdc-mini_mock-')) return 'nesdc_mini_mock';
+  if (attempt.quiz_id.startsWith('nesdc-mini_drill-')) return 'nesdc_mini_drill';
   const nesdcSet = attempt.quiz_id.match(/^nesdc-([a-z]+)-set-\d{2}$/);
   if (nesdcSet) return `nesdc_${nesdcSet[1]}`;
   return attempt.subject_id;
@@ -114,9 +115,11 @@ function summarizeAttempts(groupAttempts: AttemptRow[]) {
 
 function getPracticeHref(subjectId: string, examSetId?: string | null) {
   if (examSetId?.startsWith('nesdc-mini_mock-')) return `/courses/nesdc/mini-mock/${examSetId}`;
+  if (examSetId?.startsWith('nesdc-mini_drill-')) return `/courses/nesdc/mini-drill/${examSetId}`;
   const nesdcSet = examSetId?.match(/^nesdc-([a-z]+)-set-\d{2}$/);
   if (nesdcSet) return `/courses/nesdc/${nesdcSet[1]}/exams/${examSetId}`;
   if (subjectId === 'nesdc_mini_mock') return '/courses/nesdc#mini';
+  if (subjectId === 'nesdc_mini_drill') return '/courses/nesdc#drill';
   if (isNesdcSubject(subjectId)) return `/courses/nesdc/${subjectId.slice('nesdc_'.length)}`;
   if (examSetId?.startsWith('onwr-mini_mock-')) return `/courses/onwr/mini-mock/${examSetId}`;
   if (examSetId?.startsWith('onwr-mini_drill-')) return `/courses/onwr/mini-drill/${examSetId}`;

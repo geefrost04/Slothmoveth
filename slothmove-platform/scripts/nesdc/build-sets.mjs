@@ -106,6 +106,37 @@ for (const [topicIndex, topic] of TOPICS.entries()) {
     write(id, `${topic.title} ชุดที่ ${setIndex + 1}`, `${topic.title} ${items.length} ข้อ พร้อมเฉลยละเอียด สำหรับ${POSITION}`, toQuestions(items, rand), setIndex + 1);
   });
   console.log(`${topic.id}: ${QUESTIONS.length} questions → mini ${reserved.length} + sets ${groups.map((g) => g.length).join(' + ')}`);
+
+  // Round 2: <topic>-more.mjs becomes extra sets after the first ones, leaving the live sets unchanged.
+  const moreFile = path.resolve(`scripts/nesdc/banks/${topic.id}-more.mjs`);
+  if (fs.existsSync(moreFile)) {
+    const { QUESTIONS: MORE } = await import(pathToFileURL(moreFile).href);
+    check(`${topic.id}-more`, [...QUESTIONS, ...MORE]);
+    const moreRand = mulberry32(20261110 + topicIndex * 101);
+    const moreCount = Math.max(1, Math.ceil(MORE.length / 25));
+    const moreGroups = Array.from({ length: moreCount }, () => []);
+    MORE.forEach((item, i) => moreGroups[i % moreCount].push({ item, topic }));
+    moreGroups.forEach((items, i) => {
+      const setNo = groups.length + i + 1;
+      const id = `nesdc-${topic.id}-set-${String(setNo).padStart(2, '0')}`;
+      write(id, `${topic.title} ชุดที่ ${setNo}`, `${topic.title} ${items.length} ข้อ พร้อมเฉลยละเอียด สำหรับ${POSITION}`, toQuestions(items, moreRand), setNo);
+    });
+    console.log(`${topic.id}-more: ${MORE.length} questions → sets ${moreGroups.map((g) => g.length).join(' + ')}`);
+  }
+}
+
+// Mini Drill: scripts/nesdc/banks/drill.mjs → nesdc-mini_drill-set-NN (10 quick questions each).
+const drillFile = path.resolve('scripts/nesdc/banks/drill.mjs');
+if (fs.existsSync(drillFile)) {
+  const { DRILLS } = await import(pathToFileURL(drillFile).href);
+  check('drill', DRILLS.flatMap((drill) => drill.questions));
+  DRILLS.forEach((drill, index) => {
+    const id = `nesdc-mini_drill-set-${String(index + 1).padStart(2, '0')}`;
+    const group = drill.title.replace(/^Mini Drill\s*/, '').split(':')[0].trim();
+    const rand = mulberry32(77000 + index);
+    write(id, drill.title, `${drill.title} ${drill.questions.length} ข้อ ทวนเร็วพร้อมเฉลย สำหรับ${POSITION}`, toQuestions(drill.questions.map((item) => ({ item, topic: { title: group } })), rand), index + 1);
+  });
+  console.log(`drills: ${DRILLS.length} sets`);
 }
 
 mini.forEach((items, setIndex) => {
