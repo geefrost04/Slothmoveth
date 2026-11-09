@@ -3,7 +3,7 @@
   --ink: #1d1a1b;
   --muted: #6f6467;
   --line: #e6dcdd;
-  --accent: #7a1822;
+  --accent: var(--course-accent, #7a1822);
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(300px, 1fr);
   gap: 48px;

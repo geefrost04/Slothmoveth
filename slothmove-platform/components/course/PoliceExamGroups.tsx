@@ -5,20 +5,22 @@ import type { CatalogExamSet } from '@/lib/exam-data';
 import { CheckoutButton } from '@/components/commerce/CheckoutButton';
 import styles from './PoliceExamGroups.module.css';
 
-type GroupKey = 'quick' | 'p54' | 'full' | 'other';
+type GroupKey = 'quick' | 'p54' | 'full' | 'drill' | 'other';
 
 const GROUPS: Record<GroupKey, { title: string; desc: string }> = {
   quick: { title: 'ทบทวนเร็ว', desc: 'คละทุกหัวข้อ ทำจบไว แล้วไปชุดถัดไปได้เลย' },
   p54: { title: 'ลักษณะที่ 54', desc: 'สารบรรณตำรวจ ฉบับแก้ไขถึงฉบับที่ 21/2569' },
   full: { title: 'ชุดเต็ม', desc: 'จับเวลาเหมือนสนามจริง ใช้วัดความพร้อม' },
+  drill: { title: 'Mini Drill', desc: 'ทวนเร็ว 10 ข้อ แต่ละชุดเน้นเรื่องที่ออกบ่อย' },
   other: { title: 'ชุดอื่น ๆ', desc: 'ชุดฝึกเพิ่มเติมของวิชานี้' }
 };
-const ORDER: GroupKey[] = ['quick', 'p54', 'full', 'other'];
+const ORDER: GroupKey[] = ['quick', 'p54', 'full', 'drill', 'other'];
 
 export function groupKeyOf(examSet: CatalogExamSet): GroupKey {
   if (examSet.id.includes('-quick-')) return 'quick';
   if (examSet.id.includes('-p54-')) return 'p54';
   if (/-set-\d{2}$/.test(examSet.id)) return 'full';
+  if (/-drill-\d{2}$/.test(examSet.id)) return 'drill';
   return 'other';
 }
 

@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import courseTheme from './CourseTheme.module.css';
 import type { CourseConfig, SubjectMeta } from '@/lib/course-types';
 import type { CourseKnowledgeData } from '@/lib/knowledge-types';
 import type { CatalogExamSet } from '@/lib/exam-data';
 import { CourseKnowledgeContent } from './CourseKnowledgeContent';
 import { PoliceExamCatalogClient } from './PoliceExamCatalogClient';
-import { PoliceSubjectHero } from './PoliceSubjectHero';
+import { PoliceSubjectHero, type Outline } from './PoliceSubjectHero';
+import { ONWR_LESSONS } from '@/components/study-sheets/onwrLessonData';
 import { CoffeePdfButton } from '@/components/commerce/CoffeePdfButton';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
@@ -48,7 +50,7 @@ export function CourseSubjectPage({
     );
   }
 
-  if (course.id === 'police_admin') {
+  if (course.id === 'police_admin' || course.id === 'onwr') {
     return (
       <PoliceSubjectLandingPage
         course={course}
@@ -206,6 +208,30 @@ const POLICE_SUBJECT_DETAILS: Record<string, {
   }
 };
 
+// ONWR: details and notebook outline come from the topic notes (onwrTopics.json / onwrLessonData.ts).
+function onwrSubjectDetails(course: CourseConfig, subject: SubjectMeta) {
+  const lessons = ONWR_LESSONS[subject.id] ?? [];
+  const index = course.subjects.findIndex((item) => item.id === subject.id);
+  const group = index < 3 ? 'ความรู้ทั่วไป' : 'ความรู้เฉพาะตำแหน่ง';
+  const topicNo = index < 3 ? index + 1 : index - 2;
+  const chapters = lessons.filter((lesson) => lesson.sectionType === 'chapter');
+  const outline: Outline = lessons.map((lesson) => ({
+    label: lesson.sectionType === 'chapter' ? `บท ${lesson.chapterNo}` : '★',
+    title: lesson.title,
+    meta: lesson.sectionType === 'chapter' ? '1 บท' : '1 หน้า'
+  }));
+  return {
+    details: {
+      eyebrow: subject.id === 'review' ? 'ก่อนเข้าห้องสอบ' : `${group} · หัวข้อที่ ${topicNo}`,
+      summary: subject.desc,
+      highlight: chapters.map((lesson) => lesson.title).join(' · ') || subject.desc,
+      hasSummary: lessons.length > 0
+    },
+    outline,
+    sheetTitle: chapters.length ? `โน้ตสรุป ${chapters.length} บท` : `โน้ตทบทวน ${lessons.length} หน้า`
+  };
+}
+
 function PoliceSubjectLandingPage({
   course,
   subject,
@@ -219,8 +245,9 @@ function PoliceSubjectLandingPage({
   examSets: CatalogExamSet[];
   ownedExamSetIds: string[];
 }) {
-  const details = POLICE_SUBJECT_DETAILS[subject.id] ?? {
-    eyebrow: 'เตรียมสอบนายสิบตำรวจ',
+  const onwr = course.id === 'onwr' ? onwrSubjectDetails(course, subject) : null;
+  const details = onwr?.details ?? POLICE_SUBJECT_DETAILS[subject.id] ?? {
+    eyebrow: `เตรียมสอบ${course.tagline}`,
     summary: subject.desc,
     highlight: 'ทบทวน · ฝึกทำ · วิเคราะห์ผล',
     hasSummary: false
@@ -233,14 +260,14 @@ function PoliceSubjectLandingPage({
   const summaryHref = `/courses/${course.id}/${subject.id}/summary`;
 
   return (
-    <div className={`police-subject-page police-subject-page--catalog subject-${subject.id}`}>
+    <div className={`police-subject-page police-subject-page--catalog subject-${subject.id} ${course.id === 'onwr' ? courseTheme.onwr : ''}`} style={course.id === 'onwr' ? ({ '--course-accent': '#0b5f86', '--course-accent-dark': '#07425e' } as React.CSSProperties) : undefined}>
       <div className="container">
         <nav className="police-subject-breadcrumb" aria-label="breadcrumb">
           <Link href="/">หน้าแรก</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
-          <Link href={`/courses/${course.id}`}>นายสิบตำรวจ สายอำนวยการ</Link>
+          <Link href={`/courses/${course.id}`}>{course.tagline}</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>
@@ -257,6 +284,8 @@ function PoliceSubjectLandingPage({
           questionCount={totalQuestions}
           allFree={examSets.length > 0 && freeSets === examSets.length}
           freeSets={freeSets}
+          outline={onwr?.outline}
+          sheetTitle={onwr?.sheetTitle}
         />
 
         <section className="police-subject-exam-section">
@@ -387,7 +416,7 @@ function PoliceMathSubjectPage({
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <Link href={`/courses/${course.id}`}>สนามสอบ</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
-          <Link href={`/courses/${course.id}`}>นายสิบตำรวจ สายอำนวยการ</Link>
+          <Link href={`/courses/${course.id}`}>{course.tagline}</Link>
           <span className="police-subject-breadcrumb-separator">&gt;</span>
           <span className="police-subject-breadcrumb-current">{subject.title}</span>
         </nav>

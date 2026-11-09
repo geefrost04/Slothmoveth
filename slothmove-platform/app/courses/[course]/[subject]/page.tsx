@@ -29,7 +29,7 @@ export default async function SubjectPage({
     );
   }
   const knowledge = getCourseKnowledgeData(course.id, subject.id);
-  const hasExamCatalog = course.id === 'police_admin';
+  const hasExamCatalog = course.id === 'police_admin' || course.id === 'onwr';
   let examSets: CatalogExamSet[] = [];
   if (hasExamCatalog) {
     try {

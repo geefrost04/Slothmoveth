@@ -1,0 +1,192 @@
+{
+  "examSet": {
+    "id": "onwr-mini_drill-set-06",
+    "title": "Mini Drill นโยบาย แผน และการประเมินผล: ติดตามประเมินผล การประชุม และการมีส่วนร่วม",
+    "description": "Mini Drill 10 ข้อ ทวนเร็ววิชานโยบาย แผน และการประเมินผล สอบ สทนช. พร้อมเฉลย",
+    "accessType": "free",
+    "durationMinutes": 12,
+    "totalQuestions": 10,
+    "catalogOrder": 6
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/onwr/build-exam-sets.mjs",
+    "answerDistribution": [
+      3,
+      3,
+      2,
+      2
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "การประเมินผล",
+      "topic": "การประเมินผล",
+      "difficulty": "medium",
+      "prompt": "เมื่อโครงการสิ้นสุด หน่วยงานประเมินผลเพื่อตัดสินว่าควรขยายผลหรือยุติโครงการ เป็นการประเมินประเภทใด",
+      "choices": [
+        "การประเมินระหว่างดำเนินการ (Formative)",
+        "การประเมินก่อนดำเนินการ (Ex-ante)",
+        "การประเมินสรุปผล (Summative)",
+        "การติดตาม (Monitoring)"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Summative ทำเมื่อจบเพื่อตัดสินผล ทำต่อหรือยุติ · Formative ทำระหว่างทางเพื่อปรับปรุง",
+      "tip": "จบแล้วตัดสิน = Summative",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "การประเมินผล",
+      "topic": "การประเมินผล",
+      "difficulty": "medium",
+      "prompt": "การประเมินที่ทำหลังโครงการจบไปแล้วระยะหนึ่ง เพื่อดูผลกระทบและความยั่งยืน เรียกว่าอะไร",
+      "choices": [
+        "การประเมินก่อนดำเนินการ (Ex-ante)",
+        "การประเมินระหว่างดำเนินการ (Formative)",
+        "การประเมินหลังโครงการ (Ex-post)",
+        "การประเมินแบบไม่ยึดเป้าหมาย (Goal-free)"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Ex-ante ก่อนเริ่ม · Formative ระหว่างทำ · Summative เมื่อจบ · Ex-post หลังจบไประยะหนึ่ง ดูผลกระทบและความยั่งยืน",
+      "tip": "จบไปนานแล้ว = Ex-post",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "รูปแบบการประเมิน",
+      "topic": "รูปแบบการประเมิน",
+      "difficulty": "medium",
+      "prompt": "ตาม CIPP Model การประเมินว่างบประมาณ บุคลากร และวัสดุอุปกรณ์ของโครงการเพียงพอและเหมาะสมหรือไม่ เป็นการประเมินด้านใด",
+      "choices": [
+        "กระบวนการ (Process)",
+        "ผลผลิต (Product)",
+        "บริบท (Context)",
+        "ปัจจัยนำเข้า (Input)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "CIPP (Stufflebeam): Context บริบท · Input ปัจจัยนำเข้า (ทรัพยากร) · Process กระบวนการ · Product ผลผลิต",
+      "tip": "เงิน คน ของ = Input",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "รูปแบบการประเมิน",
+      "topic": "รูปแบบการประเมิน",
+      "difficulty": "medium",
+      "prompt": "แจกแบบสอบถามความพึงพอใจของผู้เข้าอบรมทันทีหลังจบหลักสูตร เป็นการประเมินระดับใดตามแนวคิดของ Kirkpatrick",
+      "choices": [
+        "ระดับปฏิกิริยา (Reaction)",
+        "ระดับการเรียนรู้ (Learning)",
+        "ระดับผลลัพธ์ต่อองค์กร (Results)",
+        "ระดับพฤติกรรม (Behavior)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Kirkpatrick 4 ระดับ: 1 ปฏิกิริยา (พึงพอใจ) → 2 การเรียนรู้ → 3 พฤติกรรม → 4 ผลลัพธ์ต่อองค์กร",
+      "tip": "ชอบไหม = ระดับ 1 Reaction",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "รูปแบบการประเมิน",
+      "topic": "รูปแบบการประเมิน",
+      "difficulty": "medium",
+      "prompt": "แบบจำลองเชิงตรรกะ (Logic Model) เรียงลำดับองค์ประกอบอย่างไร",
+      "choices": [
+        "Impact → Outcome → Output → Activities → Input",
+        "Input → Activities → Output → Outcome → Impact",
+        "Input → Output → Activities → Impact → Outcome",
+        "Activities → Input → Outcome → Output → Impact"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Logic Model: ปัจจัยนำเข้า → กิจกรรม → ผลผลิต → ผลลัพธ์ → ผลกระทบ",
+      "tip": "I → A → Output → Outcome → Impact",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "การประชุม",
+      "topic": "การประชุม",
+      "difficulty": "medium",
+      "prompt": "คณะกรรมการชุดหนึ่งมีกรรมการทั้งหมด 11 คน กฎหมายจัดตั้งไม่ได้กำหนดองค์ประชุมไว้ ในการประชุมครั้งแรกต้องมีกรรมการมาประชุมอย่างน้อยกี่คนจึงครบองค์ประชุม",
+      "choices": [
+        "8 คน",
+        "6 คน",
+        "4 คน",
+        "5 คน"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "พ.ร.บ.วิธีปฏิบัติราชการทางปกครองฯ องค์ประชุมไม่น้อยกว่ากึ่งหนึ่ง: กึ่งหนึ่งของ 11 = 5.5 จึงต้องมีอย่างน้อย 6 คน",
+      "tip": "กึ่งหนึ่ง ปัดขึ้น",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "การประชุม",
+      "topic": "การประชุม",
+      "difficulty": "medium",
+      "prompt": "ในการประชุมคณะกรรมการตาม พ.ร.บ.วิธีปฏิบัติราชการทางปกครองฯ หากประธานไม่มาประชุม และไม่มีรองประธานหรือรองประธานไม่อยู่ ให้ดำเนินการอย่างไร",
+      "choices": [
+        "เลื่อนการประชุมออกไปจนกว่าประธานจะมา",
+        "กรรมการที่มาประชุมเลือกกรรมการคนหนึ่งเป็นประธานในที่ประชุม",
+        "ให้เลขานุการทำหน้าที่ประธาน",
+        "ให้กรรมการที่มีอายุสูงสุดเป็นประธานโดยอัตโนมัติ"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ประธานไม่อยู่ → รองประธานทำหน้าที่ · ถ้าไม่มีหรือไม่อยู่ → กรรมการที่มาประชุมเลือกกันเอง",
+      "tip": "ไม่มีประธาน-รอง = เลือกกันเอง",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "การประชุม",
+      "topic": "การประชุม",
+      "difficulty": "medium",
+      "prompt": "ในระเบียบวาระการประชุมที่ใช้ทั่วไป วาระที่ 2 มักเป็นเรื่องใด",
+      "choices": [
+        "รับรองรายงานการประชุมครั้งที่แล้ว",
+        "เรื่องเสนอเพื่อพิจารณา",
+        "เรื่องที่ประธานแจ้งให้ที่ประชุมทราบ",
+        "เรื่องอื่น ๆ"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "วาระทั่วไป: 1 ประธานแจ้งเพื่อทราบ · 2 รับรองรายงานการประชุมครั้งที่แล้ว · 3 เรื่องสืบเนื่อง · 4 เรื่องเสนอเพื่อพิจารณา · 5 เรื่องอื่น ๆ",
+      "tip": "วาระ 2 = รับรองรายงาน",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "การระดมความคิด",
+      "topic": "การระดมความคิด",
+      "difficulty": "medium",
+      "prompt": "สทนช. ต้องการความเห็นจากผู้เชี่ยวชาญด้านน้ำหลายคนที่อยู่ต่างพื้นที่ โดยถามผ่านแบบสอบถามหลายรอบจนได้ฉันทามติ โดยไม่ต้องนัดประชุมพร้อมกัน ควรใช้เทคนิคใด",
+      "choices": [
+        "Delphi Technique",
+        "Brainstorming",
+        "Focus Group",
+        "Nominal Group Technique"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Delphi ถามผู้เชี่ยวชาญหลายรอบโดยไม่ต้องพบหน้า · Focus Group และ Brainstorming ต้องคุยพร้อมกัน · NGT เขียนแล้วลงคะแนนในที่ประชุม",
+      "tip": "หลายรอบ ไม่พบหน้า = Delphi",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "การมีส่วนร่วม",
+      "topic": "การมีส่วนร่วม",
+      "difficulty": "medium",
+      "prompt": "การจัดทำประชามติให้ประชาชนเป็นผู้ตัดสินใจเลือกโครงการเอง เป็นการมีส่วนร่วมระดับใดตาม IAP2",
+      "choices": [
+        "ปรึกษาหารือ (Consult)",
+        "ร่วมมือ (Collaborate)",
+        "เข้ามาเกี่ยวข้อง (Involve)",
+        "เสริมอำนาจ (Empower)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "IAP2: Inform → Consult → Involve → Collaborate → Empower · ประชาชนเป็นผู้ตัดสินใจ เช่น ประชามติ = Empower",
+      "tip": "ประชาชนตัดสินเอง = Empower",
+      "sourceRef": ""
+    }
+  ]
+}

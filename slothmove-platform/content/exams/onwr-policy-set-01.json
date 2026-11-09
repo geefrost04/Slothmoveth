@@ -1,0 +1,396 @@
+{
+  "examSet": {
+    "id": "onwr-policy-set-01",
+    "title": "การจัดทำนโยบายและแผน ชุดที่ 1",
+    "description": "การจัดทำนโยบายและแผน 22 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สทนช. ตำแหน่งเจ้าหน้าที่วิเคราะห์นโยบายและแผน",
+    "accessType": "free",
+    "durationMinutes": 27,
+    "totalQuestions": 22,
+    "catalogOrder": 1
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/onwr/build-topic-sets.mjs",
+    "answerDistribution": [
+      6,
+      6,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "นโยบายสาธารณะ",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "นิยามนโยบายสาธารณะว่าเป็น \"สิ่งที่รัฐบาลเลือกที่จะทำหรือไม่ทำ\" เป็นของนักวิชาการท่านใด",
+      "choices": [
+        "Amitai Etzioni",
+        "Charles Lindblom",
+        "David Easton",
+        "Thomas R. Dye"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Thomas R. Dye นิยามว่า \"whatever governments choose to do or not to do\" การเลือกไม่ทำก็เป็นนโยบาย",
+      "tip": "Dye = ทำหรือไม่ทำ",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "ตัวแบบนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ตัวแบบนโยบายที่มองว่านโยบายใหม่เป็นการปรับปรุงจากนโยบายเดิมทีละน้อย เป็นแนวคิดของผู้ใด",
+      "choices": [
+        "Charles Lindblom",
+        "David Easton",
+        "Thomas R. Dye",
+        "Daniel Stufflebeam"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Incremental Model ของ Charles Lindblom",
+      "tip": "Lindblom = ค่อยเป็นค่อยไป",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "ตัวแบบนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ตัวแบบนโยบายที่มองว่านโยบายเป็นดุลยภาพจากการต่อรองของกลุ่มผลประโยชน์ต่าง ๆ คือข้อใด",
+      "choices": [
+        "ตัวแบบสถาบัน",
+        "ตัวแบบกลุ่ม",
+        "ตัวแบบเหตุผล",
+        "ตัวแบบผสมผสาน"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Group Model มองนโยบายเป็นผลของการต่อรองระหว่างกลุ่ม",
+      "tip": "กลุ่ม = ต่อรอง",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "การวิเคราะห์นโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ขั้นตอนแรกของการวิเคราะห์นโยบายตามแนวคิดของ William Dunn คือข้อใด",
+      "choices": [
+        "การกำหนดโครงสร้างปัญหา",
+        "การติดตามผล",
+        "การเสนอแนะ",
+        "การพยากรณ์"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ต้องเข้าใจว่าปัญหาที่แท้จริงคืออะไรก่อน แล้วจึงพยากรณ์ เสนอแนะ ติดตาม และประเมินผล",
+      "tip": "เริ่มที่ปัญหาเสมอ",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "การวางแผน",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "\"ภาพอนาคตที่องค์กรต้องการจะเป็น\" หมายถึงข้อใด",
+      "choices": [
+        "วิสัยทัศน์",
+        "ตัวชี้วัด",
+        "กลยุทธ์",
+        "พันธกิจ"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "วิสัยทัศน์ (Vision) คือภาพอนาคตที่ต้องการ",
+      "tip": "Vision = ภาพอนาคต",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "TOWS",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "กลยุทธ์ที่ใช้จุดแข็งขององค์กรเพื่อลดผลกระทบจากอุปสรรคภายนอก คือกลยุทธ์ใดใน TOWS Matrix",
+      "choices": [
+        "SO",
+        "WO",
+        "WT",
+        "ST"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ST = Strengths-Threats ใช้จุดแข็งป้องกันอุปสรรค",
+      "tip": "จุดแข็ง + อุปสรรค = ST",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Balanced Scorecard",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ข้อใดไม่ใช่มุมมองใน Balanced Scorecard",
+      "choices": [
+        "มุมมองด้านคู่แข่ง",
+        "มุมมองด้านการเรียนรู้และพัฒนา",
+        "มุมมองด้านลูกค้า",
+        "มุมมองด้านการเงิน"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "BSC มี 4 มุมมอง: การเงิน ลูกค้า กระบวนการภายใน การเรียนรู้และพัฒนา",
+      "tip": "เงิน · ลูกค้า · กระบวนการ · เรียนรู้",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "ตัวชี้วัด",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "วัตถุประสงค์ที่ดีตามหลัก SMART ตัว M หมายถึงข้อใด",
+      "choices": [
+        "สร้างแรงจูงใจ (Motivating)",
+        "บริหารจัดการได้ (Manageable)",
+        "วัดได้ (Measurable)",
+        "มีความหมาย (Meaningful)"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "SMART = Specific, Measurable, Achievable, Relevant, Time-bound",
+      "tip": "M = Measurable",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "ตัวแบบนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ตัวแบบนโยบายที่ผสมผสานระหว่างตัวแบบเหตุผลกับตัวแบบค่อยเป็นค่อยไป (Mixed Scanning) เป็นของผู้ใด",
+      "choices": [
+        "David Easton",
+        "Amitai Etzioni",
+        "Charles Lindblom",
+        "Thomas R. Dye"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Mixed Scanning ของ Amitai Etzioni",
+      "tip": "Etzioni = ผสมผสาน",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "ตัวแบบนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ตัวแบบที่มุ่งเลือกทางเลือกที่ให้ประโยชน์สูงสุด โดยต้องมีข้อมูลครบทุกทางเลือก คือข้อใด",
+      "choices": [
+        "ตัวแบบชนชั้นนำ",
+        "ตัวแบบค่อยเป็นค่อยไป",
+        "ตัวแบบเหตุผล",
+        "ตัวแบบกลุ่ม"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Rational Model เลือกทางเลือกที่ดีที่สุดจากการวิเคราะห์ครบทุกทาง",
+      "tip": "ข้อมูลครบ เลือกดีสุด = เหตุผล",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "วงจรนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "การกำหนดวัตถุประสงค์ สร้างทางเลือก และวิเคราะห์ทางเลือกต่าง ๆ อยู่ในขั้นตอนใด",
+      "choices": [
+        "การประเมินผลนโยบาย",
+        "การก่อรูปนโยบาย",
+        "การอนุมัตินโยบาย",
+        "การก่อตัวของนโยบาย"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Policy Formulation คือการสร้างและวิเคราะห์ทางเลือก",
+      "tip": "สร้างทางเลือก = ก่อรูป",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "ประเภทแผน",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "แผนที่ระบุว่าจะทำกิจกรรมอะไร ใครรับผิดชอบ เมื่อไร และใช้งบประมาณเท่าใดในรอบปี คือแผนประเภทใด",
+      "choices": [
+        "แผนยุทธศาสตร์",
+        "แผนระยะยาว",
+        "แผนปฏิบัติการ",
+        "แผนแม่บท"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "แผนปฏิบัติการ (Action Plan) เป็นแผนระยะสั้นที่ระบุรายละเอียดการดำเนินงาน",
+      "tip": "ใคร ทำอะไร เมื่อไร = ปฏิบัติการ",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "TOWS",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "กลยุทธ์ WO ใน TOWS Matrix หมายถึงข้อใด",
+      "choices": [
+        "ลดจุดอ่อนและหลีกเลี่ยงอุปสรรค",
+        "ใช้จุดแข็งเพื่อหลีกเลี่ยงอุปสรรค",
+        "ใช้จุดแข็งเพื่อคว้าโอกาส",
+        "ใช้โอกาสจากภายนอกเพื่อแก้ไขจุดอ่อน"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "WO = Weaknesses-Opportunities แก้จุดอ่อนด้วยโอกาส",
+      "tip": "W + O = แก้ไข",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "Balanced Scorecard",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "Balanced Scorecard เป็นแนวคิดของผู้ใด",
+      "choices": [
+        "Kaplan และ Norton",
+        "Lindblom",
+        "Kirkpatrick",
+        "Stufflebeam"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Robert Kaplan และ David Norton พัฒนา Balanced Scorecard",
+      "tip": "BSC = Kaplan & Norton",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "เครื่องมือวางแผน",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "แผนภูมิแท่งแนวนอนที่แสดงกิจกรรมเทียบกับช่วงเวลาเพื่อใช้ติดตามกำหนดการ คือข้อใด",
+      "choices": [
+        "Logic Model",
+        "Gantt Chart",
+        "SWOT",
+        "Strategy Map"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Gantt Chart แสดงกิจกรรมกับระยะเวลาเป็นแท่ง",
+      "tip": "แท่งกับเวลา = Gantt",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "ตัวชี้วัด",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "\"ร้อยละการเบิกจ่ายงบประมาณเป็นไปตามแผน\" เป็นตัวชี้วัดประเภทใด",
+      "choices": [
+        "ผลผลิต (Output)",
+        "ผลกระทบ (Impact)",
+        "กระบวนการ (Process)",
+        "ผลลัพธ์ (Outcome)"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "วัดการดำเนินงานระหว่างทาง = ตัวชี้วัดกระบวนการ",
+      "tip": "การทำงาน = Process",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "วงจรนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "การที่หน่วยงานแปลงนโยบายเป็นแผนงานโครงการแล้วลงมือดำเนินการ อยู่ในขั้นตอนใด",
+      "choices": [
+        "การก่อรูปนโยบาย",
+        "การนำนโยบายไปปฏิบัติ",
+        "การอนุมัตินโยบาย",
+        "การก่อตัวของนโยบาย"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Implementation คือการนำนโยบายไปปฏิบัติ",
+      "tip": "ลงมือทำ = นำไปปฏิบัติ",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "ตัวแบบนโยบาย",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "ตัวแบบที่มองว่านโยบายเป็นผลผลิตของสถาบันทางการเมือง เช่น รัฐสภา คณะรัฐมนตรี ศาล คือข้อใด",
+      "choices": [
+        "ตัวแบบถังขยะ",
+        "ตัวแบบสถาบัน",
+        "ตัวแบบผสมผสาน",
+        "ตัวแบบเหตุผล"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Institutional Model เน้นบทบาทของสถาบันทางการเมือง",
+      "tip": "รัฐสภา ครม. ศาล = สถาบัน",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "ประเภทแผน",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "แผนที่มีระยะเวลา 3–5 ปี โดยทั่วไปจัดเป็นแผนประเภทใด",
+      "choices": [
+        "แผนระยะสั้น",
+        "แผนระยะยาว",
+        "แผนฉุกเฉิน",
+        "แผนระยะกลาง"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ระยะสั้น 1 ปี · ระยะกลาง 3–5 ปี · ระยะยาว 10–20 ปี",
+      "tip": "3–5 ปี = ระยะกลาง",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "SWOT",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "หน่วยงานมีบุคลากรเชี่ยวชาญด้านอุทกวิทยาจำนวนมาก จัดเป็นปัจจัยใดใน SWOT",
+      "choices": [
+        "จุดแข็ง",
+        "โอกาส",
+        "จุดอ่อน",
+        "อุปสรรค"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ทรัพยากรภายในที่ดีขององค์กร = จุดแข็ง",
+      "tip": "ข้อดีภายใน = S",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "TOWS",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "กลยุทธ์เชิงรุกที่ใช้จุดแข็งขององค์กรเพื่อคว้าโอกาสจากภายนอก คือข้อใด",
+      "choices": [
+        "WT",
+        "WO",
+        "ST",
+        "SO"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "SO = Strengths-Opportunities เป็นกลยุทธ์เชิงรุก",
+      "tip": "แข็ง + โอกาส = รุก",
+      "sourceRef": ""
+    },
+    {
+      "position": 22,
+      "category": "เครื่องมือวางแผน",
+      "topic": "การจัดทำนโยบายและแผน",
+      "difficulty": "medium",
+      "prompt": "หากกิจกรรมที่อยู่บนสายงานวิกฤตล่าช้าไป 5 วัน จะเกิดผลอย่างไรต่อโครงการ",
+      "choices": [
+        "ไม่มีผลเพราะมีเวลาสำรอง",
+        "งบประมาณลดลง",
+        "โครงการทั้งหมดล่าช้าออกไปด้วย",
+        "โครงการเสร็จเร็วขึ้น"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "กิจกรรมบน Critical Path ไม่มีเวลาสำรอง ล่าช้าเท่าไรโครงการล่าช้าเท่านั้น",
+      "tip": "สายวิกฤตไม่มีเวลาเผื่อ",
+      "sourceRef": ""
+    }
+  ]
+}

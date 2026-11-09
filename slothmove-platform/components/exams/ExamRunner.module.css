@@ -10,7 +10,7 @@
   min-height: 100vh;
   color: var(--exam-ink);
   background:
-    radial-gradient(circle at 8% 4%, rgba(141, 36, 52, 0.055), transparent 24rem),
+    radial-gradient(circle at 8% 4%, color-mix(in srgb, var(--exam-red) 6%, transparent), transparent 24rem),
     linear-gradient(180deg, #fbfcfe 0%, #f5f7fa 100%);
 }
 
@@ -43,7 +43,7 @@
   text-decoration: none;
 }
 
-.wordmark span { color: #7a1822; }
+.wordmark span { color: var(--exam-red-dark); }
 
 .timer {
   display: flex;
@@ -51,10 +51,10 @@
   gap: 10px;
   min-height: 50px;
   padding: 8px 17px;
-  border: 1px solid #dba3ad;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 38%, white);
   border-radius: 12px;
   color: var(--exam-red);
-  background: #fff8f9;
+  background: color-mix(in srgb, var(--exam-red) 3%, white);
   font-variant-numeric: tabular-nums;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .timer span {
-  color: #8f5960;
+  color: color-mix(in srgb, var(--exam-red) 60%, #6b7280);
   font-size: 12px;
   font-weight: 700;
 }
@@ -83,7 +83,7 @@
 .timerWarning { animation: timerPulse 1.3s ease-in-out infinite; }
 
 @keyframes timerPulse {
-  50% { box-shadow: 0 0 0 5px rgba(141, 36, 52, 0.09); }
+  50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--exam-red) 9%, transparent); }
 }
 
 .exitButton {
@@ -102,7 +102,7 @@
   transition: 160ms ease;
 }
 
-.exitButton:hover { color: var(--exam-red); border-color: var(--exam-red); background: rgba(141, 36, 52, 0.05); }
+.exitButton:hover { color: var(--exam-red); border-color: var(--exam-red); background: color-mix(in srgb, var(--exam-red) 5%, transparent); }
 
 .examMain {
   display: grid;
@@ -333,8 +333,8 @@
 }
 
 .choiceButton:hover {
-  border-color: #d998a5;
-  background: #fffafb;
+  border-color: color-mix(in srgb, var(--exam-red) 45%, white);
+  background: color-mix(in srgb, var(--exam-red) 2%, white);
   transform: translateY(-1px);
 }
 
@@ -362,8 +362,8 @@
 .selectedChoice {
   border-color: var(--exam-red);
   color: var(--exam-red-dark);
-  background: linear-gradient(90deg, var(--exam-red-soft), #fff9fa);
-  box-shadow: 0 0 0 1px rgba(141, 36, 52, 0.06);
+  background: linear-gradient(90deg, var(--exam-red-soft), color-mix(in srgb, var(--exam-red) 2%, white));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--exam-red) 6%, transparent);
 }
 
 .selectedChoice .radioMark { border-color: var(--exam-red); background: var(--exam-red); }
@@ -398,7 +398,7 @@
   border: 1px solid var(--exam-red);
   color: #fff;
   background: linear-gradient(135deg, var(--exam-red), var(--exam-accent));
-  box-shadow: 0 8px 18px rgba(141, 36, 52, 0.2);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--exam-red) 20%, transparent);
 }
 
 .primaryButton:hover { background: var(--exam-red-dark); transform: translateY(-1px); }
@@ -477,7 +477,7 @@
 .flagAsideButton {
   width: 100%;
   min-height: 48px;
-  border: 1px solid #d998a5;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 45%, white);
   border-radius: 9px;
   color: var(--exam-red);
   background: #fff;
@@ -605,7 +605,7 @@
   padding: 12px 16px;
   border-radius: 14px;
   text-align: left;
-  box-shadow: 0 14px 30px rgba(141, 36, 52, 0.24);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--exam-red) 24%, transparent);
 }
 
 .reviewCtaIcon {
@@ -632,10 +632,10 @@
   grid-column: 1 / -1;
   gap: 7px;
   padding: 19px;
-  border: 1px solid #e5c6cb;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 25%, white);
   border-radius: 14px;
   color: #202532;
-  background: #fff7f8;
+  background: color-mix(in srgb, var(--exam-red) 3%, white);
   text-align: left;
 }
 .mockOffer > span { color: var(--exam-red); font-size: 10px; font-weight: 900; letter-spacing: .1em; }
@@ -715,7 +715,7 @@
   cursor: pointer;
 }
 
-.categoryToggleButton:hover { border-color: #dba3ad; background: #fff5f6; }
+.categoryToggleButton:hover { border-color: color-mix(in srgb, var(--exam-red) 38%, white); background: color-mix(in srgb, var(--exam-red) 4%, white); }
 
 .nextStudyPlan {
   margin: 24px 0 14px;
@@ -782,10 +782,10 @@
   width: min(500px, 100%);
   padding: 34px;
   overflow: hidden;
-  border: 1px solid #ead6d9;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 16%, white);
   border-radius: 22px;
   background:
-    radial-gradient(circle at 100% 0, rgba(141, 36, 52, 0.12), transparent 36%),
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--exam-red) 12%, transparent), transparent 36%),
     #fff;
   box-shadow: 0 30px 90px rgba(28, 12, 16, 0.25);
   text-align: left;
@@ -801,7 +801,7 @@
   width: 36px;
   height: 36px;
   padding: 0;
-  border: 1px solid #e3d9db;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 10%, #e5e7eb);
   border-radius: 50%;
   color: #74656a;
   background: rgba(255, 255, 255, 0.9);
@@ -819,7 +819,7 @@
   border-radius: 16px;
   color: #fff;
   background: var(--exam-red);
-  box-shadow: 0 10px 24px rgba(141, 36, 52, 0.22);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--exam-red) 22%, transparent);
   font-size: 25px;
   font-weight: 900;
 }
@@ -981,7 +981,7 @@
   position: relative;
   width: min(620px, 100%);
   padding: 34px;
-  border: 1px solid #ead6d9;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 16%, white);
   border-radius: 18px;
   background: #fff;
   box-shadow: 0 30px 90px rgba(28, 12, 16, 0.25);
@@ -1083,7 +1083,7 @@
   text-decoration: none;
 }
 .completionOfferIndividual { color: #263340; background: #f8fafc; }
-.completionOfferIndividual:hover { border-color: #b98c94; background: #fff7f8; }
+.completionOfferIndividual:hover { border-color: #b98c94; background: color-mix(in srgb, var(--exam-red) 3%, white); }
 .completionOfferIndividual > span,
 .completionOfferAllIn > span { font-size: 10px; font-weight: 900; letter-spacing: .08em; }
 .completionOfferIndividual > span { color: #667687; }
@@ -1091,7 +1091,7 @@
 .completionOfferAllIn strong { font-size: 16px; line-height: 1.35; }
 .completionOfferIndividual small,
 .completionOfferAllIn small { color: #657382; font-size: 11px; line-height: 1.5; }
-.completionOfferAllIn { border-color: #8d2434; color: #fff; background: var(--exam-red); }
+.completionOfferAllIn { border-color: var(--exam-red); color: #fff; background: var(--exam-red); }
 .completionOfferAllIn > span { color: #f8db8a; }
 .completionOfferAllIn small { color: #f8dfe3; }
 .completionOfferCheckout { display: block; margin-top: auto; }
@@ -1223,10 +1223,10 @@
 }
 
 .reviewFilters button:hover,
-.expandAllButton:hover { color: var(--exam-red); background: #fff5f6; }
+.expandAllButton:hover { color: var(--exam-red); background: color-mix(in srgb, var(--exam-red) 4%, white); }
 
 .reviewFilters .activeReviewFilter {
-  border-color: #dba3ad;
+  border-color: color-mix(in srgb, var(--exam-red) 38%, white);
   color: var(--exam-red-dark);
   background: var(--exam-red-soft);
 }
@@ -1264,7 +1264,7 @@
   transition: background 150ms ease;
 }
 
-.reviewCardSummary:hover { background: #fffafb; }
+.reviewCardSummary:hover { background: color-mix(in srgb, var(--exam-red) 2%, white); }
 
 .reviewCardHead {
   display: flex;
@@ -1336,7 +1336,7 @@
 .reviewChoice > strong { color: #333a47; }
 .reviewChoice > em { font-size: 10px; font-style: normal; font-weight: 850; }
 .correctReviewChoice { border-color: #75c99d; color: #17643f; background: #edfaf3; }
-.wrongReviewChoice { border-color: #d998a5; color: var(--exam-red-dark); background: var(--exam-red-soft); }
+.wrongReviewChoice { border-color: color-mix(in srgb, var(--exam-red) 45%, white); color: var(--exam-red-dark); background: var(--exam-red-soft); }
 
 .explanationBox {
   max-width: 78ch;
@@ -1362,7 +1362,7 @@
   padding: 14px 16px;
   border: 1px solid #e7bac2;
   border-radius: 10px;
-  background: #fff5f6;
+  background: color-mix(in srgb, var(--exam-red) 4%, white);
 }
 
 .tipCallout span {
@@ -1447,7 +1447,7 @@
 .benchmarkCutoffSection {
   margin-top: 24px;
   padding: 22px 24px;
-  border: 1px solid #ead6d9;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 16%, white);
   border-radius: 16px;
   background: linear-gradient(180deg, #ffffff 0%, #fffcfc 100%);
   box-shadow: 0 4px 18px rgba(122, 24, 34, 0.04);
@@ -2020,9 +2020,9 @@
   grid-column: 1 / -1;
   gap: 3px;
   padding: 16px 52px 16px 18px;
-  border: 1px solid #e5c6cb;
+  border: 1px solid color-mix(in srgb, var(--exam-red) 25%, white);
   border-radius: 14px;
-  background: #fff7f8;
+  background: color-mix(in srgb, var(--exam-red) 3%, white);
   color: #202532;
   text-align: left;
   text-decoration: none;
@@ -2037,7 +2037,7 @@
 
 /* Topics answered wrong, for short mixed sets */
 .missedTopics { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
-.missedTopics li { padding: 6px 12px; border: 1px solid #efd3d7; border-radius: 999px; background: #fff7f8; color: #5a2a33; font-size: 13px; font-weight: 700; }
+.missedTopics li { padding: 6px 12px; border: 1px solid #efd3d7; border-radius: 999px; background: color-mix(in srgb, var(--exam-red) 3%, white); color: #5a2a33; font-size: 13px; font-weight: 700; }
 
 .inlineLink { padding: 0; border: 0; background: none; color: var(--exam-red); font: inherit; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 

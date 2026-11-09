@@ -1,0 +1,192 @@
+{
+  "examSet": {
+    "id": "onwr-mini_drill-set-05",
+    "title": "Mini Drill นโยบาย แผน และการประเมินผล: เครื่องมือวางแผนและวิเคราะห์โครงการ",
+    "description": "Mini Drill 10 ข้อ ทวนเร็ววิชานโยบาย แผน และการประเมินผล สอบ สทนช. พร้อมเฉลย",
+    "accessType": "free",
+    "durationMinutes": 12,
+    "totalQuestions": 10,
+    "catalogOrder": 5
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/onwr/build-exam-sets.mjs",
+    "answerDistribution": [
+      3,
+      3,
+      2,
+      2
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "เครื่องมือบริหารโครงการ",
+      "topic": "เครื่องมือบริหารโครงการ",
+      "difficulty": "medium",
+      "prompt": "โครงการก่อสร้างแหล่งน้ำมีกิจกรรมต่อเนื่องหลายสิบกิจกรรม ผู้บริหารต้องการรู้ว่ากิจกรรมใดล่าช้าไม่ได้เลย เพราะจะทำให้ทั้งโครงการเสร็จช้า ควรใช้เครื่องมือใด",
+      "choices": [
+        "Logframe",
+        "PERT/CPM",
+        "Balanced Scorecard",
+        "SWOT Analysis"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "PERT/CPM หาสายงานวิกฤต (Critical Path) ซึ่งเป็นเส้นทางที่ยาวที่สุด กิจกรรมบนเส้นทางนี้ล่าช้า = โครงการล่าช้า",
+      "tip": "ห้ามช้า = หา Critical Path",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "เครื่องมือวางแผน",
+      "topic": "เครื่องมือวางแผน",
+      "difficulty": "medium",
+      "prompt": "หลังวิเคราะห์จุดแข็ง จุดอ่อน โอกาส และอุปสรรคแล้ว ทีมต้องการจับคู่ปัจจัยภายในกับภายนอกเพื่อสร้างกลยุทธ์ ควรใช้เครื่องมือใด",
+      "choices": [
+        "TOWS Matrix",
+        "Logic Model",
+        "Gantt Chart",
+        "PESTEL"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "TOWS จับคู่ S/W กับ O/T เป็นกลยุทธ์ SO WO ST WT · PESTEL ใช้หาปัจจัยภายนอกก่อนหน้านั้น",
+      "tip": "จับคู่ใน×นอก = TOWS",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "เครื่องมือวางแผน",
+      "topic": "เครื่องมือวางแผน",
+      "difficulty": "medium",
+      "prompt": "หน่วยงานต้องการวัดผลการดำเนินงานให้สมดุล ไม่ดูแค่ด้านการเงิน แต่ครอบคลุมผู้รับบริการ กระบวนการภายใน และการเรียนรู้และพัฒนา ควรใช้เครื่องมือใด",
+      "choices": [
+        "PERT/CPM",
+        "Cost-Effectiveness Analysis",
+        "Nominal Group Technique",
+        "Balanced Scorecard"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Balanced Scorecard (Kaplan & Norton) วัดผล 4 มุมมอง: การเงิน · ลูกค้า/ผู้รับบริการ · กระบวนการภายใน · การเรียนรู้และพัฒนา",
+      "tip": "วัด 4 มุมมอง = BSC",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "การเขียนโครงการ",
+      "topic": "การเขียนโครงการ",
+      "difficulty": "medium",
+      "prompt": "ต้องการเขียนข้อเสนอโครงการให้เห็นความเชื่อมโยงจากกิจกรรม → ผลผลิต → วัตถุประสงค์ → เป้าหมาย พร้อมตัวชี้วัด แหล่งพิสูจน์ และสมมติฐานในตารางเดียว ควรใช้เครื่องมือใด",
+      "choices": [
+        "กรอบตรรกะโครงการ (Logframe)",
+        "TOWS Matrix",
+        "Gantt Chart",
+        "Strategy Map"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Logframe เป็นตาราง 4 × 4: แถว เป้าหมาย/วัตถุประสงค์/ผลผลิต/กิจกรรม · คอลัมน์ สรุปโครงการ/ตัวชี้วัด/แหล่งพิสูจน์/สมมติฐาน",
+      "tip": "Logframe = ตาราง 4 × 4",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "การเขียนโครงการ",
+      "topic": "การเขียนโครงการ",
+      "difficulty": "medium",
+      "prompt": "ใน Logframe ของโครงการแหล่งน้ำชุมชน ข้อความ \"คุณภาพชีวิตเกษตรกรดีขึ้น\" ควรอยู่ในระดับใด",
+      "choices": [
+        "กิจกรรม (Activities)",
+        "ผลผลิต (Outputs)",
+        "เป้าหมาย (Goal)",
+        "วัตถุประสงค์ (Purpose)"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "เป้าหมาย = ผลระยะยาวระดับกว้างที่โครงการมีส่วนช่วย · วัตถุประสงค์ = ผลโดยตรง เช่น เกษตรกรมีน้ำใช้ตลอดปี",
+      "tip": "ภาพกว้างระยะยาว = Goal",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "ความคุ้มค่า",
+      "topic": "ความคุ้มค่า",
+      "difficulty": "medium",
+      "prompt": "โครงการหนึ่งมีมูลค่าปัจจุบันของผลตอบแทน 120 ล้านบาท และมูลค่าปัจจุบันของต้นทุน 100 ล้านบาท ข้อใดถูกต้อง",
+      "choices": [
+        "NPV = 20 ล้านบาท และ B/C = 1.2",
+        "NPV = 120 ล้านบาท และ B/C = 0.83",
+        "NPV = −20 ล้านบาท และ B/C = 1.2",
+        "NPV = 20 ล้านบาท และ B/C = 0.83"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "NPV = PV ผลตอบแทน − PV ต้นทุน = 120 − 100 = 20 · B/C = 120 ÷ 100 = 1.2 (> 1 คุ้มค่า)",
+      "tip": "NPV ลบกัน · B/C หารกัน",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "ความคุ้มค่า",
+      "topic": "ความคุ้มค่า",
+      "difficulty": "medium",
+      "prompt": "สูตรใดใช้คำนวณมูลค่าปัจจุบัน (Present Value) ของเงินที่จะได้รับในอนาคต เมื่อ r คืออัตราคิดลด และ n คือจำนวนปี",
+      "choices": [
+        "มูลค่าในอนาคต × (1 + r)ⁿ",
+        "มูลค่าในอนาคต ÷ (1 + r)ⁿ",
+        "มูลค่าในอนาคต ÷ (1 + n)ʳ",
+        "มูลค่าในอนาคต − (r × n)"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "มูลค่าปัจจุบัน = มูลค่าในอนาคต ÷ (1 + r)ⁿ จึงต้องคิดลดผลตอบแทนในอนาคตก่อนเทียบกับต้นทุน",
+      "tip": "PV = FV ÷ (1+r)ⁿ",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "การกำหนดวัตถุประสงค์",
+      "topic": "การกำหนดวัตถุประสงค์",
+      "difficulty": "medium",
+      "prompt": "วัตถุประสงค์ \"ลดพื้นที่น้ำท่วมซ้ำซากลงร้อยละ 20 ภายในปี 2570\" ส่วน \"ภายในปี 2570\" ตอบหลัก SMART ตัวใด",
+      "choices": [
+        "R – Relevant",
+        "T – Time-bound",
+        "A – Achievable",
+        "S – Specific"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "SMART = Specific · Measurable · Achievable · Relevant · Time-bound การระบุกรอบเวลาคือ Time-bound",
+      "tip": "มีเส้นตาย = T",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "ความคุ้มค่า",
+      "topic": "ความคุ้มค่า",
+      "difficulty": "medium",
+      "prompt": "ผู้บริหารต้องการทราบเพียงว่าโครงการจะได้เงินลงทุนคืนภายในกี่ปี ควรใช้เกณฑ์ใด",
+      "choices": [
+        "อัตราผลตอบแทนภายใน (IRR)",
+        "Balanced Scorecard",
+        "ระยะเวลาคืนทุน (Payback Period)",
+        "การวิเคราะห์ความอ่อนไหว"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Payback บอกจำนวนปีที่ได้เงินลงทุนคืน ยิ่งสั้นยิ่งดี (แต่แบบธรรมดาไม่คิดมูลค่าเงินตามเวลา)",
+      "tip": "กี่ปีคืนทุน = Payback",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "ความเป็นไปได้ของโครงการ",
+      "topic": "ความเป็นไปได้ของโครงการ",
+      "difficulty": "medium",
+      "prompt": "การศึกษาความเป็นไปได้ด้านใดพิจารณาความคุ้มค่าต่อผู้ลงทุนหรือหน่วยงาน โดยใช้กระแสเงินสดจริง",
+      "choices": [
+        "ด้านเศรษฐกิจ",
+        "ด้านการบริหาร/องค์กร",
+        "ด้านเทคนิค",
+        "ด้านการเงิน"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ด้านการเงิน = คุ้มค่าต่อผู้ลงทุน (กระแสเงินสดจริง) · ด้านเศรษฐกิจ = คุ้มค่าต่อสังคมโดยรวม (ราคาเงา ผลทางอ้อม)",
+      "tip": "การเงิน = กระเป๋าหน่วยงาน",
+      "sourceRef": ""
+    }
+  ]
+}

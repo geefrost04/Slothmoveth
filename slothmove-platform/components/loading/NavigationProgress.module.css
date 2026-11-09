@@ -1,0 +1,28 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-primary, #1f8f5f), #38bdf8);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+  animation: grow 8s cubic-bezier(0.1, 0.7, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+.done {
+  width: 100%;
+  animation: finish 0.35s ease-out forwards;
+}
+
+@keyframes grow {
+  0% { width: 0; }
+  10% { width: 35%; }
+  100% { width: 92%; }
+}
+
+@keyframes finish {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

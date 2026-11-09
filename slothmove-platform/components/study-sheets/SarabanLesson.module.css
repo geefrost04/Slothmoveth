@@ -1,12 +1,13 @@
 /* Saraban premium lesson blocks. Palette follows StudySheetReader (maroon #800020). */
 .lesson {
-  --sl-maroon: #800020;
-  --sl-maroon-soft: rgba(128, 0, 32, .08);
-  --sl-ink: #34131c;
+  /* Courses can recolor lessons by setting --lesson-* on an ancestor (ONWR uses water blue). */
+  --sl-maroon: var(--lesson-accent, #800020);
+  --sl-maroon-soft: var(--lesson-accent-soft, rgba(128, 0, 32, .08));
+  --sl-ink: var(--lesson-ink, #34131c);
   --sl-body: #4a3b40;
   --sl-muted: #7a6a6f;
-  --sl-line: #efd6cc;
-  --sl-paper: #fffaf6;
+  --sl-line: var(--lesson-line, #efd6cc);
+  --sl-paper: var(--lesson-paper, #fffaf6);
   --sl-green: #0f766e;
   --sl-red: #b42318;
   display: grid;

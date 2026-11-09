@@ -1,0 +1,4 @@
+/* Per-course recolor of shared police subject-page styles (app/course-shell.css). */
+.onwr :global(.police-subject-breadcrumb-current),
+.onwr :global(.police-subject-section-heading > div > span) { color: #0b5f86; }
+.onwr :global(.police-subject-breadcrumb a:hover) { color: #0b5f86; }

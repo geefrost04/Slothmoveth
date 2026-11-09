@@ -3,7 +3,7 @@
   --ink: #1d1a1b;
   --muted: #776c6f;
   --line: #ece4e5;
-  --accent: #7a1822;
+  --accent: var(--course-accent, #7a1822);
   --good: #0f766e;
   --ok: #b45309;
   --low: #b42318;
@@ -37,7 +37,7 @@
 }
 .next span { padding-right: 10px; border-right: 1px solid rgba(255, 255, 255, .35); font-weight: 500; opacity: .85; }
 .next b { font-weight: 700; transition: transform .15s ease; }
-.next:hover { color: #fff; background: #5f111a; }
+.next:hover { color: #fff; background: var(--course-accent-dark, #5f111a); }
 .next:hover b { transform: translateX(3px); }
 
 .group {

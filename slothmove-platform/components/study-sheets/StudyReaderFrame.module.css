@@ -4,8 +4,8 @@
   --body: #2f2a2b;
   --muted: #6f6467;
   --line: #ece3e4;
-  --accent: #7a1822;
-  --accent-soft: #f6e9ea;
+  --accent: var(--reader-accent, #7a1822);
+  --accent-soft: var(--reader-accent-soft, #f6e9ea);
 }
 .frame.frame { background: #fbf8f6; }
 

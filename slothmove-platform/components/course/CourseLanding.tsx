@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { CourseConfig, CourseLandingSection, SubjectMeta } from '@/lib/course-types';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceCourseHome } from './PoliceCourseHome';
+import { OnwrCourseHome } from './OnwrCourseHome';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
@@ -472,6 +473,8 @@ export async function CourseLanding({ course }: { course: CourseConfig }) {
     ? `/courses/${course.id}/${firstReadySubject.id}/quiz`
     : landing.feature?.primaryCtaHref ?? `#${contentAnchorId}`;
   const firstSectionHref = `#${firstSectionId}`;
+
+  if (course.id === 'onwr') return <OnwrCourseHome course={course} />;
 
   if (course.id === 'police_admin') {
     let examSets: any[] = [];

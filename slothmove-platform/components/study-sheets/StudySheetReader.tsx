@@ -8,6 +8,7 @@ import { LessonView } from './SarabanStudyLessons';
 import { getSarabanLesson, lessonOutline } from './sarabanLessonData';
 import { getComputerLesson } from './computerLessonData';
 import { getLawLesson } from './lawLessonData';
+import { getOnwrLesson } from './onwrLessonData';
 import { OnThisPage } from './OnThisPage';
 import { Rich } from './RichText';
 import styles from './StudySheetReader.module.css';
@@ -99,6 +100,17 @@ function lessonTag(kicker?: string) {
   return tail.startsWith('บทที่') ? `ตรงกับ${tail} ในระเบียบ` : tail;
 }
 
+// Water-blue palette for ONWR sheets (frame + lesson variables).
+const ONWR_THEME = {
+  '--reader-accent': '#0b5f86',
+  '--reader-accent-soft': '#e3f3fa',
+  '--lesson-accent': '#0b5f86',
+  '--lesson-accent-soft': 'rgba(11, 95, 134, .08)',
+  '--lesson-ink': '#0f2733',
+  '--lesson-line': '#cfe5ef',
+  '--lesson-paper': '#f6fbfd'
+} as React.CSSProperties;
+
 function readingMinutes(characters: number, perMinute: number) {
   return Math.max(2, Math.round(characters / perMinute));
 }
@@ -138,7 +150,8 @@ function SeriesConceptVisual({ assets, assetKey, label, title, description, asse
 }
 
 const COURSE_LABELS: Record<string, string> = {
-  police_admin: 'นายสิบตำรวจ'
+  police_admin: 'นายสิบตำรวจ',
+  onwr: 'สทนช. นักวิเคราะห์นโยบายฯ'
 };
 
 const SUBJECT_LABELS: Record<string, string> = {
@@ -147,7 +160,17 @@ const SUBJECT_LABELS: Record<string, string> = {
   thai: 'ภาษาไทย',
   saraban: 'ระเบียบงานสารบรรณ',
   law: 'กฎหมายที่ประชาชนควรรู้',
-  english: 'ภาษาอังกฤษ'
+  english: 'ภาษาอังกฤษ',
+  org: 'ความรู้เกี่ยวกับ สทนช.',
+  admin: 'การบริหารจัดการองค์กรภาครัฐ',
+  rules: 'ระเบียบพนักงานราชการและการปฏิบัติราชการ',
+  policy: 'การจัดทำนโยบายและแผน',
+  masterplan: 'นโยบายและแผนแม่บทน้ำ',
+  monitoring: 'การติดตามและประเมินผลโครงการ',
+  project: 'การวิเคราะห์แผนงานโครงการ',
+  meeting: 'การบริหารจัดการประชุมและการมีส่วนร่วม',
+  wateract: 'พ.ร.บ.ทรัพยากรน้ำ พ.ศ. 2561',
+  review: 'โน้ตทบทวนก่อนสอบ'
 };
 
 function SeriesLesson({ assets }: { assets: StudySheetAsset[] }) {
@@ -710,10 +733,11 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const isComputerSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'computer';
   const isLawSheet = sheet.course_id === 'police_admin' && (sheet.subject_id === 'law' || sheet.subject_id === 'police_law');
   const isSarabanSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'saraban';
-  const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet;
+  const isOnwrSheet = sheet.course_id === 'onwr';
+  const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet || isOnwrSheet;
 
   // Saraban, computer and law sheets are note-style lessons; other sheets are markdown.
-  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : undefined);
+  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : isOnwrSheet ? getOnwrLesson(sheet.subject_id, slug) : undefined);
   const lesson = lessonFor(current.slug);
   const mathLesson = !lesson && ['chapter-01', 'chapter-02'].includes(current.slug);
   const usesMarkdown = !lesson && !mathLesson;
@@ -731,7 +755,7 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const dek = lesson ? lesson.lead : currentIndex === 0 ? sheet.description : '';
 
   return (
-    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} ${frame.frame} study-sheet-print-root`}>
+    <div className={`${styles.readerShell} ${isCustomSheet ? styles.computerReader : ''} ${frame.frame} study-sheet-print-root`} style={isOnwrSheet ? ONWR_THEME : undefined}>
       <BackToTopButton />
       <div className={`${frame.layout} ${outline.length ? '' : frame.noRail}`}>
         <aside className={frame.nav} aria-label="สารบัญชีทสรุป">

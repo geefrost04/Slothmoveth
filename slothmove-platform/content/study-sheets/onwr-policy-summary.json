@@ -1,0 +1,46 @@
+{
+  "sheet": {
+    "id": "onwr-policy-summary",
+    "slug": "onwr-policy-summary",
+    "course_id": "onwr",
+    "subject_id": "policy",
+    "title": "โน้ตสรุป: การจัดทำนโยบายและแผน",
+    "description": "โน้ตสรุป: การจัดทำนโยบายและแผน สำหรับสอบพนักงานราชการ สทนช. ตำแหน่งเจ้าหน้าที่วิเคราะห์นโยบายและแผน: ความรู้เกี่ยวกับการจัดทำนโยบายและแผน",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 2,
+    "chapter_count": 2,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สทนช. ลงวันที่ 22 ต.ค. 2569: ความรู้เกี่ยวกับการจัดทำนโยบายและแผน\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานทรัพยากรน้ำแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 22 ตุลาคม 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-09T03:39:24.513Z"
+  },
+  "sections": [
+    {
+      "id": "onwr-policy-summary-lesson-01",
+      "sheet_id": "onwr-policy-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "นโยบายสาธารณะและวงจรนโยบาย",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# นโยบายสาธารณะและวงจรนโยบาย\n\nวงจร **ก่อตัว → ก่อรูป → อนุมัติ → ปฏิบัติ → ประเมิน** · Dye: **เลือกทำหรือไม่ทำ** · Easton ระบบ · **Lindblom ค่อยเป็นค่อยไป** · Etzioni ผสมผสาน"
+    },
+    {
+      "id": "onwr-policy-summary-lesson-02",
+      "sheet_id": "onwr-policy-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "การวางแผนและเครื่องมือวางแผน",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# การวางแผนและเครื่องมือวางแผน\n\nวิสัยทัศน์ → พันธกิจ → เป้าประสงค์ → ยุทธศาสตร์ → แผนงาน → โครงการ · **SWOT (S/W ใน · O/T นอก) → TOWS** · BSC **4 มุมมอง** · Critical Path **ยาวสุด** · **Output ≠ Outcome**"
+    }
+  ],
+  "assets": []
+}

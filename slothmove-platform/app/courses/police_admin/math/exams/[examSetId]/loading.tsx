@@ -1,8 +1,5 @@
-export default function ExamLoading() {
-  return (
-    <main className="study-sheet-loading" role="status">
-      <span />
-      <p>กำลังเตรียมชุดข้อสอบ...</p>
-    </main>
-  );
+import { PageLoader } from '@/components/loading/PageLoader';
+
+export default function Loading() {
+  return <PageLoader variant="exam" label="กำลังเตรียมชุดข้อสอบ…" hint="อีกไม่กี่วินาทีก็เริ่มทำได้" />;
 }

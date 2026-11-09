@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './PoliceSubjectHero.module.css';
 
-type Outline = { label: string; title: string; meta: string }[];
+export type Outline = { label: string; title: string; meta: string }[];
 
 // Table of contents shown on the notebook card. Subjects without an outline get a one-line description.
 const SHEET_OUTLINES: Record<string, Outline> = {
@@ -37,7 +37,9 @@ export function PoliceSubjectHero({
   setCount,
   questionCount,
   allFree,
-  freeSets
+  freeSets,
+  outline: outlineOverride,
+  sheetTitle
 }: {
   subjectId: string;
   title: string;
@@ -50,8 +52,11 @@ export function PoliceSubjectHero({
   questionCount: number;
   allFree: boolean;
   freeSets: number;
+  /** Courses whose notes are generated (e.g. ONWR) pass their own outline and title. */
+  outline?: Outline;
+  sheetTitle?: string;
 }) {
-  const outline = SHEET_OUTLINES[subjectId];
+  const outline = outlineOverride ?? SHEET_OUTLINES[subjectId];
 
   return (
     <section className={styles.hero}>
@@ -70,7 +75,7 @@ export function PoliceSubjectHero({
       <aside className={`${styles.notebook} ${hasSummary ? '' : styles.notebookPending}`} aria-label="ชีทสรุป">
         <div className={styles.notebookHead}>
           <span>{hasSummary ? 'ชีทสรุป' : 'ชีทสรุป · กำลังจัดทำ'}</span>
-          <h2>{hasSummary ? (SHEET_TITLES[subjectId] ?? `สรุป${title}`) : `สรุป${title}`}</h2>
+          <h2>{hasSummary ? (sheetTitle ?? SHEET_TITLES[subjectId] ?? `สรุป${title}`) : `สรุป${title}`}</h2>
         </div>
         {hasSummary && outline ? (
           <ol className={styles.outline}>

@@ -1,7 +1,5 @@
-export default function LoadingPoliceSubjectExam() {
-  return (
-    <main className="exam-shell">
-      <div className="exam-loading-card">กำลังโหลดชุดข้อสอบ...</div>
-    </main>
-  );
+import { PageLoader } from '@/components/loading/PageLoader';
+
+export default function Loading() {
+  return <PageLoader variant="exam" label="กำลังเตรียมชุดข้อสอบ…" hint="อีกไม่กี่วินาทีก็เริ่มทำได้" />;
 }

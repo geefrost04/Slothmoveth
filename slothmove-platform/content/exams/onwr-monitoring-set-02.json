@@ -1,0 +1,362 @@
+{
+  "examSet": {
+    "id": "onwr-monitoring-set-02",
+    "title": "การติดตามและประเมินผลโครงการ ชุดที่ 2",
+    "description": "การติดตามและประเมินผลโครงการ 20 ข้อ พร้อมเฉลยละเอียด สำหรับสอบพนักงานราชการ สทนช. ตำแหน่งเจ้าหน้าที่วิเคราะห์นโยบายและแผน",
+    "accessType": "free",
+    "durationMinutes": 24,
+    "totalQuestions": 20,
+    "catalogOrder": 2
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/onwr/build-topic-sets.mjs",
+    "answerDistribution": [
+      5,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "รูปแบบการประเมิน",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "รูปแบบการประเมิน CIPP เป็นแนวคิดของผู้ใด",
+      "choices": [
+        "Donald Kirkpatrick",
+        "Ralph Tyler",
+        "Michael Scriven",
+        "Daniel Stufflebeam"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "CIPP Model (Context, Input, Process, Product) ของ Daniel Stufflebeam",
+      "tip": "CIPP = Stufflebeam",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "ประเภทการประเมิน",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "การประเมินที่ทำระหว่างดำเนินโครงการเพื่อนำผลไปปรับปรุงการดำเนินงาน เรียกว่าอะไร",
+      "choices": [
+        "การประเมินระหว่างดำเนินการ (Formative)",
+        "การประเมินสรุปผล (Summative)",
+        "การประเมินก่อนดำเนินการ (Ex-ante)",
+        "การประเมินหลังโครงการ (Ex-post)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Formative evaluation ทำระหว่างทางเพื่อปรับปรุง",
+      "tip": "Formative = ปรับปรุงระหว่างทาง",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "OECD DAC",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "เกณฑ์การประเมินของ OECD DAC ข้อใดพิจารณาว่าผลของโครงการยังคงอยู่หลังโครงการสิ้นสุด",
+      "choices": [
+        "ความสอดคล้อง (Relevance)",
+        "ความยั่งยืน (Sustainability)",
+        "ประสิทธิภาพ (Efficiency)",
+        "ความเชื่อมโยง (Coherence)"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Sustainability ดูว่าผลยังอยู่หลังจบโครงการ",
+      "tip": "อยู่ต่อหลังจบ = ยั่งยืน",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "รูปแบบการประเมิน",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "การประเมินโดยเทียบผลที่เกิดขึ้นกับวัตถุประสงค์ที่ตั้งไว้ เป็นแนวคิดของผู้ใด",
+      "choices": [
+        "Michael Scriven",
+        "Kaplan และ Norton",
+        "Ralph Tyler",
+        "Charles Lindblom"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Tyler เป็นผู้บุกเบิกการประเมินแบบยึดวัตถุประสงค์",
+      "tip": "ยึดวัตถุประสงค์ = Tyler",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "การติดตามประเมินผล",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ระบบติดตามและประเมินผลแห่งชาติที่หน่วยงานใช้รายงานโครงการที่ตอบยุทธศาสตร์ชาติ เรียกว่าอะไร",
+      "choices": [
+        "e-GP",
+        "e-Saraban",
+        "eMENSCR",
+        "GFMIS"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "eMENSCR เป็นระบบติดตามและประเมินผลแห่งชาติ ดูแลโดยสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ",
+      "tip": "ยุทธศาสตร์ชาติ = eMENSCR",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "ประเภทตามช่วงเวลา",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "หน่วยงานศึกษาความจำเป็น ความเป็นไปได้ และความคุ้มค่าของโครงการก่อสร้างแก้มลิงก่อนเสนอขออนุมัติ จัดเป็นการประเมินประเภทใด",
+      "choices": [
+        "การประเมินหลังโครงการ (Ex-post)",
+        "การประเมินสรุปผล (Summative)",
+        "การประเมินระหว่างดำเนินการ (Formative)",
+        "การประเมินก่อนดำเนินการ (Ex-ante)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Ex-ante ทำก่อนเริ่มโครงการ เพื่อดูความเป็นไปได้ ความจำเป็น และความคุ้มค่า",
+      "tip": "Ex-ante = ก่อนเริ่ม",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Scriven",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "นักวิชาการผู้เสนอการแบ่งการประเมินเป็น Formative Evaluation และ Summative Evaluation คือผู้ใด",
+      "choices": [
+        "Michael Scriven",
+        "Daniel Stufflebeam",
+        "Donald Kirkpatrick",
+        "Ralph Tyler"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Michael Scriven เสนอคำว่า Formative/Summative และยังเสนอการประเมินแบบไม่ยึดเป้าหมาย (Goal-free)",
+      "tip": "Scriven = F/S + Goal-free",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "CIPP Model",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ระหว่างดำเนินโครงการ ผู้ประเมินตรวจว่ากิจกรรมดำเนินไปตามแผนหรือไม่ และมีปัญหาอุปสรรคอะไร เพื่อแก้ไขได้ทันที ตรงกับการประเมินส่วนใดของ CIPP Model",
+      "choices": [
+        "ผลผลิต (Product)",
+        "กระบวนการ (Process)",
+        "ปัจจัยนำเข้า (Input)",
+        "บริบท (Context)"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Process Evaluation ประเมินระหว่างดำเนินงาน หาจุดบกพร่องเพื่อปรับปรุง (การตัดสินใจเชิงดำเนินการ)",
+      "tip": "P ตัวแรก = ระหว่างทำ",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "CIPP Model",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ตามแนวคิดของ Stufflebeam การประเมินปัจจัยนำเข้า (Input Evaluation) สนับสนุนการตัดสินใจประเภทใด",
+      "choices": [
+        "การตัดสินใจเชิงวางแผน คือการกำหนดวัตถุประสงค์",
+        "การตัดสินใจเชิงโครงสร้าง คือการเลือกแนวทางและทรัพยากรที่เหมาะสม",
+        "การตัดสินใจเชิงดำเนินการ คือการปรับกิจกรรมระหว่างทาง",
+        "การตัดสินใจทบทวน คือการยุติหรือขยายโครงการ"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "CIPP จับคู่การตัดสินใจ: Context–วางแผน · Input–โครงสร้าง (Structuring) · Process–ดำเนินการ · Product–ทบทวน (Recycling)",
+      "tip": "Input = Structuring",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Kirkpatrick",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "หน่วยงานจัดทดสอบความรู้ก่อนและหลังการอบรมการใช้แบบจำลองน้ำ เพื่อดูว่าผู้เข้าอบรมมีความรู้เพิ่มขึ้นเพียงใด เป็นการประเมินระดับใดตามแนวคิดของ Kirkpatrick",
+      "choices": [
+        "ระดับ 4 ผลลัพธ์ (Results)",
+        "ระดับ 1 ปฏิกิริยา (Reaction)",
+        "ระดับ 3 พฤติกรรม (Behavior)",
+        "ระดับ 2 การเรียนรู้ (Learning)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Kirkpatrick: 1 ปฏิกิริยา → 2 การเรียนรู้ (ความรู้/ทักษะเพิ่มขึ้น วัดด้วย Pre-Post test) → 3 พฤติกรรม → 4 ผลลัพธ์ต่อองค์กร",
+      "tip": "Pre-Post test = ระดับ 2",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "OECD DAC",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ผลการประเมินพบว่าเกษตรกรกลุ่มเป้าหมายร้อยละ 92 ได้รับน้ำเพียงพอในฤดูแล้งตามวัตถุประสงค์ที่โครงการตั้งไว้ จัดเป็นเกณฑ์ใดของ OECD DAC",
+      "choices": [
+        "ประสิทธิภาพ (Efficiency)",
+        "ความยั่งยืน (Sustainability)",
+        "ความเชื่อมโยง (Coherence)",
+        "ประสิทธิผล (Effectiveness)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Effectiveness พิจารณาว่าโครงการบรรลุวัตถุประสงค์หรือไม่",
+      "tip": "บรรลุวัตถุประสงค์ = Effectiveness",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "OECD DAC",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ผลการประเมินพบว่าหลังสร้างประตูระบายน้ำ ปริมาณปลาในลำน้ำด้านท้ายน้ำลดลง ส่งผลต่อรายได้ชาวประมงซึ่งโครงการไม่ได้คาดไว้ จัดเป็นเกณฑ์ใดของ OECD DAC",
+      "choices": [
+        "ประสิทธิภาพ (Efficiency)",
+        "ความเชื่อมโยง (Coherence)",
+        "ประสิทธิผล (Effectiveness)",
+        "ผลกระทบ (Impact)"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "Impact พิจารณาการเปลี่ยนแปลงระยะยาวในวงกว้าง ทั้งที่ตั้งใจและไม่ได้ตั้งใจ ทั้งด้านบวกและลบ",
+      "tip": "ผลไม่ตั้งใจ = Impact",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "OECD DAC",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "เกณฑ์ใดที่ OECD DAC เพิ่มเข้ามาในการปรับปรุงเกณฑ์เมื่อปี ค.ศ. 2019 ทำให้จาก 5 เกณฑ์เป็น 6 เกณฑ์",
+      "choices": [
+        "ความสอดคล้อง (Relevance)",
+        "ความเชื่อมโยง (Coherence)",
+        "ผลกระทบ (Impact)",
+        "ความยั่งยืน (Sustainability)"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "เดิม OECD DAC มี 5 เกณฑ์ (Relevance, Effectiveness, Efficiency, Impact, Sustainability) ปี 2019 เพิ่ม Coherence",
+      "tip": "ใหม่ปี 2019 = Coherence",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "ประเภทตัวชี้วัด",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "\"งบประมาณที่ได้รับจัดสรรและจำนวนเจ้าหน้าที่ที่ปฏิบัติงานในโครงการ\" เป็นตัวชี้วัดประเภทใด",
+      "choices": [
+        "ปัจจัยนำเข้า (Input)",
+        "ผลผลิต (Output)",
+        "ผลลัพธ์ (Outcome)",
+        "กระบวนการ (Process)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ตัวชี้วัดปัจจัยนำเข้าวัดทรัพยากรที่ใช้ เช่น งบประมาณ บุคลากร",
+      "tip": "เงิน คน ของ = Input",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "SMART",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "หน่วยงานที่มีงบประมาณจำกัดตั้งเป้าหมาย \"ขจัดพื้นที่น้ำท่วมทั่วประเทศให้หมดไปร้อยละ 100 ภายใน 1 ปี\" เป้าหมายนี้ขัดกับหลัก SMART ข้อใดชัดเจนที่สุด",
+      "choices": [
+        "Measurable (วัดได้)",
+        "Achievable (ทำได้จริง)",
+        "Specific (เจาะจง)",
+        "Time-bound (มีกรอบเวลา)"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "เป้าหมายมีตัวเลขและกรอบเวลาแล้ว แต่สูงเกินกว่าทรัพยากรจะทำได้ จึงขัดกับ A = Achievable",
+      "tip": "เกินกำลัง = ขัด A",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "คำนวณผลสำเร็จ",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ก่อนโครงการมีครัวเรือนเข้าถึงน้ำประปาร้อยละ 40 ตั้งค่าเป้าหมายไว้ร้อยละ 60 เมื่อสิ้นโครงการวัดได้ร้อยละ 55 โครงการบรรลุการเปลี่ยนแปลงตามเป้าหมายคิดเป็นร้อยละเท่าใด",
+      "choices": [
+        "55",
+        "92",
+        "75",
+        "25"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ส่วนที่เปลี่ยนจริง = 55 − 40 = 15 · ส่วนที่ตั้งเป้า = 60 − 40 = 20 · 15 ÷ 20 × 100 = 75",
+      "tip": "(จริง−ฐาน)÷(เป้า−ฐาน)",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "ประหยัด/ประสิทธิภาพ/ประสิทธิผล",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ฝ่ายพัสดุจัดซื้อเครื่องสูบน้ำได้ในราคาต่ำกว่าราคากลาง โดยยังได้คุณลักษณะและคุณภาพตามที่กำหนด สะท้อนหลักใดมากที่สุด",
+      "choices": [
+        "ความประหยัด (Economy)",
+        "ประสิทธิผล (Effectiveness)",
+        "ความยั่งยืน (Sustainability)",
+        "ความสอดคล้อง (Relevance)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "หลัก 3E: Economy = ได้ปัจจัยนำเข้าในต้นทุนต่ำสุดโดยคุณภาพเหมาะสม · Efficiency = ผลผลิตเทียบทรัพยากร · Effectiveness = บรรลุวัตถุประสงค์",
+      "tip": "ซื้อถูก คุณภาพครบ = Economy",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "วิธีเก็บข้อมูล",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ผู้ประเมินต้องการทราบความคิดเห็นเชิงลึกของเกษตรกรต่อโครงการ โดยเชิญเกษตรกร 8–10 คนมาพูดคุยแลกเปลี่ยนในประเด็นที่กำหนด มีผู้ดำเนินการสนทนา ควรใช้วิธีใด",
+      "choices": [
+        "การสนทนากลุ่ม (Focus Group)",
+        "การสำรวจด้วยแบบสอบถาม",
+        "การใช้ข้อมูลทุติยภูมิจากระบบรายงาน",
+        "เทคนิคเดลฟาย (Delphi)"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Focus Group เป็นวิธีเชิงคุณภาพ ให้กลุ่มเล็กอภิปรายร่วมกันโดยมีผู้ดำเนินการ ส่วนเดลฟายถามผู้เชี่ยวชาญผ่านแบบสอบถามหลายรอบโดยไม่ต้องพบกัน",
+      "tip": "คุยกลุ่มเล็ก = Focus Group",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "ผู้ประเมินภายใน/ภายนอก",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ข้อใดเป็นจุดเด่นของการใช้ผู้ประเมินภายนอก (External Evaluator) เมื่อเทียบกับผู้ประเมินภายใน",
+      "choices": [
+        "เข้าใจบริบทและรายละเอียดของโครงการได้ลึกกว่า",
+        "ค่าใช้จ่ายต่ำกว่าและเริ่มงานได้รวดเร็วกว่า",
+        "มีความเป็นอิสระและผลการประเมินมีความน่าเชื่อถือในสายตาผู้มีส่วนได้ส่วนเสีย",
+        "นำผลไปปรับปรุงงานประจำวันได้ต่อเนื่องกว่า"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ผู้ประเมินภายนอกเด่นเรื่องความเป็นกลาง/อิสระ ส่วนผู้ประเมินภายในเด่นเรื่องเข้าใจบริบท ประหยัด และใช้ผลปรับปรุงงานได้ต่อเนื่อง",
+      "tip": "ภายนอก = อิสระ น่าเชื่อถือ",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "eMENSCR",
+      "topic": "การติดตามและประเมินผลโครงการ",
+      "difficulty": "medium",
+      "prompt": "ข้อใดกล่าวถึงระบบ eMENSCR ไม่ถูกต้อง",
+      "choices": [
+        "อยู่ในความดูแลของสำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ (สศช.)",
+        "เป็นระบบติดตามและประเมินผลแห่งชาติ",
+        "เป็นระบบของ สทนช. ที่หน่วยงานใช้เสนอแผนปฏิบัติการด้านทรัพยากรน้ำประจำปี",
+        "หน่วยงานใช้รายงานโครงการที่ตอบยุทธศาสตร์ชาติ"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "eMENSCR คือระบบติดตามและประเมินผลแห่งชาติของ สศช. ใช้รายงานโครงการที่ตอบยุทธศาสตร์ชาติ ไม่ใช่ระบบเสนอแผนงานด้านน้ำของ สทนช.",
+      "tip": "eMENSCR = สศช. ไม่ใช่ สทนช.",
+      "sourceRef": ""
+    }
+  ]
+}

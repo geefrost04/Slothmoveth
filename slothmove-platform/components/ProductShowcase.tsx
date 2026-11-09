@@ -10,6 +10,14 @@ const examFields = [
     active: true,
   },
   {
+    title: 'สทนช. นักวิเคราะห์นโยบายและแผน',
+    description: 'พนักงานราชการ · สอบ ธ.ค. 2569',
+    href: '/courses/onwr',
+    image: 'water',
+    cta: 'โน้ตสรุป + ข้อสอบฟรี',
+    active: true,
+  },
+  {
     title: 'ก.พ.',
     description: 'กำลังเตรียมเนื้อหา',
     href: '/courses/ocsc',
@@ -31,7 +39,12 @@ function FieldCard({ field }: { field: (typeof examFields)[number] }) {
   const content = (
     <>
       <div className="home-exam-field-image" aria-hidden="true">
-        {field.image === 'lock' ? (
+        {field.image === 'water' ? (
+          <svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" style={{ padding: '10%' }}>
+            <path d="M24 5C24 5 10 20.5 10 30a14 14 0 0 0 28 0C38 20.5 24 5 24 5Z" fill="#e3f3fa" stroke="#0b5f86" strokeWidth="2.5" strokeLinejoin="round" />
+            <path d="M17 31a7 7 0 0 0 7 7" stroke="#2a9bc9" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+        ) : field.image === 'lock' ? (
           <svg
             width="100%"
             height="100%"

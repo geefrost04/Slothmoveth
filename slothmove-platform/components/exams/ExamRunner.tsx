@@ -149,27 +149,42 @@ function DocumentIcon() {
   );
 }
 
+const ONWR_EXAM_THEME = {
+  '--exam-red': '#0b5f86',
+  '--exam-red-dark': '#07425e',
+  '--exam-red-soft': '#e3f3fa',
+  '--exam-accent': '#2a9bc9'
+} as React.CSSProperties;
+
 export function ExamRunner({
   examSetId,
   initialData,
   nextMockOffer,
-  freeCompletionOffer
+  freeCompletionOffer,
+  course
 }: {
   examSetId: string;
   initialData?: ExamBundle;
   nextMockOffer?: NextMockOffer;
   freeCompletionOffer?: FreeCompletionOffer;
+  // Non-police courses pass their own subject so links and labels point back to that course.
+  course?: { id: string; subjectId: string; subjectTitle: string };
 }) {
-  const subjectId = examSetId.match(/^police-([a-z_]+)-(?:set|quick|p54)-/)?.[1] ?? 'math';
-  const subjectTitle = SUBJECT_LABELS[subjectId] ?? 'รายวิชา';
-  const subjectHref = subjectId === 'mock_test' || subjectId === 'mini_mock'
-    ? '/courses/police_admin'
-    : `/courses/police_admin/${subjectId}`;
+  const subjectId = course?.subjectId ?? examSetId.match(/^police-([a-z_]+)-(?:set|quick|p54)-/)?.[1] ?? 'math';
+  const subjectTitle = course?.subjectTitle ?? SUBJECT_LABELS[subjectId] ?? 'รายวิชา';
+  const subjectHref = course
+    ? course.subjectId === 'mini_mock' || course.subjectId === 'mini_drill' ? `/courses/${course.id}` : `/courses/${course.id}/${course.subjectId}`
+    : subjectId === 'mock_test' || subjectId === 'mini_mock'
+      ? '/courses/police_admin'
+      : `/courses/police_admin/${subjectId}`;
+  const backLabel = course?.subjectId === 'mini_mock' || course?.subjectId === 'mini_drill' ? 'กลับหน้าคอร์ส' : `กลับหน้าวิชา${subjectTitle}`;
   const dailyPracticeSubjectId = subjectId === 'mock_test' || subjectId === 'mini_mock'
     ? 'math'
     : subjectId;
-  const dailyPracticeHref = `/daily-practice/${dailyPracticeSubjectId}`;
+  const dailyPracticeHref = course ? subjectHref : `/daily-practice/${dailyPracticeSubjectId}`;
   const isMiniMock02 = examSetId === 'police-mini_mock-set-02';
+  // ONWR uses its water-blue palette instead of the police maroon.
+  const themeStyle = course?.id === 'onwr' ? ONWR_EXAM_THEME : undefined;
   const [examSet, setExamSet] = useState<ExamSet | null>(initialData?.examSet ?? null);
   const [questions, setQuestions] = useState<ExamQuestion[]>(initialData?.questions ?? []);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -665,7 +680,7 @@ export function ExamRunner({
         <span className={styles.stateIcon}>!</span>
         <h1>เปิดชุดข้อสอบไม่ได้</h1>
         <p>{error || 'ไม่พบข้อมูลคำถาม'}</p>
-        <Link href={subjectHref} className={styles.primaryButton}>กลับหน้าวิชา{subjectTitle}</Link>
+        <Link href={subjectHref} className={styles.primaryButton}>{backLabel}</Link>
       </main>
     );
   }
@@ -702,7 +717,7 @@ export function ExamRunner({
         && reviewItems.every(({ question }) => expandedReviewIds.has(question.id));
 
       return (
-        <div className={styles.examPage}>
+        <div className={styles.examPage} style={themeStyle}>
           <ExamHeader completedSeconds={result.durationSeconds} exitHref={subjectHref} />
           <main className={styles.reviewPage}>
             <div className={styles.reviewHeader}>
@@ -843,7 +858,7 @@ export function ExamRunner({
     }
 
     return (
-      <div className={styles.examPage}>
+      <div className={styles.examPage} style={themeStyle}>
         <ExamHeader completedSeconds={result.durationSeconds} exitHref={subjectHref} />
         <main className={styles.resultPage}>
           <section className={styles.resultCard}>
@@ -1117,7 +1132,7 @@ export function ExamRunner({
                 <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link>
               ) : null}
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
-              <Link href={subjectHref} className={styles.secondaryButton}>กลับหน้าวิชา{subjectTitle}</Link>
+              <Link href={subjectHref} className={styles.secondaryButton}>{backLabel}</Link>
             </div>
           </section>
         </main>
@@ -1175,7 +1190,7 @@ export function ExamRunner({
   if (awaitingStart && !sessionReady) {
     const categories = Array.from(new Set(questions.map((question) => question.category))).slice(0, 6);
     return (
-      <div className={styles.examPage}>
+      <div className={styles.examPage} style={themeStyle}>
         <ExamHeader secondsLeft={durationSeconds} exitHref={subjectHref} />
         <main className={styles.startPage}>
           <section className={styles.startCard}>
@@ -1208,7 +1223,7 @@ export function ExamRunner({
   const isFlagged = flaggedIds.has(currentQuestion.id);
 
   return (
-    <div className={styles.examPage}>
+    <div className={styles.examPage} style={themeStyle}>
       <ExamHeader secondsLeft={sessionReady ? secondsLeft : durationSeconds} exitHref={subjectHref} />
 
       <main className={styles.examMain}>

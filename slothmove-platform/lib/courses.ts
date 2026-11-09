@@ -55,6 +55,22 @@ export const COURSES: Course[] = [
     status: 'ready'
   },
   {
+    id: 'onwr',
+    category: 'สำนักงานทรัพยากรน้ำแห่งชาติ',
+    updatedAt: '2026-11-09',
+    priority: 98,
+    title: 'สทนช. นักวิเคราะห์นโยบายและแผน',
+    subtitle: 'สำนักงานทรัพยากรน้ำแห่งชาติ',
+    type: 'พนักงานราชการทั่วไป · ป.ตรีทุกสาขา',
+    desc: 'โน้ตสรุปและข้อสอบตามประกาศรับสมัคร 22 ต.ค. 2569 · สอบข้อเขียน 200 คะแนน',
+    image: '/pic/slothmove_mascot.svg',
+    fullLink: platformCourseUrl('onwr'),
+    tags: ['พ.ร.บ.ทรัพยากรน้ำ', 'แผนแม่บทน้ำ', 'นโยบายและแผน', 'พนักงานราชการ'],
+    subjects: 9,
+    questions: 0,
+    status: 'ready'
+  },
+  {
     id: 'ocsc',
     category: 'ภาค ก. ก.พ.',
     updatedAt: '2026-06-26',

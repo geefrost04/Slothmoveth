@@ -1,0 +1,35 @@
+{
+  "sheet": {
+    "id": "onwr-project-summary",
+    "slug": "onwr-project-summary",
+    "course_id": "onwr",
+    "subject_id": "project",
+    "title": "โน้ตสรุป: การวิเคราะห์แผนงานโครงการ",
+    "description": "โน้ตสรุป: การวิเคราะห์แผนงานโครงการ สำหรับสอบพนักงานราชการ สทนช. ตำแหน่งเจ้าหน้าที่วิเคราะห์นโยบายและแผน: ความรู้เกี่ยวกับการวิเคราะห์แผนงานโครงการ",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 1,
+    "chapter_count": 1,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* หัวข้อสอบตามประกาศรับสมัคร สทนช. ลงวันที่ 22 ต.ค. 2569: ความรู้เกี่ยวกับการวิเคราะห์แผนงานโครงการ\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศสำนักงานทรัพยากรน้ำแห่งชาติ เรื่อง รับสมัครบุคคลเพื่อเลือกสรรเป็นพนักงานราชการทั่วไป ลงวันที่ 22 ตุลาคม 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-09T03:39:24.513Z"
+  },
+  "sections": [
+    {
+      "id": "onwr-project-summary-lesson-01",
+      "sheet_id": "onwr-project-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "การวิเคราะห์แผนงานโครงการ",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# การวิเคราะห์แผนงานโครงการ\n\nวงจร **ระบุ → เตรียม → วิเคราะห์ → ดำเนิน → ประเมิน** · Logframe **4 × 4** · **NPV > 0 · IRR > r · B/C > 1** · Payback ไม่คิดมูลค่าเงินตามเวลา"
+    }
+  ],
+  "assets": []
+}

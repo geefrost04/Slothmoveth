@@ -1,3 +1,5 @@
-export default function StudySheetLoading() {
-  return <div className="study-sheet-loading" role="status"><span /><p>กำลังโหลดชีทสรุป...</p></div>;
+import { PageLoader } from '@/components/loading/PageLoader';
+
+export default function Loading() {
+  return <PageLoader label="กำลังโหลดโน้ตสรุป…" />;
 }
