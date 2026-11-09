@@ -10,7 +10,6 @@ export function triggerDonatePrompt(source = 'manual') {
 
 const KEYS = {
   completed: 'slothmove:donate:completed-exams',
-  lastShown: 'slothmove:donate:last-auto-shown',
   snoozedUntil: 'slothmove:donate:snoozed-until'
 };
 const DAY = 24 * 60 * 60 * 1000;
@@ -22,23 +21,14 @@ function write(key: string, value: number) {
   try { window.localStorage.setItem(key, String(value)); } catch { /* storage blocked: skip */ }
 }
 
-/**
- * Call once when an exam result appears. Shows the popup automatically only to people who have
- * finished at least 3 sets, at most once a week, and never within 14 days of closing it.
- */
+/** Call once when an exam result appears: shows the coffee popup after every finished set. */
 export function recordExamCompletedAndMaybePrompt() {
   if (typeof window === 'undefined') return;
-  const completed = read(KEYS.completed) + 1;
-  write(KEYS.completed, completed);
-  const now = Date.now();
-  if (completed < 3) return;
-  if (now - read(KEYS.lastShown) < 7 * DAY) return;
-  if (now < read(KEYS.snoozedUntil)) return;
-  write(KEYS.lastShown, now);
+  write(KEYS.completed, read(KEYS.completed) + 1);
   window.setTimeout(() => triggerDonatePrompt('auto_after_exam'), 2500);
 }
 
-/** Closing an automatic prompt snoozes it for 14 days. */
+/** Remembers when the automatic prompt was last closed (kept for analysis; no longer blocks the popup). */
 export function snoozeDonatePrompt() {
   if (typeof window === 'undefined') return;
   write(KEYS.snoozedUntil, Date.now() + 14 * DAY);
