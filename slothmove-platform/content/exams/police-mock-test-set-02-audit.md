@@ -7,13 +7,15 @@
 - DNA: {"thai":{"reading":8,"language":12},"saraban":{"A":12,"B":10,"C":5,"D":3},"law":{"generalAdmin":4,"constitution":4,"civil":9,"criminal":6,"consumerRegistration":2},"english":{"conversation":3,"vocabulary":3,"reading":3,"grammar":6}}
 - Exact duplicate prompts: 0
 - Similarity >= 0.72: 0
-- Similarity 0.55-0.72: 2
+- Similarity 0.55-0.72: 4
 
 ## Errors
 - None
 
 ## Highest similarities
+- Q31 -> police-mock-test-set-05.json Q23: 0.700
 - Q46 -> police-mock-test-set-03.json Q78: 0.592
+- Q100 -> police-mock-test-set-05.json Q96: 0.561
 - Q52 -> police-mock-test-set-03.json Q74: 0.550
 - Q88 -> police-mock-test-set-03.json Q83: 0.548
 - Q125 -> police-law-set-01-notebooklm.json Q26: 0.547
@@ -21,5 +23,3 @@
 - Q133 -> police-law-set-01-notebooklm.json Q44: 0.537
 - Q1 -> police-mock-test-set-01.json Q1: 0.531
 - Q75 -> police-computer-mock-supplement-01.json Q3: 0.508
-- Q2 -> police-math-set-03-original.json Q1: 0.500
-- Q3 -> police-mock-test-set-01.json Q1: 0.485

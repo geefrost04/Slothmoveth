@@ -12,10 +12,14 @@ export async function generateMetadata({
   params: Promise<{ examSetId: string }>;
 }): Promise<Metadata> {
   const { examSetId } = await params;
+  const access = await getExamAccessSummary(examSetId);
+  const isQuickDrill = examSetId >= 'police-mini_mock-set-03';
   const isSet2 = examSetId === 'police-mini_mock-set-02';
   return buildMetadata({
-    title: isSet2 ? 'Mini Mock นายสิบตำรวจ ชุดที่ 2 (30 ข้อ ฟรี)' : 'Mini Mock นายสิบตำรวจ 30 ข้อ ฟรี',
-    description: isSet2
+    title: access?.title ?? (isSet2 ? 'Mini Mock นายสิบตำรวจ ชุดที่ 2 (30 ข้อ ฟรี)' : 'Mini Mock นายสิบตำรวจ 30 ข้อ ฟรี'),
+    description: isQuickDrill
+      ? 'Mini Drill ฟรี 20 ข้อ ใช้เวลาประมาณ 25 นาที พร้อมเฉลยและผลวิเคราะห์หลังส่งข้อสอบ'
+      : isSet2
       ? 'Mini Mock ชุดนี้เป็นตัวอย่าง 30 ข้อจาก Mock Test ชุด 4 ครบ 6 วิชา จับเวลา 35 นาที พร้อมเฉลยและผลวิเคราะห์'
       : 'ทดลองทำ Mini Mock นายสิบตำรวจ 30 ข้อ ครบ 6 วิชา จับเวลา 35 นาที พร้อมเฉลยและผลวิเคราะห์',
     noIndex: true

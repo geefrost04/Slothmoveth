@@ -431,9 +431,9 @@ const mock4Payload = {
     description: 'ข้อสอบฝึกทำครบ 6 วิชา 150 ข้อ พร้อมจับเวลาและเฉลยแบบแยกรายวิชา',
     durationMinutes: 180,
     totalQuestions: 150,
-    accessType: 'free',
-    priceSatang: 0,
-    productId: null,
+    accessType: 'paid',
+    priceSatang: 8900,
+    productId: 'police_mock_test_set_04',
     isPublished: true
   },
   qualityNotes: {

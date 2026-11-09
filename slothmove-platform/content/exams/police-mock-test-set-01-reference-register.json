@@ -1,0 +1,41 @@
+{
+  "examSetId": "police-mock_test-set-01",
+  "referenceRegisterUpdatedAt": "2026-09-05",
+  "scope": "Questions 81-135: Saraban and law",
+  "sources": {
+    "SARABAN_CORE": {
+      "authority": "สำนักงานปลัดสำนักนายกรัฐมนตรี",
+      "document": "ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ พ.ศ. 2526 และที่แก้ไขเพิ่มเติม",
+      "url": "https://www.opm.go.th/th/legal/content/53782/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%A2%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B8%AA%E0%B8%B3%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%99%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%A3%E0%B8%B1%E0%B8%90%E0%B8%A1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%9A%E0%B8%A3%E0%B8%A3%E0%B8%93%20%E0%B8%9E.%E0%B8%A8.%202526%20%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%81%E0%B8%81%E0%B9%89%E0%B9%84%E0%B8%82%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%95%E0%B8%B4%E0%B8%A1.html"
+    },
+    "SARABAN_ELECTRONIC": {
+      "authority": "สำนักงานปลัดสำนักนายกรัฐมนตรี",
+      "document": "ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ (ฉบับที่ 4) พ.ศ. 2564, ข้อ 89/4 และภาคผนวก 7",
+      "url": "https://www.etda.or.th/th/Useful-Resource/Knowledge-Sharing/ETDA-Live-Ep-7-e-Saraban.aspx"
+    },
+    "LEGAL_GENERAL": { "authority": "สำนักงานคณะกรรมการกฤษฎีกา", "document": "หลักกฎหมายทั่วไป: กฎหมายสารบัญญัติและกฎหมายวิธีสบัญญัติ" },
+    "ADMIN_PROCEDURE": { "authority": "สำนักงานคณะกรรมการกฤษฎีกา", "document": "พระราชบัญญัติวิธีปฏิบัติราชการทางปกครอง พ.ศ. 2539, มาตรา 5" },
+    "CONSTITUTION_2017": { "authority": "ราชกิจจานุเบกษา", "document": "รัฐธรรมนูญแห่งราชอาณาจักรไทย พ.ศ. 2560, มาตรา 54 และมาตรา 107" },
+    "COURTS_OF_JUSTICE": { "authority": "สำนักงานศาลยุติธรรม", "document": "พระราชบัญญัติธรรมนูญศาลยุติธรรม: ศาลชั้นต้น ศาลอุทธรณ์ และศาลฎีกา" },
+    "CIVIL_COMMERCIAL": { "authority": "สำนักงานคณะกรรมการกฤษฎีกา", "document": "ประมวลกฎหมายแพ่งและพาณิชย์, มาตรา 7, 15, 21, 61, 538, 1437 และ 1629" },
+    "LAND_CODE": { "authority": "กรมที่ดิน", "document": "ประมวลกฎหมายที่ดิน: โฉนดที่ดินและหนังสือรับรองการทำประโยชน์" },
+    "CRIMINAL_CODE": { "authority": "สำนักงานคณะกรรมการกฤษฎีกา", "document": "ประมวลกฎหมายอาญา, มาตรา 18, 86, 335, 343, 358 และ 361" },
+    "CONSUMER_PROTECTION": { "authority": "สำนักงานคณะกรรมการคุ้มครองผู้บริโภค", "document": "พระราชบัญญัติคุ้มครองผู้บริโภค พ.ศ. 2522, มาตรา 4" },
+    "CIVIL_REGISTRATION": { "authority": "กรมการปกครอง", "document": "พระราชบัญญัติการทะเบียนราษฎร พ.ศ. 2534, มาตรา 18" },
+    "THAI_LEGAL_HISTORY": { "authority": "สถาบันการศึกษา/พิพิธภัณฑ์กฎหมาย", "document": "ประวัติพระองค์เจ้ารพีพัฒนศักดิ์: พระบิดาแห่งกฎหมายไทย" }
+  },
+  "questionReferenceRules": [
+    { "positions": [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107], "referenceKey": "SARABAN_CORE" },
+    { "positions": [108, 109, 110], "referenceKey": "SARABAN_ELECTRONIC" },
+    { "positions": [111], "referenceKey": "LEGAL_GENERAL" },
+    { "positions": [112, 113], "referenceKey": "ADMIN_PROCEDURE" },
+    { "positions": [114], "referenceKey": "THAI_LEGAL_HISTORY" },
+    { "positions": [115, 116, 118], "referenceKey": "CONSTITUTION_2017" },
+    { "positions": [117], "referenceKey": "COURTS_OF_JUSTICE" },
+    { "positions": [119, 120, 121, 124, 125, 126, 127], "referenceKey": "CIVIL_COMMERCIAL" },
+    { "positions": [122, 123], "referenceKey": "LAND_CODE" },
+    { "positions": [128, 129, 130, 131, 132, 133], "referenceKey": "CRIMINAL_CODE" },
+    { "positions": [134], "referenceKey": "CONSUMER_PROTECTION" },
+    { "positions": [135], "referenceKey": "CIVIL_REGISTRATION" }
+  ]
+}

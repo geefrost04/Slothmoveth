@@ -55,6 +55,23 @@ export function PoliceMiniMockCallout() {
           </Link>
         </div>
       </div>
+      <div className="police-mini-drill-section">
+        <div className="police-mini-drill-heading"><span>MINI DRILL ฟรี</span><strong>ฝึกเฉพาะวิชา 20 ข้อ · 25 นาที</strong></div>
+        <div className="police-mini-drill-grid">
+          {[
+            ['police-mini_mock-set-03', 'คณิต ชุด 1'], ['police-mini_mock-set-09', 'คณิต ชุด 2'],
+            ['police-mini_mock-set-04', 'ภาษาไทย ชุด 1'], ['police-mini_mock-set-10', 'ภาษาไทย ชุด 2'],
+            ['police-mini_mock-set-05', 'คอมพิวเตอร์ ชุด 1'], ['police-mini_mock-set-11', 'คอมพิวเตอร์ ชุด 2'],
+            ['police-mini_mock-set-06', 'งานสารบรรณ ชุด 1'], ['police-mini_mock-set-12', 'งานสารบรรณ ชุด 2'],
+            ['police-mini_mock-set-07', 'กฎหมาย ชุด 1'], ['police-mini_mock-set-13', 'กฎหมาย ชุด 2'],
+            ['police-mini_mock-set-08', 'ภาษาอังกฤษ ชุด 1'], ['police-mini_mock-set-14', 'ภาษาอังกฤษ ชุด 2']
+          ].map(([id, title]) => (
+            <Link key={id} href={`/courses/police_admin/mini-mock/${id}`} className="police-mini-drill-card" onClick={() => trackAnalyticsEvent('mini_drill_start_click', { exam_set_id: id, source: 'course_landing' })}>
+              <span>{title}</span><b>20 ข้อ <i aria-hidden="true">→</i></b>
+            </Link>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
