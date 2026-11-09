@@ -178,7 +178,7 @@ export function ExamRunner({
     : subjectId === 'mock_test' || subjectId === 'mini_mock'
       ? '/courses/police_admin'
       : `/courses/police_admin/${subjectId}`;
-  const backLabel = course?.subjectId === 'mini_mock' || course?.subjectId === 'mini_drill' ? 'กลับหน้าคอร์ส' : `กลับหน้าวิชา${subjectTitle}`;
+  const backLabel = ['mini_mock', 'mini_drill', 'mock_test'].includes(subjectId) ? 'กลับหน้าคอร์ส' : `กลับหน้าวิชา${subjectTitle}`;
   const dailyPracticeSubjectId = subjectId === 'mock_test' || subjectId === 'mini_mock'
     ? 'math'
     : subjectId;
@@ -704,6 +704,9 @@ export function ExamRunner({
       .map((item) => ({ ...item, percentage: Math.round((item.correct / item.total) * 100) }))
       .sort((left, right) => left.percentage - right.percentage || left.correct - right.correct);
     const nextSubjects = subjectPerformance.slice(0, 3);
+    const passMark = Math.ceil(result.total * 0.6);
+    const unansweredCount = Math.max(0, result.total - result.answered);
+    const wrongCount = Math.max(0, result.answered - result.score);
 
     if (showReview) {
       const reviewItems = questions
@@ -863,24 +866,77 @@ export function ExamRunner({
         <ExamHeader completedSeconds={result.durationSeconds} exitHref={subjectHref} />
         <main className={styles.resultPage}>
           <section className={styles.resultCard}>
-            <span className={styles.resultEyebrow}>{result.reason === 'timeout' ? 'หมดเวลา' : 'ส่งข้อสอบแล้ว'}</span>
-            <div className={styles.scoreRing} style={{ '--score': `${percent * 3.6}deg` } as React.CSSProperties}>
-              <div><strong>{percent}%</strong><span>{result.score} / {result.total}</span></div>
+            <div className={styles.resultSummary}>
+              <div className={`${styles.scoreRing} ${percent >= 60 ? styles.ringPass : percent >= 40 ? styles.ringNear : styles.ringLow}`} style={{ '--score': `${percent * 3.6}deg` } as React.CSSProperties}>
+                <div><strong>{percent}%</strong><span>{result.score}/{result.total}</span></div>
+              </div>
+              <div className={styles.resultHeadline}>
+                <span className={styles.resultEyebrow}>{result.reason === 'timeout' ? 'หมดเวลา · ส่งอัตโนมัติ' : 'ส่งข้อสอบแล้ว'}</span>
+                <h1>
+                  {benchmark.isDualPart && showBenchmark
+                    ? benchmark.isOfficialPassed
+                      ? (benchmark.zone === 'safe' ? 'ผ่านเกณฑ์ระดับตัวจริง!' : 'ผ่านเกณฑ์สนามจริงทั้งสองภาค!')
+                      : (percent >= 60 ? 'คะแนนรวมผ่าน แต่ติดเกณฑ์รายภาค' : 'ยังไม่ถึงเกณฑ์ 60%')
+                    : percent >= 80 ? 'เยี่ยมมาก พร้อมลุยสนามจริง' : percent >= 60 ? 'ผ่านเกณฑ์ 60%' : 'ยังไม่ถึงเกณฑ์ 60%'}
+                </h1>
+                <p className={styles.resultSetTitle}>{thaiWrap(examSet.title)}</p>
+                <p className={`${styles.resultTarget} ${result.score >= passMark ? styles.targetPass : ''}`}>
+                  {result.score >= passMark
+                    ? `เกินเกณฑ์ 60% มา ${result.score - passMark} ข้อ`
+                    : `ขาดอีก ${passMark - result.score} ข้อ จะถึงเกณฑ์ 60% (${passMark}/${result.total} ข้อ)`}
+                </p>
+              </div>
             </div>
-            <h1>
-              {benchmark.isDualPart
-                ? benchmark.isOfficialPassed
-                  ? (benchmark.zone === 'safe' ? 'ผ่านเกณฑ์ระดับตัวจริง!' : 'ผ่านเกณฑ์สนามจริงทั้งสองภาค!')
-                  : (percent >= 60 ? 'คะแนนรวมผ่าน แต่ติดเกณฑ์รายภาค' : 'ทบทวนอีกนิดแล้วลองใหม่')
-                : (percent >= 60 ? 'ผ่านเกณฑ์ชุดทดลอง' : 'ทบทวนอีกนิดแล้วลองใหม่')}
-            </h1>
-            <p>{examSet.title} · ตอบแล้ว {result.answered} ข้อ</p>
             <div className={styles.resultStats}>
-              <div><span>ตอบถูก</span><strong>{result.score}</strong></div>
-              <div><span>ตอบผิด/ว่าง</span><strong>{result.total - result.score}</strong></div>
-              <div><span>ปักหมุด</span><strong>{flaggedIds.size}</strong></div>
+              <div className={styles.statCorrect}><span>ตอบถูก</span><strong>{result.score}</strong></div>
+              <div className={styles.statWrong}><span>ตอบผิด</span><strong>{wrongCount}</strong></div>
+              <div><span>ไม่ได้ตอบ</span><strong>{unansweredCount}</strong></div>
+              <div><span>ใช้เวลา</span><strong>{formatTime(result.durationSeconds).replace(/^00:/, '')}</strong></div>
             </div>
+            <div className={styles.resultActions}>
+              <button type="button" onClick={openReview} className={`${styles.primaryButton} ${styles.reviewCta}`}>
+                <span className={styles.reviewCtaIcon} aria-hidden="true">✓</span>
+                <span className={styles.reviewCtaCopy}>
+                  <strong>ดูเฉลยพร้อมวิธีคิด</strong>
+                  <small>เช็กข้อผิดและเทคนิคจำทุกข้อ</small>
+                </span>
+                <span className={styles.reviewCtaArrow} aria-hidden="true">→</span>
+              </button>
+              {freeCompletionOffer?.nextSet ? (
+                <Link
+                  href={freeCompletionOffer.nextSet.href}
+                  className={styles.nextSetCta}
+                  onClick={() => trackAnalyticsEvent('free_completion_next_set_click', {
+                    exam_set_id: examSetId,
+                    subject_id: subjectId,
+                    destination: freeCompletionOffer.nextSet?.href ?? ''
+                  })}
+                >
+                  <span>ทำชุดถัดไป</span>
+                  <strong>{freeCompletionOffer.nextSet.title}</strong>
+                  <small>{freeCompletionOffer.nextSet.totalQuestions} ข้อ{freeCompletionOffer.nextSet.durationMinutes ? ` · ${freeCompletionOffer.nextSet.durationMinutes} นาที` : ''}</small>
+                  <b aria-hidden="true">→</b>
+                </Link>
+              ) : nextMockOffer ? (
+                <Link
+                  href={`/courses/police_admin/mock-test/${nextMockOffer.examSetId}`}
+                  className={styles.nextSetCta}
+                  onClick={() => trackAnalyticsEvent('mock_next_click', { source: 'free_mock_completion', exam_set_id: nextMockOffer.examSetId })}
+                >
+                  <span>{isMiniMock02 ? 'ทำต่อให้ครบ 150 ข้อ' : 'ฝึกต่อให้เหมือนสนามจริง'}</span>
+                  <strong>{nextMockOffer.title}</strong>
+                  <small>150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียด · ฟรี</small>
+                  <b aria-hidden="true">→</b>
+                </Link>
+              ) : subjectId === 'mock_test' ? (
+                <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link>
+              ) : null}
+              <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
+              <Link href={subjectHref} className={styles.secondaryButton}>{backLabel}</Link>
+            </div>
+          </section>
 
+          <section className={styles.resultDetails}>
             {showBenchmark && benchmark.isDualPart ? (
               <div className={styles.benchmarkCutoffSection}>
                 <div className={styles.benchmarkSectionHead}>
@@ -1094,47 +1150,6 @@ export function ExamRunner({
               {progressSaveState === 'error' && 'บันทึกในอุปกรณ์แล้ว แต่ซิงก์บัญชีไม่สำเร็จ'}
               {progressSaveState === 'idle' && 'กำลังบันทึกความก้าวหน้า...'}
             </p>
-            <div className={styles.resultActions}>
-              <button type="button" onClick={openReview} className={`${styles.primaryButton} ${styles.reviewCta}`}>
-                <span className={styles.reviewCtaIcon} aria-hidden="true">✓</span>
-                <span className={styles.reviewCtaCopy}>
-                  <strong>ดูเฉลยพร้อมวิธีคิด</strong>
-                  <small>เช็กข้อผิดและเทคนิคจำทุกข้อ</small>
-                </span>
-                <span className={styles.reviewCtaArrow} aria-hidden="true">→</span>
-              </button>
-              {freeCompletionOffer?.nextSet ? (
-                <Link
-                  href={freeCompletionOffer.nextSet.href}
-                  className={styles.nextSetCta}
-                  onClick={() => trackAnalyticsEvent('free_completion_next_set_click', {
-                    exam_set_id: examSetId,
-                    subject_id: subjectId,
-                    destination: freeCompletionOffer.nextSet?.href ?? ''
-                  })}
-                >
-                  <span>ทำชุดถัดไป</span>
-                  <strong>{freeCompletionOffer.nextSet.title}</strong>
-                  <small>{freeCompletionOffer.nextSet.totalQuestions} ข้อ{freeCompletionOffer.nextSet.durationMinutes ? ` · ${freeCompletionOffer.nextSet.durationMinutes} นาที` : ''} · คละหัวข้อใหม่</small>
-                  <b aria-hidden="true">→</b>
-                </Link>
-              ) : nextMockOffer ? (
-                <Link
-                  href={`/courses/police_admin/mock-test/${nextMockOffer.examSetId}`}
-                  className={styles.nextSetCta}
-                  onClick={() => trackAnalyticsEvent('mock_next_click', { source: 'free_mock_completion', exam_set_id: nextMockOffer.examSetId })}
-                >
-                  <span>{isMiniMock02 ? 'ทำต่อให้ครบ 150 ข้อ' : 'ฝึกต่อให้เหมือนสนามจริง'}</span>
-                  <strong>{nextMockOffer.title}</strong>
-                  <small>150 ข้อ ครบ 6 วิชา พร้อมเฉลยละเอียด · ฟรี</small>
-                  <b aria-hidden="true">→</b>
-                </Link>
-              ) : subjectId === 'mock_test' ? (
-                <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link>
-              ) : null}
-              <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
-              <Link href={subjectHref} className={styles.secondaryButton}>{backLabel}</Link>
-            </div>
           </section>
         </main>
         {showLoginPrompt ? (

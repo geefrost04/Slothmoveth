@@ -558,8 +558,8 @@
 .resultPage { min-height: calc(100vh - 92px); }
 
 .resultCard {
-  width: min(640px, 100%);
-  padding: clamp(28px, 5vw, 52px);
+  width: min(680px, 100%);
+  padding: clamp(22px, 4vw, 36px);
   border: 1px solid #dfe3ea;
   border-radius: 20px;
   background: #fff;
@@ -569,33 +569,48 @@
 .resultEyebrow { color: var(--exam-red); font-size: 13px; font-weight: 900; letter-spacing: 0.08em; }
 
 .scoreRing {
+  --ring: var(--exam-red);
   display: grid;
   place-items: center;
-  width: 180px;
-  height: 180px;
-  margin: 24px auto;
+  flex: 0 0 auto;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
-  background: conic-gradient(var(--exam-red) var(--score), #eceff3 0);
+  background: conic-gradient(var(--ring) var(--score), #eceff3 0);
 }
+.ringPass { --ring: #0f766e; }
+.ringNear { --ring: #d97706; }
+.ringLow { --ring: #c2410c; }
 
 .scoreRing > div {
   display: grid;
   place-items: center;
-  width: 144px;
-  height: 144px;
+  align-content: center;
+  width: 106px;
+  height: 106px;
   border-radius: 50%;
   background: #fff;
 }
 
-.scoreRing strong { display: block; font-size: 36px; line-height: 1; }
+.scoreRing strong { display: block; font-size: 30px; line-height: 1; }
 .scoreRing span { color: #697180; font-weight: 750; }
-.resultCard h1 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 34px); }
+.resultSummary { display: flex; gap: 24px; align-items: center; text-align: left; }
+.resultHeadline { display: grid; gap: 4px; min-width: 0; }
+.resultCard h1 { margin: 2px 0 0; font-family: var(--font-display); font-size: clamp(22px, 3.6vw, 28px); line-height: 1.3; }
+.resultSetTitle { margin: 0; color: #697180; font-size: 14px; }
+.resultTarget { justify-self: start; margin: 6px 0 0; padding: 5px 10px; border-radius: 999px; background: #fff4e5; color: #9a3412; font-size: 13px; font-weight: 750; }
+.resultTarget.targetPass { background: #e6f6f3; color: #0f766e; }
+.resultDetails { display: grid; gap: 18px; width: min(680px, 100%); margin-top: 16px; padding: clamp(20px, 4vw, 32px); border: 1px solid #dfe3ea; border-radius: 20px; background: #fff; text-align: left; }
+.resultDetails > * { margin: 0; }
+.resultDetails:empty { display: none; }
 .resultCard > p { margin: 0; color: #697180; }
 
-.resultStats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 28px 0; }
-.resultStats div { padding: 16px 10px; border-radius: 11px; background: #f5f6f8; }
+.resultStats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 22px 0; }
+.resultStats .statCorrect strong { color: #0f766e; }
+.resultStats .statWrong strong { color: #c2410c; }
+.resultStats div { padding: 12px 8px; border-radius: 11px; background: #f5f6f8; }
 .resultStats span { display: block; color: #697180; font-size: 12px; font-weight: 750; }
-.resultStats strong { display: block; margin-top: 3px; font-size: 24px; }
+.resultStats strong { display: block; margin-top: 3px; font-size: 22px; font-variant-numeric: tabular-nums; }
 .resultActions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 .reviewCta {
@@ -1403,8 +1418,13 @@
   .questionActions .primaryButton { grid-row: 1; }
   .questionGrid { gap: 8px; }
   .navigatorPanel { padding: 20px 16px; }
-  .resultActions { grid-template-columns: 1fr; }
-  .resultStats { gap: 8px; margin: 22px 0; }
+  .resultActions { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .resultActions .nextSetCta { grid-column: 1 / -1; }
+  .resultActions .secondaryButton { min-height: 46px; padding: 0 10px; font-size: 14px; }
+  .resultSummary { flex-direction: column; gap: 14px; text-align: center; }
+  .resultHeadline { justify-items: center; }
+  .resultTarget { justify-self: center; }
+  .resultStats { gap: 6px; margin: 18px 0; }
   .resultStats div { padding: 12px 6px; }
   .resultStats strong { font-size: 21px; }
   .nextStudyPlan { padding: 16px; }
@@ -2015,6 +2035,7 @@
 
 /* Next set on the result page (replaces the old completion popup) */
 .nextSetCta {
+  grid-column: 1 / -1;
   position: relative;
   display: grid;
   grid-column: 1 / -1;
@@ -2045,3 +2066,8 @@
 .keyHint kbd { display: inline-block; min-width: 20px; padding: 1px 5px; border: 1px solid #dfe2e7; border-bottom-width: 2px; border-radius: 5px; background: #fff; color: #4a505c; font: inherit; font-size: 11px; font-weight: 800; }
 @media (hover: none) { .keyHint { display: none; } }
 .missedPanel { max-height: none; overflow: visible; }
+
+/* Results page: stack the summary and details cards from the top, details without a nested box. */
+.resultPage { align-content: start; gap: 0; }
+.resultDetails .categoryResults { max-height: none; margin: 0; padding: 0; overflow: visible; border: 0; background: transparent; }
+.resultDetails .progressSaveMessage { color: #697180; font-size: 13px; text-align: center; }
