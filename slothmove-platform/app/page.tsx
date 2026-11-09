@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Navbar } from '@/components/Navbar';
+import { SiteNav } from '@/components/nav/SiteNav';
 import { Hero } from '@/components/Hero';
 import { ProductShowcase } from '@/components/ProductShowcase';
 import { Why } from '@/components/Why';
@@ -63,7 +63,7 @@ export default function PlatformHome() {
       <a href="#main-content" className="skip-link">
         ข้ามไปยังเนื้อหาหลัก
       </a>
-      <Navbar />
+      <SiteNav />
       <main id="main-content">
         <Hero />
         <ProductShowcase />

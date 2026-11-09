@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Navbar } from '@/components/Navbar';
+import { SiteNav } from '@/components/nav/SiteNav';
 import { CourseGrid } from '@/components/CourseGrid';
 import { Footer } from '@/components/Footer';
 import { DonatePopup } from '@/components/DonatePopup';
@@ -14,7 +14,7 @@ export const metadata: Metadata = buildMetadata({
 export default function CoursesPage() {
   return (
     <div className="home-shell" id="top">
-      <Navbar />
+      <SiteNav />
       <main id="main-content" className="pt-24 pb-16">
         <CourseGrid previewOnly={false} />
       </main>

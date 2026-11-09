@@ -1,0 +1,167 @@
+/* Site-wide top bar. Course pages set --nav-accent / --nav-soft / --nav-line. */
+.nav {
+  --nav-accent: #15803d;
+  --nav-soft: #e8f5ec;
+  --nav-line: #cde8d6;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  border-bottom: 1px solid #e7ebef;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: saturate(1.4) blur(10px);
+  font-family: var(--font-body);
+}
+
+.inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 62px; }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.logo { display: inline-flex; flex: 0 0 auto; text-decoration: none; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 4px 11px;
+  border: 1px solid var(--nav-line);
+  border-radius: 999px;
+  background: var(--nav-soft);
+  color: var(--nav-accent);
+  font-size: 12.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--nav-accent); }
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+  padding: 6px 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.back:hover { border-color: #cbd5e1; color: #1e293b; }
+
+.actions { display: flex; align-items: center; gap: 8px; }
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d5dce4;
+  border-radius: 10px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.action:hover { border-color: var(--nav-accent); color: var(--nav-accent); }
+.action svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.current { border-color: var(--nav-line); background: var(--nav-soft); color: var(--nav-accent); }
+.primary { border-color: var(--nav-accent); background: var(--nav-accent); color: #fff; }
+.primary:hover { color: #fff; filter: brightness(1.08); }
+.register { border-color: #16a34a; background: #16a34a; color: #fff; }
+.register:hover { color: #fff; border-color: #15803d; background: #15803d; }
+.quiet { color: #64748b; }
+
+.mobile { display: none; align-items: center; gap: 8px; }
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d5dce4;
+  border-radius: 12px;
+  background: #fff;
+  color: #334155;
+  font-size: 22px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+.burger { gap: 4px; align-content: center; }
+.burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.2s ease, opacity 0.2s ease; }
+.burgerOpen span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burgerOpen span:nth-child(2) { opacity: 0; }
+.burgerOpen span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.backdrop { position: fixed; inset: 0; z-index: 61; border: 0; background: rgba(15, 23, 42, 0.38); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+.backdropOpen { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 62;
+  display: flex;
+  flex-direction: column;
+  width: min(360px, 88vw);
+  overflow-y: auto;
+  background: #fff;
+  box-shadow: -18px 0 40px rgba(15, 23, 42, 0.16);
+  transform: translateX(100%);
+  transition: transform 0.24s ease;
+}
+.drawerOpen { transform: translateX(0); }
+.drawerHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 20px 18px 14px; border-bottom: 1px solid #eef1f4; }
+.drawerHead small { display: block; color: var(--nav-accent); font-size: 11px; font-weight: 900; letter-spacing: 0.1em; }
+.drawerHead strong { display: block; font-family: var(--font-display); font-size: 22px; line-height: 1.3; }
+.drawerHead span { color: #64748b; font-size: 13px; }
+
+.drawerList { display: grid; gap: 6px; padding: 12px; }
+.drawerList > a,
+.drawerList > button {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #1e293b;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.drawerList > a:hover,
+.drawerList > button:hover { border-color: #e2e8f0; background: #f8fafc; }
+.drawerList strong { display: block; font-size: 15px; line-height: 1.35; }
+.drawerList small { display: block; color: #64748b; font-size: 12.5px; line-height: 1.4; }
+.drawerList > a > svg { color: #94a3b8; }
+.drawerIcon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--nav-soft); color: var(--nav-accent); font-weight: 900; }
+.drawerIcon svg { width: 18px; height: 18px; }
+.drawerPrimary { margin-bottom: 4px; border-color: var(--nav-accent) !important; background: var(--nav-accent) !important; color: #fff !important; }
+.drawerPrimary small, .drawerPrimary > svg { color: rgba(255, 255, 255, 0.85) !important; }
+.drawerPrimary .drawerIcon { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.drawerQuiet { margin-top: 6px; color: #64748b !important; }
+
+@media (max-width: 1080px) {
+  .back { display: none; }
+}
+
+@media (max-width: 900px) {
+  .actions { display: none; }
+  .mobile { display: flex; }
+  .inner { min-height: 58px; gap: 10px; }
+  /* In a course, phones show the logo mark only so the course chip fits. */
+  .logoCompact > span { display: none !important; }
+}

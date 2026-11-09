@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { User } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Navbar } from '@/components/Navbar';
+import { SiteNav } from '@/components/nav/SiteNav';
 import { Footer } from '@/components/Footer';
 import { readPendingAttempts, removePendingAttempts } from '@/lib/pending-attempts';
 import { getSupabase } from '@/lib/supabase';
@@ -564,7 +564,7 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard-layout-wrapper">
-      <Navbar />
+      <SiteNav />
       <div className="dashboard-container">
         <aside className="dashboard-sidebar" aria-label="เมนู Dashboard">
           <div className="dashboard-menu">

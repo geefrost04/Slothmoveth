@@ -108,6 +108,8 @@ body {
 
 /* Thai wraps better with balanced headings and no single-word last lines. */
 h1, h2, h3, h4 { text-wrap: balance; }
+/* The site nav is sticky, so pages that use it need no space reserved for the old fixed nav. */
+body:has([data-site-nav]) { padding-top: 0; }
 p, li, dd, figcaption, blockquote { text-wrap: pretty; }
 
 .purchase-gate,
