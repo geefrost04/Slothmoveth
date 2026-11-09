@@ -9,6 +9,7 @@ import { getSarabanLesson, lessonOutline } from './sarabanLessonData';
 import { getComputerLesson } from './computerLessonData';
 import { getLawLesson } from './lawLessonData';
 import { getOnwrLesson } from './onwrLessonData';
+import { CoffeeNudge } from '@/components/CoffeeNudge';
 import { OnThisPage } from './OnThisPage';
 import { Rich } from './RichText';
 import styles from './StudySheetReader.module.css';
@@ -71,6 +72,10 @@ function TocGroups({ sheet, groups, current }: { sheet: Sheet; groups: Group[]; 
 
 function PagerCards({ sheet, previous, next }: { sheet: Sheet; previous?: StudySheetSection; next?: StudySheetSection }) {
   return (
+    <>
+    <div className={frame.coffeeSlot}>
+      <CoffeeNudge source="notes_end" title="อ่านจบบทแล้ว โน้ตนี้มีประโยชน์ไหม?" text="โน้ตทุกบทเปิดฟรี เลี้ยงกาแฟสักแก้วเป็นกำลังใจให้ทำต่อได้ครับ" />
+    </div>
     <nav className={frame.pager} aria-label="เปลี่ยนบท">
       {previous ? (
         <Link href={sectionHref(sheet, previous)} className={frame.pagerPrev}>
@@ -90,6 +95,7 @@ function PagerCards({ sheet, previous, next }: { sheet: Sheet; previous?: StudyS
         </Link>
       )}
     </nav>
+    </>
   );
 }
 

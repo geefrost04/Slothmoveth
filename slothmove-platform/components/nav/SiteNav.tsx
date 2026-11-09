@@ -8,6 +8,7 @@ import type { CourseConfig } from '@/lib/course-types';
 import { getSupabase } from '@/lib/supabase';
 import { NavControlIcon } from '@/components/nav/NavControlIcons';
 import { SlothMoveLogo } from '@/components/brand/SlothMoveLogo';
+import { triggerDonatePrompt } from '@/lib/donate-prompt';
 import styles from './SiteNav.module.css';
 
 // One top bar for the whole site. Inside a course it adds the course chip, a back link
@@ -174,6 +175,9 @@ export function SiteNav({ course }: { course?: CourseConfig }) {
               <SparkIcon /><span>{meta.primary.label}</span>
             </Link>
           ) : null}
+          <button type="button" className={`${styles.action} ${styles.coffee}`} onClick={() => triggerDonatePrompt('nav')} title="เลี้ยงกาแฟ SlothMove" aria-label="เลี้ยงกาแฟ SlothMove">
+            <span aria-hidden="true">☕</span>
+          </button>
           <Link href="/courses" className={`${styles.action} ${isActive('/courses') && !course ? styles.current : ''}`}>
             <NavControlIcon type="exam" /><span>สนามสอบ</span>
           </Link>
@@ -267,6 +271,11 @@ export function SiteNav({ course }: { course?: CourseConfig }) {
             <span><strong>หน้าแรก</strong><small>SlothMove</small></span>
             <ArrowIcon />
           </Link>
+          <button type="button" onClick={() => { setOpen(false); triggerDonatePrompt('nav_menu'); }} className={styles.drawerCoffee}>
+            <span className={styles.drawerIcon}>☕</span>
+            <span><strong>เลี้ยงกาแฟ SlothMove</strong><small>ช่วยให้ข้อสอบและโน้ตฟรีต่อไป</small></span>
+            <ArrowIcon />
+          </button>
           <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
             <span className={styles.drawerIcon}>f</span>
             <span><strong>Facebook Page</strong><small>ข่าวสารและอัปเดตจากทีมงาน</small></span>

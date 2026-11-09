@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { thaiWrap } from '@/lib/thaiText';
+import { recordExamCompletedAndMaybePrompt } from '@/lib/donate-prompt';
+import { CoffeeNudge } from '@/components/CoffeeNudge';
 import { useEffect, useRef, useState } from 'react';
 import { queuePendingAttempt, type PendingAttempt } from '@/lib/pending-attempts';
 import { getSupabase } from '@/lib/supabase';
@@ -509,6 +511,7 @@ export function ExamRunner({
     };
 
     setResult(completedResult);
+    recordExamCompletedAndMaybePrompt();
     trackAnalyticsEvent('practice_completed', {
       practice_type: 'exam_set', subject_id: subjectId, question_count: completedResult.total,
       score: completedResult.score, completion_reason: reason, exam_set_id: examSetId
@@ -933,6 +936,9 @@ export function ExamRunner({
               ) : null}
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
               <Link href={subjectHref} className={styles.secondaryButton}>{backLabel}</Link>
+            </div>
+            <div className={styles.coffeeSlot}>
+              <CoffeeNudge source="result_card" title="ชอบข้อสอบชุดนี้ไหม?" text="ทุกชุดเปิดฟรี ค่ากาแฟช่วยให้มีชุดใหม่ออกมาเรื่อย ๆ" />
             </div>
           </section>
 

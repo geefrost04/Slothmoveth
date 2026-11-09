@@ -1,4 +1,5 @@
 'use client';
+import { triggerDonatePrompt } from '@/lib/donate-prompt';
 
 import Link from 'next/link';
 import styles from './Footer.module.css';
@@ -71,6 +72,15 @@ export function Footer() {
               <TikTokIcon />
               <span>TikTok</span>
             </a>
+            <button
+              type="button"
+              onClick={() => triggerDonatePrompt('footer')}
+              className={`${styles.socialBtn} ${styles.socialBtnCoffee}`}
+              aria-label="เลี้ยงกาแฟ SlothMove"
+            >
+              <span aria-hidden="true">☕</span>
+              <span>เลี้ยงกาแฟ</span>
+            </button>
           </div>
         </div>
 

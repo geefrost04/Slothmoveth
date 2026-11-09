@@ -11,6 +11,7 @@ import { getSupabase } from '@/lib/supabase';
 import { trackAnalyticsEvent } from '@/lib/analytics';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
 import { evaluatePoliceBenchmark } from '@/lib/police-exam-benchmark';
+import { CoffeeNudge } from '@/components/CoffeeNudge';
 import '../dashboard.css';
 
 type DashboardView = 'overview' | 'history' | 'analysis' | 'review';
@@ -577,6 +578,7 @@ export default function DashboardPage() {
             <div className="sidebar-exam-title">สนามสอบที่ใช้งานอยู่</div><img src={activeCourse.logo} alt={activeCourse.name} className="sidebar-exam-logo" />
             <div className="sidebar-exam-title is-course-name">{activeCourse.name}</div><Link href={activeCourse.href} className="sidebar-exam-btn">ไปหน้าคอร์ส</Link><Link href="/#exam-selection" className="sidebar-change-link">เปลี่ยนสนามสอบ</Link>
           </div>
+          <CoffeeNudge compact source="dashboard_sidebar" title={attempts.length ? `ฝึกฟรีมาแล้ว ${attempts.length} ครั้ง` : 'เว็บนี้เปิดให้ใช้ฟรี'} text="เลี้ยงกาแฟสักแก้ว ช่วยให้ข้อสอบฟรีต่อไปได้" />
           <a href="https://www.facebook.com/profile.php?id=61589670089745" target="_blank" rel="noopener noreferrer" className="sidebar-help-box"><span>มีคำถามหรือปัญหา?</span><span>ติดต่อทีมงาน ›</span></a>
         </aside>
 

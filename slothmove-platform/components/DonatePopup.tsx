@@ -1,97 +1,73 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { snoozeDonatePrompt } from '@/lib/donate-prompt';
+import { trackAnalyticsEvent } from '@/lib/analytics';
+import styles from './DonatePopup.module.css';
 
+const QR_SRC = '/pic/qr.jpg';
+
+// Site-wide coffee popup (PromptPay QR). Opened by triggerDonatePrompt(source) from lib/donate-prompt.
 export function DonatePopup() {
-  const [open, setOpen] = useState(false);
+  const [source, setSource] = useState<string | null>(null);
+  const open = source !== null;
 
   useEffect(() => {
-    function onDonate() {
-      setOpen(true);
-    }
-    function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false);
+    function onDonate(event: Event) {
+      const next = (event as CustomEvent<{ source?: string }>).detail?.source ?? 'manual';
+      setSource(next);
+      trackAnalyticsEvent('donate_open', { source: next });
     }
     window.addEventListener('slothmove:donate', onDonate);
-    document.addEventListener('keydown', onKey);
-    return () => {
-      window.removeEventListener('slothmove:donate', onDonate);
-      document.removeEventListener('keydown', onKey);
-    };
+    return () => window.removeEventListener('slothmove:donate', onDonate);
   }, []);
 
-  // Lock body scroll when open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    return () => { document.body.style.overflow = previous; document.removeEventListener('keydown', onKey); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   function close() {
-    setOpen(false);
+    if (source === 'auto_after_exam') snoozeDonatePrompt();
+    trackAnalyticsEvent('donate_close', { source: source ?? 'manual' });
+    setSource(null);
   }
 
   if (!open) return null;
 
   return (
-    <div
-      className="donate-popup-overlay active"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="donate-popup-title"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) close();
-      }}
-    >
-      <div className="donate-popup">
-        <button
-          className="donate-popup-close"
-          type="button"
-          aria-label="ปิด"
-          onClick={close}
-        >
-          ×
-        </button>
-        <div className="donate-popup-icon" aria-hidden>☕</div>
-        <div id="donate-popup-title" className="donate-popup-title">
-          เลี้ยงกาแฟผมหน่อยครับ
+    <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="donate-title" onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
+      <div className={styles.card}>
+        <button type="button" className={styles.x} aria-label="ปิด" onClick={close}>×</button>
+        <div className={styles.head}>
+          <span className={styles.cup} aria-hidden="true">☕</span>
+          <h2 id="donate-title">เลี้ยงกาแฟ SlothMove สักแก้ว</h2>
+          <p>ข้อสอบ โน้ต และเฉลยทั้งหมด<b>เปิดให้ใช้ฟรี</b><br />ค่ากาแฟของคุณช่วยให้มีชุดใหม่ออกมาเรื่อย ๆ</p>
         </div>
-        <p className="donate-popup-desc">
-          SlothMove ตั้งใจทำให้ทุกคนเรียนฟรี
-          <br />
-          ร่วมสนับสนุนได้ตามกำลังครับ
-        </p>
-        <div className="qr-card">
+
+        <div className={styles.qr}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/pic/qr.jpg" alt="QR พร้อมเพย์" loading="lazy" decoding="async" />
-          <div className="promptpay">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c5/PromptPay-logo.png"
-              alt="PromptPay"
-            />
-          </div>
-          <p className="qr-note">*สแกนจ่ายได้ทุกแอปธนาคาร</p>
+          <img src={QR_SRC} alt="QR พร้อมเพย์สำหรับเลี้ยงกาแฟ SlothMove" width={220} height={220} />
+          <span className={styles.qrNote}>สแกนจ่ายได้ทุกแอปธนาคาร · ตามกำลัง</span>
         </div>
-        <a
-          href="https://www.facebook.com/profile.php?id=61589670089745"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="donate-fb-btn"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-          </svg>
-          ติดตาม SlothMove
-        </a>
-        <button type="button" className="donate-popup-close-btn" onClick={close}>
-          ปิด
-        </button>
+
+        <div className={styles.actions}>
+          <a
+            href={QR_SRC}
+            download="slothmove-promptpay.jpg"
+            className={styles.save}
+            onClick={() => trackAnalyticsEvent('donate_qr_save', { source: source ?? 'manual' })}
+          >
+            บันทึกรูป QR
+          </a>
+          <button type="button" className={styles.later} onClick={close}>ไว้คราวหน้า</button>
+        </div>
+        <p className={styles.hint}>บนมือถือ: บันทึกรูป QR แล้วเปิดแอปธนาคาร เลือกสแกนจากรูปภาพ<br />ขอบคุณที่ช่วยให้ SlothMove ฟรีต่อไปครับ</p>
       </div>
     </div>
   );

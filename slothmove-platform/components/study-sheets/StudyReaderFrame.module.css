@@ -232,3 +232,5 @@
 @media print {
   .layout { display: none !important; }
 }
+
+.coffeeSlot { margin: 28px 0 12px; }

@@ -2071,3 +2071,5 @@
 .resultPage { align-content: start; gap: 0; }
 .resultDetails .categoryResults { max-height: none; margin: 0; padding: 0; overflow: visible; border: 0; background: transparent; }
 .resultDetails .progressSaveMessage { color: #697180; font-size: 13px; text-align: center; }
+
+.coffeeSlot { margin-top: 14px; }

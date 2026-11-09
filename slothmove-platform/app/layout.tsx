@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { NavigationProgress } from '@/components/loading/NavigationProgress';
 import { Suspense } from 'react';
+import { DonatePopup } from '@/components/DonatePopup';
 import { absoluteUrl, serializeJsonLd, siteConfig } from '@/lib/seo';
 
 const kanit = Kanit({
@@ -130,6 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           {children}
         </ThemeProvider>
+        <DonatePopup />
         <GoogleAnalytics />
       </body>
     </html>

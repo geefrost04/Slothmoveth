@@ -246,3 +246,5 @@
     gap: 12px;
   }
 }
+
+.socialBtnCoffee { font-family: inherit; cursor: pointer; }

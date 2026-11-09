@@ -4,7 +4,6 @@ import { SiteNav } from '@/components/nav/SiteNav';
 import { OcscNav } from './OcscNav';
 import { CourseFooter } from './CourseFooter';
 import { applyTheme } from '@/lib/course-theme';
-import { DonatePopup } from '@/components/DonatePopup';
 
 export function CourseLayout({
   course,
@@ -18,7 +17,6 @@ export function CourseLayout({
       {course.id === 'ocsc' ? <OcscNav course={course} /> : <SiteNav course={course} />}
       <main style={{ flex: 1 }}>{children}</main>
       <CourseFooter course={course} />
-      <DonatePopup />
     </div>
   );
 }
