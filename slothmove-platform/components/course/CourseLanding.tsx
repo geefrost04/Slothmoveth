@@ -1,22 +1,11 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import type { CourseConfig, CourseLandingSection, SubjectMeta } from '@/lib/course-types';
-import { PoliceMockTestCatalog } from './PoliceMockTestCatalog';
-import { PoliceMockupSubjectGrid } from './PoliceMockupSubjectGrid';
 import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
-import { PoliceMiniMockCallout } from './PoliceMiniMockCallout';
-import { PoliceSubjectShortcuts } from './PoliceSubjectShortcuts';
+import { PoliceCourseHome } from './PoliceCourseHome';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
-import {
-  SubjectIcon,
-  MathIcon,
-  ThaiIcon,
-  EnglishIcon,
-  LawIcon,
-  ComputerIcon,
-  SarabanIcon
-} from '@/components/icons/SubjectIcons';
+import { SubjectIcon } from '@/components/icons/SubjectIcons';
 
 function findSubjects(course: CourseConfig, ids: string[]) {
   return ids
@@ -467,144 +456,6 @@ const FolderIcon = () => (
   </svg>
 );
 
-const MathGraphIcon = () => (
-  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M10 7v32h31M13 31c6-1 8-19 15-19 5 0 5 15 12 17" />
-    <path d="M17 36v3M25 36v3M33 36v3M7 29h3M7 20h3M7 11h3" />
-    <text x="29" y="10" fill="currentColor" stroke="none" fontSize="8">f(x)</text>
-  </svg>
-);
-
-function PoliceMockupLanding({ course }: { course: CourseConfig }) {
-  const subjects = [
-    {
-      id: 'math',
-      title: 'ความรู้ทั่วไป',
-      iconCustom: <MathIcon size={22} />,
-      desc: 'คิดวิเคราะห์, คิดเชิงเหตุผล, คณิตศาสตร์พื้นฐาน, อนุกรม, ความน่าจะเป็น, สถิติพื้นฐาน',
-      active: true,
-      quizzes: [
-        { title: 'สรุปสูตรที่ใช้', price: 'ฟรี', href: `/courses/${course.id}/math`, isFormula: true },
-      ]
-    },
-    {
-      id: 'thai',
-      title: 'ภาษาไทย',
-      iconCustom: <ThaiIcon size={22} />,
-      desc: 'การอ่านจับใจความ, การเขียน, หลักภาษา, การใช้คำ, การสรุปความและตีความ',
-      active: true,
-    },
-    {
-      id: 'english',
-      title: 'ภาษาอังกฤษ',
-      iconCustom: <EnglishIcon size={22} />,
-      desc: 'Reading Ability, Grammar & Structure, Vocabulary, Conversation',
-      active: true,
-    },
-    {
-      id: 'law',
-      title: 'กฎหมาย',
-      iconCustom: <LawIcon size={22} />,
-      desc: 'กฎหมายที่ประชาชนควรรู้, กฎหมายอาญา, กฎหมายแพ่ง, กฎหมายในชีวิตประจำวัน',
-      active: true,
-    },
-    {
-      id: 'computer',
-      title: 'คอมพิวเตอร์',
-      iconCustom: <ComputerIcon size={22} />,
-      desc: 'เทคโนโลยีสารสนเทศ, เครือข่ายคอมพิวเตอร์เบื้องต้น, MS Word, Excel, PowerPoint',
-      active: true,
-      quizzes: [
-        { title: 'ชีทสรุปคอมพิวเตอร์', price: 'ฟรี', href: `/courses/${course.id}/computer/summary`, isFormula: true },
-      ]
-    },
-    {
-      id: 'saraban',
-      title: 'งานสารบรรณ',
-      iconCustom: <SarabanIcon size={22} />,
-      desc: 'ระเบียบงานสารบรรณ พ.ศ. 2526 และประมวลระเบียบการตำรวจ ลักษณะที่ 54',
-      active: true,
-    }
-  ];
-
-  return (
-    <div className="police-v2-landing">
-      <div className="container">
-        <nav className="police-v2-breadcrumb" aria-label="breadcrumb">
-          <Link href="/">หน้าแรก</Link>
-          <span className="police-v2-breadcrumb-separator">&gt;</span>
-          <span className="police-v2-breadcrumb-current">สนามสอบ</span>
-          <span className="police-v2-breadcrumb-separator">&gt;</span>
-          <span className="police-v2-breadcrumb-current">นายสิบตำรวจ สายอำนวยการ</span>
-        </nav>
-
-        <section className="police-v2-hero">
-          <div className="police-v2-hero-content">
-            <div className="police-v2-hero-title-row">
-              <span className="police-v2-hero-shield-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="m9 11 2 2 4-4" />
-                </svg>
-              </span>
-              <h1 className="police-v2-hero-title">นายสิบตำรวจ สายอำนวยการ</h1>
-            </div>
-            <h2 className="police-v2-hero-subtitle">เลือกวิชาที่ต้องการฝึก</h2>
-            <p className="police-v2-hero-desc">
-              ฝึกข้อสอบตามวิชาที่ต้องการ หรือดูสรุปเนื้อหาเพื่อเพิ่มความเข้าใจก่อนทำข้อสอบ
-            </p>
-            <PoliceSubjectShortcuts courseId={course.id} subjects={subjects} />
-          </div>
-          <div className="police-v2-hero-image">
-            <img src="/pic/logo_police.png" alt="ตราสำนักงานตำรวจแห่งชาติ" />
-          </div>
-        </section>
-
-        <PoliceMiniMockCallout />
-
-        <section className="police-v2-mock-hero" aria-labelledby="police-mock-hero-title">
-          <div className="police-v2-mock-copy">
-            <span className="police-v2-mock-eyebrow"><i aria-hidden="true" /> FULL MOCK EXPERIENCE</span>
-            <h2 id="police-mock-hero-title">Mock Test จำลองสนามจริง</h2>
-            <p>ทำข้อสอบครบ 6 วิชาในรอบเดียว จับเวลา 180 นาที แล้วรับคะแนนรวม คะแนนแยกรายวิชา และเฉลยไว้กลับไปฝึกต่อ</p>
-            <div className="police-v2-mock-meta" aria-label="รายละเอียด Mock Test">
-              <span><strong>150</strong> ข้อ</span>
-              <span><strong>180</strong> นาที</span>
-              <span><strong>6</strong> วิชา</span>
-            </div>
-          </div>
-          <PoliceMockTestCatalog courseId={course.id} compact />
-        </section>
-
-        <h2 className="police-v2-section-heading">เลือกวิชา</h2>
-
-        <PoliceMockupSubjectGrid
-          course={course}
-          subjects={subjects}
-        />
-
-        <section className="police-v2-guide-banner">
-          <div className="police-v2-guide-info">
-            <span className="police-v2-guide-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5" />
-                <path d="M9 18h6" />
-                <path d="M10 22h4" />
-              </svg>
-            </span>
-            <div className="police-v2-guide-text">
-              <h3>ยังไม่รู้จะเริ่มตรงไหน?</h3>
-              <p>เริ่มจาก Mini Mock 30 ข้อเพื่อดูว่าวิชาไหนยังอ่อน แล้วไปฝึกวิชานั้นต่อ หรืออ่านชีทสรุปก่อนก็ได้</p>
-            </div>
-          </div>
-          <Link href={`/courses/${course.id}/math`} className="police-v2-guide-button">
-            ดูสรุปความรู้ทั่วไป
-          </Link>
-        </section>
-      </div>
-    </div>
-  );
-}
 
 export async function CourseLanding({ course }: { course: CourseConfig }) {
   const landing = course.meta.landing;
@@ -652,7 +503,7 @@ export async function CourseLanding({ course }: { course: CourseConfig }) {
         }
       : null;
 
-    return <><PoliceQrQuizPrompt question={sampleQuestion} /><PoliceMockupLanding course={course} /></>;
+    return <><PoliceQrQuizPrompt question={sampleQuestion} /><PoliceCourseHome course={course} /></>;
   }
 
   if (useEditorialLanding) {
