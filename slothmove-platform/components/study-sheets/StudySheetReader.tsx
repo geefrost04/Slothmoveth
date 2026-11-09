@@ -7,6 +7,7 @@ import { BackToTopButton } from './BackToTopButton';
 import { LessonView } from './SarabanStudyLessons';
 import { getSarabanLesson, lessonOutline } from './sarabanLessonData';
 import { getComputerLesson } from './computerLessonData';
+import { getLawLesson } from './lawLessonData';
 import { OnThisPage } from './OnThisPage';
 import { Rich } from './RichText';
 import styles from './StudySheetReader.module.css';
@@ -711,8 +712,8 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const isSarabanSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'saraban';
   const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet;
 
-  // Saraban and computer sheets are note-style lessons; other sheets are markdown.
-  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : undefined);
+  // Saraban, computer and law sheets are note-style lessons; other sheets are markdown.
+  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : undefined);
   const lesson = lessonFor(current.slug);
   const mathLesson = !lesson && ['chapter-01', 'chapter-02'].includes(current.slug);
   const usesMarkdown = !lesson && !mathLesson;

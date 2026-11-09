@@ -16,9 +16,15 @@ const SHEET_OUTLINES: Record<string, Outline> = {
     { label: 'บท 5', title: 'Word · Excel · PowerPoint', meta: '1 บท' },
     { label: 'บท 6–8', title: 'อินเทอร์เน็ต · ความปลอดภัย · เทคโนโลยีใหม่', meta: '3 บท' },
     { label: '★', title: 'โน้ตทบทวนก่อนสอบ', meta: '1 หน้า' }
+  ],
+  law: [
+    { label: 'บท 1–2', title: 'พื้นฐานกฎหมาย · รัฐธรรมนูญ', meta: '2 บท' },
+    { label: 'บท 3–5', title: 'แพ่ง: บุคคล · สัญญา · ครอบครัวและมรดก', meta: '3 บท' },
+    { label: 'บท 6–7', title: 'อาญา · กฎหมายใกล้ตัว', meta: '2 บท' },
+    { label: '★', title: 'โน้ตทบทวนก่อนสอบ', meta: '1 หน้า' }
   ]
 };
-const SHEET_TITLES: Record<string, string> = { saraban: 'โน้ตสรุป 2 ภาค', computer: 'โน้ตสรุป 8 บท' };
+const SHEET_TITLES: Record<string, string> = { saraban: 'โน้ตสรุป 2 ภาค', computer: 'โน้ตสรุป 8 บท', law: 'โน้ตสรุป 7 บท' };
 
 export function PoliceSubjectHero({
   subjectId,

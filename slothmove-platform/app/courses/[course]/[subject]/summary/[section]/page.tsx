@@ -64,6 +64,11 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
   if (normalizedSubjectId === 'computer' && OLD_COMPUTER_SLUGS[sectionSlug]) {
     permanentRedirect(`/courses/${courseId}/computer/summary/${OLD_COMPUTER_SLUGS[sectionSlug]}`);
   }
+  // The law sheet's 6 "part" pages became 7 lessons; parts 4–6 were saraban topics, now in the saraban notes.
+  const OLD_LAW_SLUGS: Record<string, string> = { 'part-01': 'lesson-01', 'part-02': 'lesson-03', 'part-03': 'lesson-06' };
+  if (normalizedSubjectId === 'law' && /^part-0[1-6]$/.test(sectionSlug)) {
+    permanentRedirect(OLD_LAW_SLUGS[sectionSlug] ? `/courses/${courseId}/law/summary/${OLD_LAW_SLUGS[sectionSlug]}` : `/courses/${courseId}/saraban/summary/lesson-02`);
+  }
 
   const current = bundle?.sections.find((section) => section.slug === sectionSlug);
   if (!bundle || !current) notFound();
