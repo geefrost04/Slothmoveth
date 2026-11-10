@@ -30,7 +30,7 @@ export const siteConfig = {
     'ภาค ก',
     'สอบ ก.พ.',
   ],
-  ogImage: '/opengraph-image',
+  ogImage: '/og/site.png',
   facebook: 'https://www.facebook.com/profile.php?id=61589670089745',
   tiktok: 'https://www.tiktok.com/@geefrostt',
 } as const;
@@ -48,15 +48,24 @@ type BuildMetadataInput = {
   noIndex?: boolean;
 };
 
+// Share images in public/og (Thai, 1200x630, key content centred so Facebook's crops keep it).
+const COURSE_OG_IMAGES: Record<string, string> = {
+  police_admin: '/og/police_admin.png',
+  nesdc: '/og/nesdc.png',
+  onwr: '/og/onwr.png'
+};
+
 export function buildMetadata({
   title,
   description,
   path = '/',
   keywords = [],
-  image = siteConfig.ogImage,
+  image,
   noIndex = false,
 }: BuildMetadataInput): Metadata {
   const url = absoluteUrl(path);
+  const courseId = path.match(/^\/courses\/([a-z_]+)/)?.[1];
+  image ??= (courseId && COURSE_OG_IMAGES[courseId]) || siteConfig.ogImage;
   const imageUrl = image.startsWith('http') ? image : absoluteUrl(image);
 
   return {
