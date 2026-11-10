@@ -137,6 +137,28 @@
       ]
     ]
   },
+  "interview": {
+    "sheetTitle": "โน้ตสรุป: เตรียมสอบสัมภาษณ์",
+    "intro": "เกณฑ์ที่กรรมการพิจารณา คำถามที่ถามบ่อย โครงตอบ STAR และตัวอย่างคำตอบ",
+    "lessons": [
+      [
+        "extra",
+        "extra-interview-1"
+      ],
+      [
+        "extra",
+        "extra-interview-2"
+      ],
+      [
+        "extra",
+        "extra-interview-3"
+      ],
+      [
+        "extra",
+        "extra-interview-4"
+      ]
+    ]
+  },
   "review": {
     "sheetTitle": "โน้ตทบทวนก่อนสอบ สทนช.",
     "intro": "สรุปคู่ที่ชอบสลับและตัวเลขที่ต้องจำของทุกหัวข้อ",

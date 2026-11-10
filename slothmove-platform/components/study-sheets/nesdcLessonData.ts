@@ -9,6 +9,7 @@ import { LESSONS as NATIONAL } from './nesdc/national';
 import { LESSONS as ANALYSIS } from './nesdc/analysis';
 import { LESSONS as REVIEW } from './nesdc/review';
 import { LESSONS as WRITING } from './nesdc/writing';
+import { LESSONS as INTERVIEW } from './nesdc/interview';
 import TOPICS from './nesdcTopics.json';
 import { thaiWrapDeep } from '@/lib/thaiText';
 
@@ -26,7 +27,8 @@ const SOURCES: Record<string, NoteLesson[]> = {
   'nesdc-national': NATIONAL,
   'nesdc-analysis': ANALYSIS,
   'nesdc-review': REVIEW,
-  'nesdc-writing': WRITING
+  'nesdc-writing': WRITING,
+  'nesdc-interview': INTERVIEW
 };
 
 function resolve(refs: string[][]): NoteLesson[] {

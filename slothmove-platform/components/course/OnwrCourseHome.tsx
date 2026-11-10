@@ -14,7 +14,8 @@ async function safeCatalog(courseId: string, subjectId: string): Promise<Catalog
 // Landing for the ONWR policy-and-plan analyst course: exam facts and key dates, Mini Mock, Mini Drill,
 // then the 9 written-exam topics (notes + sets) grouped as in the announcement.
 export async function OnwrCourseHome({ course }: { course: CourseConfig }) {
-  const topics = course.subjects.filter((subject) => subject.id !== 'review');
+  // Notes-only sections (pre-exam review, interview prep) get their own cards, not topic tiles.
+  const topics = course.subjects.filter((subject) => subject.id !== 'review' && subject.id !== 'interview');
   const [miniCatalog, drillCatalog, ...catalogs] = await Promise.all([
     safeCatalog(course.id, 'mini_mock'),
     safeCatalog(course.id, 'mini_drill'),
@@ -46,5 +47,7 @@ export async function OnwrCourseHome({ course }: { course: CourseConfig }) {
   });
   const review = ONWR_LESSONS.review ?? [];
   const reviewHref = review.length ? `/courses/${course.id}/review/summary/${review[0].slug}` : null;
-  return <OnwrCourseHomeClient miniMocks={miniMocks} drills={drills} subjects={subjects} reviewHref={reviewHref} reviewCount={review.length} />;
+  const interview = ONWR_LESSONS.interview ?? [];
+  const interviewHref = interview.length ? `/courses/${course.id}/interview/summary/${interview[0].slug}` : null;
+  return <OnwrCourseHomeClient miniMocks={miniMocks} drills={drills} subjects={subjects} reviewHref={reviewHref} reviewCount={review.length} interviewHref={interviewHref} interviewCount={interview.filter((lesson) => lesson.sectionType === 'chapter').length} />;
 }

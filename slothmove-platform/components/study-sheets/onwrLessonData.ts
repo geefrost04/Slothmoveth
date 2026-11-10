@@ -8,6 +8,7 @@ import { LESSON as EXTRA_MONITORING } from './onwrExtra/monitoring';
 import { LESSON as EXTRA_PROJECT } from './onwrExtra/project';
 import { LESSON as EXTRA_MEETING } from './onwrExtra/meeting';
 import { LESSON as EXTRA_RULES } from './onwrExtra/rules';
+import { LESSONS as EXTRA_INTERVIEW } from './onwrExtra/interview';
 import TOPICS from './onwrTopics.json';
 import { thaiWrapDeep } from '@/lib/thaiText';
 
@@ -18,7 +19,7 @@ const SOURCES: Record<string, NoteLesson[]> = {
   water: ONWR_WATER_LESSONS,
   planning: ONWR_PLANNING_LESSONS,
   // Extra chapters for thin topics (components/study-sheets/onwrExtra/<topic>.ts).
-  extra: [EXTRA_ORG, EXTRA_MASTERPLAN, EXTRA_MONITORING, EXTRA_PROJECT, EXTRA_MEETING, EXTRA_RULES]
+  extra: [EXTRA_ORG, EXTRA_MASTERPLAN, EXTRA_MONITORING, EXTRA_PROJECT, EXTRA_MEETING, EXTRA_RULES, ...EXTRA_INTERVIEW]
 };
 
 const REVIEW_TITLES: Record<string, string> = {

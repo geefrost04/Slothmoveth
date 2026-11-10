@@ -14,7 +14,8 @@ async function safeCatalog(courseId: string, subjectId: string): Promise<Catalog
 // Landing for the NESDC policy-and-plan course: exam facts and key dates, Mini Mock, Mini Drill, the 7 topics
 // and the pre-exam review sheet.
 export async function NesdcCourseHome({ course }: { course: CourseConfig }) {
-  const topics = course.subjects.filter((subject) => subject.id !== 'review');
+  // Notes-only sections (pre-exam review, interview prep) get their own cards, not topic tiles.
+  const topics = course.subjects.filter((subject) => subject.id !== 'review' && subject.id !== 'interview');
   const [miniCatalog, drillCatalog, ...catalogs] = await Promise.all([
     safeCatalog(course.id, 'mini_mock'),
     safeCatalog(course.id, 'mini_drill'),
@@ -45,5 +46,7 @@ export async function NesdcCourseHome({ course }: { course: CourseConfig }) {
   });
   const review = NESDC_LESSONS.review ?? [];
   const reviewHref = review.length ? `/courses/${course.id}/review/summary/${review[0].slug}` : null;
-  return <NesdcCourseHomeClient miniMocks={miniMocks} drills={drills} subjects={subjects} reviewHref={reviewHref} reviewCount={review.length} />;
+  const interview = NESDC_LESSONS.interview ?? [];
+  const interviewHref = interview.length ? `/courses/${course.id}/interview/summary/${interview[0].slug}` : null;
+  return <NesdcCourseHomeClient miniMocks={miniMocks} drills={drills} subjects={subjects} reviewHref={reviewHref} reviewCount={review.length} interviewHref={interviewHref} interviewCount={interview.filter((lesson) => lesson.sectionType === 'chapter').length} />;
 }

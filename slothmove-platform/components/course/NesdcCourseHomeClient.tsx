@@ -108,13 +108,17 @@ export function NesdcCourseHomeClient({
   drills,
   subjects,
   reviewHref,
-  reviewCount
+  reviewCount,
+  interviewHref,
+  interviewCount
 }: {
   miniMocks: NesdcSet[];
   drills: NesdcSet[];
   subjects: NesdcSubjectCard[];
   reviewHref: string | null;
   reviewCount: number;
+  interviewHref: string | null;
+  interviewCount: number;
 }) {
   const topicSets = subjects.flatMap((subject) => subject.sets);
   const scores = useLatestScores([...miniMocks, ...drills, ...topicSets].map((set) => set.id));
@@ -269,6 +273,17 @@ export function NesdcCourseHomeClient({
                 <strong>โน้ตทบทวนก่อนสอบ</strong>
                 <small>{thaiWrap('ตัวเลข สูตร และคู่ที่ชอบสลับของทุกหัวข้อ อ่านคืนก่อนสอบ')}</small>
                 <em>{reviewCount} หน้า</em>
+              </span>
+              <span className={styles.subjectArrow} aria-hidden="true">→</span>
+            </Link>
+          ) : null}
+          {interviewHref ? (
+            <Link href={interviewHref} className={`${styles.subject} ${own.reviewCard}`}>
+              <span className={styles.subjectIcon} aria-hidden="true">🎤</span>
+              <span className={styles.subjectText}>
+                <strong>เตรียมสอบสัมภาษณ์ (100 คะแนน)</strong>
+                <small>{thaiWrap('เกณฑ์ที่กรรมการดู คำถามที่ถามบ่อย โครงตอบ STAR และตัวอย่างคำตอบ')}</small>
+                <em>โน้ต {interviewCount} บท</em>
               </span>
               <span className={styles.subjectArrow} aria-hidden="true">→</span>
             </Link>

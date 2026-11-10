@@ -105,6 +105,15 @@ export const onwrConfig: CourseConfig = {
       games: []
     },
     {
+      id: 'interview',
+      title: 'เตรียมสอบสัมภาษณ์',
+      titleEn: 'Interview Prep',
+      icon: '🎤',
+      desc: 'สัมภาษณ์ 100 คะแนน: เกณฑ์ที่กรรมการดู คำถามที่ถามบ่อย โครงตอบ STAR และตัวอย่างคำตอบ',
+      count: 0,
+      games: []
+    },
+    {
       id: 'review',
       title: 'โน้ตทบทวนก่อนสอบ',
       titleEn: 'Pre-exam Review',

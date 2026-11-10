@@ -225,7 +225,7 @@ function localSubjectDetails(course: CourseConfig, subject: SubjectMeta) {
   }));
   return {
     details: {
-      eyebrow: subject.id === 'review' ? 'ก่อนเข้าห้องสอบ' : `${group} · หัวข้อที่ ${topicNo}`,
+      eyebrow: subject.id === 'review' ? 'ก่อนเข้าห้องสอบ' : subject.id === 'interview' ? 'สอบสัมภาษณ์ · 100 คะแนน' : `${group} · หัวข้อที่ ${topicNo}`,
       summary: subject.desc,
       highlight: chapters.map((lesson) => lesson.title).join(' · ') || subject.desc,
       hasSummary: lessons.length > 0
