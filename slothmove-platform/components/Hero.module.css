@@ -158,3 +158,6 @@
   .quickLabel { flex-basis: 100%; margin-bottom: 2px; }
   .pill { height: 34px; font-size: 13px; }
 }
+
+.pillIcon:has(img) { background: #fff; }
+.quickIcon:has(img) { background: #fff; }

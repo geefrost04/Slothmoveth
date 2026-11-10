@@ -18,7 +18,7 @@ const QUICK_STARTS = [
     name: 'สศช.',
     note: 'งานวิเคราะห์นโยบายและแผน',
     href: '/courses/nesdc/mini-drill/nesdc-mini_drill-set-01',
-    icon: '📊',
+    icon: '/pic/logo_nesdc.png',
     accent: '#5b3fa6',
     soft: '#f1ecfb',
     label: 'Mini Drill 10 ข้อ'
@@ -28,7 +28,7 @@ const QUICK_STARTS = [
     name: 'สทนช.',
     note: 'นักวิเคราะห์นโยบายและแผน',
     href: '/courses/onwr/mini-drill/onwr-mini_drill-set-01',
-    icon: '💧',
+    icon: '/pic/logo_onwr.png',
     accent: '#0b5f86',
     soft: '#e3f3fa',
     label: 'Mini Drill 10 ข้อ'

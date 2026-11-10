@@ -353,7 +353,7 @@ async function syncPendingAttempts(userId: string) {
 // Course logo (image) or emoji on the course's soft colour.
 function CourseMark({ course, size }: { course: DashCourse; size: number }) {
   return (
-    <span className="dbx-mark" style={{ width: size, height: size, fontSize: Math.round(size * 0.5), background: course.soft }} aria-hidden="true">
+    <span className={`dbx-mark${course.icon.startsWith('/') ? ' is-logo' : ''}`} style={{ width: size, height: size, fontSize: Math.round(size * 0.5), background: course.icon.startsWith('/') ? '#fff' : course.soft }} aria-hidden="true">
       {course.icon.startsWith('/') ? <img src={course.icon} alt="" /> : course.icon}
     </span>
   );

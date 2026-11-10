@@ -21,7 +21,7 @@ export const nesdcConfig: CourseConfig = {
     accent: '#8b6fd6',
     accentSoft: '#f1ecfb',
     surface: '#ffffff',
-    logo: '/pic/slothmove_mascot.svg'
+    logo: '/pic/logo_nesdc.png'
   },
   subjects: [
     {

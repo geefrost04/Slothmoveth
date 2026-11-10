@@ -15,8 +15,8 @@ export type DashCourse = {
 
 export const DASH_COURSES: DashCourse[] = [
   { id: 'police_admin', name: 'นายสิบตำรวจ สายอำนวยการ', short: 'นายสิบตำรวจ', agency: 'สำนักงานตำรวจแห่งชาติ', href: '/courses/police_admin', accent: '#7a1822', soft: '#fdebed', icon: '/pic/logo_police.png' },
-  { id: 'onwr', name: 'สทนช. นักวิเคราะห์นโยบายและแผน', short: 'สทนช.', agency: 'สำนักงานทรัพยากรน้ำแห่งชาติ', href: '/courses/onwr', accent: '#0b5f86', soft: '#e3f3fa', icon: '💧' },
-  { id: 'nesdc', name: 'สศช. งานวิเคราะห์นโยบายและแผน', short: 'สศช.', agency: 'สำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ', href: '/courses/nesdc', accent: '#5b3fa6', soft: '#f1ecfb', icon: '📊' }
+  { id: 'onwr', name: 'สทนช. นักวิเคราะห์นโยบายและแผน', short: 'สทนช.', agency: 'สำนักงานทรัพยากรน้ำแห่งชาติ', href: '/courses/onwr', accent: '#0b5f86', soft: '#e3f3fa', icon: '/pic/logo_onwr.png' },
+  { id: 'nesdc', name: 'สศช. งานวิเคราะห์นโยบายและแผน', short: 'สศช.', agency: 'สำนักงานสภาพัฒนาการเศรษฐกิจและสังคมแห่งชาติ', href: '/courses/nesdc', accent: '#5b3fa6', soft: '#f1ecfb', icon: '/pic/logo_nesdc.png' }
 ];
 
 const ONWR_TOPIC_IDS = new Set(['org', 'admin', 'rules', 'policy', 'masterplan', 'monitoring', 'project', 'meeting', 'wateract']);

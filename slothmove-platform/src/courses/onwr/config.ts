@@ -20,7 +20,7 @@ export const onwrConfig: CourseConfig = {
     accent: '#2a9bc9',
     accentSoft: '#e3f3fa',
     surface: '#ffffff',
-    logo: '/pic/slothmove_mascot.svg'
+    logo: '/pic/logo_onwr.png'
   },
   subjects: [
     {

@@ -2214,3 +2214,5 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
   .stat-card { padding: 14px !important; gap: 10px !important; }
 }
 a.dbx-course-main { grid-template-columns: auto minmax(0, 1fr); text-decoration: none; }
+
+.dbx-mark.is-logo { border: 1px solid var(--dbx-line); }

@@ -33,6 +33,7 @@
   text-decoration: none;
 }
 .chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--nav-accent); }
+.chip img { width: 18px; height: 18px; margin-left: -4px; object-fit: contain; }
 
 .back {
   display: inline-flex;

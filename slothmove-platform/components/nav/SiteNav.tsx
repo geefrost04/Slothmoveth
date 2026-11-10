@@ -171,7 +171,7 @@ export function SiteNav({ course }: { course?: CourseConfig }) {
           <Link href="/" className={styles.logo} aria-label="หน้าแรก SlothMove"><SlothMoveLogo size={28} className={course ? styles.logoCompact : undefined} /></Link>
           {course && meta ? (
             <Link href={`/courses/${course.id}`} className={styles.chip} title={course.title}>
-              <i aria-hidden="true" />{meta.chip}
+              {course.theme.logo?.startsWith('/pic/logo_') ? <img src={course.theme.logo} alt="" aria-hidden="true" /> : <i aria-hidden="true" />}{meta.chip}
             </Link>
           ) : null}
           {back ? (
