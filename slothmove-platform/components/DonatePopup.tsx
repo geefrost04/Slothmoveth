@@ -29,6 +29,26 @@ export function DonatePopup() {
     return () => window.removeEventListener('slothmove:donate', onDonate);
   }, []);
 
+  // Coming back from Stripe with the browser's back button restores this page from cache: clear the loading state.
+  useEffect(() => {
+    const onShow = (event: PageTransitionEvent) => { if (event.persisted) setPaying(null); };
+    window.addEventListener('pageshow', onShow);
+    return () => window.removeEventListener('pageshow', onShow);
+  }, []);
+
+  // Open the connection to Stripe Checkout as soon as the popup shows, so the payment page loads faster after a tap.
+  useEffect(() => {
+    if (!open || document.querySelector('link[data-stripe-preconnect]')) return;
+    for (const href of ['https://checkout.stripe.com', 'https://js.stripe.com']) {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = href;
+      link.crossOrigin = 'anonymous';
+      link.dataset.stripePreconnect = '1';
+      document.head.appendChild(link);
+    }
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
@@ -66,11 +86,25 @@ export function DonatePopup() {
     setSource(null);
   }
 
-  if (!open) return null;
-
+  // The popup stays mounted (hidden) so opening it only flips a class; building it on first open made phones stutter.
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="donate-title" onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
+    <div
+      className={`${styles.overlay}${open ? ` ${styles.open}` : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-hidden={!open}
+      inert={!open}
+      aria-labelledby="donate-title"
+      onClick={(event) => { if (event.target === event.currentTarget) close(); }}
+    >
       <div className={styles.card}>
+        {paying !== null ? (
+          <div className={styles.payingMask} role="status">
+            <span className={styles.spinner} aria-hidden="true" />
+            <strong>กำลังเปิดหน้าชำระเงิน ฿{paying}</strong>
+            <small>รอสักครู่ ระบบกำลังสร้าง QR พร้อมเพย์ให้</small>
+          </div>
+        ) : null}
         <button type="button" className={styles.x} aria-label="ปิด" onClick={close}>×</button>
         <div className={styles.head}>
           <span className={styles.cup} aria-hidden="true">☕</span>
@@ -89,7 +123,7 @@ export function DonatePopup() {
             >
               {amount === 50 ? <small>ยอดนิยม</small> : null}
               <strong>฿{amount}</strong>
-              <span>{paying === amount ? 'กำลังเปิด…' : amount === 20 ? 'กาแฟเย็น' : amount === 50 ? 'กาแฟ + ขนม' : 'มื้อกลางวัน'}</span>
+              <span>{amount === 20 ? 'กาแฟเย็น' : amount === 50 ? 'กาแฟ + ขนม' : 'มื้อกลางวัน'}</span>
             </button>
           ))}
         </div>
