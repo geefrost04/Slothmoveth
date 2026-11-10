@@ -21,7 +21,7 @@ export function PoliceQrQuizPrompt({ question }: { question: SampleQuestion | nu
   const [isSignedIn, setIsSignedIn] = useState(false);
   const hasTrackedView = useRef(false);
   const isQrEntry = searchParams?.get('entry') === 'qr' || searchParams?.get('utm_source') === 'qr';
-  const nextPath = '/daily-practice/math?source=qr_sample';
+  const nextPath = '/courses/police_admin/mini-mock/police-mini_mock-set-03?source=qr_sample';
   const registerHref = `/register?next=${encodeURIComponent(nextPath)}&source=qr_sample`;
 
   useEffect(() => {

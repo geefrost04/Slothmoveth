@@ -190,6 +190,8 @@ export function ExamRunner({
   const isMiniMock02 = examSetId === 'police-mini_mock-set-02';
   // ONWR uses its water-blue palette instead of the police maroon.
   const themeStyle = localExamTheme(course?.id);
+  // Course id for analytics: police_admin, onwr, nesdc … (exam set ids start with the course prefix).
+  const analyticsCourseId = course?.id ?? (examSetId.startsWith('police-') ? 'police_admin' : examSetId.split('-')[0]);
   const [examSet, setExamSet] = useState<ExamSet | null>(initialData?.examSet ?? null);
   const [questions, setQuestions] = useState<ExamQuestion[]>(initialData?.questions ?? []);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -377,7 +379,7 @@ export function ExamRunner({
     setSessionReady(true);
     if (!hasTrackedPracticeStart.current) {
       hasTrackedPracticeStart.current = true;
-      trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId });
+      trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', course_id: analyticsCourseId, subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId });
     }
   }
 
@@ -515,8 +517,9 @@ export function ExamRunner({
     setResult(completedResult);
     recordExamCompletedAndMaybePrompt();
     trackAnalyticsEvent('practice_completed', {
-      practice_type: 'exam_set', subject_id: subjectId, question_count: completedResult.total,
-      score: completedResult.score, completion_reason: reason, exam_set_id: examSetId
+      practice_type: 'exam_set', course_id: analyticsCourseId, subject_id: subjectId, question_count: completedResult.total,
+      score: completedResult.score, score_pct: Math.round((completedResult.score / Math.max(1, completedResult.total)) * 100),
+      completion_reason: reason, exam_set_id: examSetId
     });
     void saveProgress(completedResult);
     try {
@@ -622,7 +625,7 @@ export function ExamRunner({
     hasTrackedPracticeStart.current = true;
     hasTrackedFirstAnswer.current = false;
     lastProgressMilestone.current = 0;
-    trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId, restarted: true });
+    trackAnalyticsEvent('practice_started', { practice_type: 'exam_set', course_id: analyticsCourseId, subject_id: subjectId, question_count: questions.length, exam_set_id: examSetId, restarted: true });
   }
 
   function selectAnswer(choiceIndex: number) {
@@ -934,7 +937,7 @@ export function ExamRunner({
                   <b aria-hidden="true">→</b>
                 </Link>
               ) : subjectId === 'mock_test' ? (
-                <Link href="/daily-practice/math" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('daily_practice_recommendation_click', { source: 'mock_test_result' })}>ต่อด้วยควิซฟรี 10 ข้อ</Link>
+                <Link href="/courses/police_admin/mini-mock/police-mini_mock-set-03" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('mini_drill_start_click', { exam_set_id: 'police-mini_mock-set-03', source: 'mock_test_result' })}>ต่อด้วย Mini Drill 20 ข้อ</Link>
               ) : null}
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
               <Link href={subjectHref} className={styles.secondaryButton}>{backLabel}</Link>

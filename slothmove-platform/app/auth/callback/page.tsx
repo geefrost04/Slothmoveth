@@ -29,7 +29,15 @@ export default function AuthCallbackPage() {
         return;
       }
 
-      trackAnalyticsEvent('login', { method: data.session.user.app_metadata?.provider || 'oauth' });
+      const user = data.session.user;
+      const method = user.app_metadata?.provider || 'oauth';
+      // A brand-new OAuth account signs in within a minute of being created: count it as a sign-up too.
+      const created = Date.parse(user.created_at ?? '');
+      const signedIn = Date.parse(user.last_sign_in_at ?? '');
+      if (Number.isFinite(created) && Number.isFinite(signedIn) && Math.abs(signedIn - created) < 60_000) {
+        trackAnalyticsEvent('sign_up', { method, source: 'oauth_callback' });
+      }
+      trackAnalyticsEvent('login', { method });
 
       const nextPath = new URLSearchParams(window.location.search).get('next');
       router.replace(nextPath?.startsWith('/') && !nextPath.startsWith('//') ? nextPath : '/');

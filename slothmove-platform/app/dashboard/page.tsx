@@ -143,11 +143,6 @@ function getPracticeHref(subjectId: string, examSetId?: string | null) {
   return `/courses/police_admin/${subjectId}`;
 }
 
-function getFreePracticeHref(subjectId: string) {
-  if (isOnwrSubject(subjectId) || isNesdcSubject(subjectId)) return getPracticeHref(subjectId);
-  return `/daily-practice/${subjectId === 'mock_test' ? 'math' : subjectId}`;
-}
-
 function getBangkokStudyDate(value: string) {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit'
@@ -644,12 +639,7 @@ export default function DashboardPage() {
   // Shortcuts follow the course the user practised last.
   const lastAttempt = attempts[0];
   const continueHref = lastAttempt ? getPracticeHref(lastAttempt.subject_id, lastAttempt.exam_set_id) : '/courses';
-  const practicedToday = attempts.some((attempt) => getBangkokStudyDate(attempt.created_at) === getBangkokStudyDate(new Date().toISOString()));
   const dailyStreak = getDailyStreak(attempts);
-  const suggestedSubject = weaknesses[0]?.subjectId ?? 'math';
-  const dailyPractice = practicedToday
-      ? { mode: 'complete' as const, eyebrow: 'TODAY\'S PRACTICE', title: 'ภารกิจวันนี้เสร็จแล้ว', detail: 'ฝึกเพิ่มจากข้อสอบฟรีอีก 10 ข้อเพื่อรักษาจังหวะ', action: 'ฝึกฟรีเพิ่ม 10 ข้อ', href: getFreePracticeHref(suggestedSubject) }
-      : { mode: 'quiz' as const, eyebrow: 'TODAY\'S PRACTICE', title: 'ควิซฟรี 10 ข้อของวันนี้', detail: attempts.length === 0 ? 'เริ่มจากชุดข้อสอบฟรี ใช้เวลาประมาณ 10 นาที' : `สุ่มจากชุดฟรีของ ${SUBJECT_TITLES[suggestedSubject] ?? 'วิชาที่ควรฝึกต่อ'} เท่านั้น`, action: 'เริ่มควิซฟรี 10 ข้อ', href: getFreePracticeHref(suggestedSubject) };
 
   function openHistoryGroup(group: AttemptGroup) {
     setHistoryFilter(`group:${group}`);
@@ -705,8 +695,8 @@ export default function DashboardPage() {
 
           {view === 'overview' ? <>
               {showWelcome ? <section className="dashboard-welcome-plan" aria-label="เริ่มฝึกครั้งแรก">
-                <div><span>เริ่มต้นวันนี้</span><h2>เริ่มจากควิซฟรีสั้น ๆ แล้วให้ผลสอบบอกว่าควรฝึกอะไรต่อ</h2><p>ทำ 10 ข้อแรกจากชุดข้อสอบฟรีเพื่อสร้างแผนฝึกที่เหมาะกับคุณ</p></div>
-                <div className="dashboard-welcome-actions"><Link href="/daily-practice/math" onClick={() => trackAnalyticsEvent('onboarding_start_click', { destination: 'free_daily_practice' })}>เริ่มควิซฟรี 10 ข้อ <span aria-hidden="true">→</span></Link><button type="button" onClick={() => { trackAnalyticsEvent('onboarding_dismissed'); setShowWelcome(false); router.replace('/dashboard'); }}>ไว้ทีหลัง</button></div>
+                <div><span>เริ่มต้นวันนี้</span><h2>เลือกสนามสอบ แล้วทำชุดสั้น ๆ ชุดแรก</h2><p>ผลสอบชุดแรกจะบอกว่าควรฝึกวิชาไหนต่อ ทุกชุดฝึกฟรี</p></div>
+                <div className="dashboard-welcome-actions"><Link href="/courses" onClick={() => trackAnalyticsEvent('onboarding_start_click', { destination: 'courses' })}>เลือกสนามสอบ <span aria-hidden="true">→</span></Link><button type="button" onClick={() => { trackAnalyticsEvent('onboarding_dismissed'); setShowWelcome(false); router.replace('/dashboard'); }}>ไว้ทีหลัง</button></div>
               </section> : null}
 
             {focusCourse === null ? (
@@ -777,13 +767,6 @@ export default function DashboardPage() {
 
             <div className="dbx-next-grid">
                 {wrongAnswers.length > 0 ? <button type="button" className="dashboard-review-summary" onClick={() => selectView('review')}><span className="dashboard-review-summary-icon" aria-hidden="true"><ReviewNavIcon /></span><span><strong>มีข้อที่ควรทบทวน {wrongAnswers.length} ข้อ</strong><small>เปิดสมุดข้อผิดเพื่ออ่านเฉลย แล้วกลับไปฝึกวิชานั้นได้ทันที</small></span><i aria-hidden="true">→</i></button> : null}
-              {activeFilter === 'all' || activeFilter === 'police_admin' ? (
-                <section className={`dashboard-daily-practice is-${dailyPractice.mode}`} aria-label="ภารกิจประจำวัน">
-                <div className="dashboard-daily-practice-mark" aria-hidden="true">{dailyPractice.mode === 'complete' ? <CheckMarkIcon size={20} /> : '10'}</div>
-                <div className="dashboard-daily-practice-copy"><span>{dailyPractice.eyebrow}</span><h2>{dailyPractice.title}</h2><p>{dailyPractice.detail}</p><small className="dashboard-daily-streak">{practicedToday ? `ทำต่อเนื่อง ${dailyStreak} วัน` : dailyStreak > 0 ? `กลับมาทำวันนี้เพื่อเริ่ม streak ใหม่` : 'เริ่ม streak ของคุณด้วยควิซวันนี้'}</small></div>
-                <Link href={dailyPractice.href} onClick={() => trackAnalyticsEvent('daily_practice_start_click', { subject_id: suggestedSubject, state: dailyPractice.mode, streak: dailyStreak })}>{dailyPractice.action} <span aria-hidden="true">→</span></Link>
-              </section>
-              ) : null}
             </div>
 
             <div className="bottom-sections-grid">

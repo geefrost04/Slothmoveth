@@ -133,8 +133,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/daily-practice/math">
-                  ควิซฟรี 10 ข้อประจำวัน
+                <Link href="/courses/police_admin/mini-mock/police-mini_mock-set-03">
+                  Mini Drill ฟรีรายวิชา 20 ข้อ
                 </Link>
               </li>
               <li>
