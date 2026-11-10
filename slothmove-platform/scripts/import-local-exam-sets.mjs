@@ -14,11 +14,18 @@ const APPLY = process.argv.includes('--apply');
 const COURSE = (process.argv.find((arg) => arg.startsWith('--course='))?.slice('--course='.length)) || 'onwr';
 const SOURCE_LABELS = {
   onwr: 'SlothMove: สทนช. นักวิเคราะห์นโยบายและแผน (2569)',
-  nesdc: 'SlothMove: สศช. งานวิเคราะห์นโยบายและแผน (2569)'
+  nesdc: 'SlothMove: สศช. งานวิเคราะห์นโยบายและแผน (2569)',
+  police_admin: 'SlothMove: นายสิบตำรวจ สายอำนวยการ (2569)'
 };
+// Exam set ids start with this prefix (police sets are "police-…", not "police_admin-…").
+const ID_PREFIX = { onwr: 'onwr', nesdc: 'nesdc', police_admin: 'police' };
 if (!SOURCE_LABELS[COURSE]) throw new Error(`Unknown course: ${COURSE}`);
+// Police has many sets built by other scripts: only import the sets named with --sets, never a full run.
+if (COURSE === 'police_admin' && !process.argv.some((arg) => arg.startsWith('--sets='))) {
+  throw new Error('police_admin imports need --sets=id1,id2 (a full run would unpublish other police sets).');
+}
 const DEFAULT_SET_IDS = fs.readdirSync(path.join(ROOT, 'content/exams'))
-  .filter((name) => new RegExp(`^${COURSE}-[a-z_]+-(?:set|drill)-\\d{2}\\.json$`).test(name))
+  .filter((name) => new RegExp(`^${ID_PREFIX[COURSE]}-[a-z_]+-(?:set|drill)-\\d{2}\\.json$`).test(name))
   .map((name) => name.replace(/\.json$/, ''))
   .sort();
 const setsArg = process.argv.find((arg) => arg.startsWith('--sets='));
