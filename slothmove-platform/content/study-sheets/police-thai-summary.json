@@ -1,0 +1,90 @@
+{
+  "sheet": {
+    "id": "police-thai-summary",
+    "slug": "police-thai-summary",
+    "course_id": "police_admin",
+    "subject_id": "thai",
+    "title": "โน้ตสรุป: ภาษาไทย",
+    "description": "โน้ตสรุป: ภาษาไทย สำหรับสอบนายสิบตำรวจ สายอำนวยการ: สะกดคำ การใช้คำ ประโยค ราชาศัพท์ สำนวน และการอ่านจับใจความ",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 6,
+    "chapter_count": 5,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* สะกดคำ การใช้คำ ประโยค ราชาศัพท์ สำนวน และการอ่านจับใจความ\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-10T06:18:19.210Z"
+  },
+  "sections": [
+    {
+      "id": "police-thai-summary-lesson-01",
+      "sheet_id": "police-thai-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "การสะกดคำและคำที่มักเขียนผิด",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# การสะกดคำและคำที่มักเขียนผิด\n\nตรวจ 4 จุด **การันต์ · ตัวสะกด · คำยืม · วรรณยุกต์** · ท่องตาราง 32 คำ · ไม้ม้วนมีแค่ **20 คำ** · ทับศัพท์**ไม่ใส่วรรณยุกต์ ไม่เติม ส**"
+    },
+    {
+      "id": "police-thai-summary-lesson-02",
+      "sheet_id": "police-thai-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "ความหมายและการใช้คำ",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# ความหมายและการใช้คำ\n\nคำพ้อง **รูป/เสียง/หลายความหมาย** · คู่ใกล้เคียงดู**ตัวอย่างถูก** · บุพบท **แก่ แด่ ต่อ กับ ด้วย โดย** · คำเชื่อม 4 แบบ **คล้อย ขัด เลือก เหตุผล** · ๆ ใช้กับ**คำเดียวกันเท่านั้น**"
+    },
+    {
+      "id": "police-thai-summary-lesson-03",
+      "sheet_id": "police-thai-summary",
+      "section_type": "chapter",
+      "chapter_no": 3,
+      "slug": "lesson-03",
+      "title": "ประโยค: กำกวม ฟุ่มเฟือย ไม่สมบูรณ์ และการเรียงข้อความ",
+      "sort_order": 3,
+      "visual_placeholders": [],
+      "content_md": "# ประโยค: กำกวม ฟุ่มเฟือย ไม่สมบูรณ์ และการเรียงข้อความ\n\n**กำกวม** = อ่านได้ 2 ทาง · **ฟุ่มเฟือย** = ตัดแล้วความเท่าเดิม (ทำการ ประมาณ...กว่า) · **ไม่สมบูรณ์** = ขาดภาคแสดง/คำเชื่อมไม่ครบคู่ · เรียงข้อความ: **เปิดภาพรวม → คำอ้างถึง → ปิดด้วยดังนั้น**"
+    },
+    {
+      "id": "police-thai-summary-lesson-04",
+      "sheet_id": "police-thai-summary",
+      "section_type": "chapter",
+      "chapter_no": 4,
+      "slug": "lesson-04",
+      "title": "ราชาศัพท์ สำนวน สุภาษิต คำพังเพย และระดับภาษา",
+      "sort_order": 4,
+      "visual_placeholders": [],
+      "content_md": "# ราชาศัพท์ สำนวน สุภาษิต คำพังเพย และระดับภาษา\n\n**ทรง + กริยาธรรมดา/นาม** ได้ · **ห้ามทรง + เสด็จ ประทับ เสวย ตรัส** · **ทูลเกล้าฯ ยกได้ น้อมเกล้าฯ ยกไม่ได้** · ตาย: สวรรคต > สิ้นพระชนม์ · อสัญกรรม นายกฯ · มรณภาพ พระ · ท่อง 15 สำนวน · ทางการ**ไม่ย่อ ไม่แสลง**"
+    },
+    {
+      "id": "police-thai-summary-lesson-05",
+      "sheet_id": "police-thai-summary",
+      "section_type": "chapter",
+      "chapter_no": 5,
+      "slug": "lesson-05",
+      "title": "การอ่านจับใจความ สรุปความ และหาเหตุผลในข้อความ",
+      "sort_order": 5,
+      "visual_placeholders": [],
+      "content_md": "# การอ่านจับใจความ สรุปความ และหาเหตุผลในข้อความ\n\n**อ่านคำถามก่อน** · ใจความหลักอยู่**ต้น/ท้ายย่อหน้า** · ตัด**ตัวอย่าง สถิติ** · ไม่ได้กล่าวไว้ = **เทียบทีละข้อ** · ควร/อย่า = **โน้มน้าว/เตือน** · น่าจะ/ควร = **ความคิดเห็น** · ตอบจาก**ตัวบท**เท่านั้น"
+    },
+    {
+      "id": "police-thai-summary-quick-review",
+      "sheet_id": "police-thai-summary",
+      "section_type": "quick_review",
+      "chapter_no": 6,
+      "slug": "quick-review",
+      "title": "โน้ตทบทวนก่อนสอบ",
+      "sort_order": 6,
+      "visual_placeholders": [],
+      "content_md": "# โน้ตทบทวนก่อนสอบ\n\nสะกด **การันต์ · ตัวสะกด · คำยืม** · บุพบท **แก่ แด่ ต่อ** · ประโยค **กำกวม ฟุ่มเฟือย ไม่สมบูรณ์** · **ห้ามทรง + ราชาศัพท์** · **ทูลเกล้าฯ ยกได้** · การอ่าน **ตอบจากตัวบท**"
+    }
+  ],
+  "assets": []
+}

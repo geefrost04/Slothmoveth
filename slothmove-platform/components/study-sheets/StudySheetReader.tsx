@@ -9,6 +9,7 @@ import { getSarabanLesson, lessonOutline } from './sarabanLessonData';
 import { getComputerLesson } from './computerLessonData';
 import { getLawLesson } from './lawLessonData';
 import { getLocalLesson } from './localLessons';
+import { POLICE_EXTRA_SUBJECTS, getPoliceExtraLesson } from './policeExtraLessons';
 import { localCourse, type LocalCourseMeta } from '@/lib/localCourses';
 import { CoffeeNudge } from '@/components/CoffeeNudge';
 import { OnThisPage } from './OnThisPage';
@@ -746,10 +747,11 @@ export function StudySheetReader({ bundle, current }: { bundle: StudySheetBundle
   const isLawSheet = sheet.course_id === 'police_admin' && (sheet.subject_id === 'law' || sheet.subject_id === 'police_law');
   const isSarabanSheet = sheet.course_id === 'police_admin' && sheet.subject_id === 'saraban';
   const isLocalSheet = Boolean(local);
-  const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet || isLocalSheet;
+  const isPoliceExtraSheet = sheet.course_id === 'police_admin' && POLICE_EXTRA_SUBJECTS.has(sheet.subject_id);
+  const isCustomSheet = isComputerSheet || isLawSheet || isSarabanSheet || isLocalSheet || isPoliceExtraSheet;
 
   // Saraban, computer and law sheets are note-style lessons; other sheets are markdown.
-  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : isLocalSheet ? getLocalLesson(sheet.course_id, sheet.subject_id, slug) : undefined);
+  const lessonFor = (slug: string) => (isSarabanSheet ? getSarabanLesson(slug) : isComputerSheet ? getComputerLesson(slug) : isLawSheet ? getLawLesson(slug) : isPoliceExtraSheet ? getPoliceExtraLesson(sheet.subject_id, slug) : isLocalSheet ? getLocalLesson(sheet.course_id, sheet.subject_id, slug) : undefined);
   const lesson = lessonFor(current.slug);
   const mathLesson = !lesson && ['chapter-01', 'chapter-02'].includes(current.slug);
   const usesMarkdown = !lesson && !mathLesson;

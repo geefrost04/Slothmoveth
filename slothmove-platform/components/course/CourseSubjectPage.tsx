@@ -178,10 +178,10 @@ const POLICE_SUBJECT_DETAILS: Record<string, {
   hasSummary: boolean;
 }> = {
   thai: {
-    eyebrow: 'ภาษาและการสื่อสาร',
-    summary: 'จับประเด็นให้แม่น ใช้ภาษาให้ถูก และวิเคราะห์ข้อความได้อย่างเป็นระบบ',
-    highlight: 'อ่านจับใจความ · หลักภาษา · การใช้ภาษา',
-    hasSummary: false
+    eyebrow: 'ภาษาและการสื่อสาร · 20 ข้อ',
+    summary: 'สะกดคำ ใช้คำให้ตรงความหมาย ประโยค ราชาศัพท์ สำนวน และการอ่านจับใจความ',
+    highlight: 'สะกดคำ · การใช้คำ · ประโยค · ราชาศัพท์และสำนวน · อ่านจับใจความ',
+    hasSummary: true
   },
   computer: {
     eyebrow: 'เทคโนโลยีสารสนเทศ',
@@ -202,10 +202,10 @@ const POLICE_SUBJECT_DETAILS: Record<string, {
     hasSummary: true
   },
   english: {
-    eyebrow: 'English for Examination',
-    summary: 'ฝึกคำศัพท์ ไวยากรณ์ บทสนทนา และการอ่านเพื่อเลือกคำตอบอย่างมีเหตุผล',
-    highlight: 'Vocabulary · Grammar · Reading',
-    hasSummary: false
+    eyebrow: 'English for Examination · 15 ข้อ',
+    summary: 'ไวยากรณ์ที่ออกบ่อย คำศัพท์งานตำรวจ ป้ายประกาศ บทสนทนาบริการประชาชน และการอ่าน',
+    highlight: 'Grammar · Police Vocabulary · Signs · Conversation · Reading',
+    hasSummary: true
   }
 };
 

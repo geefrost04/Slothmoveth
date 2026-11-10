@@ -41,6 +41,9 @@ export default async function StudySheetIndex({ params }: { params: Promise<{ co
       sections: localData.sections,
       assets: localData.assets
     } as StudySheetBundle;
+  } else if (courseId === 'police_admin' && (normalizedSubjectId === 'thai' || normalizedSubjectId === 'english')) {
+    const localData = require(`@/content/study-sheets/police-${normalizedSubjectId}-summary.json`);
+    bundle = { sheet: localData.sheet, sections: localData.sections, assets: localData.assets } as StudySheetBundle;
   } else if (courseId === 'onwr' || courseId === 'nesdc') {
     // Local-content courses: content/study-sheets/<course>-<subject>-summary.json
     try {
