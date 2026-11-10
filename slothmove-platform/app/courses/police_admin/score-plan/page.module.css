@@ -1,0 +1,9 @@
+.page { padding: 20px 0 56px; background: #f8fafc; font-family: var(--font-body); }
+.page :global(.container) { max-width: 860px; }
+.crumbs { display: flex; gap: 8px; margin-bottom: 14px; color: #64748b; font-size: 13px; }
+.crumbs a { color: #64748b; text-decoration: none; }
+.crumbs strong { color: #7a1822; }
+.hero { margin-bottom: 18px; }
+.hero span { color: #7a1822; font-size: 12px; font-weight: 900; letter-spacing: .12em; }
+.hero h1 { margin: 6px 0 8px; color: #172033; font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); line-height: 1.25; }
+.hero p { max-width: 62ch; margin: 0; color: #475569; font-size: 15px; line-height: 1.65; }

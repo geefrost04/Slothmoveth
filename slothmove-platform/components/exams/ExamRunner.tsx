@@ -939,6 +939,9 @@ export function ExamRunner({
               ) : subjectId === 'mock_test' ? (
                 <Link href="/courses/police_admin/mini-mock/police-mini_mock-set-03" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('mini_drill_start_click', { exam_set_id: 'police-mini_mock-set-03', source: 'mock_test_result' })}>ต่อด้วย Mini Drill 20 ข้อ</Link>
               ) : null}
+              {analyticsCourseId === 'police_admin' && (subjectId === 'mock_test' || subjectId === 'mini_mock') ? (
+                <Link href="/courses/police_admin/score-plan" className={styles.secondaryButton} onClick={() => trackAnalyticsEvent('score_plan_open', { source: 'exam_result', exam_set_id: examSetId })}>🎯 วางแผนคะแนน ต้องได้กี่ข้อถึงติด</Link>
+              ) : null}
               <button type="button" onClick={restartExam} className={styles.secondaryButton}>ทำชุดนี้อีกครั้ง</button>
               <Link href={subjectHref} className={styles.secondaryButton}>{backLabel}</Link>
             </div>

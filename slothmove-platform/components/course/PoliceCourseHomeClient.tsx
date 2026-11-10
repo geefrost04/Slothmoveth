@@ -125,6 +125,15 @@ export function PoliceCourseHomeClient({
           </aside>
         </section>
 
+        <Link href={`/courses/${courseId}/score-plan`} className={styles.planCard}>
+          <span className={styles.planIcon} aria-hidden="true">🎯</span>
+          <span className={styles.planText}>
+            <strong>วางแผนคะแนน: ต้องได้กี่ข้อถึงติด?</strong>
+            <small>ตั้งเป้า แบ่งคะแนน 6 วิชา เช็กเกณฑ์ภาค ก/ข และเทียบคะแนนที่ติดรอบก่อน</small>
+          </span>
+          <b aria-hidden="true">→</b>
+        </Link>
+
         <nav className={styles.jump} aria-label="ไปยังส่วน">
           <a href="#mock">Mock Test</a>
           <a href="#mini">Mini Mock</a>

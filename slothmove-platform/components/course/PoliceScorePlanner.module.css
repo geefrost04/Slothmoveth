@@ -1,0 +1,87 @@
+/* Police score planner: police maroon accents on white cards, same feel as the police course page. */
+.wrap { --red: #7a1822; --red-soft: #fdebed; --ink: #172033; --muted: #64748b; --line: #e3e8ee; --ok: #15803d; --ok-soft: #e8f5ec; display: grid; gap: 18px; }
+.card { padding: 22px 24px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
+.step { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.step b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-size: 15px; }
+.step h2 { margin: 0; color: var(--ink); font-size: 20px; }
+.hint { margin: -6px 0 12px; color: var(--muted); font-size: 13.5px; }
+.footnote { margin: 12px 0 0; color: #94a3b8; font-size: 12px; line-height: 1.5; }
+
+.presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.preset { display: grid; gap: 2px; padding: 12px 10px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: border-color .15s, background .15s; }
+.preset strong { font-size: 24px; line-height: 1.1; }
+.preset span { color: var(--muted); font-size: 12.5px; line-height: 1.35; }
+.preset:hover { border-color: var(--red); }
+.preset.on { border-color: var(--red); background: var(--red-soft); box-shadow: inset 0 0 0 1px var(--red); }
+.preset.on strong { color: var(--red); }
+
+.custom { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; margin-top: 14px; color: var(--muted); font-size: 13.5px; }
+.custom output { min-width: 70px; color: var(--red); font-size: 22px; font-weight: 800; text-align: right; }
+.custom output small { color: var(--muted); font-size: 13px; font-weight: 600; }
+.wrap input[type='range'] { width: 100%; accent-color: var(--red); }
+
+.ladder { margin: 34px 4px 30px; }
+.track { position: relative; height: 12px; border-radius: 999px; background: #edf0f3; }
+.fill { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: linear-gradient(90deg, #c76776, var(--red)); transition: width .2s; }
+.mark, .me { position: absolute; top: -6px; width: 2px; height: 24px; transform: translateX(-1px); background: #94a3b8; }
+.mark em, .me em { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); color: var(--ink); font-size: 12.5px; font-style: normal; font-weight: 800; }
+.mark small, .me small { position: absolute; top: 28px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 11px; white-space: nowrap; }
+.mark.rank, .mark.safe { background: var(--red); }
+.me { background: #1d4ed8; }
+.me em, .me small { color: #1d4ed8; }
+.me small { top: auto; bottom: 44px; font-weight: 700; }
+
+.reset { margin-left: auto; padding: 6px 12px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--red); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
+.reset:hover { border-color: var(--red); }
+
+.part { margin-top: 14px; padding: 14px 16px; border-radius: 12px; background: #f8fafc; }
+.partHead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.partHead strong { color: var(--ink); font-size: 15px; }
+.okTag, .badTag { padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 800; }
+.okTag { background: var(--ok-soft); color: var(--ok); }
+.badTag { background: #fef2f2; color: #b91c1c; }
+
+.subject { padding: 10px 0; border-top: 1px dashed var(--line); }
+.subject:first-of-type { border-top: 0; }
+.subjectTop { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.subjectName { color: var(--ink); font-size: 15px; font-weight: 700; }
+.subjectName small { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.subjectNums { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.subjectNums strong { color: var(--red); font-size: 20px; }
+.subjectNums small { display: block; text-align: right; font-size: 11.5px; }
+.now { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+.now b { color: #b45309; }
+.now a { margin-left: 6px; color: var(--red); font-weight: 800; text-decoration: none; }
+.okText { color: var(--ok); font-weight: 700; }
+
+.result { border-top: 4px solid var(--red); }
+.resultTop { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 18px; }
+.total { display: grid; place-items: center; width: 110px; height: 110px; border-radius: 50%; background: var(--red-soft); color: var(--red); text-align: center; line-height: 1; }
+.total strong { font-size: 40px; }
+.total span { margin-top: -18px; font-size: 13px; font-weight: 700; }
+.zone { margin: 0 0 4px; color: var(--ink); font-size: 18px; font-weight: 800; }
+.rank { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.checks { display: grid; gap: 6px; margin: 16px 0; padding: 0; list-style: none; }
+.checks li { padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+.checks li::before { margin-right: 8px; font-weight: 900; }
+.yes { background: var(--ok-soft); color: #14532d; }
+.yes::before { content: '✓'; }
+.no { background: #fef2f2; color: #7f1d1d; }
+.no::before { content: '!'; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.primary, .secondary { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 18px; border-radius: 11px; font-size: 14.5px; font-weight: 800; text-decoration: none; }
+.primary { flex: 1 1 260px; background: var(--red); color: #fff; }
+.primary:hover { background: #941f2b; }
+.secondary { border: 1px solid var(--line); color: #334155; }
+
+@media (max-width: 640px) {
+  .card { padding: 18px 16px; }
+  .presets { grid-template-columns: 1fr 1fr; }
+  .custom { grid-template-columns: 1fr auto; }
+  .custom > span { grid-column: 1 / -1; }
+  .mark small { display: none; }
+  .total { width: 92px; height: 92px; }
+  .total strong { font-size: 32px; }
+}
+.edge { position: absolute; top: 18px; transform: translateX(-50%); color: #94a3b8; font-size: 11px; }
+

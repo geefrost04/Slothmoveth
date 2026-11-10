@@ -195,3 +195,11 @@
   .drillCells { gap: 6px; }
   .cell { min-width: 58px; padding: 6px; }
 }
+
+/* Score planner shortcut under the hero. */
+.planCard { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; margin: 0 0 18px; padding: 14px 18px; border: 1px solid #f0c9ce; border-radius: 14px; background: linear-gradient(100deg, #fdebed, #fff 70%); color: #172033; text-decoration: none; transition: border-color .15s ease, box-shadow .15s ease; }
+.planCard:hover { border-color: #7a1822; box-shadow: 0 6px 18px rgba(122, 24, 34, .1); }
+.planIcon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #fff; font-size: 22px; }
+.planText strong { display: block; font-size: 16px; }
+.planText small { display: block; color: #64748b; font-size: 13px; line-height: 1.45; }
+.planCard > b { color: #7a1822; font-size: 20px; }
