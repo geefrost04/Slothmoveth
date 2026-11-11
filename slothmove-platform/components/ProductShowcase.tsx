@@ -26,6 +26,14 @@ const examFields = [
     active: true,
   },
   {
+    title: 'กทท. นักวิชาการ 6',
+    description: 'การท่าเรือแห่งประเทศไทย · กองแผนวิสาหกิจ',
+    href: '/courses/pat',
+    image: '/pic/logo_pat.png',
+    cta: 'โน้ตสรุป + ข้อสอบฟรี',
+    active: true,
+  },
+  {
     title: 'ก.พ.',
     description: 'กำลังเตรียมเนื้อหา',
     href: '/courses/ocsc',

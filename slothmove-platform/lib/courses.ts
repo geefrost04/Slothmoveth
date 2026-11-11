@@ -87,6 +87,22 @@ export const COURSES: Course[] = [
     status: 'ready'
   },
   {
+    id: 'pat',
+    category: 'การท่าเรือแห่งประเทศไทย',
+    updatedAt: '2026-11-11',
+    priority: 97,
+    title: 'กทท. นักวิชาการ 6 กองแผนวิสาหกิจ',
+    subtitle: 'การท่าเรือแห่งประเทศไทย',
+    type: 'รัฐวิสาหกิจ · ป.ตรีเศรษฐศาสตร์ การเงิน การจัดการ โลจิสติกส์ ฯลฯ',
+    desc: 'โน้ตสรุปและข้อสอบตามประกาศรับสมัคร 25 ก.ย. 2569 · ภาคทั่วไป ภาควิชาการ ภาคปฏิบัติการ สัมภาษณ์',
+    image: '/pic/logo_pat.png',
+    fullLink: platformCourseUrl('pat'),
+    tags: ['พ.ร.บ.ร่วมลงทุน 2562', 'แผนวิสาหกิจ', 'วิเคราะห์โครงการลงทุน', 'รัฐวิสาหกิจ'],
+    subjects: 7,
+    questions: 0,
+    status: 'ready'
+  },
+  {
     id: 'ocsc',
     category: 'ภาค ก. ก.พ.',
     updatedAt: '2026-06-26',

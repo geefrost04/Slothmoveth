@@ -2100,6 +2100,8 @@ button.stat-card:hover { border-color: #b9d7c8; transform: translateY(-2px); box
 .dashboard-shortcut.is-onwr:hover { border-color: #0b5f86; }
 .dashboard-shortcut.is-nesdc > span { background: #f1ecfb; color: #5b3fa6; }
 .dashboard-shortcut.is-nesdc:hover { border-color: #5b3fa6; }
+.dashboard-shortcut.is-pat > span { background: #e8eef8; color: #163e7a; }
+.dashboard-shortcut.is-pat:hover { border-color: #163e7a; }
 
 @media (max-width: 1180px) {
   .dashboard-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); }

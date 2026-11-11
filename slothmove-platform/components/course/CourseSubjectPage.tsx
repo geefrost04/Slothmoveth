@@ -215,8 +215,10 @@ function localSubjectDetails(course: CourseConfig, subject: SubjectMeta) {
   const lessons = LOCAL_LESSONS[course.id]?.[subject.id] ?? [];
   const index = course.subjects.findIndex((item) => item.id === subject.id);
   // ONWR splits its 9 topics into ความรู้ทั่วไป (3) and ความรู้เฉพาะตำแหน่ง (6); NESDC has one list.
-  const group = course.id === 'onwr' ? (index < 3 ? 'ความรู้ทั่วไป' : 'ความรู้เฉพาะตำแหน่ง') : 'หัวข้อสอบข้อเขียน';
-  const topicNo = course.id === 'onwr' && index >= 3 ? index - 2 : index + 1;
+  // PAT: ภาคความรู้ความสามารถทั่วไป (3) then ภาควิชาการ (4).
+  const split = course.id === 'onwr' || course.id === 'pat';
+  const group = course.id === 'onwr' ? (index < 3 ? 'ความรู้ทั่วไป' : 'ความรู้เฉพาะตำแหน่ง') : course.id === 'pat' ? (index < 3 ? 'ภาคความรู้ความสามารถทั่วไป' : 'ภาควิชาการ') : 'หัวข้อสอบข้อเขียน';
+  const topicNo = split && index >= 3 ? index - 2 : index + 1;
   const chapters = lessons.filter((lesson) => lesson.sectionType === 'chapter');
   const outline: Outline = lessons.map((lesson) => ({
     label: lesson.sectionType === 'chapter' ? `บท ${lesson.chapterNo}` : '★',
@@ -225,7 +227,7 @@ function localSubjectDetails(course: CourseConfig, subject: SubjectMeta) {
   }));
   return {
     details: {
-      eyebrow: subject.id === 'review' ? 'ก่อนเข้าห้องสอบ' : subject.id === 'interview' ? 'สอบสัมภาษณ์ · 100 คะแนน' : `${group} · หัวข้อที่ ${topicNo}`,
+      eyebrow: subject.id === 'review' ? 'ก่อนเข้าห้องสอบ' : subject.id === 'interview' ? 'สอบสัมภาษณ์ · 100 คะแนน' : subject.id === 'practical' ? 'ภาคปฏิบัติการ · 100 คะแนน' : `${group} · หัวข้อที่ ${topicNo}`,
       summary: subject.desc,
       highlight: chapters.map((lesson) => lesson.title).join(' · ') || subject.desc,
       hasSummary: lessons.length > 0

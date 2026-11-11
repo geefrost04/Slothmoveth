@@ -37,6 +37,18 @@ export const LOCAL_COURSES: Record<string, LocalCourseMeta> = {
     line: '#dcd0f3',
     ink: '#221a33',
     accentRgb: '91, 63, 166'
+  },
+  pat: {
+    id: 'pat',
+    short: 'กทท.',
+    readerLabel: 'กทท. นักวิชาการ 6',
+    accent: '#163e7a',
+    accentDark: '#0e2a55',
+    accentLight: '#3d6fc4',
+    soft: '#e8eef8',
+    line: '#d2dcec',
+    ink: '#15202f',
+    accentRgb: '22, 62, 122'
   }
 };
 

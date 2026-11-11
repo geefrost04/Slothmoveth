@@ -106,6 +106,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/courses/pat">
+                  กทท. นักวิชาการ 6
+                </Link>
+              </li>
+              <li>
                 <Link href="/courses">
                   ภาค ก ก.พ. <span className={styles.badgeComingSoon}>เร็ว ๆ นี้</span>
                 </Link>

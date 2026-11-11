@@ -55,6 +55,16 @@ const COURSE_NAV: Record<string, CourseNavMeta> = {
     hubNote: 'Mini Mock · Mini Drill · โน้ตและข้อสอบรายหัวข้อ',
     topicWord: 'หัวข้อ',
     primary: { label: 'Mini Mock', href: '/courses/nesdc/mini-mock/nesdc-mini_mock-set-01', title: 'Mini Mock 30 ข้อ', note: 'คละครบ 7 หัวข้อ จับเวลา 36 นาที' }
+  },
+  pat: {
+    chip: 'กทท.',
+    accent: '#163e7a',
+    soft: '#e8eef8',
+    line: '#d2dcec',
+    hubTitle: 'หน้ารวม 7 หัวข้อ กทท.',
+    hubNote: 'Mini Mock · โน้ตและข้อสอบรายหัวข้อ · ภาคปฏิบัติการ · สัมภาษณ์',
+    topicWord: 'หัวข้อ',
+    primary: { label: 'Mini Mock', href: '/courses/pat/mini-mock/pat-mini_mock-set-01', title: 'Mini Mock 30 ข้อ', note: 'คละครบ 7 หัวข้อ จับเวลา 36 นาที' }
   }
 };
 

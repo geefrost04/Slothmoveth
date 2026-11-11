@@ -162,7 +162,8 @@ function SeriesConceptVisual({ assets, assetKey, label, title, description, asse
 const COURSE_LABELS: Record<string, string> = {
   police_admin: 'นายสิบตำรวจ',
   onwr: 'สทนช. นักวิเคราะห์นโยบายฯ',
-  nesdc: 'สศช. งานวิเคราะห์นโยบายและแผน'
+  nesdc: 'สศช. งานวิเคราะห์นโยบายและแผน',
+  pat: 'กทท. นักวิชาการ 6'
 };
 
 const SUBJECT_LABELS: Record<string, string> = {

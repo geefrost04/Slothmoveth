@@ -2,7 +2,7 @@
 // Imports the free exam sets of a local-content course (content/exams/<course>-<subject>-set-NN.json)
 // into Supabase. Course defaults to onwr. Dry-run by default; pass --apply to write.
 //
-// Usage: node scripts/import-local-exam-sets.mjs [--course=onwr|nesdc] [--apply] [--sets=id1,id2]
+// Usage: node scripts/import-local-exam-sets.mjs [--course=onwr|nesdc|pat] [--apply] [--sets=id1,id2]
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,10 +15,11 @@ const COURSE = (process.argv.find((arg) => arg.startsWith('--course='))?.slice('
 const SOURCE_LABELS = {
   onwr: 'SlothMove: สทนช. นักวิเคราะห์นโยบายและแผน (2569)',
   nesdc: 'SlothMove: สศช. งานวิเคราะห์นโยบายและแผน (2569)',
+  pat: 'SlothMove: กทท. นักวิชาการ 6 กองแผนวิสาหกิจ (2569)',
   police_admin: 'SlothMove: นายสิบตำรวจ สายอำนวยการ (2569)'
 };
 // Exam set ids start with this prefix (police sets are "police-…", not "police_admin-…").
-const ID_PREFIX = { onwr: 'onwr', nesdc: 'nesdc', police_admin: 'police' };
+const ID_PREFIX = { onwr: 'onwr', nesdc: 'nesdc', pat: 'pat', police_admin: 'police' };
 if (!SOURCE_LABELS[COURSE]) throw new Error(`Unknown course: ${COURSE}`);
 // Police has many sets built by other scripts: only import the sets named with --sets, never a full run.
 if (COURSE === 'police_admin' && !process.argv.some((arg) => arg.startsWith('--sets='))) {

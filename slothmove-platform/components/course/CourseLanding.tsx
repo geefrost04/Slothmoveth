@@ -5,6 +5,7 @@ import { PoliceQrQuizPrompt } from './PoliceQrQuizPrompt';
 import { PoliceCourseHome } from './PoliceCourseHome';
 import { OnwrCourseHome } from './OnwrCourseHome';
 import { NesdcCourseHome } from './NesdcCourseHome';
+import { PatCourseHome } from './PatCourseHome';
 import { getPublishedExamBundle, getPublishedExamCatalog } from '@/lib/exam-data';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
 import { SubjectIcon } from '@/components/icons/SubjectIcons';
@@ -477,6 +478,7 @@ export async function CourseLanding({ course }: { course: CourseConfig }) {
 
   if (course.id === 'onwr') return <OnwrCourseHome course={course} />;
   if (course.id === 'nesdc') return <NesdcCourseHome course={course} />;
+  if (course.id === 'pat') return <PatCourseHome course={course} />;
 
   if (course.id === 'police_admin') {
     let examSets: any[] = [];

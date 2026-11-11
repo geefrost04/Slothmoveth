@@ -32,6 +32,16 @@ const QUICK_STARTS = [
     accent: '#0b5f86',
     soft: '#e3f3fa',
     label: 'Mini Drill 10 ข้อ'
+  },
+  {
+    courseId: 'pat',
+    name: 'กทท.',
+    note: 'นักวิชาการ 6 กองแผนวิสาหกิจ',
+    href: '/courses/pat/mini-mock/pat-mini_mock-set-01',
+    icon: '/pic/logo_pat.png',
+    accent: '#163e7a',
+    soft: '#e8eef8',
+    label: 'Mini Mock 30 ข้อ'
   }
 ];
 
@@ -44,7 +54,7 @@ export function Hero() {
           พร้อมเฉลยทุกข้อ
         </h1>
         <p className={styles.sub}>
-          นายสิบตำรวจ · สศช. · สทนช. โน้ตสรุปและข้อสอบจับเวลา ไม่ต้องสมัครก็เริ่มทำได้
+          นายสิบตำรวจ · สศช. · สทนช. · กทท. โน้ตสรุปและข้อสอบจับเวลา ไม่ต้องสมัครก็เริ่มทำได้
         </p>
         <div className={styles.ctaRow}>
           <a href="#exam-selection" className={styles.btn}>

@@ -58,7 +58,7 @@ export default async function StudySheetSectionPage({ params }: { params: Promis
   } else if (courseId === 'police_admin' && (normalizedSubjectId === 'thai' || normalizedSubjectId === 'english')) {
     const localData = readLocalStudySheet(`police-${normalizedSubjectId}-summary.json`);
     bundle = { sheet: localData.sheet, sections: localData.sections, assets: localData.assets } as StudySheetBundle;
-  } else if (courseId === 'onwr' || courseId === 'nesdc') {
+  } else if (courseId === 'onwr' || courseId === 'nesdc' || courseId === 'pat') {
     // Local-content courses: content/study-sheets/<course>-<subject>-summary.json
     const file = path.join(process.cwd(), 'content', 'study-sheets', `${courseId}-${normalizedSubjectId}-summary.json`);
     if (fs.existsSync(file)) {
@@ -125,7 +125,7 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
   } else if (courseId === 'police_admin' && (normalizedSubjectId === 'thai' || normalizedSubjectId === 'english')) {
     const localData = readLocalStudySheet(`police-${normalizedSubjectId}-summary.json`);
     bundle = { sheet: localData.sheet, sections: localData.sections, assets: localData.assets } as StudySheetBundle;
-  } else if (courseId === 'onwr' || courseId === 'nesdc') {
+  } else if (courseId === 'onwr' || courseId === 'nesdc' || courseId === 'pat') {
     // Local-content courses: content/study-sheets/<course>-<subject>-summary.json
     const file = path.join(process.cwd(), 'content', 'study-sheets', `${courseId}-${normalizedSubjectId}-summary.json`);
     if (fs.existsSync(file)) {

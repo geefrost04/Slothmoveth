@@ -1,0 +1,68 @@
+{
+  "sheet": {
+    "id": "pat-soe-summary",
+    "slug": "pat-soe-summary",
+    "course_id": "pat",
+    "subject_id": "soe",
+    "title": "โน้ตสรุป: รัฐวิสาหกิจและแผนวิสาหกิจ",
+    "description": "โน้ตสรุป: รัฐวิสาหกิจและแผนวิสาหกิจ สำหรับสอบ กทท. ตำแหน่งนักวิชาการ 6 กองแผนวิสาหกิจ: พ.ร.บ.การพัฒนาการกำกับดูแลและบริหารรัฐวิสาหกิจ 2562 ระบบประเมิน SE-AM เครื่องมือวางแผนกลยุทธ์ และแผนระดับชาติ",
+    "brand": "SlothMoveTH",
+    "content_format": "lesson",
+    "version": 1,
+    "status": "published",
+    "section_count": 4,
+    "chapter_count": 4,
+    "intro_md": "# วิธีใช้โน้ตนี้\n\n* เนื้อหาสำหรับสอบ กทท. นักวิชาการ 6 (ประกาศรับสมัคร 25 ก.ย. 2569): พ.ร.บ.การพัฒนาการกำกับดูแลและบริหารรัฐวิสาหกิจ 2562 ระบบประเมิน SE-AM เครื่องมือวางแผนกลยุทธ์ และแผนระดับชาติ\n* อ่านกล่อง **\"จำให้ได้ก่อน\"** ก่อนทุกบท แล้วลองตอบ **แบบฝึกท้ายบท**",
+    "references_md": "## แหล่งอ้างอิง\n\n- ประกาศการท่าเรือแห่งประเทศไทย เรื่อง รับสมัครบุคคลทั่วไปเพื่อสอบคัดเลือกเข้าเป็นพนักงานการท่าเรือแห่งประเทศไทย ในตำแหน่งนักวิชาการ 6 สังกัดกองแผนวิสาหกิจ ฝ่ายกลยุทธ์องค์กร ลงวันที่ 25 กันยายน 2569",
+    "recommended_renderer": "lesson",
+    "metadata": {},
+    "updated_at": "2026-11-11T01:53:30.511Z"
+  },
+  "sections": [
+    {
+      "id": "pat-soe-summary-lesson-01",
+      "sheet_id": "pat-soe-summary",
+      "section_type": "chapter",
+      "chapter_no": 1,
+      "slug": "lesson-01",
+      "title": "พ.ร.บ.การพัฒนาการกำกับดูแลและบริหารรัฐวิสาหกิจ พ.ศ. 2562",
+      "sort_order": 1,
+      "visual_placeholders": [],
+      "content_md": "# พ.ร.บ.การพัฒนาการกำกับดูแลและบริหารรัฐวิสาหกิจ พ.ศ. 2562\n\nรมว.คลัง รักษาการ · **คนร.** (นายกฯ ประธาน, ผอ.สคร. เลขาฯ) ทำ**แผนพัฒนารัฐวิสาหกิจ 5 ปี** (ม.22) → ครม. เห็นชอบ + ราชกิจจาฯ (ม.24) → รัฐวิสาหกิจทำ**แผนวิสาหกิจ 5 ปี + แผนปฏิบัติการประจำปี เสนอ สคร.** (ม.25) → **คนร. กำหนดเกณฑ์ (ม.29) · สคร. ประเมิน (ม.30) · รายงาน คนร. พร้อมมาตรการ รวมถึงให้ทำแผนใหม่ (ม.31)**"
+    },
+    {
+      "id": "pat-soe-summary-lesson-02",
+      "sheet_id": "pat-soe-summary",
+      "section_type": "chapter",
+      "chapter_no": 2,
+      "slug": "lesson-02",
+      "title": "ระบบประเมินผลรัฐวิสาหกิจ SE-AM ของ สคร.",
+      "sort_order": 2,
+      "visual_placeholders": [],
+      "content_md": "# ระบบประเมินผลรัฐวิสาหกิจ SE-AM ของ สคร.\n\nSE-AM (ตั้งแต่ **2563**) = **KPA** (ผลลัพธ์) + **CBE 8 ด้าน** (CG · **SP** · RM&IC · SCM · DT · HCM · KM&IM · IA) วัด **Maturity 1–5** · SP = **Module 1 วางแผน 50 + Module 2 ถ่ายทอด 50** · หนักสุด **Scanning 20 / Action Plan 20** · ประเด็นย่อยหนักสุด **SWOT 10 / จัดสรรทรัพยากร 10**"
+    },
+    {
+      "id": "pat-soe-summary-lesson-03",
+      "sheet_id": "pat-soe-summary",
+      "section_type": "chapter",
+      "chapter_no": 3,
+      "slug": "lesson-03",
+      "title": "เครื่องมือวางแผนกลยุทธ์ (ตัวอย่างรัฐวิสาหกิจท่าเรือ)",
+      "sort_order": 3,
+      "visual_placeholders": [],
+      "content_md": "# เครื่องมือวางแผนกลยุทธ์ (ตัวอย่างรัฐวิสาหกิจท่าเรือ)\n\n**PESTEL/Five Forces** (นอก) + ทรัพยากร (ใน) → **SWOT** (S/W ใน · O/T นอก) → **TOWS** (SO รุก · WO แก้ · ST กัน · WT ถอย) → **BSC 4 มุมมอง + Strategy Map** → **KPI/OKR แบบ SMART** → **Cascade** → **Input-Activity-Output-Outcome-Impact** → **ERM**: โอกาส × ผลกระทบ · Avoid/Reduce/Transfer/Accept"
+    },
+    {
+      "id": "pat-soe-summary-lesson-04",
+      "sheet_id": "pat-soe-summary",
+      "section_type": "chapter",
+      "chapter_no": 4,
+      "slug": "lesson-04",
+      "title": "จากยุทธศาสตร์ชาติถึงแผนวิสาหกิจ กทท.",
+      "sort_order": 4,
+      "visual_placeholders": [],
+      "content_md": "# จากยุทธศาสตร์ชาติถึงแผนวิสาหกิจ กทท.\n\n**ยุทธศาสตร์ชาติด้าน 2** → **แผนแม่บทประเด็น 7** + **แผนฯ 13 หมุดหมาย 5** (LPI ≤ อันดับ 25 หรือ ≥ 3.60 · ต้นทุนโลจิสติกส์ < 11% GDP) → **แผนพัฒนารัฐวิสาหกิจ (ม.22)** + แผนคมนาคม → **แผนวิสาหกิจ กทท. 2566–2570** (4 SO · 6 S · 11 T · วิสัยทัศน์ถึง **2580** · 3 ระยะ: Efficient → End-to-End → Integrated Multi-modal)"
+    }
+  ],
+  "assets": []
+}

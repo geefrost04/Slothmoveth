@@ -1,0 +1,31 @@
+/* PAT landing: the police course template (PoliceCourseHome.module.css) in navy. */
+.page {
+  --ink: #15202f;
+  --muted: #5a6577;
+  --line: #dde4ee;
+  --line-strong: #c8d3e3;
+  --arrow: #9fb0c8;
+  --accent: #163e7a;
+  --accent-soft: #e8eef8;
+  --page-bg: #f6f8fb;
+  --shadow-tint: rgb(14, 38, 76);
+}
+
+.partCard { display: grid; gap: 14px; padding: 18px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.parts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.parts li { display: grid; gap: 4px; align-content: start; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); font-size: 14px; line-height: 1.5; }
+.parts b { color: var(--accent); font-weight: 800; }
+.parts strong { color: var(--ink); font-size: 15px; }
+.parts span { color: var(--muted); font-size: 13px; }
+.rule { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.notice { margin: 0; padding: 12px 14px; border-left: 3px solid #c98a12; border-radius: 8px; background: #fdf6e7; color: #5c4510; font-size: 13.5px; line-height: 1.6; }
+.notice a { color: inherit; font-weight: 700; }
+.notesCard { margin-top: 14px; background: var(--accent-soft); }
+
+@media (max-width: 860px) {
+  .parts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .partCard { padding: 14px; }
+  .parts { grid-template-columns: 1fr; gap: 8px; }
+}

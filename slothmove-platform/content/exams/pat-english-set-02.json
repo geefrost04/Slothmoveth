@@ -1,0 +1,379 @@
+{
+  "examSet": {
+    "id": "pat-english-set-02",
+    "title": "ภาษาอังกฤษ ชุดที่ 2",
+    "description": "ภาษาอังกฤษ 21 ข้อ พร้อมเฉลยละเอียด สำหรับสอบคัดเลือกพนักงานการท่าเรือแห่งประเทศไทย ตำแหน่งนักวิชาการ 6 กองแผนวิสาหกิจ",
+    "accessType": "free",
+    "durationMinutes": 26,
+    "totalQuestions": 21,
+    "catalogOrder": 2
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/pat/build-sets.mjs",
+    "answerDistribution": [
+      6,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "While the planning team ___ the cargo forecast, the power suddenly went out.",
+      "choices": [
+        "is preparing",
+        "has prepared",
+        "prepared",
+        "was preparing"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "เหตุการณ์ที่กำลังดำเนินอยู่ในอดีต (while …) แล้วมีเหตุการณ์สั้นแทรก (went out) → Past Continuous (was + V-ing)",
+      "tip": "while + was/were V-ing, แทรกด้วย V2",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "If the port had more yard space, it ___ more empty containers.",
+      "choices": [
+        "could store",
+        "could have stored",
+        "can store",
+        "will store"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "If + Past Simple (had) = สมมติขัดกับปัจจุบัน → Conditional type 2: would/could + V1",
+      "tip": "If + V2, would/could + V1",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The tariff rates for cargo handling ___ every two years by the authority.",
+      "choices": [
+        "are reviewed",
+        "reviewed",
+        "review",
+        "are reviewing"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ประธาน tariff rates เป็นผู้ถูกกระทำ (มี by the authority) และเป็นข้อเท็จจริงทั่วไป → Present Simple passive: are + V3 · rates พหูพจน์ใช้ are",
+      "tip": "ถูกกระทำ + พหูพจน์ → are V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The shipping line ___ ships call at our port every week has asked for a discount.",
+      "choices": [
+        "which",
+        "whose",
+        "who",
+        "whom"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ต้องการคำแสดงความเป็นเจ้าของ (เรือของสายการเดินเรือนั้น) ตามด้วยคำนาม ships → whose",
+      "tip": "whose + นาม = ของ…",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The officer ___ I spoke to on the phone confirmed the berth schedule.",
+      "choices": [
+        "whom",
+        "which",
+        "where",
+        "whose"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "the officer เป็นคนและเป็นกรรมของ spoke to → whom (หรือ who/that) · whose ต้องตามด้วยนาม · which ใช้กับสิ่งของ",
+      "tip": "คน + ทำหน้าที่กรรม → whom",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The new investment plan will be ___ effect from 1 October.",
+      "choices": [
+        "at",
+        "by",
+        "on",
+        "in"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "สำนวน in effect / come into effect = มีผลบังคับใช้ ใช้บุพบท in",
+      "tip": "in effect = มีผล",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "hard",
+      "prompt": "Choose the underlined part that is incorrect:\n“The equipment (A) for the new terminal (B) have (C) arrived from (D) overseas.”",
+      "choices": [
+        "(B) have",
+        "(D) overseas",
+        "(C) arrived from",
+        "(A) for"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "equipment เป็นนามนับไม่ได้ (ใช้เป็นเอกพจน์) → ต้องเป็น has arrived ไม่ใช่ have",
+      "tip": "equipment / information / cargo = นับไม่ได้",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The port’s annual ___ reached 8 million TEU, meaning the total volume of containers that passed through it.",
+      "choices": [
+        "throughput",
+        "turnover",
+        "outlay",
+        "backlog"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "throughput = ปริมาณสินค้า/ตู้ที่ผ่านท่าเรือในช่วงเวลาหนึ่ง · turnover = ยอดขาย/การหมุนเวียน · outlay = รายจ่าย · backlog = งานค้าง",
+      "tip": "throughput = ปริมาณผ่านท่า",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Before deciding to build the new terminal, the authority hired a consultant to conduct a ___ study to see whether the project is practical and worthwhile.",
+      "choices": [
+        "literature",
+        "attendance",
+        "satisfaction",
+        "feasibility"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "feasibility study = การศึกษาความเหมาะสม/ความเป็นไปได้ของโครงการ ทั้งด้านเทคนิค เศรษฐกิจ การเงิน",
+      "tip": "feasible = เป็นไปได้",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Analysts use past data and economic trends to ___ cargo demand for the next ten years.",
+      "choices": [
+        "reimburse",
+        "dredge",
+        "forecast",
+        "audit"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "forecast = พยากรณ์/คาดการณ์ · audit = ตรวจสอบบัญชี · dredge = ขุดลอกร่องน้ำ · reimburse = เบิกจ่ายคืน",
+      "tip": "forecast = คาดการณ์ล่วงหน้า",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The word “capacity” in “The new terminal will double the port’s handling capacity.” is closest in meaning to ___.",
+      "choices": [
+        "maximum amount it can handle",
+        "number of employees",
+        "annual profit",
+        "physical location"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "capacity = ขีดความสามารถสูงสุดที่รองรับได้ · double the capacity = เพิ่มขีดความสามารถเป็นสองเท่า",
+      "tip": "capacity = ขีดความสามารถรองรับ",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The rail link will improve ___ between the port and inland industrial estates, making it easier to move goods.",
+      "choices": [
+        "humidity",
+        "hospitality",
+        "liquidity",
+        "connectivity"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "connectivity = การเชื่อมโยง (ด้านการขนส่ง) · liquidity = สภาพคล่อง · hospitality = การต้อนรับ · humidity = ความชื้น",
+      "tip": "connect → connectivity",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Which sentence is the most appropriate way to end a formal email to a shipping line?",
+      "choices": [
+        "Reply me quickly, OK?",
+        "I look forward to hearing from you. Yours sincerely,",
+        "See ya soon! Cheers,",
+        "That’s all. Bye-bye,"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "อีเมลทางการปิดด้วยประโยคสุภาพ I look forward to hearing from you. และคำลงท้าย Yours sincerely / Best regards · ตัวเลือกอื่นเป็นภาษาไม่เป็นทางการ",
+      "tip": "look forward to + V-ing",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "(On the phone)\nA: Corporate Strategy Department, how may I help you?\nB: ___\nA: I’m sorry, she’s in a meeting. Would you like to leave a message?",
+      "choices": [
+        "I’d like to cancel my order.",
+        "Who is speaking? Hang up, please.",
+        "Could I speak to Khun Wipa, please?",
+        "Can you help me find the port?"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "A ตอบว่า she’s in a meeting แปลว่า B ขอสายบุคคลหนึ่ง → Could I speak to …, please?",
+      "tip": "Could I speak to … = ขอสาย",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "(In a meeting)\nA: I think we should increase the tariff by 20 percent next year.\nB: ___ A rise that large could drive shipping lines to other ports.",
+      "choices": [
+        "That’s exactly what I think.",
+        "I see your point, but I have some concerns.",
+        "You’re absolutely right.",
+        "I couldn’t agree more."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "B ให้เหตุผลคัดค้าน (ขึ้นราคามากอาจทำให้สายเรือย้ายท่า) → ต้องเป็นการไม่เห็นด้วยอย่างสุภาพ · อีกสามตัวเลือกแสดงการเห็นด้วย",
+      "tip": "I see your point, but … = แย้งอย่างสุภาพ",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "A: Sorry, I didn’t quite catch the last figure you mentioned.\nB: ___",
+      "choices": [
+        "Thank you, I agree.",
+        "Don’t worry, it isn’t important to you.",
+        "No problem. I said the target is 12 million TEU.",
+        "Yes, I caught the train this morning."
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "didn’t catch = ฟังไม่ทัน/ไม่ได้ยิน → B ควรพูดซ้ำตัวเลข · catch the train เป็นการเล่นคำหลอก",
+      "tip": "didn’t catch = ฟังไม่ทัน",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“The country’s main deep-sea port handled more containers in the first half of the year than in the same period last year. Port officials said the increase was mainly driven by higher exports of cars and electronics. However, they warned that congestion at the main gate could become a problem if the new truck lanes are not opened on schedule. A new berth is expected to start operations next year, which will raise the port’s capacity.”\n\nAccording to the passage, what mainly caused the increase in containers?",
+      "choices": [
+        "A new berth that started operating",
+        "Lower port charges",
+        "Higher exports of cars and electronics",
+        "The opening of new truck lanes"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ข้อความระบุว่า the increase was mainly driven by higher exports of cars and electronics · ช่องทางรถบรรทุกยังไม่เปิด และท่าเรือใหม่จะเริ่มปีหน้า",
+      "tip": "driven by = เกิดจาก",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“The country’s main deep-sea port handled more containers in the first half of the year than in the same period last year. Port officials said the increase was mainly driven by higher exports of cars and electronics. However, they warned that congestion at the main gate could become a problem if the new truck lanes are not opened on schedule. A new berth is expected to start operations next year, which will raise the port’s capacity.”\n\nWhich statement can be inferred from the passage?",
+      "choices": [
+        "Container volume fell compared with last year.",
+        "The port’s capacity is expected to increase next year.",
+        "The new truck lanes are already open.",
+        "Officials are not worried about any problems."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ข้อความบอกว่าท่าเทียบเรือใหม่จะเริ่มปีหน้า which will raise the port’s capacity → ขีดความสามารถจะเพิ่มขึ้น · ตัวเลือกอื่นขัดกับเนื้อหา (ปริมาณเพิ่ม, ช่องทางยังไม่เปิด, เจ้าหน้าที่เตือนเรื่องความแออัด)",
+      "tip": "Inference ต้องมีหลักฐานในเนื้อหา",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“MEMO\nTo: All staff, Corporate Strategy Department\nFrom: Head of Investment Planning Section\nSubject: Feasibility study review meeting\nThe review meeting for the feasibility study of the inland container depot project has been moved from Tuesday to Thursday, 10:00 a.m., in Meeting Room 3. Please read the consultant’s draft report before the meeting and send your comments to the section by Wednesday noon. Attendance is required for all analysts working on the project.”\n\nWhat should staff do before Wednesday noon?",
+      "choices": [
+        "Hire a new consultant",
+        "Submit the final feasibility study",
+        "Book Meeting Room 3",
+        "Send their comments on the draft report"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "send your comments to the section by Wednesday noon → ส่งความเห็นต่อร่างรายงาน · ห้องประชุมระบุไว้แล้ว ไม่ต้องจอง",
+      "tip": "by + เวลา = ภายใน/ไม่เกิน",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Many ports are now investing in automation to reduce waiting times for ships and trucks. Automated cranes can work around the clock and make fewer errors than manual systems. Nevertheless, automation requires large up-front investment and staff must be retrained. For this reason, some port authorities prefer to bring in private operators through concession agreements, so that the private partner bears part of the cost and risk.”\n\nAccording to the passage, why are ports investing in automation?",
+      "choices": [
+        "To reduce the number of ships calling at the port",
+        "To make staff retraining unnecessary",
+        "To reduce waiting times for ships and trucks",
+        "To avoid signing concession agreements"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "ประโยคแรกระบุว่าลงทุนระบบอัตโนมัติ to reduce waiting times for ships and trucks · ข้อความยังบอกว่าพนักงานต้อง retrain จึงขัดกับตัวเลือกสุดท้าย",
+      "tip": "to + V = เพื่อ (บอกจุดประสงค์)",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“Many ports are now investing in automation to reduce waiting times for ships and trucks. Automated cranes can work around the clock and make fewer errors than manual systems. Nevertheless, automation requires large up-front investment and staff must be retrained. For this reason, some port authorities prefer to bring in private operators through concession agreements, so that the private partner bears part of the cost and risk.”\n\nWhich is mentioned as a disadvantage of automation?",
+      "choices": [
+        "Automated cranes make more errors.",
+        "It requires large up-front investment.",
+        "Cranes cannot work at night.",
+        "Ships must wait longer."
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ข้อความระบุว่า automation requires large up-front investment and staff must be retrained · ตัวเลือกอื่นขัดกับเนื้อหา (ทำงานได้ตลอดเวลา ผิดพลาดน้อยกว่า ลดเวลารอ)",
+      "tip": "up-front = จ่ายล่วงหน้าตอนเริ่ม",
+      "sourceRef": ""
+    }
+  ]
+}

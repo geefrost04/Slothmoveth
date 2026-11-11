@@ -1,0 +1,379 @@
+{
+  "examSet": {
+    "id": "pat-english-set-01",
+    "title": "ภาษาอังกฤษ ชุดที่ 1",
+    "description": "ภาษาอังกฤษ 21 ข้อ พร้อมเฉลยละเอียด สำหรับสอบคัดเลือกพนักงานการท่าเรือแห่งประเทศไทย ตำแหน่งนักวิชาการ 6 กองแผนวิสาหกิจ",
+    "accessType": "free",
+    "durationMinutes": 26,
+    "totalQuestions": 21,
+    "catalogOrder": 1
+  },
+  "qualityNotes": {
+    "generatedBy": "scripts/pat/build-sets.mjs",
+    "answerDistribution": [
+      6,
+      5,
+      5,
+      5
+    ]
+  },
+  "questions": [
+    {
+      "position": 1,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Container throughput at the port ___ steadily over the past five years.",
+      "choices": [
+        "grows",
+        "was growing",
+        "has grown",
+        "grew"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "over the past five years = ช่วงเวลาที่ต่อเนื่องจากอดีตถึงปัจจุบัน → Present Perfect (has + V3) · ประธาน throughput เป็นนามนับไม่ได้ใช้ has",
+      "tip": "over the past … years → have/has V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 2,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "By the time the new terminal opens, the authority ___ more than 20 billion baht in the project.",
+      "choices": [
+        "will have invested",
+        "has invested",
+        "invests",
+        "invested"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "by the time + อนาคต (opens) = การลงทุนจะเสร็จสิ้นก่อนจุดนั้น → Future Perfect (will have + V3) · ประโยค by the time ใช้ Present Simple แทนอนาคต",
+      "tip": "by the time + V1 → will have V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 3,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "hard",
+      "prompt": "If the board had approved the budget earlier, the berth ___ before the peak season.",
+      "choices": [
+        "will be completed",
+        "would be completed",
+        "had been completed",
+        "would have been completed"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "If + had + V3 = สมมติขัดกับอดีต → Conditional type 3: would have + V3 · berth ถูกสร้าง จึงใช้ passive would have been completed",
+      "tip": "If had V3, would have V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 4,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Choose the passive form of: “The consultant is revising the feasibility report.”",
+      "choices": [
+        "The feasibility report is being revised by the consultant.",
+        "The feasibility report was being revised by the consultant.",
+        "The feasibility report has been revised by the consultant.",
+        "The feasibility report is revised by the consultant."
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Active เป็น Present Continuous (is revising) → passive ต้องคง tense เดิม: is being + V3",
+      "tip": "is V-ing → is being V3",
+      "sourceRef": ""
+    },
+    {
+      "position": 5,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Chiang Saen, ___ is located on the Mekong River, is one of the authority’s regional ports.",
+      "choices": [
+        "which",
+        "who",
+        "where",
+        "that"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "ทำหน้าที่ประธานของ is located และเป็น non-defining clause (มีจุลภาค) → which · that ใช้หลังจุลภาคไม่ได้ · where ต้องตามด้วยประโยคที่มีประธานครบ",
+      "tip": "หลังคอมมา ใช้ which ไม่ใช้ that",
+      "sourceRef": ""
+    },
+    {
+      "position": 6,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The cargo ship is expected to arrive ___ 6 a.m. ___ Friday.",
+      "choices": [
+        "in / on",
+        "at / in",
+        "at / on",
+        "on / at"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "at + เวลาบนนาฬิกา (6 a.m.) · on + วันในสัปดาห์ (Friday)",
+      "tip": "at เวลา · on วัน · in เดือน/ปี",
+      "sourceRef": ""
+    },
+    {
+      "position": 7,
+      "category": "Grammar",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Neither the port manager nor the engineers ___ satisfied with the crane’s performance.",
+      "choices": [
+        "are",
+        "is",
+        "was",
+        "has been"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "Neither … nor … กริยาผันตามประธานตัวที่อยู่ใกล้กริยา (the engineers พหูพจน์) → are",
+      "tip": "neither/either … nor/or → ผันตามตัวใกล้",
+      "sourceRef": ""
+    },
+    {
+      "position": 8,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "The ship is waiting at anchor because all the ___ are occupied. (a place in a port where a ship is tied up to load or unload)",
+      "choices": [
+        "cabins",
+        "hulls",
+        "warehouses",
+        "berths"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "berth = ท่าเทียบเรือ ที่จุดจอดเรือเพื่อขนถ่ายสินค้า · warehouse = โกดัง · hull = ตัวเรือ · cabin = ห้องพักในเรือ",
+      "tip": "berth = ท่าจอดเรือ",
+      "sourceRef": ""
+    },
+    {
+      "position": 9,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "“TEU”, the standard unit used to measure container volume, stands for ___.",
+      "choices": [
+        "Transport Exchange Unit",
+        "Twenty-foot Equivalent Unit",
+        "Total Export Unit",
+        "Ton Equivalent Unit"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "TEU = Twenty-foot Equivalent Unit คือหน่วยเทียบตู้คอนเทนเนอร์ขนาด 20 ฟุต (ตู้ 40 ฟุต = 2 TEU)",
+      "tip": "TEU = ตู้ 20 ฟุต",
+      "sourceRef": ""
+    },
+    {
+      "position": 10,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "The government granted a private company a 30-year ___ to build and operate the container terminal.",
+      "choices": [
+        "concession",
+        "penalty",
+        "subsidy",
+        "dividend"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "concession = สัมปทาน คือสิทธิที่รัฐให้เอกชนดำเนินกิจการหรือใช้ทรัพย์สินตามระยะเวลาที่กำหนด · subsidy = เงินอุดหนุน · dividend = เงินปันผล",
+      "tip": "concession = สัมปทาน",
+      "sourceRef": ""
+    },
+    {
+      "position": 11,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Long queues of trucks at the gate are causing serious ___ on the roads near the port.",
+      "choices": [
+        "congestion",
+        "compensation",
+        "consolidation",
+        "certification"
+      ],
+      "correctChoiceIndex": 0,
+      "explanation": "congestion = ความแออัด/การจราจรติดขัด · compensation = ค่าชดเชย · consolidation = การรวม (เช่นรวมสินค้า) · certification = การรับรอง",
+      "tip": "congested = แออัด",
+      "sourceRef": ""
+    },
+    {
+      "position": 12,
+      "category": "Vocabulary",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Under a ___ arrangement, a private company builds the facility, operates it for a fixed period, and then hands it over to the state.",
+      "choices": [
+        "bid-order-tender",
+        "buy-own-sell",
+        "build-operate-transfer",
+        "build-lease-close"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "Build-Operate-Transfer (BOT) = เอกชนก่อสร้าง ดำเนินงานตามระยะเวลาสัญญา แล้วโอนทรัพย์สินให้รัฐ เป็นรูปแบบร่วมลงทุนที่พบบ่อยในโครงการท่าเรือ",
+      "tip": "BOT = สร้าง → ดำเนินงาน → โอน",
+      "sourceRef": ""
+    },
+    {
+      "position": 13,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "(In a meeting)\nChair: Let’s move on to the next item on the agenda.\nAnalyst: ___ Could we first confirm the date of the next review?",
+      "choices": [
+        "By the way, goodbye.",
+        "Before we do,",
+        "In conclusion,",
+        "Never mind,"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "ผู้พูดขอแทรกก่อนเปลี่ยนวาระ → Before we do, … เหมาะสมที่สุด · In conclusion ใช้สรุปท้าย · Never mind = ช่างเถอะ ขัดกับการขอเรื่องต่อ",
+      "tip": "Before we do = ก่อนจะไปต่อ",
+      "sourceRef": ""
+    },
+    {
+      "position": 14,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A: I’m afraid the berth you requested is not available on Monday.\nB: ___\nA: Yes, Berth 7 is free on Tuesday morning.",
+      "choices": [
+        "Monday is my favourite day.",
+        "Is there another slot we could use?",
+        "No problem, I don’t need a berth.",
+        "Why did you book it already?"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "A ตอบว่ามีท่า 7 ว่างวันอังคาร แสดงว่า B ถามหาทางเลือกอื่น → Is there another slot we could use?",
+      "tip": "ดูคำตอบถัดไปเพื่อเดาคำถาม",
+      "sourceRef": ""
+    },
+    {
+      "position": 15,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A: Could you please send me the revised cargo forecast by Friday?\nB: ___",
+      "choices": [
+        "Yes, I sent it last year.",
+        "No, the forecast is very interesting.",
+        "Certainly. I’ll email it to you by Thursday afternoon.",
+        "Friday is a public holiday, isn’t it fine?"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "การตอบรับคำขออย่างสุภาพและเจาะจง → Certainly. I’ll … · ตัวเลือกอื่นไม่ตอบคำขอหรือผิดบริบทเวลา",
+      "tip": "Certainly = ได้แน่นอน",
+      "sourceRef": ""
+    },
+    {
+      "position": 16,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "In a formal email, which sentence is the most appropriate way to ask for a meeting?",
+      "choices": [
+        "We must meet next week. Tell me when.",
+        "Would it be possible to arrange a meeting next week to discuss the proposal?",
+        "I want a meeting. Is next week OK or not?",
+        "Meet me next week, alright?"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "Would it be possible to …? เป็นรูปขอร้องที่สุภาพและเป็นทางการ · ตัวเลือกอื่นเป็นคำสั่งหรือห้วนเกินไป",
+      "tip": "Would it be possible to … = ขออย่างสุภาพ",
+      "sourceRef": ""
+    },
+    {
+      "position": 17,
+      "category": "Conversation",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "A visitor from a foreign port asks, “How long have you been working at the authority?” Which is the most appropriate answer?",
+      "choices": [
+        "In 2019 I will.",
+        "Six years ago.",
+        "Every six years.",
+        "For about six years."
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "How long … ถามระยะเวลา → ตอบด้วย For + ช่วงเวลา · Six years ago ตอบคำถาม When · Every six years บอกความถี่",
+      "tip": "How long → for …",
+      "sourceRef": ""
+    },
+    {
+      "position": 18,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“The country’s main deep-sea port handled more containers in the first half of the year than in the same period last year. Port officials said the increase was mainly driven by higher exports of cars and electronics. However, they warned that congestion at the main gate could become a problem if the new truck lanes are not opened on schedule. A new berth is expected to start operations next year, which will raise the port’s capacity.”\n\nThe word “congestion” in the passage is closest in meaning to ___.",
+      "choices": [
+        "competition",
+        "inspection",
+        "expansion",
+        "overcrowding"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "congestion at the main gate = ความแออัดที่ประตูทางเข้า → overcrowding · ผู้เขียนเชื่อมกับการเปิด truck lanes ซึ่งช่วยระบายรถ",
+      "tip": "congestion = แออัด ติดขัด",
+      "sourceRef": ""
+    },
+    {
+      "position": 19,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "easy",
+      "prompt": "Read the passage:\n“MEMO\nTo: All staff, Corporate Strategy Department\nFrom: Head of Investment Planning Section\nSubject: Feasibility study review meeting\nThe review meeting for the feasibility study of the inland container depot project has been moved from Tuesday to Thursday, 10:00 a.m., in Meeting Room 3. Please read the consultant’s draft report before the meeting and send your comments to the section by Wednesday noon. Attendance is required for all analysts working on the project.”\n\nWhat is the main purpose of this memo?",
+      "choices": [
+        "To announce the results of a feasibility study",
+        "To cancel the inland container depot project",
+        "To inform staff of a change in a meeting date and what to prepare",
+        "To invite consultants to bid for a project"
+      ],
+      "correctChoiceIndex": 2,
+      "explanation": "บันทึกแจ้งว่าย้ายประชุมจากวันอังคารเป็นวันพฤหัสบดี และให้อ่านร่างรายงานพร้อมส่งความเห็น → แจ้งเปลี่ยนวันประชุมและสิ่งที่ต้องเตรียม · ยังไม่มีผลการศึกษาหรือการยกเลิกโครงการ",
+      "tip": "Memo purpose = ดู Subject + ประโยคแรก",
+      "sourceRef": ""
+    },
+    {
+      "position": 20,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“MEMO\nTo: All staff, Corporate Strategy Department\nFrom: Head of Investment Planning Section\nSubject: Feasibility study review meeting\nThe review meeting for the feasibility study of the inland container depot project has been moved from Tuesday to Thursday, 10:00 a.m., in Meeting Room 3. Please read the consultant’s draft report before the meeting and send your comments to the section by Wednesday noon. Attendance is required for all analysts working on the project.”\n\nThe phrase “Attendance is required” means that analysts on the project ___.",
+      "choices": [
+        "may attend if they wish",
+        "must attend the meeting",
+        "should send a representative",
+        "do not need to attend"
+      ],
+      "correctChoiceIndex": 1,
+      "explanation": "required = บังคับ/จำเป็น → นักวิเคราะห์ในโครงการต้องเข้าประชุม · may/optional หมายถึงไม่บังคับ",
+      "tip": "required = mandatory = ต้อง",
+      "sourceRef": ""
+    },
+    {
+      "position": 21,
+      "category": "Reading",
+      "topic": "ภาษาอังกฤษ",
+      "difficulty": "medium",
+      "prompt": "Read the passage:\n“Many ports are now investing in automation to reduce waiting times for ships and trucks. Automated cranes can work around the clock and make fewer errors than manual systems. Nevertheless, automation requires large up-front investment and staff must be retrained. For this reason, some port authorities prefer to bring in private operators through concession agreements, so that the private partner bears part of the cost and risk.”\n\nThe word “Nevertheless” in the passage is used to ___.",
+      "choices": [
+        "show a result",
+        "give an example",
+        "add a similar advantage",
+        "introduce a contrasting point"
+      ],
+      "correctChoiceIndex": 3,
+      "explanation": "ก่อนหน้ากล่าวข้อดีของระบบอัตโนมัติ แล้ว Nevertheless นำข้อเสีย (ลงทุนสูง ต้องฝึกพนักงาน) → แสดงความขัดแย้ง ความหมายเดียวกับ However",
+      "tip": "Nevertheless = However = อย่างไรก็ตาม",
+      "sourceRef": ""
+    }
+  ]
+}

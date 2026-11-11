@@ -52,6 +52,7 @@ type BuildMetadataInput = {
 const COURSE_OG_IMAGES: Record<string, string> = {
   police_admin: '/og/police_admin.png',
   nesdc: '/og/nesdc.png',
+  pat: '/og/pat.png',
   onwr: '/og/onwr.png'
 };
 

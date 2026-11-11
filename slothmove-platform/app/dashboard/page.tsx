@@ -62,7 +62,11 @@ const SUBJECT_TITLES: Record<string, string> = {
   // สศช. (NESDC) topics: saved as nesdc_<topic> so they don't mix with police/ONWR ids
   nesdc_general: 'ความรู้ความสามารถทั่วไป', nesdc_saraban: 'งานสารบรรณ', nesdc_english: 'ภาษาอังกฤษ',
   nesdc_computer: 'คอมพิวเตอร์', nesdc_org: 'ความรู้เกี่ยวกับ สศช.', nesdc_national: 'ยุทธศาสตร์ชาติและแผนพัฒนาฯ',
-  nesdc_analysis: 'การสรุปและวิเคราะห์งาน', nesdc_mini_mock: 'Mini Mock สศช.', nesdc_mini_drill: 'Mini Drill สศช.'
+  nesdc_analysis: 'การสรุปและวิเคราะห์งาน', nesdc_mini_mock: 'Mini Mock สศช.', nesdc_mini_drill: 'Mini Drill สศช.',
+  // กทท. (PAT) topics: saved as pat_<topic>
+  pat_general: 'ความสามารถทั่วไป', pat_thai: 'ภาษาไทย', pat_english: 'ภาษาอังกฤษ', pat_port: 'ความรู้เกี่ยวกับ กทท.',
+  pat_ppp: 'การร่วมลงทุนรัฐและเอกชน (PPP) และ EEC', pat_soe: 'รัฐวิสาหกิจและแผนวิสาหกิจ', pat_invest: 'การวิเคราะห์โครงการลงทุน',
+  pat_mini_mock: 'Mini Mock กทท.'
 };
 const ONWR_TOPIC_IDS = new Set(['org', 'admin', 'rules', 'policy', 'masterplan', 'monitoring', 'project', 'meeting', 'wateract']);
 function isOnwrSubject(subjectId: string) {
@@ -70,6 +74,9 @@ function isOnwrSubject(subjectId: string) {
 }
 function isNesdcSubject(subjectId: string) {
   return subjectId.startsWith('nesdc_');
+}
+function isPatSubject(subjectId: string) {
+  return subjectId.startsWith('pat_');
 }
 
 const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
@@ -84,7 +91,7 @@ const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
 const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => !isMockAttempt(subjectId)));
 
 function isMockAttempt(subjectId: string) {
-  return subjectId === 'mock_test' || subjectId === 'mini_mock' || subjectId === 'onwr_mini_mock' || subjectId === 'nesdc_mini_mock';
+  return subjectId === 'mock_test' || subjectId === 'mini_mock' || subjectId === 'onwr_mini_mock' || subjectId === 'nesdc_mini_mock' || subjectId === 'pat_mini_mock';
 }
 
 function getAttemptGroup(subjectId: string): AttemptGroup {
@@ -105,6 +112,9 @@ function normalizeAttemptSubject(attempt: Pick<AttemptRow, 'subject_id' | 'quiz_
   if (attempt.quiz_id.startsWith('nesdc-mini_drill-')) return 'nesdc_mini_drill';
   const nesdcSet = attempt.quiz_id.match(/^nesdc-([a-z]+)-set-\d{2}$/);
   if (nesdcSet) return `nesdc_${nesdcSet[1]}`;
+  if (attempt.quiz_id.startsWith('pat-mini_mock-')) return 'pat_mini_mock';
+  const patSet = attempt.quiz_id.match(/^pat-([a-z]+)-set-\d{2}$/);
+  if (patSet) return `pat_${patSet[1]}`;
   return attempt.subject_id;
 }
 
@@ -115,6 +125,11 @@ function summarizeAttempts(groupAttempts: AttemptRow[]) {
 }
 
 function getPracticeHref(subjectId: string, examSetId?: string | null) {
+  if (examSetId?.startsWith('pat-mini_mock-')) return `/courses/pat/mini-mock/${examSetId}`;
+  const patSet = examSetId?.match(/^pat-([a-z]+)-set-\d{2}$/);
+  if (patSet) return `/courses/pat/${patSet[1]}/exams/${examSetId}`;
+  if (subjectId === 'pat_mini_mock') return '/courses/pat#mini';
+  if (isPatSubject(subjectId)) return `/courses/pat/${subjectId.slice('pat_'.length)}`;
   if (examSetId?.startsWith('nesdc-mini_mock-')) return `/courses/nesdc/mini-mock/${examSetId}`;
   if (examSetId?.startsWith('nesdc-mini_drill-')) return `/courses/nesdc/mini-drill/${examSetId}`;
   const nesdcSet = examSetId?.match(/^nesdc-([a-z]+)-set-\d{2}$/);
