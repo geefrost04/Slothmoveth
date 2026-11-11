@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   return buildMetadata({
     title: `คอมพิวเตอร์ ชุดที่ ${setNumber} - นายสิบตำรวจ`,
-    description: `ข้อสอบคอมพิวเตอร์นายสิบตำรวจ ชุดที่ ${setNumber} จำนวน 30 ข้อ พร้อมจับเวลาและเฉลย`,
+    description: `ข้อสอบคอมพิวเตอร์นายสิบตำรวจ ชุดที่ ${setNumber} จำนวน 20 ข้อ พร้อมจับเวลาและเฉลย`,
     path: `/courses/police_admin/computer/exams/police-computer-set-${String(setNumber).padStart(2, '0')}`,
     noIndex: true
   });
