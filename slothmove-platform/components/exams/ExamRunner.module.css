@@ -571,6 +571,12 @@
 
 .resultEyebrow { color: var(--exam-red); font-size: 13px; font-weight: 900; letter-spacing: 0.08em; }
 
+@property --score {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
 .scoreRing {
   --ring: var(--exam-red);
   display: grid;
@@ -1458,7 +1464,31 @@
   .reviewBackToTop { right: 12px; bottom: 12px; }
 }
 
+/* Score reveal (first view of a result only). Ring timing matches the Lighthouse gauge:
+   250 ms delay, 1000 ms, ease. The rest rises in after it. */
+.resultReveal .scoreRing { animation: scoreRingFill 1000ms ease 250ms both; }
+.resultReveal .resultHeadline > * { animation: resultRise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.resultReveal .resultHeadline > :nth-child(1) { animation-delay: 150ms; }
+.resultReveal .resultHeadline > :nth-child(2) { animation-delay: 230ms; }
+.resultReveal .resultHeadline > :nth-child(3) { animation-delay: 310ms; }
+.resultReveal .resultHeadline > :nth-child(4) { animation-delay: 1250ms; }
+.resultReveal .resultStats > div { animation: resultRise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.resultReveal .resultStats > div:nth-child(1) { animation-delay: 700ms; }
+.resultReveal .resultStats > div:nth-child(2) { animation-delay: 770ms; }
+.resultReveal .resultStats > div:nth-child(3) { animation-delay: 840ms; }
+.resultReveal .resultStats > div:nth-child(4) { animation-delay: 910ms; }
+.resultReveal .resultActions { animation: resultRise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) 1050ms both; }
+.resultReveal .benchmarkPartBar i { animation: barGrow 1000ms ease 600ms both; }
+.resultReveal .scoreRing > div strong { animation: scorePop 360ms cubic-bezier(0.3, 1.6, 0.5, 1) 1250ms both; }
+
+@keyframes scoreRingFill { from { --score: 0deg; } }
+@keyframes resultRise { from { opacity: 0; transform: translateY(10px); } }
+@keyframes barGrow { from { width: 0; } }
+@keyframes scorePop { 50% { transform: scale(1.08); } }
+
 @media (prefers-reduced-motion: reduce) {
+  .resultReveal .scoreRing, .resultReveal .resultHeadline > *, .resultReveal .resultStats > div, .resultReveal .resultActions,
+  .resultReveal .benchmarkPartBar i, .resultReveal .scoreRing > div strong { animation: none; }
   .questionCard, .loader, .timerWarning, .reviewCardBody, .loginPromptBackdrop, .loginPrompt { animation: none; }
   .choiceButton, .progressTrack i, .primaryButton, .reviewCtaArrow { transition: none; }
 }

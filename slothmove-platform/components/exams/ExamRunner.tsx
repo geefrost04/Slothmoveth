@@ -78,6 +78,44 @@ const SUPERSCRIPT_CHARACTERS: Record<string, string> = {
   '⁺': '+', '⁻': '−', '⁼': '=', '⁽': '(', '⁾': ')', 'ⁿ': 'n'
 };
 
+// Score reveal timing, taken from the Lighthouse score gauge (captured with reanimate):
+// the ring starts after 250 ms and fills over 1000 ms with CSS `ease`.
+const SCORE_REVEAL_DELAY_MS = 250;
+const SCORE_REVEAL_DURATION_MS = 1000;
+
+// CSS `ease` = cubic-bezier(0.25, 0.1, 0.25, 1), so the number lands with the ring.
+function cssEase(t: number) {
+  let lo = 0;
+  let hi = 1;
+  let x = t;
+  for (let i = 0; i < 20; i += 1) {
+    x = (lo + hi) / 2;
+    const bx = 3 * 0.25 * x * (1 - x) ** 2 + 3 * 0.25 * x * x * (1 - x) + x ** 3;
+    if (bx < t) lo = x; else hi = x;
+  }
+  return 3 * 0.1 * x * (1 - x) ** 2 + 3 * 1 * x * x * (1 - x) + x ** 3;
+}
+
+function CountUp({ value, animate, suffix = '' }: { value: number; animate: boolean; suffix?: string }) {
+  const [shown, setShown] = useState(animate ? 0 : value);
+  useEffect(() => {
+    if (!animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShown(value);
+      return;
+    }
+    let frame = 0;
+    const start = performance.now() + SCORE_REVEAL_DELAY_MS;
+    const tick = (now: number) => {
+      const t = Math.min(1, Math.max(0, (now - start) / SCORE_REVEAL_DURATION_MS));
+      setShown(Math.round(value * cssEase(t)));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [animate, value]);
+  return <>{shown}{suffix}</>;
+}
+
 function formatTime(totalSeconds: number) {
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -203,6 +241,13 @@ export function ExamRunner({
   // New attempts wait on a start screen so the clock never runs before the candidate is ready.
   const [awaitingStart, setAwaitingStart] = useState(false);
   const [result, setResult] = useState<ExamResult | null>(null);
+  // The score reveal plays once per result, not again when coming back from the answer review.
+  const [revealPlayed, setRevealPlayed] = useState(false);
+  useEffect(() => {
+    if (!result) { setRevealPlayed(false); return; }
+    const timer = window.setTimeout(() => setRevealPlayed(true), 2000);
+    return () => window.clearTimeout(timer);
+  }, [result]);
   const [showReview, setShowReview] = useState(false);
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>('wrong');
   const [expandedReviewIds, setExpandedReviewIds] = useState<Set<string>>(new Set());
@@ -872,11 +917,11 @@ export function ExamRunner({
     return (
       <div className={styles.examPage} style={themeStyle}>
         <ExamHeader completedSeconds={result.durationSeconds} exitHref={subjectHref} />
-        <main className={styles.resultPage}>
+        <main className={`${styles.resultPage} ${revealPlayed ? '' : styles.resultReveal}`}>
           <section className={styles.resultCard}>
             <div className={styles.resultSummary}>
               <div className={`${styles.scoreRing} ${percent >= 60 ? styles.ringPass : percent >= 40 ? styles.ringNear : styles.ringLow}`} style={{ '--score': `${percent * 3.6}deg` } as React.CSSProperties}>
-                <div><strong>{percent}%</strong><span>{result.score}/{result.total}</span></div>
+                <div><strong><CountUp value={percent} animate={!revealPlayed} suffix="%" /></strong><span>{result.score}/{result.total}</span></div>
               </div>
               <div className={styles.resultHeadline}>
                 <span className={styles.resultEyebrow}>{result.reason === 'timeout' ? 'หมดเวลา · ส่งอัตโนมัติ' : 'ส่งข้อสอบแล้ว'}</span>
