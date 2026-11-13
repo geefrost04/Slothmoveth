@@ -14,6 +14,7 @@ import { evaluatePoliceBenchmark } from '@/lib/police-exam-benchmark';
 import { CoffeeNudge } from '@/components/CoffeeNudge';
 import { DASH_COURSES, courseOfSubject, dashCourse, type DashCourse, type DashCourseId } from '@/lib/dashboardCourses';
 import { countPracticeVolume } from '@/lib/practiceVolume';
+import { POLICE_CATEGORY_SUBJECT_IDS } from '@/lib/policeCategorySubjects';
 import { PracticeVolumeCard } from '@/components/dashboard/PracticeVolumeCard';
 import '../dashboard.css';
 
@@ -81,7 +82,9 @@ function isPatSubject(subjectId: string) {
   return subjectId.startsWith('pat_');
 }
 
+// Mock and Mini Mock answers carry a topic; map each topic to its subject.
 const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
+  ...POLICE_CATEGORY_SUBJECT_IDS,
   'ความรู้ทั่วไป': 'math',
   'ภาษาไทย': 'thai',
   'คอมพิวเตอร์': 'computer',
