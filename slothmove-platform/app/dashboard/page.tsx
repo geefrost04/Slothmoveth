@@ -92,6 +92,12 @@ const MOCK_CATEGORY_SUBJECT_IDS: Record<string, string> = {
 
 const SUBJECT_PRACTICE_IDS = new Set(Object.keys(SUBJECT_TITLES).filter((subjectId) => !isMockAttempt(subjectId)));
 
+// Topic subjects of each course, for "not practised yet" (mock and drill sets are not topics).
+const COURSE_PRACTICE_SUBJECTS = Object.fromEntries(DASH_COURSES.map((course) => [
+  course.id,
+  [...SUBJECT_PRACTICE_IDS].filter((id) => courseOfSubject(id) === course.id && !id.endsWith('_mini_drill') && id !== 'social' && id !== 'analytical_thinking')
+])) as Record<DashCourseId, string[]>;
+
 function isMockAttempt(subjectId: string) {
   return subjectId === 'mock_test' || subjectId === 'mini_mock' || subjectId === 'onwr_mini_mock' || subjectId === 'nesdc_mini_mock' || subjectId === 'pat_mini_mock';
 }
@@ -800,9 +806,14 @@ export default function DashboardPage() {
 
             <PracticeVolumeCard
               volume={practiceVolume}
+              courses={DASH_COURSES.map((course) => ({
+                id: course.id, name: course.short, accent: course.accent, soft: course.soft,
+                mark: <CourseMark course={course} size={24} />,
+                subjects: COURSE_PRACTICE_SUBJECTS[course.id]
+              }))}
+              courseOf={courseOfSubject}
               subjectTitle={(subjectId) => SUBJECT_TITLES[subjectId] ?? subjectId}
-              subjectTag={focusCourse ? undefined : (subjectId) => <CourseTag course={dashCourse(courseOfSubject(subjectId))} />}
-              color={(subjectId) => dashCourse(courseOfSubject(subjectId)).accent}
+              practiceHref={(subjectId) => getPracticeHref(subjectId)}
             />
 
             <div className="dbx-next-grid">

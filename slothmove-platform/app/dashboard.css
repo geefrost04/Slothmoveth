@@ -2220,33 +2220,7 @@ a.dbx-course-main { grid-template-columns: auto minmax(0, 1fr); text-decoration:
 .dbx-mark.is-logo { border: 1px solid var(--dbx-line); }
 
 /* Practice volume: questions answered today / this week / this month */
-.pv-card { padding: 18px; border: 1px solid var(--dbx-line); border-radius: 14px; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
-.pv-card .dbx-section-head { flex-wrap: wrap; }
-.pv-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 14px; }
-.pv-tabs button { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--dbx-line); border-radius: 12px; background: #f8fafc; color: var(--dbx-muted); text-align: left; cursor: pointer; font: inherit; transition: border-color 160ms ease, background 160ms ease; }
-.pv-tabs button small { font-size: 12.5px; font-weight: 600; }
-.pv-tabs button strong { color: var(--dbx-ink); font-size: 24px; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
-.pv-tabs button em { margin-left: 4px; color: var(--dbx-muted); font-size: 12px; font-style: normal; font-weight: 600; }
-.pv-tabs button.is-active { border-color: var(--dbx-green); background: var(--dbx-green-soft); }
-.pv-tabs button.is-active small { color: var(--dbx-green); }
-.pv-tabs button:focus-visible { outline: 2px solid var(--dbx-green); outline-offset: 2px; }
-.pv-summary { margin: 0 0 12px; color: var(--dbx-muted); font-size: 13.5px; }
-.pv-summary b { color: var(--dbx-ink); }
-.pv-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.pv-list li { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(60px, 2fr) auto; align-items: center; gap: 12px; }
-.pv-name { display: flex; align-items: center; gap: 6px; min-width: 0; color: var(--dbx-ink); font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pv-track { height: 8px; border-radius: 999px; background: #edf0f3; overflow: hidden; }
-.pv-track i { display: block; height: 100%; border-radius: inherit; }
-.pv-count { display: grid; justify-items: end; color: var(--dbx-muted); font-size: 12.5px; white-space: nowrap; }
-.pv-count b { color: var(--dbx-ink); font-size: 15px; font-variant-numeric: tabular-nums; }
-.pv-count small { font-size: 11.5px; }
-.pv-empty { margin: 0; padding: 14px; border-radius: 10px; background: #f8fafc; color: var(--dbx-muted); font-size: 13.5px; text-align: center; }
 @media (max-width: 560px) {
-  .pv-card { padding: 14px; }
-  .pv-tabs button { padding: 8px 10px; }
-  .pv-tabs button strong { font-size: 20px; }
-  .pv-list li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
-  .pv-track { grid-column: 1 / -1; grid-row: 2; }
 }
 
 /* Wrong-answer book grouped by course and subject */
@@ -2273,3 +2247,40 @@ a.dbx-course-main { grid-template-columns: auto minmax(0, 1fr); text-decoration:
   .wb-subject > .dashboard-wrong-book-list { padding: 4px 12px 0; }
   .wb-practice { margin: 12px; }
 }
+
+/* Practice volume: one column per agency, every subject with a bar; tap for details */
+.pv-card { padding: 18px; border: 1px solid var(--dbx-line); border-radius: 14px; background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
+.pv-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 14px; }
+.pv-head h2 { margin: 0; font-size: 17px; }
+.pv-seg { display: inline-flex; padding: 3px; border-radius: 10px; background: #f1f5f9; }
+.pv-seg button { padding: 6px 12px; border: 0; border-radius: 8px; background: transparent; color: var(--dbx-muted); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.pv-seg button b { margin-left: 2px; color: var(--dbx-ink); font-variant-numeric: tabular-nums; }
+.pv-seg button.is-active { background: #fff; color: var(--dbx-ink); box-shadow: 0 1px 2px rgba(15, 23, 42, .12); }
+.pv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.pv-col { border: 1px solid var(--dbx-line); border-radius: 12px; overflow: hidden; }
+.pv-col-head { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--cs); border-bottom: 1px solid var(--dbx-line); }
+.pv-col-head .dbx-mark { margin: 0; }
+.pv-col-head strong { color: var(--c); font-size: 14.5px; }
+.pv-col-head span { margin-left: auto; color: var(--dbx-muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.pv-col ul { margin: 0; padding: 4px 0; list-style: none; }
+.pv-col li button { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; width: 100%; padding: 7px 12px; border: 0; background: transparent; font: inherit; text-align: left; cursor: pointer; }
+.pv-col li button:hover, .pv-col li button:focus-visible { background: #f8fafc; outline: none; }
+.pv-row-name { color: var(--dbx-ink); font-size: 13.5px; line-height: 1.35; }
+.pv-row-count { color: var(--dbx-ink); font-size: 13.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pv-row-bar { grid-column: 1 / -1; height: 6px; border-radius: 999px; background: #edf0f3; overflow: hidden; }
+.pv-row-bar i { display: block; height: 100%; border-radius: inherit; background: var(--c); }
+.pv-col li button.is-zero .pv-row-name, .pv-col li button.is-zero .pv-row-count { color: #9aa4b2; }
+.pv-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(15, 23, 42, .45); }
+.pv-dialog { position: relative; width: min(360px, 100%); padding: 20px; border-radius: 16px; background: #fff; box-shadow: 0 20px 40px rgba(15, 23, 42, .25); }
+.pv-dialog small { color: var(--c); font-size: 12.5px; font-weight: 700; }
+.pv-dialog h3 { margin: 4px 0 14px; font-size: 18px; }
+.pv-close { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; border: 0; border-radius: 8px; background: transparent; color: var(--dbx-muted); font-size: 22px; line-height: 1; cursor: pointer; }
+.pv-close:hover { background: #f1f5f9; }
+.pv-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pv-stats div { display: grid; gap: 2px; padding: 10px; border-radius: 10px; background: #f8fafc; text-align: center; }
+.pv-stats span { color: var(--dbx-muted); font-size: 12.5px; }
+.pv-stats strong { color: var(--dbx-ink); font-size: 22px; font-variant-numeric: tabular-nums; }
+.pv-stats .is-right strong { color: #15803d; }
+.pv-stats .is-wrong strong { color: #b91c1c; }
+.pv-rate { margin: 12px 0 14px; color: var(--dbx-muted); font-size: 13.5px; text-align: center; }
+.pv-go { display: block; padding: 10px; border-radius: 10px; background: var(--c); color: #fff; font-weight: 700; text-align: center; text-decoration: none; }
