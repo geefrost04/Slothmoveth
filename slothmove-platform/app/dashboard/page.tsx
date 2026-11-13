@@ -13,6 +13,8 @@ import { SubjectIcon } from '@/components/icons/SubjectIcons';
 import { evaluatePoliceBenchmark } from '@/lib/police-exam-benchmark';
 import { CoffeeNudge } from '@/components/CoffeeNudge';
 import { DASH_COURSES, courseOfSubject, dashCourse, type DashCourse, type DashCourseId } from '@/lib/dashboardCourses';
+import { countPracticeVolume } from '@/lib/practiceVolume';
+import { PracticeVolumeCard } from '@/components/dashboard/PracticeVolumeCard';
 import '../dashboard.css';
 
 type DashboardView = 'overview' | 'history' | 'analysis' | 'review';
@@ -655,6 +657,10 @@ export default function DashboardPage() {
   const lastAttempt = attempts[0];
   const continueHref = lastAttempt ? getPracticeHref(lastAttempt.subject_id, lastAttempt.exam_set_id) : '/courses';
   const dailyStreak = getDailyStreak(attempts);
+  // Police mocks count each question under its own subject (ไทย, คอม, ...).
+  const practiceVolume = countPracticeVolume(attempts, (subjectId, category) => (
+    isPoliceMock(subjectId) ? MOCK_CATEGORY_SUBJECT_IDS[category] ?? subjectId : subjectId
+  ));
 
   function openHistoryGroup(group: AttemptGroup) {
     setHistoryFilter(`group:${group}`);
@@ -779,6 +785,13 @@ export default function DashboardPage() {
               <button type="button" className="stat-card" onClick={() => selectView('analysis')}><span className="stat-icon orange"><ScoreStatIcon /></span><span><strong className="stat-value">{averageScore}%</strong><span className="stat-label">คะแนนเฉลี่ย</span></span></button>
               <div className="stat-card"><span className="stat-icon purple"><DurationStatIcon /></span><span><strong className="stat-value">{dailyStreak}<small>วัน</small></strong><span className="stat-label">ฝึกต่อเนื่อง</span></span></div>
             </div></section>
+
+            <PracticeVolumeCard
+              volume={practiceVolume}
+              subjectTitle={(subjectId) => SUBJECT_TITLES[subjectId] ?? subjectId}
+              subjectTag={focusCourse ? undefined : (subjectId) => <CourseTag course={dashCourse(courseOfSubject(subjectId))} />}
+              color={(subjectId) => dashCourse(courseOfSubject(subjectId)).accent}
+            />
 
             <div className="dbx-next-grid">
                 {wrongAnswers.length > 0 ? <button type="button" className="dashboard-review-summary" onClick={() => selectView('review')}><span className="dashboard-review-summary-icon" aria-hidden="true"><ReviewNavIcon /></span><span><strong>มีข้อที่ควรทบทวน {wrongAnswers.length} ข้อ</strong><small>เปิดสมุดข้อผิดเพื่ออ่านเฉลย แล้วกลับไปฝึกวิชานั้นได้ทันที</small></span><i aria-hidden="true">→</i></button> : null}
