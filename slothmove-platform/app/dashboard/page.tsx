@@ -445,6 +445,7 @@ export default function DashboardPage() {
   const [dataError, setDataError] = useState('');
   const [syncMessage, setSyncMessage] = useState('');
   const [showWelcome, setShowWelcome] = useState(false);
+  const [wrongBookOpen, setWrongBookOpen] = useState<Set<string>>(() => new Set());
   const router = useRouter();
   const supabase = getSupabase();
   const welcomeHandled = useRef(false);
@@ -653,6 +654,17 @@ export default function DashboardPage() {
       : attempts.filter((attempt) => attempt.subject_id === historyFilter);
   const getAttemptTitle = (attempt: AttemptRow) => (attempt.exam_set_id && examSetTitles[attempt.exam_set_id]) || SUBJECT_TITLES[attempt.subject_id] || attempt.quiz_id;
   const wrongAnswers = getLatestWrongAnswers(attempts);
+  // Wrong-answer book grouped by course, then subject (police mock questions go under their own subject).
+  const wrongBookGroups = DASH_COURSES.map((course) => {
+    const bySubject = new Map<string, typeof wrongAnswers>();
+    for (const item of wrongAnswers) {
+      if (courseOfSubject(item.attempt.subject_id) !== course.id) continue;
+      const subjectId = isPoliceMock(item.attempt.subject_id) ? MOCK_CATEGORY_SUBJECT_IDS[item.answer.category] ?? item.attempt.subject_id : item.attempt.subject_id;
+      bySubject.set(subjectId, [...(bySubject.get(subjectId) ?? []), item]);
+    }
+    const subjects = [...bySubject.entries()].map(([subjectId, items]) => ({ subjectId, items })).sort((x, y) => y.items.length - x.items.length);
+    return { course, subjects, count: subjects.reduce((total, subject) => total + subject.items.length, 0) };
+  }).filter((group) => group.count > 0);
   // Shortcuts follow the course the user practised last.
   const lastAttempt = attempts[0];
   const continueHref = lastAttempt ? getPracticeHref(lastAttempt.subject_id, lastAttempt.exam_set_id) : '/courses';
@@ -1009,13 +1021,23 @@ export default function DashboardPage() {
           {view === 'review' ? (
             <section className="dashboard-view-card dashboard-wrong-book">
               <div className="dashboard-view-toolbar"><div><h2>รายการที่ยังต้องทบทวน</h2><p>ระบบเก็บเฉพาะคำตอบล่าสุดของแต่ละข้อ เพื่อไม่ให้ข้อที่ทำถูกแล้วกลับมารบกวน</p></div><span className="analysis-count">{wrongAnswers.length} ข้อ</span></div>
-              {wrongAnswers.length > 0 ? <div className="dashboard-wrong-book-list">{wrongAnswers.map(({ answer, attempt }) => {
-                const question = reviewQuestions[answer.question_id];
-                const subjectTitle = SUBJECT_TITLES[attempt.subject_id] ?? attempt.subject_id;
-                const selectedChoice = answer.selected_choice_index === null ? 'ไม่ได้ตอบ' : `${String.fromCharCode(65 + answer.selected_choice_index)}. ${question?.choices[answer.selected_choice_index] ?? 'คำตอบเดิม'}`;
-                const correctChoice = `${String.fromCharCode(65 + answer.correct_choice_index)}. ${question?.choices[answer.correct_choice_index] ?? 'ดูเฉลยในชุดข้อสอบ'}`;
-                return <article className="dashboard-wrong-book-item" key={answer.question_id}><header>{focusCourse ? null : <CourseTag course={dashCourse(courseOfSubject(attempt.subject_id))} />}<span>{subjectTitle}</span><small>{question?.category ?? answer.category}</small><time>{formatDate(attempt.created_at)}</time></header><h3>{question?.prompt ?? 'กำลังโหลดรายละเอียดข้อสอบ...'}</h3><div className="dashboard-wrong-book-answers"><p><span>คำตอบของคุณ</span><strong className="is-wrong">{selectedChoice}</strong></p><p><span>คำตอบที่ถูก</span><strong className="is-correct">{correctChoice}</strong></p></div>{question?.explanation ? <p className="dashboard-wrong-book-explanation">{question.explanation}</p> : null}<Link href={getPracticeHref(attempt.subject_id, attempt.exam_set_id)} className="dashboard-wrong-book-action">กลับไปฝึกวิชานี้ →</Link></article>;
-              })}</div> : <EmptyState title="สมุดข้อผิดว่างแล้ว">เมื่อทำข้อที่เคยพลาดได้ถูกต้อง ข้อนั้นจะหายจากรายการนี้</EmptyState>}
+              {wrongBookGroups.length > 0 ? <div className="wb-courses">{wrongBookGroups.map(({ course, count, subjects }) => (
+                <section className="wb-course" key={course.id} style={{ '--c': course.accent, '--cs': course.soft } as React.CSSProperties} aria-label={`ข้อผิด ${course.name}`}>
+                  <header className="wb-course-head"><CourseMark course={course} size={34} /><span className="wb-course-name"><small>{course.agency}</small><strong>{course.name}</strong></span><b>{count} ข้อ</b></header>
+                  {subjects.map(({ subjectId, items }) => (
+                    <details className="wb-subject" key={subjectId} open={wrongBookOpen.has(`${course.id}:${subjectId}`)} onToggle={(event) => { const key = `${course.id}:${subjectId}`; const isOpen = (event.currentTarget as HTMLDetailsElement).open; setWrongBookOpen((current) => { if (current.has(key) === isOpen) return current; const next = new Set(current); if (isOpen) next.add(key); else next.delete(key); return next; }); }}>
+                      <summary><SubjectIcon subjectId={subjectId} size={16} /><span>{SUBJECT_TITLES[subjectId] ?? subjectId}</span><b>{items.length} ข้อ</b><i aria-hidden="true"><ChevronDownIcon size={16} /></i></summary>
+                      <div className="dashboard-wrong-book-list">{items.map(({ answer, attempt }) => {
+                        const question = reviewQuestions[answer.question_id];
+                        const selectedChoice = answer.selected_choice_index === null ? 'ไม่ได้ตอบ' : `${String.fromCharCode(65 + answer.selected_choice_index)}. ${question?.choices[answer.selected_choice_index] ?? 'คำตอบเดิม'}`;
+                        const correctChoice = `${String.fromCharCode(65 + answer.correct_choice_index)}. ${question?.choices[answer.correct_choice_index] ?? 'ดูเฉลยในชุดข้อสอบ'}`;
+                        return <article className="dashboard-wrong-book-item" key={answer.question_id}><header><span>{getAttemptTitle(attempt)}</span><small>{question?.category ?? answer.category}</small><time>{formatDate(attempt.created_at)}</time></header><h3>{question?.prompt ?? 'กำลังโหลดรายละเอียดข้อสอบ...'}</h3><div className="dashboard-wrong-book-answers"><p><span>คำตอบของคุณ</span><strong className="is-wrong">{selectedChoice}</strong></p><p><span>คำตอบที่ถูก</span><strong className="is-correct">{correctChoice}</strong></p></div>{question?.explanation ? <p className="dashboard-wrong-book-explanation">{question.explanation}</p> : null}</article>;
+                      })}</div>
+                      <Link href={getPracticeHref(subjectId)} className="wb-practice">ฝึก{SUBJECT_TITLES[subjectId] ?? 'วิชานี้'}ต่อ →</Link>
+                    </details>
+                  ))}
+                </section>
+              ))}</div> : <EmptyState title="สมุดข้อผิดว่างแล้ว">เมื่อทำข้อที่เคยพลาดได้ถูกต้อง ข้อนั้นจะหายจากรายการนี้</EmptyState>}
             </section>
           ) : null}
 

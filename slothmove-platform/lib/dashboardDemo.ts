@@ -12,7 +12,14 @@ function attempt(id: number, hoursAgo: number, subject: string, quiz: string, sc
     score,
     total_questions: total,
     exam_set_id: examSetId,
-    answers: [],
+    // Fake per-question answers so the wrong-answer book has something to show.
+    answers: categories.flatMap((c) => Array.from({ length: c.total }, (_, i) => ({
+      question_id: `${quiz}-${c.category}-${i}`,
+      category: c.category,
+      selected_choice_index: i < c.correct ? 0 : 1,
+      correct_choice_index: 0,
+      is_correct: i < c.correct
+    }))),
     category_results: categories,
     duration_seconds: total * 55,
     completion_reason: 'submitted',
