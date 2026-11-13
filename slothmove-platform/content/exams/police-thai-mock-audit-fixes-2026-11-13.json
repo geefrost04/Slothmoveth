@@ -1,0 +1,3783 @@
+{
+  "generated": "2026-11-13",
+  "note": "Thai sets 1-3 cue fixes and Mock Tests 2-6 audit fixes",
+  "fixes": [
+    {
+      "id": "police-mock_test-set-02-q108",
+      "set": "police-mock_test-set-02",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "เมื่อต้องเก็บหนังสืออิเล็กทรอนิกส์ระยะยาว แนวทางใดตรงกับกลไก Set 1 มากที่สุด"
+      },
+      "after": {
+        "prompt": "เมื่อต้องเก็บหนังสืออิเล็กทรอนิกส์ระยะยาว แนวทางใดเหมาะสมที่สุด"
+      },
+      "why": [
+        "leak: Stem says “ตรงกับกลไก Set 1 มากที่สุด”, which is authoring-process wording left in candidate-facing text."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-02-q110",
+      "set": "police-mock_test-set-02",
+      "subject": "mock_test",
+      "before": {
+        "choices": [
+          "25finalnew.pdf",
+          "2569_RTP0900_0025.pdf",
+          "หนังสือฉบับล่าสุด.pdf",
+          "RTP.pdf"
+        ],
+        "explanation": "ชื่อไฟล์ที่มีปี รหัสเจ้าของเรื่อง และเลขทะเบียนแบบเติมศูนย์ช่วยระบุเอกสารและเรียงลำดับได้ จึงเลือก “2569_RTP0900_0025.pdf” ส่วน “25finalnew.pdf” เป็นตัวลวงที่ไม่ตรงเงื่อนไขหรือหลักที่โจทย์กำลังทดสอบ",
+        "prompt": "หนังสือปี 2569 รหัสเจ้าของเรื่อง RTP0900 เลขทะเบียนส่ง 25 ควรตั้งชื่อไฟล์แบบใดให้ค้นและเรียงได้ชัดเจน",
+        "tip": "จุดจำสารบรรณ: ระบุชนิดหนังสือหรือขั้นตอน “การตั้งชื่อไฟล์” ก่อน แล้วค่อยเลือกผู้มีอำนาจ แบบ หรือการดำเนินการ"
+      },
+      "after": {
+        "choices": [
+          "25finalnew.pdf",
+          "2569_RTP0900_25.pdf",
+          "หนังสือฉบับล่าสุด.pdf",
+          "RTP.pdf"
+        ],
+        "explanation": "ภาคผนวก 7 ข้อ 4.3 กำหนดให้ตั้งชื่อไฟล์ตามลำดับ ปีพุทธศักราช รหัสส่วนราชการเจ้าของเรื่อง และเลขที่ตามทะเบียนหนังสือส่ง คั่นด้วยเครื่องหมายขีดล่าง จึงเลือก “2569_RTP0900_25.pdf” ส่วน “25finalnew.pdf” เป็นตัวลวงที่ไม่ตรงเงื่อนไขหรือหลักที่โจทย์กำลังทดสอบ",
+        "prompt": "หนังสือปี 2569 รหัสเจ้าของเรื่อง RTP0900 เลขทะเบียนส่ง 25 ควรตั้งชื่อไฟล์แบบใดให้ถูกต้องตามระเบียบงานสารบรรณ (ภาคผนวก 7)",
+        "tip": "จุดจำ: ชื่อไฟล์ = ปี พ.ศ._รหัสส่วนราชการ+เลขประจำเจ้าของเรื่อง_เลขทะเบียนหนังสือส่ง.pdf"
+      },
+      "why": [
+        "expl-mismatch: The keyed filename zero-pads the send-register number (0025), and the explanation praises “เลขทะเบียนแบบเติมศูนย์”. The regulation's naming rule uses the plain number (example 2564_OPM0913_56.pdf), so the keyed choice and explanation teach a format that differs from the regulation.",
+        "main-session second review: prompt touch-up",
+        "main-session second review: tip touch-up"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q060",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "tip": "เทคนิคการจดจำ: 'ตัดขึ้นหน้าใหม่ทันทีฟอร์แมตไม่พัง' = Ctrl + Enter (เรียกว่าขึ้นหน้าใหม่ด้วย Page Break), ส่วย 'Shift + Enter' คือขึ้นบรรทัดใหม่แต่ย่อหน้าเดิม (Line Break)"
+      },
+      "after": {
+        "tip": "เทคนิคการจดจำ: 'ตัดขึ้นหน้าใหม่ทันทีฟอร์แมตไม่พัง' = Ctrl + Enter (เรียกว่าขึ้นหน้าใหม่ด้วย Page Break), ส่วน 'Shift + Enter' คือขึ้นบรรทัดใหม่แต่ย่อหน้าเดิม (Line Break)"
+      },
+      "why": [
+        "other: Typo in TIP: \"ส่วย\" (tribute) should be \"ส่วน\".",
+        "same fix as police-computer-set-03-q20 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q043",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "พล็อตเตอร์ (Plotter) เป็นเครื่องพิมพ์ชนิดพิเศษที่ใช้วาดภาพในลักษณะลายเส้นกราฟิกแบบเวกเตอร์ (Vector) เหมาะสำหรับวาดแบบแปลนสถาปัตยกรรม แผนที่ ลายเซ็นต์ หรือภาพวาดขนาดใหญ่มากที่เครื่องพิมพ์ทั่วไปไม่สามารถพิมพ์ได้สะดวกและเรียบเนียน"
+      },
+      "after": {
+        "explanation": "พล็อตเตอร์ (Plotter) เป็นเครื่องพิมพ์ชนิดพิเศษที่ใช้วาดภาพในลักษณะลายเส้นกราฟิกแบบเวกเตอร์ (Vector) เหมาะสำหรับวาดแบบแปลนสถาปัตยกรรม แผนที่ ลายเซ็น หรือภาพวาดขนาดใหญ่มากที่เครื่องพิมพ์ทั่วไปไม่สามารถพิมพ์ได้สะดวกและเรียบเนียน"
+      },
+      "why": [
+        "other: Misspelling in explanation: \"ลายเซ็นต์\" should be \"ลายเซ็น\" (ราชบัณฑิตยสภา)."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q081",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ 1 มิถุนายน พ.ศ. 2526 ตามต้นฉบับชุดที่ 3 ข้อ 1 ซึ่งวัดการจำวันมีผลใช้บังคับของระเบียบโดยตรง ตัวลวงใช้วันประกาศหรือวันที่ใกล้เคียงเพื่อให้สับสน จึงควรจำคำว่า “มีผลใช้บังคับ” แยกจากวันลงนามหรือวันประกาศ."
+      },
+      "after": {
+        "explanation": "ตอบ 1 มิถุนายน พ.ศ. 2526 ตามระเบียบงานสารบรรณ ข้อ 2 ที่กำหนดให้ใช้บังคับตั้งแต่วันที่ 1 มิถุนายน 2526 ตัวลวงใช้วันที่ใกล้เคียงเพื่อให้สับสน จึงควรจำคำว่า “มีผลใช้บังคับ” แยกจากวันลงนามหรือวันประกาศ."
+      },
+      "why": [
+        "leak: Explanation cites 'ต้นฉบับชุดที่ 3 ข้อ 1'.",
+        "same fix as police-saraban-set-03-q01 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q082",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "สำหรับหนังสือภายนอก ตำแหน่งของ “ส่วนราชการเจ้าของเรื่อง” ตามรูปแบบที่ต้นฉบับถาม อยู่บริเวณใดของกระดาษตราครุฑ",
+        "explanation": "ตอบ ด้านล่างซ้ายของกระดาษตราครุฑ ตามตัวเลือกและเฉลยของต้นฉบับชุดที่ 3 ข้อ 3 ข้อนี้เป็นสไตล์จำตำแหน่งองค์ประกอบบนแบบหนังสือ ซึ่งเป็นคาแรกเตอร์สำคัญของชุดนี้."
+      },
+      "after": {
+        "prompt": "สำหรับหนังสือภายนอก ตำแหน่งของ “ส่วนราชการเจ้าของเรื่อง” อยู่บริเวณใดของกระดาษตราครุฑ",
+        "explanation": "ตอบ ด้านล่างซ้ายของกระดาษตราครุฑ ตามแบบหนังสือภายนอกท้ายระเบียบงานสารบรรณ ที่ให้ลงชื่อส่วนราชการเจ้าของเรื่องไว้ใต้ส่วนลงชื่อทางด้านซ้าย. ข้อนี้เป็นข้อจำตำแหน่งองค์ประกอบบนแบบหนังสือ."
+      },
+      "why": [
+        "leak: Prompt says 'ตามรูปแบบที่ต้นฉบับถาม'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 3 and 'คาแรกเตอร์'.",
+        "same fix as police-saraban-set-03-q03 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q083",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ คำสั่ง เพราะต้นฉบับชุดที่ 3 ข้อ 5 ให้นิยามลักษณะหนังสือที่ผู้บังคับบัญชาใช้สั่งการให้ปฏิบัติ แล้วให้เลือกชนิดหนังสือที่ตรงกับนิยามนั้น ตัวลวงทั้งสามเป็นชื่อหนังสือราชการที่ใกล้เคียงกัน."
+      },
+      "after": {
+        "explanation": "ตอบ คำสั่ง เพราะระเบียบงานสารบรรณ ข้อ 16 นิยามคำสั่งว่าเป็นบรรดาข้อความที่ผู้บังคับบัญชาสั่งการให้ปฏิบัติโดยชอบด้วยกฎหมาย ตัวลวงทั้งสามเป็นชื่อหนังสือราชการที่ใกล้เคียงกัน."
+      },
+      "why": [
+        "leak: Explanation cites ต้นฉบับชุดที่ 3 ข้อ 5.",
+        "same fix as police-saraban-set-03-q05 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q084",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดกล่าวเกี่ยวกับ “ประกาศ” ไม่ถูกต้องตามคาแรกเตอร์ข้อสอบต้นฉบับ",
+        "explanation": "ตอบ ข้อที่บอกว่าประกาศต้องมี “ฉบับที่” ทุกฉบับ เพราะต้นฉบับชุดที่ 3 ข้อ 7 ให้ลักษณะอื่น ๆ เป็นองค์ประกอบที่สอดคล้องกับแบบประกาศ และใช้เรื่อง “ฉบับที่” เป็นตัวลวง.",
+        "tip": "จุดจำ: มีการใส่ฉบับที่เป็นองค์ประกอบบังคับทุกฉบับ"
+      },
+      "after": {
+        "prompt": "ข้อใดกล่าวเกี่ยวกับ “ประกาศ” ไม่ถูกต้อง",
+        "explanation": "ตอบ ข้อที่บอกว่าประกาศต้องมี “ฉบับที่” ทุกฉบับ เพราะแบบประกาศตามระเบียบงานสารบรรณ ข้อ 20 ไม่มีรายการ “ฉบับที่” ส่วนการใช้กระดาษตราครุฑ การลงชื่อและตำแหน่ง และการใช้ประกาศชี้แจงหรือแนะแนวทางปฏิบัติ สอดคล้องกับแบบประกาศ.",
+        "tip": "จุดจำ: แบบประกาศไม่มีรายการ “ฉบับที่”"
+      },
+      "why": [
+        "leak: Prompt says 'ตามคาแรกเตอร์ข้อสอบต้นฉบับ'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 7. Also TIP gives the false statement (key of a negative stem) as 'จุดจำ' (expl-mismatch).",
+        "same fix as police-saraban-set-03-q07 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q085",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อความในบันทึกสามารถเป็นลักษณะใดได้บ้างตามต้นฉบับชุดที่ 3",
+        "explanation": "ตอบ ถูกทุกข้อ ต้นฉบับชุดที่ 3 ข้อ 9 ตั้งใจวัดว่าผู้สอบมอง “บันทึก” กว้างพอหรือไม่ ทั้งการเสนอ การสั่งการ และการติดต่อภายในงานราชการสามารถอยู่ในรูปบันทึกได้ตามบริบท."
+      },
+      "after": {
+        "prompt": "ข้อความในบันทึกสามารถเป็นลักษณะใดได้บ้างตามระเบียบงานสารบรรณ",
+        "explanation": "ตอบ ถูกทุกข้อ ระเบียบงานสารบรรณ ข้อ 26 นิยามบันทึกให้ครอบคลุมทั้งการเสนอ การสั่งการ และการติดต่อระหว่างเจ้าหน้าที่หรือหน่วยงานภายในในการปฏิบัติราชการ."
+      },
+      "why": [
+        "leak: Prompt says 'ตามต้นฉบับชุดที่ 3'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 9.",
+        "same fix as police-saraban-set-03-q09 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q086",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ถ้าโจทย์ถาม “วันเริ่มใช้บังคับ” ของระเบียบงานสารบรรณ พ.ศ. 2526 ข้อใดควรเลือก",
+        "explanation": "ตอบ 1 มิถุนายน พ.ศ. 2526 เป็นการวนถาม fact เดียวกับต้นฉบับข้อ 1 ในมุมที่ต่างเล็กน้อย ซึ่งอนุญาตตามเป้าหมาย Mock Exam เพราะชุดตัวอย่างเองเน้นข้อจำตรงและตัวเลขวันที่."
+      },
+      "after": {
+        "prompt": "ระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ พ.ศ. 2526 เริ่มใช้บังคับเมื่อใด",
+        "explanation": "ตอบ 1 มิถุนายน พ.ศ. 2526 ตามระเบียบงานสารบรรณ ข้อ 2. ตัวลวงใช้ปี 2564 ซึ่งเป็นปีของระเบียบฉบับที่ 4 และวันที่ใกล้เคียงเพื่อให้สับสน."
+      },
+      "why": [
+        "leak: Explanation mentions 'ต้นฉบับข้อ 1' and 'เป้าหมาย Mock Exam'; prompt 'ถ้าโจทย์ถาม' is authoring phrasing.",
+        "same fix as police-saraban-set-03-q11 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q087",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ตำแหน่งด้านล่างซ้ายของหนังสือภายนอกตามมุมที่ต้นฉบับชุดที่ 3 ใช้ถาม เชื่อมโยงกับรายการใด",
+        "explanation": "ตอบ ส่วนราชการเจ้าของเรื่อง ข้อนี้เป็นข้อจำตำแหน่งแบบเดียวกับต้นฉบับข้อ 3 แต่ย้อนถามจากตำแหน่งกลับไปหาองค์ประกอบ เพื่อคง DNA โดยไม่เปลี่ยนเป็นเนื้อหาใหม่."
+      },
+      "after": {
+        "prompt": "ตำแหน่งด้านล่างซ้ายของหนังสือภายนอก เชื่อมโยงกับรายการใด",
+        "explanation": "ตอบ ส่วนราชการเจ้าของเรื่อง ตามแบบหนังสือภายนอกท้ายระเบียบงานสารบรรณ ข้อนี้ถามย้อนจากตำแหน่งกลับไปหาองค์ประกอบ."
+      },
+      "why": [
+        "leak: Prompt says 'ตามมุมที่ต้นฉบับชุดที่ 3 ใช้ถาม'; explanation cites ต้นฉบับข้อ 3 and 'DNA'.",
+        "same fix as police-saraban-set-03-q13 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q088",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ถ้าตรวจแบบ “ระเบียบ” แล้วส่วนท้ายไม่มีรายการใดต่อไปนี้ จะขาดองค์ประกอบที่ต้นฉบับชุดที่ 3 เน้นถาม",
+        "explanation": "ตอบ ผู้รักษาการ เพราะต้นฉบับข้อ 6 ใช้รายการนี้เป็นคำตอบของส่วนท้ายสุดของระเบียบ ส่วนตัวเลือกอื่นเป็นองค์ประกอบของหนังสือคนละประเภทหรือคนละตำแหน่ง."
+      },
+      "after": {
+        "prompt": "ถ้าตรวจแบบ “ระเบียบ” แล้วข้อสุดท้ายไม่มีรายการใดต่อไปนี้ จะถือว่าขาดองค์ประกอบสำคัญ",
+        "explanation": "ตอบ ผู้รักษาการ เพราะระเบียบงานสารบรรณ ข้อ 17.6 ให้ข้อสุดท้ายของระเบียบเป็นข้อผู้รักษาการ (ถ้าแบ่งเป็นหมวด ให้ย้ายข้อผู้รักษาการไปเป็นข้อสุดท้ายก่อนขึ้นหมวด 1) ส่วนตัวเลือกอื่นเป็นองค์ประกอบของหนังสือคนละประเภทหรือคนละตำแหน่ง."
+      },
+      "why": [
+        "leak: Prompt says 'ที่ต้นฉบับชุดที่ 3 เน้นถาม'; explanation cites ต้นฉบับข้อ 6.",
+        "same fix as police-saraban-set-03-q15 (twin, fixed and imported on 13 Nov)",
+        "main-session second review: explanation touch-up"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q089",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ผู้ไม่มาประชุม เป็นการถามกลับจากข้อ 8 ของต้นฉบับโดยตรง แบบรายงานการประชุมใช้คำนี้เป็นหัวข้อมาตรฐาน ไม่ใช้คำว่า “ผู้ไม่เข้าร่วมประชุม”."
+      },
+      "after": {
+        "explanation": "ตอบ ผู้ไม่มาประชุม แบบรายงานการประชุมตามระเบียบงานสารบรรณ ข้อ 25 ใช้คำนี้เป็นหัวข้อมาตรฐาน ไม่ใช้คำว่า “ผู้ไม่เข้าร่วมประชุม”."
+      },
+      "why": [
+        "leak: Explanation cites 'ข้อ 8 ของต้นฉบับ'.",
+        "same fix as police-saraban-set-03-q17 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q090",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ชั้นความลับในหนังสือราชการตามต้นฉบับมีทั้งหมดกี่ชั้น",
+        "explanation": "ตอบ 3 ชั้น ตามต้นฉบับชุดที่ 3 ข้อ 12 ซึ่งเป็นข้อจำตัวเลขตรง ๆ คาแรกเตอร์ชุดนี้ชอบใช้จำนวนชั้น ขนาด และระยะเวลาเป็นตัววัดความแม่น."
+      },
+      "after": {
+        "prompt": "ชั้นความลับของหนังสือราชการตามระเบียบว่าด้วยการรักษาความลับของทางราชการ มีทั้งหมดกี่ชั้น",
+        "explanation": "ตอบ 3 ชั้น คือ ลับที่สุด ลับมาก และลับ ตามระเบียบว่าด้วยการรักษาความลับของทางราชการ."
+      },
+      "why": [
+        "leak: Prompt says 'ตามต้นฉบับ'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 12 and 'คาแรกเตอร์'.",
+        "same fix as police-saraban-set-03-q19 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q091",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ตามตัวเลือกของต้นฉบับชุดที่ 3 บุคคลกลุ่มใดสามารถอยู่ในกลุ่มผู้ลงชื่อรับรองสำเนาถูกต้องได้",
+        "explanation": "ตอบ ถูกทุกข้อ ตามเฉลยต้นฉบับชุดที่ 3 ข้อ 14 ซึ่งตั้งตัวเลือกเป็นกลุ่มบุคคลหลายประเภทแล้วให้เลือกคำตอบรวม ข้อนี้จงใจคงรูปแบบ “ถูกทุกข้อ” ซึ่งเป็น DNA ของต้นฉบับชุดนี้."
+      },
+      "after": {
+        "prompt": "บุคคลกลุ่มใดสามารถลงชื่อรับรองสำเนาถูกต้องได้ (เมื่อเป็นเจ้าของเรื่องที่ทำสำเนานั้น)",
+        "explanation": "ตอบ ถูกทุกข้อ ตามระเบียบงานสารบรรณ ข้อ 31 วรรคสอง ซึ่งแก้ไขโดย (ฉบับที่ 3) พ.ศ. 2560 ให้ข้าราชการพลเรือนหรือพนักงานส่วนท้องถิ่นประเภทวิชาการ ระดับปฏิบัติการ หรือประเภททั่วไป ระดับชำนาญงานขึ้นไป หรือเจ้าหน้าที่ของรัฐอื่นที่เทียบเท่า หรือพนักงานราชการ ซึ่งเป็นเจ้าของเรื่องที่ทำสำเนาหนังสือนั้น ลงลายมือชื่อรับรองได้."
+      },
+      "why": [
+        "leak: Prompt says 'ตามตัวเลือกของต้นฉบับชุดที่ 3'; explanation says 'ตามเฉลยต้นฉบับชุดที่ 3 ข้อ 14' and 'DNA'.",
+        "same fix as police-saraban-set-03-q21 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q092",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ตามต้นฉบับชุดที่ 3 รูปแบบวันที่ที่ให้เป็นคำตอบสำหรับข้อบังคับคือข้อใด",
+        "explanation": "ตอบ “ประกาศ ณ วันที่ 1 กรกฎาคม พ.ศ. 2567” ตามเฉลยของต้นฉบับชุดที่ 3 ข้อ 16 ข้อสอบต้นฉบับเน้นการแยกรูปแบบวันที่ด้วยถ้อยคำเต็มกับตัวย่อ จึงรักษาลักษณะนั้นไว้."
+      },
+      "after": {
+        "prompt": "รูปแบบวันที่ของ “ข้อบังคับ” ที่ถูกต้องคือข้อใด",
+        "explanation": "ตอบ “ประกาศ ณ วันที่ 1 กรกฎาคม พ.ศ. 2567” ตามระเบียบงานสารบรรณ ข้อ 18.7 ที่ให้ลงประกาศ ณ วันที่ ด้วยตัวเลขของวันที่ ชื่อเต็มของเดือน และตัวเลขของปีพุทธศักราช จึงไม่ใช้ชื่อเดือนแบบย่อ."
+      },
+      "why": [
+        "leak: Prompt says 'ตามต้นฉบับชุดที่ 3 ... ที่ให้เป็นคำตอบ'; explanation cites เฉลยต้นฉบับ/ข้อสอบต้นฉบับ.",
+        "same fix as police-saraban-set-03-q23 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q093",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดเป็นคำขึ้นต้นและคำลงท้ายของ “อัยการสูงสุด” ตามตัวอย่างในต้นฉบับชุดที่ 3",
+        "explanation": "ตอบ กราบเรียน – ขอแสดงความนับถืออย่างยิ่ง ตามเฉลยต้นฉบับชุดที่ 3 ข้อ 18 รูปแบบตัวลวงเปลี่ยนเพียงคำขึ้นต้นหรือระดับคำลงท้าย ทำให้ต้องจำเป็นคู่."
+      },
+      "after": {
+        "prompt": "ข้อใดเป็นคำขึ้นต้นและคำลงท้ายของหนังสือถึง “อัยการสูงสุด”",
+        "explanation": "ตอบ กราบเรียน – ขอแสดงความนับถืออย่างยิ่ง ตามตารางคำขึ้นต้น สรรพนาม และคำลงท้ายท้ายระเบียบงานสารบรรณ รูปแบบตัวลวงเปลี่ยนเพียงคำขึ้นต้นหรือระดับคำลงท้าย ทำให้ต้องจำเป็นคู่."
+      },
+      "why": [
+        "leak: Prompt says 'ตามตัวอย่างในต้นฉบับชุดที่ 3'; explanation cites เฉลยต้นฉบับ.",
+        "same fix as police-saraban-set-03-q25 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q094",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ตราครุฑในกระดาษบันทึกข้อความมีขนาดเท่าใดตามต้นฉบับ",
+        "explanation": "ตอบ 1.5 ซม. ตามต้นฉบับชุดที่ 3 ข้อ 20 ซึ่งเป็นข้อจำตัวเลขสั้น ๆ ตามคาแรกเตอร์ของชุดนี้ จุดที่มักสับสนคือขนาดตราครุฑในแบบหนังสืออื่นที่อาจมีขนาดใหญ่กว่า จึงควรจำให้เฉพาะเจาะจงว่า “กระดาษบันทึกข้อความ = 1.5 ซม.”."
+      },
+      "after": {
+        "prompt": "ตราครุฑในกระดาษบันทึกข้อความมีขนาดเท่าใด",
+        "explanation": "ตอบ 1.5 ซม. ตามระเบียบงานสารบรรณ (ตราครุฑสำหรับแบบพิมพ์ ข้อ 71.2) จุดที่มักสับสนคือขนาดตราครุฑ 3 ซม. ในกระดาษตราครุฑ จึงควรจำให้เฉพาะเจาะจงว่า “กระดาษบันทึกข้อความ = 1.5 ซม.”."
+      },
+      "why": [
+        "leak: Prompt 'ตามต้นฉบับ'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 20, 'คาแรกเตอร์'.",
+        "same fix as police-saraban-set-03-q27 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q095",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ถ้ามีตัวเลือก 2 ชั้น, 3 ชั้น และ 4 ชั้น จำนวนชั้นความลับที่ต้องเลือกตามต้นฉบับคือเท่าใด",
+        "explanation": "ตอบ 3 ชั้น เป็นการวน fact เดียวกับต้นฉบับข้อ 12 ในรูปคำถามจำตรง เพื่อรักษาสัดส่วนข้อที่ถามตัวเลขง่าย ๆ ตาม DNA ของชุด 3."
+      },
+      "after": {
+        "prompt": "ชั้นความลับของหนังสือราชการมีจำนวนกี่ชั้น",
+        "explanation": "ตอบ 3 ชั้น คือ ลับที่สุด ลับมาก และลับ ตามระเบียบว่าด้วยการรักษาความลับของทางราชการ."
+      },
+      "why": [
+        "leak: Prompt is authoring scaffolding ('ถ้ามีตัวเลือก 2 ชั้น, 3 ชั้น และ 4 ชั้น ... ตามต้นฉบับ') and does not match the 4 choices (5 ชั้น also present); explanation cites ต้นฉบับข้อ 12 and DNA.",
+        "same fix as police-saraban-set-03-q29 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q096",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดเป็นกลุ่มบุคคลที่ปรากฏอยู่ในตัวเลือกผู้รับรองสำเนาของต้นฉบับชุดที่ 3",
+        "explanation": "ตอบ ข้าราชการท้องถิ่นประเภททั่วไป ระดับชำนาญงานขึ้นไป เป็นหนึ่งในกลุ่มที่ต้นฉบับข้อ 14 ยกมาใช้เป็นตัวเลือกที่ถูกต้องร่วมกับกลุ่มอื่น."
+      },
+      "after": {
+        "prompt": "ข้อใดเป็นกลุ่มบุคคลที่ลงชื่อรับรองสำเนาถูกต้องได้ (เมื่อเป็นเจ้าของเรื่องที่ทำสำเนานั้น)",
+        "explanation": "ตอบ ข้าราชการท้องถิ่นประเภททั่วไป ระดับชำนาญงานขึ้นไป ตามระเบียบงานสารบรรณ ข้อ 31 วรรคสอง ซึ่งแก้ไขโดย (ฉบับที่ 3) พ.ศ. 2560 ที่ให้ข้าราชการพลเรือนหรือพนักงานส่วนท้องถิ่นประเภททั่วไป ระดับชำนาญงานขึ้นไป รับรองสำเนาได้ ส่วนตัวเลือกอื่นไม่ใช่ผู้มีหน้าที่รับรองสำเนา."
+      },
+      "why": [
+        "leak: Prompt asks which group 'ปรากฏอยู่ในตัวเลือกผู้รับรองสำเนาของต้นฉบับชุดที่ 3' — unanswerable for candidates without the source; explanation cites ต้นฉบับข้อ 14.",
+        "same fix as police-saraban-set-03-q31 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q097",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดกล่าวถูกต้องเกี่ยวกับตราครุฑบนกระดาษบันทึกข้อความตามต้นฉบับชุดที่ 3",
+        "explanation": "ตอบ 1.5 ซม. เป็น fact เดียวกับต้นฉบับข้อ 20 แต่เปลี่ยนจากคำถาม “ขนาดเท่าใด” เป็นเลือกข้อความถูก เพื่อรักษาวิธีถามแบบสั้นของต้นฉบับ."
+      },
+      "after": {
+        "prompt": "ข้อใดกล่าวถูกต้องเกี่ยวกับตราครุฑบนกระดาษบันทึกข้อความ",
+        "explanation": "ตอบ 1.5 ซม. ตามระเบียบงานสารบรรณ (ตราครุฑขนาดตามข้อ 71.2) อย่าสับสนกับตราครุฑ 3 ซม. บนกระดาษตราครุฑ."
+      },
+      "why": [
+        "leak: Prompt 'ตามต้นฉบับชุดที่ 3'; explanation cites ต้นฉบับข้อ 20.",
+        "same fix as police-saraban-set-03-q33 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q098",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ บัตรตรวจค้น ตามต้นฉบับชุดที่ 3 ข้อ 22 ใช้สำหรับช่วยติดตามและค้นการดำเนินการของหนังสือรับ/ส่ง ไม่ใช่เอกสารด้านพัสดุหรือการเงิน."
+      },
+      "after": {
+        "explanation": "ตอบ บัตรตรวจค้น ตามระเบียบงานสารบรรณ ข้อ 50 ที่ให้ส่วนราชการจัดให้มีบัตรตรวจค้นสำหรับหนังสือรับและหนังสือส่งได้ เพื่อช่วยติดตามและค้นการดำเนินการของหนังสือ ไม่ใช่เอกสารด้านพัสดุหรือการเงิน."
+      },
+      "why": [
+        "leak: Explanation cites ต้นฉบับชุดที่ 3 ข้อ 22.",
+        "same fix as police-saraban-set-03-q35 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q099",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ถ้าหนังสือชำรุดเสียหายจนไม่สามารถซ่อมแซมให้คงสภาพเดิมได้ ควรทำอย่างไรตามต้นฉบับ",
+        "explanation": "ตอบ รายงานผู้บังคับบัญชาและหมายเหตุไว้ในทะเบียนเก็บ ตามต้นฉบับชุดที่ 3 ข้อ 24 จุดสำคัญคือมีทั้งการรายงานและการทำหลักฐานในทะเบียน ไม่ใช่จัดการเอกสารเองโดยไม่มีร่องรอย."
+      },
+      "after": {
+        "prompt": "ถ้าหนังสือชำรุดเสียหายจนไม่สามารถซ่อมแซมให้คงสภาพเดิมได้ ควรทำอย่างไรตามระเบียบงานสารบรรณ",
+        "explanation": "ตอบ รายงานผู้บังคับบัญชาและหมายเหตุไว้ในทะเบียนเก็บ ตามระเบียบงานสารบรรณ ข้อ 61 จุดสำคัญคือมีทั้งการรายงานและการทำหลักฐานในทะเบียน ไม่ใช่จัดการเอกสารเองโดยไม่มีร่องรอย."
+      },
+      "why": [
+        "leak: Prompt 'ตามต้นฉบับ'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 24.",
+        "same fix as police-saraban-set-03-q37 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q100",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ในบัญชีขอทำลายหนังสือ ถ้าคณะกรรมการเห็นว่าควรทำลาย ให้ทำเครื่องหมายอย่างไรและในช่องใดตามต้นฉบับ",
+        "explanation": "ตอบ เครื่องหมายกากบาท (X) ในช่อง “การพิจารณา” ตามต้นฉบับชุดที่ 3 ข้อ 26 ตัวลวงสลับทั้งชนิดเครื่องหมายและชื่อช่อง จึงต้องจำให้ครบสองส่วน."
+      },
+      "after": {
+        "prompt": "ในบัญชีหนังสือขอทำลาย ถ้าคณะกรรมการเห็นว่าควรทำลาย ให้ทำเครื่องหมายอย่างไรและในช่องใด",
+        "explanation": "ตอบ เครื่องหมายกากบาท (X) ในช่อง “การพิจารณา” ตามระเบียบงานสารบรรณ ข้อ 68.3 ตัวลวงสลับทั้งชนิดเครื่องหมายและชื่อช่อง จึงต้องจำให้ครบสองส่วน."
+      },
+      "why": [
+        "leak: Prompt 'ตามต้นฉบับ'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 26.",
+        "same fix as police-saraban-set-03-q39 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q101",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "“บัตรตรวจค้น” มีประโยชน์โดยตรงกับเรื่องใดตามกรอบต้นฉบับชุดที่ 3",
+        "explanation": "ตอบ ช่วยติดตามและค้นสถานะการดำเนินงานของหนังสือ ตรงกับต้นฉบับข้อ 22 จึงเป็นเครื่องมือด้านการติดตาม ไม่ใช่เอกสารสำหรับกำหนดความลับหรือทำลาย."
+      },
+      "after": {
+        "prompt": "“บัตรตรวจค้น” มีประโยชน์โดยตรงกับเรื่องใด",
+        "explanation": "ตอบ ช่วยติดตามและค้นสถานะการดำเนินงานของหนังสือ ตามระเบียบงานสารบรรณ ข้อ 50 และข้อ 82 จึงเป็นเครื่องมือด้านการติดตาม ไม่ใช่เอกสารสำหรับกำหนดความลับหรือทำลาย."
+      },
+      "why": [
+        "leak: Prompt 'ตามกรอบต้นฉบับชุดที่ 3'; explanation cites ต้นฉบับข้อ 22.",
+        "same fix as police-saraban-set-03-q41 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q102",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "เมื่อเอกสารชำรุดเสียหายจนซ่อมให้กลับสภาพเดิมไม่ได้ สิ่งใดต้องทำควบคู่กับการรายงานผู้บังคับบัญชาตามต้นฉบับ",
+        "explanation": "ตอบ หมายเหตุไว้ในทะเบียนเก็บ ตามต้นฉบับข้อ 24 การบันทึกนี้ทำให้มีหลักฐานว่าหนังสือเสียหายและถูกจัดการตามขั้นตอน ไม่ใช่เพียงรายงานด้วยวาจา."
+      },
+      "after": {
+        "prompt": "เมื่อเอกสารชำรุดเสียหายจนซ่อมให้กลับสภาพเดิมไม่ได้ สิ่งใดต้องทำควบคู่กับการรายงานผู้บังคับบัญชา",
+        "explanation": "ตอบ หมายเหตุไว้ในทะเบียนเก็บ ตามระเบียบงานสารบรรณ ข้อ 61 การบันทึกนี้ทำให้มีหลักฐานว่าหนังสือเสียหายและถูกจัดการตามขั้นตอน ไม่ใช่เพียงรายงานด้วยวาจา."
+      },
+      "why": [
+        "leak: Prompt 'ตามต้นฉบับ'; explanation cites ต้นฉบับข้อ 24.",
+        "same fix as police-saraban-set-03-q43 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q103",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดเป็นรูปแบบอีเมลราชการที่ต้นฉบับชุดที่ 3 ให้เป็นคำตอบที่ถูกต้อง",
+        "explanation": "ตอบ saraban@police.go.th ตามต้นฉบับชุดที่ 3 ข้อ 28 ตัวลวงจงใจใช้บริการอีเมลสาธารณะหรือสลับตำแหน่งคำว่า saraban กับโดเมนราชการ."
+      },
+      "after": {
+        "prompt": "ข้อใดเป็นรูปแบบอีเมลราชการที่ถูกต้อง",
+        "explanation": "ตอบ saraban@police.go.th อีเมลกลางของส่วนราชการใช้ชื่อ saraban ภายใต้โดเมนราชการของหน่วยงาน ตัวลวงจงใจใช้บริการอีเมลสาธารณะหรือสลับตำแหน่งคำว่า saraban กับโดเมนราชการ."
+      },
+      "why": [
+        "leak: Prompt 'ที่ต้นฉบับชุดที่ 3 ให้เป็นคำตอบ'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 28.",
+        "same fix as police-saraban-set-03-q45 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q105",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "จาก DNA ของต้นฉบับชุดที่ 3 ข้อใดเป็นลักษณะที่ควรพบในชื่อไฟล์หนังสือราชการอิเล็กทรอนิกส์",
+        "explanation": "ตอบ ชื่อไฟล์ในตัวอย่างต้นฉบับประกอบด้วยปี พ.ศ. รหัสหน่วยงานและเลขที่เกี่ยวข้อง แล้วลงท้าย .pdf จุดประสงค์ของข้อ 29–30 คือให้ผู้สอบสังเกต pattern ของชื่อไฟล์ มากกว่าจำชื่อไฟล์ตัวอย่างเพียงชื่อเดียว."
+      },
+      "after": {
+        "prompt": "ข้อใดเป็นลักษณะที่ควรพบในชื่อไฟล์หนังสือราชการอิเล็กทรอนิกส์ตามภาคผนวก 7",
+        "explanation": "ตอบ ชื่อไฟล์ตามภาคผนวก 7 ประกอบด้วยปี พ.ศ. รหัสอักษรโรมันของส่วนราชการ เลขประจำเจ้าของเรื่อง และเลขทะเบียนหนังสือส่ง คั่นด้วยขีดล่าง แล้วลงท้าย .pdf ผู้สอบควรสังเกต pattern ของชื่อไฟล์ มากกว่าจำชื่อไฟล์ตัวอย่างเพียงชื่อเดียว."
+      },
+      "why": [
+        "leak: Prompt says 'จาก DNA ของต้นฉบับชุดที่ 3'; explanation cites ตัวอย่างต้นฉบับ and 'ข้อ 29–30'.",
+        "same fix as police-saraban-set-03-q49 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q106",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดอยู่ในความหมายของ “หนังสือราชการ” ตามกรอบข้อสอบต้นฉบับชุดที่ 3",
+        "explanation": "ตอบ ถูกทุกข้อ เพราะต้นฉบับชุดที่ 3 ข้อ 2 รวมทั้งหนังสือระหว่างส่วนราชการ หนังสือจากราชการไปยังหน่วยงานหรือบุคคลภายนอก และเอกสารที่ราชการจัดทำขึ้นตามกฎหมาย/ระเบียบ/ข้อบังคับไว้ในความหมายของหนังสือราชการ."
+      },
+      "after": {
+        "prompt": "ข้อใดอยู่ในความหมายของ “หนังสือราชการ” ตามระเบียบงานสารบรรณ",
+        "explanation": "ตอบ ถูกทุกข้อ เพราะระเบียบงานสารบรรณ ข้อ 9 รวมทั้งหนังสือระหว่างส่วนราชการ หนังสือจากราชการไปยังหน่วยงานหรือบุคคลภายนอก และเอกสารที่ราชการจัดทำขึ้นตามกฎหมาย/ระเบียบ/ข้อบังคับไว้ในความหมายของหนังสือราชการ."
+      },
+      "why": [
+        "leak: Prompt 'ตามกรอบข้อสอบต้นฉบับชุดที่ 3'; explanation cites ต้นฉบับชุดที่ 3 ข้อ 2.",
+        "same fix as police-saraban-set-03-q02 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q107",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ จัดอยู่ในความหมายของหนังสือราชการ ต้นฉบับชุดที่ 3 ข้อ 2 วางขอบเขตไว้กว้างกว่าหนังสือที่ติดต่อกันระหว่างหน่วยงานรัฐเพียงอย่างเดียว."
+      },
+      "after": {
+        "explanation": "ตอบ จัดอยู่ในความหมายของหนังสือราชการ ระเบียบงานสารบรรณ ข้อ 9 วางขอบเขตไว้กว้างกว่าหนังสือที่ติดต่อกันระหว่างหน่วยงานรัฐเพียงอย่างเดียว โดยรวมหนังสือที่ส่วนราชการมีไปถึงบุคคลภายนอกด้วย."
+      },
+      "why": [
+        "leak: Explanation cites ต้นฉบับชุดที่ 3 ข้อ 2.",
+        "same fix as police-saraban-set-03-q12 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q108",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "รูปแบบวันที่ของ “แถลงการณ์” ที่ต้นฉบับชุดที่ 3 ให้เป็นคำตอบคือข้อใด",
+        "explanation": "ตอบ 1 กรกฎาคม 2567 ตามเฉลยต้นฉบับชุดที่ 3 ข้อ 15 ข้อนี้วัดการสังเกตรูปแบบวัน เดือน ปี และไม่เติมคำขึ้นต้นที่เป็นของหนังสืออีกแบบ."
+      },
+      "after": {
+        "prompt": "รูปแบบวันที่ของ “แถลงการณ์” ที่ถูกต้องคือข้อใด",
+        "explanation": "ตอบ 1 กรกฎาคม 2567 ตามระเบียบงานสารบรรณ ข้อ 21.6 ที่ให้ลงตัวเลขของวันที่ ชื่อเต็มของเดือน และตัวเลขของปีพุทธศักราช โดยไม่มีคำว่า “ประกาศ ณ วันที่” ซึ่งเป็นของหนังสืออีกแบบ."
+      },
+      "why": [
+        "leak: Prompt 'ที่ต้นฉบับชุดที่ 3 ให้เป็นคำตอบ'; explanation cites เฉลยต้นฉบับ.",
+        "same fix as police-saraban-set-03-q22 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q109",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดเป็นขนาด A4 ที่ถูกต้องตามต้นฉบับ",
+        "explanation": "ตอบ 210 × 297 มม. ตรงกับต้นฉบับข้อ 19 การวนถามตัวเลขเดิมถือเป็นธรรมชาติของ Mock Exam และยังคงตัวลวงเป็นขนาดกระดาษใกล้เคียง."
+      },
+      "after": {
+        "prompt": "ข้อใดเป็นขนาดกระดาษ A4 ที่ถูกต้อง",
+        "explanation": "ตอบ 210 × 297 มม. ตามระเบียบงานสารบรรณ ตัวลวงเป็นขนาดกระดาษใกล้เคียง เช่น A5 และ A3."
+      },
+      "why": [
+        "leak: Prompt 'ตามต้นฉบับ'; explanation cites ต้นฉบับข้อ 19 and 'Mock Exam'.",
+        "same fix as police-saraban-set-03-q32 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q110",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "หนังสือด้านการเงินที่ผ่านการตรวจแล้วตามเงื่อนไขของต้นฉบับชุดที่ 3 ไม่ควรเลือกอายุเก็บข้อใดหากถามขั้นต่ำ",
+        "explanation": "ตอบ 1 ปี เพราะต้นฉบับข้อ 23 ให้ขั้นต่ำเป็นไม่น้อยกว่า 5 ปี ตัวเลือกที่เหลือล้วนสื่อสาร fact เดียวกันในถ้อยคำต่างกัน.",
+        "tip": "จุดจำ: 1 ปี"
+      },
+      "after": {
+        "prompt": "หนังสือด้านการเงินที่สำนักงานการตรวจเงินแผ่นดินตรวจสอบแล้วไม่มีปัญหา ข้อใด“ไม่ใช่”อายุการเก็บขั้นต่ำตามระเบียบงานสารบรรณ",
+        "explanation": "ตอบ 1 ปี เพราะระเบียบงานสารบรรณ ข้อ 57.6 ให้เก็บไว้ไม่น้อยกว่า 5 ปี ตัวเลือกที่เหลือล้วนสื่อข้อเท็จจริงเดียวกันในถ้อยคำต่างกัน.",
+        "tip": "จุดจำ: หนังสือการเงินที่ สตง. ตรวจแล้ว เก็บไม่น้อยกว่า 5 ปี (1 ปี คือเรื่องธรรมดาสามัญ)"
+      },
+      "why": [
+        "ambiguous: Prompt leaks 'ตามเงื่อนไขของต้นฉบับชุดที่ 3' and is convoluted ('ไม่ควรเลือก...หากถามขั้นต่ำ'); three choices (ก ข ง) are the same fact reworded, and choice ข '5 ปี' is not a minimum. TIP gives the wrong option '1 ปี' as จุดจำ. Explanation cites ต้นฉบับข้อ 23. The '5 ปี for audited financial documents' fact is not in the 2526 text I could check (ข้อ 57.5: routine docs ≥1 ปี; financial non-title docs need กระทรวงการคลัง agreement to destroy before 10 ปี) — low confidence on the underlying fact.",
+        "same fix as police-saraban-set-03-q42 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q115",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดกล่าวถูกต้องเกี่ยวกับองค์ประกอบของรัฐสภา",
+        "choices": [
+          "ข้อ 1 และ 3 ถูก",
+          "1. สภาผู้แทนราษฎร",
+          "2. สภานิติบัญญัติแห่งชาติ",
+          "3. วุฒิสภา"
+        ],
+        "explanation": "ต้นฉบับชุดที่ 3 ใช้รูปแบบตัวเลือกคำตอบรวมในข้อนี้ โดยองค์ประกอบของรัฐสภาคือสภาผู้แทนราษฎรและวุฒิสภา จึงเป็นข้อ 1 และ 3.",
+        "tip": "จุดจำ: ข้อ 1 และ 3 ถูก"
+      },
+      "after": {
+        "prompt": "รัฐสภาตามรัฐธรรมนูญ พ.ศ. 2560 ประกอบด้วยองค์ประกอบใดบ้าง\n1. สภาผู้แทนราษฎร\n2. สภานิติบัญญัติแห่งชาติ\n3. วุฒิสภา",
+        "choices": [
+          "ข้อ 1 และ 3",
+          "ข้อ 1 เท่านั้น",
+          "ข้อ 2 เท่านั้น",
+          "ข้อ 3 เท่านั้น"
+        ],
+        "explanation": "องค์ประกอบของรัฐสภาตามรัฐธรรมนูญ พ.ศ. 2560 คือสภาผู้แทนราษฎรและวุฒิสภา จึงเป็นข้อ 1 และ 3 ส่วนสภานิติบัญญัติแห่งชาติไม่ใช่องค์ประกอบของรัฐสภาตามรัฐธรรมนูญ.",
+        "tip": "จุดจำ: รัฐสภา = สภาผู้แทนราษฎร + วุฒิสภา"
+      },
+      "why": [
+        "ambiguous: Numbered items 1–3 sit inside choices ข ค ง instead of the stem, so ข '1. สภาผู้แทนราษฎร' and ง '3. วุฒิสภา' are each true statements about รัฐสภา. Explanation also leaks 'ต้นฉบับชุดที่ 3'.",
+        "same fix as police-law-set-03-q09 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q117",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: ประธานวุฒิสภาเป็นผู้เสนอให้พระมหากษัตริย์ทรงยุบสภา",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับการยุบสภาผู้แทนราษฎร"
+      },
+      "after": {
+        "tip": "จุดจำ: ยุบสภาโดยพระราชกฤษฎีกา ตามคำแนะนำของนายกรัฐมนตรี (ไม่ใช่ประธานวุฒิสภา)",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับการยุบสภาผู้แทนราษฎร"
+      },
+      "why": [
+        "expl-mismatch: Negative stem; TIP repeats the false statement 'ประธานวุฒิสภาเป็นผู้เสนอ...' as the thing to remember.",
+        "same fix as police-law-set-03-q13 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q121",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: นิติกรรมทุกชนิดที่คนไร้ความสามารถทำเองเป็นโมฆะเสมอ",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับนิติกรรมของคนไร้ความสามารถ"
+      },
+      "after": {
+        "tip": "จุดจำ: นิติกรรมของคนไร้ความสามารถโดยหลักเป็นโมฆียะ ไม่ใช่โมฆะเสมอ",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับนิติกรรมของคนไร้ความสามารถ"
+      },
+      "why": [
+        "expl-mismatch: Negative stem; TIP repeats the false statement 'เป็นโมฆะเสมอ' as จุดจำ.",
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q125",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: ผู้เช่าซื้อสามารถเก็บทรัพย์ไว้ใช้ต่อและเพียงแจ้งว่าจะเลิกสัญญาก็เพียงพอ",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับการบอกเลิกสัญญาเช่าซื้อโดยผู้เช่าซื้อ"
+      },
+      "after": {
+        "tip": "จุดจำ: ผู้เช่าซื้อบอกเลิกได้ด้วยการส่งทรัพย์คืนแก่เจ้าของ จะเก็บทรัพย์ไว้แล้วแค่แจ้งเลิกไม่ได้",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับการบอกเลิกสัญญาเช่าซื้อโดยผู้เช่าซื้อ"
+      },
+      "why": [
+        "expl-mismatch: Negative stem; TIP repeats the false statement that the hirer may keep the property as จุดจำ.",
+        "same fix as police-law-set-03-q29 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q127",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: เมื่ออายุถึง 18 ปีแล้ว ไม่ต้องขอความยินยอมจากผู้มีอำนาจตามมาตรา 1436 ไม่ว่ากรณีใด",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับการหมั้นของผู้เยาว์อายุ 18 ปี"
+      },
+      "after": {
+        "tip": "จุดจำ: อายุ 18 ปีหมั้นได้ แต่ถ้ายังเป็นผู้เยาว์ต้องได้รับความยินยอมตามมาตรา 1436",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับการหมั้นของผู้เยาว์อายุ 18 ปี"
+      },
+      "why": [
+        "expl-mismatch: Negative stem; TIP repeats the false statement 'ไม่ต้องขอความยินยอม...ไม่ว่ากรณีใด' as จุดจำ.",
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q134",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "อายุการคุ้มครองและการต่ออายุเครื่องหมายการค้าใช้ช่วงเวลา 10 ปีต่อคราว จึงเป็นตัวเลขที่ต้นฉบับชุดที่ 3 เน้นให้จำตรง ๆ."
+      },
+      "after": {
+        "explanation": "อายุการคุ้มครองและการต่ออายุเครื่องหมายการค้าใช้ช่วงเวลา 10 ปีต่อคราว ตามพระราชบัญญัติเครื่องหมายการค้า พ.ศ. 2534 มาตรา 53 และมาตรา 55."
+      },
+      "why": [
+        "leak: Explanation says 'ต้นฉบับชุดที่ 3 เน้นให้จำตรง ๆ'.",
+        "same fix as police-law-set-03-q47 (twin, fixed and imported on 13 Nov)",
+        "main-session second review: explanation touch-up"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q138",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "“a piece of cake” หมายถึงง่ายมาก เหมาะกับบริบทที่ผู้พูดทำเสร็จในเวลาเพียงสิบ分钟."
+      },
+      "after": {
+        "explanation": "“a piece of cake” หมายถึงง่ายมาก เหมาะกับบริบทที่ผู้พูดทำเสร็จในเวลาเพียงสิบนาที."
+      },
+      "why": [
+        "render: Explanation contains Chinese characters '分钟' ('สิบ分钟') instead of Thai 'นาที'."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q139",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The agency introduced new measures to strengthen security at public buildings."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe agency introduced new measures to “strengthen” security at public buildings."
+      },
+      "why": [
+        "other: Synonym item has no instruction and no marked target word; candidate must guess which word ('strengthen') to match.",
+        "same fix as police-english-set-03-q07 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q140",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The information in the first report was inaccurate and had to be corrected."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe information in the first report was “inaccurate” and had to be corrected."
+      },
+      "why": [
+        "other: Synonym item has no instruction and no marked target word; candidate must guess which word ('inaccurate') to match.",
+        "same fix as police-english-set-03-q09 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q141",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The museum confirmed that the newly discovered document was authentic."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe museum confirmed that the newly discovered document was “authentic”."
+      },
+      "why": [
+        "other: Synonym item has no instruction and no marked target word; candidate must guess which word ('authentic') to match.",
+        "same fix as police-english-set-03-q11 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q142",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "แปลโจทย์และป้ายจราจร:\nโจทย์: \"Look at the traffic sign. What does this sign mean?\" (จงดูป้ายจราจรนี้ ป้ายนี้มีความหมายว่าอย่างไร?)\nป้ายที่แสดง: ป้าย NO PARKING (ป้ายห้ามจอดรถ) มีลักษณะเป็นวงกลมขอบสีแดง ตัวอักษร P สีดำ และมีแถบสีแดงขีดทับเฉียง\n\nคำตอบที่ถูกต้องคือข้อ C: \"You must not park your vehicle in this area.\" (คุณต้องไม่จอดรถในบริเวณนี้)\nตัวอักษร P ย่อมาจาก Parking (การจอดรถ) เมื่อมีวงกลมขอบแดงและขีดฆ่าทับ จึงเป็นป้ายบังคับห้ามจอดรถทุกชนิดในบริเวณดังกล่าว\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ A: \"You may park here after dark.\" (คุณจอดรถที่นี่ได้หลังจากฟ้ามืดแล้ว) — ผิด ป้ายห้ามจอดตลอดเวลาไม่มีข้อยกเว้นเรื่องเวลา\n• ข้อ B: \"You must stop here for five minutes.\" (คุณต้องหยุดรถที่นี่ 5 นาที) — ผิด ป้ายนี้ไม่ใช่ป้ายกำหนดเวลาหยุด\n• ข้อ D: \"This area is reserved for motorcycles.\" (พื้นที่นี้สงวนไว้สำหรับรถจักรยานยนต์) — ผิด ไม่มีสัญลักษณ์รถจักรยานยนต์\n\nคำศัพท์เกี่ยวกับป้ายจราจรการจอด:\n- No parking = ห้ามจอดรถ\n- No waiting / No stopping = ห้ามหยุดรถ\n- Tow-away zone = เขตยกรถฝ่าฝืน"
+      },
+      "after": {
+        "explanation": "แปลโจทย์และป้ายจราจร:\nโจทย์: \"Look at the traffic sign. What does this sign mean?\" (จงดูป้ายจราจรนี้ ป้ายนี้มีความหมายว่าอย่างไร?)\nป้ายที่แสดง: ป้าย NO PARKING (ป้ายห้ามจอดรถ) มีลักษณะเป็นวงกลมขอบสีแดง ตัวอักษร P สีดำ และมีแถบสีแดงขีดทับเฉียง\n\nคำตอบที่ถูกต้องคือข้อ ค: \"You must not park your vehicle in this area.\" (คุณต้องไม่จอดรถในบริเวณนี้)\nตัวอักษร P ย่อมาจาก Parking (การจอดรถ) เมื่อมีวงกลมขอบแดงและขีดฆ่าทับ จึงเป็นป้ายบังคับห้ามจอดรถทุกชนิดในบริเวณดังกล่าว\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ ก: \"You may park here after dark.\" (คุณจอดรถที่นี่ได้หลังจากฟ้ามืดแล้ว) — ผิด ป้ายห้ามจอดตลอดเวลาไม่มีข้อยกเว้นเรื่องเวลา\n• ข้อ ข: \"You must stop here for five minutes.\" (คุณต้องหยุดรถที่นี่ 5 นาที) — ผิด ป้ายนี้ไม่ใช่ป้ายกำหนดเวลาหยุด\n• ข้อ ง: \"This area is reserved for motorcycles.\" (พื้นที่นี้สงวนไว้สำหรับรถจักรยานยนต์) — ผิด ไม่มีสัญลักษณ์รถจักรยานยนต์\n\nคำศัพท์เกี่ยวกับป้ายจราจรการจอด:\n- No parking = ห้ามจอดรถ\n- No waiting / No stopping = ห้ามหยุดรถ\n- Tow-away zone = เขตยกรถฝ่าฝืน"
+      },
+      "why": [
+        "expl-mismatch: Explanation refers to choices as ข้อ A/B/C/D, but choices are labelled ก ข ค ง."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q053",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "โดเมนเนมระดับบนสุดตามหมวดหมู่ (ccTLD) ของไทย: '.go.th' ย่อมาจาก Government Thailand ใช้สำหรับหน่วยงานราชการของไทย เช่น เว็บไซต์ของสำนักงานตำรวจแห่งชาติ (royalthaipolice.go.th)"
+      },
+      "after": {
+        "explanation": "โดเมนระดับที่สองภายใต้โดเมนประจำประเทศไทย (.th): '.go.th' ย่อมาจาก Government Thailand ใช้สำหรับหน่วยงานราชการของไทย เช่น เว็บไซต์ของสำนักงานตำรวจแห่งชาติ (royalthaipolice.go.th)"
+      },
+      "why": [
+        "expl-mismatch: Explanation calls .go.th a 'โดเมนเนมระดับบนสุดตามหมวดหมู่ (ccTLD)'. ccTLD means country-code TLD (.th); .go.th is a second-level category domain under it. The wording is self-contradictory and wrong.",
+        "same fix as police-computer-set-02-q13 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q056",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "choices": [
+          "Spam (สแปม)",
+          "Ransomware (มัลแวร์เรียกค่าไถ่)",
+          "Phishing (ฟิชชิง)",
+          "DDos (การปฏิเสธการให้บริการ)"
+        ]
+      },
+      "after": {
+        "choices": [
+          "Spam (สแปม)",
+          "Ransomware (มัลแวร์เรียกค่าไถ่)",
+          "Phishing (ฟิชชิง)",
+          "DDoS (การปฏิเสธการให้บริการ)"
+        ]
+      },
+      "why": [
+        "other: Choice ง spells the acronym 'DDos'. The standard form is 'DDoS' (Distributed Denial of Service)."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q083",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ หนังสือประทับเรื่อง. คำที่ระเบียบใช้คือ “หนังสือประทับตรา” ไม่ใช่ “หนังสือประทับเรื่อง” ส่วนหนังสือภายนอก หนังสือภายใน และหนังสือสั่งการเป็นคำที่ใช้จริงในระบบงานสารบรรณ. ตัวลวงจงใจเปลี่ยนคำเพียงเล็กน้อยเหมือนระเบียบงานสารบรรณ.",
+        "tip": "จุดจำ: หนังสือประทับเรื่อง",
+        "prompt": "ข้อใดไม่ใช่ชนิดของหนังสือราชการตามรูปแบบคำเรียกในระเบียบ"
+      },
+      "after": {
+        "explanation": "ตอบ หนังสือประทับเรื่อง. คำที่ระเบียบใช้คือ “หนังสือประทับตรา” ไม่ใช่ “หนังสือประทับเรื่อง” ส่วนหนังสือภายนอก หนังสือภายใน และหนังสือสั่งการเป็นคำที่ใช้จริงในระบบงานสารบรรณ. ตัวลวงจงใจเปลี่ยนคำเพียงเล็กน้อย.",
+        "tip": "จุดจำ: ชื่อที่ถูกต้องคือ “หนังสือประทับตรา” ไม่มี “หนังสือประทับเรื่อง”",
+        "prompt": "ข้อใด“ไม่ใช่”ชนิดของหนังสือราชการตามรูปแบบคำเรียกในระเบียบ"
+      },
+      "why": [
+        "expl-mismatch: Negative stem: the TIP gives the non-existent term 'หนังสือประทับเรื่อง' as the point to remember. The explanation also says the distractor changes a word 'เหมือนระเบียบงานสารบรรณ', which is a bad automated replacement.",
+        "same fix as police-saraban-set-02-q03 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q084",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ หนังสือภายนอก. คำสำคัญของโจทย์คือ “เป็นแบบพิธี” และ “กระดาษตราครุฑ” ซึ่งเป็นลักษณะจำแนกที่ระเบียบงานสารบรรณ ใช้ถามโดยตรง."
+      },
+      "after": {
+        "explanation": "ตอบ หนังสือภายนอก. คำสำคัญของโจทย์คือ “เป็นแบบพิธี” และ “กระดาษตราครุฑ” ซึ่งเป็นลักษณะของหนังสือภายนอกตามระเบียบงานสารบรรณ ข้อ 11."
+      },
+      "why": [
+        "other: Bad automated replacement: 'ลักษณะจำแนกที่ระเบียบงานสารบรรณ ใช้ถามโดยตรง'. A regulation does not ask questions; the source was probably 'ต้นฉบับ'.",
+        "same fix as police-mini_mock-set-12-q02 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q02 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q085",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ การแต่งตั้งข้าราชการระดับสูง. ระเบียบงานสารบรรณยกการเตือนเรื่องค้าง การขอรายละเอียดเพิ่มเติม และการส่งสำเนาหนังสือ/เอกสารเป็นตัวอย่างของงานที่ใช้หนังสือประทับตราได้ ส่วนการแต่งตั้งระดับสูงเป็นเรื่องสำคัญและไม่ใช่ตัวอย่างในกลุ่มนี้. รูปแบบถาม “ไม่ใช่” ช่วยคงคาแรกเตอร์ระเบียบงานสารบรรณ.",
+        "tip": "จุดจำ: การแต่งตั้งข้าราชการระดับสูง",
+        "prompt": "ข้อใดไม่ใช่ตัวอย่างการใช้หนังสือประทับตราตามระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "explanation": "ตอบ การแต่งตั้งข้าราชการระดับสูง. ระเบียบงานสารบรรณยกการเตือนเรื่องค้าง การขอรายละเอียดเพิ่มเติม และการส่งสำเนาหนังสือ/เอกสารเป็นตัวอย่างของงานที่ใช้หนังสือประทับตราได้ ส่วนการแต่งตั้งระดับสูงเป็นเรื่องสำคัญและไม่ใช่ตัวอย่างในกลุ่มนี้.",
+        "tip": "จุดจำ: หนังสือประทับตราใช้กับเรื่องไม่สำคัญมาก เช่น เตือนเรื่องที่ค้าง ขอรายละเอียดเพิ่มเติม ส่งสำเนาหนังสือ ไม่ใช้กับการแต่งตั้งข้าราชการระดับสูง",
+        "prompt": "ข้อใด“ไม่ใช่”ตัวอย่างการใช้หนังสือประทับตราตามระเบียบงานสารบรรณ"
+      },
+      "why": [
+        "leak: The explanation contains 'ช่วยคงคาแรกเตอร์ระเบียบงานสารบรรณ'. Negative stem: the TIP gives the non-example as the point to remember.",
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q093",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ กรม. ระเบียบงานสารบรรณ เจาะเฉพาะเลข “01” ในตัวอย่าง นร 0106/... และใช้เป็นข้อถอดรหัสระดับส่วนราชการ. จุดสำคัญคืออย่าเผลอไปตีความเลข “06” ซึ่งเป็นคนละตำแหน่งของรหัส."
+      },
+      "after": {
+        "explanation": "ตอบ กรม. ตามภาคผนวก 1 ของระเบียบงานสารบรรณ ตัวเลขสองตัวแรกของเลขประจำเจ้าของเรื่องหมายถึงส่วนราชการระดับกรม ในตัวอย่าง นร 0106/... เลข “01” จึงแทนระดับกรม จุดสำคัญคืออย่าเผลอไปตีความเลข “06” ซึ่งเป็นสองตัวหลังที่หมายถึงสำนัก กอง หรือส่วนราชการที่มีฐานะเทียบกอง."
+      },
+      "why": [
+        "other: Bad automated replacement: 'ระเบียบงานสารบรรณ เจาะเฉพาะเลข “01” ในตัวอย่าง'. The original was probably 'ต้นฉบับเจาะ…'.",
+        "same fix as police-mini_mock-set-12-q05 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q05 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q094",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: ให้ไว้ ณ วันที่ 15 สิงหาคม พ.ศ. 2567",
+        "prompt": "ข้อใดไม่ใช่รูปแบบวันที่ของหนังสือภายในตามระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "tip": "จุดจำ: หนังสือภายในลง “วันที่ + วันเดือนปี” ส่วน “ให้ไว้ ณ วันที่” ใช้กับหนังสือรับรอง",
+        "prompt": "ข้อใด“ไม่ใช่”รูปแบบวันที่ของหนังสือภายในตามระเบียบงานสารบรรณ"
+      },
+      "why": [
+        "expl-mismatch: Negative stem: the TIP gives the wrong format ('ให้ไว้ ณ วันที่ …') as the point to remember for หนังสือภายใน.",
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q095",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ให้ไว้ ณ วันที่. ข้อนี้ลดรายละเอียดเหลือคำชี้เพียงจุดเดียว เพื่อเลียนแบบข้อสอบจำรูปแบบเอกสาร. “ประกาศ ณ วันที่” เป็นตัวลวงจากหนังสือประชาสัมพันธ์ ส่วน “วันที่” ใช้กับหนังสือภายในตามตัวอย่าง."
+      },
+      "after": {
+        "explanation": "ตอบ ให้ไว้ ณ วันที่ ตามระเบียบงานสารบรรณ ข้อ 24.4. “ประกาศ ณ วันที่” เป็นตัวลวงจากหนังสือประชาสัมพันธ์และหนังสือสั่งการบางชนิด ส่วน “วันที่” ใช้กับหนังสือภายใน."
+      },
+      "why": [
+        "leak: Authoring-process text: 'ข้อนี้ลดรายละเอียดเหลือคำชี้เพียงจุดเดียว เพื่อเลียนแบบข้อสอบจำรูปแบบเอกสาร'.",
+        "same fix as police-saraban-set-02-q27 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q098",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ดีแอล. เป็นการถามข้อมูลเดียวกันแบบสถานการณ์สั้นมาก ซึ่งยังคงคาแรกเตอร์ระเบียบงานสารบรรณที่ไม่ใช้ case ยาว. อย่าสับสนกับซอง C4/C5/C6 ซึ่งเหมาะกับการบรรจุในรูปแบบอื่น."
+      },
+      "after": {
+        "explanation": "ตอบ ดีแอล. ซองขนาดดีแอลใช้สำหรับบรรจุหนังสือกระดาษตราครุฑที่พับเป็น 3 ส่วนตามระเบียบงานสารบรรณ. อย่าสับสนกับซอง C4/C5/C6 ซึ่งเหมาะกับการบรรจุในรูปแบบอื่น."
+      },
+      "why": [
+        "leak: Authoring-process text: 'ยังคงคาแรกเตอร์ระเบียบงานสารบรรณที่ไม่ใช้ case ยาว'."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q100",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ถูกทุกข้อ. ชื่อส่วนราชการ เลขรับ และวันที่ล้วนเป็นข้อมูลในแบบตรารับหนังสือ. ข้อนี้นำข้อเท็จจริงจากระเบียบงานสารบรรณมาเปลี่ยนเป็นตัวเลือกแบบรวมคำตอบ ซึ่งชุดตัวอย่างมีการใช้ลักษณะนี้อยู่แล้ว."
+      },
+      "after": {
+        "explanation": "ตอบ ถูกทุกข้อ. ชื่อส่วนราชการ เลขรับ และวันที่ล้วนเป็นข้อมูลในแบบตรารับหนังสือตามระเบียบงานสารบรรณ."
+      },
+      "why": [
+        "leak: Authoring-process text: 'ข้อนี้นำข้อเท็จจริงจากระเบียบงานสารบรรณมาเปลี่ยนเป็นตัวเลือกแบบรวมคำตอบ ซึ่งชุดตัวอย่างมีการใช้ลักษณะนี้อยู่แล้ว'."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q103",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ระดับแผนกขึ้นไป (หรือผู้ที่ได้รับมอบหมาย). ข้อนี้ตัดถ้อยคำยาวออกเพื่อวัดเพียงระดับอำนาจอนุญาต ซึ่งเป็นจุดที่ตัวอย่างระเบียบงานสารบรรณ ตั้งใจทดสอบ."
+      },
+      "after": {
+        "explanation": "ตอบ ระดับแผนกขึ้นไป (หรือผู้ที่ได้รับมอบหมาย) ตามระเบียบงานสารบรรณ ข้อ 62.4. ต่างจากการยืมระหว่างส่วนราชการซึ่งต้องได้รับอนุญาตจากหัวหน้าส่วนราชการระดับกอง (ข้อ 62.3)."
+      },
+      "why": [
+        "other: Bad replacement / authoring text: 'ข้อนี้ตัดถ้อยคำยาวออกเพื่อวัดเพียงระดับอำนาจอนุญาต ซึ่งเป็นจุดที่ตัวอย่างระเบียบงานสารบรรณ ตั้งใจทดสอบ'."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q104",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ระดับกรม. เป็นการถาม fact เดิมในรูปย่อเพื่อรักษาคาแรกเตอร์ mock exam ซึ่งหัวข้อสำคัญสามารถออกซ้ำต่างถ้อยคำได้. ควรแยกให้ชัดจากระดับกองและแผนกที่ปรากฏเป็นตัวลวงในข้ออื่น."
+      },
+      "after": {
+        "explanation": "ตอบ ระดับกรม. ตามระเบียบงานสารบรรณ ข้อ 68.4 คณะกรรมการทำลายหนังสือต้องเสนอรายงานผลการพิจารณาพร้อมบันทึกความเห็นแย้ง (ถ้ามี) ต่อหัวหน้าส่วนราชการระดับกรมเพื่อพิจารณาสั่งการ ควรแยกให้ชัดจากระดับกองและแผนกซึ่งเป็นตัวลวง."
+      },
+      "why": [
+        "leak: Authoring-process text: 'เป็นการถาม fact เดิมในรูปย่อเพื่อรักษาคาแรกเตอร์ mock exam ซึ่งหัวข้อสำคัญสามารถออกซ้ำต่างถ้อยคำได้'.",
+        "same fix as police-mini_mock-set-12-q09 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-saraban-set-02-q45 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q09 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q105",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ข้อที่ระบุว่าการจัดทำไฟล์เพื่อ “ส่ง” ใช้เพียง 150 dpi เป็นข้อความผิด. ตามแนวปฏิบัติอิเล็กทรอนิกส์ที่ใช้ตรวจสอบภายหลัง การจัดทำไฟล์หนังสือเพื่อส่งทางอีเมลใช้ PDF ความละเอียดไม่น้อยกว่า 300 dpi ขณะที่ 150 dpi ปรากฏในบริบทการเก็บสำรอง. จุดหลอกคือสลับบริบทของตัวเลข 150 กับ 300.",
+        "tip": "จุดจำ: การจัดทำไฟล์หนังสือเพื่อส่งทางอีเมลกำหนดเพียง PDF ไม่น้อยกว่า 150 dpi",
+        "prompt": "ข้อใดกล่าวผิดเกี่ยวกับระบบสารบรรณอิเล็กทรอนิกส์ตามระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "explanation": "ตอบ ข้อที่ระบุว่าการจัดทำไฟล์เพื่อ “ส่ง” ใช้เพียง 150 dpi เป็นข้อความผิด. ตามภาคผนวก 7 ข้อ 4.3 การจัดทำไฟล์หนังสือเพื่อส่งทางอีเมลใช้ PDF ความละเอียดไม่น้อยกว่า 300 dpi ขณะที่ 150 dpi เป็นเกณฑ์การเก็บสำรอง (ข้อ 89/4). จุดหลอกคือสลับบริบทของตัวเลข 150 กับ 300.",
+        "tip": "จุดจำ: ส่งทางอีเมล = PDF ≥ 300 dpi; เก็บสำรอง = PDF ≥ 150 dpi",
+        "prompt": "ข้อใดกล่าว“ผิด”เกี่ยวกับระบบสารบรรณอิเล็กทรอนิกส์ตามระเบียบงานสารบรรณ"
+      },
+      "why": [
+        "expl-mismatch: Negative stem: the TIP gives the FALSE statement ('ส่งทางอีเมลกำหนดเพียง PDF ไม่น้อยกว่า 150 dpi') as the point to remember. The explanation also contains the odd phrase 'ตามแนวปฏิบัติอิเล็กทรอนิกส์ที่ใช้ตรวจสอบภายหลัง'.",
+        "same fix as police-saraban-set-02-q46 (twin, fixed and imported on 13 Nov)",
+        "negative stem: quoted “ผิด”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q106",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ 150 dpi ในบริบท “การเก็บสำรอง”. ต้องแยกจากไฟล์ที่จัดทำเพื่อส่งทางอีเมลซึ่งใช้เกณฑ์ 300 dpi. การแยกบริบทสองตัวเลขนี้เป็นจุดที่ระเบียบงานสารบรรณ ใช้สร้างตัวลวงโดยตรง."
+      },
+      "after": {
+        "explanation": "ตอบ 150 dpi ในบริบท “การเก็บสำรอง”. ต้องแยกจากไฟล์ที่จัดทำเพื่อส่งทางอีเมลซึ่งใช้เกณฑ์ 300 dpi. การสลับสองตัวเลขนี้เป็นตัวลวงที่พบบ่อย."
+      },
+      "why": [
+        "other: Bad automated replacement: 'เป็นจุดที่ระเบียบงานสารบรรณ ใช้สร้างตัวลวงโดยตรง'."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q109",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ข้อ 1 และข้อ 2 ถูก. ทั้งสองชื่อใช้โครงสร้างเดียวกับรูปแบบในระเบียบงานสารบรรณ คือ ปี พ.ศ. + underscore + รหัสอักษรโรมัน/เลขส่วนราชการ + underscore + เลขทะเบียนหนังสือส่ง + .pdf. ข้อนี้คงรูปแบบ “ข้อ 1 และข้อ 2 ถูก” ตามระเบียบงานสารบรรณ."
+      },
+      "after": {
+        "explanation": "ตอบ ข้อ 1 และข้อ 2 ถูก. ทั้งสองชื่อใช้โครงสร้างเดียวกับรูปแบบในระเบียบงานสารบรรณ คือ ปี พ.ศ. + underscore + รหัสอักษรโรมัน/เลขส่วนราชการ + underscore + เลขทะเบียนหนังสือส่ง + .pdf."
+      },
+      "why": [
+        "other: Bad replacement / authoring text: 'ข้อนี้คงรูปแบบ “ข้อ 1 และข้อ 2 ถูก” ตามระเบียบงานสารบรรณ'."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q111",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ระเบียบงานสารบรรณใช้ถ้อยคำว่า “กฎหมายแบบไม่เป็นลายลักษณ์อักษร” และเฉลยสหรัฐอเมริกากับอังกฤษ ซึ่งสื่อถึงกลุ่ม Common Law ในระดับข้อสอบทั่วไป ทั้งสองประเทศใช้คำพิพากษาและหลัก precedent เป็นแหล่งกฎหมายสำคัญ แม้ปัจจุบันจะมีกฎหมายลายลักษณ์อักษรจำนวนมากด้วย."
+      },
+      "after": {
+        "explanation": "สหรัฐอเมริกาและอังกฤษเป็นประเทศในกลุ่มระบบ Common Law หรือกฎหมายแบบไม่เป็นลายลักษณ์อักษร ทั้งสองประเทศใช้คำพิพากษาและหลัก precedent เป็นแหล่งกฎหมายสำคัญ แม้ปัจจุบันจะมีกฎหมายลายลักษณ์อักษรจำนวนมากด้วย ส่วนไทยและอิตาลีใช้ระบบ Civil Law."
+      },
+      "why": [
+        "other: Bad automated replacement: the explanation of a law question says 'ระเบียบงานสารบรรณใช้ถ้อยคำว่า … และเฉลยสหรัฐอเมริกากับอังกฤษ'.",
+        "same fix as police-mini_mock-set-13-q01 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-13-q01 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q112",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: เป็นระบบที่ไม่มีกฎหมายลายลักษณ์อักษรเลยแม้แต่ฉบับเดียว",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับระบบ Common Law"
+      },
+      "after": {
+        "tip": "จุดจำ: Common Law เน้นคำพิพากษาและบรรทัดฐานของศาล แต่ก็มีกฎหมายลายลักษณ์อักษรด้วย",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับระบบ Common Law"
+      },
+      "why": [
+        "expl-mismatch: Negative stem: the TIP gives the false statement ('ไม่มีกฎหมายลายลักษณ์อักษรเลยแม้แต่ฉบับเดียว') as the point to remember.",
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q116",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: มี 3 ชั้น คือ ชั้นต้น อุทธรณ์ และสูงสุด",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับโครงสร้างศาลปกครอง"
+      },
+      "after": {
+        "tip": "จุดจำ: ศาลปกครองมี 2 ชั้น คือ ชั้นต้นและสูงสุด ไม่มีชั้นอุทธรณ์",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับโครงสร้างศาลปกครอง"
+      },
+      "why": [
+        "expl-mismatch: Negative stem: the TIP gives the false statement ('มี 3 ชั้น คือ ชั้นต้น อุทธรณ์ และสูงสุด') as the point to remember.",
+        "same fix as its mini-drill copy police-mini_mock-set-13-q03 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q117",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "จำนวน ส.ส. รวม 500 คน ประกอบด้วย ส.ส. เขต 400 คน และบัญชีรายชื่อ 100 คน ข้อนี้วนถาม fact เดียวกับระเบียบงานสารบรรณข้อ 5 ในอีกมุมหนึ่ง."
+      },
+      "after": {
+        "explanation": "จำนวน ส.ส. รวม 500 คน ประกอบด้วย ส.ส. เขต 400 คน และบัญชีรายชื่อ 100 คน ตามรัฐธรรมนูญแห่งราชอาณาจักรไทย พ.ศ. 2560 (แก้ไขเพิ่มเติม พ.ศ. 2564)."
+      },
+      "why": [
+        "other: Bad replacement and an old question number: 'ข้อนี้วนถาม fact เดียวกับระเบียบงานสารบรรณข้อ 5 ในอีกมุมหนึ่ง' in a constitution question."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q127",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: เด็กอายุ 14 ปีทำพินัยกรรมแล้วผู้ปกครองให้สัตยาบัน พินัยกรรมนั้นจึงสมบูรณ์",
+        "prompt": "ข้อใดไม่ถูกต้องเกี่ยวกับพินัยกรรมของผู้เยาว์"
+      },
+      "after": {
+        "tip": "จุดจำ: อายุไม่ครบ 15 ปีทำพินัยกรรม = โมฆะ ให้สัตยาบันไม่ได้",
+        "prompt": "ข้อใด“ไม่ถูกต้อง”เกี่ยวกับพินัยกรรมของผู้เยาว์"
+      },
+      "why": [
+        "expl-mismatch: Negative stem: the TIP gives the false statement (a will made at 14 becomes valid once ratified) as the point to remember.",
+        "same fix as police-law-set-02-q33 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-13-q07 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q134",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "กฎหมายฉบับ พ.ศ. 2551 วางหลักความรับผิดต่อความเสียหายจากสินค้าที่ไม่ปลอดภัยและเป็นส่วนหนึ่งของกรอบกฎหมายคุ้มครองผู้บริโภคตามระเบียบงานสารบรรณ."
+      },
+      "after": {
+        "explanation": "กฎหมายฉบับ พ.ศ. 2551 วางหลักความรับผิดต่อความเสียหายจากสินค้าที่ไม่ปลอดภัยและเป็นส่วนหนึ่งของกรอบกฎหมายคุ้มครองผู้บริโภค."
+      },
+      "why": [
+        "other: Bad automated replacement: a consumer-law explanation ends with 'ตามระเบียบงานสารบรรณ'.",
+        "same fix as police-mini_mock-set-13-q10 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-13-q10 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q139",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The instructions were so vague that several employees misunderstood them."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe instructions were so “vague” that several employees misunderstood them."
+      },
+      "why": [
+        "ambiguous: Synonym item with no instruction and no marked target word. The candidate cannot tell which word to match.",
+        "same fix as police-english-set-02-q07 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-14-q03 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q140",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The city has agreed to __________ construction of the new bridge next month."
+      },
+      "after": {
+        "prompt": "The city has agreed to __________ construction of the new bridge, so work will begin next month."
+      },
+      "why": [
+        "ambiguous: 'The city has agreed to ___ construction' does not rule out 'prevent' or 'forbid': a city can agree (e.g. with protesters) to prevent or forbid construction. The context clue is weak."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q020",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "20% ของ 180 คือ 36 ดังนั้นวันที 4 มี 216 คน"
+      },
+      "after": {
+        "explanation": "20% ของ 180 คือ 36 ดังนั้นวันที่ 4 มี 216 คน"
+      },
+      "why": [
+        "other: Typo in explanation: “วันที 4” is missing the mai ek (should be “วันที่ 4”).",
+        "same fix as police-mini_mock-set-09-q20 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-09-q20 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q081",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ลงชื่อส่วนราชการเจ้าของเรื่องทั้งระดับกรมและกอง ระเบียบงานสารบรรณ ข้อ 4 วัดการแยกระดับหน่วยงานในบันทึกข้อความ จุดหลอกคือการตัดระดับใดระดับหนึ่งออก."
+      },
+      "after": {
+        "explanation": "ตอบ ลงชื่อส่วนราชการเจ้าของเรื่องทั้งระดับกรมและกอง ตามระเบียบงานสารบรรณ ข้อ 12.1 ซึ่งกำหนดว่าถ้าส่วนราชการที่ออกหนังสือภายในอยู่ระดับกรมขึ้นไป ให้ลงชื่อส่วนราชการเจ้าของเรื่องทั้งระดับกรมและกอง จุดหลอกคือการตัดระดับใดระดับหนึ่งออก."
+      },
+      "why": [
+        "expl-mismatch: Explanation cites 'ระเบียบงานสารบรรณ ข้อ 4' (an old question number). The rule is ข้อ 12.1.",
+        "same fix as police-mini_mock-set-06-q11 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-06-q11 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q082",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ในแบบ “ระเบียบ” ส่วนล่างสุดของข้อความตามระเบียบงานสารบรรณคือรายการใด",
+        "explanation": "ตอบ ผู้รักษาการ ตามระเบียบงานสารบรรณ ข้อ 6 ซึ่งถามตำแหน่งองค์ประกอบท้ายแบบระเบียบโดยตรง จุดจำคือไม่สับสน “วันใช้บังคับ” ซึ่งอยู่ในเนื้อหา กับรายการผู้รักษาการที่อยู่ช่วงท้าย."
+      },
+      "after": {
+        "prompt": "ในแบบ “ระเบียบ” ตามระเบียบงานสารบรรณ ข้อสุดท้ายของข้อความที่เรียงเป็นข้อ ๆ คือข้อใด",
+        "explanation": "ตอบ ผู้รักษาการ ตามระเบียบงานสารบรรณ ข้อ 17.6 ซึ่งกำหนดให้ข้อสุดท้ายของระเบียบเป็นข้อผู้รักษาการ จุดจำคือไม่สับสน “วันใช้บังคับ” ซึ่งอยู่ข้อ 2 กับรายการผู้รักษาการที่อยู่ข้อสุดท้าย."
+      },
+      "why": [
+        "ambiguous: 'ส่วนล่างสุดของข้อความ' could mean the item at the very bottom of the form, which is 'ประกาศ ณ วันที่' (ข้อ 17.7), followed by the signature. The key ผู้รักษาการ is the LAST CLAUSE (ข้อ 17.6). The explanation also cites 'ข้อ 6', which is wrong.",
+        "same fix as police-mini_mock-set-12-q11 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q11 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q083",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ผู้ไม่เข้าร่วมประชุม เพราะแบบมาตรฐานแยกหัวข้อเป็น “ผู้มาประชุม”, “ผู้ไม่มาประชุม” และ “ผู้เข้าร่วมประชุม” ระเบียบงานสารบรรณ ข้อ 8 ใช้ความคล้ายของถ้อยคำเป็นตัวลวง.",
+        "tip": "จุดจำ: ผู้ไม่เข้าร่วมประชุม",
+        "prompt": "ตามแบบรายงานการประชุม ข้อใดไม่ใช่หัวข้อที่ใช้ตามถ้อยคำมาตรฐานของระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "explanation": "ตอบ ผู้ไม่เข้าร่วมประชุม เพราะแบบรายงานการประชุมตามระเบียบงานสารบรรณ ข้อ 25 แยกหัวข้อเป็น “ผู้มาประชุม”, “ผู้ไม่มาประชุม” และ “ผู้เข้าร่วมประชุม” ข้อนี้ใช้ความคล้ายของถ้อยคำเป็นตัวลวง.",
+        "tip": "จุดจำ: หัวข้อมาตรฐานคือ ผู้มาประชุม – ผู้ไม่มาประชุม – ผู้เข้าร่วมประชุม (ไม่มี “ผู้ไม่เข้าร่วมประชุม”)",
+        "prompt": "ตามแบบรายงานการประชุม ข้อใด“ไม่ใช่”หัวข้อที่ใช้ตามถ้อยคำมาตรฐานของระเบียบงานสารบรรณ"
+      },
+      "why": [
+        "expl-mismatch: This is a negative stem, but the TIP 'จุดจำ: ผู้ไม่เข้าร่วมประชุม' presents the wrong heading as the thing to remember. The explanation also cites 'ข้อ 8'. The rule is ข้อ 25.",
+        "same fix as police-mini_mock-set-06-q12 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-06-q12 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q085",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ระบุทั้งระดับกรมและระดับกอง ซึ่งตรงกับแนวคำตอบของระเบียบงานสารบรรณ ข้อ 4 ตัวลวงตัดหน่วยงานออกหนึ่งระดับเพื่อทดสอบความแม่นเรื่องแบบฟอร์ม."
+      },
+      "after": {
+        "explanation": "ตอบ ระบุทั้งระดับกรมและระดับกอง ตามระเบียบงานสารบรรณ ข้อ 12.1 ซึ่งกำหนดว่าถ้าส่วนราชการที่ออกหนังสืออยู่ระดับกรมขึ้นไป ให้ลงชื่อส่วนราชการเจ้าของเรื่องทั้งระดับกรมและกอง ตัวลวงตัดหน่วยงานออกหนึ่งระดับเพื่อทดสอบความแม่นเรื่องแบบฟอร์ม."
+      },
+      "why": [
+        "expl-mismatch: The explanation cites 'ข้อ 4' (an old question number) and uses authoring wording ('ตรงกับแนวคำตอบของ'). The rule is ข้อ 12.1.",
+        "same fix as police-mini_mock-set-12-q13 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q13 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q086",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ การบังคับว่าประกาศทุกฉบับต้องมี “ฉบับที่” เป็นตัวลวงแบบเดียวกับระเบียบงานสารบรรณข้อ 7 จุดสำคัญคืออย่าเอาระบบเลขฉบับของหนังสือบางชนิดไปเหมารวมกับประกาศทุกกรณี.",
+        "tip": "จุดจำ: ประกาศทุกฉบับต้องมี “ฉบับที่”",
+        "prompt": "ข้อใดไม่ใช่ลักษณะที่ควรนำไปใช้เป็นกฎเหมารวมของประกาศตามระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "explanation": "ตอบ การบังคับว่าประกาศทุกฉบับต้องมี “ฉบับที่” เพราะแบบประกาศตามระเบียบงานสารบรรณ ข้อ 20 ไม่มีส่วน “ฉบับที่” จุดสำคัญคืออย่าเอาระบบเลขฉบับของหนังสือบางชนิด เช่น ระเบียบ ข้อบังคับ แถลงการณ์ หรือข่าว ไปเหมารวมกับประกาศ.",
+        "tip": "จุดจำ: แบบประกาศไม่มี “ฉบับที่” ข้อความว่าประกาศทุกฉบับต้องมีฉบับที่จึงเป็นการเหมารวมที่ผิด",
+        "prompt": "ข้อใด“ไม่ใช่”ลักษณะที่ควรนำไปใช้เป็นกฎเหมารวมของประกาศตามระเบียบงานสารบรรณ"
+      },
+      "why": [
+        "expl-mismatch: This is a negative stem, but the TIP presents the wrong statement ('ประกาศทุกฉบับต้องมี ฉบับที่') as the thing to remember. The explanation cites 'ข้อ 7', which is the clause on คำอธิบายท้ายระเบียบ. The ประกาศ form is ข้อ 20, and it has no ฉบับที่ item.",
+        "same fix as police-mini_mock-set-12-q14 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-saraban-set-03-q16 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q14 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q089",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "choices": [
+          "หนังสือประชาสัมพันธ์ทุกชนิด ในรายละเอียดแบบฟอร์มต้องใส่ฉบับที่",
+          "การเขียนฉบับที่ในหนังสือบางประเภทเริ่มใช้เมื่อมีฉบับถัดไป",
+          "ประกาศไม่จำเป็นต้องใส่ฉบับที่ตามตัวอย่างที่โจทย์ใช้",
+          "ระเบียบและข้อบังคับมีบริบทที่เกี่ยวข้องกับลำดับฉบับเมื่อมีการแก้ไขเพิ่มเติม"
+        ],
+        "explanation": "ตอบ ข้อที่เหมารวมว่าหนังสือประชาสัมพันธ์ทุกชนิดต้องมีฉบับที่ ระเบียบงานสารบรรณ ข้อ 17 ใช้การเหมารวมคำว่า “ทุกชนิด” เป็นตัวลวงหลัก.",
+        "tip": "จุดจำ: หนังสือประชาสัมพันธ์ทุกชนิด ในรายละเอียดแบบฟอร์มต้องใส่ฉบับที่",
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับ “ฉบับที่” ตามแนวระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "choices": [
+          "หนังสือประชาสัมพันธ์ทุกชนิด ในรายละเอียดแบบฟอร์มต้องใส่ฉบับที่",
+          "การเขียนฉบับที่ในหนังสือบางประเภทเริ่มใช้เมื่อมีฉบับถัดไป",
+          "แบบประกาศไม่มีส่วน “ฉบับที่”",
+          "ระเบียบและข้อบังคับมีบริบทที่เกี่ยวข้องกับลำดับฉบับเมื่อมีการแก้ไขเพิ่มเติม"
+        ],
+        "explanation": "ตอบ ข้อที่เหมารวมว่าหนังสือประชาสัมพันธ์ทุกชนิดต้องมีฉบับที่ เพราะตามระเบียบงานสารบรรณ ข้อ 20 แบบประกาศไม่มีฉบับที่ ส่วนแถลงการณ์และข่าว (ข้อ 21.3 และ 22.3) ลงฉบับที่เฉพาะกรณีออกหลายฉบับในเรื่องเดียวที่ต่อเนื่องกัน คำว่า “ทุกชนิด” จึงเป็นตัวลวงหลัก.",
+        "tip": "จุดจำ: หนังสือประชาสัมพันธ์ไม่ได้ต้องใส่ฉบับที่ทุกชนิด ประกาศไม่มีฉบับที่ แถลงการณ์และข่าวใส่เมื่อออกหลายฉบับต่อเนื่องกัน",
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับ “ฉบับที่” ตามแนวระเบียบงานสารบรรณ"
+      },
+      "why": [
+        "expl-mismatch: This is a negative stem, but the TIP presents the false statement (choice ก) as the thing to remember. Choice ค says 'ตามตัวอย่างที่โจทย์ใช้', which refers to an example the candidate cannot see. The explanation cites 'ข้อ 17' for หนังสือประชาสัมพันธ์, but those rules are ข้อ 19–22.",
+        "same fix as police-mini_mock-set-12-q16 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-saraban-set-03-q24 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q16 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q091",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "คำว่า “ด่วนภายใน” ต่างจากการระบุเพียง “ด่วน” อย่างไรตามมุมที่ระเบียบงานสารบรรณใช้ถาม",
+        "explanation": "ตอบ ต้องกำหนดวัน เดือน ปี และเวลา เพราะ “ด่วนภายใน” ผูกกับเส้นตายปลายทางที่ชัดเจน ซึ่งเป็นสาระของระเบียบงานสารบรรณข้อ 11."
+      },
+      "after": {
+        "prompt": "ตามระเบียบงานสารบรรณ คำว่า “ด่วนภายใน” ต่างจากการระบุเพียง “ด่วน” อย่างไร",
+        "explanation": "ตอบ ต้องกำหนดวัน เดือน ปี และเวลา เพราะ “ด่วนภายใน” ผูกกับเส้นตายปลายทางที่ชัดเจน ตามระเบียบงานสารบรรณ ข้อ 28."
+      },
+      "why": [
+        "leak: The stem has an automated-replacement artifact: 'ตามมุมที่ระเบียบงานสารบรรณใช้ถาม'. The explanation cites 'ข้อ 11', but ด่วนภายใน is ข้อ 28 วรรคสาม.",
+        "same fix as police-mini_mock-set-12-q17 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q17 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q092",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดไม่ใช่สีที่ระเบียบงานสารบรรณใช้เป็นคำตอบสำหรับตราประทับชั้นความลับ",
+        "explanation": "ตอบ สีน้ำเงินเท่านั้น เพราะระเบียบงานสารบรรณข้อ 13 กำหนดคำตอบเป็นสีแดงหรือสีที่เห็นเด่นชัด ไม่ได้กำหนดว่าสีน้ำเงินเป็นมาตรฐานของตราชั้นความลับ.",
+        "tip": "จุดจำ: สีน้ำเงินเท่านั้น"
+      },
+      "after": {
+        "prompt": "ข้อใด“ไม่ใช่”สีที่ใช้แสดงชั้นความลับบนหนังสือราชการ",
+        "explanation": "ตอบ สีน้ำเงินเท่านั้น เพราะระเบียบว่าด้วยการรักษาความลับของทางราชการกำหนดให้แสดงชั้นความลับด้วยสีแดงหรือสีที่เห็นเด่นชัด ไม่ได้กำหนดว่าสีน้ำเงินเป็นมาตรฐานของตราชั้นความลับ.",
+        "tip": "จุดจำ: ชั้นความลับใช้สีแดงหรือสีที่เห็นเด่นชัด ไม่ใช่สีน้ำเงินเท่านั้น"
+      },
+      "why": [
+        "expl-mismatch: This is a negative stem, but the TIP 'จุดจำ: สีน้ำเงินเท่านั้น' presents the wrong option as the thing to remember. The source is also wrong: the colour of the secrecy marking comes from ระเบียบว่าด้วยการรักษาความลับของทางราชการ พ.ศ. 2544 ข้อ 21, not 'ระเบียบงานสารบรรณข้อ 13'. The stem wording 'ใช้เป็นคำตอบ' is an authoring artifact.",
+        "same fix as police-mini_mock-set-12-q18 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-saraban-set-03-q30 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q18 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q093",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ในทะเบียนหนังสือรับ ชื่อหน่วยงานที่รับหนังสือที่ช่องใดตามระเบียบงานสารบรรณ",
+        "explanation": "ตอบ ช่อง “การปฏิบัติ” ตามเฉลยระเบียบงานสารบรรณ ข้อ 21 เป็นข้อสอบแบบจำชื่อช่องในทะเบียน ซึ่งเป็นรายละเอียดงานรับหนังสือที่มีโอกาสสับสนกับคำว่า “จาก” หรือ “ถึง”."
+      },
+      "after": {
+        "prompt": "เมื่อจัดแยกหนังสือที่ลงทะเบียนรับแล้วส่งให้หน่วยงานที่เกี่ยวข้องดำเนินการ ให้ลงชื่อหน่วยงานที่รับหนังสือนั้นในช่องใดของทะเบียนหนังสือรับ",
+        "explanation": "ตอบ ช่อง “การปฏิบัติ” ตามระเบียบงานสารบรรณ ข้อ 39 ที่ให้ลงชื่อหน่วยงานที่รับหนังสือนั้นในช่อง “การปฏิบัติ” ข้อนี้มักสับสนกับช่อง “จาก” หรือ “ถึง”."
+      },
+      "why": [
+        "ambiguous: The stem is garbled ('ชื่อหน่วยงานที่รับหนังสือที่ช่องใด'). Read literally, the addressee goes in the 'ถึง' column (ข้อ 38.6), so ค is defensible. The key การปฏิบัติ is correct only for the unit the letter is forwarded to (ข้อ 39). The explanation has the leak 'ตามเฉลย' and the wrong clause 'ข้อ 21'.",
+        "same fix as police-mini_mock-set-06-q15 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-06-q15 (fixed and imported on 13 Nov)",
+        "main-session second review: explanation touch-up"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q094",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ไม่น้อยกว่า 5 ปี ตามระเบียบงานสารบรรณ ข้อ 23 โดยเงื่อนไขสำคัญคือผ่านการตรวจสอบแล้วและไม่มีปัญหา/ไม่มีความจำเป็นต้องใช้ประกอบการตรวจอีก."
+      },
+      "after": {
+        "explanation": "ตอบ ไม่น้อยกว่า 5 ปี ตามระเบียบงานสารบรรณ ข้อ 57.6 (แก้ไขโดยฉบับที่ 2 พ.ศ. 2548) โดยเงื่อนไขสำคัญคือสำนักงานการตรวจเงินแผ่นดินตรวจสอบแล้วไม่มีปัญหา และไม่มีความจำเป็นต้องใช้ประกอบการตรวจสอบอีก."
+      },
+      "why": [
+        "expl-mismatch: The explanation cites 'ข้อ 23'. The rule is ข้อ 57.6, as amended by (ฉบับที่ 2) พ.ศ. 2548. The key is correct.",
+        "same fix as police-mini_mock-set-12-q19 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q19 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q095",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "บุคคลภายนอกยืมหนังสือราชการได้หรือไม่ตามหลักที่ระเบียบงานสารบรรณ ใช้ถาม",
+        "explanation": "ตอบ โดยหลักบุคคลภายนอกยืมไม่ได้ เว้นแต่กรณีให้ดูหรือคัดลอกตามเงื่อนไขและต้องมีผู้มีอำนาจอนุญาต ระเบียบงานสารบรรณข้อ 25 เน้นทั้งข้อห้ามและระดับผู้อนุญาต."
+      },
+      "after": {
+        "prompt": "ตามระเบียบงานสารบรรณ บุคคลภายนอกยืมหนังสือราชการได้หรือไม่",
+        "explanation": "ตอบ โดยหลักบุคคลภายนอกยืมไม่ได้ เว้นแต่กรณีให้ดูหรือคัดลอก และต้องได้รับอนุญาตจากหัวหน้าส่วนราชการระดับกองขึ้นไปหรือผู้ที่ได้รับมอบหมายก่อน ตามระเบียบงานสารบรรณ ข้อ 65."
+      },
+      "why": [
+        "leak: The stem has an automated-replacement artifact: 'ตามหลักที่ระเบียบงานสารบรรณ ใช้ถาม'. The explanation cites 'ข้อ 25'. The rule is ข้อ 65.",
+        "same fix as police-mini_mock-set-12-q20 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-12-q20 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q097",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "choices": [
+          "ข้อ 2 และ 3 ถูก",
+          "สำนักนายกรัฐมนตรีเท่านั้น",
+          "สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน)",
+          "สำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์"
+        ],
+        "explanation": "ตอบ ข้อ 2 และ 3 ถูก ตามระเบียบงานสารบรรณ ข้อ 27 ซึ่งระบุทั้งสำนักงานพัฒนารัฐบาลดิจิทัล (DGA) และสำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์ (ETDA) เป็นหน่วยงานที่เกี่ยวข้องกับการช่วยเหลือด้านระบบ.",
+        "tip": "จุดจำ: ข้อ 2 และ 3 ถูก"
+      },
+      "after": {
+        "choices": [
+          "ข้อ ค และ ง ถูก",
+          "สำนักนายกรัฐมนตรีเท่านั้น",
+          "สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน)",
+          "สำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์"
+        ],
+        "explanation": "ตอบ ข้อ ค และ ข้อ ง ถูก ตามระเบียบงานสารบรรณ (ฉบับที่ 4) พ.ศ. 2564 ข้อ 11 ซึ่งระบุทั้งสำนักงานพัฒนารัฐบาลดิจิทัล (DGA) และสำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์ (ETDA) เป็นหน่วยงานที่ส่วนราชการอาจขอรับการสนับสนุนหรือความช่วยเหลือได้.",
+        "tip": "จุดจำ: DGA หรือ ETDA"
+      },
+      "why": [
+        "other: Key choice ก 'ข้อ 2 และ 3 ถูก' refers to choices by number. On the ก–ง labels, 2 and 3 are ข (สำนักนายกรัฐมนตรีเท่านั้น, which is false) and ค. The correct pair is ค and ง (DGA and ETDA). The explanation and tip repeat this, and cite 'ข้อ 27'. The source is ระเบียบฯ (ฉบับที่ 4) 2564 ข้อ 11.",
+        "same fix as police-saraban-set-03-q44 (twin, fixed and imported on 13 Nov)",
+        "main-session second review: choices touch-up"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q098",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดไม่ถูกต้องตามรูปแบบการตั้งชื่อไฟล์ราชการที่ระเบียบงานสารบรรณ ใช้ถาม",
+        "explanation": "ตอบ 2565_RTP0012_17.docx เพราะระเบียบงานสารบรรณ ข้อ 29 ใช้นามสกุล .docx เป็นจุดผิด ขณะที่ตัวอย่างที่ถูกอยู่ในรูป PDF และใช้โครงชื่อปี_รหัสหน่วยงาน/เจ้าของเรื่อง_เลขทะเบียน.",
+        "tip": "จุดจำ: 2565_RTP0012_17.docx"
+      },
+      "after": {
+        "prompt": "ข้อใด“ไม่ถูกต้อง”ตามรูปแบบการตั้งชื่อไฟล์หนังสือราชการที่ส่งทางอีเมลตามระเบียบงานสารบรรณ",
+        "explanation": "ตอบ 2565_RTP0012_17.docx เพราะตามระเบียบงานสารบรรณ (ฉบับที่ 4) ภาคผนวก 7 ไฟล์หนังสือต้องเป็น PDF และใช้โครงชื่อ ปี_รหัสหน่วยงาน/เจ้าของเรื่อง_เลขทะเบียน นามสกุล .docx จึงเป็นจุดผิด.",
+        "tip": "จุดจำ: ชื่อไฟล์ = ปี พ.ศ._รหัสตัวอักษรโรมันส่วนราชการ+เลขประจำเจ้าของเรื่อง_เลขทะเบียนหนังสือส่ง.pdf"
+      },
+      "why": [
+        "expl-mismatch: This is a negative stem, but the TIP presents the wrong filename as the thing to remember. The explanation cites 'ข้อ 29'. The filename rule is in ภาคผนวก 7 (ฉบับที่ 4). The stem also has the artifact 'ที่ระเบียบงานสารบรรณ ใช้ถาม'.",
+        "same fix as police-saraban-set-03-q46 (twin, fixed and imported on 13 Nov)",
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q099",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ใช้ชื่อที่ขึ้นต้นด้วย saraban และอยู่ภายใต้โดเมนราชการของหน่วยงาน ซึ่งสอดคล้องกับตัวอย่าง saraban@police.go.th ในระเบียบงานสารบรรณข้อ 28 และใช้เป็นจุดสังเกตแยกจากอีเมลสาธารณะ."
+      },
+      "after": {
+        "explanation": "ตอบ ใช้ชื่อที่ขึ้นต้นด้วย saraban และอยู่ภายใต้โดเมนราชการของหน่วยงาน ตามระเบียบงานสารบรรณ (ฉบับที่ 4) ภาคผนวก 7 ข้อ 1 ซึ่งยกตัวอย่าง saraban@opm.go.th และใช้เป็นจุดสังเกตแยกจากอีเมลสาธารณะ."
+      },
+      "why": [
+        "expl-mismatch: The explanation says the regulation gives saraban@police.go.th as an example and cites 'ข้อ 28'. The regulation's examples are saraban@opm.go.th and others, in ภาคผนวก 7 ข้อ 1."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q100",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "หน่วยงานใดต่อไปนี้อยู่ในคู่หน่วยงานที่ระเบียบงานสารบรรณ ยกให้ขอความช่วยเหลือด้านการพัฒนาระบบสารบรรณอิเล็กทรอนิกส์ได้",
+        "explanation": "ตอบ DGA หรือ ETDA ตามสาระของระเบียบงานสารบรรณ ข้อ 27 ข้อนี้วน fact สำคัญในรูปแบบถามชื่อหน่วยงานโดยตรง ซึ่งยังคงอยู่ในกรอบสารบรรณอิเล็กทรอนิกส์ของระเบียบงานสารบรรณ."
+      },
+      "after": {
+        "prompt": "ตามระเบียบงานสารบรรณ (ฉบับที่ 4) พ.ศ. 2564 ส่วนราชการอาจขอความช่วยเหลือด้านการพัฒนาระบบสารบรรณอิเล็กทรอนิกส์จากหน่วยงานใด",
+        "explanation": "ตอบ DGA หรือ ETDA ตามระเบียบงานสารบรรณ (ฉบับที่ 4) พ.ศ. 2564 ข้อ 11 ซึ่งกำหนดให้ส่วนราชการอาจขอรับการสนับสนุนหรือความช่วยเหลือจากสำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน) หรือสำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์."
+      },
+      "why": [
+        "leak: The stem has an artifact ('ที่ระเบียบงานสารบรรณ ยกให้'). The explanation has authoring-process wording ('ข้อนี้วน fact สำคัญ') and cites 'ข้อ 27'. The source is (ฉบับที่ 4) 2564 ข้อ 11."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q101",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 9 ระเบียบงานสารบรรณ กำหนดให้หนังสือราชการมี 6 ชนิด ได้แก่ หนังสือภายนอก, หนังสือภายใน, หนังสือประทับตรา, หนังสือสั่งการ, หนังสือประชาสัมพันธ์, และหนังสือที่เจ้าหน้าที่ทำขึ้นหรือรับไว้เป็นหลักฐานในราชการ"
+      },
+      "after": {
+        "explanation": "ข้อ 10 ระเบียบงานสารบรรณ กำหนดให้หนังสือราชการมี 6 ชนิด ได้แก่ หนังสือภายนอก, หนังสือภายใน, หนังสือประทับตรา, หนังสือสั่งการ, หนังสือประชาสัมพันธ์, และหนังสือที่เจ้าหน้าที่ทำขึ้นหรือรับไว้เป็นหลักฐานในราชการ"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites ข้อ 9. The six types of letter are listed in ข้อ 10 (ข้อ 9 defines หนังสือราชการ).",
+        "same fix as police-mini_mock-set-06-q17 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-06-q17 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q102",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 27 ชั้นความเร็วมี 3 ชั้น ได้แก่ ด่วนที่สุด (ปฏิบัติทันที), ด่วนมาก (ปฏิบัติโดยเร็ว), ด่วน (ปฏิบัติเร็วกว่าปกติ) ระบุด้วยอักษรสีแดงขนาดไม่เล็กกว่าตัวพิมพ์โป้ง 32 พอยท์"
+      },
+      "after": {
+        "explanation": "ข้อ 28 ชั้นความเร็วมี 3 ชั้น ได้แก่ ด่วนที่สุด (ปฏิบัติทันที), ด่วนมาก (ปฏิบัติโดยเร็ว), ด่วน (ปฏิบัติเร็วกว่าปกติ) ระบุด้วยอักษรสีแดงขนาดไม่เล็กกว่าตัวพิมพ์โป้ง 32 พอยท์"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites ข้อ 27. The speed classes are ข้อ 28."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q103",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ระเบียบว่าด้วยการรักษาความลับของทางราชการ พ.ศ. 2544 ข้อ 14 กำหนดชั้นความลับไว้ 3 ชั้น คือ ลับที่สุด (Top Secret), ลับมาก (Secret), และ ลับ (Confidential)"
+      },
+      "after": {
+        "explanation": "ระเบียบว่าด้วยการรักษาความลับของทางราชการ พ.ศ. 2544 ข้อ 12 กำหนดชั้นความลับไว้ 3 ชั้น คือ ลับที่สุด (Top Secret), ลับมาก (Secret), และ ลับ (Confidential)"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites ข้อ 14. The three secrecy classes are in ข้อ 12 of ระเบียบว่าด้วยการรักษาความลับของทางราชการ พ.ศ. 2544."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q104",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 70 และภาคผนวก 2 ตราครุฑบนหนังสือภายนอกมีขนาดความสูง 3 เซนติเมตร ส่วนหนังสือภายใน (บันทึกข้อความ) ตราครุฑมีขนาดความสูง 1.5 เซนติเมตร"
+      },
+      "after": {
+        "explanation": "ข้อ 71 และข้อ 75 ตราครุฑบนกระดาษตราครุฑที่ใช้ทำหนังสือภายนอกมีขนาดความสูง 3 เซนติเมตร ส่วนกระดาษบันทึกข้อความที่ใช้ทำหนังสือภายใน ตราครุฑมีขนาดความสูง 1.5 เซนติเมตร (ข้อ 76)"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites 'ข้อ 70 และภาคผนวก 2'. The garuda sizes are ข้อ 71, with use on ตราครุฑ paper in ข้อ 75 and on บันทึกข้อความ in ข้อ 76. ข้อ 70 is about destruction (กองจดหมายเหตุ).",
+        "same fix as police-mini_mock-set-06-q18 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-06-q18 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q105",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 72 ซองขนาด ดีแอล (DL) มีขนาด 11 x 22 ซม. ออกแบบมาสำหรับหนังสือกระดาษ A4 พับ 3 ส่วน ส่วนซองขนาด ซี 5 (16 x 23 ซม.) พับ 2 ส่วน และซอง ซี 4 (23 x 32 ซม.) ใส่เอกสารเต็มแผ่นไม่พับ"
+      },
+      "after": {
+        "explanation": "ข้อ 74.2 และข้อ 77 ซองขนาด ดีแอล (DL) มีขนาด 11 x 22 ซม. ใช้บรรจุหนังสือกระดาษตราครุฑ A4 พับ 3 ส่วน ส่วนซองขนาด ซี 5 (16.2 x 22.9 ซม.) พับ 2 ส่วน และซอง ซี 4 (22.9 x 32.4 ซม.) ใส่เอกสารเต็มแผ่นไม่พับ"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites ข้อ 72. The envelope sizes are ข้อ 74.2 and their uses are ข้อ 77."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q106",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 56 วรรคหนึ่ง โดยปกติให้เก็บรักษาไว้ไม่น้อยกว่า 10 ปี เว้นแต่เป็นเรื่องธรรมดาสามัญที่เสร็จสิ้นแล้วให้เก็บไม่น้อยกว่า 1 ปี หรือเรื่องประวัติศาสตร์/สำคัญให้เก็บตลอดไป"
+      },
+      "after": {
+        "explanation": "ข้อ 57 โดยปกติให้เก็บรักษาไว้ไม่น้อยกว่า 10 ปี เว้นแต่เป็นเรื่องธรรมดาสามัญที่เสร็จสิ้นแล้วให้เก็บไม่น้อยกว่า 1 ปี หรือเรื่องประวัติศาสตร์/สำคัญให้เก็บตลอดไป"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites 'ข้อ 56 วรรคหนึ่ง'. Retention periods are ข้อ 57."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q107",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ตามระเบียบงานสารบรรณ ภายในกี่วันหลังจากวันสิ้นปีปฏิทิน ให้หัวหน้าส่วนราชการระดับกองจัดส่งบัญชีหนังสือขอทำลายให้คณะกรรมการทำลายหนังสือพิจารณา",
+        "explanation": "ข้อ 65 ภายใน 60 วันหลังจากวันสิ้นปีปฏิทิน ให้เจ้าหน้าที่ผู้รับผิดชอบสำรวจและจัดทำบัญชีหนังสือขอทำลายเสนอหัวหน้าส่วนราชการระดับกอง เพื่อส่งให้คณะกรรมการทำลายหนังสือ"
+      },
+      "after": {
+        "prompt": "ตามระเบียบงานสารบรรณ ภายในกี่วันหลังจากวันสิ้นปีปฏิทิน ให้เจ้าหน้าที่ผู้รับผิดชอบในการเก็บหนังสือสำรวจหนังสือที่ครบกำหนดอายุการเก็บ แล้วจัดทำบัญชีหนังสือขอทำลาย",
+        "explanation": "ข้อ 66 ภายใน 60 วันหลังจากวันสิ้นปีปฏิทิน ให้เจ้าหน้าที่ผู้รับผิดชอบในการเก็บหนังสือสำรวจหนังสือที่ครบกำหนดอายุการเก็บ แล้วจัดทำบัญชีหนังสือขอทำลายเสนอหัวหน้าส่วนราชการระดับกรมเพื่อพิจารณาแต่งตั้งคณะกรรมการทำลายหนังสือ"
+      },
+      "why": [
+        "other: The stem and explanation misstate the procedure. The officer in charge of storage surveys within 60 days and sends the destruction list to the หัวหน้าส่วนราชการระดับกรม, who appoints the committee. It is not the head at ระดับกอง who sends the list to the committee. The explanation also cites ข้อ 65 instead of ข้อ 66. The key (60 days) is correct.",
+        "same fix as police-mini_mock-set-06-q19 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-06-q19 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q108",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 66 คณะกรรมการทำลายหนังสือต้องรายงานผลและเสนอบัญชีขอทำลายต่อหัวหน้าส่วนราชการระดับกรม (ในส่วนกลาง) หรือผู้ว่าราชการจังหวัด (ในส่วนภูมิภาค) เพื่อพิจารณาสั่งการ",
+        "tip": "ผู้สั่งทำลายหนังสือ = หัวหน้าส่วนราชการระดับกรม (ส่วนกลาง) หรือผู้ว่าราชการจังหวัด (ส่วนภูมิภาค)"
+      },
+      "after": {
+        "explanation": "ข้อ 68.4 และข้อ 69 คณะกรรมการทำลายหนังสือต้องเสนอรายงานผลการพิจารณาต่อหัวหน้าส่วนราชการระดับกรมเพื่อพิจารณาสั่งการ",
+        "tip": "ผู้สั่งการทำลายหนังสือ = หัวหน้าส่วนราชการระดับกรม"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites ข้อ 66. The committee reports to the หัวหน้าส่วนราชการระดับกรม under ข้อ 68.4, who orders under ข้อ 69. The added claim about 'ผู้ว่าราชการจังหวัด (ส่วนภูมิภาค)' is not in the regulation text I checked."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q109",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อ 86/4 และแนวปฏิบัติสารบรรณอิเล็กทรอนิกส์ กำหนดให้เจ้าหน้าที่ตรวจสอบอีเมลกลางของหน่วยงานอย่างสม่ำเสมอ อย่างน้อยวันละ 2 ครั้ง ในช่วงเช้าและบ่ายของวันทำการราชการ"
+      },
+      "after": {
+        "explanation": "ภาคผนวก 7 ข้อ 2 ตามระเบียบงานสารบรรณ (ฉบับที่ 4) พ.ศ. 2564 กำหนดให้เจ้าหน้าที่ตรวจสอบอีเมลกลางของหน่วยงาน (รวมถึงโฟลเดอร์อีเมลขยะ) ไม่น้อยกว่าวันละ 2 ครั้งในเวลาราชการ อย่างน้อยหนึ่งครั้งในช่วงเช้าและอย่างน้อยหนึ่งครั้งในช่วงบ่าย"
+      },
+      "why": [
+        "expl-mismatch: The explanation cites 'ข้อ 86/4', which does not exist. The twice-daily rule is in ภาคผนวก 7 ข้อ 2 (and ภาคผนวก 6 ข้อ 4.1.2 for the e-saraban system), added by (ฉบับที่ 4) 2564. The key is correct."
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q022",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อแรกถูกทุกคำ ข้ออื่นผิด: \"รสชาด\" ต้องเป็น \"รสชาติ\", \"อารีย์\" ต้องเป็น \"อารี\", \"กระทันหัน\" ต้องเป็น \"กะทันหัน\"",
+        "prompt": "ข้อความใดไม่มีคำเขียนผิด"
+      },
+      "after": {
+        "explanation": "ข้อ ข ถูกทุกคำ ข้ออื่นผิด: \"รสชาด\" ต้องเป็น \"รสชาติ\", \"อารีย์\" ต้องเป็น \"อารี\", \"กระทันหัน\" ต้องเป็น \"กะทันหัน\"",
+        "prompt": "ข้อความใด“ไม่มี”คำเขียนผิด"
+      },
+      "why": [
+        "expl-mismatch: Explanation says \"ข้อแรกถูกทุกคำ\" but the key is ข (the second choice); choice ก contains the misspelling รสชาด. Leftover from a reshuffle.",
+        "negative stem: quoted “ไม่มี”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q027",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ข้อแรกชัดเจนว่าผู้ได้รับรางวัลคือนายตำรวจ ข้ออื่นตีความได้สองทาง: ไม่ชัดว่าใครได้รางวัลระหว่างภรรยากับนายตำรวจ / \"รูปของคุณ\" อาจเป็นรูปที่ถ่ายคุณหรือรูปที่คุณเป็นเจ้าของ / ตีงูจนตาย หรือตีงูที่ตายแล้ว"
+      },
+      "after": {
+        "explanation": "ข้อ ค ชัดเจนว่าผู้ได้รับรางวัลคือนายตำรวจ ข้ออื่นตีความได้สองทาง: ไม่ชัดว่าใครได้รางวัลระหว่างภรรยากับนายตำรวจ / \"รูปของคุณ\" อาจเป็นรูปที่ถ่ายคุณหรือรูปที่คุณเป็นเจ้าของ / ตีงูจนตาย หรือตีงูที่ตายแล้ว"
+      },
+      "why": [
+        "expl-mismatch: Explanation says \"ข้อแรกชัดเจน\" but the key is ค (third choice); choice ก (ภรรยานายตำรวจที่ได้รับรางวัล…) is the ambiguous one. Leftover from a reshuffle."
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q02",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "จำนวนรถบรรทุกเก่า",
+          "ลักษณะภูมิประเทศเป็นแอ่งล้อมรอบด้วยภูเขา",
+          "พื้นที่สีเขียวมีน้อย",
+          "การใช้รถไฟฟ้ายังไม่แพร่หลาย"
+        ]
+      },
+      "after": {
+        "choices": [
+          "จำนวนรถบรรทุกเก่าที่ยังวิ่งอยู่ในเมือง",
+          "ลักษณะภูมิประเทศเป็นแอ่งล้อมรอบด้วยภูเขา",
+          "พื้นที่สีเขียวมีน้อย",
+          "การใช้รถไฟฟ้ายังไม่แพร่หลายในหมู่ผู้เดินทาง"
+        ]
+      },
+      "why": [
+        "length-cue: key ข clearly longest (40 vs 27)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q03",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ต้นไม้ทุกชนิดช่วยลดฝุ่นได้เท่ากัน",
+          "เมืองควรปลูกต้นไม้ให้มากที่สุดโดยไม่ต้องคำนึงถึงชนิด",
+          "การเพิ่มต้นไม้ในเมืองควรวางแผนเพื่อให้เกิดประโยชน์หลายด้านอย่างยั่งยืน",
+          "ความสวยงามเป็นประโยชน์สำคัญที่สุดของต้นไม้ในเมือง"
+        ],
+        "key": 2
+      },
+      "after": {
+        "choices": [
+          "ต้นไม้ทุกชนิดช่วยลดฝุ่นได้เท่ากัน",
+          "เมืองควรเร่งปลูกต้นไม้ให้ได้มากที่สุดในเวลาสั้นโดยไม่ต้องคำนึงถึงชนิดพันธุ์",
+          "ความสวยงามเป็นประโยชน์สำคัญที่สุดของต้นไม้ในเมือง",
+          "การเพิ่มต้นไม้ในเมืองควรวางแผนเพื่อให้เกิดประโยชน์หลายด้านอย่างยั่งยืน"
+        ],
+        "key": 3
+      },
+      "why": [
+        "length-cue: key ค clearly longest (70 vs 52)",
+        "key moved ค→ง to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q05",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การถ่ายภาพสินค้าเป็นทักษะที่สำคัญที่สุดของเกษตรกร",
+          "การเพิ่มช่องทางออนไลน์ช่วยให้เกษตรกรเข้าถึงลูกค้าใหม่และฟื้นรายได้",
+          "นักท่องเที่ยวเป็นลูกค้ากาแฟเพียงกลุ่มเดียว",
+          "กาแฟของอำเภอนี้มีคุณภาพสูงกว่าทุกพื้นที่"
+        ]
+      },
+      "after": {
+        "choices": [
+          "การถ่ายภาพสินค้าให้สวยงามเป็นทักษะที่สำคัญที่สุดของเกษตรกรทุกกลุ่ม",
+          "การเพิ่มช่องทางออนไลน์ช่วยให้เกษตรกรเข้าถึงลูกค้าใหม่และฟื้นรายได้",
+          "นักท่องเที่ยวเป็นลูกค้ากาแฟเพียงกลุ่มเดียว",
+          "กาแฟของอำเภอนี้มีคุณภาพสูงกว่าทุกพื้นที่"
+        ]
+      },
+      "why": [
+        "length-cue: key ข clearly longest (66 vs 49)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q06",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ฝนตกทำให้งานประจำปีต้องยกเลิก",
+          "ชุมชนปรับวิธีจำหน่ายจากงานประจำปีไปสู่ช่องทางออนไลน์เพื่อให้ขายได้ต่อเนื่อง",
+          "การถ่ายวิดีโอทำให้ยอดขายเพิ่มขึ้นทันที",
+          "ผลิตภัณฑ์จักสานควรขายเฉพาะในช่วงเทศกาล"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "ชุมชนปรับช่องทางขายจากงานประจำปีสู่ออนไลน์เพื่อให้ขายได้ต่อเนื่อง",
+          "ฝนตกทำให้งานประจำปีต้องยกเลิก",
+          "การถ่ายวิดีโอสาธิตวิธีสานทำให้ยอดขายของชุมชนเพิ่มขึ้นทันทีหลังเผยแพร่",
+          "ผลิตภัณฑ์จักสานควรขายเฉพาะในช่วงเทศกาล"
+        ],
+        "key": 0
+      },
+      "why": [
+        "length-cue: key ข clearly longest (75 vs 38)",
+        "key moved ข→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q12",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ตำหนิผู้ที่ซื้ออุปกรณ์ราคาแพง",
+          "ให้ข้อคิดเกี่ยวกับการตัดสินใจซื้ออุปกรณ์ออกกำลังกาย",
+          "เชิญชวนให้ซื้อรองเท้าสำหรับเดิน",
+          "สั่งให้ทุกคนเลิกใช้เครื่องออกกำลังกาย"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ตำหนิผู้ที่ซื้ออุปกรณ์ราคาแพง",
+          "ให้ข้อคิดเกี่ยวกับการตัดสินใจซื้ออุปกรณ์ออกกำลังกาย",
+          "เชิญชวนให้ผู้อ่านซื้อรองเท้าสำหรับเดินออกกำลังกาย",
+          "สั่งให้ทุกคนเลิกใช้เครื่องออกกำลังกายราคาแพงโดยทันที"
+        ]
+      },
+      "why": [
+        "length-cue: key ข clearly longest (51 vs 37)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q14",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ชื่นชมผู้ที่ใช้โทรศัพท์อย่างสุภาพ",
+          "ตักเตือนเรื่องมารยาทในการใช้พื้นที่สาธารณะ",
+          "อธิบายวิธีตั้งค่าโทรศัพท์มือถือ",
+          "วิจารณ์เทคโนโลยีสมัยใหม่"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "ตักเตือนเรื่องมารยาทในการใช้พื้นที่สาธารณะ",
+          "ชื่นชมผู้ที่ใช้โทรศัพท์อย่างสุภาพในพื้นที่สาธารณะ",
+          "อธิบายวิธีตั้งค่าโทรศัพท์มือถือ",
+          "วิจารณ์เทคโนโลยีสมัยใหม่"
+        ],
+        "key": 0
+      },
+      "why": [
+        "length-cue: key ข clearly longest (42 vs 33)",
+        "key moved ข→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q15",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ยอดดอยมีอุณหภูมิต่ำกว่าศูนย์องศาทุกคืน",
+          "ผู้ที่ขึ้นยอดดอยก่อนรุ่งเช้าอาจเผชิญอากาศหนาวกว่าที่คาดจากอุณหภูมิในตัวเมือง",
+          "นักท่องเที่ยวทุกคนต้องค้างคืนบนยอดดอย",
+          "ตัวเมืองด้านล่างไม่มีฤดูหนาว"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ยอดดอยมีอุณหภูมิต่ำกว่าศูนย์องศาทุกคืนตลอดช่วงปลายปี",
+          "ผู้ขึ้นยอดดอยก่อนรุ่งเช้าอาจหนาวกว่าที่คาดจากอุณหภูมิในตัวเมือง",
+          "นักท่องเที่ยวทุกคนต้องค้างคืนบนยอดดอยเพื่อรอชมพระอาทิตย์ขึ้น",
+          "ตัวเมืองด้านล่างไม่มีฤดูหนาว"
+        ]
+      },
+      "why": [
+        "length-cue: key ข clearly longest (76 vs 38)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q16",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ร้านสามารถกำจัดขยะอาหารได้ทั้งหมด",
+          "การใช้ข้อมูลยอดขายช่วยลดขยะจากการเตรียมอาหารเกินความต้องการได้",
+          "เศษจากการตัดแต่งผักเกิดจากการวางแผนยอดขายผิดเสมอ",
+          "ร้านหยุดเตรียมวัตถุดิบล่วงหน้าทุกชนิด"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ร้านสามารถกำจัดขยะอาหารได้ทั้งหมด",
+          "การใช้ข้อมูลยอดขายช่วยลดขยะจากการเตรียมอาหารเกินความต้องการได้",
+          "เศษจากการตัดแต่งผักเกิดจากการวางแผนยอดขายผิดพลาดของร้านเสมอ",
+          "ร้านหยุดเตรียมวัตถุดิบล่วงหน้าทุกชนิด"
+        ]
+      },
+      "why": [
+        "length-cue: key ข clearly longest (62 vs 48)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q33",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เขาขยันอ่านหนังสือทุกวันจึงเรียกว่าเหยียบเรือสองแคม",
+          "เธอรักษาความลับได้ดีมากจึงเรียกว่าปากโป้ง",
+          "เขาไม่เตรียมงานล่วงหน้า พอถึงวันจริงจึงต้องจับแพะชนแกะ เอาของที่มีมาประกอบให้พอใช้ไปก่อน",
+          "เขาช่วยเพื่อนโดยไม่หวังผลตอบแทนจึงเรียกว่าชุบมือเปิบ"
+        ]
+      },
+      "after": {
+        "choices": [
+          "เขาตั้งใจอ่านหนังสือทุกวันจนสอบได้คะแนนดีจึงเรียกว่าเหยียบเรือสองแคม",
+          "เธอรักษาความลับได้ดีมากจึงเรียกว่าปากโป้ง",
+          "เขาไม่เตรียมงานล่วงหน้า พอถึงวันจริงจึงต้องจับแพะชนแกะเอาของที่มีมาใช้ไปก่อน",
+          "เขาช่วยเพื่อนโดยไม่หวังผลตอบแทนจึงเรียกว่าชุบมือเปิบ"
+        ]
+      },
+      "why": [
+        "length-cue: key ค clearly longest (88 vs 52)",
+        "main-session second review: choices touch-up",
+        "main-session second review: choices touch-up"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q39",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "พระองค์ทรงดนตรีในงานพระราชพิธี",
+          "พระองค์ทรงม้าในพื้นที่ฝึก",
+          "พระองค์ทรงพระอักษรในห้องทรงงาน",
+          "พระองค์ทรงพระราชทานทุนการศึกษาแก่นักเรียน"
+        ]
+      },
+      "after": {
+        "choices": [
+          "พระองค์ทรงดนตรีในงานพระราชพิธีที่พระบรมมหาราชวัง",
+          "พระองค์ทรงม้าในพื้นที่ฝึก",
+          "พระองค์ทรงพระอักษรในห้องทรงงานจนดึก",
+          "พระองค์ทรงพระราชทานทุนการศึกษาแก่นักเรียน"
+        ]
+      },
+      "why": [
+        "length-cue: key ง clearly longest (41 vs 30)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q42",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ใน",
+          "ใตร่ตรอง",
+          "ใต้",
+          "ใหญ่"
+        ],
+        "explanation": "คำที่ถูกคือ “ไตร่ตรอง” ใช้ ไอไม้มลาย. ส่วน “ใน”, “ใต้” และ “ใหญ่” เป็นคำที่ใช้ ใอไม้ม้วนถูกต้อง.",
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "ใตร่ตรอง",
+          "ใน",
+          "ใต้ถุน",
+          "ใหญ่หลวง"
+        ],
+        "explanation": "คำที่ถูกคือ “ไตร่ตรอง” ใช้ ไอไม้มลาย. ส่วน “ใน”, “ใต้ถุน” และ “ใหญ่หลวง” เป็นคำที่ใช้ ใอไม้ม้วนถูกต้อง.",
+        "key": 0
+      },
+      "why": [
+        "length-cue: key ข clearly longest (8 vs 4)",
+        "key moved ข→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q47",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ผู้สมัครต้องยื่นเอกสารให้ครบถ้วนภายในวันที่กำหนด",
+          "ผู้สมัครต้องยื่นเอกสารภายในกำหนด มิฉะนั้นงานนี้มีสิทธิ์พังไม่เป็นท่า",
+          "ถ้าเธอว่างเย็นนี้ เราไปกินข้าวด้วยกันนะ",
+          "ผู้เข้าร่วมประชุมควรลงทะเบียนก่อนเข้าห้องประชุม"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ผู้สมัครต้องยื่นเอกสารให้ครบถ้วนภายในวันที่กำหนดตามประกาศรับสมัคร",
+          "ผู้สมัครต้องยื่นเอกสารภายในกำหนด มิฉะนั้นงานนี้มีสิทธิ์พังไม่เป็นท่า",
+          "ถ้าเธอว่างเย็นนี้ เราไปกินข้าวด้วยกันนะ",
+          "ผู้เข้าร่วมประชุมควรลงทะเบียนให้เรียบร้อยก่อนเข้าห้องประชุมตามเวลานัดหมาย"
+        ]
+      },
+      "why": [
+        "length-cue: key ข clearly longest (68 vs 48)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q48",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เขาทำงานผิดพลาดซ้ำ ๆ จึงเรียกว่าขี่ช้างจับตั๊กแตน",
+          "เธอพูดความจริงตรงไปตรงมาจึงเรียกว่าตีสองหน้า",
+          "ร้านเพิ่งเปิดและมีลูกค้าเข้ามามาก เขาจึงรีบเพิ่มสินค้า เพราะน้ำขึ้นให้รีบตัก",
+          "เขายอมเสียสละเพื่อเพื่อนจึงเรียกว่าชุบมือเปิบ"
+        ]
+      },
+      "after": {
+        "choices": [
+          "เขาทำงานผิดพลาดซ้ำ ๆ แม้หัวหน้าตักเตือนหลายครั้งจึงเรียกว่าขี่ช้างจับตั๊กแตน",
+          "เธอพูดความจริงตรงไปตรงมาจึงเรียกว่าตีสองหน้า",
+          "ร้านเพิ่งเปิดและมีลูกค้าเข้ามามาก เขาจึงรีบเพิ่มสินค้า เพราะน้ำขึ้นให้รีบตัก",
+          "เขายอมเสียสละเวลาส่วนตัวเพื่อช่วยเพื่อนทำงานจึงเรียกว่าชุบมือเปิบ"
+        ]
+      },
+      "why": [
+        "length-cue: key ค clearly longest (76 vs 49)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q01",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เด็กที่อ่านช้าไม่ควรถูกสรุปว่าเป็นคนขี้เกียจ",
+          "หากผู้ปกครองช่วยเหลืออย่างถูกวิธี เด็กทุกคนจะอ่านได้เร็วเท่ากันในที่สุด",
+          "การช่วยเหลือควรคำนึงถึงความแตกต่างของเด็ก",
+          "ผู้ปกครองและครูมีบทบาทในการสนับสนุนเด็ก"
+        ]
+      },
+      "after": {
+        "choices": [
+          "เด็กที่อ่านช้าไม่ควรถูกสรุปว่าเป็นคนขี้เกียจหรือมีสติปัญญาต่ำ",
+          "หากผู้ปกครองช่วยอย่างถูกวิธี เด็กทุกคนจะอ่านได้เร็วเท่ากันในที่สุด",
+          "การช่วยเหลือเด็กที่อ่านช้าควรคำนึงถึงความแตกต่างของเด็กและให้เวลาเพิ่มเติมอย่างเหมาะสม",
+          "ผู้ปกครองและครูมีบทบาทในการสนับสนุนเด็ก"
+        ]
+      },
+      "why": [
+        "length-cue: key ข is clearly longest (71 vs 44)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q02",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ศักยภาพและการนำโดรนไปใช้ในงานหลายประเภท",
+          "รูปลักษณ์ของโดรน",
+          "การถ่ายภาพด้วยโดรนเพียงอย่างเดียว",
+          "กฎหมายควบคุมโดรนเป็นประเด็นหลัก"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ศักยภาพและการนำโดรนไปใช้ในงานหลายประเภท",
+          "รูปลักษณ์ของโดรน",
+          "การถ่ายภาพและบันทึกวิดีโอจากมุมสูงด้วยโดรนเพียงอย่างเดียว",
+          "กฎหมายควบคุมโดรนเป็นประเด็นหลัก"
+        ]
+      },
+      "why": [
+        "length-cue: key ก is strictly longest (39 vs 33)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q04",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "หูฟังทุกชนิดทำให้สูญเสียการได้ยิน",
+          "สถานที่เสียงดังเป็นสาเหตุเดียวของหูเสื่อม",
+          "การฟังเสียงดังเป็นเวลานานเสี่ยงต่อการทำลายการได้ยิน จึงควรลดเสียงและพักหู",
+          "การพักหูช่วยรักษาการสูญเสียการได้ยินที่เกิดขึ้นแล้วทุกกรณี"
+        ]
+      },
+      "after": {
+        "choices": [
+          "หูฟังทุกชนิดทำให้สูญเสียการได้ยิน",
+          "สถานที่เสียงดังเป็นสาเหตุเดียวของหูเสื่อม",
+          "การฟังเสียงดังเป็นเวลานานเสี่ยงต่อการทำลายการได้ยิน จึงควรลดเสียงและพักหู",
+          "การพักหูเป็นระยะช่วยรักษาการสูญเสียการได้ยินที่เกิดขึ้นแล้วให้กลับเป็นปกติได้ทุกกรณี"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (73 vs 58)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q05",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การใช้วัสดุสะท้อนความร้อนบนหลังคา",
+          "การลดความร้อนภายในอาคาร",
+          "วัสดุหลังคาที่ปรับการสะท้อนและระบายความร้อนตามอุณหภูมิได้เอง",
+          "การใช้หลังคาเพื่อลดการใช้เครื่องปรับอากาศ"
+        ]
+      },
+      "after": {
+        "choices": [
+          "การใช้แผ่นวัสดุที่สะท้อนความร้อนจากแสงแดดบนหลังคาอาคารในเวลากลางวัน",
+          "การลดความร้อนภายในอาคาร",
+          "วัสดุหลังคาที่ปรับการสะท้อนและระบายความร้อนตามอุณหภูมิได้เอง",
+          "การใช้หลังคาเพื่อลดการใช้เครื่องปรับอากาศ"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (60 vs 41)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q07",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ป่าเป็นที่อยู่อาศัยของนกมากที่สุด",
+          "น้ำในป่ามีความใสกว่าน้ำในเมือง",
+          "มนุษย์ควรงดใช้ไม้ทุกชนิด",
+          "มนุษย์ทำลายธรรมชาติย่อมได้รับผลเสียย้อนกลับมาสู่ตน"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ป่าเป็นที่อยู่อาศัยของนกมากที่สุด",
+          "น้ำในลำธารกลางป่ามีความใสสะอาดกว่าน้ำในแม่น้ำลำคลองของเมือง",
+          "มนุษย์ควรงดใช้ไม้ทุกชนิด",
+          "มนุษย์ทำลายธรรมชาติย่อมได้รับผลเสียย้อนกลับมาสู่ตน"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (50 vs 33)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q08",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "จำความรู้ทั้งหมดได้อย่างแม่นยำ",
+          "เก็บหนังสือไว้กับตัวตลอดเวลา",
+          "ปกป้องผู้อื่นจากความคิดที่ผิด",
+          "ยึดมั่นในความคิดเดิมจนไม่ยอมเปิดรับข้อมูลใหม่"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "ยึดมั่นในความคิดเดิมจนไม่ยอมเปิดรับข้อมูลใหม่",
+          "เก็บหนังสือไว้กับตัวตลอดเวลา",
+          "ปกป้องผู้อื่นจากความคิดที่ผิด",
+          "จดจำความรู้ทั้งหมดที่เคยเรียนมาได้อย่างแม่นยำไม่ตกหล่น"
+        ],
+        "key": 0
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (45 vs 30)",
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q09",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "อธิบายขั้นตอนการผลิตโฆษณา",
+          "ชักชวนให้เลิกซื้อสินค้าที่มีโฆษณาทั้งหมด",
+          "ตำหนิวิธีโฆษณาที่ใช้แรงกดดันทางสังคมเกินกว่าการให้ข้อมูล",
+          "สอนผู้ประกอบการให้เพิ่มยอดขายด้วยความกลัว"
+        ]
+      },
+      "after": {
+        "choices": [
+          "อธิบายขั้นตอนการผลิตโฆษณา",
+          "ชักชวนให้ผู้บริโภคเลิกซื้อสินค้าทุกชนิดที่มีโฆษณาทางสื่อต่าง ๆ",
+          "ตำหนิวิธีโฆษณาที่ใช้แรงกดดันทางสังคมเกินกว่าการให้ข้อมูล",
+          "สอนผู้ประกอบการให้ใช้ความกลัวของผู้บริโภคเป็นเครื่องมือเพิ่มยอดขาย"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (56 vs 41)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q10",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "รับผิดชอบ",
+          "รู้จักแก้ปัญหา",
+          "ทำงานร่วมกับผู้อื่นได้",
+          "ชอบแข่งขันเพื่อเอาชนะผู้อื่นทุกครั้ง"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "ชอบแข่งขันเพื่อเอาชนะผู้อื่นทุกครั้ง",
+          "รู้จักแก้ปัญหา",
+          "ทำงานร่วมกับผู้อื่นเป็นทีมได้อย่างราบรื่น",
+          "รับผิดชอบ"
+        ],
+        "key": 0
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (36 vs 22)",
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q11",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ความเร็วในการเดินของแต่ละวัยอาจแตกต่างกัน",
+          "ผู้สูงอายุทุกคนที่เดินช้าจะต้องหกล้มในที่สุด",
+          "การจัดสภาพบ้านมีส่วนช่วยลดความเสี่ยง",
+          "การบังคับให้ผู้สูงอายุเดินเร็วอาจไม่เหมาะสม"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ความเร็วในการเดินของแต่ละวัยอาจแตกต่างกัน",
+          "ผู้สูงอายุทุกคนที่เดินช้าจะต้องหกล้มในที่สุด",
+          "การจัดบ้านให้เดินสะดวกและมีแสงสว่างเพียงพอช่วยลดความเสี่ยงต่อการหกล้ม",
+          "การบังคับให้ผู้สูงอายุเดินเร็วอาจไม่เหมาะสม"
+        ]
+      },
+      "why": [
+        "length-cue: key ข is strictly longest (44 vs 43)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q14",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "โทรศัพท์ทุกเครื่องที่ตกน้ำจะเสียทันที",
+          "การชาร์จโทรศัพท์ช่วยไล่ความชื้น",
+          "โทรศัพท์ที่เปียกน้ำควรได้รับการจัดการอย่างระมัดระวังเพื่อป้องกันความเสียหายเพิ่ม",
+          "โทรศัพท์ที่เปิดติดแสดงว่าไม่มีความเสียหาย"
+        ]
+      },
+      "after": {
+        "choices": [
+          "โทรศัพท์ทุกเครื่องที่ตกน้ำจะเสียทันที",
+          "การชาร์จโทรศัพท์ช่วยไล่ความชื้น",
+          "โทรศัพท์ที่เปียกน้ำควรจัดการอย่างระมัดระวังเพื่อป้องกันความเสียหายเพิ่ม",
+          "โทรศัพท์ที่ตกน้ำแต่ยังเปิดเครื่องติดได้ตามปกติแสดงว่าวงจรภายในไม่มีความเสียหาย"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (80 vs 41)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q15",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "จักรยานที่ใช้มอเตอร์ไฟฟ้า",
+          "การใช้จักรยานเดินทางบนถนน",
+          "ระบบปรับแรงช่วยของมอเตอร์ตามสภาพการปั่นโดยอัตโนมัติ",
+          "การปรับระดับแรงช่วยของจักรยานไฟฟ้าแบบทั่วไป"
+        ]
+      },
+      "after": {
+        "choices": [
+          "จักรยานที่ใช้มอเตอร์ไฟฟ้า",
+          "การใช้จักรยานเดินทางบนถนน",
+          "ระบบปรับแรงช่วยของมอเตอร์ตามสภาพการปั่นโดยอัตโนมัติ",
+          "การปรับระดับแรงช่วยของจักรยานไฟฟ้าแบบทั่วไปที่ผู้ขี่ต้องเปลี่ยนเอง"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is strictly longest (51 vs 43)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q17",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ปลาเป็นสัตว์ที่ต้องการน้ำใสเท่านั้น",
+          "ชุมชนควรเลี้ยงปลาเพิ่มในแม่น้ำ",
+          "แม่น้ำทุกแห่งถูกทำลายจากขยะ",
+          "การทำลายแหล่งน้ำย่อมส่งผลเสียกลับมาถึงมนุษย์"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ปลาเป็นสัตว์ที่ต้องการน้ำใสเท่านั้นจึงจะว่ายและมีชีวิตอยู่ได้",
+          "ชุมชนควรเลี้ยงปลาเพิ่มในแม่น้ำ",
+          "แม่น้ำทุกแห่งถูกทำลายจากขยะ",
+          "การทำลายแหล่งน้ำย่อมส่งผลเสียกลับมาถึงมนุษย์"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (44 vs 35)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q18",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "นั่งทำงานเป็นเวลานาน",
+          "กลัวเก้าอี้ล้ม",
+          "รักษาทรัพย์สินของสำนักงาน",
+          "ยึดติดกับตำแหน่งและไม่ยอมลงจากอำนาจ"
+        ]
+      },
+      "after": {
+        "choices": [
+          "นั่งทำงานอยู่ที่โต๊ะเป็นเวลานานโดยไม่ลุกไปพักผ่อน",
+          "กลัวเก้าอี้ล้ม",
+          "รักษาทรัพย์สินของสำนักงาน",
+          "ยึดติดกับตำแหน่งและไม่ยอมลงจากอำนาจ"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (35 vs 25)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q20",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "พึ่งพาตนเอง",
+          "ทำงานร่วมกับผู้อื่น",
+          "รับผิดชอบหน้าที่ของตน",
+          "หลีกเลี่ยงการรับผิดชอบเมื่อเกิดข้อผิดพลาด"
+        ]
+      },
+      "after": {
+        "choices": [
+          "พึ่งพาตนเองในการแก้ปัญหาก่อนขอความช่วยเหลือจากผู้อื่น",
+          "ทำงานร่วมกับผู้อื่น",
+          "รับผิดชอบหน้าที่ของตน",
+          "หลีกเลี่ยงการรับผิดชอบเมื่อเกิดข้อผิดพลาด"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (41 vs 21)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q21",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "สายลมพัดผ่านยอดไม้",
+          "ดวงหน้าของนางผ่องดังจันทร์เพ็ญ",
+          "ใจของเขาแตกสลาย",
+          "ทะเลคำรามตลอดคืน"
+        ]
+      },
+      "after": {
+        "choices": [
+          "สายลมเย็นพัดผ่านยอดไม้ริมทุ่งนาในยามเช้า",
+          "ดวงหน้าของนางผ่องดังจันทร์เพ็ญ",
+          "ใจของเขาแตกสลาย",
+          "ทะเลคำรามตลอดคืน"
+        ]
+      },
+      "why": [
+        "length-cue: key ข is clearly longest (30 vs 18)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q36",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ดวงดาวยิ้มอยู่เหนือยอดไม้",
+          "เสียงฝนพรำราวกับบทเพลงกล่อมค่ำคืน",
+          "ลมหนาวเดินเคาะประตูบ้าน",
+          "ใบไม้ร่วงเต็มลาน"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ดวงดาวยิ้มอยู่เหนือยอดไม้",
+          "เสียงฝนพรำราวกับบทเพลงกล่อมค่ำคืน",
+          "ลมหนาวเดินเคาะประตูบ้าน",
+          "ใบไม้แห้งร่วงหล่นเต็มลานวัดหลังพายุฝนผ่านพ้นไป"
+        ]
+      },
+      "why": [
+        "length-cue: key ข is clearly longest (33 vs 25)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q47",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ทุกฝ่ายปฏิบัติงานตามระเบียบอย่างเคร่งครัด",
+          "นักเรียนควรพัฒนาทักษะการวิเคราะห์อย่างสม่ำเสมอ",
+          "ประชาชนร่วมกันอนุรักษ์ทรัพยากรธรรมชาติ",
+          "ผู้จัดงานเตรียมอุปกรณ์อย่างพิถีพิทันเพื่อให้พิธีดำเนินไปอย่างราบรื่น"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ทุกฝ่ายปฏิบัติงานตามระเบียบอย่างเคร่งครัด",
+          "นักเรียนควรฝึกฝนทักษะการคิดวิเคราะห์และการสื่อสารอย่างสม่ำเสมอทุกภาคเรียน",
+          "ประชาชนร่วมกันอนุรักษ์ทรัพยากรธรรมชาติ",
+          "ผู้จัดงานเตรียมอุปกรณ์อย่างพิถีพิทันเพื่อให้พิธีราบรื่น"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (68 vs 46)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q03",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ฝนตกเป็นสาเหตุเดียวที่ทำให้ต้นไม้ตาย",
+          "จุลินทรีย์ทุกชนิดสามารถกำจัดเชื้อรากเน่าได้",
+          "สวนผลไม้ไม่ควรใช้สารเคมีทุกประเภท",
+          "การใช้จุลินทรีย์ร่วมกับการจัดการระบายน้ำเป็นแนวทางช่วยลดปัญหารากเน่า"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "ฝนตกเป็นสาเหตุเดียวที่ทำให้ต้นไม้ตาย",
+          "จุลินทรีย์ทุกชนิดสามารถกำจัดเชื้อรากเน่าได้โดยไม่ต้องปรับร่องระบายน้ำ",
+          "การใช้จุลินทรีย์ร่วมกับการจัดการระบายน้ำเป็นแนวทางช่วยลดปัญหารากเน่า",
+          "สวนผลไม้ไม่ควรใช้สารเคมีทุกประเภท"
+        ],
+        "key": 2
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (68 vs 43)",
+        "key moved ง→ค to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q08",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "วัชพืชทุกชนิดสามารถลอยน้ำได้",
+          "แมลงทุกชนิดเหมาะสำหรับกำจัดวัชพืช",
+          "การควบคุมวัชพืชรุกรานด้วยศัตรูธรรมชาติภายใต้การติดตามผล",
+          "พื้นที่ชุ่มน้ำไม่ควรมีพืชต่างถิ่นชนิดใดเลย"
+        ]
+      },
+      "after": {
+        "choices": [
+          "วัชพืชทุกชนิดสามารถลอยน้ำได้",
+          "แมลงทุกชนิดเหมาะสำหรับกำจัดวัชพืช",
+          "การควบคุมวัชพืชรุกรานด้วยศัตรูธรรมชาติภายใต้การติดตามผล",
+          "พื้นที่ชุ่มน้ำไม่ควรมีพืชต่างถิ่นชนิดใดเลยแม้จะไม่ก่อปัญหาก็ตาม"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (55 vs 42)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q10",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ให้ข้อมูลประวัติการกำจัดขยะในประเทศไทย",
+          "อธิบายว่าการเผาขยะเป็นวิธีที่ประหยัดที่สุด",
+          "แนะนำให้ผู้คนซื้อหน้ากากชนิดใดชนิดหนึ่ง",
+          "เตือนให้หลีกเลี่ยงการเผาขยะและการสูดควันที่อาจเป็นอันตราย"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ให้ข้อมูลประวัติการกำจัดขยะในประเทศไทย",
+          "อธิบายว่าการเผาขยะในที่โล่งเป็นวิธีกำจัดขยะที่ประหยัดที่สุด",
+          "แนะนำให้ผู้คนซื้อหน้ากากชนิดใดชนิดหนึ่ง",
+          "เตือนให้หลีกเลี่ยงการเผาขยะและการสูดควันที่อาจเป็นอันตราย"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (57 vs 42)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q13",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ข้าวทุกพันธุ์สามารถปลูกโดยไม่ใช้น้ำได้",
+          "การปล่อยน้ำขังทำให้ผลผลิตเสียหายทุกพื้นที่",
+          "พื้นที่แล้งไม่ควรปลูกข้าวทุกชนิด",
+          "การเลือกพันธุ์และวิธีให้น้ำให้เหมาะสมช่วยลดการใช้น้ำในการปลูกข้าว"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ข้าวทุกพันธุ์สามารถปลูกโดยไม่ใช้น้ำได้",
+          "การปล่อยน้ำขังตลอดฤดูปลูกทำให้ผลผลิตข้าวเสียหายในทุกพื้นที่ที่ทำนา",
+          "พื้นที่แล้งไม่ควรปลูกข้าวทุกชนิด",
+          "การเลือกพันธุ์และวิธีให้น้ำให้เหมาะสมช่วยลดการใช้น้ำในการปลูกข้าว"
+        ]
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (65 vs 42)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q15",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การยอมรับความผิดพลาดและแก้ที่สาเหตุช่วยพัฒนาการทำงาน",
+          "คนเก่งไม่ควรทำผิดพลาดเลย",
+          "การรักษาภาพลักษณ์สำคัญกว่าการแก้ปัญหา",
+          "ผู้ที่ยอมรับผิดจะประสบความสำเร็จทุกครั้ง"
+        ]
+      },
+      "after": {
+        "choices": [
+          "การยอมรับความผิดพลาดและแก้ที่สาเหตุช่วยพัฒนาการทำงาน",
+          "คนเก่งไม่ควรทำผิดพลาดเลย",
+          "การรักษาภาพลักษณ์สำคัญกว่าการแก้ปัญหา",
+          "ผู้ที่กล้ายอมรับความผิดพลาดของตนจะประสบความสำเร็จในการทำงานทุกครั้ง"
+        ]
+      },
+      "why": [
+        "length-cue: key ก is clearly longest (52 vs 40)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q18",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ปลาทุกชนิดในแหล่งน้ำกินอาหารเหมือนกัน",
+          "กับดักเป็นวิธีเดียวที่ควบคุมปลาได้",
+          "ปัญหาปลาต่างถิ่นรุกรานและแนวทางควบคุมการแพร่กระจาย",
+          "การเลี้ยงปลาทุกชนิดควรถูกห้าม"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ปลาทุกชนิดในแหล่งน้ำกินอาหารเหมือนกัน",
+          "กับดักเฉพาะแบบเป็นวิธีเดียวที่ควบคุมการแพร่กระจายของปลาได้",
+          "ปัญหาปลาต่างถิ่นรุกรานและแนวทางควบคุมการแพร่กระจาย",
+          "การเลี้ยงปลาทุกชนิดควรถูกห้าม"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (50 vs 37)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q19",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "พิพิธภัณฑ์ที่ไม่มีเทคโนโลยีถือว่าไม่มีคุณค่า",
+          "ผู้ชมทุกคนต้องชอบเรื่องประวัติศาสตร์",
+          "วัตถุเก่าไม่มีความสำคัญหากไม่มีภาพเคลื่อนไหว",
+          "พิพิธภัณฑ์ควรช่วยให้ผู้ชมเข้าใจความหมายของอดีต ไม่ใช่เพียงแสดงของเก่า"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "พิพิธภัณฑ์ที่ไม่มีเทคโนโลยีทันสมัยมาช่วยจัดแสดงถือว่าไม่มีคุณค่าต่อผู้ชม",
+          "พิพิธภัณฑ์ควรช่วยให้ผู้ชมเข้าใจความหมายของอดีต ไม่ใช่เพียงแสดงของเก่า",
+          "วัตถุเก่าไม่มีความสำคัญหากไม่มีภาพเคลื่อนไหว",
+          "ผู้ชมทุกคนต้องชอบเรื่องประวัติศาสตร์"
+        ],
+        "key": 1
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (69 vs 44)",
+        "key moved ง→ข to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q37",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การประเมินผลครั้งนี้มีวัตถุประสงค์เพื่อพิจารณาประสิทธิภาพของมาตรการที่ดำเนินการ",
+          "ทีมงานเช็กแล้วว่ามาตรการนี้พอไปได้",
+          "ถ้าดูจากตัวเลขก็ถือว่าโอเคอยู่",
+          "เรื่องนี้คงต้องคุยกันอีกทีให้ลงตัว"
+        ]
+      },
+      "after": {
+        "choices": [
+          "การประเมินผลครั้งนี้มีวัตถุประสงค์เพื่อพิจารณาประสิทธิภาพของมาตรการ",
+          "ทีมงานเช็กตัวเลขทั้งหมดแล้วว่ามาตรการนี้ก็พอไปได้อยู่นะ ไม่ต้องห่วง",
+          "ถ้าดูจากตัวเลขที่เก็บมาทั้งปีก็ถือว่าโอเคอยู่นะ ไม่ได้แย่อะไรเลย",
+          "เรื่องนี้คงต้องคุยกันอีกทีให้ลงตัว"
+        ]
+      },
+      "why": [
+        "length-cue: key ก is clearly longest (79 vs 34)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q41",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "พ่อเห็นลูกถือร่มบนสะพาน",
+          "ครูแจ้งนักเรียนเรื่องกิจกรรมที่ห้องสมุด",
+          "ตำรวจพบกระเป๋าของผู้โดยสารบนรถ",
+          "เจ้าหน้าที่ส่งเอกสารฉบับสุดท้ายให้ผู้อำนวยการเมื่อเวลาเก้าโมงเช้า"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เจ้าหน้าที่ส่งเอกสารฉบับสุดท้ายให้ผู้อำนวยการเมื่อเวลาเก้าโมงเช้า",
+          "ครูแจ้งนักเรียนชั้นมัธยมศึกษาปีที่สามเรื่องกิจกรรมวันภาษาไทยที่ห้องสมุด",
+          "ตำรวจพบกระเป๋าของผู้โดยสารบนรถ",
+          "พ่อเห็นลูกถือร่มบนสะพาน"
+        ],
+        "key": 0
+      },
+      "why": [
+        "length-cue: key ง is clearly longest (65 vs 39)",
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q42",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เขามีความรู้สึกดีใจและมีความสุขกับผลการสอบ",
+          "นักเรียนที่ได้รับการคัดเลือกให้เป็นตัวแทนของโรงเรียนในการแข่งขันระดับประเทศปีนี้",
+          "ประชาชนส่วนใหญ่กว่าครึ่งหนึ่งเห็นด้วยกับข้อเสนอ",
+          "เธอกลับคืนกลับมายังบ้านอีกครั้งหนึ่ง"
+        ]
+      },
+      "after": {
+        "choices": [
+          "เขามีความรู้สึกดีใจและมีความสุขกับผลการสอบ",
+          "นักเรียนที่ได้รับการคัดเลือกให้เป็นตัวแทนของโรงเรียนในการแข่งขันระดับประเทศ",
+          "ประชาชนส่วนใหญ่กว่าครึ่งหนึ่งของหมู่บ้านเห็นด้วยกับข้อเสนอเรื่องการสร้างสะพานข้ามคลอง",
+          "เธอกลับคืนกลับมายังบ้านอีกครั้งหนึ่ง"
+        ]
+      },
+      "why": [
+        "length-cue: key ข is clearly longest (80 vs 47)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q45",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ฟ้าใสใจงามยามเช้า",
+          "ลมเย็นพาใจไปไกล",
+          "จิตมั่นสัตย์ชัดนักรักธรรม",
+          "ดาวเด่นกลางคืนชื่นใจ"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ฟ้าใสใจงามยามเช้า",
+          "ลมเย็นพาใจไปไกล",
+          "จิตมั่นสัตย์ชัดนักรักธรรม",
+          "ดาวเด่นเรืองรองกลางคืนชื่นใจ"
+        ]
+      },
+      "why": [
+        "length-cue: key ค is clearly longest (25 vs 20)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q141",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The village has an ample supply of clean drinking water."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe village has an “ample” supply of clean drinking water."
+      },
+      "why": [
+        "same fix as police-english-set-01-q11 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-english-set-01-q11 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q102",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ 1 ปี. ข้อนี้เป็นการย้ำตัวเลขสำคัญแบบที่ข้อสอบจริงมักวนกลับมาถาม เพราะตัวเลข 1/5/10/20 ปีเป็นกลุ่มตัวลวงที่สับสนกันได้ง่ายในหมวดการเก็บหนังสือ."
+      },
+      "after": {
+        "explanation": "ตอบ 1 ปี ตามระเบียบงานสารบรรณ ข้อ 57.5. ตัวเลข 1/5/10/20 ปีเป็นกลุ่มตัวลวงที่สับสนกันได้ง่ายในหมวดการเก็บหนังสือ."
+      },
+      "why": [
+        "same fix as police-saraban-set-02-q41 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-saraban-set-02-q41 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-10-q08",
+      "set": "police-mini_mock-set-10",
+      "subject": "thai",
+      "before": {
+        "explanation": "“เชี่ยวชาญด้านพันธุศาสตร์” เป็นถ้อยคำที่ตรงและเป็นธรรมชาติเมื่อกล่าวถึงความรู้ความสามารถระดับสูงเฉพาะสาขา. “ชำนาญการ” มักใช้เป็นตำแหน่งหรือระดับวิชาชีพในบางระบบ และไม่เข้ารูปประโยคเท่า.",
+        "choices": [
+          "เชี่ยวชาญ",
+          "ชำนาญการ",
+          "รอบรู้ทั่วไป",
+          "จัดเจน"
+        ]
+      },
+      "after": {
+        "explanation": "“เชี่ยวชาญด้านพันธุศาสตร์” เป็นถ้อยคำที่ตรงและเป็นธรรมชาติเมื่อกล่าวถึงความรู้ความสามารถระดับสูงเฉพาะสาขา. “คุ้นเคย” หมายถึงรู้จักหรือชินกับสิ่งใดสิ่งหนึ่ง ไม่ได้บอกระดับความรู้ความสามารถ และ “รอบรู้ทั่วไป” ขัดกับการเป็นผู้รู้เฉพาะด้าน. ส่วน “จัดเจน” เน้นความช่ำชองจากประสบการณ์ลงมือทำ ไม่ใช้กับความรู้เชิงวิชาการเฉพาะสาขาอย่างพันธุศาสตร์.",
+        "choices": [
+          "เชี่ยวชาญ",
+          "คุ้นเคย",
+          "รอบรู้ทั่วไป",
+          "จัดเจน"
+        ]
+      },
+      "why": [
+        "same fix as police-thai-set-02-q39 (twin, fixed and imported on 13 Nov)",
+        "same fix as source police-mock_test-set-04-q040"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-12-q06",
+      "set": "police-mini_mock-set-12",
+      "subject": "saraban",
+      "before": {
+        "explanation": "ตอบ ลายมือชื่อ ชื่อ-สกุล และตำแหน่ง. ในตัวอย่างยังมีการแสดงยศ/คำนำหน้าตามกรณี แต่แกนของบล็อกลงชื่อคือต้องระบุตัวผู้ลงนามและตำแหน่งให้ชัดเจน ไม่ใช่มีเพียงลายมือชื่ออย่างเดียว."
+      },
+      "after": {
+        "explanation": "ตอบ ลายมือชื่อ ชื่อ-สกุล และตำแหน่ง. ในทางปฏิบัติอาจมีการแสดงยศ/คำนำหน้าตามกรณี แต่แกนของบล็อกลงชื่อคือต้องระบุตัวผู้ลงนามและตำแหน่งให้ชัดเจน ไม่ใช่มีเพียงลายมือชื่ออย่างเดียว."
+      },
+      "why": [
+        "same fix as police-saraban-set-02-q29 (twin, fixed and imported on 13 Nov)",
+        "same fix as source police-mock_test-set-04-q096"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-13-q07",
+      "set": "police-mini_mock-set-13",
+      "subject": "law",
+      "before": {
+        "tip": "จุดจำ: เด็กอายุ 14 ปีทำพินัยกรรมแล้วผู้ปกครองให้สัตยาบัน พินัยกรรมนั้นจึงสมบูรณ์"
+      },
+      "after": {
+        "tip": "จุดจำ: อายุไม่ครบ 15 ปีทำพินัยกรรม = โมฆะ ให้สัตยาบันไม่ได้"
+      },
+      "why": [
+        "same fix as police-law-set-02-q33 (twin, fixed and imported on 13 Nov)",
+        "same fix as source police-mock_test-set-04-q127"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q025",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ผู้เขียนเสนอปัจจัยหลายด้านเพื่อให้ผู้อ่านใช้ประกอบการตัดสินใจ ไม่ได้ตำหนิหรือบังคับให้เลือกทางใดทางหนึ่ง จึงเป็นการให้ข้อคิด. ตัวเลือก “แนะนำ” อาจใกล้เคียงในภาษาทั่วไป แต่ข้อความจบด้วยหลักคิดกว้าง ๆ มากกว่าคำสั่งวิธีปฏิบัติเฉพาะ."
+      },
+      "after": {
+        "explanation": "ผู้เขียนเสนอปัจจัยหลายด้านเพื่อให้ผู้อ่านใช้ประกอบการตัดสินใจ ไม่ได้ตำหนิหรือบังคับให้เลือกทางใดทางหนึ่ง จึงเป็นการให้ข้อคิด."
+      },
+      "why": [
+        "same fix as police-thai-set-01-q11 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q070",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "tip": "คีย์เวิร์ดของพลเมืองดิจิทัลและการรับมือ Fake News: 'ตรวจสอบข้อมูลก่อนส่งต่อ (Fact Check)' และ 'ไม่กระตุ้นการเข้าถึงข่าวปลอมด้วยการไลก์/แชร์/ด่าใต้โพสต์' แต่ให้กดแจ้งรายงาน (Report) ทราฟฟิกข้อมูลพังไปแทน"
+      },
+      "after": {
+        "tip": "คีย์เวิร์ดของพลเมืองดิจิทัลและการรับมือ Fake News: 'ตรวจสอบข้อมูลก่อนส่งต่อ (Fact Check)' และ 'ไม่กระตุ้นการเข้าถึงข่าวปลอมด้วยการไลก์/แชร์/ด่าใต้โพสต์' แต่ให้กดแจ้งรายงาน (Report) แทน"
+      },
+      "why": [
+        "same fix as police-computer-set-01-q30 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q089",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "tip": "สิ่งที่ไม่ใช่หนังสือสั่งการคือ ‘แถลงการณ์’; หนังสือสั่งการมีคำสั่ง ระเบียบ และข้อบังคับ"
+      },
+      "after": {
+        "tip": "จุดจำ: ชี้แจงทำความเข้าใจเหตุการณ์หรือกรณีที่เกิดขึ้นให้ประชาชนทราบ = แถลงการณ์"
+      },
+      "why": [
+        "same fix as police-saraban-set-01-q09 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q105",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "tip": "จุดจำ: ตราประทับกำหนดเก็บหนังสือต้องมีขนาดไม่เล็กกว่า 32 พอยต์",
+        "choices": [
+          "ประทับตราการเก็บหนังสือไว้ที่มุมล่างขวาของกระดาษแผ่นแรก",
+          "หนังสือเก็บไว้ตลอดไปให้ประทับตราคำว่า “ห้ามทำลาย” ด้วยหมึกแดง",
+          "หนังสือที่เก็บโดยมีกำหนดเวลาให้ประทับตราคำว่า “เก็บถึง พ.ศ. ....” ด้วยหมึกสีน้ำเงิน",
+          "ตราประทับกำหนดเก็บหนังสือต้องมีขนาดไม่เล็กกว่า 32 พอยต์"
+        ]
+      },
+      "after": {
+        "tip": "จุดจำ: ตรากำหนดเก็บหนังสือไม่เล็กกว่า 24 พอยท์ (32 พอยท์ คือชั้นความเร็ว)",
+        "choices": [
+          "ประทับตราการเก็บหนังสือไว้ที่มุมล่างขวาของกระดาษแผ่นแรก",
+          "หนังสือเก็บไว้ตลอดไปให้ประทับตราคำว่า “ห้ามทำลาย” ด้วยหมึกแดง",
+          "หนังสือที่เก็บโดยมีกำหนดเวลาให้ประทับตราคำว่า “เก็บถึง พ.ศ. ....” ด้วยหมึกสีน้ำเงิน",
+          "ตราประทับกำหนดเก็บหนังสือต้องมีขนาดไม่เล็กกว่า 32 พอยท์"
+        ]
+      },
+      "why": [
+        "same fix as police-saraban-set-01-q40 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q119",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "มาตรา 15 กำหนดว่าสภาพบุคคลเริ่มเมื่อคลอดแล้วอยู่รอดเป็นทารกและสิ้นสุดเมื่อตาย จึงไม่ต้องรอครบหนึ่งชั่วโมงหรือรอการแจ้งเกิด."
+      },
+      "after": {
+        "explanation": "มาตรา 15 กำหนดว่าสภาพบุคคลเริ่มเมื่อคลอดแล้วอยู่รอดเป็นทารกและสิ้นสุดเมื่อตาย จึงไม่ต้องรอครบ 24 ชั่วโมงหรือรอการแจ้งเกิด."
+      },
+      "why": [
+        "same fix as police-law-set-01-q16 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q139",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The safety briefing is mandatory for all new employees."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe safety briefing is “mandatory” for all new employees."
+      },
+      "why": [
+        "same fix as police-english-set-01-q07 (twin, fixed and imported on 13 Nov)",
+        "same fix as police-mini_mock-set-08-q03 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-01-q140",
+      "set": "police-mock_test-set-01",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "The chief decided to commend the rescue team for their excellent work."
+      },
+      "after": {
+        "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe chief decided to “commend” the rescue team for their excellent work."
+      },
+      "why": [
+        "same fix as police-english-set-01-q09 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q052",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "DNS (Domain Name System) ทำหน้าที่คล้ายกับ 'สมุดโทรศัพท์ส่วนตัว' ที่คอยแปลงข้อมูลชื่อเว็บโดเมนเนมที่มนุษย์จำง่ายให้เป็นเลข IP Address (เช่น 192.168.x.x) ของเครื่องเซิร์ฟเวอร์ปลายทาง เพราะคอมพิวเตอร์คุยกันด้วยตัวเลขไม่ใช่ตัวอักษร"
+      },
+      "after": {
+        "explanation": "DNS (Domain Name System) ทำหน้าที่คล้ายกับ 'สมุดโทรศัพท์ส่วนตัว' ที่คอยแปลงข้อมูลชื่อเว็บโดเมนเนมที่มนุษย์จำง่ายให้เป็นเลข IP Address ของเครื่องเซิร์ฟเวอร์ปลายทาง เพราะคอมพิวเตอร์คุยกันด้วยตัวเลขไม่ใช่ตัวอักษร"
+      },
+      "why": [
+        "same fix as police-computer-set-03-q12 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q145",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "Mr. Wilson __________ at this company for twelve years."
+      },
+      "after": {
+        "prompt": "Mr. Wilson __________ at this company for twelve years now."
+      },
+      "why": [
+        "same fix as police-english-set-03-q19 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q039",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ควรเติมสำนวนใดในช่องว่าง\n\nเขาไม่เคยสนใจงานอาสา แต่เมื่อเห็นเพื่อนทั้งกลุ่มสมัครก็สมัครตามทันทีโดยไม่ได้คิดว่าตนมีเวลาหรือไม่ เรียกว่า __________",
+        "explanation": "สถานการณ์เน้นการทำตามผู้อื่นโดยไม่พิจารณาความเหมาะสมของตน จึงตรงกับ “เห็นช้างขี้ ขี้ตามช้าง”."
+      },
+      "after": {
+        "prompt": "ควรเติมสำนวนใดในช่องว่าง\n\nเขามีรายได้ไม่มาก แต่เมื่อเห็นเพื่อนที่ฐานะดีซื้อรถคันใหม่ราคาแพง ก็รีบไปผ่อนรถรุ่นเดียวกันทันทีโดยไม่คิดถึงภาระของตน เรียกว่า __________",
+        "explanation": "สถานการณ์เน้นการทำตามผู้ที่มีฐานะดีกว่าโดยไม่พิจารณาความเหมาะสมของตน จึงตรงกับ “เห็นช้างขี้ ขี้ตามช้าง”."
+      },
+      "why": [
+        "same fix as police-thai-set-02-q37 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q040",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "“เชี่ยวชาญด้านพันธุศาสตร์” เป็นถ้อยคำที่ตรงและเป็นธรรมชาติเมื่อกล่าวถึงความรู้ความสามารถระดับสูงเฉพาะสาขา. “ชำนาญการ” มักใช้เป็นตำแหน่งหรือระดับวิชาชีพในบางระบบ และไม่เข้ารูปประโยคเท่า.",
+        "choices": [
+          "ชำนาญการ",
+          "รอบรู้ทั่วไป",
+          "จัดเจน",
+          "เชี่ยวชาญ"
+        ]
+      },
+      "after": {
+        "explanation": "“เชี่ยวชาญด้านพันธุศาสตร์” เป็นถ้อยคำที่ตรงและเป็นธรรมชาติเมื่อกล่าวถึงความรู้ความสามารถระดับสูงเฉพาะสาขา. “คุ้นเคย” หมายถึงรู้จักหรือชินกับสิ่งใดสิ่งหนึ่ง ไม่ได้บอกระดับความรู้ความสามารถ และ “รอบรู้ทั่วไป” ขัดกับการเป็นผู้รู้เฉพาะด้าน. ส่วน “จัดเจน” เน้นความช่ำชองจากประสบการณ์ลงมือทำ ไม่ใช้กับความรู้เชิงวิชาการเฉพาะสาขาอย่างพันธุศาสตร์.",
+        "choices": [
+          "คุ้นเคย",
+          "รอบรู้ทั่วไป",
+          "จัดเจน",
+          "เชี่ยวชาญ"
+        ]
+      },
+      "why": [
+        "same fix as police-thai-set-02-q39 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q096",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "ตอบ ลายมือชื่อ ชื่อ-สกุล และตำแหน่ง. ในตัวอย่างยังมีการแสดงยศ/คำนำหน้าตามกรณี แต่แกนของบล็อกลงชื่อคือต้องระบุตัวผู้ลงนามและตำแหน่งให้ชัดเจน ไม่ใช่มีเพียงลายมือชื่ออย่างเดียว."
+      },
+      "after": {
+        "explanation": "ตอบ ลายมือชื่อ ชื่อ-สกุล และตำแหน่ง. ในทางปฏิบัติอาจมีการแสดงยศ/คำนำหน้าตามกรณี แต่แกนของบล็อกลงชื่อคือต้องระบุตัวผู้ลงนามและตำแหน่งให้ชัดเจน ไม่ใช่มีเพียงลายมือชื่ออย่างเดียว."
+      },
+      "why": [
+        "same fix as police-saraban-set-02-q29 (twin, fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q029",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "คำว่า “ผลลัพธ์” มีความหมายว่า สิ่งที่เกิดขึ้นท้ายสุดอยู่แล้ว จึงไม่จำเป็นต้องเติม “สุดท้าย”"
+      },
+      "after": {
+        "explanation": "คำว่า “ผลลัพธ์” หมายถึงผลที่ได้ออกมาแล้ว การเติม “สุดท้าย” จึงไม่เพิ่มความหมายและทำให้ถ้อยคำฟุ่มเฟือย"
+      },
+      "why": [
+        "same fix as police-mini_mock-set-04-q15 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-04-q15 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-05-q052",
+      "set": "police-mock_test-set-05",
+      "subject": "mock_test",
+      "before": {
+        "explanation": "`chmod` (Change Mode) ใช้เปลี่ยนสิทธิ์ Permission ของไฟล์ ส่วน `chown` ใช้เปลี่ยนเจ้าของไฟล์ (Owner), `grep` ใช้ค้นหาข้อความ, และ `mkdir` ใช้สร้างโฟลเดอร์"
+      },
+      "after": {
+        "explanation": "chmod (Change Mode) ใช้เปลี่ยนสิทธิ์ Permission ของไฟล์ ส่วน chown ใช้เปลี่ยนเจ้าของไฟล์ (Owner), grep ใช้ค้นหาข้อความ, และ mkdir ใช้สร้างโฟลเดอร์"
+      },
+      "why": [
+        "same fix as police-mini_mock-set-05-q15 (twin, fixed and imported on 13 Nov)",
+        "same fix as its mini-drill copy police-mini_mock-set-05-q15 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q022",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "อ่านข้อความต่อไปนี้แล้วตอบคำถาม\n\nงานทดลองพบว่า การรับประทานอาหารที่มีใยอาหารสูงร่วมกับมื้ออาหารช่วยให้ระดับน้ำตาลหลังอาหารเพิ่มขึ้นช้าลงในอาสาสมัครบางกลุ่ม นักวิจัยจึงเสนอให้เพิ่มผัก ธัญพืชไม่ขัดสี และถั่วในมื้ออาหาร แต่ยังเน้นว่าผู้ป่วยเบาหวานควรปฏิบัติตามคำแนะนำของแพทย์และไม่ใช้วิธีนี้แทนการรักษา\n\nข้อใดไม่อาจอนุมานได้จากข้อความ"
+      },
+      "after": {
+        "prompt": "อ่านข้อความต่อไปนี้แล้วตอบคำถาม\n\nงานทดลองพบว่า การรับประทานอาหารที่มีใยอาหารสูงร่วมกับมื้ออาหารช่วยให้ระดับน้ำตาลหลังอาหารเพิ่มขึ้นช้าลงในอาสาสมัครบางกลุ่ม นักวิจัยจึงเสนอให้เพิ่มผัก ธัญพืชไม่ขัดสี และถั่วในมื้ออาหาร แต่ยังเน้นว่าผู้ป่วยเบาหวานควรปฏิบัติตามคำแนะนำของแพทย์และไม่ใช้วิธีนี้แทนการรักษา\n\nข้อใด“ไม่อาจ”อนุมานได้จากข้อความ"
+      },
+      "why": [
+        "same fix as its mini-drill copy police-mini_mock-set-10-q01 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q027",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "อ่านข้อความต่อไปนี้แล้วตอบคำถาม\n\nการดื่มน้ำให้เพียงพอช่วยให้ร่างกายรักษาสมดุลของของเหลว แต่ปริมาณที่เหมาะสมแตกต่างกันตามอายุ กิจกรรม อากาศ และภาวะสุขภาพ ผู้ที่มีโรคบางชนิดอาจต้องจำกัดปริมาณน้ำตามคำแนะนำของแพทย์\n\nข้อใดไม่อาจอนุมานได้จากข้อความ"
+      },
+      "after": {
+        "prompt": "อ่านข้อความต่อไปนี้แล้วตอบคำถาม\n\nการดื่มน้ำให้เพียงพอช่วยให้ร่างกายรักษาสมดุลของของเหลว แต่ปริมาณที่เหมาะสมแตกต่างกันตามอายุ กิจกรรม อากาศ และภาวะสุขภาพ ผู้ที่มีโรคบางชนิดอาจต้องจำกัดปริมาณน้ำตามคำแนะนำของแพทย์\n\nข้อใด“ไม่อาจ”อนุมานได้จากข้อความ"
+      },
+      "why": [
+        "same fix as its mini-drill copy police-mini_mock-set-10-q03 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q032",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "พิจารณาประโยคต่อไปนี้ ข้อใดมีการใช้คำราชาศัพท์ไม่ถูกต้องตามหลักภาษาไทย"
+      },
+      "after": {
+        "prompt": "พิจารณาประโยคต่อไปนี้ ข้อใดมีการใช้คำราชาศัพท์“ไม่ถูกต้อง”ตามหลักภาษาไทย"
+      },
+      "why": [
+        "same fix as its mini-drill copy police-mini_mock-set-10-q05 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q037",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดใช้คำผิดความหมาย"
+      },
+      "after": {
+        "prompt": "ข้อใดใช้คำ“ผิด”ความหมาย"
+      },
+      "why": [
+        "same fix as its mini-drill copy police-mini_mock-set-10-q07 (fixed and imported on 13 Nov)"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-02-q087",
+      "set": "police-mock_test-set-02",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดไม่ใช่หนังสือประชาสัมพันธ์"
+      },
+      "after": {
+        "prompt": "ข้อใด“ไม่ใช่”หนังสือประชาสัมพันธ์"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q031",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดใช้คำไม่ถูกต้องตามความหมาย"
+      },
+      "after": {
+        "prompt": "ข้อใดใช้คำ“ไม่ถูกต้อง”ตามความหมาย"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q033",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดใช้สำนวนไม่ถูกต้อง"
+      },
+      "after": {
+        "prompt": "ข้อใดใช้สำนวน“ไม่ถูกต้อง”"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q037",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดมีคำที่ไม่ใช่คำประสมปนอยู่"
+      },
+      "after": {
+        "prompt": "ข้อใดมีคำที่“ไม่ใช่”คำประสมปนอยู่"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q040",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดสะกดผิดทุกคำ"
+      },
+      "after": {
+        "prompt": "ข้อใดสะกด“ผิด”ทุกคำ"
+      },
+      "why": [
+        "negative stem: quoted “ผิด”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q112",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดไม่ใช่เรื่องของกฎหมายเอกชนโดยตรง"
+      },
+      "after": {
+        "prompt": "ข้อใด“ไม่ใช่”เรื่องของกฎหมายเอกชนโดยตรง"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q130",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดไม่ใช่เหตุยกเว้นโทษ แต่เป็นเพียงเหตุที่อาจทำให้ศาลลดโทษ"
+      },
+      "after": {
+        "prompt": "ข้อใด“ไม่ใช่”เหตุยกเว้นโทษ แต่เป็นเพียงเหตุที่อาจทำให้ศาลลดโทษ"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-03-q133",
+      "set": "police-mock_test-set-03",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดกล่าวไม่ถูกต้องเกี่ยวกับการเผาทรัพย์ที่ผู้กระทำเป็นเจ้าของรวมอยู่ด้วย ตามหลักในคำพิพากษาศาลฎีกาที่ 3643/2526"
+      },
+      "after": {
+        "prompt": "ข้อใดกล่าว“ไม่ถูกต้อง”เกี่ยวกับการเผาทรัพย์ที่ผู้กระทำเป็นเจ้าของรวมอยู่ด้วย ตามหลักในคำพิพากษาศาลฎีกาที่ 3643/2526"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q034",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดจับคู่คำสามัญกับคำสุภาพผิด"
+      },
+      "after": {
+        "prompt": "ข้อใดจับคู่คำสามัญกับคำสุภาพ“ผิด”"
+      },
+      "why": [
+        "negative stem: quoted “ผิด”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-04-q133",
+      "set": "police-mock_test-set-04",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดไม่เป็นเหตุฉกรรจ์เพียงเพราะข้อเท็จจริงที่ระบุ"
+      },
+      "after": {
+        "prompt": "ข้อใด“ไม่เป็น”เหตุฉกรรจ์เพียงเพราะข้อเท็จจริงที่ระบุ"
+      },
+      "why": [
+        "negative stem: quoted “ไม่เป็น”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q021",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "คำในข้อใดเขียนผิด"
+      },
+      "after": {
+        "prompt": "คำในข้อใดเขียน“ผิด”"
+      },
+      "why": [
+        "negative stem: quoted “ผิด”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q032",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "อ่านข้อความแล้วตอบคำถาม\n\"หลายสถานีตำรวจเริ่มใช้กล้องติดตัวเจ้าหน้าที่ขณะปฏิบัติหน้าที่ ภาพและเสียงที่บันทึกได้ช่วยให้ข้อเท็จจริงในเหตุการณ์ชัดเจนขึ้น ลดข้อร้องเรียนที่ไม่มีมูล และยังทำให้เจ้าหน้าที่ระมัดระวังการใช้ถ้อยคำมากขึ้น อย่างไรก็ตาม การจัดเก็บข้อมูลจำนวนมากต้องมีระเบียบที่รัดกุมเพื่อคุ้มครองความเป็นส่วนตัวของประชาชนที่ปรากฏในภาพ\"\nข้อใดไม่ใช่ประโยชน์ของกล้องติดตัวตามข้อความ"
+      },
+      "after": {
+        "prompt": "อ่านข้อความแล้วตอบคำถาม\n\"หลายสถานีตำรวจเริ่มใช้กล้องติดตัวเจ้าหน้าที่ขณะปฏิบัติหน้าที่ ภาพและเสียงที่บันทึกได้ช่วยให้ข้อเท็จจริงในเหตุการณ์ชัดเจนขึ้น ลดข้อร้องเรียนที่ไม่มีมูล และยังทำให้เจ้าหน้าที่ระมัดระวังการใช้ถ้อยคำมากขึ้น อย่างไรก็ตาม การจัดเก็บข้อมูลจำนวนมากต้องมีระเบียบที่รัดกุมเพื่อคุ้มครองความเป็นส่วนตัวของประชาชนที่ปรากฏในภาพ\"\nข้อใด“ไม่ใช่”ประโยชน์ของกล้องติดตัวตามข้อความ"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q039",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใดจับคู่ภาษาปากกับภาษาทางการไม่ถูกต้อง"
+      },
+      "after": {
+        "prompt": "ข้อใดจับคู่ภาษาปากกับภาษาทางการ“ไม่ถูกต้อง”"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ถูกต้อง”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q084",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "กรณีใดต่อไปนี้ ไม่สามารถใช้หนังสือประทับตราแทนการลงชื่อได้"
+      },
+      "after": {
+        "prompt": "กรณีใดต่อไปนี้ “ไม่สามารถ”ใช้หนังสือประทับตราแทนการลงชื่อได้"
+      },
+      "why": [
+        "negative stem: quoted “ไม่สามารถ”"
+      ]
+    },
+    {
+      "id": "police-mock_test-set-06-q115",
+      "set": "police-mock_test-set-06",
+      "subject": "mock_test",
+      "before": {
+        "prompt": "ข้อใด ไม่ใช่ สิทธิของผู้ต้องหาในชั้นสอบสวน"
+      },
+      "after": {
+        "prompt": "ข้อใด “ไม่ใช่” สิทธิของผู้ต้องหาในชั้นสอบสวน"
+      },
+      "why": [
+        "negative stem: quoted “ไม่ใช่”"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q40",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เจดีย์ – หลัง  นาฬิกา – เครื่อง  กรรไกร – คัน",
+          "เจดีย์ – องค์  นาฬิกา – เรือน  กรรไกร – เล่ม",
+          "เจดีย์ – องค์  นาฬิกา – เรือน  กรรไกร – คัน",
+          "เจดีย์ – องค์  นาฬิกา – หลัง  กรรไกร – เล่ม"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "เจดีย์ – องค์  นาฬิกา – เรือน  กรรไกร – เล่ม",
+          "เจดีย์ – หลัง  นาฬิกา – เครื่อง  กรรไกร – คัน",
+          "เจดีย์ – องค์  นาฬิกา – เรือน  กรรไกร – คัน",
+          "เจดีย์ – องค์  นาฬิกา – หลัง  กรรไกร – เล่ม"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ข→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q32",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "คณะกรรมการมีมติให้เลื่อนการประชุมออกไปจนกว่าจะมีข้อมูลครบถ้วน",
+          "ที่ประชุมมีมติให้ดำเนินการทันที แต่หัวหน้าบอกว่าถ้าใครชักช้าก็งานเข้าแน่",
+          "วันนี้พวกเราจะไปกินข้าวกันก่อน แล้วค่อยกลับมาคุยเรื่องงาน",
+          "ประชาชนควรตรวจสอบเอกสารให้ครบก่อนยื่นคำร้องต่อเจ้าหน้าที่"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "คณะกรรมการมีมติให้เลื่อนการประชุมออกไปจนกว่าจะมีข้อมูลครบถ้วน",
+          "ประชาชนควรตรวจสอบเอกสารให้ครบก่อนยื่นคำร้องต่อเจ้าหน้าที่",
+          "วันนี้พวกเราจะไปกินข้าวกันก่อน แล้วค่อยกลับมาคุยเรื่องงาน",
+          "ที่ประชุมมีมติให้ดำเนินการทันที แต่หัวหน้าบอกว่าถ้าใครชักช้าก็งานเข้าแน่"
+        ],
+        "key": 3
+      },
+      "why": [
+        "key moved ข→ง to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q09",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ทำเครื่องหมายสถานที่บนแผนที่",
+          "ตัดสินใจกำหนดแนวทางให้ชัดเจน",
+          "หยุดรับฟังความคิดเห็นของผู้อื่น",
+          "ยืนยันว่าความคิดของตนถูกต้องเสมอ"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "ตัดสินใจกำหนดแนวทางให้ชัดเจน",
+          "ทำเครื่องหมายสถานที่บนแผนที่",
+          "หยุดรับฟังความคิดเห็นของผู้อื่น",
+          "ยืนยันว่าความคิดของตนถูกต้องเสมอ"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ข→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q01",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การจราจรหนาแน่น",
+          "พื้นดินทรุดและระดับน้ำทะเลสูงขึ้น",
+          "ปริมาณน้ำอุปโภคบริโภคไม่เพียงพอ",
+          "การขยายตัวของชุมชนแนวราบ"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "การจราจรหนาแน่น",
+          "การขยายตัวของชุมชนแนวราบ",
+          "ปริมาณน้ำอุปโภคบริโภคไม่เพียงพอ",
+          "พื้นดินทรุดและระดับน้ำทะเลสูงขึ้น"
+        ],
+        "key": 3
+      },
+      "why": [
+        "key moved ข→ง to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q27",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ใกล้",
+          "ใส้",
+          "ใคร่",
+          "ใฝ่"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "ใกล้",
+          "ใฝ่",
+          "ใคร่",
+          "ใส้"
+        ],
+        "key": 3
+      },
+      "why": [
+        "key moved ข→ง to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-01-q31",
+      "set": "police-thai-set-01",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "แตงโม – ผลเหลือง",
+          "ผักบุ้ง – ผักทอดยอด",
+          "ถั่วงอก – ถั่วผลิ",
+          "ปลาช่อน – ปลายาว"
+        ],
+        "key": 1
+      },
+      "after": {
+        "choices": [
+          "ผักบุ้ง – ผักทอดยอด",
+          "แตงโม – ผลเหลือง",
+          "ถั่วงอก – ถั่วผลิ",
+          "ปลาช่อน – ปลายาว"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ข→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q24",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "จัดเจน",
+          "รอบคอบ",
+          "คุ้นเคย",
+          "เชี่ยวชาญ"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เชี่ยวชาญ",
+          "รอบคอบ",
+          "คุ้นเคย",
+          "จัดเจน"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q39",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "คุ้นเคย",
+          "รอบรู้ทั่วไป",
+          "จัดเจน",
+          "เชี่ยวชาญ"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เชี่ยวชาญ",
+          "รอบรู้ทั่วไป",
+          "จัดเจน",
+          "คุ้นเคย"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q32",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ทุกฝ่ายควรเคารพกฎเกณฑ์และข้อตกลงร่วมกัน",
+          "ประชาชนเดินทางไปสักการะสิ่งศักดิ์สิทธิ์",
+          "หน่วยงานจัดกิจกรรมส่งเสริมศิลปวัฒนธรรมของท้องถิ่น",
+          "คณะทำงานพิจารณารายละเอียดอย่างถี่ถ้วนและลงมติเป็นเอกฉัน"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "คณะทำงานพิจารณารายละเอียดอย่างถี่ถ้วนและลงมติเป็นเอกฉัน",
+          "ประชาชนเดินทางไปสักการะสิ่งศักดิ์สิทธิ์",
+          "หน่วยงานจัดกิจกรรมส่งเสริมศิลปวัฒนธรรมของท้องถิ่น",
+          "ทุกฝ่ายควรเคารพกฎเกณฑ์และข้อตกลงร่วมกัน"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q49",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ครูแจ้งกำหนดการสอบให้นักเรียนทุกคนทราบในชั้นเรียน",
+          "เจ้าหน้าที่ปิดประตูอาคารหลังเลิกงาน",
+          "คณะกรรมการประกาศผลการคัดเลือกบนเว็บไซต์ของหน่วยงาน",
+          "ครูพูดกับนักเรียนเรื่องการสอบที่ห้องประชุม"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "ครูพูดกับนักเรียนเรื่องการสอบที่ห้องประชุม",
+          "เจ้าหน้าที่ปิดประตูอาคารหลังเลิกงาน",
+          "คณะกรรมการประกาศผลการคัดเลือกบนเว็บไซต์ของหน่วยงาน",
+          "ครูแจ้งกำหนดการสอบให้นักเรียนทุกคนทราบในชั้นเรียน"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q31",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "2 คำ",
+          "3 คำ",
+          "5 คำ",
+          "4 คำ"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "2 คำ",
+          "3 คำ",
+          "4 คำ",
+          "5 คำ"
+        ],
+        "key": 2
+      },
+      "why": [
+        "key moved ง→ค to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q44",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การทิ้งขยะลงท่อระบายน้ำทำให้ทางน้ำอุดตัน",
+          "เมื่อน้ำฝนไหลระบายไม่ทัน น้ำจึงเอ่อท่วมถนนได้ง่าย",
+          "ดังนั้นประชาชนจึงควรทิ้งขยะให้ถูกที่และช่วยกันดูแลทางระบายน้ำ",
+          "ปัญหานี้ยังเพิ่มภาระในการทำความสะอาดท่อของหน่วยงานท้องถิ่น"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "การทิ้งขยะลงท่อระบายน้ำทำให้ทางน้ำอุดตัน",
+          "เมื่อน้ำฝนไหลระบายไม่ทัน น้ำจึงเอ่อท่วมถนนได้ง่าย",
+          "ปัญหานี้ยังเพิ่มภาระในการทำความสะอาดท่อของหน่วยงานท้องถิ่น",
+          "ดังนั้นประชาชนจึงควรทิ้งขยะให้ถูกที่และช่วยกันดูแลทางระบายน้ำ"
+        ],
+        "key": 2
+      },
+      "why": [
+        "key moved ง→ค to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-02-q33",
+      "set": "police-thai-set-02",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "การจลาจลทำให้การจราจรและชีวิตประจำวันของประชาชนปั่นป่วน",
+          "แพทย์ควรรักษาจรรยาวิชาชีพเพื่อสร้างความไว้วางใจ",
+          "ไม่มีสิ่งใดน่ายินดีไปกว่าการเห็นลูกเติบโตเป็นคนดี",
+          "เขาเป็นคนปากโป้ง จึงโต้เถียงเก่งและไม่ยอมแพ้ใคร"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เขาเป็นคนปากโป้ง จึงโต้เถียงเก่งและไม่ยอมแพ้ใคร",
+          "แพทย์ควรรักษาจรรยาวิชาชีพเพื่อสร้างความไว้วางใจ",
+          "ไม่มีสิ่งใดน่ายินดีไปกว่าการเห็นลูกเติบโตเป็นคนดี",
+          "การจลาจลทำให้การจราจรและชีวิตประจำวันของประชาชนปั่นป่วน"
+        ],
+        "key": 0
+      },
+      "why": [
+        "key moved ง→ก to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q40",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เมื่อเห็นโอกาสทำกำไร เขารีบลงมือเพราะน้ำขึ้นให้รีบตัก",
+          "ผู้บริหารรับผลประโยชน์จากสองฝ่ายจึงถูกมองว่าเหยียบเรือสองแคม",
+          "เมื่องานฉุกเฉินเข้ามา ทีมต้องจับแพะชนแกะใช้ของที่มีไปก่อน",
+          "เขาทำงานหนักด้วยตนเองทุกขั้นตอนจนสำเร็จ จึงเรียกว่า ชุบมือเปิบ"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เมื่อเห็นโอกาสทำกำไร เขารีบลงมือเพราะน้ำขึ้นให้รีบตัก",
+          "เขาทำงานหนักด้วยตนเองทุกขั้นตอนจนสำเร็จ จึงเรียกว่า ชุบมือเปิบ",
+          "เมื่องานฉุกเฉินเข้ามา ทีมต้องจับแพะชนแกะใช้ของที่มีไปก่อน",
+          "ผู้บริหารรับผลประโยชน์จากสองฝ่ายจึงถูกมองว่าเหยียบเรือสองแคม"
+        ],
+        "key": 1
+      },
+      "why": [
+        "key moved ง→ข to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q12",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ผึ้งมีบทบาทในการผสมเกสรพืช",
+          "การสูญเสียแหล่งอาหารเป็นหนึ่งในปัจจัยที่กระทบผึ้ง",
+          "การเพิ่มพืชดอกอาจช่วยสร้างแหล่งอาหารให้ผึ้ง",
+          "จำนวนผึ้งลดลงมีสาเหตุจากสารกำจัดศัตรูพืชเพียงอย่างเดียว"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "ผึ้งมีบทบาทในการผสมเกสรพืช",
+          "จำนวนผึ้งลดลงมีสาเหตุจากสารกำจัดศัตรูพืชเพียงอย่างเดียว",
+          "การเพิ่มพืชดอกอาจช่วยสร้างแหล่งอาหารให้ผึ้ง",
+          "การสูญเสียแหล่งอาหารเป็นหนึ่งในปัจจัยที่กระทบผึ้ง"
+        ],
+        "key": 1
+      },
+      "why": [
+        "key moved ง→ข to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q39",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เจตจำนง  บิณฑบาต",
+          "อนุเคราะห์  อัศจรรย์",
+          "พิถีพิถัน  ปรากฏการณ์",
+          "สังเกตุ  ปราถนา"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เจตจำนง  บิณฑบาต",
+          "อนุเคราะห์  อัศจรรย์",
+          "สังเกตุ  ปราถนา",
+          "พิถีพิถัน  ปรากฏการณ์"
+        ],
+        "key": 2
+      },
+      "why": [
+        "key moved ง→ค to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-thai-set-03-q14",
+      "set": "police-thai-set-03",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เมืองให้ความสำคัญกับทั้งการอนุรักษ์และการพัฒนา",
+          "อาคารใหม่บางประเภทต้องคำนึงถึงบริบทของย่านเก่า",
+          "การรักษาเอกลักษณ์ไม่จำเป็นต้องหยุดพัฒนาสาธารณูปโภค",
+          "เมืองนี้ปฏิเสธเทคโนโลยีสมัยใหม่และไม่ยอมสร้างสิ่งใหม่ใด ๆ"
+        ],
+        "key": 3
+      },
+      "after": {
+        "choices": [
+          "เมืองให้ความสำคัญกับทั้งการอนุรักษ์และการพัฒนา",
+          "เมืองนี้ปฏิเสธเทคโนโลยีสมัยใหม่และไม่ยอมสร้างสิ่งใหม่ใด ๆ",
+          "การรักษาเอกลักษณ์ไม่จำเป็นต้องหยุดพัฒนาสาธารณูปโภค",
+          "อาคารใหม่บางประเภทต้องคำนึงถึงบริบทของย่านเก่า"
+        ],
+        "key": 1
+      },
+      "why": [
+        "key moved ง→ข to balance answer positions (choice texts unchanged)"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-04-q02",
+      "set": "police-mini_mock-set-04",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "ฝนตกทำให้งานประจำปีต้องยกเลิก",
+          "การถ่ายวิดีโอทำให้ยอดขายเพิ่มขึ้นทันที",
+          "ผลิตภัณฑ์จักสานควรขายเฉพาะในช่วงเทศกาล",
+          "ชุมชนปรับวิธีจำหน่ายจากงานประจำปีไปสู่ช่องทางออนไลน์เพื่อให้ขายได้ต่อเนื่อง"
+        ]
+      },
+      "after": {
+        "choices": [
+          "ฝนตกทำให้งานประจำปีต้องยกเลิก",
+          "การถ่ายวิดีโอสาธิตวิธีสานทำให้ยอดขายของชุมชนเพิ่มขึ้นทันทีหลังเผยแพร่",
+          "ผลิตภัณฑ์จักสานควรขายเฉพาะในช่วงเทศกาล",
+          "ชุมชนปรับช่องทางขายจากงานประจำปีสู่ออนไลน์เพื่อให้ขายได้ต่อเนื่อง"
+        ]
+      },
+      "why": [
+        "same fix as source police-thai-set-01-q06"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-04-q09",
+      "set": "police-mini_mock-set-04",
+      "subject": "thai",
+      "before": {
+        "choices": [
+          "เขาช่วยเพื่อนโดยไม่หวังผลตอบแทนจึงเรียกว่าชุบมือเปิบ",
+          "เขาไม่เตรียมงานล่วงหน้า พอถึงวันจริงจึงต้องจับแพะชนแกะ เอาของที่มีมาประกอบให้พอใช้ไปก่อน",
+          "เขาขยันอ่านหนังสือทุกวันจึงเรียกว่าเหยียบเรือสองแคม",
+          "เธอรักษาความลับได้ดีมากจึงเรียกว่าปากโป้ง"
+        ]
+      },
+      "after": {
+        "choices": [
+          "เขาช่วยเพื่อนโดยไม่หวังผลตอบแทนจึงเรียกว่าชุบมือเปิบ",
+          "เขาไม่เตรียมงานล่วงหน้า พอถึงวันจริงจึงต้องจับแพะชนแกะเอาของที่มีมาใช้ไปก่อน",
+          "เขาตั้งใจอ่านหนังสือทุกวันจนสอบได้คะแนนดีจึงเรียกว่าเหยียบเรือสองแคม",
+          "เธอรักษาความลับได้ดีมากจึงเรียกว่าปากโป้ง"
+        ]
+      },
+      "why": [
+        "same fix as source police-thai-set-01-q33",
+        "main-session second review: choices touch-up",
+        "main-session second review: choices touch-up"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-06-q12",
+      "set": "police-mini_mock-set-06",
+      "subject": "saraban",
+      "before": {
+        "tip": "จุดจำ: ผู้ไม่เข้าร่วมประชุม"
+      },
+      "after": {
+        "tip": "จุดจำ: หัวข้อมาตรฐานคือ ผู้มาประชุม – ผู้ไม่มาประชุม – ผู้เข้าร่วมประชุม (ไม่มี “ผู้ไม่เข้าร่วมประชุม”)"
+      },
+      "why": [
+        "same fix as source police-mock_test-set-05-q083"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-06-q15",
+      "set": "police-mini_mock-set-06",
+      "subject": "saraban",
+      "before": {
+        "prompt": "ในทะเบียนหนังสือรับ ชื่อหน่วยงานที่รับหนังสือที่ช่องใดตามระเบียบงานสารบรรณ"
+      },
+      "after": {
+        "prompt": "เมื่อจัดแยกหนังสือที่ลงทะเบียนรับแล้วส่งให้หน่วยงานที่เกี่ยวข้องดำเนินการ ให้ลงชื่อหน่วยงานที่รับหนังสือนั้นในช่องใดของทะเบียนหนังสือรับ"
+      },
+      "why": [
+        "same fix as source police-mock_test-set-05-q093"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-12-q11",
+      "set": "police-mini_mock-set-12",
+      "subject": "saraban",
+      "before": {
+        "prompt": "ในแบบ “ระเบียบ” ส่วนล่างสุดของข้อความตามระเบียบงานสารบรรณคือรายการใด"
+      },
+      "after": {
+        "prompt": "ในแบบ “ระเบียบ” ตามระเบียบงานสารบรรณ ข้อสุดท้ายของข้อความที่เรียงเป็นข้อ ๆ คือข้อใด"
+      },
+      "why": [
+        "same fix as source police-mock_test-set-05-q082"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-13-q03",
+      "set": "police-mini_mock-set-13",
+      "subject": "law",
+      "before": {
+        "tip": "จุดจำ: มี 3 ชั้น คือ ชั้นต้น อุทธรณ์ และสูงสุด"
+      },
+      "after": {
+        "tip": "จุดจำ: ศาลปกครองมี 2 ชั้น คือ ชั้นต้นและสูงสุด ไม่มีชั้นอุทธรณ์"
+      },
+      "why": [
+        "same fix as source police-mock_test-set-04-q116"
+      ]
+    },
+    {
+      "id": "police-mini_mock-set-14-q04",
+      "set": "police-mini_mock-set-14",
+      "subject": "english",
+      "before": {
+        "prompt": "The city has agreed to __________ construction of the new bridge next month.",
+        "explanation": "แปลประโยคโจทย์:\n\"ทางเทศบาลเมืองได้ตกลงที่จะอนุญาตให้ก่อสร้างสะพานแห่งใหม่ในเดือนหน้า\"\n\nคำตอบที่ถูกต้องคือข้อ A: \"permit\" (v.) แปลว่า อนุญาต ยินยอม (to allow something) สอดคล้องกับบริบทที่ตกลงให้ดำเนินการก่อสร้างได้\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ B: \"prevent\" (v.) = ป้องกัน, ขัดขวาง\n• ข้อ C: \"refuse\" (v.) = ปฏิเสธ\n• ข้อ D: \"forbid\" (v.) = สั่งห้าม, ไม่อนุญาต\n\nกลุ่มคำอนุญาต vs สั่งห้าม:\n- อนุญาต: permit = allow = authorize = grant permission\n- สั่งห้าม/ขัดขวาง: forbid = prohibit = ban = prevent"
+      },
+      "after": {
+        "prompt": "The city has agreed to __________ construction of the new bridge, so work will begin next month.",
+        "explanation": "แปลประโยคโจทย์:\n\"ทางเทศบาลเมืองได้ตกลงที่จะอนุญาตให้ก่อสร้างสะพานแห่งใหม่ จึงจะเริ่มงานในเดือนหน้า\"\n\nคำตอบที่ถูกต้องคือข้อ A: \"permit\" (v.) แปลว่า อนุญาต ยินยอม (to allow something) สอดคล้องกับบริบทที่ตกลงให้ดำเนินการก่อสร้างได้\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ B: \"prevent\" (v.) = ป้องกัน, ขัดขวาง\n• ข้อ C: \"refuse\" (v.) = ปฏิเสธ\n• ข้อ D: \"forbid\" (v.) = สั่งห้าม, ไม่อนุญาต\n\nกลุ่มคำอนุญาต vs สั่งห้าม:\n- อนุญาต: permit = allow = authorize = grant permission\n- สั่งห้าม/ขัดขวาง: forbid = prohibit = ban = prevent"
+      },
+      "why": [
+        "same fix as source police-mock_test-set-04-q140",
+        "main-session second review: explanation touch-up"
+      ]
+    },
+    {
+      "id": "police-law-set-03-q47",
+      "set": "police-law-set-03",
+      "before": {
+        "explanation": "อายุการคุ้มครองและการต่ออายุเครื่องหมายการค้าใช้ช่วงเวลา 10 ปีต่อคราว ตามพระราชบัญญัติเครื่องหมายการค้า พ.ศ. 2534 มาตรา 53 และมาตรา 56."
+      },
+      "after": {
+        "explanation": "อายุการคุ้มครองและการต่ออายุเครื่องหมายการค้าใช้ช่วงเวลา 10 ปีต่อคราว ตามพระราชบัญญัติเครื่องหมายการค้า พ.ศ. 2534 มาตรา 53 และมาตรา 55."
+      },
+      "why": [
+        "main-session second review: explanation touch-up"
+      ]
+    }
+  ]
+}
