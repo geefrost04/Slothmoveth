@@ -8,5 +8,5 @@
   <path class="mark" d="M758 702L754 683L735 691"/>
   <circle cx="740" cy="710" r="7" fill="#be123c"/>
   <text class="accentLabel" x="700" y="440">10 cm</text>
-  <text class="label" x="400" y="760">12 cm</text>
+  <text class="label" x="360" y="795">12 cm</text>
 </svg>
