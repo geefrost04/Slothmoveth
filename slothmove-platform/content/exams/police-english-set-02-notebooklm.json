@@ -132,7 +132,7 @@
       "position": 7,
       "category": "Vocabulary",
       "difficulty": "ง่าย",
-      "prompt": "The instructions were so vague that several employees misunderstood them.",
+      "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe instructions were so “vague” that several employees misunderstood them.",
       "choices": [
         "detailed",
         "accurate",
@@ -189,7 +189,7 @@
       "position": 10,
       "category": "Vocabulary",
       "difficulty": "ง่าย",
-      "prompt": "The temporary office will be used only until the main building is repaired.",
+      "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nThe “temporary” office will be used only until the main building is repaired.",
       "choices": [
         "permanent",
         "final",
@@ -227,7 +227,7 @@
       "position": 12,
       "category": "Vocabulary",
       "difficulty": "ง่าย",
-      "prompt": "It is crucial that emergency exits remain clear at all times.",
+      "prompt": "Choose the word closest in meaning to the word in quotation marks.\n\nIt is “crucial” that emergency exits remain clear at all times.",
       "choices": [
         "optional",
         "minor",
@@ -372,7 +372,7 @@
         "ran"
       ],
       "correctChoiceIndex": 1,
-      "explanation": "แปลประโยคโจทย์:\n\"ดูนั่นสิ! เด็กๆ กำลังวิ่งข้ามถนนโดยไม่ได้มองการจราจรเลย\"\n\nคำตอบที่ถูกต้องคือข้อ B: \"are running\" คำอุทาน \"Look!\" (ดูนั่นสิ!) เป็นตัวชี้วัดสำคัญที่บอกว่าเหตุการณ์กำลังเกิดขึ้นตรงหน้าในขณะที่ผู้พูดกำลังพูด จึงต้องใช้ Present Continuous Tense (S + \text{is/am/are} + V\text{-ing}) ประธาน \"The children\" เป็นพหูพจน์ จึงใช้ are running\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ A: \"run\" (Present Simple) — ใช้กับเหตุการณ์ประจำวัน ไม่สอดคล้องกับคำอุทาน Look!\n• ข้อ C: \"have run\" (Present Perfect) — สื่อว่าวิ่งเสร็จสิ้นไปแล้ว\n• ข้อ D: \"ran\" (Past Simple) — สื่อถึงอดีต ขัดกับคำว่า Look!\n\nคำบอกเวลา Present Continuous ที่พบบ่อย:\nLook!, Listen!, at the moment, right now, currently",
+      "explanation": "แปลประโยคโจทย์:\n\"ดูนั่นสิ! เด็กๆ กำลังวิ่งข้ามถนนโดยไม่ได้มองการจราจรเลย\"\n\nคำตอบที่ถูกต้องคือข้อ B: \"are running\" คำอุทาน \"Look!\" (ดูนั่นสิ!) เป็นตัวชี้วัดสำคัญที่บอกว่าเหตุการณ์กำลังเกิดขึ้นตรงหน้าในขณะที่ผู้พูดกำลังพูด จึงต้องใช้ Present Continuous Tense (S + is/am/are + V-ing) ประธาน \"The children\" เป็นพหูพจน์ จึงใช้ are running\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ A: \"run\" (Present Simple) — ใช้กับเหตุการณ์ประจำวัน ไม่สอดคล้องกับคำอุทาน Look!\n• ข้อ C: \"have run\" (Present Perfect) — สื่อว่าวิ่งเสร็จสิ้นไปแล้ว\n• ข้อ D: \"ran\" (Past Simple) — สื่อถึงอดีต ขัดกับคำว่า Look!\n\nคำบอกเวลา Present Continuous ที่พบบ่อย:\nLook!, Listen!, at the moment, right now, currently",
       "tip": "เจอคำเตือน/คำอุทานกระตุ้นสายตาอย่าง 'Look!' หรือ 'Listen!' ตอบ Present Continuous (is/am/are + V-ing) ทันที",
       "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 19",
       "verificationRef": "Standard English grammar: Present Continuous",
@@ -391,7 +391,7 @@
         "hasn't completed"
       ],
       "correctChoiceIndex": 3,
-      "explanation": "แปลประโยคโจทย์:\n\"เธอยังกรอกใบสมัครไม่เสร็จ เธอจึงยังไม่สามารถยื่นใบสมัครได้\"\n\nคำตอบที่ถูกต้องคือข้อ D: \"hasn't completed\" มีคำว่า \"yet\" อยู่ท้ายประโยค ซึ่งมักปรากฏในประโยคปฏิเสธหรือคำถามของ Present Perfect Tense (S + \text{has/have} + \text{not} + V.3) เพื่อสื่อว่าเหตุการณ์ยังไม่เสร็จสิ้นจนถึงปัจจุบัน ประธาน \"She\" เป็นเอกพจน์จึงใช้ hasn't completed\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ A: \"doesn't complete\" (Present Simple) — ไม่ใช้คู่กับ yet ในความหมายนี้\n• ข้อ B: \"didn't complete\" (Past Simple) — เป็นอดีต แต่ผลกระทบเชื่อมโยงถึงปัจจุบัน (cannot submit)\n• ข้อ C: \"isn't completing\" — รูป continuous ไม่นิยมใช้กับ complete ในความหมายนี้\n\nสูตร Present Perfect กับ Yet:\nS + \text{hasn't / haven't} + V.3 \\dots \text{yet.} (ยังไม่ได้ทำ... เลย)",
+      "explanation": "แปลประโยคโจทย์:\n\"เธอยังกรอกใบสมัครไม่เสร็จ เธอจึงยังไม่สามารถยื่นใบสมัครได้\"\n\nคำตอบที่ถูกต้องคือข้อ D: \"hasn't completed\" มีคำว่า \"yet\" อยู่ท้ายประโยค ซึ่งมักปรากฏในประโยคปฏิเสธหรือคำถามของ Present Perfect Tense (S + has/have + not + V.3) เพื่อสื่อว่าเหตุการณ์ยังไม่เสร็จสิ้นจนถึงปัจจุบัน ประธาน \"She\" เป็นเอกพจน์จึงใช้ hasn't completed\n\nวิเคราะห์ตัวเลือกอื่น:\n• ข้อ A: \"doesn't complete\" (Present Simple) — ไม่ใช้คู่กับ yet ในความหมายนี้\n• ข้อ B: \"didn't complete\" (Past Simple) — เป็นอดีต แต่ผลกระทบเชื่อมโยงถึงปัจจุบัน (cannot submit)\n• ข้อ C: \"isn't completing\" — รูป continuous ไม่นิยมใช้กับ complete ในความหมายนี้\n\nสูตร Present Perfect กับ Yet:\nS + hasn't / haven't + V.3 ... yet. (ยังไม่ได้ทำ... เลย)",
       "tip": "เห็นคำว่า 'yet' ท้ายประโยคปฏิเสธ ฟันธง Present Perfect ปฏิเสธ (hasn't/haven't + V.3) ทันที",
       "sourceRef": "ต้นฉบับชุดที่ 2 ข้อ 20",
       "verificationRef": "Standard English grammar: Present Perfect with yet",

@@ -187,7 +187,7 @@
         ".ac.th"
       ],
       "correctChoiceIndex": 1,
-      "explanation": "โดเมนเนมระดับบนสุดตามหมวดหมู่ (ccTLD) ของไทย: '.go.th' ย่อมาจาก Government Thailand ใช้สำหรับหน่วยงานราชการของไทย เช่น เว็บไซต์ของสำนักงานตำรวจแห่งชาติ (royalthaipolice.go.th)",
+      "explanation": "โดเมนระดับที่สองภายใต้โดเมนประจำประเทศไทย (.th): '.go.th' ย่อมาจาก Government Thailand ใช้สำหรับหน่วยงานราชการของไทย เช่น เว็บไซต์ของสำนักงานตำรวจแห่งชาติ (royalthaipolice.go.th)",
       "tip": "จำรหัสโดเมนไทย (.th): '.go.th = ราชการ (Government)', '.co.th = บริษัท/การค้า (Commercial)', '.ac.th = สถาบันการศึกษา (Academic)', '.or.th = องค์กรไม่หวังผลกำไร (Organization)'"
     },
     {
