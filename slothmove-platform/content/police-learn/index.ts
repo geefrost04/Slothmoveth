@@ -97,7 +97,7 @@ export const EXAM_ITEMS: Record<string, number> = { pc: 40, ps: 30, pl: 25, pg: 
  * Topics that are live. Unlisted topics show as "เร็วๆ นี้" on the map and in the plan, and their pages are not
  * built (no route), even though their lesson files exist and are checked. One-line change to publish a topic.
  */
-export const PUBLISHED_TOPICS: string[] = ['pc', 'ps', 'pl', 'pt', 'pg'];
+export const PUBLISHED_TOPICS: string[] = ['pc', 'ps', 'pl', 'pt', 'pg', 'pe'];
 
 const topic = (id: string, title: string, short: string, part: number, lessons: Lesson[], summary?: Summary, test?: MCQ[], links?: Topic['links']): Topic => {
   const live = PUBLISHED_TOPICS.includes(id);

@@ -138,7 +138,7 @@ export function PoliceCourseHomeClient({
           <span className={styles.planIcon} aria-hidden="true">📘</span>
           <span className={styles.planText}>
             <strong>เรียนตามแผน 12 วัน: บทเรียนแบบติวเตอร์ทุกวิชา</strong>
-            <small>คอมพิวเตอร์ สารบรรณ กฎหมาย ภาษาไทย และโจทย์ความสามารถทั่วไป บอกว่าส่วนไหนออกบ่อย พร้อมข้อสอบย่อยทุกบท ภาษาอังกฤษตามมาเร็วๆ นี้</small>
+            <small>ครบ 6 วิชา คอมพิวเตอร์ สารบรรณ กฎหมาย ภาษาไทย ภาษาอังกฤษ และโจทย์ความสามารถทั่วไป บอกว่าส่วนไหนออกบ่อย พร้อมข้อสอบย่อยทุกบท</small>
           </span>
           <b aria-hidden="true">→</b>
         </Link>

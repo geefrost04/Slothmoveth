@@ -27,7 +27,7 @@ export const summary: Summary = {
     {
       name: 'รูปคำและสรรพนาม',
       what: 'ตัวเลือกมักเป็นคำรากเดียวกันคนละชนิด เช่น care, careful, carefully, carefulness ดูตำแหน่ง: ขยายกริยาใช้กริยาวิเศษณ์ (-ly) หลัง be / look / seem / feel ที่บอกสภาพของประธานใช้คุณศัพท์ หลัง a / the / คุณศัพท์ใช้คำนาม สรรพนามหน้ากริยาใช้รูปประธาน หลังกริยาหรือคำบุพบทใช้รูปกรรม my / their ต้องมีคำนามตาม ส่วน mine / theirs ยืนลอยได้',
-      why: 'คำอธิบายของเรา: ภาษาไทยไม่เปลี่ยนรูปคำ คนไทยจึงมักแปลว่า “ตอบสุภาพ” แล้วเลือกคุณศัพท์ ต้องถามว่าคำในช่องว่างขยายอะไร',
+      why: 'คำอธิบายของเรา: ภาษาไทยไม่เปลี่ยนรูปคำ คนไทยแปลว่า ‘ตอบอย่างสุภาพ’ แล้วเลือก polite แทน politely ต้องถามว่าคำในช่องว่างขยายอะไร',
       link: 'ปัจจัยท้ายคำเป็นเบาะแส ไม่ใช่กฎตายตัว เช่น friendly ลงท้าย -ly แต่เป็นคุณศัพท์ ส่วน fast, hard ใช้เป็นกริยาวิเศษณ์ได้โดยไม่เติม -ly',
       key: 'ถามว่าช่องว่างขยายอะไร ขยายกริยาใช้ -ly บอกลักษณะประธานหลัง be ใช้คุณศัพท์',
       refs: [],
@@ -35,7 +35,7 @@ export const summary: Summary = {
     },
     {
       name: 'Tense กับคำบอกเวลา',
-      what: 'หาคำบอกเวลาก่อน yesterday, ago, last …, in 2020 ใช้ past simple (V2) since, for, already, yet, just, so far, ever, never, recently, in the last five years ใช้ present perfect (has/have + V3) now, at the moment, Look! ใช้ present continuous เหตุการณ์ที่เกิดก่อนอีกเหตุการณ์ในอดีตใช้ past perfect (had + V3) และ will / be going to ตามด้วย V1',
+      what: 'หาคำบอกเวลาก่อน yesterday, ago, last …, in 2020 ใช้ past simple (V2) since, for, already, yet, just, so far, ever, never, recently, in the last five years มักบอก present perfect (has/have + V3) เมื่อช่วงเวลาลากมาถึงตอนนี้ แต่ for + ช่วงที่จบแล้ว (He worked there for two years before he retired.) ใช้ V2 และในภาษาอังกฤษแบบอเมริกัน recently / just ใช้กับ V2 ได้ now, at the moment, Look! ใช้ present continuous เหตุการณ์ที่เกิดก่อนอีกเหตุการณ์ในอดีตใช้ past perfect (had + V3) และ will / be going to ตามด้วย V1',
       why: 'คำอธิบายของเรา: ภาษาไทยใช้คำว่า “แล้ว” จึงชวนให้เลือก has + V3 กับ yesterday หรือ ago ซึ่งผิด เพราะคำบอกเวลาอดีตที่ระบุชัดใช้กับ present perfect ไม่ได้',
       link: 'in 2020 (ปีที่จบแล้ว) ใช้ V2 แต่ in the last five years (ช่วงที่ลากมาถึงตอนนี้) ใช้ has/have + V3 · ข้อ passive ในบทที่ 2 ก็เลือกรูป be จากคำบอกเวลาแบบเดียวกัน',
       key: 'วงคำบอกเวลา แล้วถามว่าเหตุการณ์จบแล้ว หรือยังลากมาถึงตอนนี้',
@@ -62,7 +62,7 @@ export const summary: Summary = {
     },
     {
       name: 'เปรียบเทียบ V-ing/to V คำบุพบท ประโยค if',
-      what: 'than ใช้ขั้นกว่า the … in/of ใช้ขั้นสุด as … as ใช้รูปเดิม คำพยางค์เดียวและคำสองพยางค์ที่ลงท้าย -y เติม -er/-est (busier) คำสามพยางค์ขึ้นไปใช้ more/most ห้ามใช้ซ้อน หลังคำบุพบทใช้ V-ing enjoy, finish, avoid, mind ตามด้วย V-ing ส่วน want, decide, plan, agree, refuse ตามด้วย to + V1 at ใช้กับจุดเวลาและที่อยู่ที่มีเลขที่ on ใช้กับวัน in ใช้กับเดือน ปี',
+      what: 'than ใช้ขั้นกว่า the … in/of ใช้ขั้นสุด as … as ใช้รูปเดิม คำพยางค์เดียวและคำสองพยางค์ที่ลงท้าย -y เติม -er/-est (busier) คำสองพยางค์อื่นส่วนใหญ่ใช้ more/most (careful, modern) คำสามพยางค์ขึ้นไปใช้ more/most ห้ามใช้ซ้อน หลังคำบุพบทใช้ V-ing enjoy, finish, avoid, mind ตามด้วย V-ing ส่วน want, decide, plan, agree, refuse ตามด้วย to + V1 at ใช้กับจุดเวลาและที่อยู่ที่มีเลขที่ on ใช้กับวัน in ใช้กับเดือน ปี',
       why: 'คำอธิบายของเรา: to ส่วนใหญ่เป็นส่วนของ to + V1 มีแค่วลีชุดหนึ่งที่ to เป็นคำบุพบท ต้องจำเป็นชุด คือ look forward to, be/get used to, be accustomed to, object to, be committed to, when it comes to, in addition to, contribute to',
       link: 'ประโยค if: แบบ 1 If + V1, will + V1 · แบบ 2 If + V2 (were), would + V1 · แบบ 3 If + had + V3, would have + V3 · unless = if … not ไม่ใส่ not ซ้ำ',
       key: 'หาคำบอกขั้นหรือคำหน้าช่องว่างก่อน แล้วเลือกรูปที่คำนั้นกำหนด',
@@ -83,7 +83,7 @@ export const summary: Summary = {
     { label: 'ข้อสอบภาษาอังกฤษ', value: '15 ข้อ', meaning: 'ตามสรุปขอบเขตจากประกาศ', refs: [{ doc: 'police-exam-scope-summary' }] },
     { label: 'ชนิดของคำ', value: '8 ชนิด', meaning: 'noun, pronoun, verb, adjective, adverb, preposition, conjunction, interjection', refs: [], plain: true },
     { label: 'Passive', value: 'be + V3', meaning: 'be เปลี่ยนตามเวลา กริยาหลักเป็น V3 เสมอ หลัง modal ใช้ be รูปเดิม (must be signed)', refs: [], plain: true },
-    { label: 'Present perfect', value: 'has/have + V3', meaning: 'มากับ since (จุดเริ่ม) for (ระยะเวลา) already, yet, just, so far ห้ามใช้กับ yesterday, ago, last …', refs: [], plain: true },
+    { label: 'Present perfect', value: 'has/have + V3', meaning: 'มักมากับ since (จุดเริ่ม) for (ระยะเวลาที่ลากมาถึงตอนนี้) already, yet, just, so far ห้ามใช้กับ yesterday, ago, last …', refs: [], plain: true },
     { label: 'Past perfect', value: 'had + V3', meaning: 'เหตุการณ์ที่เกิดก่อนอีกเหตุการณ์ในอดีต เหตุการณ์ที่ตามมาใช้ V2', refs: [], plain: true },
     { label: 'ประโยค if', value: '4 แบบ (0–3)', meaning: '0 ความจริงทั่วไป · 1 เป็นไปได้จริง (will) · 2 สมมุติตอนนี้ (would) · 3 สมมุติย้อนอดีต (would have + V3)', refs: [], plain: true },
     { label: 'at · on · in', value: 'จุด · วัน · ช่วงยาว', meaning: 'at 9 a.m. / at the station · on Monday / on the desk · in May / in Bangkok (ยกเว้น at night แต่ in the morning)', refs: [], plain: true },
@@ -96,7 +96,7 @@ export const summary: Summary = {
     },
     {
       q: 'เติม “This is the office ___ I work.” ด้วย which หรือ where เพราะอะไร',
-      a: 'ใช้ where เพราะหลังช่องว่าง I work ครบแล้ว ไม่ขาดประธานหรือกรรม และคำหน้าช่องว่างเป็นสถานที่ ถ้าจะใช้ which ต้องมีคำบุพบทปิดท้าย คือ which I work in เพราะ which ต้องทำหน้าที่เป็นประธานหรือกรรมในอนุประโยค',
+      a: 'ใช้ where เพราะหลังช่องว่าง I work ครบแล้ว ไม่ขาดประธานหรือกรรม และคำหน้าช่องว่างเป็นสถานที่ ถ้าจะใช้ which ต้องมีคำบุพบท in (which I work in / in which I work) เพราะ which ต้องทำหน้าที่เป็นประธานหรือกรรมในอนุประโยค',
     },
     {
       q: 'มีคนพูดว่า “I’m sorry I’m late.” ทำไมตอบ “You’re welcome.” ไม่ได้',
