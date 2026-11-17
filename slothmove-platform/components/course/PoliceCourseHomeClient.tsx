@@ -134,6 +134,15 @@ export function PoliceCourseHomeClient({
           <b aria-hidden="true">→</b>
         </Link>
 
+        <Link href={`/courses/${courseId}/learn`} className={styles.planCard}>
+          <span className={styles.planIcon} aria-hidden="true">📘</span>
+          <span className={styles.planText}>
+            <strong>เรียนตามแผน 12 วัน: บทเรียนแบบติวเตอร์ทุกวิชา</strong>
+            <small>คอมพิวเตอร์ สารบรรณ กฎหมาย ภาษาไทย และโจทย์ความสามารถทั่วไป บอกว่าส่วนไหนออกบ่อย พร้อมข้อสอบย่อยทุกบท ภาษาอังกฤษตามมาเร็วๆ นี้</small>
+          </span>
+          <b aria-hidden="true">→</b>
+        </Link>
+
         <nav className={styles.jump} aria-label="ไปยังส่วน">
           <a href="#mock">Mock Test</a>
           <a href="#mini">Mini Mock</a>
